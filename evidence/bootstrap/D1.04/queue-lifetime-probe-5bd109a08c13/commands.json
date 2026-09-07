@@ -1,0 +1,152 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.04\\queue-lifetime-probe-5bd109a08c13",
+      "-B",
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.04-send-881e86dc",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=E:\\VS2019Qt5.15\\3D/cmake/LockedMSVC.cmake"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T18:39:30.685396+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 12124,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T18:39:42.370151+00:00",
+    "raw": [
+      {
+        "path": "configure-stdout.log",
+        "sha256": "a7831b77109f6985fcb1d9deff4232b491afedcdd8d54406ff15c7be7f8f7a1b",
+        "size": 459
+      },
+      {
+        "path": "configure-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.04-send-881e86dc",
+      "--target",
+      "action_check",
+      "--config",
+      "Debug",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T18:39:42.378375+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 17,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 13220,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T18:39:55.613963+00:00",
+    "raw": [
+      {
+        "path": "build-stdout.log",
+        "sha256": "8e26bb4ee1b6d69d91a2620272cd63e3ca730515fde5be7965b144aaf1e933b8",
+        "size": 352
+      },
+      {
+        "path": "build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.04-send-881e86dc\\Debug\\action_check.exe",
+      "close_control"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T18:39:55.622505+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\VS2019Qt5.15\\3D\\build\\d1.04-send-881e86dc\\Debug\\action_check.exe",
+    "pid": 1712,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T18:39:55.741884+00:00",
+    "raw": [
+      {
+        "path": "close_control-stdout.log",
+        "sha256": "57d4ab63e703cb6007e7c0457aa5810777cfe492c10f81a8355acec64314af26",
+        "size": 18
+      },
+      {
+        "path": "close_control-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.04-send-881e86dc\\Debug\\action_check.exe",
+      "unknown_cleanup"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T18:39:55.751217+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\VS2019Qt5.15\\3D\\build\\d1.04-send-881e86dc\\Debug\\action_check.exe",
+    "pid": 24968,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-07T18:39:55.815659+00:00",
+    "raw": [
+      {
+        "path": "unknown_cleanup-stdout.log",
+        "sha256": "9c1624451e98a1f6618ac74f5aa00e2936277fddbe94311f95c5a61f6f65199a",
+        "size": 18
+      },
+      {
+        "path": "unknown_cleanup-stderr.log",
+        "sha256": "b2f2b783c61105b258d8c5961d24f294f38648194ca4064e7c4ce91582873b86",
+        "size": 18
+      }
+    ]
+  }
+]

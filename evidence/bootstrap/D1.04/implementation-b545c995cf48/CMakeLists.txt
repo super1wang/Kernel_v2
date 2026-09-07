@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.25)
+project(PolicyStage LANGUAGES CXX)
+add_executable(policy_stage "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.04/implementation-b545c995cf48/source/packages/runtime/policy/policy.cpp" "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.04/implementation-b545c995cf48/source/tests/contract/authorization/policy_tests.cpp")
+target_compile_features(policy_stage PRIVATE cxx_std_20)
+target_compile_definitions(policy_stage PRIVATE OCK_POLICY_STAGE)
+target_compile_options(policy_stage PRIVATE /utf-8 /EHsc /Zc:__cplusplus /permissive-)
+target_include_directories(policy_stage PRIVATE "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.04/implementation-b545c995cf48/source" "E:/VS2019Qt5.15/3D" "E:/VS2019Qt5.15/3D/tests/compile/contracts" "E:/VS2019Qt5.15/3D/packages/contracts/include" "E:/VS2019Qt5.15/3D/packages/foundation/include" "E:/VS2019Qt5.15/3D/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include")

@@ -1,0 +1,111 @@
+{
+  "directory": "integration-release-af5477237b1b",
+  "profile": "win-msvc-release",
+  "configuration": "Release",
+  "status": "VerifiedBootstrap",
+  "source_count": 224,
+  "source_digest": "1a044ad0c5b50f1efa53a82125430a7002a61a1fbbd989f8f1ca2e1e50ac8352",
+  "cases": 35,
+  "zip_files": 468,
+  "wrappers": [
+    {
+      "case": "T20.policy.transmission_start_arbitration",
+      "commands": 5
+    },
+    {
+      "case": "T07.policy.permit_origin_binding",
+      "commands": 5
+    },
+    {
+      "case": "T20.policy.internal_component_boundary",
+      "commands": 4
+    },
+    {
+      "case": "T07.policy.authentication_source",
+      "commands": 5
+    },
+    {
+      "case": "T07.policy.group_substitution",
+      "commands": 5
+    }
+  ],
+  "commands": 24,
+  "raw": 48,
+  "cpp": 12,
+  "positive_obj": 4,
+  "negative_diagnostics": 8,
+  "isolated_compiler_files": 4,
+  "toolchain": {
+    "compiler": "MSVC",
+    "compiler_version": "19.44.35228.0",
+    "generator": "Visual Studio 17 2022",
+    "toolset": "v143,version=14.44.35207",
+    "windows_sdk": "10.0.26100.0",
+    "cmake_version": "3.31.6-msvc6",
+    "cxx_standard": 20,
+    "configuration": "Release",
+    "crt": "MultiThreadedDLL",
+    "asan_requested": "OFF"
+  },
+  "path_match_unmatched": 0,
+  "runtime_files": 254,
+  "minima": [
+    {
+      "pattern": "build/d1.04-release/tests/contract/authorization/child-runs/*/commands.json",
+      "minimum": 5,
+      "actual": 5
+    },
+    {
+      "pattern": "build/d1.04-release/tests/contract/authorization/child-runs/*/structure.json",
+      "minimum": 5,
+      "actual": 5
+    },
+    {
+      "pattern": "build/d1.04-release/tests/contract/authorization/child-runs/*/*-stdout.log",
+      "minimum": 24,
+      "actual": 24
+    },
+    {
+      "pattern": "build/d1.04-release/tests/contract/authorization/child-runs/*/*-stderr.log",
+      "minimum": 24,
+      "actual": 24
+    },
+    {
+      "pattern": "build/d1.04-release/tests/contract/authorization/child-runs/*/*.cpp",
+      "minimum": 12,
+      "actual": 12
+    },
+    {
+      "pattern": "build/d1.04-release/tests/contract/authorization/child-runs/*/build/positive.dir/Release/positive.obj",
+      "minimum": 4,
+      "actual": 4
+    },
+    {
+      "pattern": "build/d1.04-release/tests/contract/authorization/child-runs/*/install/lib/cmake/OCK/OCKConfig.cmake",
+      "minimum": 1,
+      "actual": 1
+    },
+    {
+      "pattern": "build/d1.04-release/tests/contract/authorization/child-runs/*/CoreContracts/CMakeLists.txt",
+      "minimum": 1,
+      "actual": 1
+    },
+    {
+      "pattern": "build/d1.04-release/tests/contract/authorization/child-runs/*/Runtime/CMakeLists.txt",
+      "minimum": 1,
+      "actual": 1
+    },
+    {
+      "pattern": "build/d1.04-release/tests/contract/authorization/child-runs/*/target-metadata.json",
+      "minimum": 1,
+      "actual": 1
+    }
+  ],
+  "sha256": {
+    "result.json": "1694c0cca10108a4986efe37a1fde264fd98608250eb93c53a19ca1be07a9a31",
+    "commands.json": "1784611fe516e06aa8f5c9b6b6f41a40ff9e85a0f23788fbe3df239014869f39",
+    "policy-junit.xml": "bc7453b1efbd0bbe0a8ab2def9f93aecb43d2af4207ba0675bc240152dcb117e",
+    "source-inputs.json": "fe195c8cff0d616995d05c02a64d7792d5470f4a32cb97b468b8ac61bf43a5b5",
+    "build-artifacts.zip": "1767430efab1611f9cfadc06f1a4e10809bcb75e7b20afe43ac57b80a86dddac"
+  }
+}

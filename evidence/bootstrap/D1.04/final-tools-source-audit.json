@@ -1,0 +1,52 @@
+{
+  "profiles": [
+    {
+      "profile": "win-msvc-debug",
+      "expected": 251,
+      "checks": 3,
+      "inputs": 223,
+      "digest": "08ecf883a2a7dd9c14848ad88485917fa7ac23ff405835284fb32cf5eda9c204",
+      "manifest_sha": "084f14e7d767a34b0323163fdf939ae3e331670da19aadbbcd0b0230e1c8a05a"
+    },
+    {
+      "profile": "win-msvc-release",
+      "expected": 251,
+      "checks": 3,
+      "inputs": 223,
+      "digest": "08ecf883a2a7dd9c14848ad88485917fa7ac23ff405835284fb32cf5eda9c204",
+      "manifest_sha": "13d16de429137c7ba7c75e6fef168494e25e35c82eef43ae1cfe915a98cba138"
+    },
+    {
+      "profile": "win-msvc-asan",
+      "expected": 253,
+      "checks": 3,
+      "inputs": 223,
+      "digest": "08ecf883a2a7dd9c14848ad88485917fa7ac23ff405835284fb32cf5eda9c204",
+      "manifest_sha": "381ddaf5b086a732f04859d828b41991de0018f75f4f0adbc45761925dcadf5f"
+    }
+  ],
+  "freeze_files": 12,
+  "native_commands": 37,
+  "native_cases": 35,
+  "hashes": {
+    "CMakeLists.txt": "7ab27457dbaaaacfc19be411cd4c244812d41c3f53e3b9944e08f75ecce98e03",
+    "build/d1.04-integration.py": "7de37ff3aab400966f3cffffc7110dc65d3b21e932431938110105018a88b9f3",
+    "tests/manifests/d1.04.expected.json": "a4d410e2f75610e61300559d3e73f0eb1bf6baacf24f74d070ed5a686195774f",
+    "tests/runs/d1.04-matrix.json": "3c58c8bcc67999054374c06bd03e89a759759cd0b458df4210d4113b872cc506",
+    "tools/development/msvc_isolation.py": "eb2fe6bb59efeb8d1c8279d4bb72719a4ff8bea3c83bb39a321a09f9b2dbf239",
+    "cmake/LockedMSVC.cmake": "ed0e029ec8e77653b2db779059b8b3483e600e8b27027c660ba01076ce94b3a3",
+    "cmake/msvc-validation-tools.json": "67414627e4e76f7ea66817f14525c16f0d2e80ac30d0ef125724852f29339ed8",
+    "packages/runtime/policy/policy.cpp": "6b81a3d524c98a625276804b143f12307d392216972c3abf3db5e7aebc875a58",
+    "packages/runtime/policy/policy.hpp": "bcd5fcb28468b6f7f519c3e99671a1f0a6554871da1be043bced89c2b1ee4fee",
+    "tests/contract/authorization/action_cases.hpp": "6b7764d720644e10d33716177ca7419e40d729c847e15d2f718475c8ba61d4d6",
+    "tests/contract/authorization/authority_cases.hpp": "94b378ccea15926a3fff2daeba93725d7c07c4755e9c532f506d68a23082375f",
+    "tests/contract/authorization/CMakeLists.txt": "02b088132c84abd1fb90258ca7a918f64a237e9b54fcf161f37b2c8e3976af30",
+    "tests/contract/authorization/develop.py": "3132328ddfbf2598764f7c27f0ae40e6a23938ad973922d7e07669a507c67224",
+    "tests/contract/authorization/discover.py": "5a4a594fa6654cf7e3dbcd7670aa88c91d062d0b73c61b10bb3736734b7cb2f8",
+    "tests/contract/authorization/fixtures.hpp": "cea9f58db8a47311faadba06469587e13e26a0292e4b8902b2f6d18901453db1",
+    "tests/contract/authorization/policy_tests.cpp": "c3b34cebb00b11fd6a41af1d33953867be61ba0b7e572566f1c6b2295cd8b604",
+    "tests/contract/authorization/send_cases.hpp": "6a32a9798598ebbd5a8e41d1325464aab324887fa37c44e21ac10731b65516c6",
+    "tests/contract/authorization/session_cases.hpp": "fa093665543df391c79f1879d618671846de72a43a7acce54f3d641edc95e528",
+    "tests/contract/authorization/verify_children.py": "6817cc0f140fa4cea8920314e2248b3b66e0b27b275eadd54609a8a96764caff"
+  }
+}

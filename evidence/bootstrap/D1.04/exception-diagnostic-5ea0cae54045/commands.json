@@ -1,0 +1,119 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.04\\exception-diagnostic-5ea0cae54045",
+      "-B",
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.04-exception-78d5e1f0",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=E:\\VS2019Qt5.15\\3D/cmake/LockedMSVC.cmake"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T18:25:14.070390+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 23328,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T18:25:26.616529+00:00",
+    "raw": [
+      {
+        "path": "configure-stdout.log",
+        "sha256": "9b3c0732acbee8e8c49c7d4d0ef806049e59110a129d8a1f4b1f6474a4052e93",
+        "size": 464
+      },
+      {
+        "path": "configure-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.04-exception-78d5e1f0",
+      "--target",
+      "action_check",
+      "--config",
+      "Debug",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T18:25:26.626011+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 17,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 31404,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T18:25:43.298324+00:00",
+    "raw": [
+      {
+        "path": "build-stdout.log",
+        "sha256": "57cf9c0fd6cca63416010d84ff7a04398e4ed26fc9e6dbea2aaf6e71efe2f9e4",
+        "size": 357
+      },
+      {
+        "path": "build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.04-exception-78d5e1f0\\Debug\\action_check.exe",
+      "T07.policy.exception_atomicity"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T18:25:43.308256+00:00",
+    "exit_code": null,
+    "status": "Timeout",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": true
+    },
+    "executable": "E:\\VS2019Qt5.15\\3D\\build\\d1.04-exception-78d5e1f0\\Debug\\action_check.exe",
+    "pid": 37544,
+    "observed_exit_code": 124,
+    "finished_at": "2026-09-07T18:26:03.409847+00:00",
+    "raw": [
+      {
+        "path": "T07.policy.exception_atomicity-stdout.log",
+        "sha256": "125a28c4d4c48196982a16da4ae1bcb09dfc21ebfd4888b0d87d969be1f69db9",
+        "size": 20
+      },
+      {
+        "path": "T07.policy.exception_atomicity-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

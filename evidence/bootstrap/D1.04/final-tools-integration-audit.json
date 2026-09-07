@@ -1,0 +1,131 @@
+{
+  "integration": "evidence\\bootstrap\\D1.04\\integration-e90b09d64c8b",
+  "status": "VerifiedBootstrap",
+  "cases": 35,
+  "source_count": 223,
+  "source_digest": "08ecf883a2a7dd9c14848ad88485917fa7ac23ff405835284fb32cf5eda9c204",
+  "archive_files": 470,
+  "wrappers": [
+    {
+      "case": "T20.policy.internal_component_boundary",
+      "commands": 4,
+      "structure": {
+        "header_sha256": "bcd5fcb28468b6f7f519c3e99671a1f0a6554871da1be043bced89c2b1ee4fee",
+        "cmake_sha256": "02b088132c84abd1fb90258ca7a918f64a237e9b54fcf161f37b2c8e3976af30",
+        "actual_target": {
+          "link_libraries": "OCK::CoreContracts",
+          "core_contracts_links": "OCK::Foundation"
+        },
+        "installed_config_sha256": "61248d1bacb32c88846a9e0c707689f3f2bcd111ae43f3b687b2894b957ca69f"
+      }
+    },
+    {
+      "case": "T20.policy.transmission_start_arbitration",
+      "commands": 5,
+      "structure": {
+        "header_sha256": "bcd5fcb28468b6f7f519c3e99671a1f0a6554871da1be043bced89c2b1ee4fee",
+        "compile_controls": [
+          "positive",
+          "construct_transmission",
+          "modify_bytes"
+        ]
+      }
+    },
+    {
+      "case": "T07.policy.group_substitution",
+      "commands": 5,
+      "structure": {
+        "header_sha256": "bcd5fcb28468b6f7f519c3e99671a1f0a6554871da1be043bced89c2b1ee4fee",
+        "compile_controls": [
+          "positive",
+          "modify_members",
+          "construct_group"
+        ]
+      }
+    },
+    {
+      "case": "T07.policy.permit_origin_binding",
+      "commands": 5,
+      "structure": {
+        "header_sha256": "bcd5fcb28468b6f7f519c3e99671a1f0a6554871da1be043bced89c2b1ee4fee",
+        "compile_controls": [
+          "positive",
+          "construct_action",
+          "extract_grant"
+        ]
+      }
+    },
+    {
+      "case": "T07.policy.authentication_source",
+      "commands": 5,
+      "structure": {
+        "header_sha256": "bcd5fcb28468b6f7f519c3e99671a1f0a6554871da1be043bced89c2b1ee4fee",
+        "compile_controls": [
+          "positive",
+          "construct_caller",
+          "copy_session"
+        ]
+      }
+    }
+  ],
+  "child_commands": 24,
+  "raw": 48,
+  "cpp": 12,
+  "positive_obj": 4,
+  "selected_runtime_files": 254,
+  "path_match_unmatched": [],
+  "minima": [
+    {
+      "pattern": "build/d1.04-debug/tests/contract/authorization/child-runs/*/commands.json",
+      "minimum": 5,
+      "actual": 5
+    },
+    {
+      "pattern": "build/d1.04-debug/tests/contract/authorization/child-runs/*/structure.json",
+      "minimum": 5,
+      "actual": 5
+    },
+    {
+      "pattern": "build/d1.04-debug/tests/contract/authorization/child-runs/*/*-stdout.log",
+      "minimum": 24,
+      "actual": 24
+    },
+    {
+      "pattern": "build/d1.04-debug/tests/contract/authorization/child-runs/*/*-stderr.log",
+      "minimum": 24,
+      "actual": 24
+    },
+    {
+      "pattern": "build/d1.04-debug/tests/contract/authorization/child-runs/*/*.cpp",
+      "minimum": 12,
+      "actual": 12
+    },
+    {
+      "pattern": "build/d1.04-debug/tests/contract/authorization/child-runs/*/build/positive.dir/Debug/positive.obj",
+      "minimum": 4,
+      "actual": 4
+    },
+    {
+      "pattern": "build/d1.04-debug/tests/contract/authorization/child-runs/*/install/lib/cmake/OCK/OCKConfig.cmake",
+      "minimum": 1,
+      "actual": 1
+    },
+    {
+      "pattern": "build/d1.04-debug/tests/contract/authorization/child-runs/*/CoreContracts/CMakeLists.txt",
+      "minimum": 1,
+      "actual": 1
+    },
+    {
+      "pattern": "build/d1.04-debug/tests/contract/authorization/child-runs/*/Runtime/CMakeLists.txt",
+      "minimum": 1,
+      "actual": 1
+    },
+    {
+      "pattern": "build/d1.04-debug/tests/contract/authorization/child-runs/*/target-metadata.json",
+      "minimum": 1,
+      "actual": 1
+    }
+  ],
+  "result_sha": "4bc0c3be94f9d42bef25b2df84904017ec0b917de76df40fcf49e6a4ea383176",
+  "archive_sha": "865421e244e07c6dc4682fc9527541fb8934fd7eae82a256cf1316f2afaa2992"
+}

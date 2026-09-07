@@ -1,0 +1,27 @@
+# D1.04 观察操作契约映射稳定性独立 AI 核查
+
+- actor_type：AI；review_contracts。
+- 结论：ChangesRequested（局部规格补充）；本轮仅判断，不修改源码。
+- 已审API修订4 SHA256：`5f6f054582b003f7d2f38a842691545f03d9cadc48f5faf525b47a9bafb79203`。
+- 定位：API 292–295的ExecutionAccessInput、replace_operation_policy入口、391固定源寿命合同；CoreContracts observation.hpp的SummaryInput仅含OperationKey；实现prepare_entry按OperationKey查当前配置并取整个selector。
+
+## 组合缺口成立
+
+ExecutionAccessInput不携带独立ContractDigest，SummaryInput只提供OperationKey。因此观察路径的精确selector只能由可信目录的Key→Digest映射补足。冻结API一方面要求同ExecutionRef的精确OperationSelector不可重绑定，另一方面没有限制replace_operation_policy是否可以把相同Key替换为不同Digest。两者存在必须收口的歧义，不能只靠旧response的permission generation校验解决。
+
+具体反例：目录Key K映射D1，源执行E仅报告K；get(E)形成D1材料。可信管理入口把K替换为D2并配置允许新契约的规则。旧response因世代变化被拒绝，但新get(E)重新从目录获得D2，源E从未改变却被当成另一精确契约执行。所有“旧响应世代拒绝”测试仍可通过。即便调整规则使新get暂时拒绝，Key映射本身已丧失原执行的精确身份。
+
+## 最小补充建议
+
+1. 同一PolicyStore中，一个已安装OperationKey对应的ContractDigest终身不变。replace_operation_policy对于已有Key只允许保持相同Digest后更新权限/模块规则等政策；同Key不同Digest必须原子拒绝，建议返回既有ContractMismatch。拒绝不替换目录，不递增权限世代，不使原有效材料因一次失败尝试失效。
+2. 新精确契约使用新的OperationKey（包括真实版本升级），不能在相同Key下原地改义。未知新Key可依现有预算安装，不存在按名称猜最新版本或默认Digest。现有入口没有删除操作，不需另建无界历史索引；若未来允许删除/重装，仍须保存有界稳定性事实，不能以删除重建绕过本约束。
+3. 组合根可信装配合同明确：source所报告每个已知执行的OperationKey，与安装目录对应的精确契约必须反映该执行真实锁定的契约。API由于不携带Digest，无法独立验证适配器对此撒谎；这是可信源与可信目录的一致性前提，不假装Policy能从Summary恢复缺失信息。未知Key仍拒绝，不扫描生产执行索引推断契约。
+4. 关闭旧Store及新建Store只使旧授权材料失效，不能授权把一个既存执行重新标记为另一契约；新装配仍承担上述真实一致性前提。原架构A19明确可靠执行锁定精确版本/指纹、同版本不可原地改语义，故实际契约升级应使用新Key。
+
+无需增加ExecutionAccessInput字段、改CoreContracts、创建生产索引或扩展D1.04范围。
+
+## 需要的最小行为控制（后续实现时）
+
+同Key不同Digest替换实际拒绝，随后原get/prepare合法控制仍成功；相同Key/Digest更新ACL实际成功并使旧response按世代失效；新版本Key可合法安装，旧源执行K仍按原映射解释，报告新Key的合法新执行按新映射授权。不得只检查旧response失效就声称新get不会重解释。
+
+本报告未运行反例，不宣称已修复；原API批准报告保留，该局部增量需明确冻结后再实现。

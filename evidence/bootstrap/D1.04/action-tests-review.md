@@ -1,0 +1,36 @@
+# D1.04 八项许可测试独立 AI 有界复核
+
+- actor_type：AI；review_contracts。
+- 结论：ChangesRequested（下列测试覆盖及action预算问题）；不作整包结论。
+- 冻结证据：`action-tests-ca6981ffbee2`。本轮实际核对source.json的五个文件SHA全部相符；commands.json中configure、build及八主体共10命令均Exited/0，WindowsJobObject active_after均0。并非仅采信result.json的Passed。
+- policy.hpp：`a6fca851ce64d6985a77b5d543be1b73683b8797f58299c46584f272fff3764a`。
+- policy.cpp：`1958a4928b84326059410e98dfbfc9c8804dd549bb4fcadd7855e2a566763991`。
+- fixtures.hpp：`d9cbf4b7249d10e9bd7957d8edfa33dd8a85c7d4fe2bff75ec9a0591760c6ff2`。
+- action_cases.hpp：`d455f69d7c92a2122ece3186399afbe19dc759f6f9f125b4b13460ebc1536ead`。
+- test_support.hpp：`86e94e83c42d0121e787bc7dae6b2f02785570b5f8c3b38d033f620aad66363a`。
+
+相对API修订4/计划审核，行号均指以上冻结source。未修改源码/测试，未重跑编译；未完成观察方法不在缺陷范围。
+
+## P2：context替换子断言未经过接收者
+
+action_cases.hpp:72–85创建swapped及original EffectContext，却从未把两者交给接收端；Counter::attempt只接Issued，直接消费其中permit。Records::record_attempt没有被任何路径调用，calls==0不能证明错误context没有进入动作。若接收者错误地忽略传入context原permit、改用其成员真permit，这段测试仍全绿，正是计划permit_origin_binding声明要覆盖的替换情形。
+
+需补最小接收夹具：固定本action，实际接收context，并用该context原始permit消费；错误context拒绝且实际尝试计数0；同一接收者随后原context成功且计数1。保留同binding的A/B许可，不能令伪输入在较早字段检查便失败。无需生产Runtime。现有直接consume的伪permit/另一action/expected错值断言本身真实有效，应保留。
+
+## P2：正常digest消费者遗漏精确contract材料
+
+fixtures.hpp:41–43只读envelope/member的name、version及目标，未读两处contract.bytes。collision=false时，仅改变任一精确contract必然返回相同digest；API要求确定性适配器覆盖完整canonical材料，并另设强制碰撞反例。group_members_complete改坏contract只证明政策精确查找拒绝，不能证明digest覆盖；group_substitution又始终开启collision，未检验正常分支。
+
+需补正常digest材料控制：改变envelope contract、member contract、成员次序/数量、目标、anchor时检查对应正常摘要差异，同时保留显式collision模式下原始发行身份不可替换的现有测试。摘要不是权限身份，本发现不声称其本身构成许可绕过，也不要求生产密码学后端。
+
+## P2：action持有重复文本只计输入一次
+
+policy.cpp:107/109、227–232：Group保存一份ActionRequest，Action又保存独立request，binding构造再复制envelope OperationKey；issue的Permit还复制binding。Meter仅对输入envelope/member selector计一次，Hold.usage=meter.value。OperationVersion内部是自有std::string，复制确有额外拥有文本；这些存活副本没有另行计账。现八项预算宽松，无法暴露总text_bytes低估。
+
+需先做实际边界反例：让Store配置/会话后剩余text预算仅够一次请求材料、不够Group+Action+binding实际存活副本；prepare/issue不应成功超出全局拥有预算。足额预算成功及释放后容量恢复作为控制。实现可共享同一个冻结请求或计入所有实际副本，但不能只修改测试预算使其通过。此问题已通知实施者；本报告尚无独立运行该反例的红证据。
+
+## 真实覆盖与范围内余项
+
+permit_once确实重复消费并核对一次尝试，重复issue检查同owner。permit_concurrent使用两真实线程及barrier，结果互斥且计数1。撤权先/消费先使用semaphore建立两种确定顺序，并检查撤销重授不复活旧许可。cancel先赢与消费先赢的状态均检查，外部stop信号不假称已线性化。group_members_complete分别去掉主体/委托/操作模块/实际目标成员权限，并保留envelope正控制；group_substitution在同binding强制碰撞下分别拒绝交叉许可，随后各自原许可成功，非anchor生命周期变更也有拒绝断言。这些不是空跑或只断言DTO。
+
+建议在补上述子断言时顺带核对重复cancel幂等和consume后cancel的具体AlreadyConsumed错误码；当前仅bool拒绝，尚不能分辨错误分类。其他连接/Store关闭、deadline、预算耗尽可能由其余主体覆盖，不因本八项未含而推定整包缺失。八项通过不替代后续固定35主体及正式矩阵。

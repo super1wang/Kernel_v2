@@ -1,0 +1,32 @@
+# D1.04 六项会话测试独立 AI 有界复核
+
+- actor_type：AI；review_contracts。
+- 结论：Approved（仅本快照六项会话测试及所查对应路径）；不作整包批准，不关闭action-tests-review.md的其他问题。
+- 证据：`session-tests-d1fd091cd49f`。实际计算source.json五份源SHA全部一致；commands.json的configure/build/六主体共8命令均Exited/0，WindowsJobObject active_after均0。未另行运行编译。
+- policy.hpp：`a6fca851ce64d6985a77b5d543be1b73683b8797f58299c46584f272fff3764a`。
+- policy.cpp：`4e582ad8ac6db897986888acf1cf6f69ff3189f8cb9a9dbcbacbf0428390b8f8`。
+- fixtures.hpp：`d9cbf4b7249d10e9bd7957d8edfa33dd8a85c7d4fe2bff75ec9a0591760c6ff2`。
+- session_cases.hpp：`8fc2058117e601d6d244faaa2810a2f9a5bf63f5c186d56e6a13cd07e634037b`。
+- test_support.hpp：`86e94e83c42d0121e787bc7dae6b2f02785570b5f8c3b38d033f620aad66363a`。
+
+## 具体覆盖
+
+session_isolation用相同Principal的两个真实open会话，分别得到原始VerifiedCaller、Target和permit；双向错误连接prepare/resolve/validate均拒绝，另一连接许可不可消费，关闭A后B仍可重验并消费。隔离判断没有仅靠不同Principal造成假控制。
+
+service_principal通过固定可信认证器配置独立principal(2)/Service和2秒期限，旧用户会话关闭后不能发行旧action，旧caller不能装入服务会话。新binding含真实服务主体且deadline取认证期限，1999ms重验成功、2000ms重验及消费失败，检查实际边界而非只比较期限字段。它没有声称任何用户DTO可以改变身份。
+
+recursive_delegation_denied分别检查请求与认证ceiling的allow_redelegation=true拒绝，首层false成功，失败后原可用会话仍可准备动作。首个拒绝还核对UnsupportedDelegation错误码。
+
+delegation_shrink实际缩小目标和期限，使旧caller/target/permit失效，新caller只能对剩余目标准备；目标扩张、期限延长拒绝且不破坏新caller，空scope允许但不能动作，也不能重新扩张。对应实现在同Store锁内检查当前scope身份/子集及generation，并原子更新预算和deadline；这一检查没有撤回此前独立预算反例的必要性或替代其red/green核验。
+
+operation_exact_contract有未安装name、错误version、错误contract三种实际prepare拒绝；可信配置改变required_permissions后旧allow不足，完整给主体/委托/认证ceiling/模块/目标配置新的所需权限后成功，避免全部拒绝式伪通过。Group digest的contract材料问题仍见action报告，不把这里的政策精确查找测试混同为digest验证。
+
+target_frozen_set使用重复、乱序、多目标输入，prepare后修改原容器；第二目标生命周期变化使旧许可拒绝，另一次prepare后把输入改成不存在目标仍能消费原动作，原始多目标包含不存在项则拒绝。对应prepare实际先copy request再规范化，保存各目标stamp并在action_current逐项检查，未发现借用调用方容器路径。
+
+## 结论边界及非阻塞提醒
+
+冻结多目标的生命周期拒绝同时可由全局permission generation变化触发，所以该单个断言不能独立证明逐目标stamp比较分支已执行；本轮结合已读逐项实现确认行为，不把此测试描述成该分支的隔离覆盖。后续保持源输入变更后仍成功的独立正控制。
+
+service测试中的“旧会话verify另一主体失败”也受closed状态约束，不能单独证明开放会话的错误Principal检查；该检查属于authentication_source主体，应在完整35项合并时核对。已读CallerPort::authenticate仍精确比较实际principal/delegated_by/tags，没有发现此路径缺实现。
+
+没有针对本六项的新必改项。未评价未完成观察方法、没有重复计算包级Passed，也未修改源或测试。全包仍须独立检查认证主体负例、拥有预算、真实context接收与正式三配置矩阵。

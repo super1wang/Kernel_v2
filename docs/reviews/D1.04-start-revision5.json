@@ -1,0 +1,33 @@
+{
+  "format": "ock.work-package-incremental-start/1",
+  "task_id": "D1.04",
+  "checked_at": "2026-09-07T18:48:14.904368+00:00",
+  "actor_type": "AI",
+  "status": "Approved",
+  "human_review_required": false,
+  "previous_start": {
+    "path": "docs/reviews/D1.04-start-revision4.json",
+    "sha256": "0fed27a00bcb3baab32c15db2b4a677b2f2cdccdfc9c2a1bdbd0d106a992322e"
+  },
+  "approved_inputs": [
+    {
+      "path": "docs/contracts/policy-api.md",
+      "sha256": "b7c73b6401cca3efb3c43f0e59ac8ce1cb5f597bb9710f0c5908faff5e054002"
+    },
+    {
+      "path": "docs/plans/D1.04.md",
+      "sha256": "71283f43812a3be88f6e8d457185d15dc494cbac73a5035430b21e97f328b07e"
+    },
+    {
+      "path": "docs/reviews/D1.04-api-revision5.md",
+      "sha256": "f2290787bd1e15eeb63b47c398803b8f614f1f06b6392bd0db3260bcef00f70e"
+    },
+    {
+      "path": "docs/reviews/D1.04-plan-revision5.md",
+      "sha256": "8987d7473610d2e98b2a105864ad48becb7c3c2e04b3441eb03e6ae2e3212d0d"
+    }
+  ],
+  "scope": "仅增加同Store已安装OperationKey与ContractDigest寿命稳定及可信source真实映射约束；sameKey异Digest失败不耗generation，相同Digest ACL/新版本Key允许。签名/35主项/配置矩阵不变。",
+  "implementation_status": "InProgress",
+  "acceptance_status": "NotStarted"
+}

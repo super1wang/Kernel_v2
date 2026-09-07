@@ -1,0 +1,164 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--fresh",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "build/d1.04-integration-12f37e35",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DOCK_BUILD_G0_TESTS=ON",
+      "-DOCK_BUILD_EXECUTION_MODEL_TESTS=OFF",
+      "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+      "-DOCK_BUILD_FOUNDATION_TESTS=ON",
+      "-DOCK_BUILD_CORE_CONTRACTS_TESTS=ON",
+      "-DOCK_ENABLE_ASAN=OFF",
+      "-DOCK_BUILD_REGISTRATION_TESTS=ON",
+      "-DOCK_BUILD_AUTHORIZATION_TESTS=ON"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T19:23:31.312985+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 49,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 32876,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T19:23:44.789145+00:00",
+    "raw": [
+      {
+        "path": "configure-stdout.log",
+        "sha256": "49ee6fbec5aba372c9a9d62e827e55748f8daf846706b40032ced2e32ab6e62d",
+        "size": 1068
+      },
+      {
+        "path": "configure-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/d1.04-integration-12f37e35",
+      "--config",
+      "Debug",
+      "--parallel",
+      "2",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T19:23:44.798721+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 124,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 31056,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T19:24:06.556016+00:00",
+    "raw": [
+      {
+        "path": "build-stdout.log",
+        "sha256": "f189840a54d3096edabd128294a46699410211b2fd8475c0ab5534937534d80d",
+        "size": 7422
+      },
+      {
+        "path": "build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.04-integration-12f37e35\\tests\\contract\\authorization\\Debug\\ock_policy_tests.exe",
+      "--list"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T19:24:06.566272+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\VS2019Qt5.15\\3D\\build\\d1.04-integration-12f37e35\\tests\\contract\\authorization\\Debug\\ock_policy_tests.exe",
+    "pid": 1876,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T19:24:06.640825+00:00",
+    "raw": [
+      {
+        "path": "native-list-stdout.log",
+        "sha256": "468de333e14f18c2d126e10a14df5bbd89f5226b780a6cc647c1edfdbc0f45a7",
+        "size": 1169
+      },
+      {
+        "path": "native-list-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/d1.04-integration-12f37e35",
+      "-C",
+      "Debug",
+      "-R",
+      "^T(07|19|20)[.]policy[.]",
+      "--output-on-failure",
+      "--no-tests=error",
+      "--output-junit",
+      "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.04\\integration-debug-75627b76d082\\policy-junit.xml"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T19:24:06.643411+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 315,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 32856,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T19:26:10.013181+00:00",
+    "raw": [
+      {
+        "path": "ctest-policy-stdout.log",
+        "sha256": "302bcd54e244926043fc5ebca00170d2bdd3f5b268e3873ae3e35ff56f007c1c",
+        "size": 5002
+      },
+      {
+        "path": "ctest-policy-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

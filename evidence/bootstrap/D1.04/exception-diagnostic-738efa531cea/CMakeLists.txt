@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.25)
+project(PolicyActionCheck LANGUAGES CXX)
+add_executable(action_check "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.04/exception-diagnostic-738efa531cea/source/packages/runtime/policy/policy.cpp" main.cpp)
+target_compile_features(action_check PRIVATE cxx_std_20)
+target_compile_options(action_check PRIVATE /utf-8 /EHsc /Zc:__cplusplus /permissive-)
+target_include_directories(action_check PRIVATE "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.04/exception-diagnostic-738efa531cea/source" "E:/VS2019Qt5.15/3D" "E:/VS2019Qt5.15/3D/packages/contracts/include" "E:/VS2019Qt5.15/3D/packages/foundation/include" "E:/VS2019Qt5.15/3D/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include")

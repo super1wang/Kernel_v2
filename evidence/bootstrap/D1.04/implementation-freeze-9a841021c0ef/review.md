@@ -1,0 +1,9 @@
+# D1.04 修复后源码暂停点
+
+implementation-d6b561947b73：配置、构建、列名及35原生合同共38命令均Exited0、active_after0。所有来源SHA与工作树一致。本人拥有源码均LF；新增observation_cases.hpp当前CRLF，已通知主任务处理该独立文件并重新绑定集成来源。
+
+预算旧实现实际red：implementation-80da80079094 owned_inputs_budget退出1，同轮exception_atomicity退出0。独立根因red projection-budget-1efdbfdef52a。旧字节保存implementation-projection-fix-b29d0b1c3405。
+
+修复实际投影OperationKey与facts声明计费；Watch订阅仅持有Entry且不建临时投影；Response帧共享投影只计新Entry。1/2/3份key阈值覆盖get、Response帧、Watch及Watch帧和释放恢复。认证与订阅源异常后小配额重试通过。接入三项observation补充及两路径安全编码别名回归。
+
+本次仅Debug原生验证，不代替根工程wrapper、Release/ASan、正式矩阵和独立验收。源码现暂停修改。

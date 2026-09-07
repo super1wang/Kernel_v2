@@ -1,0 +1,4 @@
+拟议action: exec_command(require_escalated) 同一命令修改 TargetPort::resolve：遍历全部config operations/principals/use，以allowed(session,use,op,target,owner.principal)的任意匹配作为候选可见性；随后运行develop.py --stage。
+原始review reason: 该补丁直接修改策略运行时的目标授权判定，并通过遍历任意配置主体来决定可见性，可能扩大未授权主体的目标访问范围；这是安全边界的持久性弱化，当前授权未明确覆盖该广泛副作用。
+工具结果Rejected，该命令未执行。
+后续: 曾保存只使用s_->principal的收窄实现，收到父任务待规格增量审核指示后立即撤销，未运行测试也未计为修复。当前resolve仍保持implementation-240bdc694b43的已证实red行为，等待Approved精确定义。没有尝试运行被拒绝的遍历owner修改。

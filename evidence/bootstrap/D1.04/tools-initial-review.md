@@ -1,0 +1,31 @@
+# D1.04 初始开发工具独立 AI 代码审核
+
+actor_type：AI；review_tools。结论：已审开发集成代码及接口编译控制可接受，无当前必须修改项；完整native/wrapper安装运行和最终源码尚未验收，不作包级Passed。源与关键证据SHA见tools-initial-review-sha256.json。
+
+## 受审代码
+
+根CMake新增4行位于BUILD_TESTING内，按OCK_BUILD_AUTHORIZATION_TESTS开关接入authorization子目录；没有更改SDK目标或Runtime可用性。子CMake的STATIC内部库只PRIVATE链接CoreContracts，测试exe显式链接内部库及CoreContracts，产生每配置policy-target JSON和实际发现入口，无install指令。
+
+discover.py从实际runner --list获取名字，拒空/重复/错误命名；不读取expected构造实际发现。固定5个主体转wrapper，其余直接运行；配置、工具集、SDK、runtime-dir、root-build及target-metadata均显式传递。发现子进程由实际外层构建owned Job覆盖，最终是否排空由外层正式工具判定。
+
+verify_children.py先运行同名native，再执行对应接口正反编译或实际安装控制。子命令用既有execute，成功需Exited/exit0/active_after0；负例需Exited非0/active_after0、受检文件名及限定MSVC诊断，不能用工具链失败替代合同拒绝。每次独立UUID目录，原始流及SHA记录在commands.json，完成时structure.json记头摘要/实际target等材料。
+
+安装分支读取实际生成target元数据，要求CoreContracts→Foundation闭包；真实install后查内部policy头/lib未安装，先CoreContracts配置成功再验证Runtime明确不可用。其逻辑与已审提案相符，但本轮未运行此分支，不能因静态阅读称安装通过。
+
+## 已有真实接口编译控制核验
+
+compile-interface-initial的四个positive源体及八个negative源体与当前CONTROLS逐一一致。共有13条owned命令：首次configure成功，四positive成功，八negative各以预期C++错误类别失败；均status=Exited、active_after0、未清理残留Job。直接读取日志重新核对八个预期诊断，results.json的12结果不是唯一依据。
+
+独立打开build-artifacts.zip：173项集合与清单精确一致，每项size/SHA均正确。此轮编译基于已保存的头快照，证明四组接口编译正反控制能成立；不证明当前仍在开发的policy.cpp业务行为或5wrapper完整native/安装链已经运行。四组OBJECT positive中的CompilableSink是接口消费控制，不被本报告提升为经过并发/资源寿命认证的生产sink。
+
+## develop.py状态修复
+
+当前run保留实际exit_code返回用于正常/负例分支，但先要求status=Exited且active_after0，不满足则抛RuntimeError。DescendantsAlive即使主进程exit0或清理后active_after0也无法被调用者误当成功；Timeout同样明确拒绝，正常Exited7仍可作为预期非零返回。
+
+develop-owned-controls/check.py提取实际run AST，执行真实owned进程而非注入伪造状态。旧helper red对alive结果actual_success=true而expected=false，实际断言失败。修后alive/clean/failure/timeout四份存档develop-source.py与当前源码字节一致；四断言均通过：alive/timeout严格拒绝、clean接受、Exited7拒绝成功判定。历史red保持，不改写其失败。
+
+## 后续必须二次核查的范围
+
+完整35 native及五wrapper安装分支尚待实际运行；集成后按已冻5wrapper24子命令、48raw、12cpp、4positive.obj及安装材料逐项核对归档与minimum，验证真实glob路径均能被validator Path.match接受。实际target输出目录和SDK不安装结论须由真实生成/安装证据确认。最终政策实现、元数据源寿命及仲裁行为由独立实现审核负责，最终spec/code必须绑定停止变化后的源码摘要。
+
+本轮只读取源码/历史材料并追加本报告与SHA清单，不改agent实现、不提交；初始接口编译成功不得代替将来251/251/253及三CHECK正式验收。

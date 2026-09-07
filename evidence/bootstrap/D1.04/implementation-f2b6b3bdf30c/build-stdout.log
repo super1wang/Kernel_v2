@@ -1,0 +1,52 @@
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  1>Checking Build System
+  Building Custom Rule E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.04/implementation-f2b6b3bdf30c/CMakeLists.txt
+  policy.cpp
+  policy_tests.cpp
+F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xmemory(730,14): error C2672: “std::construct_at”: 未找到匹配的重载函数 [E:\VS2019Qt5.15\3D\build\d1.04-stage-68b7f9dc\policy_stage.vcxproj]
+  (编译源文件“../../packages/runtime/policy/policy.cpp”)
+      F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xutility(461,16):
+      可能是“_Ty *std::construct_at(_Ty *const ,_Types ...) noexcept(<expr>)”
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xmemory(730,14):
+          未满足关联约束
+              F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xutility(459,50):
+              “ock::runtime::policy::detail::Entry::Entry(void)”: 尝试引用已删除的函数
+                  E:\VS2019Qt5.15\3D\packages\runtime\policy\policy.cpp(115,194):
+                  “ock::runtime::policy::detail::Entry::Entry(void)”: 由于 数据成员 调用已删除或不可访问的函数“ock::runtime::policy::OperationSelector::OperationSelector(void)”，因此已隐式删除函数
+                  E:\VS2019Qt5.15\3D\packages\runtime\policy\policy.hpp(29,129):
+                  “ock::runtime::policy::OperationSelector::OperationSelector(void)”: 由于 数据成员 调用已删除或不可访问的函数“ock::contracts::OperationKey::OperationKey(void)”，因此已隐式删除函数
+                  E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\identity.hpp(74,1):
+                  “ock::contracts::OperationKey::OperationKey(void)”: 由于 基类 调用已删除或不可访问的函数“ock::foundation::Name::Name(void) noexcept”，因此已隐式删除函数
+              E:\VS2019Qt5.15\3D\packages\runtime\policy\policy.cpp(115,194):
+              编译器已在此处生成“ock::runtime::policy::detail::Entry::Entry”
+      F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xmemory(730,14):
+      模板实例化上下文(最早的实例化上下文)为
+          E:\VS2019Qt5.15\3D\packages\runtime\policy\policy.cpp(118,177):
+          查看对正在编译的 类 模板 实例化“std::vector<ock::runtime::policy::detail::Entry,std::allocator<ock::runtime::policy::detail::Entry>>”的引用
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\vector(678,5):
+          在编译 类 模板 成员函数“std::vector<ock::runtime::policy::detail::Entry,std::allocator<ock::runtime::policy::detail::Entry>>::vector(const unsigned __int64,const _Alloc &)”时
+          with
+          [
+              _Alloc=std::allocator<ock::runtime::policy::detail::Entry>
+          ]
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\vector(680,9):
+          查看对正在编译的函数 模板 实例化“void std::vector<ock::runtime::policy::detail::Entry,std::allocator<ock::runtime::policy::detail::Entry>>::_Construct_n<>(const unsigned __int64)”的引用
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\vector(2115,41):
+          查看对正在编译的函数 模板 实例化“ock::runtime::policy::detail::Entry *std::_Uninitialized_value_construct_n<std::allocator<ock::runtime::policy::detail::Entry>>(ock::runtime::policy::detail::Entry *,unsigned __int64,_Alloc &)”的引用
+          with
+          [
+              _Alloc=std::allocator<ock::runtime::policy::detail::Entry>
+          ]
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xmemory(2094,18):
+          查看对正在编译的函数 模板 实例化“void std::_Uninitialized_backout_al<std::allocator<ock::runtime::policy::detail::Entry>>::_Emplace_back<>(void)”的引用
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xmemory(1844,35):
+          查看对正在编译的函数 模板 实例化“void std::_Default_allocator_traits<_Alloc>::construct<_Ty,>(_Alloc &,_Objty *const )”的引用
+          with
+          [
+              _Alloc=std::allocator<ock::runtime::policy::detail::Entry>,
+              _Ty=ock::runtime::policy::detail::Entry,
+              _Objty=ock::runtime::policy::detail::Entry
+          ]
+  
+  正在生成代码...

@@ -1,0 +1,9 @@
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  1>Checking Build System
+  Building Custom Rule E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.04/implementation-6b72af375de0/CMakeLists.txt
+  policy.cpp
+  policy_tests.cpp
+  正在生成代码...
+policy_tests.obj : error LNK2019: 无法解析的外部符号 "public: class tl::expected<void,class ock::foundation::Error> __cdecl ock::runtime::policy::PolicyAdministration::replace_principal_policy(struct ock::runtime::policy::PrincipalPolicyInput const &)" (?replace_principal_policy@PolicyAdministration@policy@runtime@ock@@QEAA?AV?$expected@XVError@foundation@ock@@@tl@@AEBUPrincipalPolicyInput@234@@Z)，函数 "void __cdecl revoke_before_consume(void)" (?revoke_before_consume@@YAXXZ) 中引用了该符号 [E:\VS2019Qt5.15\3D\build\d1.04-stage-86bb189d\policy_stage.vcxproj]
+E:\VS2019Qt5.15\3D\build\d1.04-stage-86bb189d\Debug\policy_stage.exe : fatal error LNK1120: 1 个无法解析的外部命令 [E:\VS2019Qt5.15\3D\build\d1.04-stage-86bb189d\policy_stage.vcxproj]

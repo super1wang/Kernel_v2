@@ -1,0 +1,50 @@
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  1>Checking Build System
+  Building Custom Rule E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.04/implementation-5e21857632a9/CMakeLists.txt
+  policy.cpp
+  policy_tests.cpp
+F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xmemory(730,14): error C2672: “std::construct_at”: 未找到匹配的重载函数 [E:\VS2019Qt5.15\3D\build\d1.04-stage-9335caab\policy_stage.vcxproj]
+  (编译源文件“../../packages/runtime/policy/policy.cpp”)
+      F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xutility(461,16):
+      可能是“_Ty *std::construct_at(_Ty *const ,_Types ...) noexcept(<expr>)”
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xmemory(730,14):
+          未满足关联约束
+              F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xutility(459,50):
+              “ock::foundation::Name::Name”: 无法访问 private 成员(在“ock::foundation::Name”类中声明)
+              E:\VS2019Qt5.15\3D\packages\foundation\include\ock\foundation\foundation.hpp(155,5):
+              参见“ock::foundation::Name::Name”的声明
+              E:\VS2019Qt5.15\3D\packages\foundation\include\ock\foundation\foundation.hpp(139,7):
+              参见“ock::foundation::Name”的声明
+      F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xmemory(730,14):
+      模板实例化上下文(最早的实例化上下文)为
+          E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(10,21):
+          查看对正在编译的 类 模板 实例化“std::vector<ock::foundation::Name,std::allocator<ock::foundation::Name>>”的引用
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\vector(678,5):
+          在编译 类 模板 成员函数“std::vector<ock::foundation::Name,std::allocator<ock::foundation::Name>>::vector(const unsigned __int64,const _Alloc &)”时
+          with
+          [
+              _Alloc=std::allocator<ock::foundation::Name>
+          ]
+              E:\VS2019Qt5.15\3D\packages\runtime\policy\policy.cpp(84,115):
+              请参阅 "ock::runtime::policy::detail::Grant::Grant" 中对 "std::vector<ock::foundation::Name,std::allocator<ock::foundation::Name>>::vector" 的第一个引用
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\vector(680,9):
+          查看对正在编译的函数 模板 实例化“void std::vector<ock::foundation::Name,std::allocator<ock::foundation::Name>>::_Construct_n<>(const unsigned __int64)”的引用
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\vector(2115,41):
+          查看对正在编译的函数 模板 实例化“ock::foundation::Name *std::_Uninitialized_value_construct_n<std::allocator<ock::foundation::Name>>(ock::foundation::Name *,unsigned __int64,_Alloc &)”的引用
+          with
+          [
+              _Alloc=std::allocator<ock::foundation::Name>
+          ]
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xmemory(2094,18):
+          查看对正在编译的函数 模板 实例化“void std::_Uninitialized_backout_al<std::allocator<ock::foundation::Name>>::_Emplace_back<>(void)”的引用
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\xmemory(1844,35):
+          查看对正在编译的函数 模板 实例化“void std::_Default_allocator_traits<_Alloc>::construct<_Ty,>(_Alloc &,_Objty *const )”的引用
+          with
+          [
+              _Alloc=std::allocator<ock::foundation::Name>,
+              _Ty=ock::foundation::Name,
+              _Objty=ock::foundation::Name
+          ]
+  
+  正在生成代码...

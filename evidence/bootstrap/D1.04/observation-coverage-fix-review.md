@@ -1,0 +1,17 @@
+# D1.04 观察覆盖及发送探针增量复核
+
+- actor_type：AI；review_contracts。
+- 结论：Approved（仅以下新增header覆盖及安全探针设计）；不关闭未审预算/异常，不作整包批准。
+- observation_cases.hpp SHA256：`0d96ac513686f35c722936c7637d49c1645acea2ea3580e6667890158aa87416`，当前字节与observation-tests-27ebadeedd13快照一致。
+- 该证据五来源实际SHA全部匹配，configure/build及三个函数均Exited/0。core cpp为`c2e746bf6c11a5d1954e39e5e53888956e1f26b6535b9e3e29b1517e1d9ce449`；未重跑构建。
+- 发送header当前SHA256：`27dc8edbab6c0df5aceea69a6e14eaedea9b828b96c7789e562803efea679730`；本轮对这个新版header仅作静态安全复核，不借旧send快照宣称新版已执行。
+
+noninvoke_permissions实际改变UsePolicyInput.required_permissions为observe，逐方补齐仍拒绝，认证ceiling/委托的缺项分别用新会话检查，最终全部具备成功、旧会话仍拒绝。没有用旧caller generation过期冒充每个权限来源的检查，关闭final-contracts-review相应来源控制缺口。
+
+page_binding_dimensions具有同绑定合法续页控制，owner及phase变更拒绝，phase独立新查询成功；委托收缩后先verify新caller，旧continuation仍拒绝，新页及新continuation成功。关闭剩余委托/owner/phase绑定覆盖。
+
+source_store_lifetime同时排入get、list、Watch三种原材料，确认pending=6，close后pending=0且零字节；严格先关闭后换host及summary，再创建新Store。新Store实际拒旧response、Watch、caller、continuation，旧发送器拒旧材料；新发行三种材料依次发送并核对6字节及每种projection类型。这是真实旧对象互换拒绝与合法新实例控制，关闭此前只比较StoreId的不足。
+
+send_cases新版使用两字节vector析构正控制、uintptr_t释放观察及StopObserving guard。reserve仅未释放时写原元素，否则只记录released_before_reserve；随后必须证明回调实际观察到改变或释放，并始终校验真实sink原字节。enqueue之后清指针/回调，不再访问旧元素。兼容合法早复制释放路径，不把缓冲保活时长强加给产品。实际集成和standalone driver必须继续接入delete观察器，最终35运行核对这个SHA后才能记新版执行通过。
+
+以上三项观察函数需并入原固定主体（不新增35个名称）；最终核对dispatcher实际调用，不仅凭header存在宣称覆盖。历史ChangesRequested报告保持原文。

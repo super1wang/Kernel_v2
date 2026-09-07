@@ -1,0 +1,33 @@
+# D1.04 五个发送消费者快照独立 AI 审核
+
+actor_type：AI；review_tools。范围只读send-tests-a07f008f5c47保存的源码与实际记录，不对正在变化的当前实现给最终批准。结论：五测试主要断言符合API第5节，两项清理red有效；另有Sink预留容量模型P2应修复/补控制。不是35主体或整包Passed。
+
+绑定快照：send_cases.hpp SHA21661ea4dd0cc4b30342c5d51533c95403a2032e7db121cee8e69906ff35e597；fixtures.hpp SHA5103aef52a44794de78db9f2b611b5169202c1672b122f12f184738e8b9f8879。源码位置均为该证据目录source/tests/contract/authorization，不以随后工作树改动替代快照。
+
+## 已有实际结果与有效断言
+
+该回合configure/build成功，transmission_start_arbitration、failed_start_not_started、unknown_start_no_retry成功；unsubscribe_inflight失败于第二Watch重新enqueue，subscription_connection_cleanup失败于B连接enqueue。原result为Failed应保持；三green不覆盖两red。
+
+Sink使用固定std::array，start_now通过循环真正写入帧bytes；received不仅检查starts，还检查长度2、0x51前缀及ProjectionKind字节。不会仅设置Started bool自证发送。Unknown模拟已写字节但上层不确定，可用于证明“不自动重试”，不宣称模拟了真实网络后端。
+
+transmission_start_arbitration两线程顺序由binary_semaphore建立：撤权API返回后release，传输线程acquire后start；反向场景start返回后release再撤权。等待均在API外，不把barrier放在生产仲裁里。join后读测试布尔值，结果没有线程间未同步读写。第一序列0字节且未调用sink；第二序列真实字节保留且空队列不产生第二帧。两序列证明受控顺序，不单靠它们声称已穷举并发夹缝；原实现仲裁仍需代码审核。
+
+NotStarted控制分别覆盖实际剩余容量不足的enqueue失败、同response成功重试、明确零字节start失败后的合法重试，以及NotStarted后撤权阻止再次调用sink。已成功排入/发送的response不能重复排入。Unknown场景排入两个response，第一次Unknown后会话失效、第二帧不发送、两response均不能再入队，原始字节保持，业务phase仍Running。
+
+## 两个清理red符合合同，没有混淆owner内存预算
+
+两个失败场景只把queued_frames设为1，没有把active_watches/sessions或对象内存预算设为1。外部仍持有first/watch_a/session等终态owner并不要求其内存立即释放；测试只要求unsubscribe/close已丢弃未发送Queued帧，因此可回收该队列占用，使另一个有效Watch/连接能排入。这与API“先封新排入、删除Queued、其他连接独立”一致。
+
+close场景还检查A后续入队拒绝、B caller仍有效、跨连接unsubscribe=false、A零字节且B真实字节，业务execution不被取消。退订后已Started字节不撤回的另一个场景也正确。修复不应通过关闭B、要求A继续pump或删除这些断言取得绿色。
+
+## P2：Sink没有真实记账尚未消费的容量预留
+
+快照fixtures.hpp reserve仅检查n <= data.size()-size，size只在start写字节时增加，没有对已发行但未start的reservation占位。确定边界例：size=32766、数组32768，连续reserve(2)两次都返回票据；依次start两个2字节帧，第二次写越界。start_now也只核对reservation.count，不复核剩余物理容量。当前五个场景帧很少没有触发，因此原三green仍是事实，但不能据此称该Sink已满足所有容量预留合同。
+
+建议对预留字节建立独立计数/槽占位，reserve原子预留，NotStarted保留票据，Started/Unknown消费，RAII取消在锁外返还未用容量；或等价固定槽设计。增加接近满容量时两票据不能重复占同空间、取消后可重用的对照。不能只在start返回NotStarted来把无效容量票据伪装成reserve已落实。
+
+## 其他覆盖边界
+
+这五测试的response helper只覆盖get，list响应撤权/字段删减、旧队列合并和source-close_store等需在其已分配的query/page/queued主体检查；本报告不要求新增CTest名，但最终35项审核不得遗漏。当前编码只有kind两字节，足以证明此发送起点控制；隐藏字段的真实内容投影需由专门query测试证明，不能从这两字节推导。
+
+本轮只写审核文档，不修改fixture/实现，不启动整包；两项清理修复及Sink预留修复应各保留独立原始证据后再增量审核。

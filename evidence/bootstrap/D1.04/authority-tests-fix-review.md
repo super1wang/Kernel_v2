@@ -1,0 +1,18 @@
+# D1.04 authority两项别名控制修复复核
+
+- actor_type：AI；review_contracts。
+- 结论：Approved（仅关闭authority-tests-review.md的两项剩余测试有效性问题），不是整包批准。
+- green：`authority-tests-ee994d69b049`；五份源SHA逐一核对一致，configure/build/authentication_source/scope_four_way/inputs_ownership五命令全部Exited/0。
+- 安全回归red：`authority-tests-5753280c8541`；五份源SHA一致，configure/build/前两主体0，inputs_ownership退出1；stderr为 `returned auth buffer released after independent snapshot`。
+- 两轮authority_cases.hpp完全相同，SHA256 `94b378ccea15926a3fff2daeba93725d7c07c4755e9c532f506d68a23082375f`。
+- green核心cpp SHA256 `5162cc3c1deec11623435828b310f4a7c95a68676a922e2ac36c43b5d80b8fc1`；hpp `bcd5fcb28468b6f7f519c3e99671a1f0a6554871da1be043bced89c2b1ee4fee`；fixtures `89a644f0a77654f9af98a3e6cf2656479b6aad35668796f74f2c15e2db18ad64`。
+
+scope现保存scope.rules[0].permissions元素内部成员引用，open之后清空该成员仍不改变冻结会话权限；不再只是清空可能已搬空的顶层vector。
+
+Auth返回材料探针只以uintptr_t比较delete的当前有效实参，未在open后解引用已释放payload元素。先以同类型单规则vector离开scope验证观察通道，之后MovingAuthentication显式move返回单规则payload；open完成即检查原buffer释放标志，再通过真实verify/prepare确认冻结授权存在。StopObserving在异常退出时也清除观察地址。观察回调不分配、不调用Policy、不执行任意用户回调。
+
+独立diff确认red与green核心唯一差异是会话ceiling构造从复制v.ceiling变为std::move(v.ceiling)。实际red错误出现在返回材料释放检查，而非small-buffer正控制，说明观察器已工作且确实辨别被接管buffer。没有通过修改测试源码制造两种结果。
+
+早期90424650790e/4933243a19eb的大块对齐观察失败仅属探针通道失败，不作为产品red或修复证据。当前单规则小块及正控制避开对锁定MSVC内部大块对齐布局的猜测。
+
+此为当前“复制返回ceiling并释放临时DTO”实现路线的回归证明，不把具体释放时间提升为所有未来合法实现的公共API。未重新运行编译，未修改源码或历史报告；只读核对既有原始运行记录和冻结差异。覆盖预审其余项目仍待各自关闭。
