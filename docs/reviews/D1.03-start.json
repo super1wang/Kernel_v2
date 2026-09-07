@@ -1,0 +1,57 @@
+{
+  "task_id": "D1.03",
+  "checked_at": "2026-09-07T15:07:24.887440+00:00",
+  "actor_type": "AI",
+  "prerequisites": [
+    {
+      "task_id": "D1.02",
+      "status": "Passed",
+      "gate": "evidence/D1.02/current-20260907T150316Z/gate-summary.json",
+      "sha256": "c012270509d0cb133ed1e63496633dfff7622ddf2196e3a70e51c4230c8d2fb2",
+      "runs": [
+        {
+          "profile": "win-msvc-asan",
+          "path": "evidence/c6950773dd41-daad9b358851/win-msvc-asan/D1.02/20260907T144516Z-4783fc036cf5/report.json",
+          "sha256": "54e2ac789059c9b5c0849499c707c2fe576be81f548d1c29b6001139740a80fc",
+          "ctest": 193,
+          "checks": [
+            "Passed",
+            "Passed",
+            "Passed"
+          ]
+        },
+        {
+          "profile": "win-msvc-debug",
+          "path": "evidence/c6950773dd41-daad9b358851/win-msvc-debug/D1.02/20260907T141319Z-65c1610e996f/report.json",
+          "sha256": "e89a647b0766a1a012f3d17f0de83eb33f34aefec7131c1e4ecbc16c91d50a44",
+          "ctest": 191,
+          "checks": [
+            "Passed",
+            "Passed",
+            "Passed"
+          ]
+        },
+        {
+          "profile": "win-msvc-release",
+          "path": "evidence/c6950773dd41-daad9b358851/win-msvc-release/D1.02/20260907T142933Z-8d3043eebaf2/report.json",
+          "sha256": "cba835a7638ed5acb8af10a750a7d2eb1e015b62aef4f41505e1056bdb6e04f6",
+          "ctest": 191,
+          "checks": [
+            "Passed",
+            "Passed",
+            "Passed"
+          ]
+        }
+      ]
+    }
+  ],
+  "scope": "仅D1.03计划与后续注册实现；无人工审批节点。",
+  "format": "ock.work-package-start/1",
+  "status": "Approved",
+  "human_review_required": false,
+  "plan": "docs/plans/D1.03.md",
+  "plan_sha256": "7734956ccee1a91dd2ac017fd584cec2c92c0777ba9b9bd44409303fea4247f5",
+  "plan_review": "docs/reviews/D1.03-plan.md",
+  "plan_review_sha256": "38386b6e214cf8d5b2f648a252e86f138a7bf50b8b0a207ee31b07ededba09fc",
+  "approval_text": "实际D1.02前置已逐报告核对Passed，仅准许按已审计划进入D1.03具体API冻结和实施；API当前初审必改未关闭前不写行为实现。"
+}

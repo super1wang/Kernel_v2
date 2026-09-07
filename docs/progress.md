@@ -60,7 +60,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | D0.06 | 固定工具链、共享测试基建与自动证据采集 | D0.02 | Passed |
 | D1.01 | 实现Foundation与错误/标识原语 | D0.03、D0.06 | Passed |
 | D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | Passed |
-| D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | NotStarted |
+| D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | InProgress |
 | D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | NotStarted |
 | D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | NotStarted |
 | D1.06 | 最小Host、Logging共同合同与原生占用基线 | D1.05、D0.06 | NotStarted |
@@ -160,3 +160,5 @@ D1.02本轮恢复点：局部工具副本对照正常退出；拥有性与owner�
 最终当前版本门禁 `evidence/D1.02/current-20260907T150316Z/gate-summary.json` 实际Passed，AI规格与代码审核完整绑定同一来源，G1保持InProgress。首次误用历史候选入口只因matrix未在原来源快照被拒绝，完整保留 `evidence/D1.02/automatic-20260907T150134Z`；当前入口与D1.01一致，重新核验完整工作树、原始报告和三配置，未更改工具、来源或固定expected。验收上下文和Git来源核对另行归档。
 
 已完成D1.02的六头合同、确定性验证消费者及必要开发工具；不声明Registry、Host或其他产品模块完成。下一包仅在核对本次Passed及规划后进入D1.03。以上替代旧恢复段落的当前状态，历史失败和审核意见保持原文。
+
+D1.03启动：已逐项核对D1.02的实际三配置和门禁Passed，见 `docs/reviews/D1.03-start.json`。计划AI复核Approved，具体API初审正在澄清跨模块服务/资源/provider选择和配置快照深拥有；尚无D1.03行为实现或测试Passed。
