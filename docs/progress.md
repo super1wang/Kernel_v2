@@ -12,6 +12,12 @@
 
 材料：[需求登记](requirements.md)、[消费者目标](consumer-targets.md)、[D0.01 评审](reviews/D0.01.md)、[原始证据说明](../evidence/README.md)。
 
+## 已提交验证节点
+
+- 登记交付：`f08519a`；原始日志字节保留修复：`3c413bd`；干净源码证据：`af64fa9`，均已推送同名工作分支。
+- 最终运行来源为 `3c413bd`，dirty=false；登记检查和 29 项校验器测试均退出 0。见 [最终原始记录](../evidence/bootstrap/D0.01/20260907T033057Z-4ff7dc85a3b1/commands.json)。
+- 6 个 bootstrap run 全部保留；最终提交的 24 份原始日志均核对了 Git blob 的长度与 SHA-256。人工评审仍 Pending，G0 未通过。
+
 ## 阶段门禁
 
 | 门禁 | 当前状态 | 事实 |
