@@ -4,11 +4,11 @@
 
 ## 当前节点
 
-- 当前工作包：D0.01，InProgress；登记产物、29 项校验器测试及独立 AI 技术审查已完成，人工签核 Pending。
+- D0.01 已收到用户“批准”，包级状态 Passed；[批准记录](reviews/D0.01-approval.json) 绑定已审查提交。当前推进 D0.02/D0.03，均仅依赖已通过的 D0.01。
 - 当前分支：`work/d0-kernel-baseline`；远端：`https://github.com/super1wang/Kernel_v2.git`。用户已授权必要节点提交和推送。
 - 首个本地节点：`cce1db5`，保存两份原始规范及范围约束。该基线已用已登录且具写权限的 XU-RUiXIANG 推送到同名远端分支；默认账号 XU-Bruce 的首次推送返回 403，未写入远端。后续节点以 Git 实际日志为准。
 - 未实现 Runtime、C++ SDK 或任何产品模块；52 个 future_cases 是预期登记，不是已执行测试。
-- 下一步：D0.01 签核后，按依赖进入 D0.02（target DAG/公开头/威胁边界）及 D0.03（Outcome/phase 参考模型）；不越过 G0 进入原生实现。
+- 当前按依赖进入 D0.02（target DAG/公开头/威胁边界）及 D0.03（Outcome/phase 参考模型）；不越过 G0 进入原生实现。
 
 材料：[需求登记](requirements.md)、[消费者目标](consumer-targets.md)、[D0.01 评审](reviews/D0.01.md)、[原始证据说明](../evidence/README.md)。
 
@@ -16,13 +16,13 @@
 
 - 登记交付：`f08519a`；原始日志字节保留修复：`3c413bd`；干净源码证据：`af64fa9`，均已推送同名工作分支。
 - 最终运行来源为 `3c413bd`，dirty=false；登记检查和 29 项校验器测试均退出 0。见 [最终原始记录](../evidence/bootstrap/D0.01/20260907T033057Z-4ff7dc85a3b1/commands.json)。
-- 6 个 bootstrap run 全部保留；最终提交的 24 份原始日志均核对了 Git blob 的长度与 SHA-256。人工评审仍 Pending，G0 未通过。
+- 6 个 bootstrap run 全部保留；最终提交的 24 份原始日志均核对了 Git blob 的长度与 SHA-256。D0.01 人工评审已批准，G0 尚未通过。
 
 ## 阶段门禁
 
 | 门禁 | 当前状态 | 事实 |
 |---|---|---|
-| G0 | InProgress | D0.01 尚待评审；D0.02–D0.06 未开始 |
+| G0 | InProgress | D0.01 已批准；D0.02/D0.03 进行中，D0.04–D0.06 未开始 |
 | G1 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G2 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G3 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
@@ -38,9 +38,9 @@
 
 | 工作包 | 名称 | 前置包 | 包级状态 |
 |---|---|---|---|
-| D0.01 | 登记需求、不变量和三个消费者 | 无 | InProgress |
-| D0.02 | 冻结target DAG、公开头和威胁模型 | D0.01 | NotStarted |
-| D0.03 | Outcome、phase和完成回调参考模型 | D0.01 | NotStarted |
+| D0.01 | 登记需求、不变量和三个消费者 | 无 | Passed |
+| D0.02 | 冻结target DAG、公开头和威胁模型 | D0.01 | InProgress |
+| D0.03 | Outcome、phase和完成回调参考模型 | D0.01 | InProgress |
 | D0.04 | Plan与Control wire、槽类型和观察合同 | D0.01、D0.03 | NotStarted |
 | D0.05 | 提交、许可、epoch和备份恢复参考模型 | D0.01、D0.03 | NotStarted |
 | D0.06 | 固定工具链、共享测试基建与自动证据采集 | D0.02 | NotStarted |

@@ -1,6 +1,6 @@
 # Kernel_v2 · Open Command Kernel
 
-按 v3.3 规划从零建设的 Windows x64 / C++20 开放命令内核。当前推进 **D0.01 需求与验证登记**，尚无可运行内核或 SDK；G0 未通过。
+按 v3.3 规划从零建设的 Windows x64 / C++20 开放命令内核。D0.01 已批准，当前推进 **D0.02 工程边界 / D0.03 完成模型**，尚无可运行内核或 SDK；G0 未通过。
 
 - [当前进度与 64 个工作包](docs/progress.md)
 - [唯一架构规范](docs/01_Architecture_v3.3.md) 与 [唯一执行计划](docs/02_Execution_Plan_v3.3.md)
