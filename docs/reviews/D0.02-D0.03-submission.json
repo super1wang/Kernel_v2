@@ -1,0 +1,137 @@
+{
+  "format": "ock.review-submission/1",
+  "recorded_at": "2026-09-07T04:27:40.912587+00:00",
+  "implementation_commit": "8246ef64408d037d5b27ac359aa3f077951e8d82",
+  "branch": "work/d0-kernel-baseline",
+  "remote": "https://github.com/super1wang/Kernel_v2.git",
+  "review_status": "Pending",
+  "review_basis": [
+    "02_Execution_Plan_v3.3 E03.3",
+    "02_Execution_Plan_v3.3 E08"
+  ],
+  "scope": "D0.02 合同工程基线和 D0.03 确定性参考模型；无 Runtime/G0 放行；不是人工批准或正式 E03 报告",
+  "packages": [
+    {
+      "task_id": "D0.02",
+      "package_status": "InProgress",
+      "review_status": "Pending",
+      "bootstrap_run": "20260907T042132Z-a9b4da1a126e",
+      "commands_path": "evidence/bootstrap/D0.02/20260907T042132Z-a9b4da1a126e/commands.json",
+      "commands_sha256": "04546d6e6f387e660aaabbeff1b94783440045ca12d4a7d664b5d545b53514d2",
+      "source_input_count": 23,
+      "source_inputs_match_implementation_commit": true,
+      "expected_count": 4,
+      "discovered_count": 4,
+      "executed_count": 4,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "formal_evidence_status": "Incomplete",
+      "artifacts": [
+        {
+          "path": "docs/reviews/D0.02.md",
+          "sha256_at_implementation_commit": "987757e011fe343de4ec115dd473c045de1659661313702c0c76efd79215ab9f"
+        },
+        {
+          "path": "docs/reviews/D0.02-ai.md",
+          "sha256_at_implementation_commit": "24ff50596cd9deac0db8e6c814f377754f594cd2fe3eb67eac74e25785376e5b"
+        },
+        {
+          "path": "docs/validation/D0.02.md",
+          "sha256_at_implementation_commit": "73cbf76edfe001c37b078566d14ab3f5e80ad90d9185e095fcc1ac08ece39697"
+        },
+        {
+          "path": "tests/manifests/d0.02.expected.json",
+          "sha256_at_implementation_commit": "e91102c66c772ea36f3551d72c77a157d240b1e91ad77f4175a35006310d4421"
+        },
+        {
+          "path": "cmake/TargetDependencies.cmake",
+          "sha256_at_implementation_commit": "c71fdedbc4b0ab92db0d625c12a130d6184a554462f4db9ad50613e75effa630"
+        },
+        {
+          "path": "sdk/sdk_api_manifest.json",
+          "sha256_at_implementation_commit": "aef0cf47c3ac3bd81f2be7069f527430a93ddc5d65047dec84d6a1cdd61a02ed"
+        },
+        {
+          "path": "docs/public-headers.md",
+          "sha256_at_implementation_commit": "0299da1d002aae7a5b8d5a5f8661d6ac0e17c4809520897c0c372ff09f45e953"
+        },
+        {
+          "path": "docs/sdk-version-policy.md",
+          "sha256_at_implementation_commit": "2d797d4bd7d76231997af9f36155d2b953e0c05b5155fa3d6a15333b244086f5"
+        },
+        {
+          "path": "docs/threat-model.md",
+          "sha256_at_implementation_commit": "7ca7706d8ace716e5e75005f86e5332b92be8a33c1310120159f7ed184c2af0f"
+        }
+      ]
+    },
+    {
+      "task_id": "D0.03",
+      "package_status": "InProgress",
+      "review_status": "Pending",
+      "bootstrap_run": "20260907T041821Z-679cb7a8695e",
+      "commands_path": "evidence/bootstrap/D0.03/20260907T041821Z-679cb7a8695e/commands.json",
+      "commands_sha256": "ea079381fc65826aeee86ba56a0dceb9fd22a50596b2bed441f646029403bf06",
+      "source_input_count": 21,
+      "source_inputs_match_implementation_commit": true,
+      "expected_count": 43,
+      "discovered_count": 43,
+      "executed_count": 43,
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "formal_evidence_status": "Incomplete",
+      "artifacts": [
+        {
+          "path": "docs/reviews/D0.03.md",
+          "sha256_at_implementation_commit": "b1568e1b0f1a75e79e81e74e9412477bf384a4191e7dda538a3676ffa19df78c"
+        },
+        {
+          "path": "docs/reviews/D0.03-ai.md",
+          "sha256_at_implementation_commit": "4883912302caec1b6fff5c55c76e6ccd6816dc8288da875b1d31b792b43a4768"
+        },
+        {
+          "path": "docs/validation/D0.03.md",
+          "sha256_at_implementation_commit": "e3c3b3b53a641d11b4e93d7ea0a0acd9c99a8a161b95ba0b4411ff994682417d"
+        },
+        {
+          "path": "tests/manifests/d0.03.expected.json",
+          "sha256_at_implementation_commit": "b9ab434dbeeeda79a4a57010a80c65c0c0ac74ad7a255e13b67be476c0d2f892"
+        },
+        {
+          "path": "docs/contracts/outcome.md",
+          "sha256_at_implementation_commit": "3b9dc03049342716cc3ee7b2adbccb62e86e1bb1193470c782fb2ae2b19347dd"
+        },
+        {
+          "path": "schemas/outcome-v1.schema.json",
+          "sha256_at_implementation_commit": "999995002fa8fa245b9e2bb097617f587f422eec4e1d88927bda094db4b6a22f"
+        },
+        {
+          "path": "tests/model/execution_model/model.py",
+          "sha256_at_implementation_commit": "42a7c44f7705d7b6eeb9bc9c14db6d1033648abe81a8ee8c4113cb3641c28848"
+        },
+        {
+          "path": "tests/model/execution_model/test_execution_model.py",
+          "sha256_at_implementation_commit": "bf898bf8048039d9e04777f3a77401780f44bad9368a6a9821e12f2303c9aeec"
+        },
+        {
+          "path": "tests/model/execution_model/golden/outcomes.json",
+          "sha256_at_implementation_commit": "279966c78a873538b5943848d5ada2f23e664706fdf5fce71308ee39d1e53c82"
+        },
+        {
+          "path": "tests/manifests/d0.03.run.json",
+          "sha256_at_implementation_commit": "a69db9f2272d3ccb88d1ed72cdc3617708174a7b564c4330dfc9b691a745e786"
+        }
+      ]
+    }
+  ]
+}
