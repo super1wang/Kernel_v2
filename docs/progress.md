@@ -59,7 +59,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | D0.05 | 提交、许可、epoch和备份恢复参考模型 | D0.01、D0.03 | Passed |
 | D0.06 | 固定工具链、共享测试基建与自动证据采集 | D0.02 | Passed |
 | D1.01 | 实现Foundation与错误/标识原语 | D0.03、D0.06 | Passed |
-| D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | InProgress |
+| D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | Passed |
 | D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | NotStarted |
 | D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | NotStarted |
 | D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | NotStarted |
@@ -151,3 +151,12 @@ D1.02本轮恢复点：局部工具副本对照正常退出；拥有性与owner�
 局部锁定MSVC副本已集成，90文件逐字节校验、整目录原子发布、只读复用及Windows扩展路径等价性均经实际验证；不修改原安装或放宽进程树要求。`integration-ctest-a387f5757c` 的38项集成检查全部通过（早于最终测试工厂修复）；`asan-sdk-probe-b8d1960213` 的实际ASan公共头消费者通过。最终修复后 `review-fixes-green-b719840ef2` 的5项缓存检查、扩展路径旧反例、33项原生主体全部通过；独立工具复核另有并发与来源SHA实证。上述均为局部事实，不替代正式矩阵。
 
 已准备三份D1.02正式run manifest，固定expected仍为191/191/193及每配置三CHECK；归档包含真实SDK安装/裁剪包、编译追踪、正例对象及三文件工厂组合摘要。归档模式增加明确层级以兼容采集器glob与独立validator的Path.match，仍保留递归采集。正式运行须在同一已审提交与输入摘要上执行；失败追加保留。D1.02当前仍InProgress，未开始D1.03。
+
+
+## D1.02 最终三配置验收
+
+实现提交 `c6950773dd4134f39059ee5e9fa0acc12541ff96` 已推送，189项源码与Git字节逐项一致；输入摘要 `daad9b3588510afff1865f9717ea4d3da47bc788d375a8b585c6e67b29943aca`。正式Debug 191/191、Release 191/191、ASan 193/193，共575次CTest与9项CHECK全部通过。三份原始报告位于 `evidence/c6950773dd41-daad9b358851/`，自动状态、各run包级状态均Passed，校验错误为空。
+
+最终当前版本门禁 `evidence/D1.02/current-20260907T150316Z/gate-summary.json` 实际Passed，AI规格与代码审核完整绑定同一来源，G1保持InProgress。首次误用历史候选入口只因matrix未在原来源快照被拒绝，完整保留 `evidence/D1.02/automatic-20260907T150134Z`；当前入口与D1.01一致，重新核验完整工作树、原始报告和三配置，未更改工具、来源或固定expected。验收上下文和Git来源核对另行归档。
+
+已完成D1.02的六头合同、确定性验证消费者及必要开发工具；不声明Registry、Host或其他产品模块完成。下一包仅在核对本次Passed及规划后进入D1.03。以上替代旧恢复段落的当前状态，历史失败和审核意见保持原文。

@@ -1,0 +1,799 @@
+{
+  "format": "ock.expected/1",
+  "task_id": "D1.02",
+  "scope": "实施前固定：38项CoreContracts新合同；Foundation/基线、D0.03、D0.05和D0.06共同harness回归单列，不将模型或工厂视为生产Runtime。",
+  "cases": [
+    {
+      "id": "T03.foundation.code_only_no_allocation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T03.foundation.value_operations_no_allocation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T03.foundation.layout_statistics",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.result_move_only_value",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.result_move_only_error",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.result_void",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.result_error_propagation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.result_bad_access",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.exception_not_business_failure",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.static_error_domain",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.error_details_ownership",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.error_details_budget",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.display_utf8",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.checked_arithmetic",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.checked_narrowing",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.checked_count_atomic_update",
+      "repeat_required": 1
+    },
+    {
+      "id": "T04.foundation.invariant_fail_fast",
+      "repeat_required": 1
+    },
+    {
+      "id": "T05.foundation.name_ascii_bounds",
+      "repeat_required": 1
+    },
+    {
+      "id": "T05.foundation.name_case_and_ownership",
+      "repeat_required": 1
+    },
+    {
+      "id": "T05.foundation.tagged_identity_types",
+      "repeat_required": 1
+    },
+    {
+      "id": "T05.foundation.identity_canonical_codec",
+      "repeat_required": 1
+    },
+    {
+      "id": "T05.foundation.bound_handle_generation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T05.foundation.runtime_epoch_separation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T24.foundation.public_headers",
+      "repeat_required": 1
+    },
+    {
+      "id": "T24.foundation.installed_consumer",
+      "repeat_required": 1
+    },
+    {
+      "id": "T24.foundation.missing_dependency_rejected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T24.foundation.backend_mode_rejected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.architecture.dependency_dag",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.architecture.negative_guards",
+      "repeat_required": 1
+    },
+    {
+      "id": "T24.sdk.version_header",
+      "repeat_required": 1
+    },
+    {
+      "id": "T24.sdk.install_and_missing_components",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.dependencies.expected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.dependencies.toolchain",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.dependencies.lock_contracts",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.dependencies.asan_healthy",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T23.dependencies.asan_detects_heap_overflow",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.outcome.nine_variants",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.outcome.read_candidate",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.outcome.effect_minimal_receipt",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.outcome.lifecycle_failed_transition",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.outcome.plan_all_success",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.outcome.partial_and_unknown",
+      "repeat_required": 1
+    },
+    {
+      "id": "T12.outcome.evidence_matrix",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.outcome.reply_layers",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.durable_acceptance",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.inline_completion",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.executor_rejection",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.duplicate_callback",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.phase_edges",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.suspended_owner",
+      "repeat_required": 1
+    },
+    {
+      "id": "T12.execution.required_record_failure",
+      "repeat_required": 1
+    },
+    {
+      "id": "T12.execution.isolation_lifetime",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.necessary_children",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.plan_children_drained",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.cancel_keeps_facts",
+      "repeat_required": 1
+    },
+    {
+      "id": "T20.execution.atomic_candidate_progress",
+      "repeat_required": 1
+    },
+    {
+      "id": "T12.execution.commit_publication_gate",
+      "repeat_required": 1
+    },
+    {
+      "id": "T20.execution.observation_revision_independent",
+      "repeat_required": 1
+    },
+    {
+      "id": "T20.execution.snapshot_consistency",
+      "repeat_required": 1
+    },
+    {
+      "id": "T20.execution.version_exhaustion",
+      "repeat_required": 1
+    },
+    {
+      "id": "T12.execution.append_only_resolution",
+      "repeat_required": 1
+    },
+    {
+      "id": "T20.observer.late_notification",
+      "repeat_required": 1
+    },
+    {
+      "id": "T20.observer.lost_terminal_notification",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.schema.golden",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.schema.expected_manifest",
+      "repeat_required": 1
+    },
+    {
+      "id": "T12.execution.reject_forged_publication",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.child_unknown_aggregation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T20.execution.child_projection_version",
+      "repeat_required": 1
+    },
+    {
+      "id": "T20.observer.out_of_order_snapshot",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.queued_cancel",
+      "repeat_required": 1
+    },
+    {
+      "id": "T12.execution.post_observation_error",
+      "repeat_required": 1
+    },
+    {
+      "id": "T12.execution.commit_ledger_repair",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.normal_phase_path",
+      "repeat_required": 1
+    },
+    {
+      "id": "T12.outcome.failed_record_projection",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.plan_child_actual_success",
+      "repeat_required": 1
+    },
+    {
+      "id": "T12.outcome.resolution_final_consistency",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.owner_acyclic",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.execution.cancel_propagates_owned_children",
+      "repeat_required": 1
+    },
+    {
+      "id": "T12.execution.collected_outcome_frozen",
+      "repeat_required": 1
+    },
+    {
+      "id": "T07.permit.cancel_claim_orders",
+      "repeat_required": 1
+    },
+    {
+      "id": "T07.permit.revoke_claim_orders",
+      "repeat_required": 1
+    },
+    {
+      "id": "T07.permit.binding_expiry_single_use",
+      "repeat_required": 1
+    },
+    {
+      "id": "T07.permit.leases_do_not_authorize",
+      "repeat_required": 1
+    },
+    {
+      "id": "T07.commit.capacity_reserved_before_claim",
+      "repeat_required": 1
+    },
+    {
+      "id": "T07.commit.lifecycle_revision_orders",
+      "repeat_required": 1
+    },
+    {
+      "id": "T14.commit.reservation_serializes_and_rejects_stale_base",
+      "repeat_required": 1
+    },
+    {
+      "id": "T14.commit.wait_and_lock_order",
+      "repeat_required": 1
+    },
+    {
+      "id": "T14.commit.all_transaction_crash_windows",
+      "repeat_required": 1
+    },
+    {
+      "id": "T14.commit.permit_and_durable_are_not_published",
+      "repeat_required": 1
+    },
+    {
+      "id": "T14.commit.publication_is_one_owned_record",
+      "repeat_required": 1
+    },
+    {
+      "id": "T14.commit.duplicate_and_late_callback",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.commit.unknown_result_reconciles_actual_storage",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.commit.publish_failure_preserves_ledger",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.commit.recovery_validates_before_opening",
+      "repeat_required": 1
+    },
+    {
+      "id": "T07.commit.memory_commit_and_empty_delta",
+      "repeat_required": 1
+    },
+    {
+      "id": "T07.commit.materials_prepared_before_consumption",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.effect.claim_permit_send_are_separate",
+      "repeat_required": 1
+    },
+    {
+      "id": "T07.effect.cancel_revoke_send_orders",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.effect.crash_windows_never_blind_resend",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.effect.reconcile_and_partial_facts",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.effect.missing_evidence_stays_unknown",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.effect.result_encoding_does_not_erase_effect",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.intent.same_key_returns_existing_identity",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.intent.fingerprint_covers_all_semantic_fields",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.intent.stable_principal_scope_and_permissions",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.intent.server_scope_and_namespace_reject_forgery",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.intent.future_expired_and_existing_before_floor",
+      "repeat_required": 1
+    },
+    {
+      "id": "T14.intent.acceptance_transaction_crash_windows",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.intent.claim_gc_both_orders",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.intent.writer_transaction_prevents_interleaving",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.gc.watermark_and_delete_crash_windows",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.gc.delete_before_watermark_is_detected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.gc.pins_inflight_unknown_and_references",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.gc.scope_watermarks_are_independent_monotonic",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.intent.volatile_capacity_preserves_window",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.intent.client_retry_never_changes_identity",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.step.internal_key_and_parameter_binding",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.step.branch_iteration_and_occurrence_are_identity",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.step.admission_lifetime_definition_and_authorization",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.step.external_interface_has_no_epoch_bypass",
+      "repeat_required": 1
+    },
+    {
+      "id": "T18.restore.restart_preserves_store_and_generation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T18.restore.old_backup_changes_generation_and_seals_effects",
+      "repeat_required": 1
+    },
+    {
+      "id": "T18.restore.reconciliation_does_not_replay_history",
+      "repeat_required": 1
+    },
+    {
+      "id": "T18.backup.manifest_pins_and_validation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T18.restore.invalidates_child_admission",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.intent.expected_manifest_matches_fixed_cases",
+      "repeat_required": 1
+    },
+    {
+      "id": "T14.commit.materials_frozen_after_claim",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.effect.outcome_evidence_shape_matches_contract",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.effect.before_claim_crash_allows_same_identity_retry",
+      "repeat_required": 1
+    },
+    {
+      "id": "T07.effect.cancel_before_permit_records_no_apply",
+      "repeat_required": 1
+    },
+    {
+      "id": "T18.restore.structure_checked_before_generation_change",
+      "repeat_required": 1
+    },
+    {
+      "id": "T14.commit.intent_and_state_share_transaction",
+      "repeat_required": 1
+    },
+    {
+      "id": "T18.restore.new_effect_requires_reconciliation_and_new_intent",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.commit.memory_recovery_rejected_before_mutation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T14.commit.candidate_chain_validated_before_claim",
+      "repeat_required": 1
+    },
+    {
+      "id": "T14.commit.published_outcome_uses_frozen_material",
+      "repeat_required": 1
+    },
+    {
+      "id": "T07.effect.claim_material_binding_is_frozen",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.effect.sent_facts_use_frozen_identity",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.intent.request_symbol_values_are_owned",
+      "repeat_required": 1
+    },
+    {
+      "id": "T15.intent.fingerprint_preserves_scalar_types",
+      "repeat_required": 1
+    },
+    {
+      "id": "T18.restore.unknown_effect_cannot_reenter_claimed",
+      "repeat_required": 1
+    },
+    {
+      "id": "T16.effect.send_attempt_is_once_before_external_call",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.common_contract",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.fault_not_qualified",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.optional_not_passed",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.profile_requires_capability",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.common_cannot_be_waived",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.missing_required_capability",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.false_capability",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.wrong_contract_version",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.wrong_implementation_digest",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.factory_identity",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.backend_exception",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.fault_flag_not_qualification",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.nested_worker_rejection",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.contracts.component_closure",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.contracts.public_include_boundary",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.contracts.type_contract_constraints",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.contracts.typed_value_validation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.contracts.read_shape",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.contracts.state_edit_shape",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.contracts.effect_shape",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.contracts.lifecycle_shape",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.contracts.context_capability_boundary",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.contracts.atomic_read_adapters",
+      "repeat_required": 1
+    },
+    {
+      "id": "T02.contracts.atomic_async_rejected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T05.contracts.operation_exact_identity",
+      "repeat_required": 1
+    },
+    {
+      "id": "T05.contracts.typed_binding_fingerprint",
+      "repeat_required": 1
+    },
+    {
+      "id": "T05.contracts.binding_generation_before_access",
+      "repeat_required": 1
+    },
+    {
+      "id": "T05.contracts.binding_owner_lifetime",
+      "repeat_required": 1
+    },
+    {
+      "id": "T05.contracts.execution_identity_separation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.contracts.outcome_closed_variants",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.contracts.known_facts_append_only",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.contracts.publication_proof_required",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.contracts.effect_report_preserves_fact",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.contracts.lifecycle_report_preserves_state",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.contracts.before_apply_and_composite_proofs",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.contracts.reply_phase_completion_separation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.contracts.executor_inline_ownership",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.contracts.executor_reject_exception_cleanup",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.contracts.completion_once_and_drain",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.contracts.atomic_prepared_identity",
+      "repeat_required": 1
+    },
+    {
+      "id": "T06.contracts.record_evidence_boundary",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.contracts.summary_owned_snapshot",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.contracts.observation_host_version",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.contracts.observation_budgets",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.contracts.authorized_owner_filter",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.contracts.completion_independent_of_observation",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.contracts.live_keyset_progress",
+      "repeat_required": 1
+    },
+    {
+      "id": "T24.contracts.public_headers",
+      "repeat_required": 1
+    },
+    {
+      "id": "T24.contracts.installed_component_consumer",
+      "repeat_required": 1
+    },
+    {
+      "id": "T24.contracts.install_pruning_rejected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T24.contracts.port_factory_contract_manifest",
+      "repeat_required": 1
+    }
+  ],
+  "checks": [
+    {
+      "id": "CHECK.dependencies.python",
+      "repeat_required": 1
+    },
+    {
+      "id": "CHECK.conformance.bootstrap",
+      "repeat_required": 1
+    },
+    {
+      "id": "CHECK.models.outcome_consistency",
+      "repeat_required": 1
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "review_mode": "ai-self-review",
+  "human_review_required": false,
+  "policy": "docs/reviews/automatic-acceptance-policy.json",
+  "policy_sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80",
+  "gate_summary_sha256": "c012270509d0cb133ed1e63496633dfff7622ddf2196e3a70e51c4230c8d2fb2",
+  "implementation_commit": "c6950773dd4134f39059ee5e9fa0acc12541ff96",
+  "inputs_sha256": "daad9b3588510afff1865f9717ea4d3da47bc788d375a8b585c6e67b29943aca",
+  "ctest_executions": 575,
+  "checks_passed": 9,
+  "previous_attempt": "evidence/D1.02/automatic-20260907T150134Z",
+  "previous_failure": "历史accept_gate要求矩阵本身在原始源码快照；新实现采用与D1.01一致的当前gate.py完整audit，原始失败保留。没有修改工具、来源或测试集合。",
+  "scope": "仅D1.02，G1仍InProgress；未来包另行验收。",
+  "independent_acceptance_review": {
+    "path": "evidence/D1.02/review-acceptance-route-460d7b.md",
+    "sha256": "b37a7f0f1bb722cf7d9e5dd21c065a3ac5d99a4733da399a910e5daa0e2a680e"
+  }
+}

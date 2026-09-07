@@ -1,0 +1,19 @@
+{
+  "format": "ock.gate-matrix/1",
+  "gate_id": "D1.02",
+  "scope": "当前未变实现完整三配置；固定expected及已审run manifest，无缺项或豁免。",
+  "required_runs": [
+    {
+      "task_id": "D1.02",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D1.02",
+      "profile": "win-msvc-release"
+    },
+    {
+      "task_id": "D1.02",
+      "profile": "win-msvc-asan"
+    }
+  ]
+}

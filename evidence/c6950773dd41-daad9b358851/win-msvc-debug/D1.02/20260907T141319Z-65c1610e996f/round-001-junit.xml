@@ -1,0 +1,1998 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="191"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="MSI"
+	time="858"
+	timestamp="2026-09-07T22:13:59"
+	>
+	<testcase name="T24.sdk.version_header" classname="T24.sdk.version_header" time="0.104117" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>0.1.0-dev.1
+</system-out>
+	</testcase>
+	<testcase name="T01.architecture.dependency_dag" classname="T01.architecture.dependency_dag" time="0.566323" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>{
+  "check_id": "CHECK.D0.02.architecture",
+  "errors": [],
+  "scope": "合同目标/公开表面静态检查；无Runtime运行或授权实现"
+}
+</system-out>
+	</testcase>
+	<testcase name="T01.architecture.negative_guards" classname="T01.architecture.negative_guards" time="5.62678" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>test_approved_architecture_matches_manifest (test_architecture.ArchitectureTests.test_approved_architecture_matches_manifest) ... ok
+test_authorized_immutable_read_is_allowed (test_architecture.ArchitectureTests.test_authorized_immutable_read_is_allowed) ... ok
+test_client_has_no_server_dependency (test_architecture.ArchitectureTests.test_client_has_no_server_dependency) ... ok
+test_comment_markers_inside_strings_do_not_hide_includes (test_architecture.ArchitectureTests.test_comment_markers_inside_strings_do_not_hide_includes) ... ok
+test_dot_include_prefix_is_rejected (test_architecture.ArchitectureTests.test_dot_include_prefix_is_rejected) ... ok
+test_dsl_is_not_a_required_release_component (test_architecture.ArchitectureTests.test_dsl_is_not_a_required_release_component) ... ok
+test_generic_state_rpc_is_rejected (test_architecture.ArchitectureTests.test_generic_state_rpc_is_rejected) ... ok
+test_include_comment_does_not_bypass_ownership (test_architecture.ArchitectureTests.test_include_comment_does_not_byp...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.sdk.install_and_missing_components" classname="T24.sdk.install_and_missing_components" time="47.0983" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>argv: ['cmake', '--install', 'E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug', '--config', 'Debug', '--prefix', 'E:\\VS2019Qt5.15\\3D\\build\\install-check-k_p1807z\\original'] exit_code: 0
+argv: ['cmake', '-S', 'E:\\VS2019Qt5.15\\3D\\tests\\install_consumer\\baseline', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-DCMAKE_TOOLCHAIN_FILE=E:\\VS2019Qt5.15\\3D/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=E:\\VS2019Qt5.15\\3D\\build\\install-check-k_p1807z\\relocated', '-B', 'E:\\VS2019Qt5.15\\3D\\build\\install-check-k_p1807z\\consumer'] exit_code: 0
+argv: ['cmake', '--build', 'E:\\VS2019Qt5.15\\3D\\build\\install-check-k_p1807z\\consumer', '--config', 'Debug', '--parallel'] exit_code: 0
+argv: ['E:\\VS2019Qt5.15\\3D\\build\\install-check-k_p1807z\\consumer\\Debug\\installed_metadata.exe'] exit_code: 0
+argv: ['cmake', '-S', 'E:\\VS2019Qt5.15\\3D\\tests\\install_consumer\\baseline', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-DCMAKE_TOOLCHAIN_FILE=E:\\VS2019Qt5.15\\3D/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=E:\...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T02.outcome.nine_variants" classname="T02.outcome.nine_variants" time="0.435652" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T02_outcome_nine_variants (test_execution_model.ExecutionContracts.test_T02_outcome_nine_variants) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T02.outcome.read_candidate" classname="T02.outcome.read_candidate" time="0.540214" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T02_outcome_read_candidate (test_execution_model.ExecutionContracts.test_T02_outcome_read_candidate) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.005s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T02.outcome.effect_minimal_receipt" classname="T02.outcome.effect_minimal_receipt" time="0.444042" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T02_outcome_effect_minimal_receipt (test_execution_model.ExecutionContracts.test_T02_outcome_effect_minimal_receipt) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T02.outcome.lifecycle_failed_transition" classname="T02.outcome.lifecycle_failed_transition" time="0.486717" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T02_outcome_lifecycle_failed_transition (test_execution_model.ExecutionContracts.test_T02_outcome_lifecycle_failed_transition) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.008s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T02.outcome.plan_all_success" classname="T02.outcome.plan_all_success" time="0.589399" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T02_outcome_plan_all_success (test_execution_model.ExecutionContracts.test_T02_outcome_plan_all_success) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.010s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T02.outcome.partial_and_unknown" classname="T02.outcome.partial_and_unknown" time="0.489639" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T02_outcome_partial_and_unknown (test_execution_model.ExecutionContracts.test_T02_outcome_partial_and_unknown) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.026s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T12.outcome.evidence_matrix" classname="T12.outcome.evidence_matrix" time="0.455404" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T12_outcome_evidence_matrix (test_execution_model.ExecutionContracts.test_T12_outcome_evidence_matrix) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.018s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.outcome.reply_layers" classname="T19.outcome.reply_layers" time="0.483779" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T19_outcome_reply_layers (test_execution_model.ExecutionContracts.test_T19_outcome_reply_layers) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.010s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.durable_acceptance" classname="T06.execution.durable_acceptance" time="0.453496" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_durable_acceptance (test_execution_model.ExecutionContracts.test_T06_execution_durable_acceptance) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.inline_completion" classname="T06.execution.inline_completion" time="0.461234" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_inline_completion (test_execution_model.ExecutionContracts.test_T06_execution_inline_completion) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.executor_rejection" classname="T06.execution.executor_rejection" time="0.417948" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_executor_rejection (test_execution_model.ExecutionContracts.test_T06_execution_executor_rejection) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.duplicate_callback" classname="T06.execution.duplicate_callback" time="0.58283" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_duplicate_callback (test_execution_model.ExecutionContracts.test_T06_execution_duplicate_callback) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.phase_edges" classname="T06.execution.phase_edges" time="0.555201" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_phase_edges (test_execution_model.ExecutionContracts.test_T06_execution_phase_edges) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.suspended_owner" classname="T06.execution.suspended_owner" time="0.535294" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_suspended_owner (test_execution_model.ExecutionContracts.test_T06_execution_suspended_owner) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T12.execution.required_record_failure" classname="T12.execution.required_record_failure" time="0.550652" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T12_execution_required_record_failure (test_execution_model.ExecutionContracts.test_T12_execution_required_record_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T12.execution.isolation_lifetime" classname="T12.execution.isolation_lifetime" time="0.527151" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T12_execution_isolation_lifetime (test_execution_model.ExecutionContracts.test_T12_execution_isolation_lifetime) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.necessary_children" classname="T06.execution.necessary_children" time="0.546868" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_necessary_children (test_execution_model.ExecutionContracts.test_T06_execution_necessary_children) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.plan_children_drained" classname="T06.execution.plan_children_drained" time="0.524554" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_plan_children_drained (test_execution_model.ExecutionContracts.test_T06_execution_plan_children_drained) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.cancel_keeps_facts" classname="T06.execution.cancel_keeps_facts" time="0.495781" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_cancel_keeps_facts (test_execution_model.ExecutionContracts.test_T06_execution_cancel_keeps_facts) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T20.execution.atomic_candidate_progress" classname="T20.execution.atomic_candidate_progress" time="0.45965" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T20_execution_atomic_candidate_progress (test_execution_model.ExecutionContracts.test_T20_execution_atomic_candidate_progress) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T12.execution.commit_publication_gate" classname="T12.execution.commit_publication_gate" time="0.483545" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T12_execution_commit_publication_gate (test_execution_model.ExecutionContracts.test_T12_execution_commit_publication_gate) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T20.execution.observation_revision_independent" classname="T20.execution.observation_revision_independent" time="0.429559" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T20_execution_observation_revision_independent (test_execution_model.ExecutionContracts.test_T20_execution_observation_revision_independent) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.015s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T20.execution.snapshot_consistency" classname="T20.execution.snapshot_consistency" time="0.462944" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T20_execution_snapshot_consistency (test_execution_model.ExecutionContracts.test_T20_execution_snapshot_consistency) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.009s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T20.execution.version_exhaustion" classname="T20.execution.version_exhaustion" time="0.460498" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T20_execution_version_exhaustion (test_execution_model.ExecutionContracts.test_T20_execution_version_exhaustion) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T12.execution.append_only_resolution" classname="T12.execution.append_only_resolution" time="0.46107" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T12_execution_append_only_resolution (test_execution_model.ExecutionContracts.test_T12_execution_append_only_resolution) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.010s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T20.observer.late_notification" classname="T20.observer.late_notification" time="0.486461" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T20_observer_late_notification (test_execution_model.ExecutionContracts.test_T20_observer_late_notification) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.018s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T20.observer.lost_terminal_notification" classname="T20.observer.lost_terminal_notification" time="0.465713" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T20_observer_lost_terminal_notification (test_execution_model.ExecutionContracts.test_T20_observer_lost_terminal_notification) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T12.execution.reject_forged_publication" classname="T12.execution.reject_forged_publication" time="0.481062" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T12_execution_reject_forged_publication (test_execution_model.ExecutionContracts.test_T12_execution_reject_forged_publication) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.child_unknown_aggregation" classname="T06.execution.child_unknown_aggregation" time="0.650167" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_child_unknown_aggregation (test_execution_model.ExecutionContracts.test_T06_execution_child_unknown_aggregation) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.014s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T20.execution.child_projection_version" classname="T20.execution.child_projection_version" time="0.548691" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T20_execution_child_projection_version (test_execution_model.ExecutionContracts.test_T20_execution_child_projection_version) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T20.observer.out_of_order_snapshot" classname="T20.observer.out_of_order_snapshot" time="0.536961" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T20_observer_out_of_order_snapshot (test_execution_model.ExecutionContracts.test_T20_observer_out_of_order_snapshot) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.008s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.queued_cancel" classname="T06.execution.queued_cancel" time="0.519236" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_queued_cancel (test_execution_model.ExecutionContracts.test_T06_execution_queued_cancel) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T12.execution.post_observation_error" classname="T12.execution.post_observation_error" time="0.550156" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T12_execution_post_observation_error (test_execution_model.ExecutionContracts.test_T12_execution_post_observation_error) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T12.execution.commit_ledger_repair" classname="T12.execution.commit_ledger_repair" time="0.512754" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T12_execution_commit_ledger_repair (test_execution_model.ExecutionContracts.test_T12_execution_commit_ledger_repair) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.normal_phase_path" classname="T06.execution.normal_phase_path" time="0.511868" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_normal_phase_path (test_execution_model.ExecutionContracts.test_T06_execution_normal_phase_path) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T12.outcome.failed_record_projection" classname="T12.outcome.failed_record_projection" time="0.51819" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T12_outcome_failed_record_projection (test_execution_model.ExecutionContracts.test_T12_outcome_failed_record_projection) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.058s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.plan_child_actual_success" classname="T06.execution.plan_child_actual_success" time="0.532701" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_plan_child_actual_success (test_execution_model.ExecutionContracts.test_T06_execution_plan_child_actual_success) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.040s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T12.outcome.resolution_final_consistency" classname="T12.outcome.resolution_final_consistency" time="0.460936" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T12_outcome_resolution_final_consistency (test_execution_model.ExecutionContracts.test_T12_outcome_resolution_final_consistency) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.017s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.owner_acyclic" classname="T06.execution.owner_acyclic" time="0.420166" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_owner_acyclic (test_execution_model.ExecutionContracts.test_T06_execution_owner_acyclic) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T06.execution.cancel_propagates_owned_children" classname="T06.execution.cancel_propagates_owned_children" time="0.450594" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T06_execution_cancel_propagates_owned_children (test_execution_model.ExecutionContracts.test_T06_execution_cancel_propagates_owned_children) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T12.execution.collected_outcome_frozen" classname="T12.execution.collected_outcome_frozen" time="0.459056" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T12_execution_collected_outcome_frozen (test_execution_model.ExecutionContracts.test_T12_execution_collected_outcome_frozen) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.schema.golden" classname="T19.schema.golden" time="0.945471" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T19_schema_golden (test_execution_model.ExecutionContracts.test_T19_schema_golden) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.492s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.schema.expected_manifest" classname="T19.schema.expected_manifest" time="0.472383" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.03"/>
+		</properties>
+		<system-out>test_T19_schema_expected_manifest (test_execution_model.ExecutionContracts.test_T19_schema_expected_manifest) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.005s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.expected" classname="T01.dependencies.expected" time="0.0548101" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>expected move-only/void/error/exception smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.toolchain" classname="T01.dependencies.toolchain" time="0.0558103" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>MSVC_FULL_VER=194435228 __cplusplus=202002 pointer_bits=64 CRT=/MDd
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.lock_contracts" classname="T01.dependencies.lock_contracts" time="0.413263" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>test_archive_symlink_refused (test_lock.LockContracts.test_archive_symlink_refused) ... ok
+test_archive_traversal_refused (test_lock.LockContracts.test_archive_traversal_refused) ... ok
+test_complete_default_table (test_lock.LockContracts.test_complete_default_table) ... ok
+test_component_selection (test_lock.LockContracts.test_component_selection) ... ok
+test_hash_mismatch_refused (test_lock.LockContracts.test_hash_mismatch_refused) ... ok
+test_internal_document_link_materialized (test_lock.LockContracts.test_internal_document_link_materialized) ... ok
+test_offline_missing_refused (test_lock.LockContracts.test_offline_missing_refused) ... ok
+test_reject_floating_revision (test_lock.LockContracts.test_reject_floating_revision) ... ok
+test_reject_incompatible_toolchain (test_lock.LockContracts.test_reject_incompatible_toolchain) ... ok
+test_reject_missing_license (test_lock.LockContracts.test_reject_missing_license) ... ok
+test_reject_sqlite_without_fix (test_lock.LockContracts.test_reject_sqlite_without_fix) ...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T07.permit.cancel_claim_orders" classname="T07.permit.cancel_claim_orders" time="0.360283" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T07_permit_cancel_claim_orders (commit_model.test_commit_model.CommitContracts.test_T07_permit_cancel_claim_orders) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T07.permit.revoke_claim_orders" classname="T07.permit.revoke_claim_orders" time="0.256399" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T07_permit_revoke_claim_orders (commit_model.test_commit_model.CommitContracts.test_T07_permit_revoke_claim_orders) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T07.permit.binding_expiry_single_use" classname="T07.permit.binding_expiry_single_use" time="0.241445" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T07_permit_binding_expiry_single_use (commit_model.test_commit_model.CommitContracts.test_T07_permit_binding_expiry_single_use) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T07.permit.leases_do_not_authorize" classname="T07.permit.leases_do_not_authorize" time="0.260756" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T07_permit_leases_do_not_authorize (commit_model.test_commit_model.CommitContracts.test_T07_permit_leases_do_not_authorize) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T07.commit.capacity_reserved_before_claim" classname="T07.commit.capacity_reserved_before_claim" time="0.295991" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T07_commit_capacity_reserved_before_claim (commit_model.test_commit_model.CommitContracts.test_T07_commit_capacity_reserved_before_claim) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T07.commit.lifecycle_revision_orders" classname="T07.commit.lifecycle_revision_orders" time="0.194307" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T07_commit_lifecycle_revision_orders (commit_model.test_commit_model.CommitContracts.test_T07_commit_lifecycle_revision_orders) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T14.commit.reservation_serializes_and_rejects_stale_base" classname="T14.commit.reservation_serializes_and_rejects_stale_base" time="0.198986" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T14_commit_reservation_serializes_and_rejects_stale_base (commit_model.test_commit_model.CommitContracts.test_T14_commit_reservation_serializes_and_rejects_stale_base) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T14.commit.wait_and_lock_order" classname="T14.commit.wait_and_lock_order" time="0.191834" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T14_commit_wait_and_lock_order (commit_model.test_commit_model.CommitContracts.test_T14_commit_wait_and_lock_order) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T14.commit.all_transaction_crash_windows" classname="T14.commit.all_transaction_crash_windows" time="0.197853" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T14_commit_all_transaction_crash_windows (commit_model.test_commit_model.CommitContracts.test_T14_commit_all_transaction_crash_windows) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T14.commit.permit_and_durable_are_not_published" classname="T14.commit.permit_and_durable_are_not_published" time="0.172531" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T14_commit_permit_and_durable_are_not_published (commit_model.test_commit_model.CommitContracts.test_T14_commit_permit_and_durable_are_not_published) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T14.commit.publication_is_one_owned_record" classname="T14.commit.publication_is_one_owned_record" time="0.211056" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T14_commit_publication_is_one_owned_record (commit_model.test_commit_model.CommitContracts.test_T14_commit_publication_is_one_owned_record) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T14.commit.duplicate_and_late_callback" classname="T14.commit.duplicate_and_late_callback" time="0.230381" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T14_commit_duplicate_and_late_callback (commit_model.test_commit_model.CommitContracts.test_T14_commit_duplicate_and_late_callback) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.commit.unknown_result_reconciles_actual_storage" classname="T16.commit.unknown_result_reconciles_actual_storage" time="0.252669" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_commit_unknown_result_reconciles_actual_storage (commit_model.test_commit_model.CommitContracts.test_T16_commit_unknown_result_reconciles_actual_storage) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.commit.publish_failure_preserves_ledger" classname="T16.commit.publish_failure_preserves_ledger" time="0.211061" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_commit_publish_failure_preserves_ledger (commit_model.test_commit_model.CommitContracts.test_T16_commit_publish_failure_preserves_ledger) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.commit.recovery_validates_before_opening" classname="T16.commit.recovery_validates_before_opening" time="0.21046" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_commit_recovery_validates_before_opening (commit_model.test_commit_model.CommitContracts.test_T16_commit_recovery_validates_before_opening) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T07.commit.memory_commit_and_empty_delta" classname="T07.commit.memory_commit_and_empty_delta" time="0.209569" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T07_commit_memory_commit_and_empty_delta (commit_model.test_commit_model.CommitContracts.test_T07_commit_memory_commit_and_empty_delta) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T07.commit.materials_prepared_before_consumption" classname="T07.commit.materials_prepared_before_consumption" time="0.204404" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T07_commit_materials_prepared_before_consumption (commit_model.test_commit_model.CommitContracts.test_T07_commit_materials_prepared_before_consumption) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.effect.claim_permit_send_are_separate" classname="T16.effect.claim_permit_send_are_separate" time="0.255957" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_effect_claim_permit_send_are_separate (commit_model.test_commit_model.CommitContracts.test_T16_effect_claim_permit_send_are_separate) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T07.effect.cancel_revoke_send_orders" classname="T07.effect.cancel_revoke_send_orders" time="0.244641" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T07_effect_cancel_revoke_send_orders (commit_model.test_commit_model.CommitContracts.test_T07_effect_cancel_revoke_send_orders) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.effect.crash_windows_never_blind_resend" classname="T16.effect.crash_windows_never_blind_resend" time="0.211445" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_effect_crash_windows_never_blind_resend (commit_model.test_commit_model.CommitContracts.test_T16_effect_crash_windows_never_blind_resend) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.effect.reconcile_and_partial_facts" classname="T16.effect.reconcile_and_partial_facts" time="0.211406" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_effect_reconcile_and_partial_facts (commit_model.test_commit_model.CommitContracts.test_T16_effect_reconcile_and_partial_facts) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.effect.missing_evidence_stays_unknown" classname="T16.effect.missing_evidence_stays_unknown" time="0.299754" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_effect_missing_evidence_stays_unknown (commit_model.test_commit_model.CommitContracts.test_T16_effect_missing_evidence_stays_unknown) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.effect.result_encoding_does_not_erase_effect" classname="T16.effect.result_encoding_does_not_erase_effect" time="0.24775" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_effect_result_encoding_does_not_erase_effect (commit_model.test_commit_model.CommitContracts.test_T16_effect_result_encoding_does_not_erase_effect) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T14.commit.materials_frozen_after_claim" classname="T14.commit.materials_frozen_after_claim" time="0.225237" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T14_commit_materials_frozen_after_claim (commit_model.test_commit_model.CommitContracts.test_T14_commit_materials_frozen_after_claim) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.effect.outcome_evidence_shape_matches_contract" classname="T16.effect.outcome_evidence_shape_matches_contract" time="0.200085" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_effect_outcome_evidence_shape_matches_contract (commit_model.test_commit_model.CommitContracts.test_T16_effect_outcome_evidence_shape_matches_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.effect.before_claim_crash_allows_same_identity_retry" classname="T16.effect.before_claim_crash_allows_same_identity_retry" time="0.194156" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_effect_before_claim_crash_allows_same_identity_retry (commit_model.test_commit_model.CommitContracts.test_T16_effect_before_claim_crash_allows_same_identity_retry) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T07.effect.cancel_before_permit_records_no_apply" classname="T07.effect.cancel_before_permit_records_no_apply" time="0.221423" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T07_effect_cancel_before_permit_records_no_apply (commit_model.test_commit_model.CommitContracts.test_T07_effect_cancel_before_permit_records_no_apply) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T14.commit.intent_and_state_share_transaction" classname="T14.commit.intent_and_state_share_transaction" time="0.197804" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T14_commit_intent_and_state_share_transaction (commit_model.test_commit_model.CommitContracts.test_T14_commit_intent_and_state_share_transaction) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.commit.memory_recovery_rejected_before_mutation" classname="T16.commit.memory_recovery_rejected_before_mutation" time="0.189511" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_commit_memory_recovery_rejected_before_mutation (commit_model.test_commit_model.CommitContracts.test_T16_commit_memory_recovery_rejected_before_mutation) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T14.commit.candidate_chain_validated_before_claim" classname="T14.commit.candidate_chain_validated_before_claim" time="0.188785" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T14_commit_candidate_chain_validated_before_claim (commit_model.test_commit_model.CommitContracts.test_T14_commit_candidate_chain_validated_before_claim) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T14.commit.published_outcome_uses_frozen_material" classname="T14.commit.published_outcome_uses_frozen_material" time="0.178593" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T14_commit_published_outcome_uses_frozen_material (commit_model.test_commit_model.CommitContracts.test_T14_commit_published_outcome_uses_frozen_material) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T07.effect.claim_material_binding_is_frozen" classname="T07.effect.claim_material_binding_is_frozen" time="0.19077" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T07_effect_claim_material_binding_is_frozen (commit_model.test_commit_model.CommitContracts.test_T07_effect_claim_material_binding_is_frozen) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.effect.sent_facts_use_frozen_identity" classname="T16.effect.sent_facts_use_frozen_identity" time="0.191223" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_effect_sent_facts_use_frozen_identity (commit_model.test_commit_model.CommitContracts.test_T16_effect_sent_facts_use_frozen_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T16.effect.send_attempt_is_once_before_external_call" classname="T16.effect.send_attempt_is_once_before_external_call" time="0.189506" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T16_effect_send_attempt_is_once_before_external_call (commit_model.test_commit_model.CommitContracts.test_T16_effect_send_attempt_is_once_before_external_call) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.intent.same_key_returns_existing_identity" classname="T15.intent.same_key_returns_existing_identity" time="0.192179" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_intent_same_key_returns_existing_identity (dedup_model.test_dedup_model.DedupContracts.test_T15_intent_same_key_returns_existing_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.intent.fingerprint_covers_all_semantic_fields" classname="T15.intent.fingerprint_covers_all_semantic_fields" time="0.18483" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_intent_fingerprint_covers_all_semantic_fields (dedup_model.test_dedup_model.DedupContracts.test_T15_intent_fingerprint_covers_all_semantic_fields) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.intent.stable_principal_scope_and_permissions" classname="T15.intent.stable_principal_scope_and_permissions" time="0.228462" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_intent_stable_principal_scope_and_permissions (dedup_model.test_dedup_model.DedupContracts.test_T15_intent_stable_principal_scope_and_permissions) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.intent.server_scope_and_namespace_reject_forgery" classname="T15.intent.server_scope_and_namespace_reject_forgery" time="0.218289" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_intent_server_scope_and_namespace_reject_forgery (dedup_model.test_dedup_model.DedupContracts.test_T15_intent_server_scope_and_namespace_reject_forgery) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.intent.future_expired_and_existing_before_floor" classname="T15.intent.future_expired_and_existing_before_floor" time="0.217509" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_intent_future_expired_and_existing_before_floor (dedup_model.test_dedup_model.DedupContracts.test_T15_intent_future_expired_and_existing_before_floor) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T14.intent.acceptance_transaction_crash_windows" classname="T14.intent.acceptance_transaction_crash_windows" time="0.196687" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T14_intent_acceptance_transaction_crash_windows (dedup_model.test_dedup_model.DedupContracts.test_T14_intent_acceptance_transaction_crash_windows) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.intent.claim_gc_both_orders" classname="T15.intent.claim_gc_both_orders" time="0.185852" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_intent_claim_gc_both_orders (dedup_model.test_dedup_model.DedupContracts.test_T15_intent_claim_gc_both_orders) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.intent.writer_transaction_prevents_interleaving" classname="T15.intent.writer_transaction_prevents_interleaving" time="0.233972" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_intent_writer_transaction_prevents_interleaving (dedup_model.test_dedup_model.DedupContracts.test_T15_intent_writer_transaction_prevents_interleaving) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.gc.watermark_and_delete_crash_windows" classname="T15.gc.watermark_and_delete_crash_windows" time="0.204577" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_gc_watermark_and_delete_crash_windows (dedup_model.test_dedup_model.DedupContracts.test_T15_gc_watermark_and_delete_crash_windows) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.gc.delete_before_watermark_is_detected" classname="T15.gc.delete_before_watermark_is_detected" time="0.192933" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_gc_delete_before_watermark_is_detected (dedup_model.test_dedup_model.DedupContracts.test_T15_gc_delete_before_watermark_is_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.gc.pins_inflight_unknown_and_references" classname="T15.gc.pins_inflight_unknown_and_references" time="0.203093" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_gc_pins_inflight_unknown_and_references (dedup_model.test_dedup_model.DedupContracts.test_T15_gc_pins_inflight_unknown_and_references) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.gc.scope_watermarks_are_independent_monotonic" classname="T15.gc.scope_watermarks_are_independent_monotonic" time="0.215328" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_gc_scope_watermarks_are_independent_monotonic (dedup_model.test_dedup_model.DedupContracts.test_T15_gc_scope_watermarks_are_independent_monotonic) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.intent.volatile_capacity_preserves_window" classname="T15.intent.volatile_capacity_preserves_window" time="0.204488" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_intent_volatile_capacity_preserves_window (dedup_model.test_dedup_model.DedupContracts.test_T15_intent_volatile_capacity_preserves_window) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.intent.client_retry_never_changes_identity" classname="T15.intent.client_retry_never_changes_identity" time="0.196896" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_intent_client_retry_never_changes_identity (dedup_model.test_dedup_model.DedupContracts.test_T15_intent_client_retry_never_changes_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.step.internal_key_and_parameter_binding" classname="T15.step.internal_key_and_parameter_binding" time="0.214853" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_step_internal_key_and_parameter_binding (dedup_model.test_dedup_model.DedupContracts.test_T15_step_internal_key_and_parameter_binding) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.step.branch_iteration_and_occurrence_are_identity" classname="T15.step.branch_iteration_and_occurrence_are_identity" time="0.197238" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_step_branch_iteration_and_occurrence_are_identity (dedup_model.test_dedup_model.DedupContracts.test_T15_step_branch_iteration_and_occurrence_are_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.step.admission_lifetime_definition_and_authorization" classname="T15.step.admission_lifetime_definition_and_authorization" time="0.234731" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_step_admission_lifetime_definition_and_authorization (dedup_model.test_dedup_model.DedupContracts.test_T15_step_admission_lifetime_definition_and_authorization) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.step.external_interface_has_no_epoch_bypass" classname="T15.step.external_interface_has_no_epoch_bypass" time="0.192361" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_step_external_interface_has_no_epoch_bypass (dedup_model.test_dedup_model.DedupContracts.test_T15_step_external_interface_has_no_epoch_bypass) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T18.restore.restart_preserves_store_and_generation" classname="T18.restore.restart_preserves_store_and_generation" time="0.205322" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T18_restore_restart_preserves_store_and_generation (dedup_model.test_dedup_model.DedupContracts.test_T18_restore_restart_preserves_store_and_generation) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T18.restore.old_backup_changes_generation_and_seals_effects" classname="T18.restore.old_backup_changes_generation_and_seals_effects" time="0.207899" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T18_restore_old_backup_changes_generation_and_seals_effects (dedup_model.test_dedup_model.DedupContracts.test_T18_restore_old_backup_changes_generation_and_seals_effects) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T18.restore.reconciliation_does_not_replay_history" classname="T18.restore.reconciliation_does_not_replay_history" time="0.208957" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T18_restore_reconciliation_does_not_replay_history (dedup_model.test_dedup_model.DedupContracts.test_T18_restore_reconciliation_does_not_replay_history) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T18.backup.manifest_pins_and_validation" classname="T18.backup.manifest_pins_and_validation" time="0.207688" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T18_backup_manifest_pins_and_validation (dedup_model.test_dedup_model.DedupContracts.test_T18_backup_manifest_pins_and_validation) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T18.restore.invalidates_child_admission" classname="T18.restore.invalidates_child_admission" time="0.20776" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T18_restore_invalidates_child_admission (dedup_model.test_dedup_model.DedupContracts.test_T18_restore_invalidates_child_admission) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.intent.expected_manifest_matches_fixed_cases" classname="T15.intent.expected_manifest_matches_fixed_cases" time="0.239111" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_intent_expected_manifest_matches_fixed_cases (dedup_model.test_dedup_model.DedupContracts.test_T15_intent_expected_manifest_matches_fixed_cases) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.016s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T18.restore.structure_checked_before_generation_change" classname="T18.restore.structure_checked_before_generation_change" time="0.229482" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T18_restore_structure_checked_before_generation_change (dedup_model.test_dedup_model.DedupContracts.test_T18_restore_structure_checked_before_generation_change) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T18.restore.new_effect_requires_reconciliation_and_new_intent" classname="T18.restore.new_effect_requires_reconciliation_and_new_intent" time="0.214136" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T18_restore_new_effect_requires_reconciliation_and_new_intent (dedup_model.test_dedup_model.DedupContracts.test_T18_restore_new_effect_requires_reconciliation_and_new_intent) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.intent.request_symbol_values_are_owned" classname="T15.intent.request_symbol_values_are_owned" time="0.209704" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_intent_request_symbol_values_are_owned (dedup_model.test_dedup_model.DedupContracts.test_T15_intent_request_symbol_values_are_owned) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T15.intent.fingerprint_preserves_scalar_types" classname="T15.intent.fingerprint_preserves_scalar_types" time="0.192669" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T15_intent_fingerprint_preserves_scalar_types (dedup_model.test_dedup_model.DedupContracts.test_T15_intent_fingerprint_preserves_scalar_types) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T18.restore.unknown_effect_cannot_reenter_claimed" classname="T18.restore.unknown_effect_cannot_reenter_claimed" time="0.20074" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.05"/>
+		</properties>
+		<system-out>test_T18_restore_unknown_effect_cannot_reenter_claimed (dedup_model.test_dedup_model.DedupContracts.test_T18_restore_unknown_effect_cannot_reenter_claimed) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.common_contract" classname="T19.conformance.common_contract" time="0.186174" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_common_contract (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_common_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.fault_not_qualified" classname="T19.conformance.fault_not_qualified" time="0.187832" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_fault_not_qualified (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_fault_not_qualified) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.optional_not_passed" classname="T19.conformance.optional_not_passed" time="0.215446" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_optional_not_passed (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_optional_not_passed) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.profile_requires_capability" classname="T19.conformance.profile_requires_capability" time="0.178613" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_profile_requires_capability (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_profile_requires_capability) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.common_cannot_be_waived" classname="T19.conformance.common_cannot_be_waived" time="0.188735" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_common_cannot_be_waived (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_common_cannot_be_waived) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.missing_required_capability" classname="T19.conformance.missing_required_capability" time="0.222134" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_missing_required_capability (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_missing_required_capability) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.false_capability" classname="T19.conformance.false_capability" time="0.206684" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_false_capability (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_false_capability) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.wrong_contract_version" classname="T19.conformance.wrong_contract_version" time="0.336197" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_wrong_contract_version (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_wrong_contract_version) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.wrong_implementation_digest" classname="T19.conformance.wrong_implementation_digest" time="0.266526" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_wrong_implementation_digest (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_wrong_implementation_digest) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.factory_identity" classname="T19.conformance.factory_identity" time="0.267854" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_factory_identity (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_factory_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.backend_exception" classname="T19.conformance.backend_exception" time="0.394382" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_backend_exception (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_backend_exception) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.nested_worker_rejection" classname="T19.conformance.nested_worker_rejection" time="0.338999" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_nested_worker_rejection (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_nested_worker_rejection) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.fault_flag_not_qualification" classname="T19.conformance.fault_flag_not_qualification" time="0.327049" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_fault_flag_not_qualification (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_fault_flag_not_qualification) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T24.foundation.public_headers" classname="T24.foundation.public_headers" time="29.5814" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>{"case": "public_headers", "status": "Passed", "work": "E:\\VS2019Qt5.15\\3D\\build\\d1.01-sdk\\b7f2396e9e1a4840a01809e1bfd00cde"}
+</system-out>
+	</testcase>
+	<testcase name="T24.foundation.installed_consumer" classname="T24.foundation.installed_consumer" time="54.8964" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>{"case": "installed_consumer", "status": "Passed", "work": "E:\\VS2019Qt5.15\\3D\\build\\d1.01-sdk\\15c39016bbc7408f8bd25036dba5037f"}
+</system-out>
+	</testcase>
+	<testcase name="T24.foundation.missing_dependency_rejected" classname="T24.foundation.missing_dependency_rejected" time="35.2716" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>{"case": "missing_dependency_rejected", "status": "Passed", "work": "E:\\VS2019Qt5.15\\3D\\build\\d1.01-sdk\\c49271910686402a9dbbe123931b22a1"}
+</system-out>
+	</testcase>
+	<testcase name="T24.foundation.backend_mode_rejected" classname="T24.foundation.backend_mode_rejected" time="54.7368" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>{"case": "backend_mode_rejected", "status": "Passed", "work": "E:\\VS2019Qt5.15\\3D\\build\\d1.01-sdk\\4529575c0d884d70b012c12aac365f1a"}
+</system-out>
+	</testcase>
+	<testcase name="T01.contracts.component_closure" classname="T01.contracts.component_closure" time="0.833996" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>test_contracts_cannot_duplicate_or_add_third_party_backend (tests.architecture.test_contracts_stage.ComponentClosureTests.test_contracts_cannot_duplicate_or_add_third_party_backend) ... ok
+test_core_stage_preserves_foundation_and_only_adds_contracts (tests.architecture.test_contracts_stage.ComponentClosureTests.test_core_stage_preserves_foundation_and_only_adds_contracts) ... ok
+test_foundation_cannot_regress_or_lose_expected (tests.architecture.test_contracts_stage.ComponentClosureTests.test_foundation_cannot_regress_or_lose_expected) ... ok
+test_other_product_implementation_rejected (tests.architecture.test_contracts_stage.ComponentClosureTests.test_other_product_implementation_rejected) ... ok
+test_product_closure_rejects_other_modules_and_unknown_targets (tests.architecture.test_contracts_stage.ComponentClosureTests.test_product_closure_rejects_other_modules_and_unknown_targets) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.652s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T01.contracts.public_include_boundary" classname="T01.contracts.public_include_boundary" time="1.75075" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>test_actual_public_macros_and_compile_conditions_match_manifest (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_actual_public_macros_and_compile_conditions_match_manifest) ... ok
+test_comments_literals_and_narrow_types_not_backdoors (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_comments_literals_and_narrow_types_not_backdoors) ... ok
+test_dom_sql_and_runtime_includes_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_dom_sql_and_runtime_includes_rejected) ... ok
+test_exact_six_headers_required (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_exact_six_headers_required) ... ok
+test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) ... ok
+test_registered_public_macros_must_remain_explicitly_empty (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_registered_public_macros_must_remain_explicitly_empty) ... ok
+
+---------------------...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.contracts.public_headers" classname="T24.contracts.public_headers" time="34.0409" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "public_headers", "status": "Passed", "work": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-sdk\\62ebe82f448c4d02bdc998d08163dba8"}
+</system-out>
+	</testcase>
+	<testcase name="T24.contracts.installed_component_consumer" classname="T24.contracts.installed_component_consumer" time="58.365" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "installed_component_consumer", "status": "Passed", "work": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-sdk\\974a298da038432e8f7029db52541ebe"}
+</system-out>
+	</testcase>
+	<testcase name="T24.contracts.install_pruning_rejected" classname="T24.contracts.install_pruning_rejected" time="98.5215" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "install_pruning_rejected", "status": "Passed", "work": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-sdk\\141e317e8f8f44528fa9601d77c0d523"}
+</system-out>
+	</testcase>
+	<testcase name="T03.foundation.code_only_no_allocation" classname="T03.foundation.code_only_no_allocation" time="0.0372473" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>allocation_window=code_only control=3 observed=0
+T03.foundation.code_only_no_allocation Passed
+</system-out>
+	</testcase>
+	<testcase name="T03.foundation.value_operations_no_allocation" classname="T03.foundation.value_operations_no_allocation" time="0.0286348" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>allocation_window=value_operations observed=0
+T03.foundation.value_operations_no_allocation Passed
+</system-out>
+	</testcase>
+	<testcase name="T03.foundation.layout_statistics" classname="T03.foundation.layout_statistics" time="0.0222665" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>ErrorCode size=16 align=8
+ErrorInfo size=40 align=8
+Error size=32 align=8
+Result&lt;int&gt; size=48 align=8
+Result&lt;void&gt; size=48 align=8
+Name size=97 align=1
+TaskId size=16 align=1
+BoundHandle&lt;TaskTag&gt; size=36 align=4
+T03.foundation.layout_statistics Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.result_move_only_value" classname="T04.foundation.result_move_only_value" time="0.0298016" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.result_move_only_value Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.result_move_only_error" classname="T04.foundation.result_move_only_error" time="0.0232983" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.result_move_only_error Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.result_void" classname="T04.foundation.result_void" time="0.0215388" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.result_void Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.result_error_propagation" classname="T04.foundation.result_error_propagation" time="0.0225714" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.result_error_propagation Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.result_bad_access" classname="T04.foundation.result_bad_access" time="0.0183486" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.result_bad_access Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.exception_not_business_failure" classname="T04.foundation.exception_not_business_failure" time="0.0181635" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.exception_not_business_failure Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.static_error_domain" classname="T04.foundation.static_error_domain" time="32.9082" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>{"case": "T04.foundation.static_error_domain", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\unit\\foundation\\child-runs\\e3fb20e911f1478599af4601a52ead4e"}
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.error_details_ownership" classname="T04.foundation.error_details_ownership" time="0.0243311" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.error_details_ownership Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.error_details_budget" classname="T04.foundation.error_details_budget" time="0.0149802" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.error_details_budget Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.display_utf8" classname="T04.foundation.display_utf8" time="0.0161009" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.display_utf8 Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.checked_arithmetic" classname="T04.foundation.checked_arithmetic" time="0.0214917" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.checked_arithmetic Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.checked_narrowing" classname="T04.foundation.checked_narrowing" time="0.0156274" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.checked_narrowing Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.checked_count_atomic_update" classname="T04.foundation.checked_count_atomic_update" time="0.0147008" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.checked_count_atomic_update Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.invariant_fail_fast" classname="T04.foundation.invariant_fail_fast" time="0.369356" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>{"case": "T04.foundation.invariant_fail_fast", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\unit\\foundation\\child-runs\\500244a5069541c48e96abaa4f67e9c6"}
+</system-out>
+	</testcase>
+	<testcase name="T05.foundation.name_ascii_bounds" classname="T05.foundation.name_ascii_bounds" time="0.0172034" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T05.foundation.name_ascii_bounds Passed
+</system-out>
+	</testcase>
+	<testcase name="T05.foundation.name_case_and_ownership" classname="T05.foundation.name_case_and_ownership" time="0.0155128" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T05.foundation.name_case_and_ownership Passed
+</system-out>
+	</testcase>
+	<testcase name="T05.foundation.tagged_identity_types" classname="T05.foundation.tagged_identity_types" time="0.0181225" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T05.foundation.tagged_identity_types Passed
+</system-out>
+	</testcase>
+	<testcase name="T05.foundation.identity_canonical_codec" classname="T05.foundation.identity_canonical_codec" time="0.0191583" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T05.foundation.identity_canonical_codec Passed
+</system-out>
+	</testcase>
+	<testcase name="T05.foundation.bound_handle_generation" classname="T05.foundation.bound_handle_generation" time="0.0180868" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T05.foundation.bound_handle_generation Passed
+</system-out>
+	</testcase>
+	<testcase name="T05.foundation.runtime_epoch_separation" classname="T05.foundation.runtime_epoch_separation" time="0.0150841" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T05.foundation.runtime_epoch_separation Passed
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.type_contract_constraints" classname="T02.contracts.type_contract_constraints" time="46.7203" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.type_contract_constraints", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\compile\\contracts\\child-runs\\fcd8465b1be142999dce6544ba06cf89"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.typed_value_validation" classname="T02.contracts.typed_value_validation" time="26.977" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.typed_value_validation", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\compile\\contracts\\child-runs\\d56523d28f3d497b9b79067be9e2c0db"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.read_shape" classname="T02.contracts.read_shape" time="34.3782" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.read_shape", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\compile\\contracts\\child-runs\\5c2c184360354786b6887a802350b700"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.state_edit_shape" classname="T02.contracts.state_edit_shape" time="33.7015" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.state_edit_shape", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\compile\\contracts\\child-runs\\8b0841be5a714ff1bebd2a08d5d13399"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.effect_shape" classname="T02.contracts.effect_shape" time="28.9109" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.effect_shape", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\compile\\contracts\\child-runs\\698171266c624d7a8f4a4a2dacd73957"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.lifecycle_shape" classname="T02.contracts.lifecycle_shape" time="28.1106" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.lifecycle_shape", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\compile\\contracts\\child-runs\\96e9194ff36a4e1f8f70bb47afb218ae"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.context_capability_boundary" classname="T02.contracts.context_capability_boundary" time="52.3162" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.context_capability_boundary", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\compile\\contracts\\child-runs\\cc9ceaa8e13342c0a8026dc265a99cd4"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.atomic_read_adapters" classname="T02.contracts.atomic_read_adapters" time="33.6044" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.atomic_read_adapters", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\compile\\contracts\\child-runs\\90a86c78df9c4127b8bb1e0cca7c1d31"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.atomic_async_rejected" classname="T02.contracts.atomic_async_rejected" time="27.8345" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.atomic_async_rejected", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\compile\\contracts\\child-runs\\3e26795da4f946e59c517bcea8dfdab4"}
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.operation_exact_identity" classname="T05.contracts.operation_exact_identity" time="0.0193575" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T05.contracts.operation_exact_identity
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.typed_binding_fingerprint" classname="T05.contracts.typed_binding_fingerprint" time="49.4551" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T05.contracts.typed_binding_fingerprint", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\compile\\contracts\\child-runs\\7ecf2d4df56442ebb97df6e4ef074418"}
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.binding_generation_before_access" classname="T05.contracts.binding_generation_before_access" time="0.023025" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T05.contracts.binding_generation_before_access
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.binding_owner_lifetime" classname="T05.contracts.binding_owner_lifetime" time="0.0157251" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T05.contracts.binding_owner_lifetime
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.execution_identity_separation" classname="T05.contracts.execution_identity_separation" time="0.0160515" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T05.contracts.execution_identity_separation
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.outcome_closed_variants" classname="T06.contracts.outcome_closed_variants" time="0.0303015" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.outcome_closed_variants
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.known_facts_append_only" classname="T06.contracts.known_facts_append_only" time="0.0212837" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.known_facts_append_only
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.publication_proof_required" classname="T06.contracts.publication_proof_required" time="0.0153032" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.publication_proof_required
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.effect_report_preserves_fact" classname="T06.contracts.effect_report_preserves_fact" time="0.025225" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.effect_report_preserves_fact
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.lifecycle_report_preserves_state" classname="T06.contracts.lifecycle_report_preserves_state" time="0.0237822" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.lifecycle_report_preserves_state
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.before_apply_and_composite_proofs" classname="T06.contracts.before_apply_and_composite_proofs" time="0.0248576" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.before_apply_and_composite_proofs
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.reply_phase_completion_separation" classname="T06.contracts.reply_phase_completion_separation" time="0.0342271" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.reply_phase_completion_separation
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.executor_inline_ownership" classname="T06.contracts.executor_inline_ownership" time="0.0410562" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.executor_inline_ownership
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.executor_reject_exception_cleanup" classname="T06.contracts.executor_reject_exception_cleanup" time="0.584781" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T06.contracts.executor_reject_exception_cleanup", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug\\tests\\compile\\contracts\\child-runs\\f489e9c6f53c49c39e17b40c36a15633"}
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.completion_once_and_drain" classname="T06.contracts.completion_once_and_drain" time="0.0288368" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.completion_once_and_drain
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.atomic_prepared_identity" classname="T06.contracts.atomic_prepared_identity" time="0.0344804" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.atomic_prepared_identity
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.record_evidence_boundary" classname="T06.contracts.record_evidence_boundary" time="0.0278987" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.record_evidence_boundary
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.summary_owned_snapshot" classname="T19.contracts.summary_owned_snapshot" time="0.0607863" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.summary_owned_snapshot
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.observation_host_version" classname="T19.contracts.observation_host_version" time="0.0850667" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.observation_host_version
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.observation_budgets" classname="T19.contracts.observation_budgets" time="0.0659489" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.observation_budgets
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.authorized_owner_filter" classname="T19.contracts.authorized_owner_filter" time="0.043466" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.authorized_owner_filter
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.completion_independent_of_observation" classname="T19.contracts.completion_independent_of_observation" time="0.0538288" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.completion_independent_of_observation
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.live_keyset_progress" classname="T19.contracts.live_keyset_progress" time="0.026042" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.live_keyset_progress
+</system-out>
+	</testcase>
+	<testcase name="T24.contracts.port_factory_contract_manifest" classname="T24.contracts.port_factory_contract_manifest" time="0.0327051" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T24.contracts.port_factory_contract_manifest
+</system-out>
+	</testcase>
+</testsuite>
