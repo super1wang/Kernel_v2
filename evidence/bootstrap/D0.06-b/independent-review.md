@@ -223,3 +223,58 @@ package = Failed
 | tools/evidence/common.py | 8d71265993b8cf1dfa8f4fdced0b88cf04dc24dc0d05bfccd02ebd832afe405d |
 | schemas/evidence-v1.schema.json | cc735fbeb93419ddbc3d9667c7239c9de9a237936f0d860384064485eb0b410c |
 | tests/tools/evidence/test_runner.py | ab13c61a04c97d40a39b5422a4343bc7a914a03d7a2f6c4b01a9949f4a58adee |
+
+
+## 第五轮：F6，同名 evidence 源码目录遗漏修复
+
+主集成者发现 common.inputs 使用任意路径分量等于 evidence 就排除，误排 tools/evidence 与 tests/tools/evidence；本轮独立复核其限定修复。现在只在 glob 选择阶段排除根目录 build/evidence/.git，以及任意 __pycache__ 和字节码文件，不再排除正常源码路径中的同名目录。显式 required_artifacts 的来源材料仍可被纳入；这与运行输出的 glob 排除是两个规则。
+
+实际独立执行：
+
+```text
+python -B -X utf8 tests/tools/evidence/test_runner.py EvidenceTests.test_T23_evidence_source_directory_named_evidence -v
+Ran 1 test in 2.947s
+OK
+```
+
+真实 fixture run 为 `20260907T064723Z-828c16af5305`（source-id `22f4992c2706-94b2dd6094fc`）。测试由实际 configure/build/CTest 产生报告，断言 tools/evidence/helper.py 存在于 source.inputs，然后修改该文件，并实际调用 validator 验证拒绝。其故障注入前报告保存在 fixture original-runs ZIP，未把后来故意改变的工作区当成应通过来源。
+
+另外遍历 tests/runs 全部 9 份正式配置，逐份调用当前真实 inputs()，核对 tools/evidence 和 tests/tools/evidence 下全部 10 个非缓存文件均入清单：build_identity.py、common.py、gate.py、import_bootstrap.py、process.py、run.py、validate.py、README.md、test_process.py、test_runner.py。九份均为 142 项，核对时统一 build_inputs_sha256 为 `63230d872612046ee7eec0ad30a9806926d8c9118253993b7b6103298d02d84b`。这是当前来源选择的实际结果，不冒充九个配置已重新执行。
+
+根输出目录排除检查区分显式产物：正式 required_artifacts 明确列入 evidence/bootstrap/D0.06-a/python-lock 的 6 份依赖来源 JSON，所以它们按要求纳入；除这些明确产物外，glob 结果没有根 build/evidence/.git 或 __pycache__ 产物。初次额外探针误假定所有 evidence 文件一律排除，命中这 6 份合法来源而停止；检查清楚 manifest 后按实际规则重验通过，没有将探针假设错误归咎于实现。
+
+**独立结论：F6 的原目录遗漏路径已修复，实际定向测试和九份正式来源选择核对通过。** 长驻进程加载旧模块后读取新源码摘要的问题由主集成者另行修复；第五轮不对该尚未冻结增量作通过结论。最终矩阵应使用新进程重新采集，旧报告保留但不纳入最终门禁。
+
+第五轮核对时间（UTC）：2026-09-07T06:49:52.511777+00:00。本轮直接复核文件摘要：
+
+| 文件 | SHA-256 |
+|---|---|
+| tools/evidence/common.py | 0e5bc5d048904971448979da29dbc3af1b089f14d1a3adede2e06d69e52d68e9 |
+| tests/tools/evidence/test_runner.py | 282574fe2223fddea55ef0fe9f8a3e252501467d696ae60e201c168e764f3d5f |
+
+
+## 第六轮：采集器进程加载指纹
+
+本轮独立只读复核主集成者冻结的加载指纹增量。run 模块初始化时对采集器 Python 文件与证据 Schema 保存 LOADED_COLLECTOR；run() 的第一步比较当前磁盘摘要，一旦已加载来源变化即要求新进程，在读取运行 manifest、创建 run 目录或启动 configure/build/test 之前拒绝。新报告复制加载时的摘要，不重新取当前磁盘摘要来替代实际已加载实现的身份；运行中变化仍由最终 audit 的 collector 当前摘要比对拒绝。
+
+按限定范围仅实际运行新增定向 case：
+
+```text
+python -B -X utf8 tests/tools/evidence/test_runner.py EvidenceTests.test_T23_evidence_collector_process_fingerprint -v
+Ran 1 test in 0.481s
+OK
+```
+
+该 case 使用明确的合成过期加载摘要触发真实 run() 入口，验证 ValueError/fresh process；它不模拟成功的 CMake/CTest，也不计为一次正式采集。结合入口位置与报告复制逻辑的静态核对，确认原长驻批次读取新文件摘要却继续执行旧 collector 函数的路径在再次 run 时被拦截。
+
+**独立结论：F6 与本轮加载指纹增量均完成所请求的定向复核，未新增未关闭阻断发现。** 主集成者将最终统一输入摘要绑定到 spec/code 技术评审记录，并用新进程重跑 9 组正式矩阵；human 批准不由本审查者或采集器补签。本轮结束后不修改工具、模型、清单或测试，只保留本报告追加内容。
+
+第六轮冻结核对时间（UTC）：2026-09-07T06:51:30.031005+00:00。摘要：
+
+| 文件 | SHA-256 |
+|---|---|
+| tools/evidence/run.py | 58d7ba8dd1cbd5f66dbb1d80a2096036305c1375991d4e3cfb6914abef887560 |
+| tools/evidence/common.py | 0e5bc5d048904971448979da29dbc3af1b089f14d1a3adede2e06d69e52d68e9 |
+| tools/evidence/validate.py | a7691b7941097e3992351ff244487dd5876e2e1b767b142df9bd0220ef2f0581 |
+| schemas/evidence-v1.schema.json | cc735fbeb93419ddbc3d9667c7239c9de9a237936f0d860384064485eb0b410c |
+| tests/tools/evidence/test_runner.py | 282574fe2223fddea55ef0fe9f8a3e252501467d696ae60e201c168e764f3d5f |

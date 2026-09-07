@@ -155,6 +155,18 @@ class EvidenceTests(unittest.TestCase):
         second,r=self.collect(profile='fixture-second');self.assertEqual(r['automated_status'],'Passed',r['errors'])
         summary=summarize(self.root/'gate.json',[first,second],self.root)
         self.assertEqual(summary['automated_status'],'Failed');self.assertTrue(any('different final source' in error for error in summary['errors']))
+    def test_T23_evidence_source_directory_named_evidence(self):
+        self.write('tools/evidence/helper.py','VALUE=1\n')
+        path,r=self.collect(source_patterns=self.spec['source_patterns']+['tools/**'])
+        self.assertEqual(r['automated_status'],'Passed',r['errors'])
+        self.assertIn('tools/evidence/helper.py',[row['path'] for row in r['source']['inputs']])
+        self.write('tools/evidence/helper.py','VALUE=2\n');self.assertTrue(validate_report(path,self.root))
+    def test_T23_evidence_collector_process_fingerprint(self):
+        from tools.evidence import run as collector
+        from unittest.mock import patch
+        stale=[dict(row) for row in collector.LOADED_COLLECTOR];stale[0]['sha256']='0'*64
+        with patch.object(collector,'LOADED_COLLECTOR',stale):
+            with self.assertRaisesRegex(ValueError,'fresh process'): self.collect()
     def test_T23_evidence_schema_unknown_field(self):
         path,r=self.collect();self.assertEqual(r['automated_status'],'Passed',r['errors'])
         r['unreviewed_override']='Passed';path.write_text(json.dumps(r))

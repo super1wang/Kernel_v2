@@ -63,7 +63,7 @@ def inputs(root, spec, spec_relative):
         pattern = pattern + '/*' if pattern.endswith('/**') else pattern
         for path in root.glob(pattern):
             rel = path.relative_to(root)
-            if path.is_file() and not any(p in ('.git', 'build', 'evidence', '__pycache__') for p in rel.parts) and path.suffix not in ('.pyc', '.pyo'):
+            if path.is_file() and rel.parts[0] not in ('.git', 'build', 'evidence') and '__pycache__' not in rel.parts and path.suffix not in ('.pyc', '.pyo'):
                 selected.add(under(root, rel.as_posix()))
     result = []
     for path in sorted(selected):

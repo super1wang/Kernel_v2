@@ -1,0 +1,183 @@
+{
+  "backtraceGraph": {
+    "commands": [
+      "add_test"
+    ],
+    "files": [
+      "E:/VS2019Qt5.15/3D/CMakeLists.txt"
+    ],
+    "nodes": [
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 20,
+        "parent": 0
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 21,
+        "parent": 2
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 22,
+        "parent": 4
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 24,
+        "parent": 6
+      }
+    ]
+  },
+  "kind": "ctestInfo",
+  "tests": [
+    {
+      "backtrace": 1,
+      "command": [
+        "E:/VS2019Qt5.15/3D/build/win-msvc-release/Release/ock_sdk_metadata_probe.exe"
+      ],
+      "config": "Release",
+      "name": "T24.sdk.version_header",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D0.02"
+          ]
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "E:/VS2019Qt5.15/3D/build/win-msvc-release"
+        }
+      ]
+    },
+    {
+      "backtrace": 3,
+      "command": [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "E:/VS2019Qt5.15/3D/tools/architecture/check.py",
+        "--graph",
+        "E:/VS2019Qt5.15/3D/build/win-msvc-release/ock-target-graph.json"
+      ],
+      "config": "Release",
+      "name": "T01.architecture.dependency_dag",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D0.02"
+          ]
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "E:/VS2019Qt5.15/3D/build/win-msvc-release"
+        }
+      ]
+    },
+    {
+      "backtrace": 5,
+      "command": [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "E:/VS2019Qt5.15/3D/tests/architecture",
+        "-v"
+      ],
+      "config": "Release",
+      "name": "T01.architecture.negative_guards",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D0.02"
+          ]
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "E:/VS2019Qt5.15/3D"
+        }
+      ]
+    },
+    {
+      "backtrace": 7,
+      "command": [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "E:/VS2019Qt5.15/3D/tests/install_consumer/verify_baseline.py",
+        "--build",
+        "E:/VS2019Qt5.15/3D/build/win-msvc-release",
+        "--config",
+        "Release"
+      ],
+      "config": "Release",
+      "name": "T24.sdk.install_and_missing_components",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D0.02"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 180.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "E:/VS2019Qt5.15/3D/build/win-msvc-release"
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 1,
+    "minor": 0
+  }
+}

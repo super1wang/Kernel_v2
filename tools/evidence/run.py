@@ -17,7 +17,12 @@ from tools.evidence.common import now, sha_file, digest, read_json, save_json, u
 from tools.evidence.process import execute
 
 
+COLLECTOR_PATHS = [*sorted((ROOT / 'tools/evidence').glob('*.py')), ROOT / 'schemas/evidence-v1.schema.json']
+LOADED_COLLECTOR = [{'path': str(path), 'sha256': sha_file(path)} for path in COLLECTOR_PATHS]
+
 def run(root, manifest_path):
+    if LOADED_COLLECTOR != [{'path': str(path), 'sha256': sha_file(path)} for path in COLLECTOR_PATHS]:
+        raise ValueError('collector sources changed after process initialization; start a fresh process')
     root = Path(root).resolve(); manifest_path = Path(manifest_path).resolve()
     relative = manifest_path.relative_to(root).as_posix()
     spec = read_json(manifest_path)
@@ -70,7 +75,7 @@ def run(root, manifest_path):
       'dependency_lock_sha256': sha_file(under(root, spec['dependency_lock'])), 'artifacts': [], 'test_executables': []},
       'environment': {'python': platform.python_version(), 'platform': platform.platform(),
       'public_subset': {name: os.environ[name] for name in ('PROCESSOR_ARCHITECTURE', 'NUMBER_OF_PROCESSORS', 'VSCMD_VER', 'VCToolsVersion', 'WindowsSDKVersion', 'LANG') if name in os.environ}},
-      'collector': [{'path': str(path), 'sha256': sha_file(path)} for path in [*sorted((ROOT / 'tools/evidence').glob('*.py')), ROOT / 'schemas/evidence-v1.schema.json']],
+      'collector': [dict(row) for row in LOADED_COLLECTOR],
       'conformance': None, 'runtime_artifacts': [], 'commands': [], 'tests': {'expected': [case['id'] for case in required], 'discovered': [], 'rounds': []},
       'checks': [], 'review': {'required': spec.get('review_required', ['human']), 'records': []}, 'collection_issues': [], 'errors': [],
       'automated_status': 'NotRun', 'package_status': 'InProgress'}

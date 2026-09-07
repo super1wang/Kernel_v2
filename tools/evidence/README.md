@@ -43,3 +43,5 @@ Windows子进程先以挂起状态创建，加入本次独占Job，再恢复主�
 实现参照本机真实CTest 3.31.6-msvc6的JSON发现、JUnit与no-tests=error实测。平台机制参考微软 [Job Objects](https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects)；CTest参数参考 [官方手册](https://cmake.org/cmake/help/v3.29/manual/ctest.1.html)。在线文档不替代本机执行证据。
 
 `gate.py` 默认退出码只表示自动汇总是否齐备，人工未批准时仍可输出自动Passed与gate_status=InProgress。放行者必须检查gate_status=Passed，不能仅用该报告生成命令的exit=0作为G0批准。
+
+最终来源复核修正：仅排除仓库根部的build/evidence/.git产物目录，tools/evidence与tests/tools/evidence必须进入源码快照。采集进程启动时记录实际加载规则的指纹；源码变更后必须启动新进程，不能跨run把新文件hash标到旧内存代码上。首轮bf122b7矩阵由此作废为旧来源验证记录，保留全部报告，最终门禁重新采集。

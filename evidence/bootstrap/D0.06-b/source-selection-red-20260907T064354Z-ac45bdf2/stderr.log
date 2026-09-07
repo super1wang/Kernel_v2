@@ -1,0 +1,14 @@
+test_T23_evidence_source_directory_named_evidence (test_runner.EvidenceTests.test_T23_evidence_source_directory_named_evidence) ... FAIL
+
+======================================================================
+FAIL: test_T23_evidence_source_directory_named_evidence (test_runner.EvidenceTests.test_T23_evidence_source_directory_named_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\tools\evidence\test_runner.py", line 162, in test_T23_evidence_source_directory_named_evidence
+    self.assertIn('tools/evidence/helper.py',[row['path'] for row in r['source']['inputs']])
+AssertionError: 'tools/evidence/helper.py' not found in ['case.py', 'CMakeLists.txt', 'dependencies.lock', 'expected.json', 'run.json']
+
+----------------------------------------------------------------------
+Ran 1 test in 2.988s
+
+FAILED (failures=1)
