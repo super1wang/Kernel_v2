@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.25)
+project(D101IndependentAliasProbe LANGUAGES CXX)
+add_executable(probe probe.cpp)
+target_compile_features(probe PRIVATE cxx_std_20)
+target_compile_options(probe PRIVATE /EHsc /utf-8 /Zc:__cplusplus /permissive-)
+target_include_directories(probe PRIVATE "E:/VS2019Qt5.15/3D/packages/foundation/include" "E:/VS2019Qt5.15/3D/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include")

@@ -1,0 +1,63 @@
+Internal ctest changing into directory: E:/VS2019Qt5.15/3D/build/d1.01-asan
+Test project E:/VS2019Qt5.15/3D/build/d1.01-asan
+      Start  1: T24.sdk.version_header
+ 1/26 Test  #1: T24.sdk.version_header ..........................   Passed    0.74 sec
+      Start  8: T23.dependencies.asan_healthy
+ 2/26 Test  #8: T23.dependencies.asan_healthy ...................   Passed    0.80 sec
+      Start  9: T23.dependencies.asan_detects_heap_overflow
+ 3/26 Test  #9: T23.dependencies.asan_detects_heap_overflow .....   Passed    1.66 sec
+      Start 14: T03.foundation.code_only_no_allocation
+ 4/26 Test #14: T03.foundation.code_only_no_allocation ..........   Passed    1.06 sec
+      Start 15: T03.foundation.value_operations_no_allocation
+ 5/26 Test #15: T03.foundation.value_operations_no_allocation ...   Passed    0.78 sec
+      Start 16: T03.foundation.layout_statistics
+ 6/26 Test #16: T03.foundation.layout_statistics ................   Passed    0.67 sec
+      Start 17: T04.foundation.result_move_only_value
+ 7/26 Test #17: T04.foundation.result_move_only_value ...........   Passed    0.59 sec
+      Start 18: T04.foundation.result_move_only_error
+ 8/26 Test #18: T04.foundation.result_move_only_error ...........   Passed    0.79 sec
+      Start 19: T04.foundation.result_void
+ 9/26 Test #19: T04.foundation.result_void ......................   Passed    0.64 sec
+      Start 20: T04.foundation.result_error_propagation
+10/26 Test #20: T04.foundation.result_error_propagation .........   Passed    0.61 sec
+      Start 21: T04.foundation.result_bad_access
+11/26 Test #21: T04.foundation.result_bad_access ................   Passed    0.68 sec
+      Start 22: T04.foundation.exception_not_business_failure
+12/26 Test #22: T04.foundation.exception_not_business_failure ...   Passed    0.55 sec
+      Start 23: T04.foundation.static_error_domain
+13/26 Test #23: T04.foundation.static_error_domain ..............   Passed   71.33 sec
+      Start 24: T04.foundation.error_details_ownership
+14/26 Test #24: T04.foundation.error_details_ownership ..........   Passed    0.41 sec
+      Start 25: T04.foundation.error_details_budget
+15/26 Test #25: T04.foundation.error_details_budget .............   Passed    0.43 sec
+      Start 26: T04.foundation.display_utf8
+16/26 Test #26: T04.foundation.display_utf8 .....................   Passed    0.34 sec
+      Start 27: T04.foundation.checked_arithmetic
+17/26 Test #27: T04.foundation.checked_arithmetic ...............   Passed    0.97 sec
+      Start 28: T04.foundation.checked_narrowing
+18/26 Test #28: T04.foundation.checked_narrowing ................   Passed    0.80 sec
+      Start 29: T04.foundation.checked_count_atomic_update
+19/26 Test #29: T04.foundation.checked_count_atomic_update ......   Passed    0.63 sec
+      Start 30: T04.foundation.invariant_fail_fast
+20/26 Test #30: T04.foundation.invariant_fail_fast ..............   Passed    2.63 sec
+      Start 31: T05.foundation.name_ascii_bounds
+21/26 Test #31: T05.foundation.name_ascii_bounds ................   Passed    0.58 sec
+      Start 32: T05.foundation.name_case_and_ownership
+22/26 Test #32: T05.foundation.name_case_and_ownership ..........   Passed    0.41 sec
+      Start 33: T05.foundation.tagged_identity_types
+23/26 Test #33: T05.foundation.tagged_identity_types ............   Passed    0.59 sec
+      Start 34: T05.foundation.identity_canonical_codec
+24/26 Test #34: T05.foundation.identity_canonical_codec .........   Passed    0.47 sec
+      Start 35: T05.foundation.bound_handle_generation
+25/26 Test #35: T05.foundation.bound_handle_generation ..........   Passed    0.51 sec
+      Start 36: T05.foundation.runtime_epoch_separation
+26/26 Test #36: T05.foundation.runtime_epoch_separation .........   Passed    0.39 sec
+
+100% tests passed, 0 tests failed out of 26
+
+Label Time Summary:
+D0.02      =   0.74 sec*proc (1 test)
+D0.06-a    =   2.46 sec*proc (2 tests)
+D1.01      =  86.86 sec*proc (23 tests)
+
+Total Test time (real) =  90.31 sec

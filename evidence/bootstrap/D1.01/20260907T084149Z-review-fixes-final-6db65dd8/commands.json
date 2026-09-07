@@ -1,0 +1,342 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/d1.01-agent-foundation-debug",
+      "--config",
+      "Debug",
+      "--target",
+      "ock_foundation_tests"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:41:49.130222+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 29,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 35376,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T08:42:22.423982+00:00",
+    "raw": [
+      {
+        "path": "build-Debug-stdout.log",
+        "sha256": "60a0e5a88c4f2ef3a4e89b1d324381c9cc064380ea55acc69a9b8d667782b147",
+        "size": 1677
+      },
+      {
+        "path": "build-Debug-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/d1.01-agent-foundation-debug",
+      "--config",
+      "Release",
+      "--target",
+      "ock_foundation_tests"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:42:22.436003+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 23,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 21864,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T08:42:34.587010+00:00",
+    "raw": [
+      {
+        "path": "build-Release-stdout.log",
+        "sha256": "bf289515654a53c01ed3ff80d2bdf67226859f87f05d9b6e87f745ffc528401b",
+        "size": 1201
+      },
+      {
+        "path": "build-Release-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/d1.01-agent-foundation-debug",
+      "-C",
+      "Debug",
+      "--show-only=json-v1"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:42:34.597276+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 38820,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T08:42:34.758081+00:00",
+    "raw": [
+      {
+        "path": "discover-Debug-stdout.log",
+        "sha256": "fc663780d67d2b47882d8b4e1ed36b0bde7d9410f24af7cd42737ea7ff53098f",
+        "size": 25242
+      },
+      {
+        "path": "discover-Debug-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/d1.01-agent-foundation-debug",
+      "-C",
+      "Release",
+      "--show-only=json-v1"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:42:34.771488+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 25712,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T08:42:34.944079+00:00",
+    "raw": [
+      {
+        "path": "discover-Release-stdout.log",
+        "sha256": "a1be1cb2014503700fa466e4f0efb7a90dc9248da35bf05ca463faa072c27b29",
+        "size": 25338
+      },
+      {
+        "path": "discover-Release-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/d1.01-agent-foundation-debug",
+      "-C",
+      "RelWithDebInfo",
+      "--show-only=json-v1"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:42:34.965098+00:00",
+    "exit_code": 8,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 38188,
+    "observed_exit_code": 8,
+    "finished_at": "2026-09-07T08:42:35.101562+00:00",
+    "raw": [
+      {
+        "path": "discover-unbuilt-stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": "discover-unbuilt-stderr.log",
+        "sha256": "790c14a34a30c5875dbf7627417682e97cf14cc4e048fa2568c20d8c68c246b1",
+        "size": 346
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/d1.01-agent-foundation-debug",
+      "--show-only=json-v1"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:42:35.112782+00:00",
+    "exit_code": 8,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 35344,
+    "observed_exit_code": 8,
+    "finished_at": "2026-09-07T08:42:35.239228+00:00",
+    "raw": [
+      {
+        "path": "discover-no-config-stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": "discover-no-config-stderr.log",
+        "sha256": "718a6d5fee6b64621a010c3f1d34ec0b8964e35589705d5fefa58a7abe33e335",
+        "size": 360
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/d1.01-agent-foundation-debug",
+      "-C",
+      "Debug",
+      "--no-tests=error",
+      "--output-on-failure",
+      "--output-junit",
+      "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.01\\20260907T084149Z-review-fixes-final-6db65dd8\\debug-junit.xml"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:42:35.254146+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 113,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 36016,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T08:43:51.841889+00:00",
+    "raw": [
+      {
+        "path": "ctest-Debug-stdout.log",
+        "sha256": "bc65d6fb2eaa271301893bc40ee8bc359e88db3aa94f975adbdb458d6be26f3d",
+        "size": 3522
+      },
+      {
+        "path": "ctest-Debug-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/d1.01-agent-foundation-asan",
+      "--config",
+      "Debug",
+      "--target",
+      "ock_foundation_tests"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:43:51.858285+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 32,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 21108,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T08:44:18.185066+00:00",
+    "raw": [
+      {
+        "path": "build-ASan-stdout.log",
+        "sha256": "2376b22896e7ebca7593806a7c2f46c6c93b19aaa3fef6a41024560246f592e8",
+        "size": 1860
+      },
+      {
+        "path": "build-ASan-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/d1.01-agent-foundation-asan",
+      "-C",
+      "Debug",
+      "--no-tests=error",
+      "--output-on-failure",
+      "--output-junit",
+      "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.01\\20260907T084149Z-review-fixes-final-6db65dd8\\asan-junit.xml"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:44:18.198578+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 113,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 1512,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T08:45:39.002071+00:00",
+    "raw": [
+      {
+        "path": "ctest-ASan-stdout.log",
+        "sha256": "c6274c94509923550155edef5ef2513358d2a342a7d3e8d58f83730002807f6a",
+        "size": 3520
+      },
+      {
+        "path": "ctest-ASan-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

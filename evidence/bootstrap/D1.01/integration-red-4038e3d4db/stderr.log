@@ -1,0 +1,21 @@
+test_foundation_stage (unittest.loader._FailedTest.test_foundation_stage) ... ERROR
+
+======================================================================
+ERROR: test_foundation_stage (unittest.loader._FailedTest.test_foundation_stage)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_foundation_stage
+Traceback (most recent call last):
+  File "C:\Users\xrx10\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xrx10\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_foundation_stage.py", line 4, in <module>
+    from tools.architecture.check import validate_implementation_stage
+ImportError: cannot import name 'validate_implementation_stage' from 'tools.architecture.check' (E:\VS2019Qt5.15\3D\tools\architecture\check.py)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

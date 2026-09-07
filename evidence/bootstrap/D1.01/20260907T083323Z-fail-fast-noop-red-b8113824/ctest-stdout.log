@@ -1,0 +1,22 @@
+Internal ctest changing into directory: E:/VS2019Qt5.15/3D/build/d1.01-agent-foundation-debug
+Test project E:/VS2019Qt5.15/3D/build/d1.01-agent-foundation-debug
+    Start 17: T04.foundation.invariant_fail_fast
+1/1 Test #17: T04.foundation.invariant_fail_fast ...***Failed    1.49 sec
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\unit\foundation\verify_children.py", line 69, in <module>
+    main()
+  File "E:\VS2019Qt5.15\3D\tests\unit\foundation\verify_children.py", line 37, in main
+    assert not terminated(control,control_raw), 'no-op invariant must not be accepted as fail-fast'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: no-op invariant must not be accepted as fail-fast
+
+
+0% tests passed, 1 tests failed out of 1
+
+Label Time Summary:
+D1.01    =   1.49 sec*proc (1 test)
+
+Total Test time (real) =   1.63 sec
+
+The following tests FAILED:
+	 17 - T04.foundation.invariant_fail_fast (Failed)       D1.01

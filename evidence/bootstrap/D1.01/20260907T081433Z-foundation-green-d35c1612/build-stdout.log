@@ -1,0 +1,37 @@
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  foundation_tests.cpp
+E:\VS2019Qt5.15\3D\tests\unit\foundation\foundation_tests.cpp(81,180): error C2672: “tl::expected<void,ock::foundation::Error>::value”: 未找到匹配的重载函数 [E:\VS2019Qt5.15\3D\build\d1.01-agent-foundation-debug\foundation\ock_foundation_tests.vcxproj]
+      E:\VS2019Qt5.15\3D\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(2007,32):
+      可能是“U &&tl::expected<void,ock::foundation::Error>::value(void) &&”
+          E:\VS2019Qt5.15\3D\tests\unit\foundation\foundation_tests.cpp(81,180):
+          “U &&tl::expected<void,ock::foundation::Error>::value(void) &&”: 无法推导“__formal”的 模板 参数
+              E:\VS2019Qt5.15\3D\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1269,21):
+              “tl::detail::enable_if_t”: 未能使别名模板专用化
+                  E:\VS2019Qt5.15\3D\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(233,52):
+                  “type”: 不是“std::enable_if<false,void>”的任何直接或间接基类的成员
+      E:\VS2019Qt5.15\3D\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(2000,38):
+      或    “const U &&tl::expected<void,ock::foundation::Error>::value(void) const &&”
+          E:\VS2019Qt5.15\3D\tests\unit\foundation\foundation_tests.cpp(81,180):
+          “const U &&tl::expected<void,ock::foundation::Error>::value(void) const &&”: 无法推导“__formal”的 模板 参数
+              E:\VS2019Qt5.15\3D\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1269,21):
+              “tl::detail::enable_if_t”: 未能使别名模板专用化
+                  E:\VS2019Qt5.15\3D\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(233,52):
+                  “type”: 不是“std::enable_if<false,void>”的任何直接或间接基类的成员
+      E:\VS2019Qt5.15\3D\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1993,31):
+      或    “U &tl::expected<void,ock::foundation::Error>::value(void) &”
+          E:\VS2019Qt5.15\3D\tests\unit\foundation\foundation_tests.cpp(81,180):
+          “U &tl::expected<void,ock::foundation::Error>::value(void) &”: 无法推导“__formal”的 模板 参数
+              E:\VS2019Qt5.15\3D\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1269,21):
+              “tl::detail::enable_if_t”: 未能使别名模板专用化
+                  E:\VS2019Qt5.15\3D\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(233,52):
+                  “type”: 不是“std::enable_if<false,void>”的任何直接或间接基类的成员
+      E:\VS2019Qt5.15\3D\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1986,37):
+      或    “const U &tl::expected<void,ock::foundation::Error>::value(void) const &”
+          E:\VS2019Qt5.15\3D\tests\unit\foundation\foundation_tests.cpp(81,180):
+          “const U &tl::expected<void,ock::foundation::Error>::value(void) const &”: 无法推导“__formal”的 模板 参数
+              E:\VS2019Qt5.15\3D\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1269,21):
+              “tl::detail::enable_if_t”: 未能使别名模板专用化
+                  E:\VS2019Qt5.15\3D\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(233,52):
+                  “type”: 不是“std::enable_if<false,void>”的任何直接或间接基类的成员
+  

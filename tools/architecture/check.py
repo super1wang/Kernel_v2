@@ -99,6 +99,25 @@ def validate_frontend_access(owner,kind,route,authorized,immutable):
 def validate_rpc_methods(methods):
     return [f'禁止通用状态 RPC：{method}' for method in methods if method.startswith('state.')]
 
+FOUNDATION_PUBLIC_OPTIONS=['$<$<CXX_COMPILER_ID:MSVC>:/utf-8>', '$<$<CXX_COMPILER_ID:MSVC>:/EHsc>', '$<$<CXX_COMPILER_ID:MSVC>:/Zc:__cplusplus>', '$<$<CXX_COMPILER_ID:MSVC>:/permissive->']
+
+
+def validate_implementation_stage(manifest):
+    """只允许已实施组件前进；公开第三方依赖不能混入产品DAG。"""
+    stages={'ContractBaseline':set(),'Foundation':{'Foundation'}}
+    stage=manifest.get('stage')
+    if stage not in stages:return ['未知SDK实施阶段']
+    errors=[]
+    for name,target in manifest['targets'].items():
+        implemented=name in stages[stage]
+        if target.get('implementation')!=('Implemented' if implemented else 'ContractBaseline'):
+            errors.append(name+' 实施状态与当前阶段不符')
+        expected=['expected'] if implemented and name=='Foundation' else []
+        if target.get('external_dependencies',[])!=expected:
+            errors.append(name+' 公开第三方依赖不符')
+    return errors
+
+
 def validate_manifest(manifest,actual_graph=None):
     errors=[]
     def require(value,message):
@@ -106,7 +125,7 @@ def validate_manifest(manifest,actual_graph=None):
     targets=manifest['targets'];norm=normative_graph()
     require(manifest['format']=='ock.sdk-api/1','公开清单格式不符')
     require(manifest['sdk_version']=='0.1.0-dev.1','开发 SDK 版本必须独立于文档 v3.3')
-    require(manifest['stage']=='ContractBaseline','D0.02 仅为合同基线')
+    errors.extend(validate_implementation_stage(manifest))
     require(set(targets)==set(norm),'产品 target 集合与 A02 不一致')
     for name,target in targets.items():
         require(target['dependencies']==norm.get(name),f'{name} 直接依赖与 A02 不一致')
@@ -115,9 +134,9 @@ def validate_manifest(manifest,actual_graph=None):
         require(set(target['dependencies'])<=targets.keys(),f'{name} 存在未知/测试目标依赖')
         require(target['export']=='OCK::'+name,f'{name} 导出名错误')
         require(target['kind']=='INTERFACE_LIBRARY',f'{name} 基线 target 类型错误')
-        require(target['implementation']=='ContractBaseline',f'{name} 不得伪称已实现')
         require(target['public_compile_features']==['cxx_std_20'],f'{name} 公开编译条件漂移')
-        require(target['public_compile_options']==['$<$<CXX_COMPILER_ID:MSVC>:/utf-8>'],f'{name} 公开编码选项漂移')
+        expected_options=FOUNDATION_PUBLIC_OPTIONS if name=='Foundation' and manifest['stage']=='Foundation' else ['$<$<CXX_COMPILER_ID:MSVC>:/utf-8>']
+        require(target['public_compile_options']==expected_options,f'{name} 公开编码/异常选项漂移')
         require(target['api_classification'] in ('experimental','stable','detail'),f'{name} 分类无效')
         if target['api_classification']=='stable':
             require(not any(targets[d]['api_classification']!='stable' for d in closure if d in targets),
@@ -125,6 +144,7 @@ def validate_manifest(manifest,actual_graph=None):
         if actual_graph is not None:
             require(actual_graph.get(name,{}).get('dependencies')==target['dependencies'],f'{name} 实际 CMake 依赖不符')
             require(actual_graph.get(name,{}).get('implementation')==target['implementation'],f'{name} 实际目标能力声明不符')
+            require(actual_graph.get(name,{}).get('external_dependencies',[])==target.get('external_dependencies',[]),f'{name} 实际第三方公开依赖不符')
             require(actual_graph.get(name,{}).get('compile_features')==target['public_compile_features'],f'{name} 实际公开编译要求漂移')
             require(actual_graph.get(name,{}).get('compile_options')==target['public_compile_options'],f'{name} 实际公开选项漂移')
     if actual_graph is not None:require(set(actual_graph)==set(norm),'实际 CMake 目标集合漂移')

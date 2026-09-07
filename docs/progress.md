@@ -22,11 +22,11 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 - D0.06-b/c：正式进程Job包装、来源/实际构建身份、固定expected与各轮JUnit、原始证据归档、门禁汇总、历史Incomplete导入及mock/fault共同harness已接入。统一G0工程Debug预构建成功；最终9组包/配置已全部通过，共372次CTest；来源142项与194dcdf提交逐字节一致，G0已按自动验收政策通过。
 - 本批独立审查记录位于 `evidence/bootstrap/D0.04/independent-review.md`、`D0.05/parent-final-review.md`、`D0.06-a/independent-review.md`、`D0.06-b/independent-review.md`。所有失败轮次保留，旧批准不代替本轮新增实现审批。
 
-## 已提交验证节点
+## 已提交验证节点（历史记录）
 
 - 登记交付：`f08519a`；原始日志字节保留修复：`3c413bd`；干净源码证据：`af64fa9`，均已推送同名工作分支。
 - 最终运行来源为 `3c413bd`，dirty=false；登记检查和 29 项校验器测试均退出 0。见 [最终原始记录](../evidence/bootstrap/D0.01/20260907T033057Z-4ff7dc85a3b1/commands.json)。
-- 6 个 bootstrap run 全部保留；最终提交的 24 份原始日志均核对了 Git blob 的长度与 SHA-256。D0.01 人工评审已批准，G0 尚未通过。
+- 6 个 bootstrap run 全部保留；最终提交的 24 份原始日志均核对了 Git blob 的长度与 SHA-256。当时D0.01人工评审已批准，G0尚未通过；当前G0已Passed，见门禁表。
 
 - D0.02/D0.03 实现与资料节点：`8246ef6`，已提交并推送；两包最终 bootstrap 的全部源输入与该 Git 提交逐一匹配，原始日志及构建摘要核对一致。
 - 本次实际结果：D0.02 4/4 CTest（含 29 项架构检查及真实 MSVC 安装消费）；D0.03 43/43 模型 CTest、54 golden、6/6 适配器检查；D0.01 的登记及 29 项反例回归也通过。
@@ -37,7 +37,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | 门禁 | 当前状态 | 事实 |
 |---|---|---|
 | G0 | Passed | 九组372次CTest、142项Git来源及AI规格/代码复核齐全，按用户政策自动验收 |
-| G1 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
+| G1 | InProgress | G0已Passed，D1.01正在实现与验证；G1尚未验收 |
 | G2 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G3 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G4 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
@@ -123,16 +123,10 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 
 本批完整验收材料见 [G0验收记录](validation/G0.md) 与 [提交审查摘要](reviews/D0.04-D0.06-submission.json)。实现节点bf122b7、来源绑定修复194dcdf已推送；原始报告与最终验收文档随本次独立证据节点提交，具体提交号以Git日志为准。
 
-## 后续自动执行指令
+## 后续自动执行与验收政策
 
-用户已要求后续自动继续、自我审核并按节点提交，原文见 [指令记录](reviews/autonomous-review-instruction.json)。AI复核明确记录审核身份，不代填人工评审。自动审批系统拒绝将本次概括性委托直接写成六份human Approved及G0 Passed；未执行被拒绝脚本，当前包及门禁状态保持原值。本次G0明确验收请求已发出，等待期间完成D1.01实施准备，不越过前置进入源码实现。
+用户已明确要求“自我复核和自动验收，无需人工”，按[版本化政策](reviews/automatic-acceptance-policy.json)完成AI规格复核、AI代码复核和自动验收，再按必要节点提交推送。不逐节点请求人工批准，AI审核明确记录身份，不改写原始人工记录和报告。
 
-[D1.01实施准备](plans/D1.01.md) 已完成文档自审，覆盖原语API、固定正反例、六项SDK集成调整及正式验证矩阵；仅为准备，包级仍NotStarted，无新增运行证据。
+政策工具适配已经过独立规格/代码复核及冻结版本68项回归，见 `evidence/bootstrap/D0.06-review-policy/all-final-2c8d2e4cf3`。政策与工具提交6250cd7、G0自动验收提交665febc均已推送。G0的[机器决策](../evidence/G0/automatic-20260907T080144Z/gate-summary.json)为Passed；此前人工记录转换方案被拒绝的历史已由上述明确新政策处理，不再是当前阻断。
 
-## 自动验收政策调整
-
-用户进一步明确“自我复核和自动验收，无需人工”，现按[版本化政策](reviews/automatic-acceptance-policy.json)执行AI规格/代码复核与自动验收。此前人工记录转换方案不再使用；历史报告保留，新增验收决策单独采集。政策工具适配已通过规格复核、独立代码复核及冻结版本68项回归；原始证据见 evidence/bootstrap/D0.06-review-policy/all-final-2c8d2e4cf3。下一步实际生成当前政策下的G0验收决策，再据结果更新门禁状态。
-
-当前G0自动验收决策见 [机器报告](../evidence/G0/automatic-20260907T080144Z/gate-summary.json)，上述历史人工拦截已由用户明确“无需人工”的新政策处理，后续使用AI复核与自动验收；不再逐节点请求人工确认。
-
-D1.01现按已准备方案开始实现Foundation原语、公开依赖及安装消费者；只在实际验证和AI复核完成后更新包级Passed。
+D1.01按[实施计划](plans/D1.01.md)完成Foundation实现和独立规格/代码复核，审核发现的可变详情别名、fail-fast反例、ASan路径及多配置路由已修复。最终修复后三配置各23项原语测试、35项架构检查通过；正在采集完整34/34/36正式矩阵，D1.01保持InProgress。详见[验证记录](validation/D1.01.md)。

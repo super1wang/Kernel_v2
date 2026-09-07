@@ -1,0 +1,20 @@
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  foundation_tests.cpp
+  ock_foundation_tests.vcxproj -> E:\VS2019Qt5.15\3D\build\d1.01-agent-foundation-debug\foundation\Debug\ock_foundation_tests.exe
+  Traceback (most recent call last):
+    File "E:\VS2019Qt5.15\3D\tests\unit\foundation\discover.py", line 36, in <module>
+      main()
+    File "E:\VS2019Qt5.15\3D\tests\unit\foundation\discover.py", line 18, in main
+      raise ValueError('invalid actual Foundation case registry')
+  ValueError: invalid actual Foundation case registry
+F:\VS2022\VS2022\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: 命令“setlocal [E:\VS2019Qt5.15\3D\build\d1.01-agent-foundation-debug\foundation\ock_foundation_tests.vcxproj]
+F:\VS2022\VS2022\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: C:\Users\xrx10\AppData\Local\Programs\Python\Python311\python.exe -X utf8 E:/VS2019Qt5.15/3D/tests/unit/foundation/discover.py --binary E:/VS2019Qt5.15/3D/build/d1.01-agent-foundation-debug/foundation/Debug/ock_foundation_tests.exe --output E:/VS2019Qt5.15/3D/build/d1.01-agent-foundation-debug/foundation/foundation-tests.cmake --includes "E:/VS2019Qt5.15/3D/packages/foundation/include|E:/VS2019Qt5.15/3D/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include" --generator "Visual Studio 17 2022" --platform x64 --toolset v143,version=14.44.35207 --sdk 10.0.26100.0 --config Debug --work E:/VS2019Qt5.15/3D/build/d1.01-agent-foundation-debug/foundation/child-runs [E:\VS2019Qt5.15\3D\build\d1.01-agent-foundation-debug\foundation\ock_foundation_tests.vcxproj]
+F:\VS2022\VS2022\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [E:\VS2019Qt5.15\3D\build\d1.01-agent-foundation-debug\foundation\ock_foundation_tests.vcxproj]
+F:\VS2022\VS2022\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmEnd [E:\VS2019Qt5.15\3D\build\d1.01-agent-foundation-debug\foundation\ock_foundation_tests.vcxproj]
+F:\VS2022\VS2022\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone [E:\VS2019Qt5.15\3D\build\d1.01-agent-foundation-debug\foundation\ock_foundation_tests.vcxproj]
+F:\VS2022\VS2022\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmErrorLevel [E:\VS2019Qt5.15\3D\build\d1.01-agent-foundation-debug\foundation\ock_foundation_tests.vcxproj]
+F:\VS2022\VS2022\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: exit /b %1 [E:\VS2019Qt5.15\3D\build\d1.01-agent-foundation-debug\foundation\ock_foundation_tests.vcxproj]
+F:\VS2022\VS2022\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmDone [E:\VS2019Qt5.15\3D\build\d1.01-agent-foundation-debug\foundation\ock_foundation_tests.vcxproj]
+F:\VS2022\VS2022\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd [E:\VS2019Qt5.15\3D\build\d1.01-agent-foundation-debug\foundation\ock_foundation_tests.vcxproj]
+F:\VS2022\VS2022\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :VCEnd”已退出，代码为 1。 [E:\VS2019Qt5.15\3D\build\d1.01-agent-foundation-debug\foundation\ock_foundation_tests.vcxproj]

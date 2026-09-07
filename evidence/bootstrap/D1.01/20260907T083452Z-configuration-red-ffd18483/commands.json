@@ -1,0 +1,77 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/d1.01-agent-foundation-debug",
+      "--config",
+      "Release",
+      "--target",
+      "ock_foundation_tests"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:34:52.201046+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 26,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 35104,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T08:36:11.766255+00:00",
+    "raw": [
+      {
+        "path": "release-build-stdout.log",
+        "sha256": "35a8b8d585b5cb68c59b8cce314a50b3a0d4954e75d0db525f66aef155fb3573",
+        "size": 1281
+      },
+      {
+        "path": "release-build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/d1.01-agent-foundation-debug",
+      "-C",
+      "Debug",
+      "--show-only=json-v1"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:36:11.856656+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 37068,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T08:36:12.834622+00:00",
+    "raw": [
+      {
+        "path": "debug-discovery-stdout.log",
+        "sha256": "9490cfead5a1939dd61d920663ce29c345807cb02b6cf0792e2ba4bada686e6a",
+        "size": 20088
+      },
+      {
+        "path": "debug-discovery-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,83 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "build/d1.01-agent-foundation-source",
+      "-B",
+      "build/d1.01-agent-foundation-debug",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:10:01.443353+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 45,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 25024,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T08:11:06.365757+00:00",
+    "raw": [
+      {
+        "path": "configure-stdout.log",
+        "sha256": "798261b24dd211480185bb1fa061a7adf7d984b309ca605970cbc4932c380b85",
+        "size": 641
+      },
+      {
+        "path": "configure-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/d1.01-agent-foundation-debug",
+      "--config",
+      "Debug",
+      "--target",
+      "ock_foundation_tests"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T08:11:06.409908+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 12,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 31172,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-07T08:11:25.788780+00:00",
+    "raw": [
+      {
+        "path": "build-stdout.log",
+        "sha256": "5cbf9425577de3985b6a88f1ec0e8e63c57acb1952e0f4a927fc2f8b105d3b1f",
+        "size": 461
+      },
+      {
+        "path": "build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

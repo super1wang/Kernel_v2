@@ -1,9 +1,9 @@
 {
   "format": "ock.sdk-api/1",
-  "task_id": "D0.02",
+  "task_id": "D1.01",
   "sdk_version": "0.1.0-dev.1",
   "document_version": "3.3",
-  "stage": "ContractBaseline",
+  "stage": "Foundation",
   "review_status": "Pending",
   "targets": {
     "Foundation": {
@@ -12,13 +12,19 @@
       "dependencies": [],
       "include_root": "packages/foundation/include",
       "namespace_prefix": "ock/foundation/",
-      "implementation": "ContractBaseline",
+      "implementation": "Implemented",
       "api_classification": "experimental",
       "public_compile_features": [
         "cxx_std_20"
       ],
       "public_compile_options": [
-        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>",
+        "$<$<CXX_COMPILER_ID:MSVC>:/EHsc>",
+        "$<$<CXX_COMPILER_ID:MSVC>:/Zc:__cplusplus>",
+        "$<$<CXX_COMPILER_ID:MSVC>:/permissive->"
+      ],
+      "external_dependencies": [
+        "expected"
       ]
     },
     "CoreContracts": {
@@ -390,15 +396,15 @@
       "classification": "experimental",
       "implementation": "VersionMetadata",
       "sha256": "e8c742c6f8a602b1691ce1587525d885791f4b5aa0c310a6ba88ee682ebde616"
+    },
+    {
+      "path": "packages/foundation/include/ock/foundation/foundation.hpp",
+      "target": "Foundation",
+      "classification": "experimental",
+      "sha256": "1e3325f6077dd42d2f3ec8460d1eb4eeeca169c668975c41fb90556773940ae0"
     }
   ],
   "candidate_headers": [
-    {
-      "target": "Foundation",
-      "path": "packages/foundation/include/ock/foundation/foundation.hpp",
-      "status": "Planned",
-      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
-    },
     {
       "target": "CoreContracts",
       "path": "packages/contracts/include/ock/contracts/operation.hpp",
@@ -544,8 +550,12 @@
     {
       "target": "Foundation",
       "name": "tl::expected",
-      "status": "PendingD0.06Probe",
-      "visibility": "PUBLIC"
+      "export": "OCKThirdParty::expected",
+      "version": "1.1.0",
+      "status": "Implemented",
+      "visibility": "PUBLIC",
+      "license": "CC0-1.0",
+      "lock": "dependencies.lock"
     }
   ],
   "frozen_previous_release": {
