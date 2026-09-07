@@ -1,0 +1,43 @@
+{
+  "case": "T23.native.allocation_probe",
+  "header_sha256": "4b4d9efd012e8f441e42cd66e87e92ef59e72b008b1603d0aafdb4f7ff23a10e",
+  "injected_report": {
+    "format": "ock.native-allocation/1",
+    "case": "--allocation-injected-red",
+    "coverage": {
+      "cpp_new": true,
+      "debug_crt": true,
+      "iterator_debug_level": 2,
+      "modules": [
+        "consumer",
+        "Invocation",
+        "Policy",
+        "Registry",
+        "CoreContracts",
+        "Foundation"
+      ],
+      "window": "current thread complete synchronous invoke including outcome observation and destruction",
+      "blind_spots": [
+        "Release CRT malloc family",
+        "DLL private allocators",
+        "custom heaps",
+        "background threads unsupported"
+      ],
+      "scope": "fixed small Args/Value zero resource declaration prewarmed bounded slots; channels not added together"
+    },
+    "samples": [
+      {
+        "name": "intentional_single_allocation",
+        "cpp": 1,
+        "crt": 1,
+        "success": true
+      }
+    ],
+    "checks": {
+      "verified": false
+    }
+  },
+  "allocation_checks": {
+    "verified": true
+  }
+}

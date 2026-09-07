@@ -1,0 +1,39 @@
+{
+  "reviewer_kind": "AI",
+  "independent": true,
+  "spec_status": "Approved",
+  "code_status": "Approved",
+  "scope": "D1.05 borrowed_nonempty_context_only incremental allocation sample and full three-configuration raw evidence; previous allocation/wrapper review retained; excludes reviewer-authored Policy and shape semantic review",
+  "source_count": 255,
+  "source_digest": "43ad6c2ecd162908932248ba430ab48c86a94a7d213cfca804cd0e7f972a02ef",
+  "previous_source_digest": "1685e9ccdd20ac4edb07e78249fb119970e7b8a89885490fb565a07ae57ca2df",
+  "source_changes": {
+    "tests/contract/native/allocation_cases.hpp": {
+      "before": "79c89aa59cabe8537cc0df55f9243c98d1d23c24126c3e6f3f58077f7f3a1515",
+      "after": "ce92b0b29aad20668740fd65660a3b93e3df404379cc2973dfbd07ac55cef8b7"
+    },
+    "tests/contract/native/shape_cases.hpp": {
+      "before": "db357c0463b164ba211f3ea57646d73227a8134beaf6c81adcceaafcf9d9c9b2",
+      "after": "32d31b67a2a84c50f47b2f5eb07f2fc2f706d25bf82ed89e4a504e1d1444a2a5"
+    }
+  },
+  "previous_review": "independent-allocation-wrapper-final-review.json",
+  "report": "independent-borrowed-allocation-review.md",
+  "report_sha256": "8223918bd7974d79d13c80fd89b57f5aa99daf4fd447afa20867456b83d8e15f",
+  "audit": "independent-borrowed-allocation-recheck.json",
+  "audit_sha256": "052a9370738b723730e63be43a9951ec1a78c53673201fd10328bbe314172c5f",
+  "audit_script": "independent-borrowed-allocation-recheck.py",
+  "audit_script_sha256": "69fcbb4ea3919eb94d36919532825837d6c2bf3cf1531c95b472b2b906306552",
+  "runs": [
+    "integration-debug-eb47edd21d57",
+    "integration-release-871673f28330",
+    "integration-asan-f65332a33b8b"
+  ],
+  "result_sha256": {
+    "integration-debug-eb47edd21d57": "4ea04f5c2c49e427b542aa9dc0c0564bd9fbb2dd56ca8747715bbcca35224058",
+    "integration-release-871673f28330": "ffe61bec52ce402ff963d724b5db79e9fe694305a717feabadc0493a0dcf6d79",
+    "integration-asan-f65332a33b8b": "cfa42910c4cb1c79be6b932c7b51d44c41a899a42deab0a12c75f7cb3530e56b"
+  },
+  "remaining_required_findings": [],
+  "package_acceptance": false
+}

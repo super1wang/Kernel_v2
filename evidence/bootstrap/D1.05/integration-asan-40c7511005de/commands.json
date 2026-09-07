@@ -1,0 +1,169 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--fresh",
+      "--preset",
+      "win-msvc-asan",
+      "-B",
+      "build/d1.05-integration-c8422095",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DOCK_BUILD_G0_TESTS=ON",
+      "-DOCK_BUILD_EXECUTION_MODEL_TESTS=OFF",
+      "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+      "-DOCK_BUILD_FOUNDATION_TESTS=ON",
+      "-DOCK_BUILD_CORE_CONTRACTS_TESTS=ON",
+      "-DOCK_ENABLE_ASAN=ON",
+      "-DOCK_BUILD_REGISTRATION_TESTS=ON",
+      "-DOCK_BUILD_AUTHORIZATION_TESTS=ON",
+      "-DOCK_BUILD_NATIVE_TESTS=ON"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T23:21:27.138901+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 49,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 14284,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T23:21:45.848215+00:00",
+    "raw": [
+      {
+        "path": "configure-stdout.log",
+        "sha256": "1f00fcc784b412d9391f0c95d5875a75ea6e40e4821ac74cf0793bcd21ea63f1",
+        "size": 1068
+      },
+      {
+        "path": "configure-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/d1.05-integration-c8422095",
+      "--config",
+      "Debug",
+      "--parallel",
+      "2",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T23:21:45.861151+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 171,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 33984,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T23:22:53.761939+00:00",
+    "raw": [
+      {
+        "path": "build-stdout.log",
+        "sha256": "2a5328f9c5fcbc67a777523625905d8d7e5e580bc53d469d419fb3b5e1842aeb",
+        "size": 9426
+      },
+      {
+        "path": "build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-E",
+      "env",
+      "PATH=E:\\VS2019Qt5.15\\3D\\build\\msvc-validation\\67414627e4e76f7e\\bin;C:\\Program Files\\PowerShell\\7;C:\\Users\\xrx10\\.codex\\tmp\\arg0\\codex-arg0XUa9GQ;C:\\Users\\xrx10\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\libheif\\libheif\\bin;C:\\Users\\xrx10\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\jxrlib\\jxrlib\\bin;C:\\Users\\xrx10\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\poppler\\Library\\bin;C:\\Users\\xrx10\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\bin\\override;C:\\Program Files (x86)\\Common Files\\MVS\\Runtime\\Win32_i86;C:\\Program Files (x86)\\Common Files\\MVS\\Runtime\\Win64_x64;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\100\\DTS\\Binn\\;E:\\Program Files\\opencv\\build\\x86\\vc10\\bin;E:\\Program Files\\Log4cplus\\vc10\\bin;E:\\Program Files\\botan\\build\\x86\\vc10\\bin;C:\\Program Files\\MVTec\\HALCON-11.0;C:\\Program Files\\MVTec\\HALCON-11.0\\bin;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files (x86)\\dotnet\\;F:\\ProgramFiles\\5.9.9\\mingw53_32\\bin;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;E:\\Program Files\\opencv\\build\\x64\\vc10\\bin;G:\\Develop_X64\\log4cplus\\bin;G:\\Develop_X64\\botan_X64\\bin;C:\\Program Files\\MVTec\\HALCON-11.0\\bin\\x86sse2-win32;C:\\Program Files\\MVTec\\HALCON-11.0\\FLEXlm\\x86sse2-win32;D:\\VS2019\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64;E:\\VS2019Qt5.15\\QT\\qt5.15.13\\bin;D:\\Program Files\\VisionPro\\VisionPro\\bin;C:\\Program Files\\Common Files\\Pleora\\eBUS SDK;C:\\Program Files\\dotnet\\;C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR;C:\\Program Files (x86)\\Visual Leak Detector\\bin\\Win32;C:\\Program Files (x86)\\Visual Leak Detector\\bin\\Win64;C:\\Program Files\\TortoiseSVN\\bin;G:\\AI\\Node\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\PowerShell\\7\\;G:\\AI\\Git\\cmd;C:\\Users\\xrx10\\AppData\\Local\\CopilotHub;C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\Scripts;C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311;C:\\Users\\xrx10\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell;C:\\Users\\xrx10\\AppData\\Local\\Microsoft\\WindowsApps;D:\\Program Files (x86)\\Microsoft VS Code\\Microsoft VS Code\\bin;F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin;F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja;C:\\Users\\xrx10\\AppData\\Roaming\\npm;C:\\Users\\xrx10\\AppData\\Local\\Microsoft\\WinGet\\Packages\\GitHub.Copilot_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\xrx10\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\bin\\fallback;C:\\Users\\xrx10\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin;C:\\Users\\xrx10\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd;C:\\Users\\xrx10\\AppData\\Local\\OpenAI\\Codex\\bin\\c60635126245daef;C:\\Users\\xrx10\\AppData\\Local\\OpenAI\\Codex\\bin\\8e5b6932251c2c1c",
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.05-integration-c8422095\\tests\\contract\\native\\Debug\\ock_native_tests.exe",
+      "--list"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T23:22:53.798614+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 3,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 32232,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T23:22:56.387888+00:00",
+    "raw": [
+      {
+        "path": "native-list-stdout.log",
+        "sha256": "f72abdfc51ef552a3c16379db9af8641a054c6d809945482207973b756fb45b5",
+        "size": 972
+      },
+      {
+        "path": "native-list-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/d1.05-integration-c8422095",
+      "-C",
+      "Debug",
+      "-R",
+      "^T(02|03|06|23)[.]native[.]",
+      "--output-on-failure",
+      "--no-tests=error",
+      "--output-junit",
+      "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.05\\integration-asan-40c7511005de\\native-junit.xml"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T23:22:56.406446+00:00",
+    "exit_code": 8,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 239,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 9132,
+    "observed_exit_code": 8,
+    "finished_at": "2026-09-07T23:25:28.346852+00:00",
+    "raw": [
+      {
+        "path": "ctest-native-stdout.log",
+        "sha256": "04eae4a2b55cef2f16e0d3054166e12a965ce3c8d15f85c24ba0a40ba908dc60",
+        "size": 4694
+      },
+      {
+        "path": "ctest-native-stderr.log",
+        "sha256": "18e00877dc1071c85cd4f479d451bebeef8309022e46cf8c63b0bed5151984a4",
+        "size": 27
+      }
+    ]
+  }
+]

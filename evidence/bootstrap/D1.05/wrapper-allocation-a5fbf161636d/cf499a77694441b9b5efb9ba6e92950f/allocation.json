@@ -1,0 +1,48 @@
+{
+  "format": "ock.native-allocation/1",
+  "case": "T23.native.allocation_governance",
+  "coverage": {
+    "cpp_new": true,
+    "debug_crt": true,
+    "iterator_debug_level": 2,
+    "modules": [
+      "consumer",
+      "Invocation",
+      "Policy",
+      "Registry",
+      "CoreContracts",
+      "Foundation"
+    ],
+    "window": "current thread complete synchronous invoke including outcome observation and destruction",
+    "blind_spots": [
+      "Release CRT malloc family",
+      "DLL private allocators",
+      "custom heaps",
+      "background threads unsupported"
+    ],
+    "scope": "fixed small Args/Value zero resource declaration prewarmed bounded slots; channels not added together"
+  },
+  "samples": [
+    {
+      "name": "invalid_input",
+      "cpp": 0,
+      "crt": 0,
+      "success": true
+    },
+    {
+      "name": "revoked",
+      "cpp": 0,
+      "crt": 0,
+      "success": true
+    },
+    {
+      "name": "lifecycle_changed",
+      "cpp": 0,
+      "crt": 0,
+      "success": true
+    }
+  ],
+  "checks": {
+    "verified": true
+  }
+}

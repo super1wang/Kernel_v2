@@ -1,0 +1,125 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.05\\pipeline-fc96c50794d3",
+      "-B",
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-fc96c50794d3",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=E:\\VS2019Qt5.15\\3D\\cmake\\LockedMSVC.cmake"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T22:57:13.343467+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 36388,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T22:57:28.100422+00:00"
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-fc96c50794d3",
+      "--config",
+      "Debug",
+      "--parallel",
+      "2",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T22:57:28.104094+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 20,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 15384,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T22:58:02.889904+00:00"
+  },
+  {
+    "argv": [
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-fc96c50794d3\\Debug\\native_stage.exe",
+      "--list"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T22:58:02.890372+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-fc96c50794d3\\Debug\\native_stage.exe",
+    "pid": 3676,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T22:58:03.041322+00:00"
+  },
+  {
+    "argv": [
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-fc96c50794d3\\Debug\\native_stage.exe",
+      "T03.native.cancel_and_budget"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T22:58:03.042740+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-fc96c50794d3\\Debug\\native_stage.exe",
+    "pid": 30488,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-07T22:58:03.137347+00:00"
+  },
+  {
+    "argv": [
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-fc96c50794d3\\Debug\\native_stage.exe",
+      "T03.native.resource_lifetime"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T22:58:03.139079+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-fc96c50794d3\\Debug\\native_stage.exe",
+    "pid": 34312,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-07T22:58:03.216596+00:00"
+  }
+]

@@ -1,0 +1,10 @@
+^E:\VS2019QT5.15\3D\EVIDENCE\BOOTSTRAP\D1.05\WRAPPER-BOUNDARY-474C66FEF6B8\111A8D78CB7048B2BC82BF272147CFE7\CMAKELISTS.TXT
+setlocal
+F:\VS2022\VS2022\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -SE:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/wrapper-boundary-474c66fef6b8/111a8d78cb7048b2bc82bf272147cfe7 -BE:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/wrapper-boundary-474c66fef6b8/111a8d78cb7048b2bc82bf272147cfe7/build --check-stamp-file E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/wrapper-boundary-474c66fef6b8/111a8d78cb7048b2bc82bf272147cfe7/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

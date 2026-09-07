@@ -1,0 +1,98 @@
+[
+  {
+    "directory": "integration-debug-61b6f6c6c86d",
+    "profile": "win-msvc-debug",
+    "cases": 32,
+    "wrappers": {
+      "allocation_probe": "24c42bbd3c774cac86b09663562c277c",
+      "allocation_steady": "35edf8b990c14e46acec6f6e9e4057e2",
+      "private_dispatch": "35f71e3b6ab94ab6ad6aaea4fdb70cd1",
+      "allocation_governance": "4f80d7f0a90a480ea506038e3312d93d",
+      "component_boundary": "6b65952aa31944979e785aad0a3cfd32",
+      "no_self_wait": "769bef7d2867472890fc44965d20b38b",
+      "allocation_other_costs": "9e145a6ff97f4a8cb36ae401cb0c7031",
+      "example_consumer": "fdae0d32495c407c99f7da64077564cb"
+    },
+    "child_commands": 27,
+    "allocation_samples": 68,
+    "probes": {
+      "new": 1,
+      "new_array": 1,
+      "aligned_new": 1,
+      "aligned_array": 1,
+      "nothrow_new": 1,
+      "nothrow_array": 1,
+      "nothrow_aligned": 1,
+      "nothrow_aligned_array": 1,
+      "malloc": 1,
+      "calloc": 1,
+      "realloc": 1,
+      "aligned_malloc": 1,
+      "negative_no_allocation": 0
+    },
+    "source_files": 254,
+    "artifact_files": 378,
+    "result_sha256": "a2f3ffc8bd6c1d1da95cb124116e0e45946d32063939fe45873297366f9e54a8",
+    "reviewed_source": {
+      "examples/native_service/CMakeLists.txt": "a4bd1a3e8c49ac1faedcc56a690aa59ffff1b5819e2781bef3c35a20c3577851",
+      "examples/native_service/main.cpp": "81484abcd6b7e37255d6db336bc3bade05edc97e4f68dad47de3b8a83bdc0f91",
+      "examples/native_service/README.md": "094ab93f2d15f37eae1fc9c4a79bf3a25192201ce78ad61a6b03bef9feccff34",
+      "examples/native_service/value.hpp": "57b6e450ed5f28aa30f29bf1965055480e3358ae33c6d325def25c4727b157f4",
+      "tests/contract/native/allocation_cases.hpp": "b84edcd467fc888bec0cedcea46696822438514f7041d5c66e2504c214e4950f",
+      "tests/contract/native/allocation_probe.cpp": "613a9d699e9737b7f01d022194961cfc0b68e00803191afb11a24eb37e25f938",
+      "tests/contract/native/allocation_probe.hpp": "89602e0718aba305bf1a346b1618e854dfd5432266b6f2f9ccb0f5fbd408b683",
+      "tests/contract/native/CMakeLists.txt": "fcdb5f199d8ad9756d431100e6d2bb13bdb7a381829bf0c7c96fe5b91f9659bc",
+      "tests/contract/native/discover.py": "2429d3956f4a4a4d32c5bd34d2eb2c5cd02de5c12d1de233a2dde0f27406122d",
+      "tests/contract/native/integrate.py": "250cdd915b47f74557823b914c320b69c10dd14a31550ac9f532b10df747dd65",
+      "tests/contract/native/verify_children.py": "e42f6773dd985f815da9506a9a470ca11699a3b808c214cb1f64c0c17151c6e6"
+    }
+  },
+  {
+    "directory": "integration-release-40b5d325d591",
+    "profile": "win-msvc-release",
+    "cases": 32,
+    "wrappers": {
+      "allocation_other_costs": "08f811af583d4e7b8a93f54f82120177",
+      "component_boundary": "25bcf9d5595c4bedbc0198aef93b3f0b",
+      "allocation_probe": "353808efee3e44d99367a78eb54d0292",
+      "private_dispatch": "4526b005ddfe4fdcac054d94cb54d671",
+      "allocation_governance": "d1a5fc2449164b4c9a4f6ab691cb3737",
+      "example_consumer": "df1e183f666e48bba18c54e7cd2d7863",
+      "allocation_steady": "e132cee7a494461a825a32bd4bd3c7b3",
+      "no_self_wait": "edcf9202b1304fe4baf69167ce94e658"
+    },
+    "child_commands": 27,
+    "allocation_samples": 68,
+    "probes": {
+      "new": null,
+      "new_array": null,
+      "aligned_new": null,
+      "aligned_array": null,
+      "nothrow_new": null,
+      "nothrow_array": null,
+      "nothrow_aligned": null,
+      "nothrow_aligned_array": null,
+      "malloc": null,
+      "calloc": null,
+      "realloc": null,
+      "aligned_malloc": null,
+      "negative_no_allocation": null
+    },
+    "source_files": 254,
+    "artifact_files": 376,
+    "result_sha256": "ccea5f53952ba7322742e3ddbdbe2ea8d920bd798240a3e3ccd1437a494a65ba",
+    "reviewed_source": {
+      "examples/native_service/CMakeLists.txt": "a4bd1a3e8c49ac1faedcc56a690aa59ffff1b5819e2781bef3c35a20c3577851",
+      "examples/native_service/main.cpp": "81484abcd6b7e37255d6db336bc3bade05edc97e4f68dad47de3b8a83bdc0f91",
+      "examples/native_service/README.md": "094ab93f2d15f37eae1fc9c4a79bf3a25192201ce78ad61a6b03bef9feccff34",
+      "examples/native_service/value.hpp": "57b6e450ed5f28aa30f29bf1965055480e3358ae33c6d325def25c4727b157f4",
+      "tests/contract/native/allocation_cases.hpp": "b84edcd467fc888bec0cedcea46696822438514f7041d5c66e2504c214e4950f",
+      "tests/contract/native/allocation_probe.cpp": "613a9d699e9737b7f01d022194961cfc0b68e00803191afb11a24eb37e25f938",
+      "tests/contract/native/allocation_probe.hpp": "89602e0718aba305bf1a346b1618e854dfd5432266b6f2f9ccb0f5fbd408b683",
+      "tests/contract/native/CMakeLists.txt": "fcdb5f199d8ad9756d431100e6d2bb13bdb7a381829bf0c7c96fe5b91f9659bc",
+      "tests/contract/native/discover.py": "2429d3956f4a4a4d32c5bd34d2eb2c5cd02de5c12d1de233a2dde0f27406122d",
+      "tests/contract/native/integrate.py": "250cdd915b47f74557823b914c320b69c10dd14a31550ac9f532b10df747dd65",
+      "tests/contract/native/verify_children.py": "e42f6773dd985f815da9506a9a470ca11699a3b808c214cb1f64c0c17151c6e6"
+    }
+  }
+]

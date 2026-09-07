@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.25)
+project(NativeStage LANGUAGES CXX)
+add_executable(native_stage "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/pipeline-82c5130c811c/source/packages/runtime/policy/policy.cpp" "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/pipeline-82c5130c811c/source/packages/runtime/registry/registry.cpp" "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/pipeline-82c5130c811c/source/packages/runtime/invocation/invocation.cpp" "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/pipeline-82c5130c811c/source/tests/contract/native/native_tests.cpp")
+target_compile_features(native_stage PRIVATE cxx_std_20)
+target_compile_options(native_stage PRIVATE /utf-8 /EHsc /Zc:__cplusplus /permissive-)
+target_include_directories(native_stage PRIVATE "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/pipeline-82c5130c811c/source" "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/pipeline-82c5130c811c/source/tests/compile/contracts" "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/pipeline-82c5130c811c/source/packages/contracts/include" "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/pipeline-82c5130c811c/source/packages/foundation/include" "E:/VS2019Qt5.15/3D/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include")

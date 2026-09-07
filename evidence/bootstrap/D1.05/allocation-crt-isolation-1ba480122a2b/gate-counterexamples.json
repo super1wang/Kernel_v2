@@ -1,0 +1,24 @@
+{
+  "scope": "仅断言逻辑反例，不代表原生探针故障注入或运行 red",
+  "cases": [
+    {
+      "calloc_observed": 1,
+      "realloc_observed": 0,
+      "previous_joint_gate": true,
+      "separate_gates": false
+    },
+    {
+      "calloc_observed": 0,
+      "realloc_observed": 1,
+      "previous_joint_gate": true,
+      "separate_gates": false
+    },
+    {
+      "calloc_observed": 1,
+      "realloc_observed": 1,
+      "previous_joint_gate": true,
+      "separate_gates": true
+    }
+  ],
+  "after_sha256": "aed898c2960c6fadd96fcc676741b38237f44fde6a2ca710a06a1433b35390c9"
+}

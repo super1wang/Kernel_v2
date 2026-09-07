@@ -1,0 +1,10 @@
+^E:\VS2019QT5.15\3D\EVIDENCE\BOOTSTRAP\D1.05\WRAPPER-COMPILE-D77D56D17463\CMAKELISTS.TXT
+setlocal
+F:\VS2022\VS2022\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -SE:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/wrapper-compile-d77d56d17463 -BE:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/wrapper-compile-d77d56d17463/build --check-stamp-file E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/wrapper-compile-d77d56d17463/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

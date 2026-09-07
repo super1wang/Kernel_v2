@@ -1,0 +1,335 @@
+{
+  "case": "T02.native.private_dispatch",
+  "commands": [
+    {
+      "argv": [
+        "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-5256e562f4da\\Debug\\native_stage.exe",
+        "T02.native.private_dispatch"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T23:02:04.574950+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 2,
+        "terminated_owned_job": false
+      },
+      "executable": "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-5256e562f4da\\Debug\\native_stage.exe",
+      "pid": 38704,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-07T23:02:04.641634+00:00",
+      "raw": [
+        {
+          "path": "native-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        {
+          "path": "native-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "-S",
+        "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.05\\wrapper-boundary-474c66fef6b8\\f24daaf8967448c6a7d6843e4238d2a2",
+        "-B",
+        "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.05\\wrapper-boundary-474c66fef6b8\\f24daaf8967448c6a7d6843e4238d2a2\\build",
+        "-G",
+        "Visual Studio 17 2022",
+        "-DCMAKE_TOOLCHAIN_FILE=E:\\VS2019Qt5.15\\3D/cmake/LockedMSVC.cmake",
+        "-DCMAKE_MSVC_DEBUG_INFORMATION_FORMAT=Embedded",
+        "-A",
+        "x64",
+        "-T",
+        "v143,version=14.44.35207",
+        "-DCMAKE_SYSTEM_VERSION=10.0.26100.0"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T23:02:04.649917+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 30,
+        "terminated_owned_job": false
+      },
+      "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 38344,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-07T23:02:21.019782+00:00",
+      "raw": [
+        {
+          "path": "configure-stdout.log",
+          "sha256": "291f0f7304cc2ab862176b8fc6d64d3ff7428384ca4d4e7f9ba8c9291890c1d4",
+          "size": 527
+        },
+        {
+          "path": "configure-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.05\\wrapper-boundary-474c66fef6b8\\f24daaf8967448c6a7d6843e4238d2a2\\build",
+        "--config",
+        "Debug",
+        "--target",
+        "positive",
+        "--parallel",
+        "2",
+        "--",
+        "/nr:false"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T23:02:21.031881+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 16,
+        "terminated_owned_job": false
+      },
+      "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 28772,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-07T23:02:31.334132+00:00",
+      "raw": [
+        {
+          "path": "positive-stdout.log",
+          "sha256": "ef9b34769210487cc0f97d4b1764f2bbca2b3a7da6c10773647d387238f26061",
+          "size": 419
+        },
+        {
+          "path": "positive-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.05\\wrapper-boundary-474c66fef6b8\\f24daaf8967448c6a7d6843e4238d2a2\\build",
+        "--config",
+        "Debug",
+        "--target",
+        "dispatch",
+        "--parallel",
+        "2",
+        "--",
+        "/nr:false"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T23:02:31.350130+00:00",
+      "exit_code": 1,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 9,
+        "terminated_owned_job": false
+      },
+      "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 37304,
+      "observed_exit_code": 1,
+      "finished_at": "2026-09-07T23:02:39.391050+00:00",
+      "raw": [
+        {
+          "path": "dispatch-stdout.log",
+          "sha256": "2ecc2ec572179d24ec42268782e312fdb88cb35297c59d37429ce639194b097f",
+          "size": 951
+        },
+        {
+          "path": "dispatch-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.05\\wrapper-boundary-474c66fef6b8\\f24daaf8967448c6a7d6843e4238d2a2\\build",
+        "--config",
+        "Debug",
+        "--target",
+        "check",
+        "--parallel",
+        "2",
+        "--",
+        "/nr:false"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T23:02:39.402647+00:00",
+      "exit_code": 1,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 9,
+        "terminated_owned_job": false
+      },
+      "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 38068,
+      "observed_exit_code": 1,
+      "finished_at": "2026-09-07T23:02:47.225996+00:00",
+      "raw": [
+        {
+          "path": "check-stdout.log",
+          "sha256": "e21fca2e4169dc6de1c9b4a5c256b9558bed51f4d44d09200f5f07dc11a74860",
+          "size": 936
+        },
+        {
+          "path": "check-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.05\\wrapper-boundary-474c66fef6b8\\f24daaf8967448c6a7d6843e4238d2a2\\build",
+        "--config",
+        "Debug",
+        "--target",
+        "inspect",
+        "--parallel",
+        "2",
+        "--",
+        "/nr:false"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T23:02:47.238176+00:00",
+      "exit_code": 1,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 9,
+        "terminated_owned_job": false
+      },
+      "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 32264,
+      "observed_exit_code": 1,
+      "finished_at": "2026-09-07T23:02:54.495563+00:00",
+      "raw": [
+        {
+          "path": "inspect-stdout.log",
+          "sha256": "eec491cc4d63e9e3325a0590b6cb68fa53af61a3423151a96a116183f4a43fb6",
+          "size": 946
+        },
+        {
+          "path": "inspect-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.05\\wrapper-boundary-474c66fef6b8\\f24daaf8967448c6a7d6843e4238d2a2\\build",
+        "--config",
+        "Debug",
+        "--target",
+        "construct_bound",
+        "--parallel",
+        "2",
+        "--",
+        "/nr:false"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T23:02:54.505980+00:00",
+      "exit_code": 1,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 9,
+        "terminated_owned_job": false
+      },
+      "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 16148,
+      "observed_exit_code": 1,
+      "finished_at": "2026-09-07T23:03:02.586065+00:00",
+      "raw": [
+        {
+          "path": "construct_bound-stdout.log",
+          "sha256": "da78e5aee777edbcf0aa7d64e1cf32fd4b3af92c814d83235027c9ca8d3ae2d9",
+          "size": 1020
+        },
+        {
+          "path": "construct_bound-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.05\\wrapper-boundary-474c66fef6b8\\f24daaf8967448c6a7d6843e4238d2a2\\build",
+        "--config",
+        "Debug",
+        "--target",
+        "raw_handler",
+        "--parallel",
+        "2",
+        "--",
+        "/nr:false"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T23:03:02.596659+00:00",
+      "exit_code": 1,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 9,
+        "terminated_owned_job": false
+      },
+      "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 35116,
+      "observed_exit_code": 1,
+      "finished_at": "2026-09-07T23:03:10.201391+00:00",
+      "raw": [
+        {
+          "path": "raw_handler-stdout.log",
+          "sha256": "1c4ee8f6e2843123b683b40f99b5ca701805c8899ba057fcb6663ba568321fe8",
+          "size": 748
+        },
+        {
+          "path": "raw_handler-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    }
+  ]
+}

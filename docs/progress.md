@@ -190,3 +190,17 @@ D1.04实现节点 `8978b27` 已完成本地提交及远端推送，224项来源�
 当前完整自动门禁 `evidence/D1.04/current-20260907T203550Z/gate-summary.json` 实际Passed（SHA `4f1e6b7131e75fbc4a78d7b97a8ff26c23c7e9cc08af7b8bc1bdbe01c0d77e13`）。最终独立AI验收 `evidence/D1.04/final-acceptance-review.md` Approved，独立重新汇总gate同为Passed；两类技术审核绑定相同来源，不需要人工放行。
 
 本包完成内部授权主体/目标发行、四方tuple权限、一次性许可短仲裁、拥有型观察投影与分页/Watch及真实发送起点授权。编码元素别名、观察投影预算等真实缺口已修，历史失败、撤回候选和旧报告原字节保留。未扩展公开SDK Runtime、Host或产品模块。D1.04包级Passed，G1仍InProgress；下一包D1.05须先核对D1.03与D1.04实际Passed，再按v3.3规划进入设计冻结。
+
+## D1.05 Native 实现与正式验收准备
+
+D1.03、D1.04 全部前置实际 Passed 已在启动时逐项核对；规划冻结提交 `672239f` 已推送。现已完成内部受治理 Native Read/Compute、可信线程/身份/目标/权限、结果事实、有界观察和受限场景分配测量；仅覆盖内核及验证消费者。
+
+最新开发集成 `integration-debug-61b6f6c6c86d`、`integration-release-40b5d325d591` 各 32 项实际通过，含八个真实编译/示例/安装/分配包装。254 项源码输入摘要相同为 `90f1fb73189b4c009ad3cf923f405e52f93f6ad58b6fc569729d009bc92a1291`，源前后稳定。独立复核发现的运输、资源预算、绑定寿命和计数断言问题已逐项修复；原始失败保留，详见 `docs/validation/D1.05.md`。
+
+ASan、最终独立规格/代码复核及正式 283/283/285+九CHECK 尚未全部完成；D1.05 与 G1 仍 InProgress，不将开发通过当作包级验收。下一节点只在本包实际 Passed 后进入 D1.06。
+
+D1.05 最新实现验证：已修复锁定 ASan CRT 钩子的实际覆盖缺口，独立 sanitizer 通道、逐入口反例和真实注册失败控制均已纳入原32主项。Debug/Release/ASan 最终开发集成各32/32（共96次），三配置255输入同摘要 `1685e9ccdd20ac4edb07e78249fb119970e7b8a89885490fb565a07ae57ca2df`，源码前后稳定。准备完成独立复核汇总、提交推送实现节点，随后运行正式矩阵；包级状态仍InProgress。
+
+D1.05 提交前最终来源更新：已补齐基础独立CODE归档以及原SPEC要求的多Unknown集合、借用寿命和非空上下文计数控制。最终Debug/Release/ASan各32/32、零失败/跳过，255输入摘要更新为 `43ad6c2ecd162908932248ba430ab48c86a94a7d213cfca804cd0e7f972a02ef`，各来源逐项一致。原1685与90f1记录保留为历史，不混合作为最终来源；即将登记两类AI审核并提交实现，正式矩阵与包验收仍待运行。
+
+D1.05 两类 AI 技术审核已登记 Approved（`docs/reviews/D1.05-spec.json`、`D1.05-code.json`）。提交前仅规范化运输说明末尾一个多余LF，独立复核确认其余254输入完全不变；最终提交输入摘要为 `028ca1c8afab6dfb2b5c3c6758ce4b71f13311957cc78bdc2463e6993a265560`，局部三配置原始通过仍如实绑定43ad。核对证据见 `evidence/bootstrap/D1.05/precommit-verification.json`。即将提交并推送实现，随后按028ca来源运行正式矩阵；不提前声明包级Passed。

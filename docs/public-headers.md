@@ -55,3 +55,5 @@ Foundation公开链接锁定的 `OCKThirdParty::expected`，安装tl::expected 1
 UI/Workspace 写入口和 RPC 方法目前是架构合同夹具；当前不存在产品 UI 或 Control 路由，测试不证明真实授权/调用路径已实现。D1/D4/D6 与 D2/D7 必须把同一规则落到真实注册和调用链，分别复验。
 
 安装测试将安装树复制到不同根，独立配置/编译/运行版本元数据消费者；另验证 Runtime 和未知 Observation 组件请求失败。D1.01新增Foundation原语的独立公开头、安装搬迁、无测试生产配置及缺依赖/错误后端模式的实际编译消费检查。Runtime安装消费仍由后续包负责。
+
+D1.05 增量：`context.hpp` 增加显式 `BorrowedResourceViews` 与借用 WorkContext 构造，资源 owner 必须由调用栈维持；拥有构造保持原合同。`outcome.hpp` 的全部结果验证改用不分配的未解决事实遍历，保留原有 unresolved 辅助函数行为与全部事实约束。两份公开头的当前字节 SHA 同步至 `sdk/sdk_api_manifest.json`；实际安装回归通过之前不宣称本增量验收。Invocation、Registry、Policy 仍为内部库，不安装其头与私有分派。

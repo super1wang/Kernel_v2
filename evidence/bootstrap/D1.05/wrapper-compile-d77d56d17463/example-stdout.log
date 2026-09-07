@@ -1,0 +1,12 @@
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  Building Custom Rule E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/wrapper-compile-d77d56d17463/CMakeLists.txt
+  main.cpp
+E:\VS2019Qt5.15\3D\examples\native_service\main.cpp(127,48): error C2672: “ock::runtime::registry::ProviderBinding::make”: 未找到匹配的重载函数 [E:\VS2019Qt5.15\3D\evidence\bootstrap\D1.05\wrapper-compile-d77d56d17463\build\example.vcxproj]
+      E:\VS2019Qt5.15\3D\packages\runtime\registry\registry.hpp(125,3):
+      可能是“tl::expected<ock::runtime::registry::ProviderBinding,ock::foundation::Error> ock::runtime::registry::ProviderBinding::make(std::shared_ptr<ock::contracts::AtomicProviderPort<P>>)”
+          E:\VS2019Qt5.15\3D\examples\native_service\main.cpp(127,48):
+          “tl::expected<ock::runtime::registry::ProviderBinding,ock::foundation::Error> ock::runtime::registry::ProviderBinding::make(std::shared_ptr<ock::contracts::AtomicProviderPort<P>>)”: 无法从“std::shared_ptr<native_service::Provider>”推导出“std::shared_ptr<ock::contracts::AtomicProviderPort<P>>”的 模板 参数
+  
+E:\VS2019Qt5.15\3D\examples\native_service\main.cpp(128,35): error C3536: “provider”: 初始化之前无法使用 [E:\VS2019Qt5.15\3D\evidence\bootstrap\D1.05\wrapper-compile-d77d56d17463\build\example.vcxproj]
+E:\VS2019Qt5.15\3D\examples\native_service\main.cpp(130,32): error C2100: 无法取消引用类型为“<error type>”的操作数 [E:\VS2019Qt5.15\3D\evidence\bootstrap\D1.05\wrapper-compile-d77d56d17463\build\example.vcxproj]

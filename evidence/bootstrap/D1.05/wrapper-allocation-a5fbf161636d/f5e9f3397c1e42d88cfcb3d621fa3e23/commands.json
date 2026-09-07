@@ -1,0 +1,71 @@
+{
+  "case": "T23.native.allocation_probe",
+  "commands": [
+    {
+      "argv": [
+        "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-5256e562f4da\\Debug\\native_stage.exe",
+        "T23.native.allocation_probe"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T23:01:10.252224+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 2,
+        "terminated_owned_job": false
+      },
+      "executable": "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-5256e562f4da\\Debug\\native_stage.exe",
+      "pid": 14932,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-07T23:01:10.395268+00:00",
+      "raw": [
+        {
+          "path": "native-stdout.log",
+          "sha256": "ea1894de07544af7699739764a4d9f2b92063c2c16028c4f8509e4211d78ade5",
+          "size": 1266
+        },
+        {
+          "path": "native-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "argv": [
+        "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-5256e562f4da\\Debug\\native_stage.exe",
+        "--allocation-injected-red"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T23:01:10.417763+00:00",
+      "exit_code": 1,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 2,
+        "terminated_owned_job": false
+      },
+      "executable": "E:\\VS2019Qt5.15\\3D\\build\\d1.05-stage-5256e562f4da\\Debug\\native_stage.exe",
+      "pid": 35800,
+      "observed_exit_code": 1,
+      "finished_at": "2026-09-07T23:01:10.541147+00:00",
+      "raw": [
+        {
+          "path": "probe-rejection-stdout.log",
+          "sha256": "e3d03710a056f0e47c803fc6aa6e90b7ca0d68321058b24585da12f6b3d1e1e6",
+          "size": 669
+        },
+        {
+          "path": "probe-rejection-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    }
+  ]
+}

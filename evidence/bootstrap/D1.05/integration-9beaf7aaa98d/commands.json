@@ -1,0 +1,60 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.05-dev",
+      "--config",
+      "Debug",
+      "--parallel",
+      "2",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T23:01:05.428442+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 120,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 37020,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T23:01:58.912986+00:00"
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.05-dev",
+      "-C",
+      "Debug",
+      "-R",
+      "[.]native[.]",
+      "--output-on-failure",
+      "--no-tests=error",
+      "--output-junit",
+      "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.05\\integration-9beaf7aaa98d\\junit.xml"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T23:01:58.913857+00:00",
+    "exit_code": 8,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 239,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 11252,
+    "observed_exit_code": 8,
+    "finished_at": "2026-09-07T23:14:11.642607+00:00"
+  }
+]

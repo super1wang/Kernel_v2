@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.25)
+project(InlinePolicy LANGUAGES CXX)
+add_executable(inline_policy "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/inline-policy-7bc202b81563/source/packages/runtime/policy/policy.cpp" inline-policy-main.cpp)
+target_compile_features(inline_policy PRIVATE cxx_std_20)
+target_compile_options(inline_policy PRIVATE /utf-8 /EHsc /Zc:__cplusplus /permissive-)
+target_include_directories(inline_policy PRIVATE "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/inline-policy-7bc202b81563/source" "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/inline-policy-7bc202b81563/source/tests/compile/contracts" "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/inline-policy-7bc202b81563/source/packages/contracts/include" "E:/VS2019Qt5.15/3D/evidence/bootstrap/D1.05/inline-policy-7bc202b81563/source/packages/foundation/include" "E:/VS2019Qt5.15/3D/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include")

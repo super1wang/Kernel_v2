@@ -1,0 +1,6 @@
+{
+  "finding": "case9 在同一计数窗口执行 calloc 和 realloc，仅检查 c.crt>0；任何单入口漏计仍可能由另一个入口满足断言。此为静态可验证缺陷，不是已运行失败。",
+  "before_sha256": "fa527a70ca67875f6f4d7b3423ffd222d9a27b47164fbd8c7505bf39f0ec5572",
+  "source": "tests/contract/native/allocation_cases.hpp",
+  "runtime_red_executed": false
+}

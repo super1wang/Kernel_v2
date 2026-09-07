@@ -1,0 +1,109 @@
+#pragma once
+#include "shape_cases.hpp"
+namespace native_test {
+inline int move_number=0,throw_on_move=0;
+struct Moving {
+  int value;
+  explicit Moving(int n):value(n){}
+  Moving(const Moving&)=delete;
+  Moving& operator=(const Moving&)=delete;
+  Moving(Moving&& other):value(other.value){if(++move_number==throw_on_move)throw std::runtime_error("result move");}
+  Moving& operator=(Moving&& other){value=other.value;if(++move_number==throw_on_move)throw std::runtime_error("result move");return *this;}
+};
+}
+namespace ock::contracts {
+template<> struct TypeContract<native_test::Moving> {
+  static TypeIdentity identity(){return {name("native.moving"),ver(),{}};}
+  static Result<void> validate(const native_test::Moving& r){return r.value>=0?Result<void>{}:reject(ContractsErrc::InvalidContract);}
+};
+}
+namespace native_test {
+inline Result<Moving> moving_handler(const int& n,WorkContext&){++entered;return Moving{n};}
+inline Result<void> void_transport_handler(const int& n,WorkContext&){
+  ++entered;
+  if(n==1)return make_unexpected(invocation_error(InvocationErrc::InvalidOutput));
+  if(n==2)throw std::runtime_error("void handler");
+  return {};
+}
+inline void return_move_observation() {
+    throw_on_move=0;entered=0;
+    Env e(false,compute,{},[](registry::ModuleInput& m){m.register_operations=[](registry::Registrar& r){CHECK(r.compute(moving_handler,native_definition(),native_options()));};});
+    auto b=e.engine->bind<int,Moving>(key(),{},Shape::Read,e.policy.caller,std::array{policy_test::target()},targets,name("moving"));CHECK(!b);
+    CHECK(b.error().code()==invocation_error(InvocationErrc::InvalidBinding).code());CHECK(entered==0);
+    static_assert(!std::is_nothrow_move_constructible_v<Moving>);
+    static_assert(std::is_nothrow_move_constructible_v<int>);
+    Env good;auto control=good.bind();CHECK(control);CHECK(result(control->invoke(1,good.options()))==3);
+    Env no_value(false,compute,{},[](registry::ModuleInput& m){m.register_operations=[](registry::Registrar& r){CHECK(r.compute(void_transport_handler,native_definition(),native_options()));};});
+    auto nothing=no_value.engine->bind<int,void>(key(),{},Shape::Read,no_value.policy.caller,std::array{policy_test::target()},targets,name("void"));CHECK(nothing);
+    CHECK(std::holds_alternative<ReadCompleted<void>>(std::get<Completed<void>>(nothing->invoke(0,no_value.options())).outcome.value()));
+    for(int n:{1,2}){
+      auto failure=nothing->invoke(n,no_value.options());
+      CHECK(std::holds_alternative<Completed<void>>(failure));
+      CHECK(std::holds_alternative<FailedBeforeApply>(std::get<Completed<void>>(failure).outcome.value()));
+    }
+    Env movable(false,compute,{},[](registry::ModuleInput& m){m.register_operations=[](registry::Registrar& r){CHECK(r.compute(move_handler,native_definition(),native_options()));};});
+    auto unique=movable.engine->bind<int,std::unique_ptr<int>>(key(),{},Shape::Read,movable.policy.caller,std::array{policy_test::target()},targets,name("unique"));CHECK(unique);
+    auto reply=unique->invoke(7,movable.options());CHECK(**std::get<ReadCompleted<std::unique_ptr<int>>>(std::get<Completed<std::unique_ptr<int>>>(reply).outcome.value()).result==7);
+}
+inline int throwing_transport_probe(){
+  std::set_terminate([]{std::fputs("locked_result_noexcept_transport_terminated\n",stderr);std::fflush(stderr);std::_Exit(86);});
+  throw_on_move=0;Result<Moving> value{Moving{1}};
+  move_number=0;throw_on_move=1;
+  auto moved=std::move(value);(void)moved;
+  return 0;
+}
+inline policy::TimePoint observed_deadline;
+inline std::stop_source* stop_during_handler=nullptr;
+inline Result<int> observe_context(const int&,WorkContext& work){
+  ++entered;observed_deadline=work.deadline();CHECK(!work.stop_requested());
+  if(stop_during_handler){stop_during_handler->request_stop();CHECK(work.stop_requested());}
+  return 1;
+}
+inline void deadline_and_stop_context(){
+  Env e(false,observe_context);auto b=e.bind();CHECK(b);
+  auto options=e.options();options.deadline=e.policy.clock->now()+std::chrono::hours(2);
+  CHECK(result(b->invoke(0,options))==1);CHECK(observed_deadline==e.policy.auth->identity.deadline);
+  options.deadline=e.policy.clock->now()+std::chrono::milliseconds(20);CHECK(result(b->invoke(0,options))==1);CHECK(observed_deadline==options.deadline);
+  options.deadline=e.policy.clock->now();entered=0;CHECK(std::holds_alternative<Rejected>(b->invoke(0,options)));CHECK(entered==0);
+  std::stop_source source;options=e.options();options.stop=source.get_token();stop_during_handler=&source;
+  CHECK(result(b->invoke(0,options))==1);stop_during_handler=nullptr;
+}
+inline void actual_role_threads(){
+  for(auto role:{ThreadRole::Worker,ThreadRole::Control,ThreadRole::Domain,ThreadRole::Database}){
+    Env e;auto b=e.bind();CHECK(b);bool allowed=false,denied=false;
+    std::thread real([&]{e.threads->owner=std::this_thread::get_id();e.threads->role=role;e.threads->allow=false;
+      denied=std::holds_alternative<Rejected>(b->invoke(1,e.options()));e.threads->allow=true;
+      allowed=result(b->invoke(1,e.options()))==3;});real.join();CHECK(allowed&&denied);
+    CHECK(std::holds_alternative<Rejected>(b->invoke(1,e.options())));
+  }
+}
+inline std::barrier<>* overlap_gate=nullptr;
+inline std::latch* overlap_release=nullptr;
+inline std::array<const WorkContext*,2> contexts{};
+inline std::atomic<unsigned> context_index=0;
+inline Result<int> overlapping_handler(const int&,WorkContext& work){
+  auto index=context_index.fetch_add(1);CHECK(index<2);contexts[index]=&work;
+  CHECK(work.charge(60));overlap_gate->arrive_and_wait();overlap_release->wait();
+  CHECK(!work.charge(60));return 1;
+}
+inline void multi_slot_isolation(){
+  NativeBudget budget;budget.concurrent_calls_per_binding=2;
+  Env e(false,overlapping_handler,budget);e.threads->any_thread=true;auto b=e.bind();CHECK(b);
+  std::barrier gate(3);std::latch release(1);overlap_gate=&gate;overlap_release=&release;context_index=0;
+  bool one=false,two=false;
+  std::thread first([&]{one=result(b->invoke(0,e.options()))==1;});
+  std::thread second([&]{two=result(b->invoke(0,e.options()))==1;});
+  gate.arrive_and_wait();bool third=std::holds_alternative<Rejected>(b->invoke(0,e.options()));
+  bool separate=contexts[0]!=contexts[1];release.count_down();first.join();second.join();
+  overlap_gate=nullptr;overlap_release=nullptr;CHECK(one&&two&&third&&separate);
+}
+inline Result<std::size_t> empty_projection(const Args&,std::span<foundation::ObjectId>) noexcept {return 0;}
+inline void replace_bound_in_validator(){
+  Env e(false,compute,{},value_registration);auto b=bind_value(e);CHECK(b);
+  auto other=e.engine->bind<Args,Value>(key(),{},Shape::Read,e.policy.caller,std::array{policy_test::target()},empty_projection,name("replacement"));CHECK(other);
+  input_hook=[&]{*b=std::move(*other);};
+  auto reply=b->invoke({1},e.options());input_hook={};
+  CHECK(std::holds_alternative<Completed<Value>>(reply));
+  CHECK(std::holds_alternative<Rejected>(b->invoke({1},e.options())));
+}
+}

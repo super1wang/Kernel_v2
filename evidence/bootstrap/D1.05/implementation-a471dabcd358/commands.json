@@ -1,0 +1,90 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D1.05\\implementation-a471dabcd358",
+      "-B",
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.05-bootstrap-a471dabcd358",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=E:\\VS2019Qt5.15\\3D/cmake/LockedMSVC.cmake"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T21:11:17.325192+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 9240,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T21:11:34.538610+00:00"
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.05-bootstrap-a471dabcd358",
+      "--config",
+      "Debug",
+      "--target",
+      "positive",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T21:11:34.539574+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 16,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 20296,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T21:11:42.187856+00:00"
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "E:\\VS2019Qt5.15\\3D\\build\\d1.05-bootstrap-a471dabcd358",
+      "--config",
+      "Debug",
+      "--target",
+      "negative",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T21:11:42.188864+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 9,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 10084,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-07T21:11:45.827840+00:00"
+  }
+]
