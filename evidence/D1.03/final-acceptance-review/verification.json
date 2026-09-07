@@ -1,0 +1,201 @@
+{
+  "source": {
+    "commit": "fb08a1955ebfc8b8d97062962b61cac901880953",
+    "inputs": "75090b8927158e4476b812c504be76a83144327ad4aaee5f20acfc63b3aa496b",
+    "git_inputs": 204,
+    "errors": []
+  },
+  "runs": [
+    {
+      "profile": "win-msvc-debug",
+      "report_sha256": "9ef19842233a6b385401e5d83431f2139e341dc73ce9a6f195fbe310641e7765",
+      "ctest": 216,
+      "checks": 3,
+      "registration": 25,
+      "wrapper": [
+        {
+          "case": "T24.registration.handler_not_exposed",
+          "commands": 7,
+          "exit_codes": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "case": "T02.registration.manifest_owned_budget",
+          "commands": 4,
+          "exit_codes": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "case": "T02.registration.shape_compile_contract",
+          "commands": 7,
+          "exit_codes": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "case": "T24.registration.cold_docs_separation",
+          "commands": 1,
+          "exit_codes": [
+            0
+          ]
+        },
+        {
+          "case": "T24.registration.internal_component_boundary",
+          "commands": 4,
+          "exit_codes": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "wrapper_raw_files": 46
+    },
+    {
+      "profile": "win-msvc-release",
+      "report_sha256": "074e62d4404e673080275313d62a01521cbd159bb4d29264692255707b2327cb",
+      "ctest": 216,
+      "checks": 3,
+      "registration": 25,
+      "wrapper": [
+        {
+          "case": "T24.registration.internal_component_boundary",
+          "commands": 4,
+          "exit_codes": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "case": "T02.registration.manifest_owned_budget",
+          "commands": 4,
+          "exit_codes": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "case": "T24.registration.cold_docs_separation",
+          "commands": 1,
+          "exit_codes": [
+            0
+          ]
+        },
+        {
+          "case": "T24.registration.handler_not_exposed",
+          "commands": 7,
+          "exit_codes": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "case": "T02.registration.shape_compile_contract",
+          "commands": 7,
+          "exit_codes": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "wrapper_raw_files": 46
+    },
+    {
+      "profile": "win-msvc-asan",
+      "report_sha256": "511e4b0569660b76fb0996bc005579a37e819d7db7129148f8f3e7dd3a07b4fb",
+      "ctest": 218,
+      "checks": 3,
+      "registration": 25,
+      "wrapper": [
+        {
+          "case": "T24.registration.cold_docs_separation",
+          "commands": 1,
+          "exit_codes": [
+            0
+          ]
+        },
+        {
+          "case": "T24.registration.handler_not_exposed",
+          "commands": 7,
+          "exit_codes": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "case": "T24.registration.internal_component_boundary",
+          "commands": 4,
+          "exit_codes": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "case": "T02.registration.manifest_owned_budget",
+          "commands": 4,
+          "exit_codes": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "case": "T02.registration.shape_compile_contract",
+          "commands": 7,
+          "exit_codes": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "wrapper_raw_files": 46
+    }
+  ],
+  "ctest_total": 650,
+  "checks_total": 9
+}

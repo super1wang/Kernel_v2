@@ -1,6 +1,6 @@
 # 内核实施进度
 
-更新日期：2026-09-07。唯一规划仍为 [架构 v3.3](01_Architecture_v3.3.md) 与 [执行计划 v3.3](02_Execution_Plan_v3.3.md)，不新增或重新编号工作包。
+更新日期：2026-09-08。唯一规划仍为 [架构 v3.3](01_Architecture_v3.3.md) 与 [执行计划 v3.3](02_Execution_Plan_v3.3.md)，不新增或重新编号工作包。
 
 ## 当前节点
 
@@ -37,7 +37,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | 门禁 | 当前状态 | 事实 |
 |---|---|---|
 | G0 | Passed | 九组372次CTest、142项Git来源及AI规格/代码复核齐全，按用户政策自动验收 |
-| G1 | InProgress | D1.01、D1.02自动验收Passed，D1.03实现与独立AI复核完成准备，三配置正式验收待运行；G1尚未验收 |
+| G1 | InProgress | D1.01–D1.03自动验收Passed；D1.04及后续包尚未完成，G1尚未验收 |
 | G2 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G3 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G4 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
@@ -60,7 +60,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | D0.06 | 固定工具链、共享测试基建与自动证据采集 | D0.02 | Passed |
 | D1.01 | 实现Foundation与错误/标识原语 | D0.03、D0.06 | Passed |
 | D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | Passed |
-| D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | InProgress |
+| D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | Passed |
 | D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | NotStarted |
 | D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | NotStarted |
 | D1.06 | 最小Host、Logging共同合同与原生占用基线 | D1.05、D0.06 | NotStarted |
@@ -162,3 +162,10 @@ D1.02本轮恢复点：局部工具副本对照正常退出；拥有性与owner�
 已完成D1.02的六头合同、确定性验证消费者及必要开发工具；不声明Registry、Host或其他产品模块完成。下一包仅在核对本次Passed及规划后进入D1.03。以上替代旧恢复段落的当前状态，历史失败和审核意见保持原文。
 
 D1.03启动：已逐项核对D1.02的实际三配置和门禁Passed，见 `docs/reviews/D1.03-start.json`。计划AI复核Approved，具体API初审正在澄清跨模块服务/资源/provider选择和配置快照深拥有；尚无D1.03行为实现或测试Passed。
+
+
+## 2026-09-08 D1.03 完整自动验收
+
+实现节点 `fb08a1955ebfc8b8d97062962b61cac901880953` 已推送，204项输入与Git字节完全一致，摘要 `75090b8927158e4476b812c504be76a83144327ad4aaee5f20acfc63b3aa496b`。Debug 216/216、Release 216/216、ASan 218/218，共650次CTest和9项CHECK全部通过。现有门禁完整audit实际Passed，见 `evidence/D1.03/current-20260907T165757Z/gate-summary.json`；AI规格/代码复核明确绑定本轮来源，无人工放行要求。
+
+本包交付注册批次、精确模块DAG、深拥有及预算、粘性错误、一次发布、不可变目录typed绑定与冷热存储分离。内部Runtime库只依赖CoreContracts闭包；公开SDK Runtime仍ContractBaseline且不可用，不宣称Invocation/Host或产品模块完成。历史失败和旧审核原文保留，当前包级状态Passed，G1仍InProgress。下一节点仅按D1.04前置D1.02与D0.05的实际Passed进入。
