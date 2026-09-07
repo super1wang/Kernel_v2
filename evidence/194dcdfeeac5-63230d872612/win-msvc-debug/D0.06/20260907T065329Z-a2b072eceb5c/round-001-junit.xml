@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="70"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="MSI"
+	time="192"
+	timestamp="2026-09-07T14:53:52"
+	>
+	<testcase name="T01.dependencies.asio" classname="T01.dependencies.asio" time="0.0456155" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>standalone Asio real overlapped Named Pipe two-write/read smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.benchmark" classname="T01.dependencies.benchmark" time="0.0394204" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>2026-09-07T14:53:52+08:00
+Running E:/VS2019Qt5.15/3D/build/win-msvc-debug/Debug/ock_probe_benchmark.exe
+Run on (12 X 2592 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x6)
+  L1 Instruction 32 KiB (x6)
+  L2 Unified 256 KiB (x6)
+  L3 Unified 12288 KiB (x1)
+***WARNING*** Library was built as DEBUG. Timings may be affected.
+---------------------------------------------------------------------------
+Benchmark                                 Time             CPU   Iterations
+---------------------------------------------------------------------------
+dependency_smoke/iterations:1000       11.2 ns        0.000 ns         1000
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.catch2" classname="T01.dependencies.catch2" time="0.0656904" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>Randomness seeded to: 644885001
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.cli11" classname="T01.dependencies.cli11" time="0.0607851" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>CLI11 UTF-8/argument/error-code smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.expected" classname="T01.dependencies.expected" time="0.0436492" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>expected move-only/void/error/exception smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.fmt" classname="T01.dependencies.fmt" time="0.0354163" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>fmt 110104
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.immer" classname="T01.dependencies.immer" time="0.0537134" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>immer immutable snapshot/transient freeze smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.jsoncons" classname="T01.dependencies.jsoncons" time="0.059455" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>ordinary CBOR roundtrip only; duplicate-key upstream projection={"n":1}
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.spdlog" classname="T01.dependencies.spdlog" time="0.036023" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>spdlog external locked fmt/flush smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.sqlite" classname="T01.dependencies.sqlite" time="0.0413077" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>SQLite 3.51.3 source=2026-03-13 10:38:09 737ae4a34738ffa0c3ff7f9bb18df914dd1cad163f28fd6b6e114a344fe6d618 WAL/FULL/foreign_keys readback smoke; file=sqlite-probe-25144.db
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.thread_pool" classname="T01.dependencies.thread_pool" time="0.0361421" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>thread pool future/error/drain smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.toml11" classname="T01.dependencies.toml11" time="0.0365824" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>toml11 exact integer and overflow rejection smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.toolchain" classname="T01.dependencies.toolchain" time="0.0317784" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>MSVC_FULL_VER=194435228 __cplusplus=202002 pointer_bits=64 CRT=/MDd
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.lock_contracts" classname="T01.dependencies.lock_contracts" time="0.599942" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>test_archive_symlink_refused (test_lock.LockContracts.test_archive_symlink_refused) ... ok
+test_archive_traversal_refused (test_lock.LockContracts.test_archive_traversal_refused) ... ok
+test_complete_default_table (test_lock.LockContracts.test_complete_default_table) ... ok
+test_component_selection (test_lock.LockContracts.test_component_selection) ... ok
+test_hash_mismatch_refused (test_lock.LockContracts.test_hash_mismatch_refused) ... ok
+test_internal_document_link_materialized (test_lock.LockContracts.test_internal_document_link_materialized) ... ok
+test_offline_missing_refused (test_lock.LockContracts.test_offline_missing_refused) ... ok
+test_reject_floating_revision (test_lock.LockContracts.test_reject_floating_revision) ... ok
+test_reject_incompatible_toolchain (test_lock.LockContracts.test_reject_incompatible_toolchain) ... ok
+test_reject_missing_license (test_lock.LockContracts.test_reject_missing_license) ... ok
+test_reject_sqlite_without_fix (test_lock.LockContracts.test_reject_sqlite_without_fix) ...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.catch2_assertion_guard" classname="T01.dependencies.catch2_assertion_guard" time="0.291096" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>Filters: [.guard-fault] [.guard-fault]
+Randomness seeded to: 4083779579
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ock_probe_catch2.exe is a Catch2 v3.8.1 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+deliberate assertion failure
+-------------------------------------------------------------------------------
+E:\VS2019Qt5.15\3D\tests\dependencies\probes\catch2.cpp(3)
+...............................................................................
+
+E:\VS2019Qt5.15\3D\tests\dependencies\probes\catch2.cpp(3): FAILED:
+  REQUIRE( false )
+
+===============================================================================
+test cases: 1 | 1 failed
+assertions: 1 | 1 failed
+
+fault_probe_actual_exit_code= 42 raw= E:\VS2019Qt5.15\3D\build\win-msvc-debug\dependency-probe-work\fault-f7103bb4e4644a84b36ddc0c7ad95fae
+</system-out>
+	</testcase>
+	<testcase name="T23.adapter.contract_guards" classname="T23.adapter.contract_guards" time="0.348958" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_expected_failure_is_not_success (test_model_adapter.ModelAdapterTests.test_expected_failure_is_not_success) ... ok
+test_failure_exits_nonzero (test_model_adapter.ModelAdapterTests.test_failure_exits_nonzero) ... ok
+test_missing_case_rejected_before_execution (test_model_adapter.ModelAdapterTests.test_missing_case_rejected_before_execution) ... ok
+test_skip_is_not_success (test_model_adapter.ModelAdapterTests.test_skip_is_not_success) ... ok
+test_success_runs_and_exits_zero (test_model_adapter.ModelAdapterTests.test_success_runs_and_exits_zero) ... ok
+test_unexpected_success_is_not_success (test_model_adapter.ModelAdapterTests.test_unexpected_success_is_not_success) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.010s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.process.nonfinite_timeout_rejected" classname="T23.process.nonfinite_timeout_rejected" time="0.290141" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_process_nonfinite_timeout_rejected (test_process.ProcessTests.test_T23_process_nonfinite_timeout_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.process.raw_bytes" classname="T23.process.raw_bytes" time="0.475675" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_process_raw_bytes (test_process.ProcessTests.test_T23_process_raw_bytes) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.115s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.process.printed_success_nonzero" classname="T23.process.printed_success_nonzero" time="0.527548" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_process_printed_success_nonzero (test_process.ProcessTests.test_T23_process_printed_success_nonzero) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.125s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.process.launch_failure" classname="T23.process.launch_failure" time="0.601355" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_process_launch_failure (test_process.ProcessTests.test_T23_process_launch_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.process.crashed_exit" classname="T23.process.crashed_exit" time="0.633557" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_process_crashed_exit (test_process.ProcessTests.test_T23_process_crashed_exit) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.189s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.process.timeout_tree" classname="T23.process.timeout_tree" time="5.49542" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_process_timeout_tree (test_process.ProcessTests.test_T23_process_timeout_tree) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.042s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.process.leaked_child_rejected" classname="T23.process.leaked_child_rejected" time="5.38806" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_process_leaked_child_rejected (test_process.ProcessTests.test_T23_process_leaked_child_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.046s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.actual_execution" classname="T23.evidence.actual_execution" time="5.43444" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_actual_execution (test_runner.EvidenceTests.test_T23_evidence_actual_execution) ... D0.06 fixture-debug: Passed; evidence/86108c7bdb36-45f849b6a94a/fixture-debug/D0.06/20260907T065409Z-05808dcebacd/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.629s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.print_success_exit_failure" classname="T23.evidence.print_success_exit_failure" time="6.82455" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_print_success_exit_failure (test_runner.EvidenceTests.test_T23_evidence_print_success_exit_failure) ... D0.06 fixture-debug: Failed; evidence/5621e9638b8d-ef70a13f5cb4/fixture-debug/D0.06/20260907T065415Z-113718269bb2/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.830s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.zero_tests" classname="T23.evidence.zero_tests" time="5.73108" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_zero_tests (test_runner.EvidenceTests.test_T23_evidence_zero_tests) ... D0.06 fixture-debug: Failed; evidence/d97fe7f3698f-eb0c9ae96de9/fixture-debug/D0.06/20260907T065422Z-0000d0011b26/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.297s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.wrong_filter" classname="T23.evidence.wrong_filter" time="5.20807" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_wrong_filter (test_runner.EvidenceTests.test_T23_evidence_wrong_filter) ... D0.06 fixture-debug: Failed; evidence/1bda53d0afb6-2109205c1441/fixture-debug/D0.06/20260907T065428Z-c74897e57d9e/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.137s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.removed_expected_case" classname="T23.evidence.removed_expected_case" time="6.818" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_removed_expected_case (test_runner.EvidenceTests.test_T23_evidence_removed_expected_case) ... D0.06 fixture-debug: Failed; evidence/bbf1dad7fb3f-61c4840b17d6/fixture-debug/D0.06/20260907T065434Z-c65d36f60abb/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.336s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.skip_rejected" classname="T23.evidence.skip_rejected" time="5.20767" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_skip_rejected (test_runner.EvidenceTests.test_T23_evidence_skip_rejected) ... D0.06 fixture-debug: Failed; evidence/5fa98458d340-12ab90d71d0f/fixture-debug/D0.06/20260907T065440Z-93bcaf81b205/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.208s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.old_report_not_reused" classname="T23.evidence.old_report_not_reused" time="5.24624" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_old_report_not_reused (test_runner.EvidenceTests.test_T23_evidence_old_report_not_reused) ... D0.06 fixture-debug: Failed; evidence/8a25c2d885a0-0bc8acf1d8a3/fixture-debug/D0.06/20260907T065444Z-55df82ae57fd/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.421s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.repeat_required" classname="T23.evidence.repeat_required" time="5.70879" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_repeat_required (test_runner.EvidenceTests.test_T23_evidence_repeat_required) ... D0.06 fixture-debug: Failed; evidence/b1036fb0dba4-ce527a77b905/fixture-debug/D0.06/20260907T065450Z-5f4300ac1442/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.813s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.all_rounds_retained" classname="T23.evidence.all_rounds_retained" time="5.78822" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_all_rounds_retained (test_runner.EvidenceTests.test_T23_evidence_all_rounds_retained) ... D0.06 fixture-debug: Passed; evidence/dd947687e799-65baed4389cd/fixture-debug/D0.06/20260907T065456Z-6329f4c55c09/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.800s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.missing_report" classname="T23.evidence.missing_report" time="5.93625" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_missing_report (test_runner.EvidenceTests.test_T23_evidence_missing_report) ... D0.06 fixture-debug: Passed; evidence/dc72975aa06c-45f849b6a94a/fixture-debug/D0.06/20260907T065501Z-fbe860608524/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.108s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.corrupt_report" classname="T23.evidence.corrupt_report" time="6.64353" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_corrupt_report (test_runner.EvidenceTests.test_T23_evidence_corrupt_report) ... D0.06 fixture-debug: Passed; evidence/37b0b9fdb215-45f849b6a94a/fixture-debug/D0.06/20260907T065509Z-a9c86bb41d0a/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.154s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.changed_binary" classname="T23.evidence.changed_binary" time="7.07365" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_changed_binary (test_runner.EvidenceTests.test_T23_evidence_changed_binary) ... D0.06 fixture-debug: Passed; evidence/9aa960b5c362-45f849b6a94a/fixture-debug/D0.06/20260907T065514Z-858b26ad8a1f/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.937s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.changed_source" classname="T23.evidence.changed_source" time="9.13725" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_changed_source (test_runner.EvidenceTests.test_T23_evidence_changed_source) ... D0.06 fixture-debug: Passed; evidence/ae0b8f96f433-45f849b6a94a/fixture-debug/D0.06/20260907T065523Z-646b8f9962db/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 7.383s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.added_source" classname="T23.evidence.added_source" time="4.5309" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_added_source (test_runner.EvidenceTests.test_T23_evidence_added_source) ... D0.06 fixture-debug: Passed; evidence/fb8aa8f437c9-45f849b6a94a/fixture-debug/D0.06/20260907T065530Z-51306d754146/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.919s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.changed_lock" classname="T23.evidence.changed_lock" time="4.85212" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_changed_lock (test_runner.EvidenceTests.test_T23_evidence_changed_lock) ... D0.06 fixture-debug: Passed; evidence/47716fd29d47-45f849b6a94a/fixture-debug/D0.06/20260907T065534Z-f1972cefefb2/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.246s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.changed_raw" classname="T23.evidence.changed_raw" time="4.4313" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_changed_raw (test_runner.EvidenceTests.test_T23_evidence_changed_raw) ... D0.06 fixture-debug: Passed; evidence/cd8a00c1290a-45f849b6a94a/fixture-debug/D0.06/20260907T065539Z-af07b5bd43b6/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.647s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.failed_then_rerun" classname="T23.evidence.failed_then_rerun" time="6.34808" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_failed_then_rerun (test_runner.EvidenceTests.test_T23_evidence_failed_then_rerun) ... D0.06 fixture-debug: Failed; evidence/2bec63e053be-7385229e6b25/fixture-debug/D0.06/20260907T065543Z-37aaaf2b9e7e/report.json
+D0.06 fixture-debug: Passed; evidence/2bec63e053be-e6db32ec1641/fixture-debug/D0.06/20260907T065546Z-3c13d09b8002/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.798s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.source_mutation_during_test" classname="T23.evidence.source_mutation_during_test" time="3.35449" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_source_mutation_during_test (test_runner.EvidenceTests.test_T23_evidence_source_mutation_during_test) ... D0.06 fixture-debug: Failed; evidence/d5040e6acc45-d834dd449337/fixture-debug/D0.06/20260907T065550Z-83f25eb61b9f/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.792s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.binary_mutation_during_test" classname="T23.evidence.binary_mutation_during_test" time="3.19613" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_binary_mutation_during_test (test_runner.EvidenceTests.test_T23_evidence_binary_mutation_during_test) ... D0.06 fixture-debug: Failed; evidence/4ff42bd69fde-73f9dba491a5/fixture-debug/D0.06/20260907T065553Z-b9c8168c5cbc/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.597s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.missing_artifact" classname="T23.evidence.missing_artifact" time="3.84109" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_missing_artifact (test_runner.EvidenceTests.test_T23_evidence_missing_artifact) ... D0.06 fixture-debug: Failed; evidence/b634e7da161a-543ca4b1eea1/fixture-debug/D0.06/20260907T065556Z-ae10ca4d2ec9/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.226s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.forged_status_rejected" classname="T23.evidence.forged_status_rejected" time="4.5261" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_forged_status_rejected (test_runner.EvidenceTests.test_T23_evidence_forged_status_rejected) ... D0.06 fixture-debug: Failed; evidence/8627456311b5-c5e14d8b6621/fixture-debug/D0.06/20260907T065600Z-35649a314aeb/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.793s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.configuration_mismatch" classname="T23.evidence.configuration_mismatch" time="4.19715" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_configuration_mismatch (test_runner.EvidenceTests.test_T23_evidence_configuration_mismatch) ... D0.06 fixture-debug: Failed; evidence/05f70731e567-610e6a8045b2/fixture-debug/D0.06/20260907T065605Z-6efbefa460a5/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.184s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.review_required_not_waived" classname="T23.evidence.review_required_not_waived" time="4.40559" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_review_required_not_waived (test_runner.EvidenceTests.test_T23_evidence_review_required_not_waived) ... D0.06 fixture-debug: Passed; evidence/405755ed92a4-6a95f80efe2b/fixture-debug/D0.06/20260907T065609Z-ad242d5e0993/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.650s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.gate_missing_profiles" classname="T23.evidence.gate_missing_profiles" time="6.00008" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_gate_missing_profiles (test_runner.EvidenceTests.test_T23_evidence_gate_missing_profiles) ... D0.06 fixture-debug: Passed; evidence/6ecdd4923e49-d994f628122b/fixture-debug/D0.06/20260907T065614Z-80bd507dd37b/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.711s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.gate_duplicate_runs" classname="T23.evidence.gate_duplicate_runs" time="5.97148" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_gate_duplicate_runs (test_runner.EvidenceTests.test_T23_evidence_gate_duplicate_runs) ... D0.06 fixture-debug: Passed; evidence/adfcf21e36f2-b74614460166/fixture-debug/D0.06/20260907T065620Z-d6527730598b/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.993s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.legacy_corruption" classname="T23.evidence.legacy_corruption" time="1.56867" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_legacy_corruption (test_runner.EvidenceTests.test_T23_evidence_legacy_corruption) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.727s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.runtime_artifact_integrity" classname="T23.evidence.runtime_artifact_integrity" time="5.30592" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_runtime_artifact_integrity (test_runner.EvidenceTests.test_T23_evidence_runtime_artifact_integrity) ... D0.06 fixture-debug: Passed; evidence/8a7a86fe1ed1-3dbd7176144e/fixture-debug/D0.06/20260907T065628Z-5363b96d5662/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.196s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.runtime_duplicate_rejected" classname="T23.evidence.runtime_duplicate_rejected" time="4.07733" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_runtime_duplicate_rejected (test_runner.EvidenceTests.test_T23_evidence_runtime_duplicate_rejected) ... D0.06 fixture-debug: Passed; evidence/d668665d129e-43227fef4dee/fixture-debug/D0.06/20260907T065632Z-91c8fb2f2e74/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.315s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.stale_runtime_artifact_rejected" classname="T23.evidence.stale_runtime_artifact_rejected" time="3.89002" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_stale_runtime_artifact_rejected (test_runner.EvidenceTests.test_T23_evidence_stale_runtime_artifact_rejected) ... D0.06 fixture-debug: Failed; evidence/cfe481a96ff0-855b7a15d2ca/fixture-debug/D0.06/20260907T065636Z-f40581d354e8/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.185s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.gate_mixed_source_rejected" classname="T23.evidence.gate_mixed_source_rejected" time="6.66461" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_gate_mixed_source_rejected (test_runner.EvidenceTests.test_T23_evidence_gate_mixed_source_rejected) ... D0.06 fixture-debug: Passed; evidence/ab2de9d20172-abfb460cb77b/fixture-debug/D0.06/20260907T065640Z-9290b200b2d7/report.json
+D0.06 fixture-second: Passed; evidence/ab2de9d20172-a500f9ccc888/fixture-second/D0.06/20260907T065643Z-95dafb720a3a/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 6.023s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.source_directory_named_evidence" classname="T23.evidence.source_directory_named_evidence" time="4.96463" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_source_directory_named_evidence (test_runner.EvidenceTests.test_T23_evidence_source_directory_named_evidence) ... D0.06 fixture-debug: Passed; evidence/e5a20420527a-94b2dd6094fc/fixture-debug/D0.06/20260907T065647Z-d5bdb9c9d849/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.286s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.collector_process_fingerprint" classname="T23.evidence.collector_process_fingerprint" time="1.35374" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_collector_process_fingerprint (test_runner.EvidenceTests.test_T23_evidence_collector_process_fingerprint) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.642s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.schema_unknown_field" classname="T23.evidence.schema_unknown_field" time="3.99372" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_schema_unknown_field (test_runner.EvidenceTests.test_T23_evidence_schema_unknown_field) ... D0.06 fixture-debug: Passed; evidence/bce78dfad9ac-45f849b6a94a/fixture-debug/D0.06/20260907T065653Z-4bdb20118a27/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.389s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T23.evidence.forged_human_approval" classname="T23.evidence.forged_human_approval" time="4.89967" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T23_evidence_forged_human_approval (test_runner.EvidenceTests.test_T23_evidence_forged_human_approval) ... D0.06 fixture-debug: Passed; evidence/c7f7c57208fd-45f849b6a94a/fixture-debug/D0.06/20260907T065657Z-2ff063685cc6/report.json
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.200s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.common_contract" classname="T19.conformance.common_contract" time="0.63396" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_common_contract (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_common_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.fault_not_qualified" classname="T19.conformance.fault_not_qualified" time="0.348863" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_fault_not_qualified (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_fault_not_qualified) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.optional_not_passed" classname="T19.conformance.optional_not_passed" time="0.33594" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_optional_not_passed (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_optional_not_passed) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.profile_requires_capability" classname="T19.conformance.profile_requires_capability" time="0.243952" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_profile_requires_capability (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_profile_requires_capability) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.common_cannot_be_waived" classname="T19.conformance.common_cannot_be_waived" time="0.313334" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_common_cannot_be_waived (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_common_cannot_be_waived) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.missing_required_capability" classname="T19.conformance.missing_required_capability" time="0.231969" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_missing_required_capability (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_missing_required_capability) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.false_capability" classname="T19.conformance.false_capability" time="0.263235" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_false_capability (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_false_capability) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.wrong_contract_version" classname="T19.conformance.wrong_contract_version" time="0.257965" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_wrong_contract_version (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_wrong_contract_version) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.wrong_implementation_digest" classname="T19.conformance.wrong_implementation_digest" time="0.290318" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_wrong_implementation_digest (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_wrong_implementation_digest) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.factory_identity" classname="T19.conformance.factory_identity" time="0.25671" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_factory_identity (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_factory_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.backend_exception" classname="T19.conformance.backend_exception" time="0.259151" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_backend_exception (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_backend_exception) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.nested_worker_rejection" classname="T19.conformance.nested_worker_rejection" time="0.297727" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_nested_worker_rejection (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_nested_worker_rejection) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T19.conformance.fault_flag_not_qualification" classname="T19.conformance.fault_flag_not_qualification" time="0.242654" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06"/>
+		</properties>
+		<system-out>test_T19_conformance_fault_flag_not_qualification (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_fault_flag_not_qualification) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+</system-out>
+	</testcase>
+</testsuite>

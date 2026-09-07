@@ -1,0 +1,352 @@
+{
+  "format": "ock.expected/1",
+  "task_id": "D0.06",
+  "scope": "G0工具链、证据及同步mock/fault骨架；不声明生产后端",
+  "review_status": "Pending",
+  "cases": [
+    {
+      "id": "T23.process.raw_bytes",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.process.printed_success_nonzero",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.process.launch_failure",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.process.crashed_exit",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.process.timeout_tree",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.process.leaked_child_rejected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.process.nonfinite_timeout_rejected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.actual_execution",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.print_success_exit_failure",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.zero_tests",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.wrong_filter",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.removed_expected_case",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.skip_rejected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.old_report_not_reused",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.repeat_required",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.all_rounds_retained",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.missing_report",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.corrupt_report",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.changed_binary",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.changed_source",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.added_source",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.changed_lock",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.changed_raw",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.failed_then_rerun",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.source_mutation_during_test",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.binary_mutation_during_test",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.missing_artifact",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.forged_status_rejected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.forged_human_approval",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.schema_unknown_field",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.configuration_mismatch",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.review_required_not_waived",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.gate_missing_profiles",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.gate_duplicate_runs",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.legacy_corruption",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.common_contract",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.fault_not_qualified",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.optional_not_passed",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.profile_requires_capability",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.common_cannot_be_waived",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.missing_required_capability",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.false_capability",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.wrong_contract_version",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.wrong_implementation_digest",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.factory_identity",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.backend_exception",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.fault_flag_not_qualification",
+      "repeat_required": 1
+    },
+    {
+      "id": "T19.conformance.nested_worker_rejection",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.adapter.contract_guards",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.dependencies.asio",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release"
+      ]
+    },
+    {
+      "id": "T01.dependencies.benchmark",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release"
+      ]
+    },
+    {
+      "id": "T01.dependencies.catch2",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release"
+      ]
+    },
+    {
+      "id": "T01.dependencies.cli11",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release"
+      ]
+    },
+    {
+      "id": "T01.dependencies.expected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.dependencies.fmt",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.dependencies.immer",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release"
+      ]
+    },
+    {
+      "id": "T01.dependencies.jsoncons",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release"
+      ]
+    },
+    {
+      "id": "T01.dependencies.spdlog",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.dependencies.sqlite",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release"
+      ]
+    },
+    {
+      "id": "T01.dependencies.thread_pool",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.dependencies.toml11",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release"
+      ]
+    },
+    {
+      "id": "T01.dependencies.toolchain",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.dependencies.lock_contracts",
+      "repeat_required": 1
+    },
+    {
+      "id": "T01.dependencies.catch2_assertion_guard",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release"
+      ]
+    },
+    {
+      "id": "T23.dependencies.asan_healthy",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T23.dependencies.asan_detects_heap_overflow",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T23.evidence.runtime_artifact_integrity",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.stale_runtime_artifact_rejected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.gate_mixed_source_rejected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.runtime_duplicate_rejected",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.source_directory_named_evidence",
+      "repeat_required": 1
+    },
+    {
+      "id": "T23.evidence.collector_process_fingerprint",
+      "repeat_required": 1
+    }
+  ],
+  "checks": [
+    {
+      "id": "CHECK.conformance.bootstrap",
+      "repeat_required": 1
+    },
+    {
+      "id": "CHECK.dependencies.python",
+      "repeat_required": 1
+    },
+    {
+      "id": "CHECK.dependencies.python_contracts",
+      "repeat_required": 1
+    }
+  ]
+}

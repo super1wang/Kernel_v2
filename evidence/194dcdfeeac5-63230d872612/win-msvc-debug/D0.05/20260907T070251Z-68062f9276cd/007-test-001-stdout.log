@@ -1,0 +1,135 @@
+Internal ctest changing into directory: E:/VS2019Qt5.15/3D/build/win-msvc-debug
+Test project E:/VS2019Qt5.15/3D/build/win-msvc-debug
+      Start 119: T07.permit.cancel_claim_orders
+ 1/63 Test #119: T07.permit.cancel_claim_orders ..................................   Passed    0.20 sec
+      Start 120: T07.permit.revoke_claim_orders
+ 2/63 Test #120: T07.permit.revoke_claim_orders ..................................   Passed    0.29 sec
+      Start 121: T07.permit.binding_expiry_single_use
+ 3/63 Test #121: T07.permit.binding_expiry_single_use ............................   Passed    0.23 sec
+      Start 122: T07.permit.leases_do_not_authorize
+ 4/63 Test #122: T07.permit.leases_do_not_authorize ..............................   Passed    0.21 sec
+      Start 123: T07.commit.capacity_reserved_before_claim
+ 5/63 Test #123: T07.commit.capacity_reserved_before_claim .......................   Passed    0.20 sec
+      Start 124: T07.commit.lifecycle_revision_orders
+ 6/63 Test #124: T07.commit.lifecycle_revision_orders ............................   Passed    0.20 sec
+      Start 125: T14.commit.reservation_serializes_and_rejects_stale_base
+ 7/63 Test #125: T14.commit.reservation_serializes_and_rejects_stale_base ........   Passed    0.24 sec
+      Start 126: T14.commit.wait_and_lock_order
+ 8/63 Test #126: T14.commit.wait_and_lock_order ..................................   Passed    0.25 sec
+      Start 127: T14.commit.all_transaction_crash_windows
+ 9/63 Test #127: T14.commit.all_transaction_crash_windows ........................   Passed    0.21 sec
+      Start 128: T14.commit.permit_and_durable_are_not_published
+10/63 Test #128: T14.commit.permit_and_durable_are_not_published .................   Passed    0.19 sec
+      Start 129: T14.commit.publication_is_one_owned_record
+11/63 Test #129: T14.commit.publication_is_one_owned_record ......................   Passed    0.21 sec
+      Start 130: T14.commit.duplicate_and_late_callback
+12/63 Test #130: T14.commit.duplicate_and_late_callback ..........................   Passed    0.20 sec
+      Start 131: T16.commit.unknown_result_reconciles_actual_storage
+13/63 Test #131: T16.commit.unknown_result_reconciles_actual_storage .............   Passed    0.20 sec
+      Start 132: T16.commit.publish_failure_preserves_ledger
+14/63 Test #132: T16.commit.publish_failure_preserves_ledger .....................   Passed    0.21 sec
+      Start 133: T16.commit.recovery_validates_before_opening
+15/63 Test #133: T16.commit.recovery_validates_before_opening ....................   Passed    0.20 sec
+      Start 134: T07.commit.memory_commit_and_empty_delta
+16/63 Test #134: T07.commit.memory_commit_and_empty_delta ........................   Passed    0.20 sec
+      Start 135: T07.commit.materials_prepared_before_consumption
+17/63 Test #135: T07.commit.materials_prepared_before_consumption ................   Passed    0.20 sec
+      Start 136: T16.effect.claim_permit_send_are_separate
+18/63 Test #136: T16.effect.claim_permit_send_are_separate .......................   Passed    0.20 sec
+      Start 137: T07.effect.cancel_revoke_send_orders
+19/63 Test #137: T07.effect.cancel_revoke_send_orders ............................   Passed    0.20 sec
+      Start 138: T16.effect.crash_windows_never_blind_resend
+20/63 Test #138: T16.effect.crash_windows_never_blind_resend .....................   Passed    0.20 sec
+      Start 139: T16.effect.reconcile_and_partial_facts
+21/63 Test #139: T16.effect.reconcile_and_partial_facts ..........................   Passed    0.22 sec
+      Start 140: T16.effect.missing_evidence_stays_unknown
+22/63 Test #140: T16.effect.missing_evidence_stays_unknown .......................   Passed    0.25 sec
+      Start 141: T16.effect.result_encoding_does_not_erase_effect
+23/63 Test #141: T16.effect.result_encoding_does_not_erase_effect ................   Passed    0.25 sec
+      Start 142: T14.commit.materials_frozen_after_claim
+24/63 Test #142: T14.commit.materials_frozen_after_claim .........................   Passed    0.26 sec
+      Start 143: T16.effect.outcome_evidence_shape_matches_contract
+25/63 Test #143: T16.effect.outcome_evidence_shape_matches_contract ..............   Passed    0.26 sec
+      Start 144: T16.effect.before_claim_crash_allows_same_identity_retry
+26/63 Test #144: T16.effect.before_claim_crash_allows_same_identity_retry ........   Passed    0.23 sec
+      Start 145: T07.effect.cancel_before_permit_records_no_apply
+27/63 Test #145: T07.effect.cancel_before_permit_records_no_apply ................   Passed    0.25 sec
+      Start 146: T14.commit.intent_and_state_share_transaction
+28/63 Test #146: T14.commit.intent_and_state_share_transaction ...................   Passed    0.23 sec
+      Start 147: T16.commit.memory_recovery_rejected_before_mutation
+29/63 Test #147: T16.commit.memory_recovery_rejected_before_mutation .............   Passed    0.22 sec
+      Start 148: T14.commit.candidate_chain_validated_before_claim
+30/63 Test #148: T14.commit.candidate_chain_validated_before_claim ...............   Passed    0.23 sec
+      Start 149: T14.commit.published_outcome_uses_frozen_material
+31/63 Test #149: T14.commit.published_outcome_uses_frozen_material ...............   Passed    0.23 sec
+      Start 150: T07.effect.claim_material_binding_is_frozen
+32/63 Test #150: T07.effect.claim_material_binding_is_frozen .....................   Passed    0.23 sec
+      Start 151: T16.effect.sent_facts_use_frozen_identity
+33/63 Test #151: T16.effect.sent_facts_use_frozen_identity .......................   Passed    0.23 sec
+      Start 152: T16.effect.send_attempt_is_once_before_external_call
+34/63 Test #152: T16.effect.send_attempt_is_once_before_external_call ............   Passed    0.22 sec
+      Start 153: T15.intent.same_key_returns_existing_identity
+35/63 Test #153: T15.intent.same_key_returns_existing_identity ...................   Passed    0.31 sec
+      Start 154: T15.intent.fingerprint_covers_all_semantic_fields
+36/63 Test #154: T15.intent.fingerprint_covers_all_semantic_fields ...............   Passed    0.25 sec
+      Start 155: T15.intent.stable_principal_scope_and_permissions
+37/63 Test #155: T15.intent.stable_principal_scope_and_permissions ...............   Passed    0.33 sec
+      Start 156: T15.intent.server_scope_and_namespace_reject_forgery
+38/63 Test #156: T15.intent.server_scope_and_namespace_reject_forgery ............   Passed    0.24 sec
+      Start 157: T15.intent.future_expired_and_existing_before_floor
+39/63 Test #157: T15.intent.future_expired_and_existing_before_floor .............   Passed    0.26 sec
+      Start 158: T14.intent.acceptance_transaction_crash_windows
+40/63 Test #158: T14.intent.acceptance_transaction_crash_windows .................   Passed    0.28 sec
+      Start 159: T15.intent.claim_gc_both_orders
+41/63 Test #159: T15.intent.claim_gc_both_orders .................................   Passed    0.23 sec
+      Start 160: T15.intent.writer_transaction_prevents_interleaving
+42/63 Test #160: T15.intent.writer_transaction_prevents_interleaving .............   Passed    0.21 sec
+      Start 161: T15.gc.watermark_and_delete_crash_windows
+43/63 Test #161: T15.gc.watermark_and_delete_crash_windows .......................   Passed    0.29 sec
+      Start 162: T15.gc.delete_before_watermark_is_detected
+44/63 Test #162: T15.gc.delete_before_watermark_is_detected ......................   Passed    0.24 sec
+      Start 163: T15.gc.pins_inflight_unknown_and_references
+45/63 Test #163: T15.gc.pins_inflight_unknown_and_references .....................   Passed    0.24 sec
+      Start 164: T15.gc.scope_watermarks_are_independent_monotonic
+46/63 Test #164: T15.gc.scope_watermarks_are_independent_monotonic ...............   Passed    0.21 sec
+      Start 165: T15.intent.volatile_capacity_preserves_window
+47/63 Test #165: T15.intent.volatile_capacity_preserves_window ...................   Passed    0.25 sec
+      Start 166: T15.intent.client_retry_never_changes_identity
+48/63 Test #166: T15.intent.client_retry_never_changes_identity ..................   Passed    0.23 sec
+      Start 167: T15.step.internal_key_and_parameter_binding
+49/63 Test #167: T15.step.internal_key_and_parameter_binding .....................   Passed    0.23 sec
+      Start 168: T15.step.branch_iteration_and_occurrence_are_identity
+50/63 Test #168: T15.step.branch_iteration_and_occurrence_are_identity ...........   Passed    0.23 sec
+      Start 169: T15.step.admission_lifetime_definition_and_authorization
+51/63 Test #169: T15.step.admission_lifetime_definition_and_authorization ........   Passed    0.21 sec
+      Start 170: T15.step.external_interface_has_no_epoch_bypass
+52/63 Test #170: T15.step.external_interface_has_no_epoch_bypass .................   Passed    0.24 sec
+      Start 171: T18.restore.restart_preserves_store_and_generation
+53/63 Test #171: T18.restore.restart_preserves_store_and_generation ..............   Passed    0.24 sec
+      Start 172: T18.restore.old_backup_changes_generation_and_seals_effects
+54/63 Test #172: T18.restore.old_backup_changes_generation_and_seals_effects .....   Passed    0.22 sec
+      Start 173: T18.restore.reconciliation_does_not_replay_history
+55/63 Test #173: T18.restore.reconciliation_does_not_replay_history ..............   Passed    0.25 sec
+      Start 174: T18.backup.manifest_pins_and_validation
+56/63 Test #174: T18.backup.manifest_pins_and_validation .........................   Passed    0.23 sec
+      Start 175: T18.restore.invalidates_child_admission
+57/63 Test #175: T18.restore.invalidates_child_admission .........................   Passed    0.25 sec
+      Start 176: T15.intent.expected_manifest_matches_fixed_cases
+58/63 Test #176: T15.intent.expected_manifest_matches_fixed_cases ................   Passed    0.28 sec
+      Start 177: T18.restore.structure_checked_before_generation_change
+59/63 Test #177: T18.restore.structure_checked_before_generation_change ..........   Passed    0.22 sec
+      Start 178: T18.restore.new_effect_requires_reconciliation_and_new_intent
+60/63 Test #178: T18.restore.new_effect_requires_reconciliation_and_new_intent ...   Passed    0.27 sec
+      Start 179: T15.intent.request_symbol_values_are_owned
+61/63 Test #179: T15.intent.request_symbol_values_are_owned ......................   Passed    0.24 sec
+      Start 180: T15.intent.fingerprint_preserves_scalar_types
+62/63 Test #180: T15.intent.fingerprint_preserves_scalar_types ...................   Passed    0.22 sec
+      Start 181: T18.restore.unknown_effect_cannot_reenter_claimed
+63/63 Test #181: T18.restore.unknown_effect_cannot_reenter_claimed ...............   Passed    0.25 sec
+
+100% tests passed, 0 tests failed out of 63
+
+Label Time Summary:
+D0.05    =  14.72 sec*proc (63 tests)
+
+Total Test time (real) =  14.84 sec

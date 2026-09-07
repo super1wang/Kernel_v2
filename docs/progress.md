@@ -4,11 +4,11 @@
 
 ## 当前节点
 
-- D0.01 已收到用户“批准”，包级状态 Passed；[批准记录](reviews/D0.01-approval.json) 绑定已审查提交。D0.02/D0.03 也已收到用户“继续”作为本轮验收批准；当前推进 D0.04–D0.06。
+- D0.01 已收到用户“批准”，包级状态 Passed；[批准记录](reviews/D0.01-approval.json) 绑定已审查提交。D0.02/D0.03 也已收到用户“继续”作为本轮验收批准；D0.04–D0.06实现和自动验证已完成，等待本批人工验收。
 - 当前分支：`work/d0-kernel-baseline`；远端：`https://github.com/super1wang/Kernel_v2.git`。用户已授权必要节点提交和推送。
 - 首个本地节点：`cce1db5`，保存两份原始规范及范围约束。该基线已用已登录且具写权限的 XU-RUiXIANG 推送到同名远端分支；默认账号 XU-Bruce 的首次推送返回 403，未写入远端。后续节点以 Git 实际日志为准。
 - D0.02 已交付 21 个实际 CMake 合同库、版本元数据安装验证及 29 项架构检查；技术复核通过、人工评审已批准。未实现 Runtime 或产品模块；52 个 future_cases 仍是未来预期。
-- 当前按依赖进入 D0.04（Plan/Control 合同）、D0.05（提交/epoch/恢复模型）及 D0.06（工具链/证据/Conformance 基建）；不越过 G0 进入原生实现。
+- 当前已完成 D0.04（Plan/Control 合同）、D0.05（提交/epoch/恢复模型）及 D0.06（工具链/证据/Conformance 基建）的实现与技术复核；G0 放行后进入后续原生实现。
 
 D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)。D0.03 已交付 Outcome/phase 模型与 Schema，43 项模型 CTest、54 golden 及 6 项适配器检查通过，技术复核及人工评审已完成；见 [评审](reviews/D0.03.md) 与 [验证索引](validation/D0.03.md)。
 
@@ -19,7 +19,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 - D0.04：Plan/Control Schema、中文合同、无状态认证cursor与参考模型已完成；独立审查补齐客户端终态/Host、同版本完整快照、绑定后Domain校验及退订在途帧，53项逐项验证通过，人工Pending。
 - D0.05：提交/许可/Intent/恢复模型及中文合同已完成；独立审查修复材料借用、未知盲重发及Effect一次发送边界，63项模型通过，实际产生的28份提交/29份效果Outcome通过D0.03校验，人工Pending。
 - D0.06-a：十二项固定依赖与六项Python开发wheel锁已核验；独立空目录Debug/Release各15项probe、Embedded ASan8项通过。全部只是开发probe，不声明生产后端。
-- D0.06-b/c：正式进程Job包装、来源/实际构建身份、固定expected与各轮JUnit、原始证据归档、门禁汇总、历史Incomplete导入及mock/fault共同harness已接入。统一G0工程Debug预构建成功；最终9组包/配置采集正在进行，不能提前写全绿。
+- D0.06-b/c：正式进程Job包装、来源/实际构建身份、固定expected与各轮JUnit、原始证据归档、门禁汇总、历史Incomplete导入及mock/fault共同harness已接入。统一G0工程Debug预构建成功；最终9组包/配置已全部通过，共372次CTest；来源142项与194dcdf提交逐字节一致，G0待本批人工验收。
 - 本批独立审查记录位于 `evidence/bootstrap/D0.04/independent-review.md`、`D0.05/parent-final-review.md`、`D0.06-a/independent-review.md`、`D0.06-b/independent-review.md`。所有失败轮次保留，旧批准不代替本轮新增实现审批。
 
 ## 已提交验证节点
@@ -36,7 +36,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 
 | 门禁 | 当前状态 | 事实 |
 |---|---|---|
-| G0 | InProgress | D0.01–D0.03 已批准；D0.04–D0.06 进行中 |
+| G0 | InProgress | D0.01–D0.03已批准；本批实现/技术审查/自动验证完成，待本批人工验收 |
 | G1 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G2 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G3 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
@@ -120,3 +120,5 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 ## 恢复工作时的规则
 
 先读本文件及当前包评审材料，再核对 Git 状态和真实证据；只能将已收到的人工批准写入评审记录。D0.06 前保存 bootstrap 命令事实，正式采集器完成后核对早期来源、报告与适用性。运行失败必须修复并追加证据，不能删预期、重写历史退出码或以更新文档代替实现。
+
+本批完整验收材料见 [G0验收记录](validation/G0.md) 与 [提交审查摘要](reviews/D0.04-D0.06-submission.json)。实现节点bf122b7、来源绑定修复194dcdf已推送；原始报告与最终验收文档随本次独立证据节点提交，具体提交号以Git日志为准。

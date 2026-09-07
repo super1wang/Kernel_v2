@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="2"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="MSI"
+	time="1"
+	timestamp="2026-09-07T14:57:38"
+	>
+	<testcase name="T01.requirements.traceability" classname="T01.requirements.traceability" time="0.268785" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.01"/>
+		</properties>
+		<system-out>{
+  "check_id": "CHECK.D0.01.traceability",
+  "errors": [],
+  "counts": {
+    "requirements": 24,
+    "work_packages": 64,
+    "invariants": 7,
+    "increments": 11,
+    "consumers": 3,
+    "planned_cases": 52
+  },
+  "scope": "仅 D0.01 登记检查；没有执行 future_cases 或内核运行时"
+}
+</system-out>
+	</testcase>
+	<testcase name="T01.requirements.negative_guards" classname="T01.requirements.negative_guards" time="1.17807" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.01"/>
+		</properties>
+		<system-out>test_added_work_package (test_traceability.TraceabilityTests.test_added_work_package) ... ok
+test_case_owned_by_unrelated_package (test_traceability.TraceabilityTests.test_case_owned_by_unrelated_package) ... ok
+test_changed_normative_hash (test_traceability.TraceabilityTests.test_changed_normative_hash) ... ok
+test_command_cannot_be_replaced_by_noop (test_traceability.TraceabilityTests.test_command_cannot_be_replaced_by_noop) ... ok
+test_conformance_cannot_waive_common_cases (test_traceability.TraceabilityTests.test_conformance_cannot_waive_common_cases) ... ok
+test_conformance_owner_matches_plan (test_traceability.TraceabilityTests.test_conformance_owner_matches_plan) ... ok
+test_deleted_expected_case (test_traceability.TraceabilityTests.test_deleted_expected_case) ... ok
+test_deleted_requirement (test_traceability.TraceabilityTests.test_deleted_requirement) ... ok
+test_dependency_cycle (test_traceability.TraceabilityTests.test_dependency_cycle) ... ok
+test_duplicate_expected_case (test_traceability.Traceab...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+</testsuite>
