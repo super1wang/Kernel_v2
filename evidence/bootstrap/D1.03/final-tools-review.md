@@ -1,0 +1,30 @@
+# D1.03 最终独立 AI 工具及归档代码复核
+
+actor_type：AI；审核者：review_tools。结论：Approved，限定注册验证工具、归档清单、固定矩阵与来源一致性；注册器最终类型身份/预算行为修复由review_contracts独立代码复核，本报告不替代该项。正式216/216/218全矩阵尚待执行，不声明包级Passed。
+
+## 精确绑定
+
+全部本轮相关源文件SHA见同目录final-tools-sha256.json，覆盖根CMake、registration CMake/discover/wrapper/fixtures/native测试、expected、matrix、三正式清单、证据收集/校验/进程工具及MSVC隔离工具。
+
+- verify_children.py：f6215651d2bb08ff985066e7814505a33591190db1410ca08380e7ecfd2398d8。
+- Debug manifest：7311db648f509b48e656c86e09ee3e222b4fe1a89b9ba71487635450ff6e3cf7。
+- Release manifest：e05e3a6fde19ffe6f5d11446caeae174da55bd33df9aedf60ce6918f2e84507d。
+- ASan manifest：04316ee719e946044b898f56f08701ab4748d00ab9e1d12791b5f9698d839ba4。
+
+## 最终修复核查
+
+此前manifest_owned_budget缺少相同ConfigurationBinding::make入口的合法冻结器正控制，本轮已补：positive.cpp显式提供ConfigurationSnapshot<int>::freeze后调用ConfigurationBinding::make(3)，missing_freeze.cpp使用同入口、同包含集但不提供冻结器。两个控制相互对应，不能因入口自身不可编译而假绿。
+
+独立读取implementation-wrapper-freeze及实际child 84793ac34815444f8d8d30d7b3519325：native/configure/positive三命令均Exited0，missing_freeze命令Exited非0且有预期C2672/C7602诊断；全部active_after=0、未终止残留Job。4命令的8份原始流逐项size/SHA一致，实际positive.obj存在。本轮只核验已运行材料，未冒充重新执行编译。此前integration-ece6db1b65的完整5wrapper布局复核继续有效；新增正控制替换同一个positive.cpp，没有增加主体、命令或产物数量。
+
+## 清单与归档
+
+独立复核固定expected分别216/216/218，全部逐项被regex匹配，三CHECK完整。旧D1.02回归档案/检查/minimum保持继承，25新增固定主体未减少。matrix明确位于source inputs且恰含三配置。
+
+registration 5wrapper实际23子命令、23份stdout/23份stderr、12cpp、3positive.obj、5commands/5structure，以及真实安装OCKConfig/两组件CMake源码/target-metadata，均由已固定pattern和minimum覆盖。此前208项归档逐文件SHA及配置映射核对结果见manifest-integration-verification.json，6项build_outputs与202项runtime材料无漏；最终wrapper沿用相同布局。CoreContracts合法安装消费者先成功，再拒绝未实现Runtime；没有通过删内部边界验证缩短矩阵。
+
+三份正式清单实际inputs()均为204项，共同输入摘要5ec83a35b9cfef0fd6e04ca627996916e8cee30136ae09e2fa545a5d34e4ac01。该值是本轮核查时来源摘要；主任务提交前仍须按最终静止来源重算并绑定正式spec/code记录，若源码或清单改变则重新复核，不拿本摘要替代未来提交身份。
+
+## 后续验收口径
+
+工具和归档方面无剩余必须修改项。主任务应结合review_contracts对最终预算修复的独立结论，冻结真实来源并提交，然后实际执行三配置完整矩阵和每配置三CHECK；报告只能依据真实命令/归档/审核计算。保留之前预审、缺口说明、失败轮和本次修复证据，不改写任何历史状态。D1.03通过也不能自动放行G1或后续包。

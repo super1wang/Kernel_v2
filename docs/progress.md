@@ -37,7 +37,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | 门禁 | 当前状态 | 事实 |
 |---|---|---|
 | G0 | Passed | 九组372次CTest、142项Git来源及AI规格/代码复核齐全，按用户政策自动验收 |
-| G1 | InProgress | D1.01自动验收Passed，D1.02具体API/固定集合已审，进入反例与实现；G1尚未验收 |
+| G1 | InProgress | D1.01、D1.02自动验收Passed，D1.03实现与独立AI复核完成准备，三配置正式验收待运行；G1尚未验收 |
 | G2 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G3 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G4 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |

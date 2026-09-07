@@ -1,0 +1,32 @@
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  1>Checking Build System
+  Building Custom Rule E:/VS2019Qt5.15/3D/tests/compile/contracts/CMakeLists.txt
+  contracts_tests.cpp
+  Building Custom Rule E:/VS2019Qt5.15/3D/CMakeLists.txt
+  expected.cpp
+  Building Custom Rule E:/VS2019Qt5.15/3D/tests/unit/foundation/CMakeLists.txt
+  ock_probe_expected.vcxproj -> E:\VS2019Qt5.15\3D\build\d1.03-debug-integration\Debug\ock_probe_expected.exe
+  foundation_tests.cpp
+  Building Custom Rule E:/VS2019Qt5.15/3D/CMakeLists.txt
+  toolchain.cpp
+  Building Custom Rule E:/VS2019Qt5.15/3D/tests/contract/registration/CMakeLists.txt
+  registry.cpp
+E:\VS2019Qt5.15\3D\tests\compile\contracts\contracts_tests.cpp(665,5): warning C4297: “ThrowReceiver::candidate_ready”: 假定函数不引发异常，但确实发生了 [E:\VS2019Qt5.15\3D\build\d1.03-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\contracts_tests.cpp(665,5):
+      在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+  
+  ock_probe_toolchain.vcxproj -> E:\VS2019Qt5.15\3D\build\d1.03-debug-integration\Debug\ock_probe_toolchain.exe
+  ock_foundation_tests.vcxproj -> E:\VS2019Qt5.15\3D\build\d1.03-debug-integration\tests\unit\foundation\Debug\ock_foundation_tests.exe
+  {"actual_cases": ["T03.foundation.code_only_no_allocation", "T03.foundation.value_operations_no_allocation", "T03.foundation.layout_statistics", "T04.foundation.result_move_only_value", "T04.foundation.result_move_only_error", "T04.foundation.result_void", "T04.foundation.result_error_propagation", "T04.foundation.result_bad_access", "T04.foundation.exception_not_business_failure", "T04.foundation.static_error_domain", "T04.foundation.error_details_ownership", "T04.foundation.error_details_budget", "T04.foundation.display_utf8", "T04.foundation.checked_arithmetic", "T04.foundation.checked_narrowing", "T04.foundation.checked_count_atomic_update", "T04.foundation.invariant_fail_fast", "T05.foundation.name_ascii_bounds", "T05.foundation.name_case_and_ownership", "T05.foundation.tagged_identity_types", "T05.foundation.identity_canonical_codec", "T05.foundation.bound_handle_generation", "T05.foundation.runtime_epoch_separation"], "count": 23}
+  Building Custom Rule E:/VS2019Qt5.15/3D/CMakeLists.txt
+  sdk_metadata.cpp
+  ock_sdk_metadata_probe.vcxproj -> E:\VS2019Qt5.15\3D\build\d1.03-debug-integration\Debug\ock_sdk_metadata_probe.exe
+  ock_contracts_tests.vcxproj -> E:\VS2019Qt5.15\3D\build\d1.03-debug-integration\tests\compile\contracts\Debug\ock_contracts_tests.exe
+  {"actual_cases": ["T02.contracts.type_contract_constraints", "T02.contracts.typed_value_validation", "T02.contracts.read_shape", "T02.contracts.state_edit_shape", "T02.contracts.effect_shape", "T02.contracts.lifecycle_shape", "T02.contracts.context_capability_boundary", "T02.contracts.atomic_read_adapters", "T02.contracts.atomic_async_rejected", "T05.contracts.operation_exact_identity", "T05.contracts.typed_binding_fingerprint", "T05.contracts.binding_generation_before_access", "T05.contracts.binding_owner_lifetime", "T05.contracts.execution_identity_separation", "T06.contracts.outcome_closed_variants", "T06.contracts.known_facts_append_only", "T06.contracts.publication_proof_required", "T06.contracts.effect_report_preserves_fact", "T06.contracts.lifecycle_report_preserves_state", "T06.contracts.before_apply_and_composite_proofs", "T06.contracts.reply_phase_completion_separation", "T06.contracts.executor_inline_ownership", "T06.contracts.executor_reject_exception_cleanup", "T06.contracts.completion_once_and_drain", "T06.contracts.atomic_prepared_identity", "T06.contracts.record_evidence_boundary", "T19.contracts.summary_owned_snapshot", "T19.contracts.observation_host_version", "T19.contracts.observation_budgets", "T19.contracts.authorized_owner_filter", "T19.contracts.completion_independent_of_observation", "T19.contracts.live_keyset_progress", "T24.contracts.port_factory_contract_manifest"], "count": 33}
+  ock_registry_internal.vcxproj -> E:\VS2019Qt5.15\3D\build\d1.03-debug-integration\tests\contract\registration\Debug\ock_registry_internal.lib
+  Building Custom Rule E:/VS2019Qt5.15/3D/tests/contract/registration/CMakeLists.txt
+  registration_tests.cpp
+  ock_registration_tests.vcxproj -> E:\VS2019Qt5.15\3D\build\d1.03-debug-integration\tests\contract\registration\Debug\ock_registration_tests.exe
+  {"actual_cases": ["T02.registration.atomic_candidate_contract", "T02.registration.batch_k_failure_atomic", "T02.registration.callback_exception_cleanup", "T02.registration.declared_operations_complete", "T02.registration.error_budget_sticky", "T02.registration.exact_operation_versions", "T02.registration.execution_capabilities", "T02.registration.ignored_errors_sticky", "T02.registration.manifest_owned_budget", "T02.registration.module_cycles_rejected", "T02.registration.module_dag_order", "T02.registration.module_identity_versions", "T02.registration.provider_binding", "T02.registration.schema_capability_absent", "T02.registration.service_binding", "T02.registration.shape_compile_contract", "T05.registration.exact_fingerprint", "T05.registration.failure_preserves_catalog", "T05.registration.publish_once_freeze", "T05.registration.registry_generation", "T05.registration.snapshot_lifetime", "T05.registration.typed_binding_success", "T24.registration.cold_docs_separation", "T24.registration.handler_not_exposed", "T24.registration.internal_component_boundary"], "count": 25}
+  Building Custom Rule E:/VS2019Qt5.15/3D/CMakeLists.txt

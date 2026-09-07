@@ -1,0 +1,167 @@
+{
+  "case": "T02.registration.manifest_owned_budget",
+  "commands": [
+    {
+      "argv": [
+        "E:/VS2019Qt5.15/3D/build/d1.03-implementation-green/tests/contract/registration/Debug/ock_registration_tests.exe",
+        "T02.registration.manifest_owned_budget"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T15:49:38.587810+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 2,
+        "terminated_owned_job": false
+      },
+      "executable": "E:\\VS2019Qt5.15\\3D\\build\\d1.03-implementation-green\\tests\\contract\\registration\\Debug\\ock_registration_tests.exe",
+      "pid": 6064,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-07T15:49:38.660256+00:00",
+      "raw": [
+        {
+          "path": "native-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        {
+          "path": "native-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "-S",
+        "E:\\VS2019Qt5.15\\3D\\build\\d1.03-implementation-green\\tests\\contract\\registration\\child-runs\\84793ac34815444f8d8d30d7b3519325",
+        "-B",
+        "E:\\VS2019Qt5.15\\3D\\build\\d1.03-implementation-green\\tests\\contract\\registration\\child-runs\\84793ac34815444f8d8d30d7b3519325\\build",
+        "-G",
+        "Visual Studio 17 2022",
+        "-DCMAKE_TOOLCHAIN_FILE=E:\\VS2019Qt5.15\\3D/cmake/LockedMSVC.cmake",
+        "-DCMAKE_MSVC_DEBUG_INFORMATION_FORMAT=Embedded",
+        "-A",
+        "x64",
+        "-T",
+        "v143,version=14.44.35207",
+        "-DCMAKE_SYSTEM_VERSION=10.0.26100.0"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T15:49:38.667086+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 30,
+        "terminated_owned_job": false
+      },
+      "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 21744,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-07T15:49:50.814800+00:00",
+      "raw": [
+        {
+          "path": "configure-stdout.log",
+          "sha256": "60e31955bb664112f5ac5ef05663a376720c5ccead2d03a02882945a55956be4",
+          "size": 544
+        },
+        {
+          "path": "configure-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "E:\\VS2019Qt5.15\\3D\\build\\d1.03-implementation-green\\tests\\contract\\registration\\child-runs\\84793ac34815444f8d8d30d7b3519325\\build",
+        "--config",
+        "Debug",
+        "--target",
+        "positive",
+        "--parallel",
+        "2",
+        "--",
+        "/nr:false"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T15:49:50.827572+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 16,
+        "terminated_owned_job": false
+      },
+      "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 27312,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-07T15:50:00.243865+00:00",
+      "raw": [
+        {
+          "path": "positive-stdout.log",
+          "sha256": "d4d25d9e51f02963a96969cb78e5ab816094902e270c0de32b47280b30519d0b",
+          "size": 453
+        },
+        {
+          "path": "positive-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "E:\\VS2019Qt5.15\\3D\\build\\d1.03-implementation-green\\tests\\contract\\registration\\child-runs\\84793ac34815444f8d8d30d7b3519325\\build",
+        "--config",
+        "Debug",
+        "--target",
+        "missing_freeze",
+        "--parallel",
+        "2",
+        "--",
+        "/nr:false"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T15:50:00.252631+00:00",
+      "exit_code": 1,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 9,
+        "terminated_owned_job": false
+      },
+      "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 33468,
+      "observed_exit_code": 1,
+      "finished_at": "2026-09-07T15:50:06.579713+00:00",
+      "raw": [
+        {
+          "path": "missing_freeze-stdout.log",
+          "sha256": "839b6a680210eed490ad46c3d5748b1a20736e550e0d904ef11144b2dcaedb48",
+          "size": 2258
+        },
+        {
+          "path": "missing_freeze-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        }
+      ]
+    }
+  ]
+}

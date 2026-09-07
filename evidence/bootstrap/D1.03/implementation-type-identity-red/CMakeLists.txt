@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.25)
+project(IdentityBudgetRed LANGUAGES CXX)
+add_executable(probe probe.cpp)
+target_compile_features(probe PRIVATE cxx_std_20)
+target_compile_options(probe PRIVATE /utf-8 /EHsc /permissive- /Zc:__cplusplus)
+target_include_directories(probe PRIVATE "E:/VS2019Qt5.15/3D" "E:/VS2019Qt5.15/3D/tests/compile/contracts" "E:/VS2019Qt5.15/3D/packages/contracts/include" "E:/VS2019Qt5.15/3D/packages/foundation/include" "E:/VS2019Qt5.15/3D/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include")
+target_link_libraries(probe PRIVATE "E:/VS2019Qt5.15/3D/build/d1.03-implementation-green/tests/contract/registration/Debug/ock_registry_internal.lib")

@@ -1,0 +1,28 @@
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  Building Custom Rule E:/VS2019Qt5.15/3D/build/d1.03-implementation-green/tests/contract/registration/child-runs/84793ac34815444f8d8d30d7b3519325/CMakeLists.txt
+  missing_freeze.cpp
+E:\VS2019Qt5.15\3D\build\d1.03-implementation-green\tests\contract\registration\child-runs\84793ac34815444f8d8d30d7b3519325\missing_freeze.cpp(5,37): error C2672: “ock::runtime::registry::ConfigurationBinding::make”: 未找到匹配的重载函数 [E:\VS2019Qt5.15\3D\build\d1.03-implementation-green\tests\contract\registration\child-runs\84793ac34815444f8d8d30d7b3519325\build\missing_freeze.vcxproj]
+      E:\VS2019Qt5.15\3D\packages\runtime\registry\registry.hpp(139,39):
+      可能是“tl::expected<ock::runtime::registry::ConfigurationBinding,ock::foundation::Error> ock::runtime::registry::ConfigurationBinding::make(const T &)”
+          E:\VS2019Qt5.15\3D\build\d1.03-implementation-green\tests\contract\registration\child-runs\84793ac34815444f8d8d30d7b3519325\missing_freeze.cpp(5,37):
+          未能使函数模板“tl::expected<ock::runtime::registry::ConfigurationBinding,ock::foundation::Error> ock::runtime::registry::ConfigurationBinding::make(const T &)”专用化
+              E:\VS2019Qt5.15\3D\build\d1.03-implementation-green\tests\contract\registration\child-runs\84793ac34815444f8d8d30d7b3519325\missing_freeze.cpp(5,37):
+              用下列模板参数:
+                  E:\VS2019Qt5.15\3D\build\d1.03-implementation-green\tests\contract\registration\child-runs\84793ac34815444f8d8d30d7b3519325\missing_freeze.cpp(5,37):
+                  “T=int”
+              E:\VS2019Qt5.15\3D\packages\runtime\registry\registry.hpp(140,14):
+              未满足关联约束
+                  E:\VS2019Qt5.15\3D\packages\runtime\registry\registry.hpp(141,35):
+                  使用了未定义类型“ock::runtime::registry::ConfigurationSnapshot<T>”
+          with
+          [
+              T=int
+          ]
+                  E:\VS2019Qt5.15\3D\packages\runtime\registry\registry.hpp(129,27):
+                  参见“ock::runtime::registry::ConfigurationSnapshot<T>”的声明
+          with
+          [
+              T=int
+          ]
+  

@@ -1,0 +1,92 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--fresh",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "build/d1.03-debug-integration",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DOCK_BUILD_G0_TESTS=ON",
+      "-DOCK_BUILD_EXECUTION_MODEL_TESTS=OFF",
+      "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+      "-DOCK_BUILD_FOUNDATION_TESTS=ON",
+      "-DOCK_BUILD_CORE_CONTRACTS_TESTS=ON",
+      "-DOCK_ENABLE_ASAN=OFF",
+      "-DOCK_BUILD_REGISTRATION_TESTS=ON"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T15:41:40.375728+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 49,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 30104,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T15:41:57.418238+00:00"
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/d1.03-debug-integration",
+      "--config",
+      "Debug",
+      "--parallel",
+      "2",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T15:41:57.419197+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 99,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 22288,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T15:42:19.961059+00:00"
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/d1.03-debug-integration",
+      "-C",
+      "Debug",
+      "-R",
+      "^T(02|05|24)[.]registration[.]",
+      "--output-on-failure",
+      "--no-tests=error"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T15:42:19.962010+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 268,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 23052,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T15:44:45.969304+00:00"
+  }
+]
