@@ -4,13 +4,13 @@
 
 ## 当前节点
 
-- D0.01 已收到用户“批准”，包级状态 Passed；[批准记录](reviews/D0.01-approval.json) 绑定已审查提交。当前推进 D0.02/D0.03，均仅依赖已通过的 D0.01。
+- D0.01 已收到用户“批准”，包级状态 Passed；[批准记录](reviews/D0.01-approval.json) 绑定已审查提交。D0.02/D0.03 也已收到用户“继续”作为本轮验收批准；当前推进 D0.04–D0.06。
 - 当前分支：`work/d0-kernel-baseline`；远端：`https://github.com/super1wang/Kernel_v2.git`。用户已授权必要节点提交和推送。
 - 首个本地节点：`cce1db5`，保存两份原始规范及范围约束。该基线已用已登录且具写权限的 XU-RUiXIANG 推送到同名远端分支；默认账号 XU-Bruce 的首次推送返回 403，未写入远端。后续节点以 Git 实际日志为准。
-- D0.02 已交付 21 个实际 CMake 合同库、版本元数据安装验证及 29 项架构检查；技术复核通过、人工评审待批准。未实现 Runtime 或产品模块；52 个 future_cases 仍是未来预期。
-- 当前按依赖进入 D0.02（target DAG/公开头/威胁边界）及 D0.03（Outcome/phase 参考模型）；不越过 G0 进入原生实现。
+- D0.02 已交付 21 个实际 CMake 合同库、版本元数据安装验证及 29 项架构检查；技术复核通过、人工评审已批准。未实现 Runtime 或产品模块；52 个 future_cases 仍是未来预期。
+- 当前按依赖进入 D0.04（Plan/Control 合同）、D0.05（提交/epoch/恢复模型）及 D0.06（工具链/证据/Conformance 基建）；不越过 G0 进入原生实现。
 
-D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)。D0.03 已交付 Outcome/phase 模型与 Schema，43 项模型 CTest、54 golden 及 6 项适配器检查通过，技术复核已完成、人工评审待批准；见 [评审](reviews/D0.03.md) 与 [验证索引](validation/D0.03.md)。
+D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)。D0.03 已交付 Outcome/phase 模型与 Schema，43 项模型 CTest、54 golden 及 6 项适配器检查通过，技术复核及人工评审已完成；见 [评审](reviews/D0.03.md) 与 [验证索引](validation/D0.03.md)。
 
 材料：[需求登记](requirements.md)、[消费者目标](consumer-targets.md)、[D0.01 评审](reviews/D0.01.md)、[原始证据说明](../evidence/README.md)。
 
@@ -22,13 +22,13 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 
 - D0.02/D0.03 实现与资料节点：`8246ef6`，已提交并推送；两包最终 bootstrap 的全部源输入与该 Git 提交逐一匹配，原始日志及构建摘要核对一致。
 - 本次实际结果：D0.02 4/4 CTest（含 29 项架构检查及真实 MSVC 安装消费）；D0.03 43/43 模型 CTest、54 golden、6/6 适配器检查；D0.01 的登记及 29 项反例回归也通过。
-- [本次提审摘要](reviews/D0.02-D0.03-submission.json) 的人工状态 Pending。收到针对 D0.02/D0.03 的批准后，分别更新批准记录，再按实际前置进入 D0.04/D0.05/D0.06；不提前标 G0 Passed。
+- [提审摘要](reviews/D0.02-D0.03-submission.json) 保留历史 Pending；当前人工结论见 [D0.02 批准](reviews/D0.02-approval.json)、[D0.03 批准](reviews/D0.03-approval.json)。下一批执行范围见 [节点实施记录](plans/D0.04-D0.06.md)；不提前标 G0 Passed。
 
 ## 阶段门禁
 
 | 门禁 | 当前状态 | 事实 |
 |---|---|---|
-| G0 | InProgress | D0.01 已批准；D0.02/D0.03 实现与技术复核完成，待人工批准；D0.04–D0.06 未开始 |
+| G0 | InProgress | D0.01–D0.03 已批准；D0.04–D0.06 进行中 |
 | G1 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G2 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G3 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
@@ -45,11 +45,11 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | 工作包 | 名称 | 前置包 | 包级状态 |
 |---|---|---|---|
 | D0.01 | 登记需求、不变量和三个消费者 | 无 | Passed |
-| D0.02 | 冻结target DAG、公开头和威胁模型 | D0.01 | InProgress |
-| D0.03 | Outcome、phase和完成回调参考模型 | D0.01 | InProgress |
-| D0.04 | Plan与Control wire、槽类型和观察合同 | D0.01、D0.03 | NotStarted |
-| D0.05 | 提交、许可、epoch和备份恢复参考模型 | D0.01、D0.03 | NotStarted |
-| D0.06 | 固定工具链、共享测试基建与自动证据采集 | D0.02 | NotStarted |
+| D0.02 | 冻结target DAG、公开头和威胁模型 | D0.01 | Passed |
+| D0.03 | Outcome、phase和完成回调参考模型 | D0.01 | Passed |
+| D0.04 | Plan与Control wire、槽类型和观察合同 | D0.01、D0.03 | InProgress |
+| D0.05 | 提交、许可、epoch和备份恢复参考模型 | D0.01、D0.03 | InProgress |
+| D0.06 | 固定工具链、共享测试基建与自动证据采集 | D0.02 | InProgress |
 | D1.01 | 实现Foundation与错误/标识原语 | D0.03、D0.06 | NotStarted |
 | D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | NotStarted |
 | D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | NotStarted |

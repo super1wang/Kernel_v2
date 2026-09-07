@@ -1,6 +1,6 @@
 # Kernel_v2 · Open Command Kernel
 
-按 v3.3 规划从零建设的 Windows x64 / C++20 开放命令内核。D0.01 已批准；**D0.02 工程边界 / D0.03 完成模型**已实现并通过技术复核，待人工评审。当前有 CMake 合同目标和可执行参考模型，G0 未通过。
+按 v3.3 规划从零建设的 Windows x64 / C++20 开放命令内核。D0.01–D0.03 已批准；当前推进 **D0.04 Plan/Control 合同、D0.05 提交与恢复模型、D0.06 工具链与证据基建**。当前有 CMake 合同目标和可执行参考模型，G0 未通过。
 
 - [当前进度与 64 个工作包](docs/progress.md)
 - [唯一架构规范](docs/01_Architecture_v3.3.md) 与 [唯一执行计划](docs/02_Execution_Plan_v3.3.md)
