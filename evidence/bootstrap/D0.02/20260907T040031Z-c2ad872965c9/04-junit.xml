@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="4"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="MSI"
+	time="69"
+	timestamp="2026-09-07T12:00:38"
+	>
+	<testcase name="T24.sdk.version_header" classname="T24.sdk.version_header" time="0.036454" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>0.1.0-dev.1
+</system-out>
+	</testcase>
+	<testcase name="T01.architecture.dependency_dag" classname="T01.architecture.dependency_dag" time="0.201879" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>{
+  "check_id": "CHECK.D0.02.architecture",
+  "errors": [],
+  "scope": "合同目标/公开表面静态检查；无Runtime运行或授权实现"
+}
+</system-out>
+	</testcase>
+	<testcase name="T01.architecture.negative_guards" classname="T01.architecture.negative_guards" time="0.561033" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>test_approved_architecture_matches_manifest (test_architecture.ArchitectureTests.test_approved_architecture_matches_manifest) ... ok
+test_authorized_immutable_read_is_allowed (test_architecture.ArchitectureTests.test_authorized_immutable_read_is_allowed) ... ok
+test_client_has_no_server_dependency (test_architecture.ArchitectureTests.test_client_has_no_server_dependency) ... ok
+test_dsl_is_not_a_required_release_component (test_architecture.ArchitectureTests.test_dsl_is_not_a_required_release_component) ... ok
+test_generic_state_rpc_is_rejected (test_architecture.ArchitectureTests.test_generic_state_rpc_is_rejected) ... ok
+test_include_comment_does_not_bypass_ownership (test_architecture.ArchitectureTests.test_include_comment_does_not_bypass_ownership) ... ok
+test_macro_include_requires_explicit_review (test_architecture.ArchitectureTests.test_macro_include_requires_explicit_review) ... ok
+test_no_runtime_component_is_marked_implemented (test_architecture.ArchitectureTests.test_no_runtime_component_is_marked_...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.sdk.install_and_missing_components" classname="T24.sdk.install_and_missing_components" time="68.8399" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>argv: ['cmake', '--install', 'E:\\VS2019Qt5.15\\3D\\build\\d0.02', '--config', 'Debug', '--prefix', 'E:\\VS2019Qt5.15\\3D\\build\\install-check-shtj9xh6\\original'] exit_code: 0
+argv: ['cmake', '-S', 'E:\\VS2019Qt5.15\\3D\\tests\\install_consumer\\baseline', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-DCMAKE_PREFIX_PATH=E:\\VS2019Qt5.15\\3D\\build\\install-check-shtj9xh6\\relocated', '-B', 'E:\\VS2019Qt5.15\\3D\\build\\install-check-shtj9xh6\\consumer'] exit_code: 0
+argv: ['cmake', '--build', 'E:\\VS2019Qt5.15\\3D\\build\\install-check-shtj9xh6\\consumer', '--config', 'Debug', '--parallel'] exit_code: 0
+argv: ['E:\\VS2019Qt5.15\\3D\\build\\install-check-shtj9xh6\\consumer\\Debug\\installed_metadata.exe'] exit_code: 0
+argv: ['cmake', '-S', 'E:\\VS2019Qt5.15\\3D\\tests\\install_consumer\\baseline', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-DCMAKE_PREFIX_PATH=E:\\VS2019Qt5.15\\3D\\build\\install-check-shtj9xh6\\relocated', '-B', 'E:\\VS2019Qt5.15\\3D\\build\\install-check-shtj9xh6\\Runtime', '-DREQUIRE_COM...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+</testsuite>

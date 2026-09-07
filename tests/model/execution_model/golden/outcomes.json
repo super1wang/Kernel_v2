@@ -1,0 +1,1435 @@
+[
+  {
+    "name": "read-completed",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "ReadCompleted",
+      "evidence": "Volatile",
+      "known_facts": [],
+      "result": {
+        "value": 7
+      },
+      "result_scope": "ReadOnly"
+    }
+  },
+  {
+    "name": "candidate-read-completed",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "ReadCompleted",
+      "evidence": "Volatile",
+      "known_facts": [],
+      "result": {
+        "value": 7
+      },
+      "result_scope": "Candidate"
+    }
+  },
+  {
+    "name": "effect-partially-applied-failed",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "EffectResolved",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        }
+      ],
+      "effect_id": "effect-1",
+      "application": "PartiallyApplied",
+      "status": "Failed",
+      "external_evidence": [
+        "device-receipt-1"
+      ],
+      "result": {
+        "sent": 2
+      }
+    }
+  },
+  {
+    "name": "effect-not-applied-failed",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "EffectResolved",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "NotApplied"
+        }
+      ],
+      "effect_id": "effect-1",
+      "application": "NotApplied",
+      "status": "Failed",
+      "external_evidence": [
+        "device-receipt-1"
+      ],
+      "result": {
+        "sent": 2
+      }
+    }
+  },
+  {
+    "name": "lifecycle-failed-real-state",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "LifecycleResolved",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "LifecycleFact",
+          "fact_id": "f-life",
+          "transition_id": "transition-1",
+          "before": "Ready",
+          "after": "Failed",
+          "generation": "8"
+        }
+      ],
+      "transition_id": "transition-1",
+      "before": "Ready",
+      "after": "Failed",
+      "generation": "8",
+      "status": "Failed"
+    }
+  },
+  {
+    "name": "pure-read-plan-completed",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "PlanCompleted",
+      "evidence": "Volatile",
+      "known_facts": [],
+      "exports": {
+        "value": 3
+      },
+      "necessary_children_drained": true,
+      "steps": [
+        {
+          "step_id": "step-0",
+          "status": "Succeeded"
+        },
+        {
+          "step_id": "step-1",
+          "status": "Succeeded"
+        }
+      ]
+    }
+  },
+  {
+    "name": "failed-before-apply",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "FailedBeforeApply",
+      "evidence": "Volatile",
+      "known_facts": [],
+      "failure_phase": "Running",
+      "reason": "Error",
+      "proof": "NoAppliedStateOrEffect"
+    }
+  },
+  {
+    "name": "cancelled-before-apply",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "CancelledBeforeApply",
+      "evidence": "Volatile",
+      "known_facts": [],
+      "reason": "Cancelled",
+      "proof": "NoAppliedStateOrEffect"
+    }
+  },
+  {
+    "name": "effect-unknown",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "Indeterminate",
+      "evidence": "PersistenceUncertain",
+      "known_facts": [
+        {
+          "kind": "UnknownFact",
+          "fact_id": "u1",
+          "boundary": "ExternalEffect",
+          "reference_id": "effect-1",
+          "reconcile": "query-device-receipt"
+        }
+      ],
+      "unknown_ids": [
+        "u1"
+      ]
+    }
+  },
+  {
+    "name": "durable-committed-unpublished",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "ExecutionObservation",
+      "execution_ref": "exec-1",
+      "host_incarnation": "host-1",
+      "observation_version": "3",
+      "phase": "Running",
+      "progress": null,
+      "known_facts": [
+        {
+          "kind": "CommitFact",
+          "fact_id": "commit:commit-1",
+          "commit_id": "commit-1",
+          "domain": "settings",
+          "revision": "41",
+          "durability": "DurableCommitted"
+        }
+      ],
+      "outcome": null,
+      "quiescent": false,
+      "durable_pins": false,
+      "writes_blocked": false,
+      "fault": null,
+      "isolation_owner": null,
+      "local_pending": 1,
+      "required_record_state": "NotRequired",
+      "post_observation_errors": [],
+      "repair_strategy": null
+    }
+  },
+  {
+    "name": "state-committed",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "StateCommitted",
+      "evidence": "Durable",
+      "known_facts": [
+        {
+          "kind": "CommitFact",
+          "fact_id": "commit:commit-1",
+          "commit_id": "commit-1",
+          "domain": "settings",
+          "revision": "41",
+          "durability": "DurableCommitted"
+        },
+        {
+          "kind": "PublishedFact",
+          "fact_id": "published:commit-1",
+          "commit_id": "commit-1",
+          "published_version": "41"
+        }
+      ],
+      "commit_id": "commit-1",
+      "domain": "settings",
+      "revision": "41",
+      "published_version": "41",
+      "result": {}
+    }
+  },
+  {
+    "name": "plan-multiple-commits",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "PlanCompleted",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "CommitFact",
+          "fact_id": "commit:commit-1",
+          "commit_id": "commit-1",
+          "domain": "settings",
+          "revision": "41",
+          "durability": "DurableCommitted"
+        },
+        {
+          "kind": "PublishedFact",
+          "fact_id": "published:commit-1",
+          "commit_id": "commit-1",
+          "published_version": "41"
+        },
+        {
+          "kind": "CommitFact",
+          "fact_id": "commit:2",
+          "commit_id": "commit-2",
+          "domain": "settings",
+          "revision": "42",
+          "durability": "Memory"
+        },
+        {
+          "kind": "PublishedFact",
+          "fact_id": "published:2",
+          "commit_id": "commit-2",
+          "published_version": "42"
+        }
+      ],
+      "exports": {
+        "value": 3
+      },
+      "necessary_children_drained": true,
+      "steps": [
+        {
+          "step_id": "step-0",
+          "status": "Succeeded"
+        },
+        {
+          "step_id": "step-1",
+          "status": "Succeeded"
+        }
+      ]
+    }
+  },
+  {
+    "name": "finalizing-known-commit",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "ExecutionObservation",
+      "execution_ref": "exec-1",
+      "host_incarnation": "host-1",
+      "observation_version": "5",
+      "phase": "Finalizing",
+      "progress": null,
+      "known_facts": [
+        {
+          "kind": "CommitFact",
+          "fact_id": "commit:commit-1",
+          "commit_id": "commit-1",
+          "domain": "settings",
+          "revision": "41",
+          "durability": "DurableCommitted"
+        },
+        {
+          "kind": "PublishedFact",
+          "fact_id": "published:commit-1",
+          "commit_id": "commit-1",
+          "published_version": "41"
+        }
+      ],
+      "outcome": {
+        "kind": "StateCommitted",
+        "evidence": "Durable",
+        "known_facts": [
+          {
+            "kind": "CommitFact",
+            "fact_id": "commit:commit-1",
+            "commit_id": "commit-1",
+            "domain": "settings",
+            "revision": "41",
+            "durability": "DurableCommitted"
+          },
+          {
+            "kind": "PublishedFact",
+            "fact_id": "published:commit-1",
+            "commit_id": "commit-1",
+            "published_version": "41"
+          }
+        ],
+        "commit_id": "commit-1",
+        "domain": "settings",
+        "revision": "41",
+        "published_version": "41",
+        "result": {}
+      },
+      "quiescent": false,
+      "durable_pins": false,
+      "writes_blocked": false,
+      "fault": null,
+      "isolation_owner": null,
+      "local_pending": 0,
+      "required_record_state": "NotRequired",
+      "post_observation_errors": [],
+      "repair_strategy": null
+    }
+  },
+  {
+    "name": "terminal-known-commit",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "ExecutionObservation",
+      "execution_ref": "exec-1",
+      "host_incarnation": "host-1",
+      "observation_version": "6",
+      "phase": "Terminal",
+      "progress": null,
+      "known_facts": [
+        {
+          "kind": "CommitFact",
+          "fact_id": "commit:commit-1",
+          "commit_id": "commit-1",
+          "domain": "settings",
+          "revision": "41",
+          "durability": "DurableCommitted"
+        },
+        {
+          "kind": "PublishedFact",
+          "fact_id": "published:commit-1",
+          "commit_id": "commit-1",
+          "published_version": "41"
+        }
+      ],
+      "outcome": {
+        "kind": "StateCommitted",
+        "evidence": "Durable",
+        "known_facts": [
+          {
+            "kind": "CommitFact",
+            "fact_id": "commit:commit-1",
+            "commit_id": "commit-1",
+            "domain": "settings",
+            "revision": "41",
+            "durability": "DurableCommitted"
+          },
+          {
+            "kind": "PublishedFact",
+            "fact_id": "published:commit-1",
+            "commit_id": "commit-1",
+            "published_version": "41"
+          }
+        ],
+        "commit_id": "commit-1",
+        "domain": "settings",
+        "revision": "41",
+        "published_version": "41",
+        "result": {}
+      },
+      "quiescent": true,
+      "durable_pins": false,
+      "writes_blocked": false,
+      "fault": null,
+      "isolation_owner": null,
+      "local_pending": 0,
+      "required_record_state": "NotRequired",
+      "post_observation_errors": [],
+      "repair_strategy": null
+    }
+  },
+  {
+    "name": "partial-known-effect",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "PartialCompletion",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        }
+      ],
+      "steps": [
+        {
+          "step_id": "a",
+          "status": "Succeeded"
+        },
+        {
+          "step_id": "b",
+          "status": "Cancelled"
+        }
+      ]
+    }
+  },
+  {
+    "name": "accepted-ticket",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "Accepted",
+      "execution_ref": "e1",
+      "acceptance_guarantee": "DurableAccepted"
+    }
+  },
+  {
+    "name": "invoke-completed",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "Completed",
+      "outcome": {
+        "kind": "ReadCompleted",
+        "evidence": "Volatile",
+        "known_facts": [],
+        "result": {
+          "value": 7
+        },
+        "result_scope": "ReadOnly"
+      }
+    }
+  },
+  {
+    "name": "admission-rejected",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "Rejected",
+      "reason": "QuotaExceeded"
+    }
+  },
+  {
+    "name": "atomic-candidate-progress",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "ExecutionObservation",
+      "execution_ref": "exec-1",
+      "host_incarnation": "host-1",
+      "observation_version": "3",
+      "phase": "Running",
+      "progress": {
+        "percent": 20,
+        "scope": "Candidate"
+      },
+      "known_facts": [],
+      "outcome": null,
+      "quiescent": false,
+      "durable_pins": false,
+      "writes_blocked": false,
+      "fault": null,
+      "isolation_owner": null,
+      "local_pending": 1,
+      "required_record_state": "NotRequired",
+      "post_observation_errors": [],
+      "repair_strategy": null
+    }
+  },
+  {
+    "name": "record-fault-finalizing",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "ExecutionObservation",
+      "execution_ref": "exec-1",
+      "host_incarnation": "host-1",
+      "observation_version": "4",
+      "phase": "Finalizing",
+      "progress": null,
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        }
+      ],
+      "outcome": {
+        "kind": "EffectResolved",
+        "evidence": "RequiredRecordFailed",
+        "known_facts": [
+          {
+            "kind": "EffectFact",
+            "fact_id": "f-effect",
+            "effect_id": "effect-1",
+            "application": "PartiallyApplied"
+          }
+        ],
+        "effect_id": "effect-1",
+        "application": "PartiallyApplied",
+        "status": "Failed",
+        "external_evidence": [
+          "device-receipt-1"
+        ],
+        "result": {
+          "sent": 2
+        }
+      },
+      "quiescent": false,
+      "durable_pins": false,
+      "writes_blocked": true,
+      "fault": "RequiredRecordFailed",
+      "isolation_owner": null,
+      "local_pending": 0,
+      "required_record_state": "Failed",
+      "post_observation_errors": [],
+      "repair_strategy": "ReceiptReconcile"
+    }
+  },
+  {
+    "name": "record-fault-terminal",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "ExecutionObservation",
+      "execution_ref": "exec-1",
+      "host_incarnation": "host-1",
+      "observation_version": "5",
+      "phase": "Terminal",
+      "progress": null,
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        }
+      ],
+      "outcome": {
+        "kind": "EffectResolved",
+        "evidence": "RequiredRecordFailed",
+        "known_facts": [
+          {
+            "kind": "EffectFact",
+            "fact_id": "f-effect",
+            "effect_id": "effect-1",
+            "application": "PartiallyApplied"
+          }
+        ],
+        "effect_id": "effect-1",
+        "application": "PartiallyApplied",
+        "status": "Failed",
+        "external_evidence": [
+          "device-receipt-1"
+        ],
+        "result": {
+          "sent": 2
+        }
+      },
+      "quiescent": true,
+      "durable_pins": false,
+      "writes_blocked": true,
+      "fault": "RequiredRecordFailed",
+      "isolation_owner": null,
+      "local_pending": 0,
+      "required_record_state": "Failed",
+      "post_observation_errors": [],
+      "repair_strategy": "ReceiptReconcile"
+    }
+  },
+  {
+    "name": "suspended-holds-pins",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "ExecutionObservation",
+      "execution_ref": "exec-1",
+      "host_incarnation": "host-1",
+      "observation_version": "3",
+      "phase": "Suspended",
+      "progress": null,
+      "known_facts": [],
+      "outcome": null,
+      "quiescent": false,
+      "durable_pins": true,
+      "writes_blocked": false,
+      "fault": null,
+      "isolation_owner": null,
+      "local_pending": 0,
+      "required_record_state": "NotRequired",
+      "post_observation_errors": [],
+      "repair_strategy": null
+    }
+  },
+  {
+    "name": "effect-minimal-encoding-failure",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "EffectResolved",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        }
+      ],
+      "effect_id": "effect-1",
+      "application": "PartiallyApplied",
+      "status": "Failed",
+      "external_evidence": [
+        "device-receipt-1"
+      ],
+      "result_error": "ResultSerializationFailed"
+    }
+  },
+  {
+    "name": "unknown-outcome-kind",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "Success",
+      "evidence": "Volatile",
+      "known_facts": [],
+      "result": {
+        "value": 7
+      },
+      "result_scope": "ReadOnly"
+    }
+  },
+  {
+    "name": "accepted-with-final-result",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "Accepted",
+      "execution_ref": "e1",
+      "acceptance_guarantee": "Volatile",
+      "outcome": {
+        "kind": "ReadCompleted",
+        "evidence": "Volatile",
+        "known_facts": [],
+        "result": {
+          "value": 7
+        },
+        "result_scope": "ReadOnly"
+      }
+    }
+  },
+  {
+    "name": "completed-with-task-ref",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "Completed",
+      "outcome": {
+        "kind": "ReadCompleted",
+        "evidence": "Volatile",
+        "known_facts": [],
+        "result": {
+          "value": 7
+        },
+        "result_scope": "ReadOnly"
+      },
+      "execution_ref": "e1"
+    }
+  },
+  {
+    "name": "read-forged-commit",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "ReadCompleted",
+      "evidence": "Volatile",
+      "known_facts": [],
+      "result": {
+        "value": 7
+      },
+      "result_scope": "ReadOnly",
+      "commit_id": "fake"
+    }
+  },
+  {
+    "name": "free-evidence-booleans",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "ReadCompleted",
+      "evidence": "Volatile",
+      "known_facts": [],
+      "result": {
+        "value": 7
+      },
+      "result_scope": "ReadOnly",
+      "durable": true
+    }
+  },
+  {
+    "name": "invalid-evidence-enum",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "ReadCompleted",
+      "evidence": "Committed",
+      "known_facts": [],
+      "result": {
+        "value": 7
+      },
+      "result_scope": "ReadOnly"
+    }
+  },
+  {
+    "name": "read-persistence-uncertain",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "ReadCompleted",
+      "evidence": "PersistenceUncertain",
+      "known_facts": [],
+      "result": {
+        "value": 7
+      },
+      "result_scope": "ReadOnly"
+    }
+  },
+  {
+    "name": "plan-global-commit",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "PlanCompleted",
+      "evidence": "Volatile",
+      "known_facts": [],
+      "exports": {
+        "value": 3
+      },
+      "necessary_children_drained": true,
+      "steps": [
+        {
+          "step_id": "step-0",
+          "status": "Succeeded"
+        },
+        {
+          "step_id": "step-1",
+          "status": "Succeeded"
+        }
+      ],
+      "commit_id": "global"
+    }
+  },
+  {
+    "name": "plan-children-not-drained",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "PlanCompleted",
+      "evidence": "Volatile",
+      "known_facts": [],
+      "exports": {
+        "value": 3
+      },
+      "necessary_children_drained": false,
+      "steps": [
+        {
+          "step_id": "step-0",
+          "status": "Succeeded"
+        },
+        {
+          "step_id": "step-1",
+          "status": "Succeeded"
+        }
+      ]
+    }
+  },
+  {
+    "name": "effect-without-external-receipt",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "EffectResolved",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        }
+      ],
+      "effect_id": "effect-1",
+      "application": "PartiallyApplied",
+      "status": "Failed",
+      "result": {
+        "sent": 2
+      }
+    }
+  },
+  {
+    "name": "effect-without-result-or-error",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "EffectResolved",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        }
+      ],
+      "effect_id": "effect-1",
+      "application": "PartiallyApplied",
+      "status": "Failed",
+      "external_evidence": [
+        "device-receipt-1"
+      ]
+    }
+  },
+  {
+    "name": "numeric-revision",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "StateCommitted",
+      "evidence": "Durable",
+      "known_facts": [
+        {
+          "kind": "CommitFact",
+          "fact_id": "commit:commit-1",
+          "commit_id": "commit-1",
+          "domain": "settings",
+          "revision": "41",
+          "durability": "DurableCommitted"
+        },
+        {
+          "kind": "PublishedFact",
+          "fact_id": "published:commit-1",
+          "commit_id": "commit-1",
+          "published_version": "41"
+        }
+      ],
+      "commit_id": "commit-1",
+      "domain": "settings",
+      "revision": 41,
+      "published_version": "41",
+      "result": {}
+    }
+  },
+  {
+    "name": "unknown-without-boundary",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "Indeterminate",
+      "evidence": "PersistenceUncertain",
+      "known_facts": [
+        {
+          "kind": "UnknownFact",
+          "fact_id": "u1",
+          "boundary": "ExternalEffect",
+          "reference_id": "effect-1",
+          "reconcile": "query-device-receipt"
+        }
+      ],
+      "unknown_ids": []
+    }
+  },
+  {
+    "name": "unpublished-state-success",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "StateCommitted",
+      "evidence": "Durable",
+      "known_facts": [
+        {
+          "kind": "CommitFact",
+          "fact_id": "commit:commit-1",
+          "commit_id": "commit-1",
+          "domain": "settings",
+          "revision": "41",
+          "durability": "DurableCommitted"
+        }
+      ],
+      "commit_id": "commit-1",
+      "domain": "settings",
+      "revision": "41",
+      "published_version": "41",
+      "result": {}
+    }
+  },
+  {
+    "name": "state-revision-mismatch",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "StateCommitted",
+      "evidence": "Durable",
+      "known_facts": [
+        {
+          "kind": "CommitFact",
+          "fact_id": "commit:commit-1",
+          "commit_id": "commit-1",
+          "domain": "settings",
+          "revision": "41",
+          "durability": "DurableCommitted"
+        },
+        {
+          "kind": "PublishedFact",
+          "fact_id": "published:commit-1",
+          "commit_id": "commit-1",
+          "published_version": "41"
+        }
+      ],
+      "commit_id": "commit-1",
+      "domain": "settings",
+      "revision": "42",
+      "published_version": "41",
+      "result": {}
+    }
+  },
+  {
+    "name": "state-durable-downgraded",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "StateCommitted",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "CommitFact",
+          "fact_id": "commit:commit-1",
+          "commit_id": "commit-1",
+          "domain": "settings",
+          "revision": "41",
+          "durability": "DurableCommitted"
+        },
+        {
+          "kind": "PublishedFact",
+          "fact_id": "published:commit-1",
+          "commit_id": "commit-1",
+          "published_version": "41"
+        }
+      ],
+      "commit_id": "commit-1",
+      "domain": "settings",
+      "revision": "41",
+      "published_version": "41",
+      "result": {}
+    }
+  },
+  {
+    "name": "read-hides-effect",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "ReadCompleted",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        }
+      ],
+      "result": {
+        "value": 7
+      },
+      "result_scope": "ReadOnly"
+    }
+  },
+  {
+    "name": "failed-hides-effect",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "FailedBeforeApply",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        }
+      ],
+      "failure_phase": "Running",
+      "reason": "Error",
+      "proof": "NoAppliedStateOrEffect"
+    }
+  },
+  {
+    "name": "effect-application-mismatch",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "EffectResolved",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        }
+      ],
+      "effect_id": "effect-1",
+      "application": "NotApplied",
+      "status": "Failed",
+      "external_evidence": [
+        "device-receipt-1"
+      ],
+      "result": {
+        "sent": 2
+      }
+    }
+  },
+  {
+    "name": "lifecycle-after-mismatch",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "LifecycleResolved",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "LifecycleFact",
+          "fact_id": "f-life",
+          "transition_id": "transition-1",
+          "before": "Ready",
+          "after": "Failed",
+          "generation": "8"
+        }
+      ],
+      "transition_id": "transition-1",
+      "before": "Ready",
+      "after": "Ready",
+      "generation": "8",
+      "status": "Failed"
+    }
+  },
+  {
+    "name": "plan-failed-step",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "PlanCompleted",
+      "evidence": "Volatile",
+      "known_facts": [],
+      "exports": {
+        "value": 3
+      },
+      "necessary_children_drained": true,
+      "steps": [
+        {
+          "step_id": "step-0",
+          "status": "Succeeded"
+        },
+        {
+          "step_id": "step-1",
+          "status": "Failed"
+        }
+      ]
+    }
+  },
+  {
+    "name": "partial-without-effects",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "PartialCompletion",
+      "evidence": "Volatile",
+      "known_facts": [],
+      "steps": [
+        {
+          "step_id": "a",
+          "status": "Succeeded"
+        },
+        {
+          "step_id": "b",
+          "status": "Cancelled"
+        }
+      ]
+    }
+  },
+  {
+    "name": "partial-hides-unknown",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "PartialCompletion",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        },
+        {
+          "kind": "UnknownFact",
+          "fact_id": "u1",
+          "boundary": "ExternalEffect",
+          "reference_id": "effect-1",
+          "reconcile": "query-device-receipt"
+        }
+      ],
+      "steps": [
+        {
+          "step_id": "a",
+          "status": "Succeeded"
+        },
+        {
+          "step_id": "b",
+          "status": "Cancelled"
+        }
+      ]
+    }
+  },
+  {
+    "name": "unknown-list-omits-boundary",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "Indeterminate",
+      "evidence": "PersistenceUncertain",
+      "known_facts": [
+        {
+          "kind": "UnknownFact",
+          "fact_id": "u1",
+          "boundary": "ExternalEffect",
+          "reference_id": "effect-1",
+          "reconcile": "query-device-receipt"
+        }
+      ],
+      "unknown_ids": [
+        "different"
+      ]
+    }
+  },
+  {
+    "name": "duplicate-fact",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "EffectResolved",
+      "evidence": "Volatile",
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        },
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        }
+      ],
+      "effect_id": "effect-1",
+      "application": "PartiallyApplied",
+      "status": "Failed",
+      "external_evidence": [
+        "device-receipt-1"
+      ],
+      "result": {
+        "sent": 2
+      }
+    }
+  },
+  {
+    "name": "candidate-forged-published",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "ExecutionObservation",
+      "execution_ref": "exec-1",
+      "host_incarnation": "host-1",
+      "observation_version": "3",
+      "phase": "Running",
+      "progress": {
+        "percent": 20,
+        "scope": "Published"
+      },
+      "known_facts": [],
+      "outcome": null,
+      "quiescent": false,
+      "durable_pins": false,
+      "writes_blocked": false,
+      "fault": null,
+      "isolation_owner": null,
+      "local_pending": 1,
+      "required_record_state": "NotRequired",
+      "post_observation_errors": [],
+      "repair_strategy": null
+    }
+  },
+  {
+    "name": "finalizing-forged-terminal",
+    "valid": false,
+    "schema_valid": false,
+    "document": {
+      "kind": "ExecutionObservation",
+      "execution_ref": "exec-1",
+      "host_incarnation": "host-1",
+      "observation_version": "3",
+      "phase": "Terminal",
+      "progress": null,
+      "known_facts": [],
+      "outcome": {
+        "kind": "ReadCompleted",
+        "evidence": "Volatile",
+        "known_facts": [],
+        "result": {
+          "value": 7
+        },
+        "result_scope": "ReadOnly"
+      },
+      "quiescent": false,
+      "durable_pins": false,
+      "writes_blocked": false,
+      "fault": null,
+      "isolation_owner": null,
+      "local_pending": 0,
+      "required_record_state": "NotRequired",
+      "post_observation_errors": [],
+      "repair_strategy": null
+    }
+  },
+  {
+    "name": "observation-overflow",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "ExecutionObservation",
+      "execution_ref": "exec-1",
+      "host_incarnation": "host-1",
+      "observation_version": "18446744073709551616",
+      "phase": "Finalizing",
+      "progress": null,
+      "known_facts": [],
+      "outcome": {
+        "kind": "ReadCompleted",
+        "evidence": "Volatile",
+        "known_facts": [],
+        "result": {
+          "value": 7
+        },
+        "result_scope": "ReadOnly"
+      },
+      "quiescent": false,
+      "durable_pins": false,
+      "writes_blocked": false,
+      "fault": null,
+      "isolation_owner": null,
+      "local_pending": 0,
+      "required_record_state": "NotRequired",
+      "post_observation_errors": [],
+      "repair_strategy": null
+    }
+  },
+  {
+    "name": "get-inconsistent-facts",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "ExecutionObservation",
+      "execution_ref": "exec-1",
+      "host_incarnation": "host-1",
+      "observation_version": "3",
+      "phase": "Finalizing",
+      "progress": null,
+      "known_facts": [
+        {
+          "kind": "EffectFact",
+          "fact_id": "f-effect",
+          "effect_id": "effect-1",
+          "application": "PartiallyApplied"
+        }
+      ],
+      "outcome": {
+        "kind": "ReadCompleted",
+        "evidence": "Volatile",
+        "known_facts": [],
+        "result": {
+          "value": 7
+        },
+        "result_scope": "ReadOnly"
+      },
+      "quiescent": false,
+      "durable_pins": false,
+      "writes_blocked": false,
+      "fault": null,
+      "isolation_owner": null,
+      "local_pending": 0,
+      "required_record_state": "NotRequired",
+      "post_observation_errors": [],
+      "repair_strategy": null
+    }
+  },
+  {
+    "name": "storage-resolution-not-applied-later-contradicted",
+    "valid": false,
+    "schema_valid": true,
+    "document": {
+      "kind": "StateCommitted",
+      "evidence": "Durable",
+      "known_facts": [
+        {
+          "kind": "UnknownFact",
+          "fact_id": "unknown-commit",
+          "boundary": "StorageCommit",
+          "reference_id": "commit-1",
+          "reconcile": "query-ledger"
+        },
+        {
+          "kind": "ResolutionRecord",
+          "fact_id": "resolution-commit",
+          "unknown_id": "unknown-commit",
+          "determination": "NotApplied",
+          "evidence_ref": "ledger-absence-proof"
+        },
+        {
+          "kind": "CommitFact",
+          "fact_id": "commit:commit-1",
+          "commit_id": "commit-1",
+          "domain": "settings",
+          "revision": "41",
+          "durability": "DurableCommitted"
+        },
+        {
+          "kind": "PublishedFact",
+          "fact_id": "published:commit-1",
+          "commit_id": "commit-1",
+          "published_version": "41"
+        }
+      ],
+      "commit_id": "commit-1",
+      "domain": "settings",
+      "revision": "41",
+      "published_version": "41",
+      "result": {}
+    }
+  },
+  {
+    "name": "storage-resolution-applied-preserved",
+    "valid": true,
+    "schema_valid": true,
+    "document": {
+      "kind": "StateCommitted",
+      "evidence": "Durable",
+      "known_facts": [
+        {
+          "kind": "UnknownFact",
+          "fact_id": "unknown-commit",
+          "boundary": "StorageCommit",
+          "reference_id": "commit-1",
+          "reconcile": "query-ledger"
+        },
+        {
+          "kind": "CommitFact",
+          "fact_id": "commit:commit-1",
+          "commit_id": "commit-1",
+          "domain": "settings",
+          "revision": "41",
+          "durability": "DurableCommitted"
+        },
+        {
+          "kind": "ResolutionRecord",
+          "fact_id": "resolution-commit",
+          "unknown_id": "unknown-commit",
+          "determination": "Applied",
+          "evidence_ref": "ledger-commit-proof"
+        },
+        {
+          "kind": "PublishedFact",
+          "fact_id": "published:commit-1",
+          "commit_id": "commit-1",
+          "published_version": "41"
+        }
+      ],
+      "commit_id": "commit-1",
+      "domain": "settings",
+      "revision": "41",
+      "published_version": "41",
+      "result": {}
+    }
+  }
+]

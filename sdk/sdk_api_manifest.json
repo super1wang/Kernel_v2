@@ -1,0 +1,555 @@
+{
+  "format": "ock.sdk-api/1",
+  "task_id": "D0.02",
+  "sdk_version": "0.1.0-dev.1",
+  "document_version": "3.3",
+  "stage": "ContractBaseline",
+  "review_status": "Pending",
+  "targets": {
+    "Foundation": {
+      "export": "OCK::Foundation",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [],
+      "include_root": "packages/foundation/include",
+      "namespace_prefix": "ock/foundation/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "CoreContracts": {
+      "export": "OCK::CoreContracts",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "Foundation"
+      ],
+      "include_root": "packages/contracts/include",
+      "namespace_prefix": "ock/contracts/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Runtime": {
+      "export": "OCK::Runtime",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "CoreContracts"
+      ],
+      "include_root": "packages/runtime/include",
+      "namespace_prefix": "ock/runtime/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Data": {
+      "export": "OCK::Data",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "Foundation"
+      ],
+      "include_root": "packages/data/include",
+      "namespace_prefix": "ock/data/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Dynamic": {
+      "export": "OCK::Dynamic",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "Runtime",
+        "Data"
+      ],
+      "include_root": "packages/dynamic/include",
+      "namespace_prefix": "ock/dynamic/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Automation": {
+      "export": "OCK::Automation",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "Runtime",
+        "Dynamic"
+      ],
+      "include_root": "packages/automation/include",
+      "namespace_prefix": "ock/automation/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "State": {
+      "export": "OCK::State",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "CoreContracts"
+      ],
+      "include_root": "packages/state/include",
+      "namespace_prefix": "ock/state/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Workspace": {
+      "export": "OCK::Workspace",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "State"
+      ],
+      "include_root": "packages/workspace/include",
+      "namespace_prefix": "ock/workspace/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Durable": {
+      "export": "OCK::Durable",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "CoreContracts"
+      ],
+      "include_root": "packages/durable/include",
+      "namespace_prefix": "ock/durable/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "StateDurable": {
+      "export": "OCK::StateDurable",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "State",
+        "Durable"
+      ],
+      "include_root": "packages/bridges/state_durable/include",
+      "namespace_prefix": "ock/state_durable/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "DurablePlan": {
+      "export": "OCK::DurablePlan",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "Automation",
+        "Durable"
+      ],
+      "include_root": "packages/durable_plan/include",
+      "namespace_prefix": "ock/durable_plan/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "ControlProtocol": {
+      "export": "OCK::ControlProtocol",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "CoreContracts",
+        "Data"
+      ],
+      "include_root": "packages/control/protocol/include",
+      "namespace_prefix": "ock/control_protocol/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Control": {
+      "export": "OCK::Control",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "Runtime",
+        "Dynamic",
+        "ControlProtocol"
+      ],
+      "include_root": "packages/control/server/include",
+      "namespace_prefix": "ock/control/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "ControlClient": {
+      "export": "OCK::ControlClient",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "ControlProtocol"
+      ],
+      "include_root": "packages/control/client/include",
+      "namespace_prefix": "ock/control_client/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Adapter::CpuPool": {
+      "export": "OCK::Adapter::CpuPool",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "CoreContracts"
+      ],
+      "include_root": "packages/adapters/cpu_pool/include",
+      "namespace_prefix": "ock/adapters/cpu_pool/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Adapter::Logging": {
+      "export": "OCK::Adapter::Logging",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "CoreContracts"
+      ],
+      "include_root": "packages/adapters/logging/include",
+      "namespace_prefix": "ock/adapters/logging/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Adapter::Config": {
+      "export": "OCK::Adapter::Config",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "Dynamic"
+      ],
+      "include_root": "packages/adapters/config/include",
+      "namespace_prefix": "ock/adapters/config/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Adapter::SQLite": {
+      "export": "OCK::Adapter::SQLite",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "Durable"
+      ],
+      "include_root": "packages/adapters/sqlite/include",
+      "namespace_prefix": "ock/adapters/sqlite/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Adapter::Storage": {
+      "export": "OCK::Adapter::Storage",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "CoreContracts"
+      ],
+      "include_root": "packages/adapters/storage/include",
+      "namespace_prefix": "ock/adapters/storage/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Adapter::LocalIPC": {
+      "export": "OCK::Adapter::LocalIPC",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "ControlProtocol"
+      ],
+      "include_root": "packages/adapters/local_ipc/include",
+      "namespace_prefix": "ock/adapters/local_ipc/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    },
+    "Adapter::MCP": {
+      "export": "OCK::Adapter::MCP",
+      "kind": "INTERFACE_LIBRARY",
+      "dependencies": [
+        "Control"
+      ],
+      "include_root": "packages/adapters/mcp/include",
+      "namespace_prefix": "ock/adapters/mcp/",
+      "implementation": "ContractBaseline",
+      "api_classification": "experimental",
+      "public_compile_features": [
+        "cxx_std_20"
+      ],
+      "public_compile_options": [
+        "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
+      ]
+    }
+  },
+  "planned_executables": {
+    "ock": {
+      "dependencies": [
+        "ControlClient",
+        "Adapter::LocalIPC"
+      ],
+      "external_dependencies": [
+        "CLI11"
+      ],
+      "owner_task": "D2.06",
+      "implementation": "Planned"
+    }
+  },
+  "headers": [
+    {
+      "path": "packages/foundation/include/ock/foundation/sdk_version.hpp",
+      "installed_path": "include/ock/foundation/sdk_version.hpp",
+      "target": "Foundation",
+      "classification": "experimental",
+      "implementation": "VersionMetadata",
+      "sha256": "e8c742c6f8a602b1691ce1587525d885791f4b5aa0c310a6ba88ee682ebde616"
+    }
+  ],
+  "candidate_headers": [
+    {
+      "target": "Foundation",
+      "path": "packages/foundation/include/ock/foundation/foundation.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "CoreContracts",
+      "path": "packages/contracts/include/ock/contracts/operation.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Runtime",
+      "path": "packages/runtime/include/ock/runtime/runtime.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Data",
+      "path": "packages/data/include/ock/data/data.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Dynamic",
+      "path": "packages/dynamic/include/ock/dynamic/dynamic.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Automation",
+      "path": "packages/automation/include/ock/automation/automation.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "State",
+      "path": "packages/state/include/ock/state/state.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Workspace",
+      "path": "packages/workspace/include/ock/workspace/workspace.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Durable",
+      "path": "packages/durable/include/ock/durable/durable.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "StateDurable",
+      "path": "packages/bridges/state_durable/include/ock/state_durable/state_durable.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "DurablePlan",
+      "path": "packages/durable_plan/include/ock/durable_plan/durable_plan.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "ControlProtocol",
+      "path": "packages/control/protocol/include/ock/control_protocol/control_protocol.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Control",
+      "path": "packages/control/server/include/ock/control/control.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "ControlClient",
+      "path": "packages/control/client/include/ock/control_client/control_client.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Adapter::CpuPool",
+      "path": "packages/adapters/cpu_pool/include/ock/adapters/cpu_pool/cpu_pool.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Adapter::Logging",
+      "path": "packages/adapters/logging/include/ock/adapters/logging/logging.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Adapter::Config",
+      "path": "packages/adapters/config/include/ock/adapters/config/config.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Adapter::SQLite",
+      "path": "packages/adapters/sqlite/include/ock/adapters/sqlite/sqlite.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Adapter::Storage",
+      "path": "packages/adapters/storage/include/ock/adapters/storage/storage.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Adapter::LocalIPC",
+      "path": "packages/adapters/local_ipc/include/ock/adapters/local_ipc/local_ipc.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    },
+    {
+      "target": "Adapter::MCP",
+      "path": "packages/adapters/mcp/include/ock/adapters/mcp/mcp.hpp",
+      "status": "Planned",
+      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+    }
+  ],
+  "required_frontends": [
+    "CLI",
+    "Plan",
+    "ClientSDK"
+  ],
+  "optional_frontends": [
+    "DSL",
+    "REPL"
+  ],
+  "private_third_party_prefixes": [
+    "jsoncons/",
+    "immer/",
+    "asio/",
+    "asio.hpp",
+    "sqlite3.h",
+    "spdlog/",
+    "BS_thread_pool",
+    "toml",
+    "CLI/"
+  ],
+  "public_external_dependencies": [
+    {
+      "target": "Foundation",
+      "name": "tl::expected",
+      "status": "PendingD0.06Probe",
+      "visibility": "PUBLIC"
+    }
+  ],
+  "frozen_previous_release": {
+    "exists": false,
+    "reason": "首发开发基线，没有上一正式SDK；当前安装样例仅为0.x开发对照。"
+  }
+}

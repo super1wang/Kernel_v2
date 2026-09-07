@@ -1,0 +1,177 @@
+{
+  "backtraceGraph" : 
+  {
+    "commands" : 
+    [
+      "add_test"
+    ],
+    "files" : 
+    [
+      "E:/VS2019Qt5.15/3D/CMakeLists.txt"
+    ],
+    "nodes" : 
+    [
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 20,
+        "parent" : 0
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 21,
+        "parent" : 2
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 22,
+        "parent" : 4
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 24,
+        "parent" : 6
+      }
+    ]
+  },
+  "kind" : "ctestInfo",
+  "tests" : 
+  [
+    {
+      "backtrace" : 1,
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d0.02/Debug/ock_sdk_metadata_probe.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T24.sdk.version_header",
+      "properties" : 
+      [
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.02"
+          ]
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d0.02"
+        }
+      ]
+    },
+    {
+      "backtrace" : 3,
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "E:/VS2019Qt5.15/3D/tools/architecture/check.py",
+        "--graph",
+        "E:/VS2019Qt5.15/3D/build/d0.02/ock-target-graph.json"
+      ],
+      "config" : "Debug",
+      "name" : "T01.architecture.dependency_dag",
+      "properties" : 
+      [
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.02"
+          ]
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d0.02"
+        }
+      ]
+    },
+    {
+      "backtrace" : 5,
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "E:/VS2019Qt5.15/3D/tests/architecture",
+        "-v"
+      ],
+      "config" : "Debug",
+      "name" : "T01.architecture.negative_guards",
+      "properties" : 
+      [
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.02"
+          ]
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D"
+        }
+      ]
+    },
+    {
+      "backtrace" : 7,
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "E:/VS2019Qt5.15/3D/tests/install_consumer/verify_baseline.py",
+        "--build",
+        "E:/VS2019Qt5.15/3D/build/d0.02",
+        "--config",
+        "Debug"
+      ],
+      "config" : "Debug",
+      "name" : "T24.sdk.install_and_missing_components",
+      "properties" : 
+      [
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.02"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d0.02"
+        }
+      ]
+    }
+  ],
+  "version" : 
+  {
+    "major" : 1,
+    "minor" : 0
+  }
+}

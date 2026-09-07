@@ -1,0 +1,11 @@
+@PACKAGE_INIT@
+include("${CMAKE_CURRENT_LIST_DIR}/OCKTargets.cmake")
+set(OCK_SDK_VERSION "@OCK_SDK_VERSION@")
+set(OCK_IMPLEMENTATION_STAGE "ContractBaseline")
+set(OCK_RUNTIME_AVAILABLE FALSE)
+# 本阶段 find_package 无组件参数只读取元数据，所有运行时组件请求必须拒绝。
+foreach(component IN LISTS OCK_FIND_COMPONENTS)
+  set(OCK_${component}_FOUND FALSE)
+  string(APPEND OCK_NOT_FOUND_MESSAGE "OCK component ${component} is not implemented in D0.02 ContractBaseline. ")
+endforeach()
+check_required_components(OCK)

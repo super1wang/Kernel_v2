@@ -1,0 +1,61 @@
+test_T02_outcome_effect_minimal_receipt (test_execution_model.ExecutionContracts.test_T02_outcome_effect_minimal_receipt) ... ok
+test_T02_outcome_lifecycle_failed_transition (test_execution_model.ExecutionContracts.test_T02_outcome_lifecycle_failed_transition) ... ok
+test_T02_outcome_nine_variants (test_execution_model.ExecutionContracts.test_T02_outcome_nine_variants) ... ok
+test_T02_outcome_partial_and_unknown (test_execution_model.ExecutionContracts.test_T02_outcome_partial_and_unknown) ... ok
+test_T02_outcome_plan_all_success (test_execution_model.ExecutionContracts.test_T02_outcome_plan_all_success) ... ok
+test_T02_outcome_read_candidate (test_execution_model.ExecutionContracts.test_T02_outcome_read_candidate) ... ok
+test_T06_execution_cancel_keeps_facts (test_execution_model.ExecutionContracts.test_T06_execution_cancel_keeps_facts) ... ok
+test_T06_execution_cancel_propagates_owned_children (test_execution_model.ExecutionContracts.test_T06_execution_cancel_propagates_owned_children) ... ok
+test_T06_execution_child_unknown_aggregation (test_execution_model.ExecutionContracts.test_T06_execution_child_unknown_aggregation) ... ok
+test_T06_execution_duplicate_callback (test_execution_model.ExecutionContracts.test_T06_execution_duplicate_callback) ... ok
+test_T06_execution_durable_acceptance (test_execution_model.ExecutionContracts.test_T06_execution_durable_acceptance) ... ok
+test_T06_execution_executor_rejection (test_execution_model.ExecutionContracts.test_T06_execution_executor_rejection) ... ok
+test_T06_execution_inline_completion (test_execution_model.ExecutionContracts.test_T06_execution_inline_completion) ... ok
+test_T06_execution_necessary_children (test_execution_model.ExecutionContracts.test_T06_execution_necessary_children) ... ok
+test_T06_execution_normal_phase_path (test_execution_model.ExecutionContracts.test_T06_execution_normal_phase_path) ... ok
+test_T06_execution_owner_acyclic (test_execution_model.ExecutionContracts.test_T06_execution_owner_acyclic) ... ERROR
+test_T06_execution_phase_edges (test_execution_model.ExecutionContracts.test_T06_execution_phase_edges) ... ok
+test_T06_execution_plan_child_actual_success (test_execution_model.ExecutionContracts.test_T06_execution_plan_child_actual_success) ... ok
+test_T06_execution_plan_children_drained (test_execution_model.ExecutionContracts.test_T06_execution_plan_children_drained) ... ok
+test_T06_execution_queued_cancel (test_execution_model.ExecutionContracts.test_T06_execution_queued_cancel) ... ok
+test_T06_execution_suspended_owner (test_execution_model.ExecutionContracts.test_T06_execution_suspended_owner) ... ok
+test_T12_execution_append_only_resolution (test_execution_model.ExecutionContracts.test_T12_execution_append_only_resolution) ... ok
+test_T12_execution_collected_outcome_frozen (test_execution_model.ExecutionContracts.test_T12_execution_collected_outcome_frozen) ... ok
+test_T12_execution_commit_ledger_repair (test_execution_model.ExecutionContracts.test_T12_execution_commit_ledger_repair) ... ok
+test_T12_execution_commit_publication_gate (test_execution_model.ExecutionContracts.test_T12_execution_commit_publication_gate) ... ok
+test_T12_execution_isolation_lifetime (test_execution_model.ExecutionContracts.test_T12_execution_isolation_lifetime) ... ok
+test_T12_execution_post_observation_error (test_execution_model.ExecutionContracts.test_T12_execution_post_observation_error) ... ok
+test_T12_execution_reject_forged_publication (test_execution_model.ExecutionContracts.test_T12_execution_reject_forged_publication) ... ok
+test_T12_execution_required_record_failure (test_execution_model.ExecutionContracts.test_T12_execution_required_record_failure) ... ok
+test_T12_outcome_evidence_matrix (test_execution_model.ExecutionContracts.test_T12_outcome_evidence_matrix) ... ok
+test_T12_outcome_failed_record_projection (test_execution_model.ExecutionContracts.test_T12_outcome_failed_record_projection) ... ok
+test_T12_outcome_resolution_final_consistency (test_execution_model.ExecutionContracts.test_T12_outcome_resolution_final_consistency) ... ok
+test_T19_outcome_reply_layers (test_execution_model.ExecutionContracts.test_T19_outcome_reply_layers) ... ok
+test_T19_schema_expected_manifest (test_execution_model.ExecutionContracts.test_T19_schema_expected_manifest) ... ok
+test_T19_schema_golden (test_execution_model.ExecutionContracts.test_T19_schema_golden) ... ok
+test_T20_execution_atomic_candidate_progress (test_execution_model.ExecutionContracts.test_T20_execution_atomic_candidate_progress) ... ok
+test_T20_execution_child_projection_version (test_execution_model.ExecutionContracts.test_T20_execution_child_projection_version) ... ok
+test_T20_execution_observation_revision_independent (test_execution_model.ExecutionContracts.test_T20_execution_observation_revision_independent) ... ok
+test_T20_execution_snapshot_consistency (test_execution_model.ExecutionContracts.test_T20_execution_snapshot_consistency) ... ok
+test_T20_execution_version_exhaustion (test_execution_model.ExecutionContracts.test_T20_execution_version_exhaustion) ... ok
+test_T20_observer_late_notification (test_execution_model.ExecutionContracts.test_T20_observer_late_notification) ... ok
+test_T20_observer_lost_terminal_notification (test_execution_model.ExecutionContracts.test_T20_observer_lost_terminal_notification) ... ok
+test_T20_observer_out_of_order_snapshot (test_execution_model.ExecutionContracts.test_T20_observer_out_of_order_snapshot) ... ok
+
+======================================================================
+ERROR: test_T06_execution_owner_acyclic (test_execution_model.ExecutionContracts.test_T06_execution_owner_acyclic)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\model\execution_model\test_execution_model.py", line 536, in test_T06_execution_owner_acyclic
+    parent.transfer_child("child", "ExecutionOwner")
+  File "E:\VS2019Qt5.15\3D\tests\model\execution_model\model.py", line 317, in transfer_child
+    require(child_id in self._children and child_id not in self._transferred and trusted_owner and
+  File "E:\VS2019Qt5.15\3D\tests\model\execution_model\model.py", line 26, in require
+    if not condition: raise ContractError(reason)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+model.ContractError: 必须由显式可信独立 owner 接管
+
+----------------------------------------------------------------------
+Ran 43 tests in 0.750s
+
+FAILED (errors=1)

@@ -1,0 +1,1056 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ock:draft:outcome-v1",
+  "$comment": "D0.03 草案；execution_ref 是模型不透明标签，不定义正式身份 wire。跨事实关系、追加历史和转换由配套 Python 模型校验。",
+  "title": "OCK D0.03 Outcome / response / observation draft",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/outcome"
+    },
+    {
+      "$ref": "#/$defs/accepted"
+    },
+    {
+      "$ref": "#/$defs/rejected"
+    },
+    {
+      "$ref": "#/$defs/completed"
+    },
+    {
+      "$ref": "#/$defs/observation"
+    }
+  ],
+  "$defs": {
+    "CommitFact": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CommitFact"
+        },
+        "fact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "commit_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})$"
+        },
+        "durability": {
+          "enum": [
+            "Memory",
+            "DurableCommitted"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "fact_id",
+        "commit_id",
+        "domain",
+        "revision",
+        "durability"
+      ],
+      "additionalProperties": false
+    },
+    "PublishedFact": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "PublishedFact"
+        },
+        "fact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "commit_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "published_version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})$"
+        }
+      },
+      "required": [
+        "kind",
+        "fact_id",
+        "commit_id",
+        "published_version"
+      ],
+      "additionalProperties": false
+    },
+    "EffectFact": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "EffectFact"
+        },
+        "fact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "application": {
+          "enum": [
+            "NotApplied",
+            "Applied",
+            "PartiallyApplied"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "fact_id",
+        "effect_id",
+        "application"
+      ],
+      "additionalProperties": false
+    },
+    "LifecycleFact": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "LifecycleFact"
+        },
+        "fact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transition_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "before": {
+          "type": "string",
+          "minLength": 1
+        },
+        "after": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generation": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})$"
+        }
+      },
+      "required": [
+        "kind",
+        "fact_id",
+        "transition_id",
+        "before",
+        "after",
+        "generation"
+      ],
+      "additionalProperties": false
+    },
+    "UnknownFact": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "UnknownFact"
+        },
+        "fact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "boundary": {
+          "enum": [
+            "ExternalEffect",
+            "StorageCommit"
+          ]
+        },
+        "reference_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reconcile": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "fact_id",
+        "boundary",
+        "reference_id",
+        "reconcile"
+      ],
+      "additionalProperties": false
+    },
+    "ResolutionRecord": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ResolutionRecord"
+        },
+        "fact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unknown_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "determination": {
+          "enum": [
+            "NotApplied",
+            "Applied",
+            "PartiallyApplied"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "fact_id",
+        "unknown_id",
+        "determination",
+        "evidence_ref"
+      ],
+      "additionalProperties": false
+    },
+    "known_fact": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/CommitFact"
+        },
+        {
+          "$ref": "#/$defs/PublishedFact"
+        },
+        {
+          "$ref": "#/$defs/EffectFact"
+        },
+        {
+          "$ref": "#/$defs/LifecycleFact"
+        },
+        {
+          "$ref": "#/$defs/UnknownFact"
+        },
+        {
+          "$ref": "#/$defs/ResolutionRecord"
+        }
+      ]
+    },
+    "ReadCompleted": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ReadCompleted"
+        },
+        "evidence": {
+          "enum": [
+            "Volatile",
+            "Durable",
+            "RequiredRecordFailed"
+          ]
+        },
+        "known_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/known_fact"
+          }
+        },
+        "result": {},
+        "result_scope": {
+          "enum": [
+            "ReadOnly",
+            "Candidate"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "evidence",
+        "known_facts",
+        "result",
+        "result_scope"
+      ],
+      "additionalProperties": false
+    },
+    "StateCommitted": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "StateCommitted"
+        },
+        "evidence": {
+          "enum": [
+            "Volatile",
+            "Durable",
+            "RequiredRecordFailed"
+          ]
+        },
+        "known_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/known_fact"
+          }
+        },
+        "commit_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})$"
+        },
+        "published_version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})$"
+        },
+        "result": {}
+      },
+      "required": [
+        "kind",
+        "evidence",
+        "known_facts",
+        "commit_id",
+        "domain",
+        "revision",
+        "published_version",
+        "result"
+      ],
+      "additionalProperties": false
+    },
+    "EffectResolved": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "EffectResolved"
+        },
+        "evidence": {
+          "enum": [
+            "Volatile",
+            "Durable",
+            "RequiredRecordFailed"
+          ]
+        },
+        "known_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/known_fact"
+          }
+        },
+        "effect_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "application": {
+          "enum": [
+            "NotApplied",
+            "Applied",
+            "PartiallyApplied"
+          ]
+        },
+        "status": {
+          "enum": [
+            "Succeeded",
+            "Failed"
+          ]
+        },
+        "external_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "result": {},
+        "result_error": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "evidence",
+        "known_facts",
+        "effect_id",
+        "application",
+        "status",
+        "external_evidence"
+      ],
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": [
+            "result"
+          ]
+        },
+        {
+          "required": [
+            "result_error"
+          ]
+        }
+      ]
+    },
+    "LifecycleResolved": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "LifecycleResolved"
+        },
+        "evidence": {
+          "enum": [
+            "Volatile",
+            "Durable",
+            "RequiredRecordFailed"
+          ]
+        },
+        "known_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/known_fact"
+          }
+        },
+        "transition_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "before": {
+          "type": "string",
+          "minLength": 1
+        },
+        "after": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generation": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})$"
+        },
+        "status": {
+          "enum": [
+            "Succeeded",
+            "Failed"
+          ]
+        },
+        "result": {}
+      },
+      "required": [
+        "kind",
+        "evidence",
+        "known_facts",
+        "transition_id",
+        "before",
+        "after",
+        "generation",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "PlanCompleted": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "PlanCompleted"
+        },
+        "evidence": {
+          "enum": [
+            "Volatile",
+            "Durable",
+            "RequiredRecordFailed"
+          ]
+        },
+        "known_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/known_fact"
+          }
+        },
+        "exports": {
+          "type": "object"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "step_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "enum": [
+                  "Succeeded",
+                  "Failed",
+                  "Cancelled",
+                  "Unknown"
+                ]
+              }
+            },
+            "required": [
+              "step_id",
+              "status"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "necessary_children_drained": {
+          "const": true
+        }
+      },
+      "required": [
+        "kind",
+        "evidence",
+        "known_facts",
+        "exports",
+        "steps",
+        "necessary_children_drained"
+      ],
+      "additionalProperties": false
+    },
+    "FailedBeforeApply": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "FailedBeforeApply"
+        },
+        "evidence": {
+          "enum": [
+            "Volatile",
+            "Durable",
+            "RequiredRecordFailed"
+          ]
+        },
+        "known_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/known_fact"
+          }
+        },
+        "failure_phase": {
+          "enum": [
+            "Queued",
+            "WaitingResources",
+            "Running",
+            "WaitingChild",
+            "Finalizing",
+            "Suspended"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proof": {
+          "const": "NoAppliedStateOrEffect"
+        }
+      },
+      "required": [
+        "kind",
+        "evidence",
+        "known_facts",
+        "failure_phase",
+        "reason",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "CancelledBeforeApply": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CancelledBeforeApply"
+        },
+        "evidence": {
+          "enum": [
+            "Volatile",
+            "Durable",
+            "RequiredRecordFailed"
+          ]
+        },
+        "known_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/known_fact"
+          }
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proof": {
+          "const": "NoAppliedStateOrEffect"
+        }
+      },
+      "required": [
+        "kind",
+        "evidence",
+        "known_facts",
+        "reason",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "PartialCompletion": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "PartialCompletion"
+        },
+        "evidence": {
+          "enum": [
+            "Volatile",
+            "Durable",
+            "RequiredRecordFailed"
+          ]
+        },
+        "known_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/known_fact"
+          }
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "step_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "enum": [
+                  "Succeeded",
+                  "Failed",
+                  "Cancelled",
+                  "Unknown"
+                ]
+              }
+            },
+            "required": [
+              "step_id",
+              "status"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "kind",
+        "evidence",
+        "known_facts",
+        "steps"
+      ],
+      "additionalProperties": false
+    },
+    "Indeterminate": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "Indeterminate"
+        },
+        "evidence": {
+          "enum": [
+            "Volatile",
+            "Durable",
+            "RequiredRecordFailed",
+            "PersistenceUncertain"
+          ]
+        },
+        "known_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/known_fact"
+          }
+        },
+        "unknown_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "kind",
+        "evidence",
+        "known_facts",
+        "unknown_ids"
+      ],
+      "additionalProperties": false
+    },
+    "outcome": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ReadCompleted"
+        },
+        {
+          "$ref": "#/$defs/StateCommitted"
+        },
+        {
+          "$ref": "#/$defs/EffectResolved"
+        },
+        {
+          "$ref": "#/$defs/LifecycleResolved"
+        },
+        {
+          "$ref": "#/$defs/PlanCompleted"
+        },
+        {
+          "$ref": "#/$defs/FailedBeforeApply"
+        },
+        {
+          "$ref": "#/$defs/CancelledBeforeApply"
+        },
+        {
+          "$ref": "#/$defs/PartialCompletion"
+        },
+        {
+          "$ref": "#/$defs/Indeterminate"
+        }
+      ]
+    },
+    "accepted": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "Accepted"
+        },
+        "execution_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "acceptance_guarantee": {
+          "enum": [
+            "Volatile",
+            "DurableAccepted"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "execution_ref",
+        "acceptance_guarantee"
+      ],
+      "additionalProperties": false
+    },
+    "rejected": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "Rejected"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "completed": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "Completed"
+        },
+        "outcome": {
+          "$ref": "#/$defs/outcome"
+        }
+      },
+      "required": [
+        "kind",
+        "outcome"
+      ],
+      "additionalProperties": false
+    },
+    "observation": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ExecutionObservation"
+        },
+        "execution_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "host_incarnation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observation_version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})$"
+        },
+        "phase": {
+          "enum": [
+            "Queued",
+            "WaitingResources",
+            "Running",
+            "WaitingChild",
+            "Finalizing",
+            "Terminal",
+            "Suspended"
+          ]
+        },
+        "progress": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "percent": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100
+                },
+                "scope": {
+                  "enum": [
+                    "Work",
+                    "Candidate",
+                    "Published"
+                  ]
+                }
+              },
+              "required": [
+                "percent",
+                "scope"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "known_facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/known_fact"
+          }
+        },
+        "outcome": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/outcome"
+            }
+          ]
+        },
+        "quiescent": {
+          "type": "boolean"
+        },
+        "durable_pins": {
+          "type": "boolean"
+        },
+        "writes_blocked": {
+          "type": "boolean"
+        },
+        "fault": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "isolation_owner": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "local_pending": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "required_record_state": {
+          "enum": [
+            "NotRequired",
+            "Pending",
+            "Recorded",
+            "Failed"
+          ]
+        },
+        "post_observation_errors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "repair_strategy": {
+          "enum": [
+            null,
+            "CommitLedger",
+            "ReceiptReconcile",
+            "ManualReview"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "execution_ref",
+        "host_incarnation",
+        "observation_version",
+        "phase",
+        "progress",
+        "known_facts",
+        "outcome",
+        "quiescent",
+        "durable_pins",
+        "writes_blocked",
+        "fault",
+        "isolation_owner",
+        "local_pending",
+        "required_record_state",
+        "post_observation_errors",
+        "repair_strategy"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "phase": {
+                "const": "Terminal"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "quiescent": {
+                "const": true
+              },
+              "local_pending": {
+                "const": 0
+              },
+              "required_record_state": {
+                "enum": [
+                  "NotRequired",
+                  "Recorded",
+                  "Failed"
+                ]
+              },
+              "outcome": {
+                "$ref": "#/$defs/outcome"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "phase": {
+                "not": {
+                  "const": "Terminal"
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "quiescent": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "Queued",
+                  "WaitingResources",
+                  "Running",
+                  "WaitingChild",
+                  "Suspended"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "outcome": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "phase": {
+                "const": "Suspended"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "durable_pins": {
+                "const": true
+              },
+              "local_pending": {
+                "const": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "required_record_state": {
+                "const": "Failed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "writes_blocked": {
+                "const": true
+              },
+              "fault": {
+                "const": "RequiredRecordFailed"
+              },
+              "repair_strategy": {
+                "enum": [
+                  "CommitLedger",
+                  "ReceiptReconcile",
+                  "ManualReview"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "format": "ock.bootstrap-package/1",
+  "task_id": "D0.02",
+  "run_id": "20260907T041030Z-1d80d0fb7416",
+  "started_at": "2026-09-07T04:10:30.403144+00:00",
+  "source": {
+    "commit": "a03a849e09ba18c4611fce4f1ad4087fcb48e3df",
+    "dirty": true,
+    "inputs_sha256": "68c022ff8ae54f25e6270a51cfe5ad8f9a79e2be078f1651d5459e7050c1e19c",
+    "archive_sha256": "709118c06e61839886a9dbc4acd56e8d8570269ec1975ffc63c47556053f2e84"
+  },
+  "profile": "win-msvc-debug-contract-baseline",
+  "manifest_sha256": "e91102c66c772ea36f3551d72c77a157d240b1e91ad77f4175a35006310d4421",
+  "environment": {
+    "python": "3.11.9",
+    "python_executable": "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "command_executables": [
+      {
+        "name": "cmake",
+        "path": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.EXE",
+        "sha256": "b540efece9172930877dff0c9fedda7a69b0dd82446e0e8bba13372aac6c8ac8"
+      },
+      {
+        "name": "ctest",
+        "path": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.EXE",
+        "sha256": "1fe268c79c868a70e6d725ee8f1ad46ec8e21dc3915a74cff8d4d049bf79a0f0"
+      }
+    ]
+  },
+  "commands": [
+    {
+      "argv": [
+        "cmake",
+        "-S",
+        ".",
+        "-B",
+        "build/d0.02",
+        "-G",
+        "Visual Studio 17 2022",
+        "-A",
+        "x64"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T04:10:30.619295+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "finished_at": "2026-09-07T04:10:31.586151+00:00",
+      "raw": [
+        {
+          "path": "01-stdout.log",
+          "sha256": "6399995334e3fd8288f6faa6e6bc714aa7c2035b3332b37bd30c213481f389c4",
+          "size": 197,
+          "truncated": false
+        },
+        {
+          "path": "01-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "build/d0.02",
+        "--config",
+        "Debug",
+        "--parallel"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T04:10:31.587779+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "finished_at": "2026-09-07T04:10:34.045637+00:00",
+      "raw": [
+        {
+          "path": "02-stdout.log",
+          "sha256": "0c5df1c7be621c642950888e0387b241bc42f4e5901ea01c9f610810f31cd6e2",
+          "size": 163,
+          "truncated": false
+        },
+        {
+          "path": "02-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "build/d0.02",
+        "-C",
+        "Debug",
+        "--show-only=json-v1",
+        "-L",
+        "^D0[.]02$"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T04:10:34.048337+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "finished_at": "2026-09-07T04:10:34.089200+00:00",
+      "raw": [
+        {
+          "path": "03-stdout.log",
+          "sha256": "ddd5a6ba92a72d4f4dbb76b2625ceea7b739286dc420da7b8c18d2960573d2e7",
+          "size": 3385,
+          "truncated": false
+        },
+        {
+          "path": "03-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "build/d0.02",
+        "-C",
+        "Debug",
+        "--no-tests=error",
+        "--output-on-failure",
+        "-L",
+        "^D0[.]02$",
+        "--output-junit",
+        "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D0.02\\20260907T041030Z-1d80d0fb7416\\04-junit.xml"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T04:10:34.090696+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "finished_at": "2026-09-07T04:11:20.331897+00:00",
+      "raw": [
+        {
+          "path": "04-stdout.log",
+          "sha256": "96faeed6b969fe799552bfdb4ff8a29e2370a94751ea49cd9fd57f949435f065",
+          "size": 741,
+          "truncated": false
+        },
+        {
+          "path": "04-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false
+        }
+      ],
+      "junit": {
+        "path": "04-junit.xml",
+        "sha256": "c3ca407aee5d3a5678436c80b29a66cf8449b6dc6dac985ee4c7ccdfa41ca06d"
+      }
+    }
+  ],
+  "tests": {
+    "expected": [
+      "T01.architecture.dependency_dag",
+      "T01.architecture.negative_guards",
+      "T24.sdk.version_header",
+      "T24.sdk.install_and_missing_components"
+    ],
+    "discovered": [
+      "T24.sdk.version_header",
+      "T01.architecture.dependency_dag",
+      "T01.architecture.negative_guards",
+      "T24.sdk.install_and_missing_components"
+    ],
+    "executed": [
+      {
+        "name": "T24.sdk.version_header",
+        "status": "Passed"
+      },
+      {
+        "name": "T01.architecture.dependency_dag",
+        "status": "Passed"
+      },
+      {
+        "name": "T01.architecture.negative_guards",
+        "status": "Passed"
+      },
+      {
+        "name": "T24.sdk.install_and_missing_components",
+        "status": "Passed"
+      }
+    ]
+  },
+  "outputs": [
+    {
+      "path": "build/d0.02/CMakeCache.txt",
+      "sha256": "c6f584387539e47ae452917e5d131832f710636349087501d4ed941a9478d782",
+      "size": 16296
+    },
+    {
+      "path": "build/d0.02/ock-target-graph.json",
+      "sha256": "9a2e1f2cacd117d2e7cb4dd496740a066dd01b9fd24d46690891091e53c547eb",
+      "size": 3948
+    },
+    {
+      "path": "build/d0.02/Debug/ock_sdk_metadata_probe.exe",
+      "sha256": "6c4440866a83d1778dbe69dac60e3efc55fdaf9d792c5771831082e4ce0cbfd2",
+      "size": 59392
+    }
+  ],
+  "formal_evidence_status": "Incomplete",
+  "limitations": [
+    "G0前由D0.06正式采集器复核；当前不生成包级Passed。",
+    "没有实现完整Conformance/重复轮次/故障树/正式依赖锁门禁。",
+    "人工评审独立，运行结果不能替代批准。"
+  ],
+  "finished_at": "2026-09-07T04:11:20.337970+00:00",
+  "errors": [],
+  "collection_status": "Captured"
+}

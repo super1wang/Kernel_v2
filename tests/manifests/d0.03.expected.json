@@ -1,0 +1,614 @@
+{
+  "format": "ock.model-expected/1",
+  "task_id": "D0.03",
+  "review_status": "Pending",
+  "maturity": "Draft",
+  "profile": "bootstrap-python",
+  "backend": "Python deterministic model; not Runtime",
+  "schema_validator": "jsonschema==4.23.0 / Draft202012Validator",
+  "note": "固定用例名；本包模型实测，与 D0.01 的未来 Runtime 用例分开。本包可用 CTest bootstrap 逐项执行；D0.06 负责正式采集器。",
+  "cases": [
+    {
+      "id": "T02.outcome.nine_variants",
+      "task_id": "D0.03",
+      "family": "T02",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T02_outcome_nine_variants"
+      ]
+    },
+    {
+      "id": "T02.outcome.read_candidate",
+      "task_id": "D0.03",
+      "family": "T02",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T02_outcome_read_candidate"
+      ]
+    },
+    {
+      "id": "T02.outcome.effect_minimal_receipt",
+      "task_id": "D0.03",
+      "family": "T02",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T02_outcome_effect_minimal_receipt"
+      ]
+    },
+    {
+      "id": "T02.outcome.lifecycle_failed_transition",
+      "task_id": "D0.03",
+      "family": "T02",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T02_outcome_lifecycle_failed_transition"
+      ]
+    },
+    {
+      "id": "T02.outcome.plan_all_success",
+      "task_id": "D0.03",
+      "family": "T02",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T02_outcome_plan_all_success"
+      ]
+    },
+    {
+      "id": "T02.outcome.partial_and_unknown",
+      "task_id": "D0.03",
+      "family": "T02",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T02_outcome_partial_and_unknown"
+      ]
+    },
+    {
+      "id": "T12.outcome.evidence_matrix",
+      "task_id": "D0.03",
+      "family": "T12",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T12_outcome_evidence_matrix"
+      ]
+    },
+    {
+      "id": "T19.outcome.reply_layers",
+      "task_id": "D0.03",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T19_outcome_reply_layers"
+      ]
+    },
+    {
+      "id": "T06.execution.durable_acceptance",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_durable_acceptance"
+      ]
+    },
+    {
+      "id": "T06.execution.inline_completion",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_inline_completion"
+      ]
+    },
+    {
+      "id": "T06.execution.executor_rejection",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_executor_rejection"
+      ]
+    },
+    {
+      "id": "T06.execution.duplicate_callback",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_duplicate_callback"
+      ]
+    },
+    {
+      "id": "T06.execution.phase_edges",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_phase_edges"
+      ]
+    },
+    {
+      "id": "T06.execution.suspended_owner",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_suspended_owner"
+      ]
+    },
+    {
+      "id": "T12.execution.required_record_failure",
+      "task_id": "D0.03",
+      "family": "T12",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T12_execution_required_record_failure"
+      ]
+    },
+    {
+      "id": "T12.execution.isolation_lifetime",
+      "task_id": "D0.03",
+      "family": "T12",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T12_execution_isolation_lifetime"
+      ]
+    },
+    {
+      "id": "T06.execution.necessary_children",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_necessary_children"
+      ]
+    },
+    {
+      "id": "T06.execution.plan_children_drained",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_plan_children_drained"
+      ]
+    },
+    {
+      "id": "T06.execution.cancel_keeps_facts",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_cancel_keeps_facts"
+      ]
+    },
+    {
+      "id": "T20.execution.atomic_candidate_progress",
+      "task_id": "D0.03",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T20_execution_atomic_candidate_progress"
+      ]
+    },
+    {
+      "id": "T12.execution.commit_publication_gate",
+      "task_id": "D0.03",
+      "family": "T12",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T12_execution_commit_publication_gate"
+      ]
+    },
+    {
+      "id": "T20.execution.observation_revision_independent",
+      "task_id": "D0.03",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T20_execution_observation_revision_independent"
+      ]
+    },
+    {
+      "id": "T20.execution.snapshot_consistency",
+      "task_id": "D0.03",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T20_execution_snapshot_consistency"
+      ]
+    },
+    {
+      "id": "T20.execution.version_exhaustion",
+      "task_id": "D0.03",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T20_execution_version_exhaustion"
+      ]
+    },
+    {
+      "id": "T12.execution.append_only_resolution",
+      "task_id": "D0.03",
+      "family": "T12",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T12_execution_append_only_resolution"
+      ]
+    },
+    {
+      "id": "T20.observer.late_notification",
+      "task_id": "D0.03",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T20_observer_late_notification"
+      ]
+    },
+    {
+      "id": "T20.observer.lost_terminal_notification",
+      "task_id": "D0.03",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T20_observer_lost_terminal_notification"
+      ]
+    },
+    {
+      "id": "T19.schema.golden",
+      "task_id": "D0.03",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T19_schema_golden"
+      ]
+    },
+    {
+      "id": "T19.schema.expected_manifest",
+      "task_id": "D0.03",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T19_schema_expected_manifest"
+      ]
+    },
+    {
+      "id": "T12.execution.reject_forged_publication",
+      "task_id": "D0.03",
+      "family": "T12",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T12_execution_reject_forged_publication"
+      ]
+    },
+    {
+      "id": "T06.execution.child_unknown_aggregation",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_child_unknown_aggregation"
+      ]
+    },
+    {
+      "id": "T20.execution.child_projection_version",
+      "task_id": "D0.03",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T20_execution_child_projection_version"
+      ]
+    },
+    {
+      "id": "T20.observer.out_of_order_snapshot",
+      "task_id": "D0.03",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T20_observer_out_of_order_snapshot"
+      ]
+    },
+    {
+      "id": "T06.execution.queued_cancel",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_queued_cancel"
+      ]
+    },
+    {
+      "id": "T12.execution.post_observation_error",
+      "task_id": "D0.03",
+      "family": "T12",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T12_execution_post_observation_error"
+      ]
+    },
+    {
+      "id": "T12.execution.commit_ledger_repair",
+      "task_id": "D0.03",
+      "family": "T12",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T12_execution_commit_ledger_repair"
+      ]
+    },
+    {
+      "id": "T06.execution.normal_phase_path",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_normal_phase_path"
+      ]
+    },
+    {
+      "id": "T12.outcome.failed_record_projection",
+      "task_id": "D0.03",
+      "family": "T12",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T12_outcome_failed_record_projection"
+      ]
+    },
+    {
+      "id": "T06.execution.plan_child_actual_success",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_plan_child_actual_success"
+      ]
+    },
+    {
+      "id": "T12.outcome.resolution_final_consistency",
+      "task_id": "D0.03",
+      "family": "T12",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T12_outcome_resolution_final_consistency"
+      ]
+    },
+    {
+      "id": "T06.execution.owner_acyclic",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_owner_acyclic"
+      ]
+    },
+    {
+      "id": "T06.execution.cancel_propagates_owned_children",
+      "task_id": "D0.03",
+      "family": "T06",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T06_execution_cancel_propagates_owned_children"
+      ]
+    },
+    {
+      "id": "T12.execution.collected_outcome_frozen",
+      "task_id": "D0.03",
+      "family": "T12",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/testing/model_cases.py",
+        "--case",
+        "test_execution_model.ExecutionContracts.test_T12_execution_collected_outcome_frozen"
+      ]
+    }
+  ]
+}

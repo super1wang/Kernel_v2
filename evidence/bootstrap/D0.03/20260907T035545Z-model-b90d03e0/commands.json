@@ -1,0 +1,61 @@
+{
+  "task_id": "D0.03",
+  "argv": [
+    "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests/model/execution_model",
+    "-v"
+  ],
+  "cwd": "E:\\VS2019Qt5.15\\3D",
+  "started_at": "2026-09-07T03:55:45.409109+00:00",
+  "finished_at": "2026-09-07T03:55:46.794679+00:00",
+  "exit_code": 1,
+  "environment": {
+    "PYTHONPATH": "E:\\VS2019Qt5.15\\3D\\build\\python-deps"
+  },
+  "source_commit": "a03a849e09ba18c4611fce4f1ad4087fcb48e3df",
+  "inputs": [
+    {
+      "path": "tests\\model\\execution_model\\model.py",
+      "sha256": "37e0799012f074a47a574078867ccdd09c892d417740346eb87f7f73d6a0ab92"
+    },
+    {
+      "path": "tests\\model\\execution_model\\test_execution_model.py",
+      "sha256": "1140158d6f547c394e45c5870ca7dd8bc1a3eabfec8b3cd28686e16869ab3d38"
+    },
+    {
+      "path": "tests\\model\\execution_model\\__init__.py",
+      "sha256": "4d3580223e38aa8b67bd13ad917526942da29483efd92266a092364acf477fbc"
+    },
+    {
+      "path": "tests\\model\\execution_model\\golden\\outcomes.json",
+      "sha256": "b315775add970137c5026adcc571b04c62d95fab1199edb529acccab870f91a5"
+    },
+    {
+      "path": "schemas\\outcome-v1.schema.json",
+      "sha256": "96c9273f3005f1fe89e3bd3362bac5ec5459d3fbf8d0267fa05f3dc765671c76"
+    },
+    {
+      "path": "tests\\manifests\\d0.03.expected.json",
+      "sha256": "3c56ec9bb4ef4c0f7b8bea88813cb2b01ff4a6ed4b2dcb47f7c13ab003efb34c"
+    }
+  ],
+  "raw": [
+    {
+      "path": "stdout.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "stderr.log",
+      "size": 9465,
+      "sha256": "2f3247ea6c81539b404f87515d907e634da3f2e78e64b7f3255410faf8c6f054"
+    }
+  ],
+  "limitation": "Bootstrap process evidence only; no Runtime/G0 or package verdict."
+}

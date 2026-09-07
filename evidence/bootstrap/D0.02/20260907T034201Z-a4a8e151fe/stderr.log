@@ -1,0 +1,21 @@
+test_architecture (unittest.loader._FailedTest.test_architecture) ... ERROR
+
+======================================================================
+ERROR: test_architecture (unittest.loader._FailedTest.test_architecture)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_architecture
+Traceback (most recent call last):
+  File "C:\Users\xrx10\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xrx10\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_architecture.py", line 5, in <module>
+    from tools.architecture.check import (load_manifest, validate_manifest, transitive_dependencies,
+ModuleNotFoundError: No module named 'tools.architecture'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

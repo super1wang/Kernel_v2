@@ -1,0 +1,91 @@
+{
+  "format": "ock.package-checks/1",
+  "task_id": "D0.03",
+  "review_status": "Pending",
+  "profile": "win-msvc-debug-python-model",
+  "scope": "确定性 Python 参考模型与 JSON Schema；不代表 C++ Runtime",
+  "expected_manifest": "tests/manifests/d0.03.expected.json",
+  "required_artifacts": [
+    "docs/contracts/outcome.md",
+    "schemas/outcome-v1.schema.json",
+    "tests/model/execution_model/model.py",
+    "tests/model/execution_model/test_execution_model.py",
+    "tests/model/execution_model/golden/outcomes.json"
+  ],
+  "commands": [
+    [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/tools/bootstrap",
+      "-v"
+    ],
+    [
+      "python",
+      "tools/testing/describe_environment.py"
+    ],
+    [
+      "cmake",
+      "-S",
+      ".",
+      "-B",
+      "build/d0.03",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-DOCK_BUILD_EXECUTION_MODEL_TESTS=ON"
+    ],
+    [
+      "cmake",
+      "--build",
+      "build/d0.03",
+      "--config",
+      "Debug",
+      "--parallel"
+    ],
+    [
+      "ctest",
+      "--test-dir",
+      "build/d0.03",
+      "-C",
+      "Debug",
+      "--show-only=json-v1",
+      "-L",
+      "^D0[.]03$"
+    ],
+    [
+      "ctest",
+      "--test-dir",
+      "build/d0.03",
+      "-C",
+      "Debug",
+      "--no-tests=error",
+      "--output-on-failure",
+      "-L",
+      "^D0[.]03$"
+    ]
+  ],
+  "source_patterns": [
+    "CMakeLists.txt",
+    "cmake/**",
+    "sdk/**",
+    "packages/**",
+    "tests/compile/**",
+    "tests/model/**",
+    "tools/testing/**",
+    "schemas/outcome-v1.schema.json",
+    "docs/contracts/outcome.md",
+    "docs/01_Architecture_v3.3.md",
+    "docs/02_Execution_Plan_v3.3.md",
+    "tests/tools/bootstrap/**"
+  ],
+  "build_outputs": [
+    "build/d0.03/CMakeCache.txt",
+    "build/d0.03/ock-target-graph.json",
+    "build/d0.03/D0.03Tests.cmake",
+    "build/d0.03/Debug/ock_sdk_metadata_probe.exe"
+  ]
+}

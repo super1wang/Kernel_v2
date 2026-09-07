@@ -1,0 +1,525 @@
+{
+  "format": "ock.bootstrap-package/1",
+  "task_id": "D0.03",
+  "run_id": "20260907T041821Z-679cb7a8695e",
+  "started_at": "2026-09-07T04:18:21.084094+00:00",
+  "source": {
+    "commit": "a03a849e09ba18c4611fce4f1ad4087fcb48e3df",
+    "dirty": true,
+    "inputs_sha256": "36552639151d6edb0e9adbd48922220e6bf8c9cc3a3482c2dc1f4176fd7fdd41",
+    "archive_sha256": "9170a3bd8152234629df9be8abe67ad26f4db98a003d82a50ede179e03a3c702"
+  },
+  "profile": "win-msvc-debug-python-model",
+  "manifest_sha256": "a69db9f2272d3ccb88d1ed72cdc3617708174a7b564c4330dfc9b691a745e786",
+  "environment": {
+    "python": "3.11.9",
+    "python_executable": "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "command_executables": [
+      {
+        "name": "cmake",
+        "path": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.EXE",
+        "sha256": "b540efece9172930877dff0c9fedda7a69b0dd82446e0e8bba13372aac6c8ac8"
+      },
+      {
+        "name": "ctest",
+        "path": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.EXE",
+        "sha256": "1fe268c79c868a70e6d725ee8f1ad46ec8e21dc3915a74cff8d4d049bf79a0f0"
+      },
+      {
+        "name": "python",
+        "path": "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "sha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec"
+      }
+    ]
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/tools/bootstrap",
+        "-v"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T04:18:21.250016+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "finished_at": "2026-09-07T04:18:21.464376+00:00",
+      "raw": [
+        {
+          "path": "01-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false
+        },
+        {
+          "path": "01-stderr.log",
+          "sha256": "e357aa6b3b87fb4f4138d4128b09d0ea11777f2958303bf90dac07dc97cec006",
+          "size": 795,
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "argv": [
+        "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-X",
+        "utf8",
+        "tools/testing/describe_environment.py"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T04:18:21.465383+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "finished_at": "2026-09-07T04:18:21.790347+00:00",
+      "raw": [
+        {
+          "path": "02-stdout.log",
+          "sha256": "1e1068b6819cdf747bf5d37e82224cb0a83e07e037fc361b492660833a833a94",
+          "size": 24971,
+          "truncated": false
+        },
+        {
+          "path": "02-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "-S",
+        ".",
+        "-B",
+        "build/d0.03",
+        "-G",
+        "Visual Studio 17 2022",
+        "-A",
+        "x64",
+        "-DOCK_BUILD_EXECUTION_MODEL_TESTS=ON"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T04:18:21.791912+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "finished_at": "2026-09-07T04:18:22.957384+00:00",
+      "raw": [
+        {
+          "path": "03-stdout.log",
+          "sha256": "905b209bc44ec1633ee5e8de7650fec4b3ad7006aecdda8a0b38510fbb79ee84",
+          "size": 197,
+          "truncated": false
+        },
+        {
+          "path": "03-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "build/d0.03",
+        "--config",
+        "Debug",
+        "--parallel"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T04:18:22.958380+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "finished_at": "2026-09-07T04:18:26.242330+00:00",
+      "raw": [
+        {
+          "path": "04-stdout.log",
+          "sha256": "40996fa8e0819b4c6161ffb2235198f9c48a5a36d85934f18792c250b75d9cf6",
+          "size": 306,
+          "truncated": false
+        },
+        {
+          "path": "04-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "build/d0.03",
+        "-C",
+        "Debug",
+        "--show-only=json-v1",
+        "-L",
+        "^D0[.]03$"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T04:18:26.243329+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "finished_at": "2026-09-07T04:18:26.317490+00:00",
+      "raw": [
+        {
+          "path": "05-stdout.log",
+          "sha256": "01a5f04ecf089c218c7a434a07ad2c67a4cbfda701cb99c0986e0473ea2af34c",
+          "size": 46303,
+          "truncated": false
+        },
+        {
+          "path": "05-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "build/d0.03",
+        "-C",
+        "Debug",
+        "--no-tests=error",
+        "--output-on-failure",
+        "-L",
+        "^D0[.]03$",
+        "--output-junit",
+        "E:\\VS2019Qt5.15\\3D\\evidence\\bootstrap\\D0.03\\20260907T041821Z-679cb7a8695e\\06-junit.xml"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T04:18:26.318319+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "finished_at": "2026-09-07T04:18:43.327693+00:00",
+      "raw": [
+        {
+          "path": "06-stdout.log",
+          "sha256": "2bbf4ff2ec500035ea998cf0d9f8b4211e09254498219fddf07307c2866f79e4",
+          "size": 6196,
+          "truncated": false
+        },
+        {
+          "path": "06-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false
+        }
+      ],
+      "junit": {
+        "path": "06-junit.xml",
+        "sha256": "be3f5459a979f998bea7174927845edf32ca58ff204b984db9d87a595afd69a6"
+      }
+    }
+  ],
+  "tests": {
+    "expected": [
+      "T02.outcome.nine_variants",
+      "T02.outcome.read_candidate",
+      "T02.outcome.effect_minimal_receipt",
+      "T02.outcome.lifecycle_failed_transition",
+      "T02.outcome.plan_all_success",
+      "T02.outcome.partial_and_unknown",
+      "T12.outcome.evidence_matrix",
+      "T19.outcome.reply_layers",
+      "T06.execution.durable_acceptance",
+      "T06.execution.inline_completion",
+      "T06.execution.executor_rejection",
+      "T06.execution.duplicate_callback",
+      "T06.execution.phase_edges",
+      "T06.execution.suspended_owner",
+      "T12.execution.required_record_failure",
+      "T12.execution.isolation_lifetime",
+      "T06.execution.necessary_children",
+      "T06.execution.plan_children_drained",
+      "T06.execution.cancel_keeps_facts",
+      "T20.execution.atomic_candidate_progress",
+      "T12.execution.commit_publication_gate",
+      "T20.execution.observation_revision_independent",
+      "T20.execution.snapshot_consistency",
+      "T20.execution.version_exhaustion",
+      "T12.execution.append_only_resolution",
+      "T20.observer.late_notification",
+      "T20.observer.lost_terminal_notification",
+      "T19.schema.golden",
+      "T19.schema.expected_manifest",
+      "T12.execution.reject_forged_publication",
+      "T06.execution.child_unknown_aggregation",
+      "T20.execution.child_projection_version",
+      "T20.observer.out_of_order_snapshot",
+      "T06.execution.queued_cancel",
+      "T12.execution.post_observation_error",
+      "T12.execution.commit_ledger_repair",
+      "T06.execution.normal_phase_path",
+      "T12.outcome.failed_record_projection",
+      "T06.execution.plan_child_actual_success",
+      "T12.outcome.resolution_final_consistency",
+      "T06.execution.owner_acyclic",
+      "T06.execution.cancel_propagates_owned_children",
+      "T12.execution.collected_outcome_frozen"
+    ],
+    "discovered": [
+      "T02.outcome.nine_variants",
+      "T02.outcome.read_candidate",
+      "T02.outcome.effect_minimal_receipt",
+      "T02.outcome.lifecycle_failed_transition",
+      "T02.outcome.plan_all_success",
+      "T02.outcome.partial_and_unknown",
+      "T12.outcome.evidence_matrix",
+      "T19.outcome.reply_layers",
+      "T06.execution.durable_acceptance",
+      "T06.execution.inline_completion",
+      "T06.execution.executor_rejection",
+      "T06.execution.duplicate_callback",
+      "T06.execution.phase_edges",
+      "T06.execution.suspended_owner",
+      "T12.execution.required_record_failure",
+      "T12.execution.isolation_lifetime",
+      "T06.execution.necessary_children",
+      "T06.execution.plan_children_drained",
+      "T06.execution.cancel_keeps_facts",
+      "T20.execution.atomic_candidate_progress",
+      "T12.execution.commit_publication_gate",
+      "T20.execution.observation_revision_independent",
+      "T20.execution.snapshot_consistency",
+      "T20.execution.version_exhaustion",
+      "T12.execution.append_only_resolution",
+      "T20.observer.late_notification",
+      "T20.observer.lost_terminal_notification",
+      "T12.execution.reject_forged_publication",
+      "T06.execution.child_unknown_aggregation",
+      "T20.execution.child_projection_version",
+      "T20.observer.out_of_order_snapshot",
+      "T06.execution.queued_cancel",
+      "T12.execution.post_observation_error",
+      "T12.execution.commit_ledger_repair",
+      "T06.execution.normal_phase_path",
+      "T12.outcome.failed_record_projection",
+      "T06.execution.plan_child_actual_success",
+      "T12.outcome.resolution_final_consistency",
+      "T06.execution.owner_acyclic",
+      "T06.execution.cancel_propagates_owned_children",
+      "T12.execution.collected_outcome_frozen",
+      "T19.schema.golden",
+      "T19.schema.expected_manifest"
+    ],
+    "executed": [
+      {
+        "name": "T02.outcome.nine_variants",
+        "status": "Passed"
+      },
+      {
+        "name": "T02.outcome.read_candidate",
+        "status": "Passed"
+      },
+      {
+        "name": "T02.outcome.effect_minimal_receipt",
+        "status": "Passed"
+      },
+      {
+        "name": "T02.outcome.lifecycle_failed_transition",
+        "status": "Passed"
+      },
+      {
+        "name": "T02.outcome.plan_all_success",
+        "status": "Passed"
+      },
+      {
+        "name": "T02.outcome.partial_and_unknown",
+        "status": "Passed"
+      },
+      {
+        "name": "T12.outcome.evidence_matrix",
+        "status": "Passed"
+      },
+      {
+        "name": "T19.outcome.reply_layers",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.durable_acceptance",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.inline_completion",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.executor_rejection",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.duplicate_callback",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.phase_edges",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.suspended_owner",
+        "status": "Passed"
+      },
+      {
+        "name": "T12.execution.required_record_failure",
+        "status": "Passed"
+      },
+      {
+        "name": "T12.execution.isolation_lifetime",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.necessary_children",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.plan_children_drained",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.cancel_keeps_facts",
+        "status": "Passed"
+      },
+      {
+        "name": "T20.execution.atomic_candidate_progress",
+        "status": "Passed"
+      },
+      {
+        "name": "T12.execution.commit_publication_gate",
+        "status": "Passed"
+      },
+      {
+        "name": "T20.execution.observation_revision_independent",
+        "status": "Passed"
+      },
+      {
+        "name": "T20.execution.snapshot_consistency",
+        "status": "Passed"
+      },
+      {
+        "name": "T20.execution.version_exhaustion",
+        "status": "Passed"
+      },
+      {
+        "name": "T12.execution.append_only_resolution",
+        "status": "Passed"
+      },
+      {
+        "name": "T20.observer.late_notification",
+        "status": "Passed"
+      },
+      {
+        "name": "T20.observer.lost_terminal_notification",
+        "status": "Passed"
+      },
+      {
+        "name": "T12.execution.reject_forged_publication",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.child_unknown_aggregation",
+        "status": "Passed"
+      },
+      {
+        "name": "T20.execution.child_projection_version",
+        "status": "Passed"
+      },
+      {
+        "name": "T20.observer.out_of_order_snapshot",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.queued_cancel",
+        "status": "Passed"
+      },
+      {
+        "name": "T12.execution.post_observation_error",
+        "status": "Passed"
+      },
+      {
+        "name": "T12.execution.commit_ledger_repair",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.normal_phase_path",
+        "status": "Passed"
+      },
+      {
+        "name": "T12.outcome.failed_record_projection",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.plan_child_actual_success",
+        "status": "Passed"
+      },
+      {
+        "name": "T12.outcome.resolution_final_consistency",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.owner_acyclic",
+        "status": "Passed"
+      },
+      {
+        "name": "T06.execution.cancel_propagates_owned_children",
+        "status": "Passed"
+      },
+      {
+        "name": "T12.execution.collected_outcome_frozen",
+        "status": "Passed"
+      },
+      {
+        "name": "T19.schema.golden",
+        "status": "Passed"
+      },
+      {
+        "name": "T19.schema.expected_manifest",
+        "status": "Passed"
+      }
+    ]
+  },
+  "outputs": [
+    {
+      "path": "build/d0.03/CMakeCache.txt",
+      "sha256": "dc95873bd8da9182c800b2cbc9e00ac9830749349080ee1a7ea13c5720c96a10",
+      "size": 16295
+    },
+    {
+      "path": "build/d0.03/ock-target-graph.json",
+      "sha256": "9a2e1f2cacd117d2e7cb4dd496740a066dd01b9fd24d46690891091e53c547eb",
+      "size": 3948
+    },
+    {
+      "path": "build/d0.03/D0.03Tests.cmake",
+      "sha256": "6d40ff688536d31b8e2962158cc34a1b27de59f03fea8a1a9b2c8bd5726a31ef",
+      "size": 15670
+    },
+    {
+      "path": "build/d0.03/Debug/ock_sdk_metadata_probe.exe",
+      "sha256": "e1899448daae439bae552549c6dc9b5e6dfca1478f467d05eadde9f9285b6cd9",
+      "size": 59392
+    }
+  ],
+  "formal_evidence_status": "Incomplete",
+  "limitations": [
+    "G0前由D0.06正式采集器复核；当前不生成包级Passed。",
+    "没有实现完整Conformance/重复轮次/故障树/正式依赖锁门禁。",
+    "人工评审独立，运行结果不能替代批准。"
+  ],
+  "finished_at": "2026-09-07T04:18:43.335753+00:00",
+  "errors": [],
+  "collection_status": "Captured"
+}
