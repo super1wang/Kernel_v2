@@ -16,3 +16,5 @@
 首次 bootstrap 运行发生于基线提交前，源码身份如实指向当时远端初始提交并标 dirty；后续运行绑定实际新 HEAD 与输入摘要，两者不得拼成一次运行。后续提交会改变仓库身份，但该 run 的输入快照可由各文件摘要核对，不冒充提交后的干净构建。
 
 正式 evidence runner、CTest discovery/JUnit、重复轮次/进程树/旧报告/二进制核验、gate summary 属 D0.06，当前没有实现或宣称通过。
+
+原始进程输出按字节保存，`evidence/bootstrap/**` 使用 `-text` 禁止 Git 自动转换 CRLF/LF；提交时同时核对工作树及 Git blob 中的原始日志摘要，保证远端检出仍可校验。

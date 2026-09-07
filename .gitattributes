@@ -9,3 +9,6 @@
 # Preserve intentional Markdown hard breaks in the supplied normative documents.
 docs/01_Architecture_v3.3.md whitespace=-blank-at-eol
 docs/02_Execution_Plan_v3.3.md whitespace=-blank-at-eol
+
+# Raw process evidence is byte-exact; never normalize captured streams.
+/evidence/bootstrap/** -text whitespace=cr-at-eol
