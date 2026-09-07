@@ -37,7 +37,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | 门禁 | 当前状态 | 事实 |
 |---|---|---|
 | G0 | Passed | 九组372次CTest、142项Git来源及AI规格/代码复核齐全，按用户政策自动验收 |
-| G1 | InProgress | D1.01自动验收Passed，D1.02开始合同与具体API冻结；G1尚未验收 |
+| G1 | InProgress | D1.01自动验收Passed，D1.02具体API/固定集合已审，进入反例与实现；G1尚未验收 |
 | G2 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G3 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G4 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
@@ -133,3 +133,6 @@ D1.01先行阶段记录（以下状态已由后文最终验收更新）：按[�
 
 
 D1.01最终验收：修复来源171907d已推送，Debug/Release/ASan正式34/34/36全部通过、163项Git来源一致、AI两类审核齐全，[自动门禁](../evidence/D1.01/automatic-20260907T100928Z/gate-summary.json)Passed。早期失败和修复过程为历史记录，保留上述原文以区分各轮事实。D1.02已重新核对全部前置Passed，按[已审计划](plans/D1.02.md)及[启动记录](reviews/D1.02-start.json)进入具体API/固定测试集合冻结；尚未实现或验收CoreContracts。
+
+
+D1.02实施输入已冻结：[API声明](contracts/core-contracts-api.md)、[AI规格审核](reviews/D1.02-api.md)及[固定expected审核](reviews/D1.02-expected.md)。预期为新增38项，含既有回归共191/191/193与独立三CHECK；这些是待运行预期，不是通过计数。详见[验证登记](validation/D1.02.md)。
