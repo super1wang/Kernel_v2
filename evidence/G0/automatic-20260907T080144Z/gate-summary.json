@@ -1,0 +1,301 @@
+{
+  "format": "ock.automatic-gate-acceptance/1",
+  "created_at": "2026-09-07T08:01:59.234790+00:00",
+  "gate_id": "G0",
+  "review_mode": "ai-self-review",
+  "human_review_required": false,
+  "policy": {
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80",
+    "version": 1
+  },
+  "rules": [
+    {
+      "path": "tools/evidence/accept_gate.py",
+      "sha256": "a33a4efe90b080a64ca6579922eb0ec55816076a018faef1f358096203016d38"
+    },
+    {
+      "path": "tools/evidence/build_identity.py",
+      "sha256": "23620838037ab4dd49ad30bc7ff96cdb29abbd67036a87edcd8d76a8119dee86"
+    },
+    {
+      "path": "tools/evidence/common.py",
+      "sha256": "f4b2e097027f4933dc6204c8300ed20f35c90523ad5f8e2fa0fed266fe08fd62"
+    },
+    {
+      "path": "tools/evidence/gate.py",
+      "sha256": "8e1526662d21c341baf6ad35cf139b039e6df65dd0e0fb774c7f8d3e3856013f"
+    },
+    {
+      "path": "tools/evidence/import_bootstrap.py",
+      "sha256": "1e4260dc6356ab17749772457f27873fa1b2c5864290e38d1494e4aa0ee2b759"
+    },
+    {
+      "path": "tools/evidence/process.py",
+      "sha256": "b2a34e3ef1c02518b624e5295bc73e558a1a3f84d70aa753e78619c430a688a8"
+    },
+    {
+      "path": "tools/evidence/review_policy.py",
+      "sha256": "35f3628a58d464d27978fbe9eaa58d2944f32eca766c31215e729f9048bbdd40"
+    },
+    {
+      "path": "tools/evidence/run.py",
+      "sha256": "8dedb1393268b5f07f200c16ee64293f531e11aeaba2a71fe82012f958519835"
+    },
+    {
+      "path": "tools/evidence/validate.py",
+      "sha256": "d391a1a854ddf0ef3f7f773cd70287de543617c88b4309033cb31d9c27ab192d"
+    },
+    {
+      "path": "schemas/evidence-v1.schema.json",
+      "sha256": "eeeca84a12fa7e9f62234902aa77f2147fb174f65c8a7a748456fcc2c9ab2a32"
+    }
+  ],
+  "decision_inputs": [
+    {
+      "path": "docs/reviews/automatic-acceptance-policy.json",
+      "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+    },
+    {
+      "path": "docs/reviews/D0.01-code-g0.json",
+      "sha256": "1ada37c5dba429f501eeca6fc9976c445297ec9e2e89adddbafb40060df181bd"
+    },
+    {
+      "path": "docs/reviews/D0.01-spec-g0.json",
+      "sha256": "da4dbfd6906e9210ccbd1bb4b272acea087fcf62ac6b9005cd3a9b5255294840"
+    },
+    {
+      "path": "docs/reviews/D0.01.md",
+      "sha256": "eb70b18994918eeb2d27e6139c3c47506abbb0e4c480e07c4e5c072e83f67be3"
+    },
+    {
+      "path": "docs/reviews/D0.02-code-g0.json",
+      "sha256": "82995b57e2af2cf9e4ef2d0808fefed9741d10dcb8c56c598d93bcb230b74722"
+    },
+    {
+      "path": "docs/reviews/D0.02-spec-g0.json",
+      "sha256": "c853ea040a85a47ff5204cbcd6e829ba9969bda5e2efa6ea3bcb593a707802bd"
+    },
+    {
+      "path": "docs/reviews/D0.02.md",
+      "sha256": "a4ce6a9379543180b80079fd7cd0742b811ce40a9cd52ca9fee0cea74dd445bc"
+    },
+    {
+      "path": "docs/reviews/D0.03-code-g0.json",
+      "sha256": "dd018551cf0321a8237934233ff2fe44708fa8bc363674051fdb8fc44a2133a5"
+    },
+    {
+      "path": "docs/reviews/D0.03-spec-g0.json",
+      "sha256": "36c271e56864b2db65aa63bb9f8800b610891819a337e8997061a8ff34419b35"
+    },
+    {
+      "path": "docs/reviews/D0.03.md",
+      "sha256": "7638b4d215640c2470fdfd83ff536595b32b5bbb400486dd96b8b2652c1ae094"
+    },
+    {
+      "path": "docs/reviews/D0.04-code-g0.json",
+      "sha256": "9a9bd22cb17808f2c9669adf591f03dcdde45e85899a71a8c098f4de3130c7ea"
+    },
+    {
+      "path": "docs/reviews/D0.04-spec-g0.json",
+      "sha256": "ade4d0cd29a1b868eaaa521dd4ca311fcf9d0f9d6705c0edbd682c470ca7ec50"
+    },
+    {
+      "path": "docs/reviews/D0.05-code-g0.json",
+      "sha256": "dcd4baeb3ece1f4623d09544dadc3288d7f8a0428614792a346a34a404d1473a"
+    },
+    {
+      "path": "docs/reviews/D0.05-spec-g0.json",
+      "sha256": "e1d8b81585703bc2f5f694880a68856a0a91aea5e5ce2bcf6437030428000dbf"
+    },
+    {
+      "path": "docs/reviews/D0.06-code-g0.json",
+      "sha256": "170f1a564ef18de924be1348f43905a020a88d1c8c326754ed585da497246f2a"
+    },
+    {
+      "path": "docs/reviews/D0.06-spec-g0.json",
+      "sha256": "6900b37e4ab42688ab80db69f377204cf9a4f11e51483f5d4054438b5cfb115e"
+    },
+    {
+      "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-asan/D0.06/20260907T070324Z-8d7fbd7796cf/report.json",
+      "sha256": "f4003bab63883041ea09bd9a14bf25c5d5fa4993113a9d9f0406c49465621cd4"
+    },
+    {
+      "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.01/20260907T065709Z-24522119e3ce/report.json",
+      "sha256": "e0b7fc74ea10a3eaa1f5b9939677f599de64e8922bdac29cf751e70fd0589c25"
+    },
+    {
+      "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.02/20260907T065743Z-67e6f14d2413/report.json",
+      "sha256": "5e19317c452a3b6d1aacf77858d00bd73886bfff6cad227107166e3da186ecd8"
+    },
+    {
+      "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.03/20260907T070118Z-f2b0e7fb1826/report.json",
+      "sha256": "02ad6fc02964bedb2202079c2992fb4d45f8283ba652d2b7ec1ecbaf69b19197"
+    },
+    {
+      "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.04/20260907T070201Z-02c40c3578dc/report.json",
+      "sha256": "892957eb59223f147a0b6ef36f91f233060a106eecb7a09371d769b338c7d4fa"
+    },
+    {
+      "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.05/20260907T070251Z-68062f9276cd/report.json",
+      "sha256": "f5d13ee5d47ad266908ca662ae6d6a60181de43cd9e9d02a6178a1b57f49219c"
+    },
+    {
+      "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.06/20260907T065329Z-a2b072eceb5c/report.json",
+      "sha256": "fe59f26a5a117c430b19bb818bcb038cfe844bd8536e7b2a131801132b742469"
+    },
+    {
+      "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-release/D0.02/20260907T065939Z-d9dfa0a6c245/report.json",
+      "sha256": "11aaa5baf1e5cf1f7298b6b3cd9a9ef48f98e6924f44814fc0d39834f2fec965"
+    },
+    {
+      "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-release/D0.06/20260907T070641Z-3ff26cf00bd5/report.json",
+      "sha256": "a61f9d5e558e9d3dd500521c436535a4bfdc4fc97d6a7b779db92de8d0e26e3e"
+    },
+    {
+      "path": "evidence/bootstrap/D0.04/independent-review.md",
+      "sha256": "b23288f98044be4ed742bc5e25753c143e23ac56b3c34ca91ab5d545c96bb7a3"
+    },
+    {
+      "path": "evidence/bootstrap/D0.05/independent-review.md",
+      "sha256": "9edc4ef1f776d448dffb69be27f3b40f6077d6329f094d002aa85e4027939a41"
+    },
+    {
+      "path": "evidence/bootstrap/D0.05/parent-final-review.md",
+      "sha256": "19ff41b94f301475ccfcb7fd7dd63dc39b62883672200eeefae583c27b7abe2e"
+    },
+    {
+      "path": "evidence/bootstrap/D0.05/repair-independent-verification.md",
+      "sha256": "3aa20ec863070ebd542d5b21a5ac82a7582746d82ad84c1b4caabf4bdcaf8d0b"
+    },
+    {
+      "path": "evidence/bootstrap/D0.06-a/independent-review.md",
+      "sha256": "51ac20dfe76273372877a9a79c2651e262f5d21dbf67f14909cb76b014712d55"
+    },
+    {
+      "path": "evidence/bootstrap/D0.06-b/independent-review.md",
+      "sha256": "11a5b2534bd14ad4cb770a52d63f1a094aad17b8803285ecde14614b17569dd0"
+    },
+    {
+      "path": "tests/runs/g0.json",
+      "sha256": "e153e524235f933d1f1360aaf2ae6d600bd8ae3517b0036b44ce2e79ecbe880a"
+    }
+  ],
+  "matrix": {
+    "path": "tests/runs/g0.json",
+    "sha256": "e153e524235f933d1f1360aaf2ae6d600bd8ae3517b0036b44ce2e79ecbe880a"
+  },
+  "implementation_identities": [
+    {
+      "commit": "194dcdfeeac55cf7088b8fce8bdb65184e40fd95",
+      "inputs_sha256": "63230d872612046ee7eec0ad30a9806926d8c9118253993b7b6103298d02d84b",
+      "dependency_lock_sha256": "e6ee3e75590bb5d7d8fcf8d133fd237f823f496512444a0cc344684c88c492e7"
+    }
+  ],
+  "runs": [
+    {
+      "task_id": "D0.06",
+      "profile": "win-msvc-debug",
+      "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.06/20260907T065329Z-a2b072eceb5c/report.json",
+      "sha256": "fe59f26a5a117c430b19bb818bcb038cfe844bd8536e7b2a131801132b742469",
+      "run_id": "20260907T065329Z-a2b072eceb5c",
+      "original_package_status": "InProgress",
+      "original_source_dirty": false,
+      "ctest_executions": 70,
+      "technical_review_complete": true
+    },
+    {
+      "task_id": "D0.01",
+      "profile": "win-msvc-debug",
+      "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.01/20260907T065709Z-24522119e3ce/report.json",
+      "sha256": "e0b7fc74ea10a3eaa1f5b9939677f599de64e8922bdac29cf751e70fd0589c25",
+      "run_id": "20260907T065709Z-24522119e3ce",
+      "original_package_status": "InProgress",
+      "original_source_dirty": true,
+      "ctest_executions": 2,
+      "technical_review_complete": true
+    },
+    {
+      "task_id": "D0.02",
+      "profile": "win-msvc-debug",
+      "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.02/20260907T065743Z-67e6f14d2413/report.json",
+      "sha256": "5e19317c452a3b6d1aacf77858d00bd73886bfff6cad227107166e3da186ecd8",
+      "run_id": "20260907T065743Z-67e6f14d2413",
+      "original_package_status": "InProgress",
+      "original_source_dirty": true,
+      "ctest_executions": 4,
+      "technical_review_complete": true
+    },
+    {
+      "task_id": "D0.02",
+      "profile": "win-msvc-release",
+      "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-release/D0.02/20260907T065939Z-d9dfa0a6c245/report.json",
+      "sha256": "11aaa5baf1e5cf1f7298b6b3cd9a9ef48f98e6924f44814fc0d39834f2fec965",
+      "run_id": "20260907T065939Z-d9dfa0a6c245",
+      "original_package_status": "InProgress",
+      "original_source_dirty": true,
+      "ctest_executions": 4,
+      "technical_review_complete": true
+    },
+    {
+      "task_id": "D0.03",
+      "profile": "win-msvc-debug",
+      "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.03/20260907T070118Z-f2b0e7fb1826/report.json",
+      "sha256": "02ad6fc02964bedb2202079c2992fb4d45f8283ba652d2b7ec1ecbaf69b19197",
+      "run_id": "20260907T070118Z-f2b0e7fb1826",
+      "original_package_status": "InProgress",
+      "original_source_dirty": true,
+      "ctest_executions": 43,
+      "technical_review_complete": true
+    },
+    {
+      "task_id": "D0.04",
+      "profile": "win-msvc-debug",
+      "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.04/20260907T070201Z-02c40c3578dc/report.json",
+      "sha256": "892957eb59223f147a0b6ef36f91f233060a106eecb7a09371d769b338c7d4fa",
+      "run_id": "20260907T070201Z-02c40c3578dc",
+      "original_package_status": "InProgress",
+      "original_source_dirty": true,
+      "ctest_executions": 53,
+      "technical_review_complete": true
+    },
+    {
+      "task_id": "D0.05",
+      "profile": "win-msvc-debug",
+      "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.05/20260907T070251Z-68062f9276cd/report.json",
+      "sha256": "f5d13ee5d47ad266908ca662ae6d6a60181de43cd9e9d02a6178a1b57f49219c",
+      "run_id": "20260907T070251Z-68062f9276cd",
+      "original_package_status": "InProgress",
+      "original_source_dirty": true,
+      "ctest_executions": 63,
+      "technical_review_complete": true
+    },
+    {
+      "task_id": "D0.06",
+      "profile": "win-msvc-asan",
+      "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-asan/D0.06/20260907T070324Z-8d7fbd7796cf/report.json",
+      "sha256": "f4003bab63883041ea09bd9a14bf25c5d5fa4993113a9d9f0406c49465621cd4",
+      "run_id": "20260907T070324Z-8d7fbd7796cf",
+      "original_package_status": "InProgress",
+      "original_source_dirty": true,
+      "ctest_executions": 63,
+      "technical_review_complete": true
+    },
+    {
+      "task_id": "D0.06",
+      "profile": "win-msvc-release",
+      "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-release/D0.06/20260907T070641Z-3ff26cf00bd5/report.json",
+      "sha256": "a61f9d5e558e9d3dd500521c436535a4bfdc4fc97d6a7b779db92de8d0e26e3e",
+      "run_id": "20260907T070641Z-3ff26cf00bd5",
+      "original_package_status": "InProgress",
+      "original_source_dirty": true,
+      "ctest_executions": 70,
+      "technical_review_complete": true
+    }
+  ],
+  "errors": [],
+  "review_errors": [],
+  "automated_status": "Passed",
+  "gate_status": "Passed",
+  "note": "本决策验收列出的精确已提交历史实现及原始运行；不是对后续源码执行过同一测试的声明。所有旧报告及人工字段保持原样。"
+}

@@ -4,7 +4,7 @@
 
 ## 当前节点
 
-- D0.01 已收到用户“批准”，包级状态 Passed；[批准记录](reviews/D0.01-approval.json) 绑定已审查提交。D0.02/D0.03 也已收到用户“继续”作为本轮验收批准；D0.04–D0.06实现和自动验证已完成，等待本批人工验收。
+- D0.01 已收到用户“批准”，包级状态 Passed；[批准记录](reviews/D0.01-approval.json) 绑定已审查提交。D0.02/D0.03 也已收到用户“继续”作为本轮验收批准；D0.04–D0.06已完成AI复核与自动验收，G0 Passed。
 - 当前分支：`work/d0-kernel-baseline`；远端：`https://github.com/super1wang/Kernel_v2.git`。用户已授权必要节点提交和推送。
 - 首个本地节点：`cce1db5`，保存两份原始规范及范围约束。该基线已用已登录且具写权限的 XU-RUiXIANG 推送到同名远端分支；默认账号 XU-Bruce 的首次推送返回 403，未写入远端。后续节点以 Git 实际日志为准。
 - D0.02 已交付 21 个实际 CMake 合同库、版本元数据安装验证及 29 项架构检查；技术复核通过、人工评审已批准。未实现 Runtime 或产品模块；52 个 future_cases 仍是未来预期。
@@ -16,10 +16,10 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 
 ## D0.04–D0.06 当前交付
 
-- D0.04：Plan/Control Schema、中文合同、无状态认证cursor与参考模型已完成；独立审查补齐客户端终态/Host、同版本完整快照、绑定后Domain校验及退订在途帧，53项逐项验证通过，人工Pending。
-- D0.05：提交/许可/Intent/恢复模型及中文合同已完成；独立审查修复材料借用、未知盲重发及Effect一次发送边界，63项模型通过，实际产生的28份提交/29份效果Outcome通过D0.03校验，人工Pending。
+- D0.04：Plan/Control Schema、中文合同、无状态认证cursor与参考模型已完成；独立审查补齐客户端终态/Host、同版本完整快照、绑定后Domain校验及退订在途帧，53项逐项验证通过，已按用户明确政策完成AI复核与自动验收。
+- D0.05：提交/许可/Intent/恢复模型及中文合同已完成；独立审查修复材料借用、未知盲重发及Effect一次发送边界，63项模型通过，实际产生的28份提交/29份效果Outcome通过D0.03校验，已按用户明确政策完成AI复核与自动验收。
 - D0.06-a：十二项固定依赖与六项Python开发wheel锁已核验；独立空目录Debug/Release各15项probe、Embedded ASan8项通过。全部只是开发probe，不声明生产后端。
-- D0.06-b/c：正式进程Job包装、来源/实际构建身份、固定expected与各轮JUnit、原始证据归档、门禁汇总、历史Incomplete导入及mock/fault共同harness已接入。统一G0工程Debug预构建成功；最终9组包/配置已全部通过，共372次CTest；来源142项与194dcdf提交逐字节一致，G0待本批人工验收。
+- D0.06-b/c：正式进程Job包装、来源/实际构建身份、固定expected与各轮JUnit、原始证据归档、门禁汇总、历史Incomplete导入及mock/fault共同harness已接入。统一G0工程Debug预构建成功；最终9组包/配置已全部通过，共372次CTest；来源142项与194dcdf提交逐字节一致，G0已按自动验收政策通过。
 - 本批独立审查记录位于 `evidence/bootstrap/D0.04/independent-review.md`、`D0.05/parent-final-review.md`、`D0.06-a/independent-review.md`、`D0.06-b/independent-review.md`。所有失败轮次保留，旧批准不代替本轮新增实现审批。
 
 ## 已提交验证节点
@@ -36,7 +36,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 
 | 门禁 | 当前状态 | 事实 |
 |---|---|---|
-| G0 | InProgress | D0.01–D0.03已批准；本批实现/技术审查/自动验证完成，待本批人工验收 |
+| G0 | Passed | 九组372次CTest、142项Git来源及AI规格/代码复核齐全，按用户政策自动验收 |
 | G1 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G2 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G3 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
@@ -55,10 +55,10 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | D0.01 | 登记需求、不变量和三个消费者 | 无 | Passed |
 | D0.02 | 冻结target DAG、公开头和威胁模型 | D0.01 | Passed |
 | D0.03 | Outcome、phase和完成回调参考模型 | D0.01 | Passed |
-| D0.04 | Plan与Control wire、槽类型和观察合同 | D0.01、D0.03 | InProgress |
-| D0.05 | 提交、许可、epoch和备份恢复参考模型 | D0.01、D0.03 | InProgress |
-| D0.06 | 固定工具链、共享测试基建与自动证据采集 | D0.02 | InProgress |
-| D1.01 | 实现Foundation与错误/标识原语 | D0.03、D0.06 | NotStarted |
+| D0.04 | Plan与Control wire、槽类型和观察合同 | D0.01、D0.03 | Passed |
+| D0.05 | 提交、许可、epoch和备份恢复参考模型 | D0.01、D0.03 | Passed |
+| D0.06 | 固定工具链、共享测试基建与自动证据采集 | D0.02 | Passed |
+| D1.01 | 实现Foundation与错误/标识原语 | D0.03、D0.06 | InProgress |
 | D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | NotStarted |
 | D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | NotStarted |
 | D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | NotStarted |
@@ -132,3 +132,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 ## 自动验收政策调整
 
 用户进一步明确“自我复核和自动验收，无需人工”，现按[版本化政策](reviews/automatic-acceptance-policy.json)执行AI规格/代码复核与自动验收。此前人工记录转换方案不再使用；历史报告保留，新增验收决策单独采集。政策工具适配已通过规格复核、独立代码复核及冻结版本68项回归；原始证据见 evidence/bootstrap/D0.06-review-policy/all-final-2c8d2e4cf3。下一步实际生成当前政策下的G0验收决策，再据结果更新门禁状态。
+
+当前G0自动验收决策见 [机器报告](../evidence/G0/automatic-20260907T080144Z/gate-summary.json)，上述历史人工拦截已由用户明确“无需人工”的新政策处理，后续使用AI复核与自动验收；不再逐节点请求人工确认。
+
+D1.01现按已准备方案开始实现Foundation原语、公开依赖及安装消费者；只在实际验证和AI复核完成后更新包级Passed。

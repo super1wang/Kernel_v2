@@ -1,6 +1,6 @@
 # Kernel_v2 · Open Command Kernel
 
-按 v3.3 规划从零建设的 Windows x64 / C++20 开放命令内核。D0.01–D0.03 已批准；**D0.04 Plan/Control 合同、D0.05 提交与恢复模型、D0.06 工具链与证据基建**已完成实现和自动验证，G0 待本批人工验收。当前交付包含 CMake 合同目标和可执行参考模型。
+按 v3.3 规划从零建设的 Windows x64 / C++20 开放命令内核。D0.01–D0.03 已批准；**D0.04 Plan/Control 合同、D0.05 提交与恢复模型、D0.06 工具链与证据基建**已完成实现和自动验证，G0 已通过自动验收。当前交付包含 CMake 合同目标和可执行参考模型。
 
 - [当前进度与 64 个工作包](docs/progress.md)
 - [唯一架构规范](docs/01_Architecture_v3.3.md) 与 [唯一执行计划](docs/02_Execution_Plan_v3.3.md)
@@ -32,6 +32,6 @@ python -X utf8 tools/evidence/run.py tests/runs/d0.06-win-msvc-debug.json
 
 每次运行追加独立证据目录；早期 bootstrap 记录保留为历史材料。完整 G0 需要九组配置以及对应技术和人工评审。
 
-当前已实现D0.04–D0.06合同/模型和开发验证基建，G0正式9组验证已通过，待本批人工验收。统一运行与证据规则见 [开发证据工具](tools/evidence/README.md)，精确状态见 [中文进度](docs/progress.md)。本阶段只覆盖内核，不扩展产品模块。
+当前已实现D0.04–D0.06合同/模型和开发验证基建，G0正式9组验证已通过，已完成AI复核与自动验收。统一运行与证据规则见 [开发证据工具](tools/evidence/README.md)，精确状态见 [中文进度](docs/progress.md)。本阶段只覆盖内核，不扩展产品模块。
 
 本批结果：[G0中文验收记录](docs/validation/G0.md)。
