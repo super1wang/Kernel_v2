@@ -37,7 +37,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | 门禁 | 当前状态 | 事实 |
 |---|---|---|
 | G0 | Passed | 九组372次CTest、142项Git来源及AI规格/代码复核齐全，按用户政策自动验收 |
-| G1 | InProgress | D1.01–D1.03自动验收Passed；D1.04及后续包尚未完成，G1尚未验收 |
+| G1 | InProgress | D1.01–D1.04自动验收Passed；D1.05、D1.06尚未完成，G1尚未验收 |
 | G2 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G3 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G4 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
@@ -61,7 +61,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | D1.01 | 实现Foundation与错误/标识原语 | D0.03、D0.06 | Passed |
 | D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | Passed |
 | D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | Passed |
-| D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | InProgress |
+| D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | Passed |
 | D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | NotStarted |
 | D1.06 | 最小Host、Logging共同合同与原生占用基线 | D1.05、D0.06 | NotStarted |
 | D2.01 | 实现单DOM Payload、View与预算构建 | D1.01、D0.06 | NotStarted |
@@ -178,3 +178,15 @@ D1.04当前更新：修订4共同候选可见性及修订5精确Key合同稳定�
 
 
 D1.04提交前状态：最后完整AI核心/规格/覆盖审核Approved，编码字节拥有与观察投影预算两个实际问题已修并独立红绿确认，全部既定子断言已挂接。局部Debug/Release/ASan各35项、共105次全部实际通过，最终224输入摘要 `1a044ad0c5b50f1efa53a82125430a7002a61a1fbbd989f8f1ca2e1e50ac8352`。ASan初轮开发驱动运行库路径失败保留，最小子进程环境修复经实际配对控制与独立审核。正在完成实现节点提交准备，正式251/251/253及九CHECK尚未开始；D1.04与G1仍InProgress。
+
+
+D1.04实现节点 `8978b27` 已完成本地提交及远端推送，224项来源与Git blob字节核对Passed。正式Debug矩阵已开始；保持同提交、同输入摘要依次执行Release和ASan，再按既有自动政策做当前门禁和独立最终验收。正式结果齐备前D1.04保持InProgress。
+
+
+## 2026-09-08 D1.04 完整自动验收
+
+实现节点 `8978b277850beb98ab9da16838052d6f32a7a4c4` 已推送，224项输入与Git逐blob字节一致，摘要 `1a044ad0c5b50f1efa53a82125430a7002a61a1fbbd989f8f1ca2e1e50ac8352`。正式Debug251/251、Release251/251、ASan253/253，共755次CTest和九CHECK全部Passed。三份原始报告均自动Passed、run包级Passed、errors为空。
+
+当前完整自动门禁 `evidence/D1.04/current-20260907T203550Z/gate-summary.json` 实际Passed（SHA `4f1e6b7131e75fbc4a78d7b97a8ff26c23c7e9cc08af7b8bc1bdbe01c0d77e13`）。最终独立AI验收 `evidence/D1.04/final-acceptance-review.md` Approved，独立重新汇总gate同为Passed；两类技术审核绑定相同来源，不需要人工放行。
+
+本包完成内部授权主体/目标发行、四方tuple权限、一次性许可短仲裁、拥有型观察投影与分页/Watch及真实发送起点授权。编码元素别名、观察投影预算等真实缺口已修，历史失败、撤回候选和旧报告原字节保留。未扩展公开SDK Runtime、Host或产品模块。D1.04包级Passed，G1仍InProgress；下一包D1.05须先核对D1.03与D1.04实际Passed，再按v3.3规划进入设计冻结。

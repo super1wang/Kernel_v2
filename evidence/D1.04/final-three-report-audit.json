@@ -1,0 +1,113 @@
+{
+  "status": "PassedThreeReports",
+  "tests": 755,
+  "checks": 9,
+  "inputs": 224,
+  "runs": [
+    {
+      "profile": "debug",
+      "report": "evidence\\8978b277850b-1a044ad0c5b5\\win-msvc-debug\\D1.04\\20260907T194244Z-e3a6ad2e91a8\\report.json",
+      "sha256": "44e16d1f26dbf890769f4cd83197b5b53a45cc0c0d504a21c4a5493491c50029",
+      "tests": 251,
+      "checks": 3,
+      "policy_cases": 35,
+      "wrappers": 5,
+      "child_commands": 24,
+      "raw": 48,
+      "runtime_files": 1583,
+      "build_observed": {
+        "cache": {
+          "CMAKE_GENERATOR": "Visual Studio 17 2022",
+          "CMAKE_GENERATOR_PLATFORM": "x64",
+          "CMAKE_GENERATOR_TOOLSET": "v143,version=14.44.35207",
+          "CMAKE_CONFIGURATION_TYPES": "Debug;Release;MinSizeRel;RelWithDebInfo",
+          "CMAKE_HOME_DIRECTORY": "E:/VS2019Qt5.15/3D"
+        },
+        "configuration": "Debug",
+        "toolchain": {
+          "compiler": "MSVC",
+          "compiler_version": "19.44.35228.0",
+          "generator": "Visual Studio 17 2022",
+          "toolset": "v143,version=14.44.35207",
+          "windows_sdk": "10.0.26100.0",
+          "cmake_version": "3.31.6-msvc6",
+          "cxx_standard": 20,
+          "configuration": "Debug",
+          "crt": "MultiThreadedDebugDLL",
+          "asan_requested": "OFF"
+        }
+      },
+      "errors": []
+    },
+    {
+      "profile": "release",
+      "report": "evidence\\8978b277850b-1a044ad0c5b5\\win-msvc-release\\D1.04\\20260907T200010Z-4529dec17f39\\report.json",
+      "sha256": "8667c58e316f049ff0ec1e260abae1c820fa7dafd32c306dc80ab12e7491c886",
+      "tests": 251,
+      "checks": 3,
+      "policy_cases": 35,
+      "wrappers": 5,
+      "child_commands": 24,
+      "raw": 48,
+      "runtime_files": 1583,
+      "build_observed": {
+        "cache": {
+          "CMAKE_GENERATOR": "Visual Studio 17 2022",
+          "CMAKE_GENERATOR_PLATFORM": "x64",
+          "CMAKE_GENERATOR_TOOLSET": "v143,version=14.44.35207",
+          "CMAKE_CONFIGURATION_TYPES": "Debug;Release;MinSizeRel;RelWithDebInfo",
+          "CMAKE_HOME_DIRECTORY": "E:/VS2019Qt5.15/3D"
+        },
+        "configuration": "Release",
+        "toolchain": {
+          "compiler": "MSVC",
+          "compiler_version": "19.44.35228.0",
+          "generator": "Visual Studio 17 2022",
+          "toolset": "v143,version=14.44.35207",
+          "windows_sdk": "10.0.26100.0",
+          "cmake_version": "3.31.6-msvc6",
+          "cxx_standard": 20,
+          "configuration": "Release",
+          "crt": "MultiThreadedDLL",
+          "asan_requested": "OFF"
+        }
+      },
+      "errors": []
+    },
+    {
+      "profile": "asan",
+      "report": "evidence\\8978b277850b-1a044ad0c5b5\\win-msvc-asan\\D1.04\\20260907T201743Z-19d70286dddb\\report.json",
+      "sha256": "23d1a7fd0f5293618f7dd8b533a286f1f931bb7c8ad08582c75a3da31edf9085",
+      "tests": 253,
+      "checks": 3,
+      "policy_cases": 35,
+      "wrappers": 5,
+      "child_commands": 24,
+      "raw": 48,
+      "runtime_files": 1586,
+      "build_observed": {
+        "cache": {
+          "CMAKE_GENERATOR": "Visual Studio 17 2022",
+          "CMAKE_GENERATOR_PLATFORM": "x64",
+          "CMAKE_GENERATOR_TOOLSET": "v143,version=14.44.35207",
+          "CMAKE_CONFIGURATION_TYPES": "Debug;Release;MinSizeRel;RelWithDebInfo",
+          "CMAKE_HOME_DIRECTORY": "E:/VS2019Qt5.15/3D"
+        },
+        "configuration": "Debug",
+        "toolchain": {
+          "compiler": "MSVC",
+          "compiler_version": "19.44.35228.0",
+          "generator": "Visual Studio 17 2022",
+          "toolset": "v143,version=14.44.35207",
+          "windows_sdk": "10.0.26100.0",
+          "cmake_version": "3.31.6-msvc6",
+          "cxx_standard": 20,
+          "configuration": "Debug",
+          "crt": "MultiThreadedDebugDLL",
+          "asan_requested": "ON"
+        }
+      },
+      "errors": []
+    }
+  ]
+}

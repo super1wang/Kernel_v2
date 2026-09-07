@@ -1,0 +1,60 @@
+{
+  "status": "PassedReleaseOnly",
+  "report_sha256": "8667c58e316f049ff0ec1e260abae1c820fa7dafd32c306dc80ab12e7491c886",
+  "commit": "8978b277850beb98ab9da16838052d6f32a7a4c4",
+  "source_digest": "1a044ad0c5b50f1efa53a82125430a7002a61a1fbbd989f8f1ca2e1e50ac8352",
+  "source_count": 224,
+  "same_source_as_debug": true,
+  "tests": 251,
+  "policy_tests": 35,
+  "checks": [
+    {
+      "id": "CHECK.dependencies.python",
+      "round": 1,
+      "command_id": "check-000",
+      "status": "Passed"
+    },
+    {
+      "id": "CHECK.conformance.bootstrap",
+      "round": 1,
+      "command_id": "check-001",
+      "status": "Passed"
+    },
+    {
+      "id": "CHECK.models.outcome_consistency",
+      "round": 1,
+      "command_id": "check-002",
+      "status": "Passed"
+    }
+  ],
+  "runtime_files": 1583,
+  "build_files": 177,
+  "policy_wrappers": [
+    {
+      "case": "T20.policy.transmission_start_arbitration",
+      "commands": 5
+    },
+    {
+      "case": "T20.policy.internal_component_boundary",
+      "commands": 4
+    },
+    {
+      "case": "T07.policy.group_substitution",
+      "commands": 5
+    },
+    {
+      "case": "T07.policy.permit_origin_binding",
+      "commands": 5
+    },
+    {
+      "case": "T07.policy.authentication_source",
+      "commands": 5
+    }
+  ],
+  "policy_raw": 48,
+  "review_actors": [
+    "AI",
+    "AI"
+  ],
+  "audit_errors": []
+}

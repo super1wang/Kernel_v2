@@ -1,0 +1,64 @@
+{
+  "format": "ock.gate-summary/1",
+  "gate_id": "D1.04",
+  "generated_at": "2026-09-07T20:37:33.758249+00:00",
+  "matrix_sha256": "3c58c8bcc67999054374c06bd03e89a759759cd0b458df4210d4113b872cc506",
+  "rules_sha256": "8e1526662d21c341baf6ad35cf139b039e6df65dd0e0fb774c7f8d3e3856013f",
+  "required_runs": [
+    {
+      "task_id": "D1.04",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D1.04",
+      "profile": "win-msvc-release"
+    },
+    {
+      "task_id": "D1.04",
+      "profile": "win-msvc-asan"
+    }
+  ],
+  "runs": [
+    {
+      "task_id": "D1.04",
+      "profile": "win-msvc-debug",
+      "report": "E:\\VS2019Qt5.15\\3D\\evidence\\8978b277850b-1a044ad0c5b5\\win-msvc-debug\\D1.04\\20260907T194244Z-e3a6ad2e91a8\\report.json",
+      "sha256": "44e16d1f26dbf890769f4cd83197b5b53a45cc0c0d504a21c4a5493491c50029",
+      "automated_status": "Passed",
+      "package_status": "Passed",
+      "review_required": [
+        "spec",
+        "code"
+      ]
+    },
+    {
+      "task_id": "D1.04",
+      "profile": "win-msvc-release",
+      "report": "E:\\VS2019Qt5.15\\3D\\evidence\\8978b277850b-1a044ad0c5b5\\win-msvc-release\\D1.04\\20260907T200010Z-4529dec17f39\\report.json",
+      "sha256": "8667c58e316f049ff0ec1e260abae1c820fa7dafd32c306dc80ab12e7491c886",
+      "automated_status": "Passed",
+      "package_status": "Passed",
+      "review_required": [
+        "spec",
+        "code"
+      ]
+    },
+    {
+      "task_id": "D1.04",
+      "profile": "win-msvc-asan",
+      "report": "E:\\VS2019Qt5.15\\3D\\evidence\\8978b277850b-1a044ad0c5b5\\win-msvc-asan\\D1.04\\20260907T201743Z-19d70286dddb\\report.json",
+      "sha256": "23d1a7fd0f5293618f7dd8b533a286f1f931bb7c8ad08582c75a3da31edf9085",
+      "automated_status": "Passed",
+      "package_status": "Passed",
+      "review_required": [
+        "spec",
+        "code"
+      ]
+    }
+  ],
+  "missing": [],
+  "errors": [],
+  "automated_status": "Passed",
+  "gate_status": "Passed",
+  "note": "自动验证与人工放行分开；历史批准另行保留，不凭历史批准推导当前变更已批准。"
+}
