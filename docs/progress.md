@@ -61,7 +61,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | D1.01 | 实现Foundation与错误/标识原语 | D0.03、D0.06 | Passed |
 | D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | Passed |
 | D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | Passed |
-| D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | NotStarted |
+| D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | InProgress |
 | D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | NotStarted |
 | D1.06 | 最小Host、Logging共同合同与原生占用基线 | D1.05、D0.06 | NotStarted |
 | D2.01 | 实现单DOM Payload、View与预算构建 | D1.01、D0.06 | NotStarted |
@@ -169,3 +169,7 @@ D1.03启动：已逐项核对D1.02的实际三配置和门禁Passed，见 `docs/
 实现节点 `fb08a1955ebfc8b8d97062962b61cac901880953` 已推送，204项输入与Git字节完全一致，摘要 `75090b8927158e4476b812c504be76a83144327ad4aaee5f20acfc63b3aa496b`。Debug 216/216、Release 216/216、ASan 218/218，共650次CTest和9项CHECK全部通过。现有门禁完整audit实际Passed，见 `evidence/D1.03/current-20260907T165757Z/gate-summary.json`；AI规格/代码复核明确绑定本轮来源，无人工放行要求。
 
 本包交付注册批次、精确模块DAG、深拥有及预算、粘性错误、一次发布、不可变目录typed绑定与冷热存储分离。内部Runtime库只依赖CoreContracts闭包；公开SDK Runtime仍ContractBaseline且不可用，不宣称Invocation/Host或产品模块完成。历史失败和旧审核原文保留，当前包级状态Passed，G1仍InProgress。下一节点仅按D1.04前置D1.02与D0.05的实际Passed进入。
+
+D1.03验收节点 `271e926` 已推送。D1.04进入计划/API冻结：前置D1.02和D0.05已逐报告SHA及最终门禁核对Passed，见 `docs/reviews/D1.04-prerequisites.json`；尚无D1.04实现或测试通过声明。
+
+D1.04修订3具体API、计划及固定251/251/253+三CHECK均已独立AI审核Approved，准入记录 `docs/reviews/D1.04-start.json` 绑定精确文档与清单SHA。当前准备提交规划冻结节点，再进行真实反例及实现；尚无本包行为Passed。

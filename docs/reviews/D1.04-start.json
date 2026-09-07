@@ -1,0 +1,130 @@
+{
+  "format": "ock.work-package-start/1",
+  "task_id": "D1.04",
+  "checked_at": "2026-09-07T17:36:57.803476+00:00",
+  "actor_type": "AI",
+  "status": "Approved",
+  "human_review_required": false,
+  "prerequisites": [
+    {
+      "task_id": "D0.05",
+      "status": "Passed",
+      "gate": "evidence/G0/automatic-20260907T080144Z/gate-summary.json",
+      "sha256": "4533863fcc11319773549be34be1e97cae9ebb38042c2248e6bf6e5a960daf68",
+      "runs": [
+        {
+          "profile": "win-msvc-debug",
+          "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.05/20260907T070251Z-68062f9276cd/report.json",
+          "sha256": "f5d13ee5d47ad266908ca662ae6d6a60181de43cd9e9d02a6178a1b57f49219c",
+          "ctest": 63,
+          "checks": [
+            "Passed"
+          ],
+          "original_package_status": "InProgress"
+        }
+      ],
+      "note": "历史报告包级状态保持原样，包级Passed依据绑定原始报告的最终AI自动验收。"
+    },
+    {
+      "task_id": "D1.02",
+      "status": "Passed",
+      "gate": "evidence/D1.02/current-20260907T150316Z/gate-summary.json",
+      "sha256": "c012270509d0cb133ed1e63496633dfff7622ddf2196e3a70e51c4230c8d2fb2",
+      "runs": [
+        {
+          "profile": "win-msvc-asan",
+          "path": "evidence/c6950773dd41-daad9b358851/win-msvc-asan/D1.02/20260907T144516Z-4783fc036cf5/report.json",
+          "sha256": "54e2ac789059c9b5c0849499c707c2fe576be81f548d1c29b6001139740a80fc",
+          "ctest": 193,
+          "checks": [
+            "Passed",
+            "Passed",
+            "Passed"
+          ],
+          "original_package_status": "Passed"
+        },
+        {
+          "profile": "win-msvc-debug",
+          "path": "evidence/c6950773dd41-daad9b358851/win-msvc-debug/D1.02/20260907T141319Z-65c1610e996f/report.json",
+          "sha256": "e89a647b0766a1a012f3d17f0de83eb33f34aefec7131c1e4ecbc16c91d50a44",
+          "ctest": 191,
+          "checks": [
+            "Passed",
+            "Passed",
+            "Passed"
+          ],
+          "original_package_status": "Passed"
+        },
+        {
+          "profile": "win-msvc-release",
+          "path": "evidence/c6950773dd41-daad9b358851/win-msvc-release/D1.02/20260907T142933Z-8d3043eebaf2/report.json",
+          "sha256": "cba835a7638ed5acb8af10a750a7d2eb1e015b62aef4f41505e1056bdb6e04f6",
+          "ctest": 191,
+          "checks": [
+            "Passed",
+            "Passed",
+            "Passed"
+          ],
+          "original_package_status": "Passed"
+        }
+      ],
+      "note": "历史报告包级状态保持原样，包级Passed依据绑定原始报告的最终AI自动验收。"
+    }
+  ],
+  "approved_inputs": [
+    {
+      "path": "docs/plans/D1.04.md",
+      "sha256": "18b29acac29e31c5eb48ffe153c4b273f2c53082f5aaa6d794d93e5a32b35897"
+    },
+    {
+      "path": "docs/contracts/policy-api.md",
+      "sha256": "e8a2d6c3f449a88aaef6673609c3b98437e63c35b244c83e4a74a24ee329ecc7"
+    },
+    {
+      "path": "docs/reviews/D1.04-api-revision3.md",
+      "sha256": "c2e1a9ae005fc499aec92c4ab1a09d134300cf110cc750b141d063d166d3d9ed"
+    },
+    {
+      "path": "docs/reviews/D1.04-plan-revision3.md",
+      "sha256": "3f6b7b65938a4153d503bbe06515486ebcd2234c68770aff89eda06dc533c1aa"
+    },
+    {
+      "path": "tests/manifests/d1.04.expected.json",
+      "sha256": "a4d410e2f75610e61300559d3e73f0eb1bf6baacf24f74d070ed5a686195774f"
+    },
+    {
+      "path": "docs/reviews/D1.04-expected.md",
+      "sha256": "3aa44bc3dd2f99240164e63cc2edd843fedd1326dde32d32b87f65609c3ee177"
+    },
+    {
+      "path": "tests/runs/d1.04-matrix.json",
+      "sha256": "3c58c8bcc67999054374c06bd03e89a759759cd0b458df4210d4113b872cc506"
+    },
+    {
+      "path": "evidence/bootstrap/D1.04/run-manifests-preflight.md",
+      "sha256": "8797db78c1aad09769b6f005b6d0867bd5d934ee4bd64ac23fe0bc7b8609a678"
+    },
+    {
+      "path": "evidence/bootstrap/D1.04/integration-layout-proposal.md",
+      "sha256": "1955b10911630697049b28772e450c92da667b1f9344714728c671509634de73"
+    },
+    {
+      "path": "evidence/bootstrap/D1.04/integration-layout-review.md",
+      "sha256": "4c5efc0fb9040375cffc3496845754fcea49c446b4534a6e7dc6719612f28aa4"
+    },
+    {
+      "path": "tests/runs/d1.04-win-msvc-debug.json",
+      "sha256": "084f14e7d767a34b0323163fdf939ae3e331670da19aadbbcd0b0230e1c8a05a"
+    },
+    {
+      "path": "tests/runs/d1.04-win-msvc-release.json",
+      "sha256": "13d16de429137c7ba7c75e6fef168494e25e35c82eef43ae1cfe915a98cba138"
+    },
+    {
+      "path": "tests/runs/d1.04-win-msvc-asan.json",
+      "sha256": "381ddaf5b086a732f04859d828b41991de0018f75f4f0adbc45761925dcadf5f"
+    }
+  ],
+  "approval_text": "实际前置Passed、修订3具体API/计划及固定251/251/253+三CHECK均经独立AI复核；批准仅按冻结规范进入反例先行和内核实现，不宣称任何新行为已Passed。受审文档PendingReview是送审字节，当前规格准入以本记录及绑定SHA的最终独立审核为准。",
+  "scope": "仅D1.04内存授权/许可及计划要求验证消费者；SDK Runtime仍不可用，无生产传输/索引或产品扩展。"
+}
