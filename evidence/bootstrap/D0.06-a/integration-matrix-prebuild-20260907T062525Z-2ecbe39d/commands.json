@@ -1,0 +1,148 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-release",
+      "-DOCK_DEPENDENCY_COMPONENTS=All",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T06:25:25.169300+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 173,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 36516,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T06:27:04.952904+00:00",
+    "raw": [
+      {
+        "path": "win-msvc-release-configure-stdout.log",
+        "sha256": "34160647c513a6e299bf8715d714e71c4fd5fcd0400f9f044c48ac3bbc88ec12",
+        "size": 2536
+      },
+      {
+        "path": "win-msvc-release-configure-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "--preset",
+      "win-msvc-release",
+      "--parallel",
+      "2"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T06:27:04.966732+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 300,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 33456,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T06:31:17.611934+00:00",
+    "raw": [
+      {
+        "path": "win-msvc-release-build-stdout.log",
+        "sha256": "f2bf7210522ae0bd32a6561d3e50bddf2ada054170581e421110b9747cca43cf",
+        "size": 4121
+      },
+      {
+        "path": "win-msvc-release-build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-asan",
+      "-DOCK_DEPENDENCY_COMPONENTS=Embedded",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T06:31:17.640914+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 91,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 30344,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T06:32:14.016886+00:00",
+    "raw": [
+      {
+        "path": "win-msvc-asan-configure-stdout.log",
+        "sha256": "99607ccccac3d6c91f76023303865310c578063e4e438d9a9171c8fb1777ac51",
+        "size": 1517
+      },
+      {
+        "path": "win-msvc-asan-configure-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "--preset",
+      "win-msvc-asan",
+      "--parallel",
+      "2"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T06:32:14.063612+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 143,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 36640,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T06:33:12.608966+00:00",
+    "raw": [
+      {
+        "path": "win-msvc-asan-build-stdout.log",
+        "sha256": "09fb1831007c7f8f85d622844eb81632cdd98d756368d9d84fae0747826421c0",
+        "size": 1920
+      },
+      {
+        "path": "win-msvc-asan-build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

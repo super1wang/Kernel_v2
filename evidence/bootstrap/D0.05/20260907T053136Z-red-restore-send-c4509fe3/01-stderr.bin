@@ -1,0 +1,15 @@
+test_T18_restore_new_effect_requires_reconciliation_and_new_intent (dedup_model.test_dedup_model.DedupContracts.test_T18_restore_new_effect_requires_reconciliation_and_new_intent) ... ERROR
+
+======================================================================
+ERROR: test_T18_restore_new_effect_requires_reconciliation_and_new_intent (dedup_model.test_dedup_model.DedupContracts.test_T18_restore_new_effect_requires_reconciliation_and_new_intent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\model\dedup_model\test_dedup_model.py", line 327, in test_T18_restore_new_effect_requires_reconciliation_and_new_intent
+    with self.assertRaises(ContractError): s.authorize_effect_send(fresh, new['key'])
+                                           ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'IntentStore' object has no attribute 'authorize_effect_send'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (errors=1)

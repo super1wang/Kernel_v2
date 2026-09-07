@@ -1,0 +1,54 @@
+{
+  "task_id": "D0.06-a",
+  "run_id": "20260907T051529Z-066d465a",
+  "label": "initial-red",
+  "argv": [
+    "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests/dependencies",
+    "-p",
+    "test_lock.py",
+    "-v"
+  ],
+  "cwd": "E:\\VS2019Qt5.15\\3D",
+  "started_at": "2026-09-07T05:15:29.555773+00:00",
+  "source_commit": "4e96e99e157877feb20caf9a8351d909c8e7f71e",
+  "source_dirty": true,
+  "inputs": [
+    {
+      "path": "tests/dependencies/test_lock.py",
+      "sha256": "aad937f420298bf0e13903da92d93b448ab8348a4fc67286c34c11eb07d31ccf"
+    },
+    {
+      "path": "tools/dependencies/record.py",
+      "sha256": "20adf592c8d120f5292ac639605b57b81778f5c9c3847c4611f3cea3f8bf9f73"
+    }
+  ],
+  "python": "3.11.9",
+  "limitations": [
+    "仅本 checkpoint 原始进程事实，不产包级 Passed；正式源/二进制/CTest关联由D0.06-b采集。"
+  ],
+  "exit_code": 1,
+  "process_status": "Exited",
+  "finished_at": "2026-09-07T05:15:30.069346+00:00",
+  "raw": [
+    {
+      "path": "stdout.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "truncated": false
+    },
+    {
+      "path": "stderr.log",
+      "size": 1072,
+      "sha256": "bc040252edcac29d475a0eb7d8e9040962d48c12b827216aef9d21ea40db4326",
+      "truncated": false
+    }
+  ],
+  "inputs_changed_during_run": []
+}

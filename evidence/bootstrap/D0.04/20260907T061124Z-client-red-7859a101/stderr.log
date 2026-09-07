@@ -1,0 +1,15 @@
+test_T19_control_client_terminal_cannot_reopen (test_control_contract.ControlContracts.test_T19_control_client_terminal_cannot_reopen) ... FAIL
+
+======================================================================
+FAIL: test_T19_control_client_terminal_cannot_reopen (test_control_contract.ControlContracts.test_T19_control_client_terminal_cannot_reopen)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\control\test_control_contract.py", line 146, in test_T19_control_client_terminal_cannot_reopen
+    self.assertFalse(client.accept_snapshot(invalid));self.assertEqual(client.views[eid('e1')]['phase'],'Terminal')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+FAILED (failures=1)

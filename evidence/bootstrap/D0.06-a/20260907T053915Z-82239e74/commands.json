@@ -1,0 +1,144 @@
+{
+  "task_id": "D0.06-a",
+  "run_id": "20260907T053915Z-82239e74",
+  "label": "trial-debug-test",
+  "argv": [
+    "ctest",
+    "--test-dir",
+    "build/d0.06-a/trial-debug",
+    "-C",
+    "Debug",
+    "--output-on-failure",
+    "--no-tests=error",
+    "--output-junit",
+    "trial-debug-tests.xml"
+  ],
+  "cwd": "E:\\VS2019Qt5.15\\3D",
+  "started_at": "2026-09-07T05:39:15.706387+00:00",
+  "source_commit": "4e96e99e157877feb20caf9a8351d909c8e7f71e",
+  "source_dirty": true,
+  "inputs": [
+    {
+      "path": "cmake/Dependencies.cmake",
+      "sha256": "a3892543c31630a3ee3d62af92b639f18cf9a883e9992384b427f2958545efb3"
+    },
+    {
+      "path": "cmake/DependencyProbes.cmake",
+      "sha256": "597448a8b494f5d3730ff5f1a589d44835ab7caa9d6629187e179d64166a5e26"
+    },
+    {
+      "path": "CMakePresets.json",
+      "sha256": "f80c9827b1778518e80c2430ee34e866561c610292d708884e1ac4cec4a4b83e"
+    },
+    {
+      "path": "dependencies.lock",
+      "sha256": "4e12678fbf9226695ea22933327a9fe204b2aeb64fd981fba3a35cf2119de56e"
+    },
+    {
+      "path": "tests/dependencies/CMakeLists.txt",
+      "sha256": "95f685da10532ffe586671d7aec3887535fefa1b40fe8ce0909c056c6228519e"
+    },
+    {
+      "path": "tests/dependencies/probes/asan.cpp",
+      "sha256": "eac36efa94ebcb708a1707fedf0effde61056456d36dadbad2ed1edc12a46b83"
+    },
+    {
+      "path": "tests/dependencies/probes/asio.cpp",
+      "sha256": "1ec2bacb24e1a59da520c824494d24f231c3c534a0d914fd0875b4524e241780"
+    },
+    {
+      "path": "tests/dependencies/probes/benchmark.cpp",
+      "sha256": "da9815d772b1dbce8ac82c115ef1299420a3f3dafef4e61f0072d2c41fbc838e"
+    },
+    {
+      "path": "tests/dependencies/probes/catch2.cpp",
+      "sha256": "3221503ef5c90d5fde6359e9ec2d16393c06326e3fd77689b86d58b0c6c3b8f2"
+    },
+    {
+      "path": "tests/dependencies/probes/cli11.cpp",
+      "sha256": "f12f2aed3c253ff6e42c1e7ccdba37808260f0dba8e08f31a4f4822a4a36b3f5"
+    },
+    {
+      "path": "tests/dependencies/probes/expected.cpp",
+      "sha256": "4bebd34a12cffd2a1b2043a604a316fed02d5d05c54303d94eeea63c54d48f27"
+    },
+    {
+      "path": "tests/dependencies/probes/fmt.cpp",
+      "sha256": "df677a3706fbccabed791872bb398db9d0df26c72f5ae13716a227f8111b2282"
+    },
+    {
+      "path": "tests/dependencies/probes/immer.cpp",
+      "sha256": "68c59713e1dc3c04560ddce27fe7465c25b544ce98ab5dc77e87b24106c4edee"
+    },
+    {
+      "path": "tests/dependencies/probes/jsoncons.cpp",
+      "sha256": "8260fc6ae53879afbc12cfbb6462b0c851fccad1aa460696218398985e0694f6"
+    },
+    {
+      "path": "tests/dependencies/probes/probe_common.hpp",
+      "sha256": "0dcee2fe2b7bd8820149d5679f915b8ad9f919342e7b129c92a5052470b09d1b"
+    },
+    {
+      "path": "tests/dependencies/probes/spdlog.cpp",
+      "sha256": "7341c322b554cc4a2e8f32a06c6b72af01531efdd2c3dca6c2d826f0197d849b"
+    },
+    {
+      "path": "tests/dependencies/probes/sqlite.cpp",
+      "sha256": "b367d5d9ed0d30152092f02a2ae427a9d7e345821ba0644f07c9150f27dd1f4e"
+    },
+    {
+      "path": "tests/dependencies/probes/thread_pool.cpp",
+      "sha256": "ccae5bf8f4547a2e975f449cdeea4617e22ef8b0868170404b61bb854f54b14c"
+    },
+    {
+      "path": "tests/dependencies/probes/toml11.cpp",
+      "sha256": "2e760233e7566b06f49c05bb1553c3fe782ef3311722249e61c8bfdd1577db07"
+    },
+    {
+      "path": "tests/dependencies/probes/toolchain.cpp",
+      "sha256": "c1cf6601ccfea3fb3f24cc326fb0d0f8ccce2c6d287fcc44027519b6e0545c9b"
+    },
+    {
+      "path": "tests/dependencies/test_lock.py",
+      "sha256": "66141c0e337bebb22581e8ac4f08e4162380d78ab9c0a5838761156c0840a0c8"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES",
+      "sha256": "f5f90f5f1df786de8a95947092750940c50f89fe018f6445d825a884e4f5c9ba"
+    },
+    {
+      "path": "tools/dependencies/check_probe_failure.py",
+      "sha256": "1081a14f9850cc498c8d81f0d2b9c51799614899c133ce224897cebdfc5579a7"
+    },
+    {
+      "path": "tools/dependencies/prepare.py",
+      "sha256": "248bda522dcc0fc063fb2b6ff9a7445585da826a11825b062fa11590d1c33517"
+    },
+    {
+      "path": "tools/dependencies/record.py",
+      "sha256": "20adf592c8d120f5292ac639605b57b81778f5c9c3847c4611f3cea3f8bf9f73"
+    }
+  ],
+  "python": "3.11.9",
+  "limitations": [
+    "仅本 checkpoint 原始进程事实，不产包级 Passed；正式源/二进制/CTest关联由D0.06-b采集。"
+  ],
+  "exit_code": 0,
+  "process_status": "Exited",
+  "finished_at": "2026-09-07T05:39:18.465705+00:00",
+  "raw": [
+    {
+      "path": "stdout.log",
+      "size": 2133,
+      "sha256": "f47eb6b67fdf5cf2e253d898e3e23a5f2966e2bd75d01b3b802527c4bf22b625",
+      "truncated": false
+    },
+    {
+      "path": "stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "truncated": false
+    }
+  ],
+  "inputs_changed_during_run": []
+}

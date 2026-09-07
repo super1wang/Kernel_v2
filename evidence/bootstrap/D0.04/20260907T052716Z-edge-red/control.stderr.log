@@ -1,0 +1,58 @@
+test_T04_control_message_golden_and_directions (test_control_contract.ControlContracts.test_T04_control_message_golden_and_directions) ... ok
+test_T19_control_ack_before_events (test_control_contract.ControlContracts.test_T19_control_ack_before_events) ... ok
+test_T19_control_client_old_stream_rejected (test_control_contract.ControlContracts.test_T19_control_client_old_stream_rejected) ... ERROR
+test_T19_control_client_stale_snapshot_and_event (test_control_contract.ControlContracts.test_T19_control_client_stale_snapshot_and_event) ... ok
+test_T19_control_coalescing_preserves_sequence (test_control_contract.ControlContracts.test_T19_control_coalescing_preserves_sequence) ... ok
+test_T19_control_cursor_expiry_host_restore_and_no_restart (test_control_contract.ControlContracts.test_T19_control_cursor_expiry_host_restore_and_no_restart) ... ok
+test_T19_control_cursor_golden_mac (test_control_contract.ControlContracts.test_T19_control_cursor_golden_mac) ... ok
+test_T19_control_disconnect_and_reconnect (test_control_contract.ControlContracts.test_T19_control_disconnect_and_reconnect) ... ok
+test_T19_control_drop_without_later_notification (test_control_contract.ControlContracts.test_T19_control_drop_without_later_notification) ... ok
+test_T19_control_finalizing_and_projection (test_control_contract.ControlContracts.test_T19_control_finalizing_and_projection) ... ok
+test_T19_control_list_live_keyset_add_delete_change (test_control_contract.ControlContracts.test_T19_control_list_live_keyset_add_delete_change) ... ok
+test_T19_control_phase_not_delayed_by_progress_interval (test_control_contract.ControlContracts.test_T19_control_phase_not_delayed_by_progress_interval) ... ERROR
+test_T19_control_terminal_before_subscribe (test_control_contract.ControlContracts.test_T19_control_terminal_before_subscribe) ... ok
+test_T19_control_terminal_during_establishment (test_control_contract.ControlContracts.test_T19_control_terminal_during_establishment) ... ok
+test_T19_control_unsubscribe_connection_generation_inflight (test_control_contract.ControlContracts.test_T19_control_unsubscribe_connection_generation_inflight) ... ok
+test_T20_control_authorization_and_no_enumeration (test_control_contract.ControlContracts.test_T20_control_authorization_and_no_enumeration) ... ok
+test_T20_control_cursor_algorithm_and_authenticated_nonprogress (test_control_contract.ControlContracts.test_T20_control_cursor_algorithm_and_authenticated_nonprogress) ... ok
+test_T20_control_cursor_identity_filter_and_revocation (test_control_contract.ControlContracts.test_T20_control_cursor_identity_filter_and_revocation) ... ok
+test_T20_control_cursor_tamper_unknown_and_oversize (test_control_contract.ControlContracts.test_T20_control_cursor_tamper_unknown_and_oversize) ... ok
+test_T20_control_failed_subscribe_and_hidden_sequence (test_control_contract.ControlContracts.test_T20_control_failed_subscribe_and_hidden_sequence) ... ok
+test_T20_control_revoke_queued_and_send_arbitration (test_control_contract.ControlContracts.test_T20_control_revoke_queued_and_send_arbitration) ... ok
+test_T22_control_effective_budgets_and_session_invalidation (test_control_contract.ControlContracts.test_T22_control_effective_budgets_and_session_invalidation) ... FAIL
+test_T22_control_list_cursor_zero_handles_and_bounded_frame (test_control_contract.ControlContracts.test_T22_control_list_cursor_zero_handles_and_bounded_frame) ... ok
+test_T22_control_list_empty_page_advances_and_no_progress_rejected (test_control_contract.ControlContracts.test_T22_control_list_empty_page_advances_and_no_progress_rejected) ... ok
+test_T22_control_queue_memory_and_counter_limits (test_control_contract.ControlContracts.test_T22_control_queue_memory_and_counter_limits) ... ok
+test_T22_control_quotas_interval_and_slow_reader (test_control_contract.ControlContracts.test_T22_control_quotas_interval_and_slow_reader) ... ok
+
+======================================================================
+ERROR: test_T19_control_client_old_stream_rejected (test_control_contract.ControlContracts.test_T19_control_client_old_stream_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\control\test_control_contract.py", line 131, in test_T19_control_client_old_stream_rejected
+    c=setup();s=sub(c);ack=c.ack('c1',s);client=Client();client.establish(ack);client.accept_snapshot(c.get('c1',eid('e1')))
+                                                         ^^^^^^^^^^^^^^^^
+AttributeError: 'Client' object has no attribute 'establish'
+
+======================================================================
+ERROR: test_T19_control_phase_not_delayed_by_progress_interval (test_control_contract.ControlContracts.test_T19_control_phase_not_delayed_by_progress_interval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\control\test_control_contract.py", line 115, in test_T19_control_phase_not_delayed_by_progress_interval
+    self.assertEqual(events[-1]['params']['data']['phase'],'Terminal');self.assertTrue(events[-1]['params']['gap'])
+                     ~~~~~~^^^^
+IndexError: list index out of range
+
+======================================================================
+FAIL: test_T22_control_effective_budgets_and_session_invalidation (test_control_contract.ControlContracts.test_T22_control_effective_budgets_and_session_invalidation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\control\test_control_contract.py", line 126, in test_T22_control_effective_budgets_and_session_invalidation
+    c=setup(pending_limit=1,connection_bytes=500);s=sub(c);ack=c.ack('c1',s);self.assertEqual(ack['budgets']['pending_messages'],1);self.assertEqual(ack['budgets']['connection_bytes'],500)
+                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 128 != 1
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.309s
+
+FAILED (failures=1, errors=2)

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ock:rpc:common:1",
+  "$comment": "D0.04正式身份wire；Tagged128规范小写hex，不提供权限。uint64上界由语义层验证。",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{32}$",
+      "minLength": 32,
+      "maxLength": 32
+    },
+    "uint64": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]{0,19})$",
+      "maxLength": 20
+    },
+    "executionRef": {
+      "type": "object",
+      "properties": {
+        "execution_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{32}$",
+          "minLength": 32,
+          "maxLength": 32
+        }
+      },
+      "required": [
+        "execution_id"
+      ],
+      "additionalProperties": false
+    },
+    "principalRef": {
+      "type": "object",
+      "properties": {
+        "principal_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{32}$",
+          "minLength": 32,
+          "maxLength": 32
+        }
+      },
+      "required": [
+        "principal_id"
+      ],
+      "additionalProperties": false
+    },
+    "owner": {
+      "oneOf": [
+        {
+          "const": "self"
+        },
+        {
+          "$ref": "#/$defs/principalRef"
+        }
+      ]
+    },
+    "phase": {
+      "enum": [
+        "Queued",
+        "WaitingResources",
+        "Running",
+        "WaitingChild",
+        "Finalizing",
+        "Suspended",
+        "Terminal"
+      ]
+    },
+    "operation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 96,
+          "pattern": "^[\\x21-\\x7e]+$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+        }
+      },
+      "required": [
+        "name",
+        "version"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

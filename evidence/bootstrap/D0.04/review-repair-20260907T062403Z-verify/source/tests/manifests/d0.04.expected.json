@@ -1,0 +1,754 @@
+{
+  "format": "ock.model-expected/1",
+  "task_id": "D0.04",
+  "review_status": "Pending",
+  "maturity": "Draft",
+  "profile": "bootstrap-python",
+  "backend": "Python deterministic Plan/Control model; not Runtime or authenticated transport",
+  "schema_validator": "jsonschema==4.23.0 / Draft202012Validator",
+  "note": "固定规格预期50项，独立于真实函数发现。模型证明结构/逻辑，不宣称真实安全适配器、执行器或多线程已实现。 独立审查补2项固定反例，当前52项；保留父代理50项及Terminal/ackHost反例。 同轮再补客户端本地退订/断线成员资格反例，当前53项。",
+  "cases": [
+    {
+      "id": "T04.plan.golden_nodes",
+      "task_id": "D0.04",
+      "family": "T04",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_golden_nodes"
+      ]
+    },
+    {
+      "id": "T04.plan.wire_rejects_return_and_unknown",
+      "task_id": "D0.04",
+      "family": "T04",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_wire_rejects_return_and_unknown"
+      ]
+    },
+    {
+      "id": "T04.plan.pointer_missing_null_and_escapes",
+      "task_id": "D0.04",
+      "family": "T04",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_pointer_missing_null_and_escapes"
+      ]
+    },
+    {
+      "id": "T04.plan.binding_overlap_and_constants",
+      "task_id": "D0.04",
+      "family": "T04",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_binding_overlap_and_constants"
+      ]
+    },
+    {
+      "id": "T04.plan.binding_requires_parent_and_validates_whole",
+      "task_id": "D0.04",
+      "family": "T04",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_binding_requires_parent_and_validates_whole"
+      ]
+    },
+    {
+      "id": "T11.plan.scope_single_assignment_and_forward",
+      "task_id": "D0.04",
+      "family": "T11",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_scope_single_assignment_and_forward"
+      ]
+    },
+    {
+      "id": "T11.plan.exports_and_branch_types",
+      "task_id": "D0.04",
+      "family": "T11",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_exports_and_branch_types"
+      ]
+    },
+    {
+      "id": "T11.plan.ticket_is_typed_and_consumed",
+      "task_id": "D0.04",
+      "family": "T11",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_ticket_is_typed_and_consumed"
+      ]
+    },
+    {
+      "id": "T10.plan.atomic_result_and_dynamic_check",
+      "task_id": "D0.04",
+      "family": "T10",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T10_plan_atomic_result_and_dynamic_check"
+      ]
+    },
+    {
+      "id": "T10.plan.atomic_rejects_effect_and_ticket",
+      "task_id": "D0.04",
+      "family": "T10",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T10_plan_atomic_rejects_effect_and_ticket"
+      ]
+    },
+    {
+      "id": "T11.plan.expression_types_and_shortcircuit",
+      "task_id": "D0.04",
+      "family": "T11",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_expression_types_and_shortcircuit"
+      ]
+    },
+    {
+      "id": "T11.plan.foreach_fixed_limit",
+      "task_id": "D0.04",
+      "family": "T11",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_foreach_fixed_limit"
+      ]
+    },
+    {
+      "id": "T11.plan.parallel_order_and_policy",
+      "task_id": "D0.04",
+      "family": "T11",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_parallel_order_and_policy"
+      ]
+    },
+    {
+      "id": "T22.plan.static_and_total_budget",
+      "task_id": "D0.04",
+      "family": "T22",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T22_plan_static_and_total_budget"
+      ]
+    },
+    {
+      "id": "T04.plan.examples_and_exact_operation",
+      "task_id": "D0.04",
+      "family": "T04",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_examples_and_exact_operation"
+      ]
+    },
+    {
+      "id": "T10.plan.atomic_subset_and_partial_domain_bindings",
+      "task_id": "D0.04",
+      "family": "T10",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T10_plan_atomic_subset_and_partial_domain_bindings"
+      ]
+    },
+    {
+      "id": "T11.plan.dateref_and_branch_ticket_lifetime",
+      "task_id": "D0.04",
+      "family": "T11",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_dateref_and_branch_ticket_lifetime"
+      ]
+    },
+    {
+      "id": "T04.plan.expression_static_types_not_hidden_by_shortcircuit",
+      "task_id": "D0.04",
+      "family": "T04",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_expression_static_types_not_hidden_by_shortcircuit"
+      ]
+    },
+    {
+      "id": "T22.plan.payload_and_control_depth",
+      "task_id": "D0.04",
+      "family": "T22",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T22_plan_payload_and_control_depth"
+      ]
+    },
+    {
+      "id": "T22.plan.loop_control_cost",
+      "task_id": "D0.04",
+      "family": "T22",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T22_plan_loop_control_cost"
+      ]
+    },
+    {
+      "id": "T04.control.message_golden_and_directions",
+      "task_id": "D0.04",
+      "family": "T04",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T04_control_message_golden_and_directions"
+      ]
+    },
+    {
+      "id": "T19.control.terminal_before_subscribe",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_terminal_before_subscribe"
+      ]
+    },
+    {
+      "id": "T19.control.terminal_during_establishment",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_terminal_during_establishment"
+      ]
+    },
+    {
+      "id": "T19.control.ack_before_events",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_ack_before_events"
+      ]
+    },
+    {
+      "id": "T19.control.client_stale_snapshot_and_event",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_client_stale_snapshot_and_event"
+      ]
+    },
+    {
+      "id": "T19.control.drop_without_later_notification",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_drop_without_later_notification"
+      ]
+    },
+    {
+      "id": "T19.control.coalescing_preserves_sequence",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_coalescing_preserves_sequence"
+      ]
+    },
+    {
+      "id": "T19.control.unsubscribe_connection_generation_inflight",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_unsubscribe_connection_generation_inflight"
+      ]
+    },
+    {
+      "id": "T19.control.disconnect_and_reconnect",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_disconnect_and_reconnect"
+      ]
+    },
+    {
+      "id": "T20.control.authorization_and_no_enumeration",
+      "task_id": "D0.04",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T20_control_authorization_and_no_enumeration"
+      ]
+    },
+    {
+      "id": "T20.control.revoke_queued_and_send_arbitration",
+      "task_id": "D0.04",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T20_control_revoke_queued_and_send_arbitration"
+      ]
+    },
+    {
+      "id": "T22.control.quotas_interval_and_slow_reader",
+      "task_id": "D0.04",
+      "family": "T22",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T22_control_quotas_interval_and_slow_reader"
+      ]
+    },
+    {
+      "id": "T22.control.queue_memory_and_counter_limits",
+      "task_id": "D0.04",
+      "family": "T22",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T22_control_queue_memory_and_counter_limits"
+      ]
+    },
+    {
+      "id": "T19.control.finalizing_and_projection",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_finalizing_and_projection"
+      ]
+    },
+    {
+      "id": "T19.control.cursor_golden_mac",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_cursor_golden_mac"
+      ]
+    },
+    {
+      "id": "T20.control.cursor_tamper_unknown_and_oversize",
+      "task_id": "D0.04",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T20_control_cursor_tamper_unknown_and_oversize"
+      ]
+    },
+    {
+      "id": "T20.control.cursor_identity_filter_and_revocation",
+      "task_id": "D0.04",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T20_control_cursor_identity_filter_and_revocation"
+      ]
+    },
+    {
+      "id": "T19.control.cursor_expiry_host_restore_and_no_restart",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_cursor_expiry_host_restore_and_no_restart"
+      ]
+    },
+    {
+      "id": "T19.control.list_live_keyset_add_delete_change",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_list_live_keyset_add_delete_change"
+      ]
+    },
+    {
+      "id": "T22.control.list_empty_page_advances_and_no_progress_rejected",
+      "task_id": "D0.04",
+      "family": "T22",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T22_control_list_empty_page_advances_and_no_progress_rejected"
+      ]
+    },
+    {
+      "id": "T22.control.list_cursor_zero_handles_and_bounded_frame",
+      "task_id": "D0.04",
+      "family": "T22",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T22_control_list_cursor_zero_handles_and_bounded_frame"
+      ]
+    },
+    {
+      "id": "T19.control.phase_not_delayed_by_progress_interval",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_phase_not_delayed_by_progress_interval"
+      ]
+    },
+    {
+      "id": "T20.control.failed_subscribe_and_hidden_sequence",
+      "task_id": "D0.04",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T20_control_failed_subscribe_and_hidden_sequence"
+      ]
+    },
+    {
+      "id": "T20.control.cursor_algorithm_and_authenticated_nonprogress",
+      "task_id": "D0.04",
+      "family": "T20",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T20_control_cursor_algorithm_and_authenticated_nonprogress"
+      ]
+    },
+    {
+      "id": "T22.control.effective_budgets_and_session_invalidation",
+      "task_id": "D0.04",
+      "family": "T22",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T22_control_effective_budgets_and_session_invalidation"
+      ]
+    },
+    {
+      "id": "T19.control.client_old_stream_rejected",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_client_old_stream_rejected"
+      ]
+    },
+    {
+      "id": "T22.plan.payload_component_budgets",
+      "task_id": "D0.04",
+      "family": "T22",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T22_plan_payload_component_budgets"
+      ]
+    },
+    {
+      "id": "T19.control.invalid_projection_preserves_state",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_invalid_projection_preserves_state"
+      ]
+    },
+    {
+      "id": "T19.control.client_terminal_cannot_reopen",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_client_terminal_cannot_reopen"
+      ]
+    },
+    {
+      "id": "T19.control.client_old_host_snapshot_rejected",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_client_old_host_snapshot_rejected"
+      ]
+    },
+    {
+      "id": "T19.control.full_snapshot_completes_partial_same_version",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_full_snapshot_completes_partial_same_version"
+      ]
+    },
+    {
+      "id": "T04.plan.bound_domain_and_target_validate_full_schema",
+      "task_id": "D0.04",
+      "family": "T04",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema"
+      ]
+    },
+    {
+      "id": "T19.control.client_retirement_rejects_inflight_streams",
+      "task_id": "D0.04",
+      "family": "T19",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_client_retirement_rejects_inflight_streams"
+      ]
+    }
+  ]
+}

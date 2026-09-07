@@ -14,6 +14,14 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 
 材料：[需求登记](requirements.md)、[消费者目标](consumer-targets.md)、[D0.01 评审](reviews/D0.01.md)、[原始证据说明](../evidence/README.md)。
 
+## D0.04–D0.06 当前交付
+
+- D0.04：Plan/Control Schema、中文合同、无状态认证cursor与参考模型已完成；独立审查补齐客户端终态/Host、同版本完整快照、绑定后Domain校验及退订在途帧，53项逐项验证通过，人工Pending。
+- D0.05：提交/许可/Intent/恢复模型及中文合同已完成；独立审查修复材料借用、未知盲重发及Effect一次发送边界，63项模型通过，实际产生的28份提交/29份效果Outcome通过D0.03校验，人工Pending。
+- D0.06-a：十二项固定依赖与六项Python开发wheel锁已核验；独立空目录Debug/Release各15项probe、Embedded ASan8项通过。全部只是开发probe，不声明生产后端。
+- D0.06-b/c：正式进程Job包装、来源/实际构建身份、固定expected与各轮JUnit、原始证据归档、门禁汇总、历史Incomplete导入及mock/fault共同harness已接入。统一G0工程Debug预构建成功；最终9组包/配置采集正在进行，不能提前写全绿。
+- 本批独立审查记录位于 `evidence/bootstrap/D0.04/independent-review.md`、`D0.05/parent-final-review.md`、`D0.06-a/independent-review.md`、`D0.06-b/independent-review.md`。所有失败轮次保留，旧批准不代替本轮新增实现审批。
+
 ## 已提交验证节点
 
 - 登记交付：`f08519a`；原始日志字节保留修复：`3c413bd`；干净源码证据：`af64fa9`，均已推送同名工作分支。

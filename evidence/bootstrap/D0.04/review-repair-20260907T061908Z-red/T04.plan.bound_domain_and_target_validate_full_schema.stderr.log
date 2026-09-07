@@ -1,0 +1,58 @@
+test_T04_plan_bound_domain_and_target_validate_full_schema (test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema) ... 
+  test_T04_plan_bound_domain_and_target_validate_full_schema (test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema) (domain={'provider': 1, 'id': []}) ... FAIL
+  test_T04_plan_bound_domain_and_target_validate_full_schema (test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema) (domain={'provider': 'settings', 'id': ''}) ... FAIL
+  test_T04_plan_bound_domain_and_target_validate_full_schema (test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema) (domain={'provider': 'settings', 'id': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'}) ... FAIL
+  test_T04_plan_bound_domain_and_target_validate_full_schema (test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema) (domain={'provider': '设定', 'id': 'valid'}) ... FAIL
+  test_T04_plan_bound_domain_and_target_validate_full_schema (test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema) (domain=None) ... ERROR
+
+======================================================================
+ERROR: test_T04_plan_bound_domain_and_target_validate_full_schema (test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema) (domain=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\plan\test_plan_contract.py", line 164, in test_T04_plan_bound_domain_and_target_validate_full_schema
+    with self.assertRaises(ContractError):PlanChecker().check(dict(base([atomic]),inputs={'domain':domain}))
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tests\plan\plan_model.py", line 161, in check
+    exports,_,cost=self.block(plan,{'$input':Value(plan['inputs'])})
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tests\plan\plan_model.py", line 212, in block
+    require('domain' in bound and set(bound['domain'])=={'provider','id'},'AtomicDomainRequired')
+                                  ^^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not iterable
+
+======================================================================
+FAIL: test_T04_plan_bound_domain_and_target_validate_full_schema (test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema) (domain={'provider': 1, 'id': []})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\plan\test_plan_contract.py", line 164, in test_T04_plan_bound_domain_and_target_validate_full_schema
+    with self.assertRaises(ContractError):PlanChecker().check(dict(base([atomic]),inputs={'domain':domain}))
+AssertionError: ContractError not raised
+
+======================================================================
+FAIL: test_T04_plan_bound_domain_and_target_validate_full_schema (test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema) (domain={'provider': 'settings', 'id': ''})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\plan\test_plan_contract.py", line 164, in test_T04_plan_bound_domain_and_target_validate_full_schema
+    with self.assertRaises(ContractError):PlanChecker().check(dict(base([atomic]),inputs={'domain':domain}))
+AssertionError: ContractError not raised
+
+======================================================================
+FAIL: test_T04_plan_bound_domain_and_target_validate_full_schema (test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema) (domain={'provider': 'settings', 'id': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\plan\test_plan_contract.py", line 164, in test_T04_plan_bound_domain_and_target_validate_full_schema
+    with self.assertRaises(ContractError):PlanChecker().check(dict(base([atomic]),inputs={'domain':domain}))
+AssertionError: ContractError not raised
+
+======================================================================
+FAIL: test_T04_plan_bound_domain_and_target_validate_full_schema (test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema) (domain={'provider': '设定', 'id': 'valid'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\plan\test_plan_contract.py", line 164, in test_T04_plan_bound_domain_and_target_validate_full_schema
+    with self.assertRaises(ContractError):PlanChecker().check(dict(base([atomic]),inputs={'domain':domain}))
+AssertionError: ContractError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.059s
+
+FAILED (failures=4, errors=1)

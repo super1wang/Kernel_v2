@@ -1,0 +1,49 @@
+{
+  "format": "ock.bootstrap-package/1",
+  "task_id": "D0.05",
+  "run_id": "20260907T052740Z-red-boundaries-b05ed12d",
+  "source": {
+    "commit": "4e96e99e157877feb20caf9a8351d909c8e7f71e",
+    "dirty": true,
+    "inputs_sha256": "9424106b463fbaafcfecd7aea65b1473a4c2ae3039f095ec46ee7b1a553a4021",
+    "archive_sha256": "5ea1fedd6892a1955d79a85c8727662284285da2e703935fbbb5a432d2e161bc"
+  },
+  "formal_evidence_status": "Incomplete",
+  "review_status": "Pending",
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "executable": "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "executable_sha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec"
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--all"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T05:27:41.227413+00:00",
+      "finished_at": "2026-09-07T05:27:41.930674+00:00",
+      "exit_code": 1,
+      "stdout": {
+        "path": "01-stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stderr": {
+        "path": "01-stderr.bin",
+        "sha256": "b3b9a1f71ce282a508b76cbc048837d251bc4262245a91ae9c3953252ab4886a",
+        "size": 12018
+      }
+    }
+  ],
+  "limitations": [
+    "Python 模型步，不是实际线程/SQLite/设备。",
+    "D0.06 正式采集与人工评审独立完成。"
+  ],
+  "source_unchanged": true
+}

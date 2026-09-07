@@ -1,0 +1,14 @@
+test_T19_control_invalid_projection_preserves_state (test_control_contract.ControlContracts.test_T19_control_invalid_projection_preserves_state) ... FAIL
+
+======================================================================
+FAIL: test_T19_control_invalid_projection_preserves_state (test_control_contract.ControlContracts.test_T19_control_invalid_projection_preserves_state)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\control\test_control_contract.py", line 139, in test_T19_control_invalid_projection_preserves_state
+    with self.assertRaises(ContractError):c.update(eid('e1'),**change)
+AssertionError: ContractError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+
+FAILED (failures=1)

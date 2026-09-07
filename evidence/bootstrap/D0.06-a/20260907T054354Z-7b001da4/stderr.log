@@ -1,0 +1,27 @@
+test_archive_symlink_refused (test_lock.LockContracts.test_archive_symlink_refused) ... ok
+test_archive_traversal_refused (test_lock.LockContracts.test_archive_traversal_refused) ... ok
+test_complete_default_table (test_lock.LockContracts.test_complete_default_table) ... ok
+test_component_selection (test_lock.LockContracts.test_component_selection) ... ok
+test_hash_mismatch_refused (test_lock.LockContracts.test_hash_mismatch_refused) ... ok
+test_internal_document_link_materialized (test_lock.LockContracts.test_internal_document_link_materialized) ... ok
+test_offline_missing_refused (test_lock.LockContracts.test_offline_missing_refused) ... ok
+test_reject_floating_revision (test_lock.LockContracts.test_reject_floating_revision) ... ok
+test_reject_incompatible_toolchain (test_lock.LockContracts.test_reject_incompatible_toolchain) ... FAIL
+test_reject_missing_license (test_lock.LockContracts.test_reject_missing_license) ... ok
+test_reject_sqlite_without_fix (test_lock.LockContracts.test_reject_sqlite_without_fix) ... ok
+test_reject_unsafe_compile_options (test_lock.LockContracts.test_reject_unsafe_compile_options) ... ok
+test_unknown_component_rejected (test_lock.LockContracts.test_unknown_component_rejected) ... ok
+test_unselected_never_downloaded (test_lock.LockContracts.test_unselected_never_downloaded) ... ok
+
+======================================================================
+FAIL: test_reject_incompatible_toolchain (test_lock.LockContracts.test_reject_incompatible_toolchain)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\dependencies\test_lock.py", line 28, in test_reject_incompatible_toolchain
+    with self.assertRaises(LockError):validate_lock(lock)
+AssertionError: LockError not raised
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.374s
+
+FAILED (failures=1)

@@ -1,0 +1,15 @@
+test_T14_commit_intent_and_state_share_transaction (commit_model.test_commit_model.CommitContracts.test_T14_commit_intent_and_state_share_transaction) ... ERROR
+
+======================================================================
+ERROR: test_T14_commit_intent_and_state_share_transaction (commit_model.test_commit_model.CommitContracts.test_T14_commit_intent_and_state_share_transaction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\model\commit_model\test_commit_model.py", line 378, in test_T14_commit_intent_and_state_share_transaction
+    attempt = d.prepare('commit-1', 7, binding, intent_key=key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: CommitDomain.prepare() got an unexpected keyword argument 'intent_key'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (errors=1)

@@ -1,0 +1,21 @@
+test_bootstrap (unittest.loader._FailedTest.test_bootstrap) ... ERROR
+
+======================================================================
+ERROR: test_bootstrap (unittest.loader._FailedTest.test_bootstrap)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_bootstrap
+Traceback (most recent call last):
+  File "C:\Users\xrx10\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xrx10\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "E:\VS2019Qt5.15\3D\tests\conformance\test_bootstrap.py", line 9, in <module>
+    from support.harness import run_contract, descriptor, COMMON_CASES
+ModuleNotFoundError: No module named 'support'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

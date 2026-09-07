@@ -1,0 +1,51 @@
+{
+  "format": "ock.plan/1",
+  "durability": "volatile",
+  "on_error": "stop",
+  "inputs": {},
+  "steps": [
+    {
+      "kind": "call",
+      "id": "c",
+      "op": {
+        "name": "math.compute",
+        "version": "1.0.0"
+      },
+      "args": {
+        "value": 2
+      },
+      "delivery": "complete",
+      "out": "candidate"
+    },
+    {
+      "kind": "call",
+      "id": "apply",
+      "op": {
+        "name": "settings.apply",
+        "version": "1.0.0"
+      },
+      "args": {},
+      "target": {
+        "provider": "settings",
+        "id": "settings.machine-a"
+      },
+      "bindings": [
+        {
+          "to": "/args/candidate",
+          "value": {
+            "slot": "candidate",
+            "path": ""
+          }
+        }
+      ],
+      "delivery": "complete",
+      "out": "applied"
+    }
+  ],
+  "exports": {
+    "result": {
+      "slot": "applied",
+      "path": ""
+    }
+  }
+}

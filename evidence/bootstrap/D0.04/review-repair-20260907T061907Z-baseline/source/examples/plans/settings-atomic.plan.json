@@ -1,0 +1,82 @@
+{
+  "format": "ock.plan/1",
+  "durability": "volatile",
+  "on_error": "stop",
+  "inputs": {
+    "domain": {
+      "provider": "settings",
+      "id": "settings.machine-a"
+    },
+    "revision": "7"
+  },
+  "steps": [
+    {
+      "kind": "atomic",
+      "id": "edit",
+      "preconditions": {},
+      "bindings": [
+        {
+          "to": "/domain",
+          "value": {
+            "slot": "$input",
+            "path": "/domain"
+          }
+        },
+        {
+          "to": "/preconditions/revision",
+          "value": {
+            "slot": "$input",
+            "path": "/revision"
+          }
+        }
+      ],
+      "steps": [
+        {
+          "kind": "call",
+          "id": "set_a",
+          "op": {
+            "name": "settings.set_limit",
+            "version": "1.0.0"
+          },
+          "args": {
+            "axis": "x",
+            "limit": 100
+          },
+          "delivery": "complete",
+          "out": "a"
+        },
+        {
+          "kind": "call",
+          "id": "set_b",
+          "op": {
+            "name": "settings.set_limit",
+            "version": "1.0.0"
+          },
+          "args": {
+            "axis": "y",
+            "limit": 80
+          },
+          "delivery": "complete",
+          "out": "b"
+        }
+      ],
+      "exports": {
+        "x": {
+          "slot": "a",
+          "path": ""
+        },
+        "y": {
+          "slot": "b",
+          "path": ""
+        }
+      },
+      "out": "group"
+    }
+  ],
+  "exports": {
+    "edit": {
+      "slot": "group",
+      "path": ""
+    }
+  }
+}

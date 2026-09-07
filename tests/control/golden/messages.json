@@ -1,0 +1,515 @@
+[
+  {
+    "name": "subscribe",
+    "valid": true,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "method": "notifications.subscribe",
+      "params": {
+        "filter": {
+          "executions": [
+            {
+              "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+            }
+          ]
+        },
+        "topics": [
+          "execution.phase"
+        ]
+      }
+    }
+  },
+  {
+    "name": "unsubscribe",
+    "valid": true,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "method": "notifications.unsubscribe",
+      "params": {
+        "subscription_id": "1672aaa80e6c6bfd1ba27237815e04d6",
+        "stream_generation": "29b48932e3b4af06690778f20598ed04"
+      }
+    }
+  },
+  {
+    "name": "list",
+    "valid": true,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "method": "execution.list",
+      "params": {}
+    }
+  },
+  {
+    "name": "owner_self",
+    "valid": true,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "method": "notifications.subscribe",
+      "params": {
+        "filter": {
+          "owner": "self"
+        },
+        "topics": [
+          "execution.phase"
+        ]
+      }
+    }
+  },
+  {
+    "name": "subscribed",
+    "valid": true,
+    "direction": "server_to_client",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "result": {
+        "subscription_id": "1672aaa80e6c6bfd1ba27237815e04d6",
+        "stream_generation": "29b48932e3b4af06690778f20598ed04",
+        "host_incarnation": "b088570ff9e9d850d93e6be35bcca09d",
+        "filter": {
+          "owner": {
+            "principal_id": "2bd806c97f0e00af1a1fc3328fa763a9"
+          }
+        },
+        "topics": [
+          "execution.phase"
+        ],
+        "effective_min_interval_ms": 100,
+        "first_sequence": "1",
+        "replay_supported": false,
+        "budgets": {
+          "pending_messages": 128,
+          "frame_bytes": 16384,
+          "connection_bytes": 1048576,
+          "principal_bytes": 4194304,
+          "host_bytes": 16777216
+        }
+      }
+    }
+  },
+  {
+    "name": "unsubscribed",
+    "valid": true,
+    "direction": "server_to_client",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "result": {
+        "removed": false
+      }
+    }
+  },
+  {
+    "name": "event",
+    "valid": true,
+    "direction": "server_to_client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications.event",
+      "params": {
+        "subscription_id": "1672aaa80e6c6bfd1ba27237815e04d6",
+        "stream_generation": "29b48932e3b4af06690778f20598ed04",
+        "host_incarnation": "b088570ff9e9d850d93e6be35bcca09d",
+        "sequence": "1",
+        "topic": "execution.phase",
+        "execution_ref": {
+          "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+        },
+        "observation_version": "2",
+        "gap": false,
+        "data": {
+          "phase": "Finalizing"
+        }
+      }
+    }
+  },
+  {
+    "name": "list_result",
+    "valid": true,
+    "direction": "server_to_client",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "result": {
+        "items": [],
+        "consistency": "live_keyset",
+        "host_incarnation": "b088570ff9e9d850d93e6be35bcca09d",
+        "retention_scope": "managed_active_and_retained_terminal"
+      }
+    }
+  },
+  {
+    "name": "event_client_direction",
+    "valid": false,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications.event",
+      "params": {
+        "subscription_id": "1672aaa80e6c6bfd1ba27237815e04d6",
+        "stream_generation": "29b48932e3b4af06690778f20598ed04",
+        "host_incarnation": "b088570ff9e9d850d93e6be35bcca09d",
+        "sequence": "1",
+        "topic": "execution.phase",
+        "execution_ref": {
+          "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+        },
+        "observation_version": "2",
+        "gap": false,
+        "data": {
+          "phase": "Finalizing"
+        }
+      }
+    }
+  },
+  {
+    "name": "subscribe_no_id",
+    "valid": false,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications.subscribe",
+      "params": {
+        "filter": {
+          "executions": [
+            {
+              "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+            }
+          ]
+        },
+        "topics": [
+          "execution.phase"
+        ]
+      }
+    }
+  },
+  {
+    "name": "numeric_id",
+    "valid": false,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "notifications.subscribe",
+      "params": {
+        "filter": {
+          "executions": [
+            {
+              "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+            }
+          ]
+        },
+        "topics": [
+          "execution.phase"
+        ]
+      }
+    }
+  },
+  {
+    "name": "client_forged_response",
+    "valid": false,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "result": {
+        "subscription_id": "1672aaa80e6c6bfd1ba27237815e04d6",
+        "stream_generation": "29b48932e3b4af06690778f20598ed04",
+        "host_incarnation": "b088570ff9e9d850d93e6be35bcca09d",
+        "filter": {
+          "owner": {
+            "principal_id": "2bd806c97f0e00af1a1fc3328fa763a9"
+          }
+        },
+        "topics": [
+          "execution.phase"
+        ],
+        "effective_min_interval_ms": 100,
+        "first_sequence": "1",
+        "replay_supported": false,
+        "budgets": {
+          "pending_messages": 128,
+          "frame_bytes": 16384,
+          "connection_bytes": 1048576,
+          "principal_bytes": 4194304,
+          "host_bytes": 16777216
+        }
+      }
+    }
+  },
+  {
+    "name": "unknown_method",
+    "valid": false,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "method": "subscribe",
+      "params": {}
+    }
+  },
+  {
+    "name": "uppercase_identity",
+    "valid": false,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "method": "notifications.subscribe",
+      "params": {
+        "filter": {
+          "executions": [
+            {
+              "execution_id": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+            }
+          ]
+        },
+        "topics": [
+          "execution.phase"
+        ]
+      }
+    }
+  },
+  {
+    "name": "dual_filter",
+    "valid": false,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "method": "notifications.subscribe",
+      "params": {
+        "filter": {
+          "executions": [
+            {
+              "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+            }
+          ],
+          "owner": "self"
+        },
+        "topics": [
+          "execution.phase"
+        ]
+      }
+    }
+  },
+  {
+    "name": "duplicate_topic",
+    "valid": false,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "method": "notifications.subscribe",
+      "params": {
+        "filter": {
+          "executions": [
+            {
+              "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+            }
+          ]
+        },
+        "topics": [
+          "execution.phase",
+          "execution.phase"
+        ]
+      }
+    }
+  },
+  {
+    "name": "duplicate_execution",
+    "valid": false,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "method": "notifications.subscribe",
+      "params": {
+        "filter": {
+          "executions": [
+            {
+              "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+            },
+            {
+              "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+            }
+          ]
+        },
+        "topics": [
+          "execution.phase"
+        ]
+      }
+    }
+  },
+  {
+    "name": "unknown_topic",
+    "valid": false,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "method": "notifications.subscribe",
+      "params": {
+        "filter": {
+          "executions": [
+            {
+              "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+            }
+          ]
+        },
+        "topics": [
+          "unknown"
+        ]
+      }
+    }
+  },
+  {
+    "name": "caller_injection",
+    "valid": false,
+    "direction": "client_to_server",
+    "message": {
+      "jsonrpc": "2.0",
+      "id": "r1",
+      "method": "notifications.subscribe",
+      "params": {
+        "filter": {
+          "executions": [
+            {
+              "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+            }
+          ]
+        },
+        "topics": [
+          "execution.phase"
+        ],
+        "caller": {
+          "trusted": true
+        }
+      }
+    }
+  },
+  {
+    "name": "event_has_id",
+    "valid": false,
+    "direction": "server_to_client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications.event",
+      "params": {
+        "subscription_id": "1672aaa80e6c6bfd1ba27237815e04d6",
+        "stream_generation": "29b48932e3b4af06690778f20598ed04",
+        "host_incarnation": "b088570ff9e9d850d93e6be35bcca09d",
+        "sequence": "1",
+        "topic": "execution.phase",
+        "execution_ref": {
+          "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+        },
+        "observation_version": "2",
+        "gap": false,
+        "data": {
+          "phase": "Finalizing"
+        }
+      },
+      "id": "response"
+    }
+  },
+  {
+    "name": "sequence_overflow",
+    "valid": false,
+    "direction": "server_to_client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications.event",
+      "params": {
+        "subscription_id": "1672aaa80e6c6bfd1ba27237815e04d6",
+        "stream_generation": "29b48932e3b4af06690778f20598ed04",
+        "host_incarnation": "b088570ff9e9d850d93e6be35bcca09d",
+        "sequence": "18446744073709551616",
+        "topic": "execution.phase",
+        "execution_ref": {
+          "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+        },
+        "observation_version": "2",
+        "gap": false,
+        "data": {
+          "phase": "Finalizing"
+        }
+      }
+    }
+  },
+  {
+    "name": "full_args_forbidden",
+    "valid": false,
+    "direction": "server_to_client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications.event",
+      "params": {
+        "subscription_id": "1672aaa80e6c6bfd1ba27237815e04d6",
+        "stream_generation": "29b48932e3b4af06690778f20598ed04",
+        "host_incarnation": "b088570ff9e9d850d93e6be35bcca09d",
+        "sequence": "1",
+        "topic": "execution.phase",
+        "execution_ref": {
+          "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+        },
+        "observation_version": "2",
+        "gap": false,
+        "data": {
+          "phase": "Finalizing",
+          "args": {
+            "secret": "x"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "unpublished_state_fact",
+    "valid": false,
+    "direction": "server_to_client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications.event",
+      "params": {
+        "subscription_id": "1672aaa80e6c6bfd1ba27237815e04d6",
+        "stream_generation": "29b48932e3b4af06690778f20598ed04",
+        "host_incarnation": "b088570ff9e9d850d93e6be35bcca09d",
+        "sequence": "1",
+        "topic": "execution.fact",
+        "execution_ref": {
+          "execution_id": "8b5cc4df7eec7d32a7814eca4af047ae"
+        },
+        "observation_version": "2",
+        "gap": false,
+        "data": {
+          "kind": "StateCommitted",
+          "reference": "9505cacb7c710ed17125fcc6cb3669e8",
+          "published": false
+        }
+      }
+    }
+  },
+  {
+    "name": "top_level_batch",
+    "valid": false,
+    "direction": "client_to_server",
+    "message": [
+      {
+        "jsonrpc": "2.0",
+        "id": "r1",
+        "method": "execution.list",
+        "params": {}
+      }
+    ]
+  }
+]

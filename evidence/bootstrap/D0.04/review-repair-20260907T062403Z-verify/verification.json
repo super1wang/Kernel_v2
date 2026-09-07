@@ -1,0 +1,1083 @@
+{
+  "task_id": "D0.04",
+  "kind": "review-repair-bootstrap-verification",
+  "expected": [
+    "T04.control.message_golden_and_directions",
+    "T04.plan.binding_overlap_and_constants",
+    "T04.plan.binding_requires_parent_and_validates_whole",
+    "T04.plan.bound_domain_and_target_validate_full_schema",
+    "T04.plan.examples_and_exact_operation",
+    "T04.plan.expression_static_types_not_hidden_by_shortcircuit",
+    "T04.plan.golden_nodes",
+    "T04.plan.pointer_missing_null_and_escapes",
+    "T04.plan.wire_rejects_return_and_unknown",
+    "T10.plan.atomic_rejects_effect_and_ticket",
+    "T10.plan.atomic_result_and_dynamic_check",
+    "T10.plan.atomic_subset_and_partial_domain_bindings",
+    "T11.plan.dateref_and_branch_ticket_lifetime",
+    "T11.plan.exports_and_branch_types",
+    "T11.plan.expression_types_and_shortcircuit",
+    "T11.plan.foreach_fixed_limit",
+    "T11.plan.parallel_order_and_policy",
+    "T11.plan.scope_single_assignment_and_forward",
+    "T11.plan.ticket_is_typed_and_consumed",
+    "T19.control.ack_before_events",
+    "T19.control.client_old_host_snapshot_rejected",
+    "T19.control.client_old_stream_rejected",
+    "T19.control.client_retirement_rejects_inflight_streams",
+    "T19.control.client_stale_snapshot_and_event",
+    "T19.control.client_terminal_cannot_reopen",
+    "T19.control.coalescing_preserves_sequence",
+    "T19.control.cursor_expiry_host_restore_and_no_restart",
+    "T19.control.cursor_golden_mac",
+    "T19.control.disconnect_and_reconnect",
+    "T19.control.drop_without_later_notification",
+    "T19.control.finalizing_and_projection",
+    "T19.control.full_snapshot_completes_partial_same_version",
+    "T19.control.invalid_projection_preserves_state",
+    "T19.control.list_live_keyset_add_delete_change",
+    "T19.control.phase_not_delayed_by_progress_interval",
+    "T19.control.terminal_before_subscribe",
+    "T19.control.terminal_during_establishment",
+    "T19.control.unsubscribe_connection_generation_inflight",
+    "T20.control.authorization_and_no_enumeration",
+    "T20.control.cursor_algorithm_and_authenticated_nonprogress",
+    "T20.control.cursor_identity_filter_and_revocation",
+    "T20.control.cursor_tamper_unknown_and_oversize",
+    "T20.control.failed_subscribe_and_hidden_sequence",
+    "T20.control.revoke_queued_and_send_arbitration",
+    "T22.control.effective_budgets_and_session_invalidation",
+    "T22.control.list_cursor_zero_handles_and_bounded_frame",
+    "T22.control.list_empty_page_advances_and_no_progress_rejected",
+    "T22.control.queue_memory_and_counter_limits",
+    "T22.control.quotas_interval_and_slow_reader",
+    "T22.plan.loop_control_cost",
+    "T22.plan.payload_and_control_depth",
+    "T22.plan.payload_component_budgets",
+    "T22.plan.static_and_total_budget"
+  ],
+  "discovered": [
+    "T04.control.message_golden_and_directions",
+    "T04.plan.binding_overlap_and_constants",
+    "T04.plan.binding_requires_parent_and_validates_whole",
+    "T04.plan.bound_domain_and_target_validate_full_schema",
+    "T04.plan.examples_and_exact_operation",
+    "T04.plan.expression_static_types_not_hidden_by_shortcircuit",
+    "T04.plan.golden_nodes",
+    "T04.plan.pointer_missing_null_and_escapes",
+    "T04.plan.wire_rejects_return_and_unknown",
+    "T10.plan.atomic_rejects_effect_and_ticket",
+    "T10.plan.atomic_result_and_dynamic_check",
+    "T10.plan.atomic_subset_and_partial_domain_bindings",
+    "T11.plan.dateref_and_branch_ticket_lifetime",
+    "T11.plan.exports_and_branch_types",
+    "T11.plan.expression_types_and_shortcircuit",
+    "T11.plan.foreach_fixed_limit",
+    "T11.plan.parallel_order_and_policy",
+    "T11.plan.scope_single_assignment_and_forward",
+    "T11.plan.ticket_is_typed_and_consumed",
+    "T19.control.ack_before_events",
+    "T19.control.client_old_host_snapshot_rejected",
+    "T19.control.client_old_stream_rejected",
+    "T19.control.client_retirement_rejects_inflight_streams",
+    "T19.control.client_stale_snapshot_and_event",
+    "T19.control.client_terminal_cannot_reopen",
+    "T19.control.coalescing_preserves_sequence",
+    "T19.control.cursor_expiry_host_restore_and_no_restart",
+    "T19.control.cursor_golden_mac",
+    "T19.control.disconnect_and_reconnect",
+    "T19.control.drop_without_later_notification",
+    "T19.control.finalizing_and_projection",
+    "T19.control.full_snapshot_completes_partial_same_version",
+    "T19.control.invalid_projection_preserves_state",
+    "T19.control.list_live_keyset_add_delete_change",
+    "T19.control.phase_not_delayed_by_progress_interval",
+    "T19.control.terminal_before_subscribe",
+    "T19.control.terminal_during_establishment",
+    "T19.control.unsubscribe_connection_generation_inflight",
+    "T20.control.authorization_and_no_enumeration",
+    "T20.control.cursor_algorithm_and_authenticated_nonprogress",
+    "T20.control.cursor_identity_filter_and_revocation",
+    "T20.control.cursor_tamper_unknown_and_oversize",
+    "T20.control.failed_subscribe_and_hidden_sequence",
+    "T20.control.revoke_queued_and_send_arbitration",
+    "T22.control.effective_budgets_and_session_invalidation",
+    "T22.control.list_cursor_zero_handles_and_bounded_frame",
+    "T22.control.list_empty_page_advances_and_no_progress_rejected",
+    "T22.control.queue_memory_and_counter_limits",
+    "T22.control.quotas_interval_and_slow_reader",
+    "T22.plan.loop_control_cost",
+    "T22.plan.payload_and_control_depth",
+    "T22.plan.payload_component_budgets",
+    "T22.plan.static_and_total_budget"
+  ],
+  "executed": [
+    "T04.plan.golden_nodes",
+    "T04.plan.wire_rejects_return_and_unknown",
+    "T04.plan.pointer_missing_null_and_escapes",
+    "T04.plan.binding_overlap_and_constants",
+    "T04.plan.binding_requires_parent_and_validates_whole",
+    "T11.plan.scope_single_assignment_and_forward",
+    "T11.plan.exports_and_branch_types",
+    "T11.plan.ticket_is_typed_and_consumed",
+    "T10.plan.atomic_result_and_dynamic_check",
+    "T10.plan.atomic_rejects_effect_and_ticket",
+    "T11.plan.expression_types_and_shortcircuit",
+    "T11.plan.foreach_fixed_limit",
+    "T11.plan.parallel_order_and_policy",
+    "T22.plan.static_and_total_budget",
+    "T04.plan.examples_and_exact_operation",
+    "T10.plan.atomic_subset_and_partial_domain_bindings",
+    "T11.plan.dateref_and_branch_ticket_lifetime",
+    "T04.plan.expression_static_types_not_hidden_by_shortcircuit",
+    "T22.plan.payload_and_control_depth",
+    "T22.plan.loop_control_cost",
+    "T04.control.message_golden_and_directions",
+    "T19.control.terminal_before_subscribe",
+    "T19.control.terminal_during_establishment",
+    "T19.control.ack_before_events",
+    "T19.control.client_stale_snapshot_and_event",
+    "T19.control.drop_without_later_notification",
+    "T19.control.coalescing_preserves_sequence",
+    "T19.control.unsubscribe_connection_generation_inflight",
+    "T19.control.disconnect_and_reconnect",
+    "T20.control.authorization_and_no_enumeration",
+    "T20.control.revoke_queued_and_send_arbitration",
+    "T22.control.quotas_interval_and_slow_reader",
+    "T22.control.queue_memory_and_counter_limits",
+    "T19.control.finalizing_and_projection",
+    "T19.control.cursor_golden_mac",
+    "T20.control.cursor_tamper_unknown_and_oversize",
+    "T20.control.cursor_identity_filter_and_revocation",
+    "T19.control.cursor_expiry_host_restore_and_no_restart",
+    "T19.control.list_live_keyset_add_delete_change",
+    "T22.control.list_empty_page_advances_and_no_progress_rejected",
+    "T22.control.list_cursor_zero_handles_and_bounded_frame",
+    "T19.control.phase_not_delayed_by_progress_interval",
+    "T20.control.failed_subscribe_and_hidden_sequence",
+    "T20.control.cursor_algorithm_and_authenticated_nonprogress",
+    "T22.control.effective_budgets_and_session_invalidation",
+    "T19.control.client_old_stream_rejected",
+    "T22.plan.payload_component_budgets",
+    "T19.control.invalid_projection_preserves_state",
+    "T19.control.client_terminal_cannot_reopen",
+    "T19.control.client_old_host_snapshot_rejected",
+    "T19.control.full_snapshot_completes_partial_same_version",
+    "T04.plan.bound_domain_and_target_validate_full_schema",
+    "T19.control.client_retirement_rejects_inflight_streams"
+  ],
+  "commands": [
+    {
+      "case_id": "T04.plan.golden_nodes",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_golden_nodes"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "09a067a5bb9e70eca210ec0c41c29fe21c3d8001fe0c3b4616466b6d6c6984dc"
+    },
+    {
+      "case_id": "T04.plan.wire_rejects_return_and_unknown",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_wire_rejects_return_and_unknown"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a5adf42cc7165a06a5b0a5dc5206d26564b89132fe1546f04416cfdd81eb74df"
+    },
+    {
+      "case_id": "T04.plan.pointer_missing_null_and_escapes",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_pointer_missing_null_and_escapes"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a81cfe0c189ae51e6b7efcdd23abad0f2dfecabae014a08276eb4f18d2e5a408"
+    },
+    {
+      "case_id": "T04.plan.binding_overlap_and_constants",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_binding_overlap_and_constants"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "14c88be01761c927d7f8759a8776db604c74fbf77fdc3a86553f85838a5bcb5b"
+    },
+    {
+      "case_id": "T04.plan.binding_requires_parent_and_validates_whole",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_binding_requires_parent_and_validates_whole"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "fc08a40148c33fdfd05c7feb228e477769c47a726d8a1993502c8f5ba66e2021"
+    },
+    {
+      "case_id": "T11.plan.scope_single_assignment_and_forward",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_scope_single_assignment_and_forward"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a5164c81e2e3de2d1c57485a51a4abf86eb71ef0e92b76964cd00a3ffbe2143d"
+    },
+    {
+      "case_id": "T11.plan.exports_and_branch_types",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_exports_and_branch_types"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a4d9396f4c7938662f3071467477d2ca8edd11663afcf1cbb7218a413aff242c"
+    },
+    {
+      "case_id": "T11.plan.ticket_is_typed_and_consumed",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_ticket_is_typed_and_consumed"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "233b9342e46d6ca2c436c9f39db5e3bc01803d7b50f56d52cbdb5a7d3a4c320c"
+    },
+    {
+      "case_id": "T10.plan.atomic_result_and_dynamic_check",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T10_plan_atomic_result_and_dynamic_check"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d1d87c367fb4432221c99fb4b99d79294c6ad0c5446bfcd499028516b6d026b1"
+    },
+    {
+      "case_id": "T10.plan.atomic_rejects_effect_and_ticket",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T10_plan_atomic_rejects_effect_and_ticket"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "2268602c6baafe06cc8814248a5d9bf9b6400f206c270fe76bac0ebf4d31ec6b"
+    },
+    {
+      "case_id": "T11.plan.expression_types_and_shortcircuit",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_expression_types_and_shortcircuit"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "2100e925c28d62e9b574eb89a54fc8a324e8350ed722f3c69e0aa5bb0be72fdd"
+    },
+    {
+      "case_id": "T11.plan.foreach_fixed_limit",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_foreach_fixed_limit"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "554db6a9fe44be792287b98fed9ea1c4afd3dcc4edbfd4d466f80a12cc719bcf"
+    },
+    {
+      "case_id": "T11.plan.parallel_order_and_policy",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_parallel_order_and_policy"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a4e0cbe6a32bde7e63075ea307d516c15e1a2ebab153eca6c890af5b2db0533f"
+    },
+    {
+      "case_id": "T22.plan.static_and_total_budget",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T22_plan_static_and_total_budget"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "cc127c26966d6ca491e898c92ae6c9d4209f8c1aba38b6ab2e2d9dcc70731355"
+    },
+    {
+      "case_id": "T04.plan.examples_and_exact_operation",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_examples_and_exact_operation"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "0875ff49c8a40cec20c500c6c022c438f4dee7016e24578b716756bda21e3d09"
+    },
+    {
+      "case_id": "T10.plan.atomic_subset_and_partial_domain_bindings",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T10_plan_atomic_subset_and_partial_domain_bindings"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f92a756108979e98da948b3760d0160a92fc38626c36678d028497fe8edae844"
+    },
+    {
+      "case_id": "T11.plan.dateref_and_branch_ticket_lifetime",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T11_plan_dateref_and_branch_ticket_lifetime"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "260c0cbc995ab41a68f949fb4255c072eba0be27d6d91de9fc5e4020429646d0"
+    },
+    {
+      "case_id": "T04.plan.expression_static_types_not_hidden_by_shortcircuit",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_expression_static_types_not_hidden_by_shortcircuit"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "ac08dcc05b04ed1809e2924cc6a914f55e42acd8e80be5963e13d854dbec0f90"
+    },
+    {
+      "case_id": "T22.plan.payload_and_control_depth",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T22_plan_payload_and_control_depth"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3f578e96eff8e57ae2423a5ad5127de38353e4d8f88c9eca47809128effdda07"
+    },
+    {
+      "case_id": "T22.plan.loop_control_cost",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T22_plan_loop_control_cost"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "17594b288a6f1c375f973612cb212404f311f252eef5da461f1f9352064b8ecf"
+    },
+    {
+      "case_id": "T04.control.message_golden_and_directions",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T04_control_message_golden_and_directions"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5b3f91191c344cd568715b7cf5ca9022b1905b98ecf02a8e0d489b1faab57d33"
+    },
+    {
+      "case_id": "T19.control.terminal_before_subscribe",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_terminal_before_subscribe"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "89a091597c4ca84df3f78b88378e5a082e83c49defbdd6a4a1987c9bdf362655"
+    },
+    {
+      "case_id": "T19.control.terminal_during_establishment",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_terminal_during_establishment"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d5e9504cb984d96f999555ae878f61339a09390506be57d0397e3d2de992ce09"
+    },
+    {
+      "case_id": "T19.control.ack_before_events",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_ack_before_events"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f31f49d6331171d9b8d5914f97a9d4c0c3fdc8d63c2faac1eba25fa1dc9fc826"
+    },
+    {
+      "case_id": "T19.control.client_stale_snapshot_and_event",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_client_stale_snapshot_and_event"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "767f6646df4b635176ee68b1a53522d8457d0f8ccc847bf82181ffc1e806b733"
+    },
+    {
+      "case_id": "T19.control.drop_without_later_notification",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_drop_without_later_notification"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "251662c756d30bc87be752ea9c2efc17e8469f760bbcb095b700f1d4e53f117c"
+    },
+    {
+      "case_id": "T19.control.coalescing_preserves_sequence",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_coalescing_preserves_sequence"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "816e11609828e8ae1441901408103bafbc295eb33b5d0e611a7d24c166f9c4a4"
+    },
+    {
+      "case_id": "T19.control.unsubscribe_connection_generation_inflight",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_unsubscribe_connection_generation_inflight"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "77f9d9ace8c576c3f49d6615d9191bf724aec41b2c907e7f97c81b3660a83a79"
+    },
+    {
+      "case_id": "T19.control.disconnect_and_reconnect",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_disconnect_and_reconnect"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f669dcf14265baf149bfb4d04e6577cf477bda55a9d55009c486fdc7f00baa34"
+    },
+    {
+      "case_id": "T20.control.authorization_and_no_enumeration",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T20_control_authorization_and_no_enumeration"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "1d523b8912f14c0ca2a881ad515b0fd6fd93ac26519bfc19280f8aa56529eeeb"
+    },
+    {
+      "case_id": "T20.control.revoke_queued_and_send_arbitration",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T20_control_revoke_queued_and_send_arbitration"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f06ac445e6c130c0c7968e9fb9ed942d83ffc3ba4a9e01e9f4a69b03a358cc78"
+    },
+    {
+      "case_id": "T22.control.quotas_interval_and_slow_reader",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T22_control_quotas_interval_and_slow_reader"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "11f1b456c87f893f36c6ad1ba038335e51839b7a009b3580114d494a759541d9"
+    },
+    {
+      "case_id": "T22.control.queue_memory_and_counter_limits",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T22_control_queue_memory_and_counter_limits"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "43a352080062267e9e5689170a502e721da66d9cc1bbcbfd2fd4d35f704e29c4"
+    },
+    {
+      "case_id": "T19.control.finalizing_and_projection",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_finalizing_and_projection"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "019324cb446a01c918b1c4b9a0a2328f54d26ac58fa55241add3d9ad0a36434f"
+    },
+    {
+      "case_id": "T19.control.cursor_golden_mac",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_cursor_golden_mac"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "884a158dc5e335f9a680f213fd6e3202ca283280ce48c00c10773f4b3fe21156"
+    },
+    {
+      "case_id": "T20.control.cursor_tamper_unknown_and_oversize",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T20_control_cursor_tamper_unknown_and_oversize"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "23f483fae856213185a57051c0fa71d5d220f1e75fc0572c2041f1423db0aeb4"
+    },
+    {
+      "case_id": "T20.control.cursor_identity_filter_and_revocation",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T20_control_cursor_identity_filter_and_revocation"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9de65e81f380e3bcc33cddb0959e5e0577a884f447215887793d5cc4bc2c7216"
+    },
+    {
+      "case_id": "T19.control.cursor_expiry_host_restore_and_no_restart",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_cursor_expiry_host_restore_and_no_restart"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a3d955e56e8ffd7f36650c8ecb440039372f909578022fcc2614366e228726b4"
+    },
+    {
+      "case_id": "T19.control.list_live_keyset_add_delete_change",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_list_live_keyset_add_delete_change"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3ac8b5f281f08eefdf2b7e3f81d741a73ab28ca55b3be2982ee4f709ad7874e4"
+    },
+    {
+      "case_id": "T22.control.list_empty_page_advances_and_no_progress_rejected",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T22_control_list_empty_page_advances_and_no_progress_rejected"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9f0002304831ce73c5dafe4149b0b5434568989120f58e6b3560a0ceac8f7d0c"
+    },
+    {
+      "case_id": "T22.control.list_cursor_zero_handles_and_bounded_frame",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T22_control_list_cursor_zero_handles_and_bounded_frame"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "40aacfaf4c3dd7916552140f7f81ed9749317e89c8d708d0464ae238d1e6ac5d"
+    },
+    {
+      "case_id": "T19.control.phase_not_delayed_by_progress_interval",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_phase_not_delayed_by_progress_interval"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "7dc80e80800b3408af9477bed61f6bf5e1e7283c65c4b01fea4f440461f6b32a"
+    },
+    {
+      "case_id": "T20.control.failed_subscribe_and_hidden_sequence",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T20_control_failed_subscribe_and_hidden_sequence"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d5c6b90c2207845652294243c1d838a504f0a0fc95c45a427145bbbc3f452d37"
+    },
+    {
+      "case_id": "T20.control.cursor_algorithm_and_authenticated_nonprogress",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T20_control_cursor_algorithm_and_authenticated_nonprogress"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f0fe2e75b56724fa54820044f03385bf8930f962bd555d21c6c88fa4385b90a7"
+    },
+    {
+      "case_id": "T22.control.effective_budgets_and_session_invalidation",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T22_control_effective_budgets_and_session_invalidation"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "dee842301563dfb7c12be92ed46dafcabe181e0b6154a096edc12fe7ab4fd8ef"
+    },
+    {
+      "case_id": "T19.control.client_old_stream_rejected",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_client_old_stream_rejected"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "af051496a090e953c9af0619aac9ab72fe0da11919e36c66700b06c69b570402"
+    },
+    {
+      "case_id": "T22.plan.payload_component_budgets",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T22_plan_payload_component_budgets"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b1eae3abf1ee73e8643c56f1a03d88edc4c41a3fef9ec88931172f8d25f36775"
+    },
+    {
+      "case_id": "T19.control.invalid_projection_preserves_state",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_invalid_projection_preserves_state"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "958bf542a4918fb7c666db1dd8c3c50cb2129f4975cce7ef6464ed7f4cedee7e"
+    },
+    {
+      "case_id": "T19.control.client_terminal_cannot_reopen",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_client_terminal_cannot_reopen"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c2ba067255fb54f5c124ae354d0b29deac431d9c4de277022b2ddda59f76873f"
+    },
+    {
+      "case_id": "T19.control.client_old_host_snapshot_rejected",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_client_old_host_snapshot_rejected"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c880aee1517beaeedb02c1cbf4b3d1e0a2f05085a02742f13f87fe85fd21f9a3"
+    },
+    {
+      "case_id": "T19.control.full_snapshot_completes_partial_same_version",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_full_snapshot_completes_partial_same_version"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "193f27b4d193c65579dadb3d6c53d205edbdfb44bae835a1c2b0ae0ca22ca62e"
+    },
+    {
+      "case_id": "T04.plan.bound_domain_and_target_validate_full_schema",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_plan_contract.PlanContracts.test_T04_plan_bound_domain_and_target_validate_full_schema"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "1e77e1e6f8ea725b66710783a90da84c37dba2c21076b9419ab25d3d55c810d0"
+    },
+    {
+      "case_id": "T19.control.client_retirement_rejects_inflight_streams",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/plan/run_cases.py",
+        "--case",
+        "test_control_contract.ControlContracts.test_T19_control_client_retirement_rejects_inflight_streams"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "652016d2295038835196fbebeb5c0a9147ccf3a838c7b3f34a15b52a9271e02e"
+    }
+  ],
+  "source_inputs_before": {
+    "docs/contracts/control-observation.md": {
+      "sha256": "830fe3ff6c0eaf300aa35f332f4838c9462e5c1edc5fca6e577852c0bcc3b1fe",
+      "size": 9299
+    },
+    "docs/contracts/cursor-v1.md": {
+      "sha256": "c39b4356ccf74f29bcf67281c735424710a569f307b20c061ce9f5e134f0224a",
+      "size": 4402
+    },
+    "docs/contracts/plan.md": {
+      "sha256": "3dd3a15b20a68433fde32f7542fa7fa239cf55c0a810c76fa08f5ce4e82ab2a2",
+      "size": 7728
+    },
+    "examples/plans/compute-apply.plan.json": {
+      "sha256": "6ad1eba9d3c637a91b813263b1fe905c281be03a4c5e41d1a879bdc671796d87",
+      "size": 907
+    },
+    "examples/plans/settings-atomic.plan.json": {
+      "sha256": "a9e6e50e91204b8f119ce1e1d615da0877b6e80a4f163804bfd45011d3fb57b4",
+      "size": 1553
+    },
+    "schemas/plan-v1.schema.json": {
+      "sha256": "3a07cf8a1a4de201f25756ce780c747c2c12659e1f62ad406725c90b812805f3",
+      "size": 18024
+    },
+    "schemas/rpc-v1/common.schema.json": {
+      "sha256": "27292f7f18010c155ce07864398a4e6d06930ccbcb973fcbf98910685bfdb2c0",
+      "size": 1943
+    },
+    "schemas/rpc-v1/execution-list.schema.json": {
+      "sha256": "53d3e3d7f316e17c70afe6fc4b9074162cb33f4582a1d274deecb38dcb6bb8aa",
+      "size": 5898
+    },
+    "schemas/rpc-v1/notifications.schema.json": {
+      "sha256": "f88e11256e03d9d667bf40d7bcb49eff8f8204c5259bc020222f7976f3be8644",
+      "size": 13148
+    },
+    "tests/control/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "tests/control/control_model.py": {
+      "sha256": "e939c80f6c4062e44f77517583f0b52c2277187ad9daa06cb21b2eaf796980f0",
+      "size": 20059
+    },
+    "tests/control/golden/cursor.json": {
+      "sha256": "9d0ff462f7bfadea3e7eefb0e0fd6badb2676877dd4b3ec48ed55dfcfd04be52",
+      "size": 2333
+    },
+    "tests/control/golden/messages.json": {
+      "sha256": "cc3d609ab4b5df116a3363220aa34143104605419bf3d4331ffeeb5e8ce043ad",
+      "size": 12195
+    },
+    "tests/control/test_control_contract.py": {
+      "sha256": "f46b7f679da233d4a36f676d4c0a7deb114439c220116b172a6f374f24aa5dec",
+      "size": 15867
+    },
+    "tests/manifests/d0.04.expected.json": {
+      "sha256": "704e26d58216fcfa32255fc9f3115ca767816bc4d453db84848ab0a195aec2cd",
+      "size": 20220
+    },
+    "tests/plan/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "tests/plan/golden/nodes.json": {
+      "sha256": "fcdf6d97ad133057fe941b3610237535aadd11d15e3d6f3b7e88da57ee283466",
+      "size": 15203
+    },
+    "tests/plan/plan_model.py": {
+      "sha256": "fdea7794b72549818fc758b346e8b521efac6045c33c412cc63488986048e124",
+      "size": 17168
+    },
+    "tests/plan/run_cases.py": {
+      "sha256": "b480ab6e6a58b06b2e3d25f085dc6c8acc77cd7356f87a1d48e81a7b432d14d8",
+      "size": 2377
+    },
+    "tests/plan/test_plan_contract.py": {
+      "sha256": "af674ee2e915ad6e9c4c2362d7131af341e040269c9897d3b41b25cabb81bbdc",
+      "size": 13580
+    }
+  },
+  "source_inputs_after": {
+    "docs/contracts/control-observation.md": {
+      "sha256": "830fe3ff6c0eaf300aa35f332f4838c9462e5c1edc5fca6e577852c0bcc3b1fe",
+      "size": 9299
+    },
+    "docs/contracts/cursor-v1.md": {
+      "sha256": "c39b4356ccf74f29bcf67281c735424710a569f307b20c061ce9f5e134f0224a",
+      "size": 4402
+    },
+    "docs/contracts/plan.md": {
+      "sha256": "3dd3a15b20a68433fde32f7542fa7fa239cf55c0a810c76fa08f5ce4e82ab2a2",
+      "size": 7728
+    },
+    "examples/plans/compute-apply.plan.json": {
+      "sha256": "6ad1eba9d3c637a91b813263b1fe905c281be03a4c5e41d1a879bdc671796d87",
+      "size": 907
+    },
+    "examples/plans/settings-atomic.plan.json": {
+      "sha256": "a9e6e50e91204b8f119ce1e1d615da0877b6e80a4f163804bfd45011d3fb57b4",
+      "size": 1553
+    },
+    "schemas/plan-v1.schema.json": {
+      "sha256": "3a07cf8a1a4de201f25756ce780c747c2c12659e1f62ad406725c90b812805f3",
+      "size": 18024
+    },
+    "schemas/rpc-v1/common.schema.json": {
+      "sha256": "27292f7f18010c155ce07864398a4e6d06930ccbcb973fcbf98910685bfdb2c0",
+      "size": 1943
+    },
+    "schemas/rpc-v1/execution-list.schema.json": {
+      "sha256": "53d3e3d7f316e17c70afe6fc4b9074162cb33f4582a1d274deecb38dcb6bb8aa",
+      "size": 5898
+    },
+    "schemas/rpc-v1/notifications.schema.json": {
+      "sha256": "f88e11256e03d9d667bf40d7bcb49eff8f8204c5259bc020222f7976f3be8644",
+      "size": 13148
+    },
+    "tests/control/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "tests/control/control_model.py": {
+      "sha256": "e939c80f6c4062e44f77517583f0b52c2277187ad9daa06cb21b2eaf796980f0",
+      "size": 20059
+    },
+    "tests/control/golden/cursor.json": {
+      "sha256": "9d0ff462f7bfadea3e7eefb0e0fd6badb2676877dd4b3ec48ed55dfcfd04be52",
+      "size": 2333
+    },
+    "tests/control/golden/messages.json": {
+      "sha256": "cc3d609ab4b5df116a3363220aa34143104605419bf3d4331ffeeb5e8ce043ad",
+      "size": 12195
+    },
+    "tests/control/test_control_contract.py": {
+      "sha256": "f46b7f679da233d4a36f676d4c0a7deb114439c220116b172a6f374f24aa5dec",
+      "size": 15867
+    },
+    "tests/manifests/d0.04.expected.json": {
+      "sha256": "704e26d58216fcfa32255fc9f3115ca767816bc4d453db84848ab0a195aec2cd",
+      "size": 20220
+    },
+    "tests/plan/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "tests/plan/golden/nodes.json": {
+      "sha256": "fcdf6d97ad133057fe941b3610237535aadd11d15e3d6f3b7e88da57ee283466",
+      "size": 15203
+    },
+    "tests/plan/plan_model.py": {
+      "sha256": "fdea7794b72549818fc758b346e8b521efac6045c33c412cc63488986048e124",
+      "size": 17168
+    },
+    "tests/plan/run_cases.py": {
+      "sha256": "b480ab6e6a58b06b2e3d25f085dc6c8acc77cd7356f87a1d48e81a7b432d14d8",
+      "size": 2377
+    },
+    "tests/plan/test_plan_contract.py": {
+      "sha256": "af674ee2e915ad6e9c4c2362d7131af341e040269c9897d3b41b25cabb81bbdc",
+      "size": 13580
+    }
+  },
+  "sources_unchanged": true,
+  "automatic_status": "Passed",
+  "independent_review": "Pending",
+  "human_review": "Pending",
+  "package_status": "InProgress",
+  "not_runtime_validation": true
+}

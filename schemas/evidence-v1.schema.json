@@ -1,0 +1,717 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kernel.invalid/schemas/evidence-v1.schema.json",
+  "title": "OCK 开发证据 v1",
+  "type": "object",
+  "properties": {
+    "evidence_format": {
+      "const": "ock.evidence/1"
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^D[0-9]+[.][0-9]{2}$"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string"
+    },
+    "finished_at": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "dirty": {
+          "type": "boolean"
+        },
+        "root": {
+          "type": "string"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "size"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "build_inputs_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "archive": {
+          "type": "string"
+        },
+        "archive_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "commit",
+        "dirty",
+        "root",
+        "inputs",
+        "build_inputs_sha256",
+        "archive",
+        "archive_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "manifest": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "snapshot": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "snapshot"
+      ],
+      "additionalProperties": false
+    },
+    "requirements_manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "expected_snapshot": {
+      "type": "string"
+    },
+    "build": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "string"
+        },
+        "configuration": {
+          "type": "string"
+        },
+        "preset": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "directory": {
+          "type": "string"
+        },
+        "dependency_lock": {
+          "type": "string"
+        },
+        "dependency_lock_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "size"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "test_executables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "archive": {
+          "type": "string"
+        },
+        "archive_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "observed": {
+          "type": "object",
+          "required": [
+            "cache",
+            "configuration"
+          ],
+          "properties": {
+            "cache": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "configuration": {
+              "type": "string"
+            },
+            "toolchain": {
+              "type": "object"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "profile",
+        "configuration",
+        "preset",
+        "directory",
+        "dependency_lock",
+        "dependency_lock_sha256",
+        "artifacts",
+        "test_executables"
+      ],
+      "additionalProperties": false
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "python": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "public_subset": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "python",
+        "platform",
+        "public_subset"
+      ],
+      "additionalProperties": false
+    },
+    "collector": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "argv": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "cwd": {
+            "type": "string"
+          },
+          "started_at": {
+            "type": "string"
+          },
+          "finished_at": {
+            "type": "string"
+          },
+          "exit_code": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "Exited",
+              "LaunchFailed",
+              "Timeout",
+              "Crashed",
+              "DescendantsAlive",
+              "UnreapedChildren"
+            ]
+          },
+          "process_tree": {
+            "type": "object",
+            "properties": {
+              "mechanism": {
+                "const": "WindowsJobObject"
+              },
+              "assigned_before_resume": {
+                "type": "boolean"
+              },
+              "active_after": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "total_processes": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "terminated_owned_job": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "mechanism",
+              "assigned_before_resume",
+              "active_after",
+              "total_processes",
+              "terminated_owned_job"
+            ],
+            "additionalProperties": false
+          },
+          "pid": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "executable": {
+            "type": "string"
+          },
+          "executable_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "observed_exit_code": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "error": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "metadata",
+              "configure",
+              "build",
+              "check",
+              "discover",
+              "test"
+            ]
+          },
+          "raw": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "size": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "truncated": {
+                  "const": false
+                },
+                "redacted": {
+                  "const": false
+                }
+              },
+              "required": [
+                "path",
+                "sha256",
+                "size",
+                "truncated",
+                "redacted"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 2
+          }
+        },
+        "required": [
+          "argv",
+          "cwd",
+          "started_at",
+          "finished_at",
+          "exit_code",
+          "status",
+          "process_tree",
+          "id",
+          "role",
+          "raw"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "tests": {
+      "type": "object",
+      "properties": {
+        "expected": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "discovered": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "rounds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "round": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "command_id": {
+                "type": "string"
+              },
+              "executed": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "Passed",
+                        "Failed",
+                        "Skipped"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "status"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 0
+              },
+              "junit": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "size": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "path"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "round",
+              "command_id",
+              "executed",
+              "junit"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "expected",
+        "discovered",
+        "rounds"
+      ],
+      "additionalProperties": false
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "round": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "command_id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "Passed",
+              "Failed"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "round",
+          "command_id",
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "required": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "record": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "record"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "required",
+        "records"
+      ],
+      "additionalProperties": false
+    },
+    "collection_issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0
+    },
+    "automated_status": {
+      "enum": [
+        "NotRun",
+        "Passed",
+        "Failed",
+        "Incomplete",
+        "Blocked"
+      ]
+    },
+    "package_status": {
+      "enum": [
+        "NotStarted",
+        "InProgress",
+        "Blocked",
+        "Failed",
+        "Passed"
+      ]
+    },
+    "selftest_fixtures": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "count"
+      ],
+      "additionalProperties": false
+    },
+    "conformance": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "runtime_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256",
+          "size"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "runtime_archive": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "evidence_format",
+    "task_id",
+    "run_id",
+    "started_at",
+    "finished_at",
+    "source",
+    "manifest",
+    "requirements_manifest_sha256",
+    "expected_snapshot",
+    "build",
+    "environment",
+    "collector",
+    "commands",
+    "tests",
+    "checks",
+    "review",
+    "collection_issues",
+    "errors",
+    "automated_status",
+    "package_status",
+    "conformance",
+    "runtime_artifacts"
+  ],
+  "additionalProperties": false
+}

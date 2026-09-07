@@ -1,0 +1,37 @@
+test_T19_conformance_backend_exception (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_backend_exception) ... ok
+test_T19_conformance_common_cannot_be_waived (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_common_cannot_be_waived) ... ok
+test_T19_conformance_common_contract (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_common_contract) ... ok
+test_T19_conformance_factory_identity (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_factory_identity) ... ok
+test_T19_conformance_false_capability (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_false_capability) ... ok
+test_T19_conformance_fault_flag_not_qualification (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_fault_flag_not_qualification) ... ok
+test_T19_conformance_fault_not_qualified (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_fault_not_qualified) ... ok
+test_T19_conformance_missing_required_capability (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_missing_required_capability) ... ok
+test_T19_conformance_nested_worker_rejection (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_nested_worker_rejection) ... FAIL
+test_T19_conformance_optional_not_passed (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_optional_not_passed) ... ok
+test_T19_conformance_profile_requires_capability (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_profile_requires_capability) ... ok
+test_T19_conformance_wrong_contract_version (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_wrong_contract_version) ... ok
+test_T19_conformance_wrong_implementation_digest (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_wrong_implementation_digest) ... ok
+
+======================================================================
+FAIL: test_T19_conformance_nested_worker_rejection (test_bootstrap.ConformanceBootstrapTests.test_T19_conformance_nested_worker_rejection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\conformance\test_bootstrap.py", line 59, in test_T19_conformance_nested_worker_rejection
+    self.assertEqual(observed,['rejected','rejected'])
+AssertionError: Lists differ: ['returned', 'returned'] != ['rejected', 'rejected']
+
+First differing element 0:
+'returned'
+'rejected'
+
+- ['returned', 'returned']
+?      ---         ---
+
++ ['rejected', 'rejected']
+?     +++         +++
+
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.012s
+
+FAILED (failures=1)

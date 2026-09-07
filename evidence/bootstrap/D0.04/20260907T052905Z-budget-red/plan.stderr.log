@@ -1,0 +1,33 @@
+test_T04_plan_binding_overlap_and_constants (test_plan_contract.PlanContracts.test_T04_plan_binding_overlap_and_constants) ... ok
+test_T04_plan_binding_requires_parent_and_validates_whole (test_plan_contract.PlanContracts.test_T04_plan_binding_requires_parent_and_validates_whole) ... ok
+test_T04_plan_examples_and_exact_operation (test_plan_contract.PlanContracts.test_T04_plan_examples_and_exact_operation) ... ok
+test_T04_plan_expression_static_types_not_hidden_by_shortcircuit (test_plan_contract.PlanContracts.test_T04_plan_expression_static_types_not_hidden_by_shortcircuit) ... ok
+test_T04_plan_golden_nodes (test_plan_contract.PlanContracts.test_T04_plan_golden_nodes) ... ok
+test_T04_plan_pointer_missing_null_and_escapes (test_plan_contract.PlanContracts.test_T04_plan_pointer_missing_null_and_escapes) ... ok
+test_T04_plan_wire_rejects_return_and_unknown (test_plan_contract.PlanContracts.test_T04_plan_wire_rejects_return_and_unknown) ... ok
+test_T10_plan_atomic_rejects_effect_and_ticket (test_plan_contract.PlanContracts.test_T10_plan_atomic_rejects_effect_and_ticket) ... ok
+test_T10_plan_atomic_result_and_dynamic_check (test_plan_contract.PlanContracts.test_T10_plan_atomic_result_and_dynamic_check) ... ok
+test_T10_plan_atomic_subset_and_partial_domain_bindings (test_plan_contract.PlanContracts.test_T10_plan_atomic_subset_and_partial_domain_bindings) ... ok
+test_T11_plan_dateref_and_branch_ticket_lifetime (test_plan_contract.PlanContracts.test_T11_plan_dateref_and_branch_ticket_lifetime) ... ok
+test_T11_plan_exports_and_branch_types (test_plan_contract.PlanContracts.test_T11_plan_exports_and_branch_types) ... ok
+test_T11_plan_expression_types_and_shortcircuit (test_plan_contract.PlanContracts.test_T11_plan_expression_types_and_shortcircuit) ... ok
+test_T11_plan_foreach_fixed_limit (test_plan_contract.PlanContracts.test_T11_plan_foreach_fixed_limit) ... ok
+test_T11_plan_parallel_order_and_policy (test_plan_contract.PlanContracts.test_T11_plan_parallel_order_and_policy) ... ok
+test_T11_plan_scope_single_assignment_and_forward (test_plan_contract.PlanContracts.test_T11_plan_scope_single_assignment_and_forward) ... ok
+test_T11_plan_ticket_is_typed_and_consumed (test_plan_contract.PlanContracts.test_T11_plan_ticket_is_typed_and_consumed) ... ok
+test_T22_plan_loop_control_cost (test_plan_contract.PlanContracts.test_T22_plan_loop_control_cost) ... FAIL
+test_T22_plan_payload_and_control_depth (test_plan_contract.PlanContracts.test_T22_plan_payload_and_control_depth) ... ok
+test_T22_plan_static_and_total_budget (test_plan_contract.PlanContracts.test_T22_plan_static_and_total_budget) ... ok
+
+======================================================================
+FAIL: test_T22_plan_loop_control_cost (test_plan_contract.PlanContracts.test_T22_plan_loop_control_cost)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\plan\test_plan_contract.py", line 149, in test_T22_plan_loop_control_cost
+    with self.assertRaises(ContractError):PlanChecker().check(dict(base([node]),inputs={'items':[1]*10000}))
+AssertionError: ContractError not raised
+
+----------------------------------------------------------------------
+Ran 20 tests in 3.627s
+
+FAILED (failures=1)

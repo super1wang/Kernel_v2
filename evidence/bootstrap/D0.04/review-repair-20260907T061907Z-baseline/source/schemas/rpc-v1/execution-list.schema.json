@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ock:rpc:execution-list:1",
+  "$defs": {
+    "request": {
+      "type": "object",
+      "properties": {
+        "jsonrpc": {
+          "const": "2.0"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 96,
+          "pattern": "^[\\x21-\\x7e]+$"
+        },
+        "method": {
+          "const": "execution.list"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "owner": {
+              "$ref": "urn:ock:rpc:common:1#/$defs/owner"
+            },
+            "phase_set": {
+              "enum": [
+                "nonterminal",
+                "terminal",
+                "all"
+              ]
+            },
+            "page_size": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200
+            },
+            "cursor": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "pattern": "^v1\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]{43}$"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "jsonrpc",
+        "id",
+        "method",
+        "params"
+      ],
+      "additionalProperties": false
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "jsonrpc": {
+          "const": "2.0"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 96,
+          "pattern": "^[\\x21-\\x7e]+$"
+        },
+        "result": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "execution_ref": {
+                    "$ref": "urn:ock:rpc:common:1#/$defs/executionRef"
+                  },
+                  "operation": {
+                    "$ref": "urn:ock:rpc:common:1#/$defs/operation"
+                  },
+                  "owner": {
+                    "$ref": "urn:ock:rpc:common:1#/$defs/principalRef"
+                  },
+                  "parent": {
+                    "$ref": "urn:ock:rpc:common:1#/$defs/executionRef"
+                  },
+                  "phase": {
+                    "enum": [
+                      "Queued",
+                      "WaitingResources",
+                      "Running",
+                      "WaitingChild",
+                      "Finalizing",
+                      "Suspended",
+                      "Terminal"
+                    ]
+                  },
+                  "observation_version": {
+                    "$ref": "urn:ock:rpc:common:1#/$defs/uint64"
+                  },
+                  "progress": {
+                    "type": "object",
+                    "properties": {
+                      "completed": {
+                        "$ref": "urn:ock:rpc:common:1#/$defs/uint64"
+                      },
+                      "total": {
+                        "$ref": "urn:ock:rpc:common:1#/$defs/uint64"
+                      },
+                      "published": {
+                        "const": false
+                      }
+                    },
+                    "required": [
+                      "completed",
+                      "total",
+                      "published"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "facts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "StateCommitted",
+                            "EffectResolved",
+                            "LifecycleResolved"
+                          ]
+                        },
+                        "reference": {
+                          "$ref": "urn:ock:rpc:common:1#/$defs/id"
+                        },
+                        "published": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "reference",
+                        "published"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 0,
+                    "maxItems": 8
+                  }
+                },
+                "required": [
+                  "execution_ref",
+                  "operation",
+                  "phase",
+                  "observation_version"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 0,
+              "maxItems": 200
+            },
+            "next_cursor": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "pattern": "^v1\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]{43}$"
+            },
+            "consistency": {
+              "const": "live_keyset"
+            },
+            "host_incarnation": {
+              "$ref": "urn:ock:rpc:common:1#/$defs/id"
+            },
+            "retention_scope": {
+              "enum": [
+                "managed_active_and_retained_terminal"
+              ]
+            }
+          },
+          "required": [
+            "items",
+            "consistency",
+            "host_incarnation",
+            "retention_scope"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "jsonrpc",
+        "id",
+        "result"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/request"
+    },
+    {
+      "$ref": "#/$defs/response"
+    }
+  ]
+}

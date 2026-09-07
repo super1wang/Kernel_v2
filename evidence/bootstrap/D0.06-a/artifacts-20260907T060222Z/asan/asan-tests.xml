@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="8"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="MSI"
+	time="9"
+	timestamp="2026-09-07T13:48:29"
+	>
+	<testcase name="T01.dependencies.expected" classname="T01.dependencies.expected" time="1.1255" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>expected move-only/void/error/exception smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.fmt" classname="T01.dependencies.fmt" time="0.957343" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>fmt 110104
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.spdlog" classname="T01.dependencies.spdlog" time="0.851469" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>spdlog external locked fmt/flush smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.thread_pool" classname="T01.dependencies.thread_pool" time="0.901755" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>thread pool future/error/drain smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.toolchain" classname="T01.dependencies.toolchain" time="0.674721" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>MSVC_FULL_VER=194435228 __cplusplus=202002 pointer_bits=64 CRT=/MDd
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.lock_contracts" classname="T01.dependencies.lock_contracts" time="1.23392" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>test_archive_symlink_refused (test_lock.LockContracts.test_archive_symlink_refused) ... ok
+test_archive_traversal_refused (test_lock.LockContracts.test_archive_traversal_refused) ... ok
+test_complete_default_table (test_lock.LockContracts.test_complete_default_table) ... ok
+test_component_selection (test_lock.LockContracts.test_component_selection) ... ok
+test_hash_mismatch_refused (test_lock.LockContracts.test_hash_mismatch_refused) ... ok
+test_internal_document_link_materialized (test_lock.LockContracts.test_internal_document_link_materialized) ... ok
+test_offline_missing_refused (test_lock.LockContracts.test_offline_missing_refused) ... ok
+test_reject_floating_revision (test_lock.LockContracts.test_reject_floating_revision) ... ok
+test_reject_incompatible_toolchain (test_lock.LockContracts.test_reject_incompatible_toolchain) ... ok
+test_reject_missing_license (test_lock.LockContracts.test_reject_missing_license) ... ok
+test_reject_sqlite_without_fix (test_lock.LockContracts.test_reject_sqlite_without_fix) ...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T23.dependencies.asan_healthy" classname="T23.dependencies.asan_healthy" time="1.08699" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T23.dependencies.asan_detects_heap_overflow" classname="T23.dependencies.asan_detects_heap_overflow" time="2.37688" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>=================================================================
+==35800==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x11f9766a0040 at pc 0x7ff6b91011a3 bp 0x001863eff5d0 sp 0x001863eff5d8
+WRITE of size 4 at 0x11f9766a0040 thread T0
+    #0 0x7ff6b91011a2 in main E:\VS2019Qt5.15\3D\tests\dependencies\probes\asan.cpp:5
+    #1 0x7ff6b9104838 in invoke_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:78
+    #2 0x7ff6b9104781 in __scrt_common_main_seh D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:288
+    #3 0x7ff6b910463d in __scrt_common_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:330
+    #4 0x7ff6b91048ad in mainCRTStartup D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_main.cpp:16
+    #5 0x7ffcbb737373  (C:\WINDOWS\System32\KERNEL32.DLL+0x180017373)
+    #6 0x7ffcbbbfcc90  (C:\WINDOWS\SYSTEM32\ntdll.dll+0x18004cc90)
+
+0x11f9766a0040 is located 0 bytes after 16-byte region [0x11f9766a0030,0x11f9766a0040)
+allocated by...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+</testsuite>

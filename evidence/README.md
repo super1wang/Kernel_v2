@@ -26,3 +26,7 @@ D0.02/D0.03 的有限包装器已实际采集 CTest discovery/JUnit 和产物摘
 原始简单 red/模型记录的字段少于最终包装器；缺失历史时间、dirty 或完整输入不能补造，正式状态仍 Incomplete。所有 run 均保留，详见 [D0.02 索引](../docs/validation/D0.02.md) 和 [D0.03 索引](../docs/validation/D0.03.md)。ZIP 是源文件快照，不是构建/运行时发布包。
 
 CTest JSON 与 MSVC 原始输出可能包含行末空格或空行；仅 evidence/bootstrap 下关闭对应空白 lint，不修改原始日志迎合源码格式检查。产品源码的差异检查仍启用。
+
+## D0.06正式证据
+
+正式入口与报告结构见 [工具说明](../tools/evidence/README.md)。当前run按源码身份/profile/task/run_id分目录，源与构建快照、每轮raw/JUnit均保留。bootstrap保持原样，导入索引最多确认可验证事实，缺少正式来源链时明确Incomplete；不补写历史退出码或Passed。人工与技术审查独立于自动结果。

@@ -1,0 +1,44 @@
+test_T16_effect_send_attempt_is_once_before_external_call (commit_model.test_commit_model.CommitContracts.test_T16_effect_send_attempt_is_once_before_external_call) ... 
+  test_T16_effect_send_attempt_is_once_before_external_call (commit_model.test_commit_model.CommitContracts.test_T16_effect_send_attempt_is_once_before_external_call) (recorded=False) ... FAIL
+  test_T16_effect_send_attempt_is_once_before_external_call (commit_model.test_commit_model.CommitContracts.test_T16_effect_send_attempt_is_once_before_external_call) (recorded=True) ... FAIL
+  test_T16_effect_send_attempt_is_once_before_external_call (commit_model.test_commit_model.CommitContracts.test_T16_effect_send_attempt_is_once_before_external_call) (after_apply=False) ... ERROR
+  test_T16_effect_send_attempt_is_once_before_external_call (commit_model.test_commit_model.CommitContracts.test_T16_effect_send_attempt_is_once_before_external_call) (after_apply=True) ... ERROR
+
+======================================================================
+ERROR: test_T16_effect_send_attempt_is_once_before_external_call (commit_model.test_commit_model.CommitContracts.test_T16_effect_send_attempt_is_once_before_external_call) (after_apply=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\model\commit_model\test_commit_model.py", line 479, in test_T16_effect_send_attempt_is_once_before_external_call
+    self.assertEqual(effect.outcome()['kind'], 'Indeterminate')
+                     ~~~~~~~~~~~~~~~~^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+ERROR: test_T16_effect_send_attempt_is_once_before_external_call (commit_model.test_commit_model.CommitContracts.test_T16_effect_send_attempt_is_once_before_external_call) (after_apply=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\model\commit_model\test_commit_model.py", line 479, in test_T16_effect_send_attempt_is_once_before_external_call
+    self.assertEqual(effect.outcome()['kind'], 'Indeterminate')
+                     ~~~~~~~~~~~~~~~~^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+======================================================================
+FAIL: test_T16_effect_send_attempt_is_once_before_external_call (commit_model.test_commit_model.CommitContracts.test_T16_effect_send_attempt_is_once_before_external_call) (recorded=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\model\commit_model\test_commit_model.py", line 466, in test_T16_effect_send_attempt_is_once_before_external_call
+    with self.assertRaises(ContractError): effect.send('Applied', 'Succeeded')
+AssertionError: ContractError not raised
+
+======================================================================
+FAIL: test_T16_effect_send_attempt_is_once_before_external_call (commit_model.test_commit_model.CommitContracts.test_T16_effect_send_attempt_is_once_before_external_call) (recorded=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\model\commit_model\test_commit_model.py", line 466, in test_T16_effect_send_attempt_is_once_before_external_call
+    with self.assertRaises(ContractError): effect.send('Applied', 'Succeeded')
+AssertionError: ContractError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (failures=2, errors=2)

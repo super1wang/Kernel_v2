@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="15"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="MSI"
+	time="2"
+	timestamp="2026-09-07T14:00:42"
+	>
+	<testcase name="T01.dependencies.asio" classname="T01.dependencies.asio" time="0.118119" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>standalone Asio real overlapped Named Pipe two-write/read smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.benchmark" classname="T01.dependencies.benchmark" time="0.104576" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>2026-09-07T14:00:42+08:00
+Running E:/VS2019Qt5.15/3D/build/d0.06-a/empty-repeat-debug/Debug/ock_probe_benchmark.exe
+Run on (12 X 2592 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x6)
+  L1 Instruction 32 KiB (x6)
+  L2 Unified 256 KiB (x6)
+  L3 Unified 12288 KiB (x1)
+***WARNING*** Library was built as DEBUG. Timings may be affected.
+---------------------------------------------------------------------------
+Benchmark                                 Time             CPU   Iterations
+---------------------------------------------------------------------------
+dependency_smoke/iterations:1000       10.7 ns        0.000 ns         1000
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.catch2" classname="T01.dependencies.catch2" time="0.162727" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>Randomness seeded to: 3521780300
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.cli11" classname="T01.dependencies.cli11" time="0.156969" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>CLI11 UTF-8/argument/error-code smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.expected" classname="T01.dependencies.expected" time="0.074623" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>expected move-only/void/error/exception smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.fmt" classname="T01.dependencies.fmt" time="0.113547" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>fmt 110104
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.immer" classname="T01.dependencies.immer" time="0.097304" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>immer immutable snapshot/transient freeze smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.jsoncons" classname="T01.dependencies.jsoncons" time="0.169827" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>ordinary CBOR roundtrip only; duplicate-key upstream projection={"n":1}
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.spdlog" classname="T01.dependencies.spdlog" time="0.136914" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>spdlog external locked fmt/flush smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.sqlite" classname="T01.dependencies.sqlite" time="0.162721" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>SQLite 3.51.3 source=2026-03-13 10:38:09 737ae4a34738ffa0c3ff7f9bb18df914dd1cad163f28fd6b6e114a344fe6d618 WAL/FULL/foreign_keys readback smoke; file=sqlite-probe-37424.db
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.thread_pool" classname="T01.dependencies.thread_pool" time="0.090602" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>thread pool future/error/drain smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.toml11" classname="T01.dependencies.toml11" time="0.164839" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>toml11 exact integer and overflow rejection smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.toolchain" classname="T01.dependencies.toolchain" time="0.104083" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>MSVC_FULL_VER=194435228 __cplusplus=202002 pointer_bits=64 CRT=/MDd
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.lock_contracts" classname="T01.dependencies.lock_contracts" time="0.924822" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>test_archive_symlink_refused (test_lock.LockContracts.test_archive_symlink_refused) ... ok
+test_archive_traversal_refused (test_lock.LockContracts.test_archive_traversal_refused) ... ok
+test_complete_default_table (test_lock.LockContracts.test_complete_default_table) ... ok
+test_component_selection (test_lock.LockContracts.test_component_selection) ... ok
+test_hash_mismatch_refused (test_lock.LockContracts.test_hash_mismatch_refused) ... ok
+test_internal_document_link_materialized (test_lock.LockContracts.test_internal_document_link_materialized) ... ok
+test_offline_missing_refused (test_lock.LockContracts.test_offline_missing_refused) ... ok
+test_reject_floating_revision (test_lock.LockContracts.test_reject_floating_revision) ... ok
+test_reject_incompatible_toolchain (test_lock.LockContracts.test_reject_incompatible_toolchain) ... ok
+test_reject_missing_license (test_lock.LockContracts.test_reject_missing_license) ... ok
+test_reject_sqlite_without_fix (test_lock.LockContracts.test_reject_sqlite_without_fix) ...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.catch2_assertion_guard" classname="T01.dependencies.catch2_assertion_guard" time="0.286898" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>Filters: [.guard-fault] [.guard-fault]
+Randomness seeded to: 4263535707
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ock_probe_catch2.exe is a Catch2 v3.8.1 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+deliberate assertion failure
+-------------------------------------------------------------------------------
+E:\VS2019Qt5.15\3D\tests\dependencies\probes\catch2.cpp(3)
+...............................................................................
+
+E:\VS2019Qt5.15\3D\tests\dependencies\probes\catch2.cpp(3): FAILED:
+  REQUIRE( false )
+
+===============================================================================
+test cases: 1 | 1 failed
+assertions: 1 | 1 failed
+
+fault_probe_actual_exit_code= 42 raw= E:\VS2019Qt5.15\3D\build\d0.06-a\empty-repeat-debug\dependency-probe-work\fault-03f393b17e3a47d793792851554d94e2
+</system-out>
+	</testcase>
+</testsuite>

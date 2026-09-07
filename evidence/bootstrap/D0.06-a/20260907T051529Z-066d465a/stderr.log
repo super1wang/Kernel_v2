@@ -1,0 +1,21 @@
+test_lock (unittest.loader._FailedTest.test_lock) ... ERROR
+
+======================================================================
+ERROR: test_lock (unittest.loader._FailedTest.test_lock)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_lock
+Traceback (most recent call last):
+  File "C:\Users\xrx10\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xrx10\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "E:\VS2019Qt5.15\3D\tests\dependencies\test_lock.py", line 14, in <module>
+    from prepare import LockError, load_lock, validate_lock, select_dependencies, materialize, archive_tree
+ModuleNotFoundError: No module named 'prepare'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

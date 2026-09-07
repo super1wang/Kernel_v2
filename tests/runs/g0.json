@@ -1,0 +1,43 @@
+{
+  "format": "ock.gate-matrix/1",
+  "gate_id": "G0",
+  "scope": "Python合同模型在Debug工程下执行；实际C++基线/全量依赖Debug及Release，ASan为Embedded依赖与证据骨架。",
+  "required_runs": [
+    {
+      "task_id": "D0.01",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D0.02",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D0.02",
+      "profile": "win-msvc-release"
+    },
+    {
+      "task_id": "D0.03",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D0.04",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D0.05",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D0.06",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D0.06",
+      "profile": "win-msvc-release"
+    },
+    {
+      "task_id": "D0.06",
+      "profile": "win-msvc-asan"
+    }
+  ]
+}

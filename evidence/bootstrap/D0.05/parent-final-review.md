@@ -1,0 +1,7 @@
+# D0.05 修复集成复核
+
+主集成者读取原独立发现、原实施者交叉复核和最终模型：易失recover入口在变更任何状态前拒绝；候选材料与prepare快照及当前revision/history/lifecycle一致后才消费permit；Effect claim绑定身份、发送对象及参数，调用外部设备之前消费私有once状态，调用异常进入未知/对账，清空公开report不能重发；已产生Outcome读取拥有型冻结事实；外部及子步骤fingerprint不借用可变参数；Unknown/EffectPermitted不得通过普通set_status返回可发送状态。
+
+原发现页和所有red轮次保留；实现者角色转换均已记录。本复核又用永久共享入口运行63项模型测试，并以D0.03真实Schema与语义validator检查实际产生的28份CommitDomain和29份Effect结果。实际退出/原始输出见同目录parent-final-review运行记录。未发现本次修复仍未闭合的原问题。
+
+技术结论：可以纳入G0正式采集；模型不代表真实SQLite/线程/设备/canonical编码，人工批准Pending。最终自动报告由统一采集器另行产生。

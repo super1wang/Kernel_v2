@@ -31,3 +31,5 @@ python -X utf8 tools/bootstrap/run_package.py tests/manifests/d0.03.run.json
 ```
 
 以上是开发 bootstrap 验证；真实端口、生产依赖锁和正式证据门禁按后续责任包交付。
+
+当前已实现D0.04–D0.06合同/模型和开发验证基建，正在完成G0正式复验，人工审批尚未完成。统一运行与证据规则见 [开发证据工具](tools/evidence/README.md)，精确状态见 [中文进度](docs/progress.md)。本阶段只覆盖内核，不扩展产品模块。

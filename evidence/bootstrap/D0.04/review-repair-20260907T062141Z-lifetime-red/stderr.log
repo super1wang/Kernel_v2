@@ -1,0 +1,15 @@
+test_T19_control_client_retirement_rejects_inflight_streams (test_control_contract.ControlContracts.test_T19_control_client_retirement_rejects_inflight_streams) ... FAIL
+
+======================================================================
+FAIL: test_T19_control_client_retirement_rejects_inflight_streams (test_control_contract.ControlContracts.test_T19_control_client_retirement_rejects_inflight_streams)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\control\test_control_contract.py", line 174, in test_T19_control_client_retirement_rejects_inflight_streams
+    unconfirmed=Client();unconfirmed.accept_snapshot(initial);self.assertFalse(unconfirmed.accept_event(inflight))
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (failures=1)

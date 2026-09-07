@@ -1,0 +1,15 @@
+test_T19_control_full_snapshot_completes_partial_same_version (test_control_contract.ControlContracts.test_T19_control_full_snapshot_completes_partial_same_version) ... FAIL
+
+======================================================================
+FAIL: test_T19_control_full_snapshot_completes_partial_same_version (test_control_contract.ControlContracts.test_T19_control_full_snapshot_completes_partial_same_version)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\control\test_control_contract.py", line 166, in test_T19_control_full_snapshot_completes_partial_same_version
+    self.assertTrue(client.accept_snapshot(fresh));self.assertEqual(client.views[eid('e1')]['phase'],'Finalizing');self.assertFalse(client.needs_snapshot)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.014s
+
+FAILED (failures=1)

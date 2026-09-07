@@ -1,0 +1,41 @@
+{
+  "format": "ock.conformance-fixtures/1",
+  "task_id": "D0.06",
+  "port_contract_version": "ock.executor.bootstrap/1",
+  "scope": "G0同步测试工厂，仅证明harness规则，不代表生产Executor",
+  "common_required": [
+    "ownership_transfer",
+    "exactly_once_completion",
+    "rejected_work_cleanup",
+    "exception_boundary",
+    "drain_shutdown_lifetime",
+    "worker_wait_rejection"
+  ],
+  "optional_rules": [
+    {
+      "case": "real_parallel",
+      "required_when": "capabilities.parallel == true",
+      "not_applicable_when": "capabilities.parallel == false"
+    }
+  ],
+  "backends": [
+    {
+      "name": "mock-inline",
+      "kind": "mock",
+      "factory": "support.fixtures.MockExecutor",
+      "capabilities": {
+        "inline": true,
+        "parallel": false
+      }
+    },
+    {
+      "name": "fault-duplicate",
+      "kind": "fault",
+      "factory": "support.fixtures.DuplicateCallbackExecutor",
+      "capabilities": {
+        "inline": true,
+        "parallel": false
+      }
+    }
+  ]
+}

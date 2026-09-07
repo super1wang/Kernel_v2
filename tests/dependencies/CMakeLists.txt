@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.31)
+project(OCKDependencyProbes LANGUAGES CXX)
+include(CTest)
+include("${CMAKE_CURRENT_LIST_DIR}/../../cmake/Dependencies.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/../../cmake/DependencyProbes.cmake")
+ock_add_dependency_probes()

@@ -1,0 +1,767 @@
+{
+  "format": "ock.model-expected/1",
+  "task_id": "D0.05",
+  "review_status": "Pending",
+  "maturity": "Draft",
+  "profile": "bootstrap-python",
+  "backend": "Python deterministic commit/dedup models; not Runtime or SQLite",
+  "note": "固定独立用例；模型实测与未来 Runtime 用例分开。D0.06 负责正式采集。",
+  "cases": [
+    {
+      "id": "T07.permit.cancel_claim_orders",
+      "task_id": "D0.05",
+      "family": "T07",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T07_permit_cancel_claim_orders"
+      ]
+    },
+    {
+      "id": "T07.permit.revoke_claim_orders",
+      "task_id": "D0.05",
+      "family": "T07",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T07_permit_revoke_claim_orders"
+      ]
+    },
+    {
+      "id": "T07.permit.binding_expiry_single_use",
+      "task_id": "D0.05",
+      "family": "T07",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T07_permit_binding_expiry_single_use"
+      ]
+    },
+    {
+      "id": "T07.permit.leases_do_not_authorize",
+      "task_id": "D0.05",
+      "family": "T07",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T07_permit_leases_do_not_authorize"
+      ]
+    },
+    {
+      "id": "T07.commit.capacity_reserved_before_claim",
+      "task_id": "D0.05",
+      "family": "T07",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T07_commit_capacity_reserved_before_claim"
+      ]
+    },
+    {
+      "id": "T07.commit.lifecycle_revision_orders",
+      "task_id": "D0.05",
+      "family": "T07",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T07_commit_lifecycle_revision_orders"
+      ]
+    },
+    {
+      "id": "T14.commit.reservation_serializes_and_rejects_stale_base",
+      "task_id": "D0.05",
+      "family": "T14",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T14_commit_reservation_serializes_and_rejects_stale_base"
+      ]
+    },
+    {
+      "id": "T14.commit.wait_and_lock_order",
+      "task_id": "D0.05",
+      "family": "T14",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T14_commit_wait_and_lock_order"
+      ]
+    },
+    {
+      "id": "T14.commit.all_transaction_crash_windows",
+      "task_id": "D0.05",
+      "family": "T14",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T14_commit_all_transaction_crash_windows"
+      ]
+    },
+    {
+      "id": "T14.commit.permit_and_durable_are_not_published",
+      "task_id": "D0.05",
+      "family": "T14",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T14_commit_permit_and_durable_are_not_published"
+      ]
+    },
+    {
+      "id": "T14.commit.publication_is_one_owned_record",
+      "task_id": "D0.05",
+      "family": "T14",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T14_commit_publication_is_one_owned_record"
+      ]
+    },
+    {
+      "id": "T14.commit.duplicate_and_late_callback",
+      "task_id": "D0.05",
+      "family": "T14",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T14_commit_duplicate_and_late_callback"
+      ]
+    },
+    {
+      "id": "T16.commit.unknown_result_reconciles_actual_storage",
+      "task_id": "D0.05",
+      "family": "T16",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T16_commit_unknown_result_reconciles_actual_storage"
+      ]
+    },
+    {
+      "id": "T16.commit.publish_failure_preserves_ledger",
+      "task_id": "D0.05",
+      "family": "T16",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T16_commit_publish_failure_preserves_ledger"
+      ]
+    },
+    {
+      "id": "T16.commit.recovery_validates_before_opening",
+      "task_id": "D0.05",
+      "family": "T16",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T16_commit_recovery_validates_before_opening"
+      ]
+    },
+    {
+      "id": "T07.commit.memory_commit_and_empty_delta",
+      "task_id": "D0.05",
+      "family": "T07",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T07_commit_memory_commit_and_empty_delta"
+      ]
+    },
+    {
+      "id": "T07.commit.materials_prepared_before_consumption",
+      "task_id": "D0.05",
+      "family": "T07",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T07_commit_materials_prepared_before_consumption"
+      ]
+    },
+    {
+      "id": "T16.effect.claim_permit_send_are_separate",
+      "task_id": "D0.05",
+      "family": "T16",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T16_effect_claim_permit_send_are_separate"
+      ]
+    },
+    {
+      "id": "T07.effect.cancel_revoke_send_orders",
+      "task_id": "D0.05",
+      "family": "T07",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T07_effect_cancel_revoke_send_orders"
+      ]
+    },
+    {
+      "id": "T16.effect.crash_windows_never_blind_resend",
+      "task_id": "D0.05",
+      "family": "T16",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T16_effect_crash_windows_never_blind_resend"
+      ]
+    },
+    {
+      "id": "T16.effect.reconcile_and_partial_facts",
+      "task_id": "D0.05",
+      "family": "T16",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T16_effect_reconcile_and_partial_facts"
+      ]
+    },
+    {
+      "id": "T16.effect.missing_evidence_stays_unknown",
+      "task_id": "D0.05",
+      "family": "T16",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T16_effect_missing_evidence_stays_unknown"
+      ]
+    },
+    {
+      "id": "T16.effect.result_encoding_does_not_erase_effect",
+      "task_id": "D0.05",
+      "family": "T16",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T16_effect_result_encoding_does_not_erase_effect"
+      ]
+    },
+    {
+      "id": "T15.intent.same_key_returns_existing_identity",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_intent_same_key_returns_existing_identity"
+      ]
+    },
+    {
+      "id": "T15.intent.fingerprint_covers_all_semantic_fields",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_intent_fingerprint_covers_all_semantic_fields"
+      ]
+    },
+    {
+      "id": "T15.intent.stable_principal_scope_and_permissions",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_intent_stable_principal_scope_and_permissions"
+      ]
+    },
+    {
+      "id": "T15.intent.server_scope_and_namespace_reject_forgery",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_intent_server_scope_and_namespace_reject_forgery"
+      ]
+    },
+    {
+      "id": "T15.intent.future_expired_and_existing_before_floor",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_intent_future_expired_and_existing_before_floor"
+      ]
+    },
+    {
+      "id": "T14.intent.acceptance_transaction_crash_windows",
+      "task_id": "D0.05",
+      "family": "T14",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T14_intent_acceptance_transaction_crash_windows"
+      ]
+    },
+    {
+      "id": "T15.intent.claim_gc_both_orders",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_intent_claim_gc_both_orders"
+      ]
+    },
+    {
+      "id": "T15.intent.writer_transaction_prevents_interleaving",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_intent_writer_transaction_prevents_interleaving"
+      ]
+    },
+    {
+      "id": "T15.gc.watermark_and_delete_crash_windows",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_gc_watermark_and_delete_crash_windows"
+      ]
+    },
+    {
+      "id": "T15.gc.delete_before_watermark_is_detected",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_gc_delete_before_watermark_is_detected"
+      ]
+    },
+    {
+      "id": "T15.gc.pins_inflight_unknown_and_references",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_gc_pins_inflight_unknown_and_references"
+      ]
+    },
+    {
+      "id": "T15.gc.scope_watermarks_are_independent_monotonic",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_gc_scope_watermarks_are_independent_monotonic"
+      ]
+    },
+    {
+      "id": "T15.intent.volatile_capacity_preserves_window",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_intent_volatile_capacity_preserves_window"
+      ]
+    },
+    {
+      "id": "T15.intent.client_retry_never_changes_identity",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_intent_client_retry_never_changes_identity"
+      ]
+    },
+    {
+      "id": "T15.step.internal_key_and_parameter_binding",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_step_internal_key_and_parameter_binding"
+      ]
+    },
+    {
+      "id": "T15.step.branch_iteration_and_occurrence_are_identity",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_step_branch_iteration_and_occurrence_are_identity"
+      ]
+    },
+    {
+      "id": "T15.step.admission_lifetime_definition_and_authorization",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_step_admission_lifetime_definition_and_authorization"
+      ]
+    },
+    {
+      "id": "T15.step.external_interface_has_no_epoch_bypass",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_step_external_interface_has_no_epoch_bypass"
+      ]
+    },
+    {
+      "id": "T18.restore.restart_preserves_store_and_generation",
+      "task_id": "D0.05",
+      "family": "T18",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T18_restore_restart_preserves_store_and_generation"
+      ]
+    },
+    {
+      "id": "T18.restore.old_backup_changes_generation_and_seals_effects",
+      "task_id": "D0.05",
+      "family": "T18",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T18_restore_old_backup_changes_generation_and_seals_effects"
+      ]
+    },
+    {
+      "id": "T18.restore.reconciliation_does_not_replay_history",
+      "task_id": "D0.05",
+      "family": "T18",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T18_restore_reconciliation_does_not_replay_history"
+      ]
+    },
+    {
+      "id": "T18.backup.manifest_pins_and_validation",
+      "task_id": "D0.05",
+      "family": "T18",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T18_backup_manifest_pins_and_validation"
+      ]
+    },
+    {
+      "id": "T18.restore.invalidates_child_admission",
+      "task_id": "D0.05",
+      "family": "T18",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T18_restore_invalidates_child_admission"
+      ]
+    },
+    {
+      "id": "T15.intent.expected_manifest_matches_fixed_cases",
+      "task_id": "D0.05",
+      "family": "T15",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T15_intent_expected_manifest_matches_fixed_cases"
+      ]
+    },
+    {
+      "id": "T14.commit.materials_frozen_after_claim",
+      "task_id": "D0.05",
+      "family": "T14",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T14_commit_materials_frozen_after_claim"
+      ]
+    },
+    {
+      "id": "T16.effect.outcome_evidence_shape_matches_contract",
+      "task_id": "D0.05",
+      "family": "T16",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T16_effect_outcome_evidence_shape_matches_contract"
+      ]
+    },
+    {
+      "id": "T16.effect.before_claim_crash_allows_same_identity_retry",
+      "task_id": "D0.05",
+      "family": "T16",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T16_effect_before_claim_crash_allows_same_identity_retry"
+      ]
+    },
+    {
+      "id": "T07.effect.cancel_before_permit_records_no_apply",
+      "task_id": "D0.05",
+      "family": "T07",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T07_effect_cancel_before_permit_records_no_apply"
+      ]
+    },
+    {
+      "id": "T18.restore.structure_checked_before_generation_change",
+      "task_id": "D0.05",
+      "family": "T18",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T18_restore_structure_checked_before_generation_change"
+      ]
+    },
+    {
+      "id": "T14.commit.intent_and_state_share_transaction",
+      "task_id": "D0.05",
+      "family": "T14",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T14_commit_intent_and_state_share_transaction"
+      ]
+    },
+    {
+      "id": "T18.restore.new_effect_requires_reconciliation_and_new_intent",
+      "task_id": "D0.05",
+      "family": "T18",
+      "repeat_required": 1,
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "dedup_model.test_dedup_model.DedupContracts.test_T18_restore_new_effect_requires_reconciliation_and_new_intent"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/plan",
+      "-v"
+    ],
+    "exit_code": 1,
+    "reason": "先行测试；模型尚未实现，预期导入失败，非行为通过证据"
+  },
+  {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/control",
+      "-v"
+    ],
+    "exit_code": 1,
+    "reason": "先行测试；模型尚未实现，预期导入失败，非行为通过证据"
+  }
+]

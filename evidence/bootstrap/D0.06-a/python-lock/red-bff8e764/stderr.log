@@ -1,0 +1,109 @@
+test_installed_missing (__main__.Contracts.test_installed_missing) ... ERROR
+test_installed_tamper (__main__.Contracts.test_installed_tamper) ... ERROR
+test_requirements_version_mismatch (__main__.Contracts.test_requirements_version_mismatch) ... ERROR
+test_valid_wheel_and_install (__main__.Contracts.test_valid_wheel_and_install) ... ERROR
+test_wheel_duplicate_path (__main__.Contracts.test_wheel_duplicate_path) ... ERROR
+test_wheel_hash_mismatch (__main__.Contracts.test_wheel_hash_mismatch) ... ERROR
+test_wheel_metadata_version_mismatch (__main__.Contracts.test_wheel_metadata_version_mismatch) ... ERROR
+test_wheel_path_escape (__main__.Contracts.test_wheel_path_escape) ... ERROR
+
+======================================================================
+ERROR: test_installed_missing (__main__.Contracts.test_installed_missing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 61, in test_installed_missing
+    with self.assertRaises(LockError):verify_installed_files({"x.py":b"locked"},Path(temp))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 32, in verify_installed_files
+    def verify_installed_files(payload,installed): raise NotImplementedError()
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NotImplementedError
+
+======================================================================
+ERROR: test_installed_tamper (__main__.Contracts.test_installed_tamper)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 58, in test_installed_tamper
+    with self.assertRaises(LockError):verify_installed_files({"x.py":b"locked"},root)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 32, in verify_installed_files
+    def verify_installed_files(payload,installed): raise NotImplementedError()
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NotImplementedError
+
+======================================================================
+ERROR: test_requirements_version_mismatch (__main__.Contracts.test_requirements_version_mismatch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 65, in test_requirements_version_mismatch
+    validate_requirements(lock,requirement);lock["packages"]["jsonschema"]["version"]="4.26.0"
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 33, in validate_requirements
+    def validate_requirements(lock,requirements): raise NotImplementedError()
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NotImplementedError
+
+======================================================================
+ERROR: test_valid_wheel_and_install (__main__.Contracts.test_valid_wheel_and_install)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 42, in test_valid_wheel_and_install
+    blob=self.wheel();verified_blob(blob,digest(blob));payload=wheel_payload(blob,"demo","1")
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 30, in verified_blob
+    def verified_blob(blob,expected): raise NotImplementedError()
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NotImplementedError
+
+======================================================================
+ERROR: test_wheel_duplicate_path (__main__.Contracts.test_wheel_duplicate_path)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 54, in test_wheel_duplicate_path
+    with self.assertRaises(LockError):wheel_payload(self.wheel([("demo/x",b"a"),("demo/X",b"b")]),"demo","1")
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 31, in wheel_payload
+    def wheel_payload(blob,name,version): raise NotImplementedError()
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NotImplementedError
+
+======================================================================
+ERROR: test_wheel_hash_mismatch (__main__.Contracts.test_wheel_hash_mismatch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 48, in test_wheel_hash_mismatch
+    with self.assertRaises(LockError):verified_blob(self.wheel(),"0"*64)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 30, in verified_blob
+    def verified_blob(blob,expected): raise NotImplementedError()
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NotImplementedError
+
+======================================================================
+ERROR: test_wheel_metadata_version_mismatch (__main__.Contracts.test_wheel_metadata_version_mismatch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 50, in test_wheel_metadata_version_mismatch
+    with self.assertRaises(LockError):wheel_payload(self.wheel(),"demo","2")
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 31, in wheel_payload
+    def wheel_payload(blob,name,version): raise NotImplementedError()
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NotImplementedError
+
+======================================================================
+ERROR: test_wheel_path_escape (__main__.Contracts.test_wheel_path_escape)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 52, in test_wheel_path_escape
+    with self.assertRaises(LockError):wheel_payload(self.wheel([("../escape",b"x")]),"demo","1")
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\dependencies\verify_python.py", line 31, in wheel_payload
+    def wheel_payload(blob,name,version): raise NotImplementedError()
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NotImplementedError
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.014s
+
+FAILED (errors=8)

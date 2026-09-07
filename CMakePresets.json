@@ -1,0 +1,118 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 31,
+    "patch": 6
+  },
+  "configurePresets": [
+    {
+      "name": "win-msvc-base",
+      "hidden": true,
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "toolset": "v143,version=14.44.35207",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "environment": {
+        "MSBUILDDISABLENODEREUSE": "1"
+      },
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD": "20",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+        "CMAKE_CXX_EXTENSIONS": "OFF",
+        "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "Embedded",
+        "CMAKE_SYSTEM_VERSION": "10.0.26100.0",
+        "BUILD_TESTING": "ON",
+        "OCK_BUILD_DEPENDENCY_PROBES": "ON",
+        "OCK_DEPENDENCY_COMPONENTS": "Embedded",
+        "OCK_DEPENDENCY_CACHE": "${sourceDir}/build/d0.06-a/cache",
+        "OCK_BUILD_G0_TESTS": "ON"
+      }
+    },
+    {
+      "name": "win-msvc-debug",
+      "inherits": "win-msvc-base",
+      "displayName": "MSVC x64 Debug C++20"
+    },
+    {
+      "name": "win-msvc-release",
+      "inherits": "win-msvc-base",
+      "displayName": "MSVC x64 Release C++20"
+    },
+    {
+      "name": "win-msvc-asan",
+      "inherits": "win-msvc-base",
+      "displayName": "MSVC x64 Debug AddressSanitizer",
+      "cacheVariables": {
+        "OCK_ENABLE_ASAN": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "win-msvc-debug",
+      "configurePreset": "win-msvc-debug",
+      "configuration": "Debug",
+      "jobs": 4,
+      "nativeToolOptions": [
+        "/nr:false"
+      ]
+    },
+    {
+      "name": "win-msvc-release",
+      "configurePreset": "win-msvc-release",
+      "configuration": "Release",
+      "jobs": 4,
+      "nativeToolOptions": [
+        "/nr:false"
+      ]
+    },
+    {
+      "name": "win-msvc-asan",
+      "configurePreset": "win-msvc-asan",
+      "configuration": "Debug",
+      "jobs": 4,
+      "nativeToolOptions": [
+        "/nr:false"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "win-msvc-debug",
+      "configurePreset": "win-msvc-debug",
+      "configuration": "Debug",
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "noTestsAction": "error",
+        "jobs": 1
+      }
+    },
+    {
+      "name": "win-msvc-release",
+      "configurePreset": "win-msvc-release",
+      "configuration": "Release",
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "noTestsAction": "error",
+        "jobs": 1
+      }
+    },
+    {
+      "name": "win-msvc-asan",
+      "configurePreset": "win-msvc-asan",
+      "configuration": "Debug",
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "noTestsAction": "error",
+        "jobs": 1
+      }
+    }
+  ]
+}

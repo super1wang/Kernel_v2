@@ -1,0 +1,50 @@
+{
+  "format": "ock.bootstrap-package/1",
+  "task_id": "D0.05",
+  "run_id": "20260907T062241Z-send-once-red-298e1b67",
+  "source": {
+    "commit": "4e96e99e157877feb20caf9a8351d909c8e7f71e",
+    "dirty": true,
+    "inputs_sha256": "49638fd747df9d846944d97ef28e693f9afb0b985ab404ae06033cbd831e4aba",
+    "archive_sha256": "1313f7ca7d17236333c5a822184b60ae061094e0e6dae26f65330bcde201c272"
+  },
+  "formal_evidence_status": "Incomplete",
+  "review_status": "Pending",
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "executable": "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "executable_sha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec"
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-X",
+        "utf8",
+        "tests/model/commit_model/run.py",
+        "--case",
+        "commit_model.test_commit_model.CommitContracts.test_T16_effect_send_attempt_is_once_before_external_call"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T06:22:42.201417+00:00",
+      "finished_at": "2026-09-07T06:22:42.430087+00:00",
+      "exit_code": 1,
+      "stdout": {
+        "path": "01-stdout.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stderr": {
+        "path": "01-stderr.bin",
+        "sha256": "6ece4370de68891aea8886337b645454d8d0397eea19bf11674596761418a436",
+        "size": 3730
+      }
+    }
+  ],
+  "limitations": [
+    "Python 模型步，不是实际线程/SQLite/设备。",
+    "D0.06 正式采集与人工评审独立完成。"
+  ],
+  "source_unchanged": true
+}

@@ -1,0 +1,21 @@
+test_control_contract (unittest.loader._FailedTest.test_control_contract) ... ERROR
+
+======================================================================
+ERROR: test_control_contract (unittest.loader._FailedTest.test_control_contract)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_control_contract
+Traceback (most recent call last):
+  File "C:\Users\xrx10\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xrx10\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "E:\VS2019Qt5.15\3D\tests\control\test_control_contract.py", line 7, in <module>
+    from control_model import ContractError, Control, Client, CursorCodec, validate_message, MAX_U64
+ModuleNotFoundError: No module named 'control_model'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
