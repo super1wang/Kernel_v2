@@ -30,7 +30,7 @@ Windows子进程先以挂起状态创建，加入本次独占Job，再恢复主�
 
 自动状态和包级状态分开。必需测试失败、跳过、零集合、错过滤、缺轮次、损坏材料、源码或二进制变化均不能Passed。历史资料不完整输出Incomplete；当前正式校验错误输出Failed并列出原因。没有审批时自动检查可Passed，包级仍InProgress。
 
-每个正式manifest固定 `review_required=[spec,code,human]`。评审记录必须指向该task和精确输入摘要，明确review_kind、review_status=Approved及审批文字；全部必需类型匹配才可包Passed。测试使用的合成审批只在隔离fixture，绝不是用户审批。D0.01–D0.03原有人工批准仍有效，但不据此伪称本轮新增构建/工具已受人工签核；G0当前变更提交审查后再绑定批准。
+原G0 manifest固定 `review_required=[spec,code,human]`，按生成时旧政策保留。评审记录必须指向该task和精确输入摘要，明确review_kind、review_status=Approved及审批文字；全部必需类型匹配才可包Passed。测试使用的合成审批只在隔离fixture，绝不是用户审批。D0.01–D0.03原有人工批准仍有效，但不据此伪称本轮新增构建/工具已受人工签核；G0当前变更提交审查后再绑定批准。
 
 `--historical` 只核对归档字节，不宣称当前工作区符合。`import_bootstrap.py` 只给早期记录建立材料指纹索引并核对可解析的本地hash引用，不补写缺失退出/构建/轮次事实；这些历史记录保持Incomplete，当前包另用正式入口重新运行。
 
@@ -45,3 +45,17 @@ Windows子进程先以挂起状态创建，加入本次独占Job，再恢复主�
 `gate.py` 默认退出码只表示自动汇总是否齐备，人工未批准时仍可输出自动Passed与gate_status=InProgress。放行者必须检查gate_status=Passed，不能仅用该报告生成命令的exit=0作为G0批准。
 
 最终来源复核修正：仅排除仓库根部的build/evidence/.git产物目录，tools/evidence与tests/tools/evidence必须进入源码快照。采集进程启动时记录实际加载规则的指纹；源码变更后必须启动新进程，不能跨run把新文件hash标到旧内存代码上。首轮bf122b7矩阵由此作废为旧来源验证记录，保留全部报告，最终门禁重新采集。
+
+## 用户明确指定的自动验收模式
+
+用户现明确要求“自我复核和自动验收，无需人工”。政策记录为 `docs/reviews/automatic-acceptance-policy.json`，以版本1和SHA-256绑定。新manifest使用review_required=[spec,code]及显式review_policy绑定；规格与代码记录均明确actor_type=AI。政策必须进入源码归档，AI复核记录另行ZIP归档；缺政策、错版本/摘要、缺任何复核、伪造审核身份或损坏附件不能放行。没有显式政策的旧manifest保持原规则。
+
+`accept_gate.py` 用于对已提交的历史实现追加当前政策下的验收决策，是通用历史候选验收命令；本次调用仅选择G0原九组报告、194dcdf实现及142项输入。它复核原始archive/raw/JUnit、固定matrix与各配置expected、同一来源与实际Git对象字节、原AI复核及证据摘要。工作区dirty标志可能来自后续未跟踪证据；是否对应提交由逐项Git字节核对决定，dirty原值仍保留。
+
+输出为独立ock.automatic-gate-acceptance/1决策，绑定实现、原报告、政策、复核和工具规则摘要，不修改原run的任何字段；旧human Pending仍是旧报告生成时的事实。该结论不声称后续已改源码运行过旧矩阵。新实现必须另行运行相应包的正式验证。
+
+```powershell
+python -X utf8 tools/evidence/accept_gate.py tests/runs/g0.json <九份已选定report.json> --policy docs/reviews/automatic-acceptance-policy.json --output <全新验收决策.json>
+```
+
+尖括号代表实际参数；输出路径已存在时拒绝覆盖。退出0要求自动证据与AI复核全部通过，不能仅凭原报告automated_status文字放行。

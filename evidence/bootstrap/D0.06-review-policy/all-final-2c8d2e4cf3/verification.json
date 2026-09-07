@@ -1,0 +1,106 @@
+{
+  "format": "ock.tool-regression/1",
+  "tests": [
+    {
+      "log": "test_gate_acceptance.py-stderr.log",
+      "tests": 3,
+      "sha256": "802dc0b34fd60bf1a0e5118dbd4c4c95e4721d526243760804d1b2a1b690f934"
+    },
+    {
+      "log": "test_review_policy.py-stderr.log",
+      "tests": 21,
+      "sha256": "845523c2ce9f674addf7f9975b274fc1272c681635bd0d6323bd17aebc0cd94c"
+    },
+    {
+      "log": "test_review_policy_runner.py-stderr.log",
+      "tests": 10,
+      "sha256": "d0b690e1b1f942bb5dbb11189f77111820824af4a113287bbb0715d51324a3ae"
+    },
+    {
+      "log": "test_runner.py-stderr.log",
+      "tests": 34,
+      "sha256": "f540bfc6ab58550ea8906cb8c3796185de08587a8ead543a992710d84292674d"
+    }
+  ],
+  "total": 68,
+  "status": "Passed",
+  "source_files": [
+    {
+      "path": "tools/evidence/accept_gate.py",
+      "sha256": "a33a4efe90b080a64ca6579922eb0ec55816076a018faef1f358096203016d38"
+    },
+    {
+      "path": "tools/evidence/build_identity.py",
+      "sha256": "23620838037ab4dd49ad30bc7ff96cdb29abbd67036a87edcd8d76a8119dee86"
+    },
+    {
+      "path": "tools/evidence/common.py",
+      "sha256": "f4b2e097027f4933dc6204c8300ed20f35c90523ad5f8e2fa0fed266fe08fd62"
+    },
+    {
+      "path": "tools/evidence/gate.py",
+      "sha256": "8e1526662d21c341baf6ad35cf139b039e6df65dd0e0fb774c7f8d3e3856013f"
+    },
+    {
+      "path": "tools/evidence/import_bootstrap.py",
+      "sha256": "1e4260dc6356ab17749772457f27873fa1b2c5864290e38d1494e4aa0ee2b759"
+    },
+    {
+      "path": "tools/evidence/process.py",
+      "sha256": "b2a34e3ef1c02518b624e5295bc73e558a1a3f84d70aa753e78619c430a688a8"
+    },
+    {
+      "path": "tools/evidence/review_policy.py",
+      "sha256": "35f3628a58d464d27978fbe9eaa58d2944f32eca766c31215e729f9048bbdd40"
+    },
+    {
+      "path": "tools/evidence/run.py",
+      "sha256": "8dedb1393268b5f07f200c16ee64293f531e11aeaba2a71fe82012f958519835"
+    },
+    {
+      "path": "tools/evidence/validate.py",
+      "sha256": "d391a1a854ddf0ef3f7f773cd70287de543617c88b4309033cb31d9c27ab192d"
+    },
+    {
+      "path": "schemas/evidence-v1.schema.json",
+      "sha256": "eeeca84a12fa7e9f62234902aa77f2147fb174f65c8a7a748456fcc2c9ab2a32"
+    },
+    {
+      "path": "tests/tools/evidence/test_review_policy.py",
+      "sha256": "8b2808cfb233e9b0a58b9d47908ade708c84e3cf3e567db374df01078d11e8f3"
+    },
+    {
+      "path": "tests/tools/evidence/test_review_policy_runner.py",
+      "sha256": "95830eafadf0a1ca69e1e00e68d79a026cc5aa22b949f19ca713db173d934f5c"
+    },
+    {
+      "path": "tests/tools/evidence/test_runner.py",
+      "sha256": "282574fe2223fddea55ef0fe9f8a3e252501467d696ae60e201c168e764f3d5f"
+    },
+    {
+      "path": "tests/tools/evidence/test_gate_acceptance.py",
+      "sha256": "0f0ae77272e35d4e5915d8456f6b1edd3eb56314b540656db4bf19db57669486"
+    }
+  ],
+  "fixture_count": 44,
+  "fixture_archive_sha256": "3ecfe0f83a2fe215f25e6fb141dc1e7e80bcc988fa28b66280c32ca2bdda2a8c",
+  "commands": [
+    {
+      "path": "test_gate_acceptance.py-command.json",
+      "sha256": "42f6e10682b4ba59a2ad6cc28950c9040c281c80467e56a907eee301aa5af1fb"
+    },
+    {
+      "path": "test_review_policy.py-command.json",
+      "sha256": "c40471da99a7911de369de7df68b8088654695780afc58dc1009eb33302062dc"
+    },
+    {
+      "path": "test_review_policy_runner.py-command.json",
+      "sha256": "5c127a7f7fc0fbce85fb0fa10635c00aaaef8200b0610f76fefcc253b50a19d6"
+    },
+    {
+      "path": "test_runner.py-command.json",
+      "sha256": "79c392728e4395bb7f706dc661fe22a7045b4e6b77558a728a3847e3efae2c34"
+    }
+  ],
+  "note": "由真实Job包装命令exit与unittest原始输出复核生成；不代表原G0九组被重新执行。"
+}

@@ -128,3 +128,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 用户已要求后续自动继续、自我审核并按节点提交，原文见 [指令记录](reviews/autonomous-review-instruction.json)。AI复核明确记录审核身份，不代填人工评审。自动审批系统拒绝将本次概括性委托直接写成六份human Approved及G0 Passed；未执行被拒绝脚本，当前包及门禁状态保持原值。本次G0明确验收请求已发出，等待期间完成D1.01实施准备，不越过前置进入源码实现。
 
 [D1.01实施准备](plans/D1.01.md) 已完成文档自审，覆盖原语API、固定正反例、六项SDK集成调整及正式验证矩阵；仅为准备，包级仍NotStarted，无新增运行证据。
+
+## 自动验收政策调整
+
+用户进一步明确“自我复核和自动验收，无需人工”，现按[版本化政策](reviews/automatic-acceptance-policy.json)执行AI规格/代码复核与自动验收。此前人工记录转换方案不再使用；历史报告保留，新增验收决策单独采集。政策工具适配已通过规格复核、独立代码复核及冻结版本68项回归；原始证据见 evidence/bootstrap/D0.06-review-policy/all-final-2c8d2e4cf3。下一步实际生成当前政策下的G0验收决策，再据结果更新门禁状态。

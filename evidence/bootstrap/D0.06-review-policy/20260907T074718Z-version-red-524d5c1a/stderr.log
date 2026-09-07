@@ -1,0 +1,42 @@
+test_T23_review_policy_version_required_and_supported (__main__.ReviewPolicyTests.test_T23_review_policy_version_required_and_supported) ... 
+  test_T23_review_policy_version_required_and_supported (__main__.ReviewPolicyTests.test_T23_review_policy_version_required_and_supported) (version=None) ... FAIL
+  test_T23_review_policy_version_required_and_supported (__main__.ReviewPolicyTests.test_T23_review_policy_version_required_and_supported) (version=2) ... FAIL
+  test_T23_review_policy_version_required_and_supported (__main__.ReviewPolicyTests.test_T23_review_policy_version_required_and_supported) (version=True) ... FAIL
+  test_T23_review_policy_version_required_and_supported (__main__.ReviewPolicyTests.test_T23_review_policy_version_required_and_supported) (version='1') ... FAIL
+
+======================================================================
+FAIL: test_T23_review_policy_version_required_and_supported (__main__.ReviewPolicyTests.test_T23_review_policy_version_required_and_supported) (version=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\tools\evidence\test_review_policy.py", line 129, in test_T23_review_policy_version_required_and_supported
+    self.assertTrue(self.check()[0])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_T23_review_policy_version_required_and_supported (__main__.ReviewPolicyTests.test_T23_review_policy_version_required_and_supported) (version=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\tools\evidence\test_review_policy.py", line 129, in test_T23_review_policy_version_required_and_supported
+    self.assertTrue(self.check()[0])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_T23_review_policy_version_required_and_supported (__main__.ReviewPolicyTests.test_T23_review_policy_version_required_and_supported) (version=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\tools\evidence\test_review_policy.py", line 129, in test_T23_review_policy_version_required_and_supported
+    self.assertTrue(self.check()[0])
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_T23_review_policy_version_required_and_supported (__main__.ReviewPolicyTests.test_T23_review_policy_version_required_and_supported) (version='1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\tools\evidence\test_review_policy.py", line 129, in test_T23_review_policy_version_required_and_supported
+    self.assertTrue(self.check()[0])
+AssertionError: [] is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.014s
+
+FAILED (failures=4)

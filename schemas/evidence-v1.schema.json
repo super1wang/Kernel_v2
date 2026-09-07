@@ -578,6 +578,23 @@
             "additionalProperties": false
           },
           "minItems": 0
+        },
+        "archive": {
+          "type": "object",
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "additionalProperties": false
         }
       },
       "required": [

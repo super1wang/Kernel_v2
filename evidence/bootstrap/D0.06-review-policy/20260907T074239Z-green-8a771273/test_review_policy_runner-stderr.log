@@ -1,0 +1,57 @@
+test_T23_ai_runner_archive_and_approve (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_archive_and_approve) ... ok
+test_T23_ai_runner_claim_without_review_rejected (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_claim_without_review_rejected) ... ok
+test_T23_ai_runner_forged_actor_rejected (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_forged_actor_rejected) ... ok
+test_T23_ai_runner_forged_report_review_rejected_historically (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_forged_report_review_rejected_historically) ... ok
+test_T23_ai_runner_live_policy_change_does_not_rewrite_history (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_live_policy_change_does_not_rewrite_history) ... ok
+test_T23_ai_runner_loaded_collector_includes_policy (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_loaded_collector_includes_policy) ... ok
+test_T23_ai_runner_missing_policy_rejected (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_missing_policy_rejected) ... ok
+test_T23_ai_runner_missing_review_stays_pending (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_missing_review_stays_pending) ... ERROR
+test_T23_ai_runner_review_archive_corruption_rejected (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_review_archive_corruption_rejected) ... ERROR
+test_T23_ai_runner_source_change_invalidates_review (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_source_change_invalidates_review) ... ERROR
+
+======================================================================
+ERROR: test_T23_ai_runner_missing_review_stays_pending (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_missing_review_stays_pending)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\tools\evidence\test_review_policy_runner.py", line 46, in test_T23_ai_runner_missing_review_stays_pending
+    path,r = self.collect()
+             ^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tests\tools\evidence\test_runner.py", line 40, in collect
+    path=run(self.root,self.root/'run.json')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\evidence\run.py", line 25, in run
+    raise ValueError('collector sources changed after process initialization; start a fresh process')
+ValueError: collector sources changed after process initialization; start a fresh process
+
+======================================================================
+ERROR: test_T23_ai_runner_review_archive_corruption_rejected (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_review_archive_corruption_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\tools\evidence\test_review_policy_runner.py", line 92, in test_T23_ai_runner_review_archive_corruption_rejected
+    path,r = self.collect()
+             ^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tests\tools\evidence\test_runner.py", line 40, in collect
+    path=run(self.root,self.root/'run.json')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\evidence\run.py", line 25, in run
+    raise ValueError('collector sources changed after process initialization; start a fresh process')
+ValueError: collector sources changed after process initialization; start a fresh process
+
+======================================================================
+ERROR: test_T23_ai_runner_source_change_invalidates_review (__main__.ReviewPolicyRunnerTests.test_T23_ai_runner_source_change_invalidates_review)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\tools\evidence\test_review_policy_runner.py", line 67, in test_T23_ai_runner_source_change_invalidates_review
+    _,r = self.collect()
+          ^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tests\tools\evidence\test_runner.py", line 40, in collect
+    path=run(self.root,self.root/'run.json')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\evidence\run.py", line 25, in run
+    raise ValueError('collector sources changed after process initialization; start a fresh process')
+ValueError: collector sources changed after process initialization; start a fresh process
+
+----------------------------------------------------------------------
+Ran 10 tests in 24.349s
+
+FAILED (errors=3)

@@ -56,6 +56,8 @@ def under(root, name):
 
 def inputs(root, spec, spec_relative):
     selected = {under(root, spec_relative), under(root, spec['expected_manifest']), under(root, spec['dependency_lock'])}
+    if 'review_policy' in spec:
+        selected.add(under(root, spec['review_policy']['path']))
     for name in spec['required_artifacts']:
         selected.add(under(root, name))
     for pattern in spec['source_patterns']:

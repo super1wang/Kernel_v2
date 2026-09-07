@@ -175,6 +175,12 @@ def run(root, manifest_path):
         path = under(root, name)
         if path.is_file():
             report['review']['records'].append({'path': name, 'sha256': sha_file(path), 'record': read_json(path)})
+    if 'review_policy' in spec:
+        attachment = out / 'review-records.zip'
+        with zipfile.ZipFile(attachment, 'w', zipfile.ZIP_DEFLATED) as archive:
+            for row in report['review']['records']:
+                archive.write(under(root, row['path']), row['path'])
+        report['review']['archive'] = {'path': attachment.name, 'sha256': sha_file(attachment)}
     # 内层故意失败的自测仍保留原始运行ZIP；故障注入后的副本单独随夹具保存。
     new_fixtures = sorted(set(fixture_root.glob('*')) - prior_fixtures) if fixture_root.exists() else []
     if new_fixtures:

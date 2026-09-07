@@ -202,19 +202,32 @@ def audit(report_path, root=None, check_claims=True):
                 require(r['conformance']['self_check_passed'] is True,'mock/fault harness self-check failed')
         else:
             require(r['conformance'] is None,'unexpected conformance claim')
+        from tools.evidence.review_policy import evaluate, archived_json
         required_reviews = spec.get('review_required', ['human'])
-        require(bool(required_reviews) and len(required_reviews) == len(set(required_reviews)) and 'human' in required_reviews, 'required review set invalid')
         require(r['review']['required'] == required_reviews, 'required review set changed')
-        approved_reviews = set()
-        for item in r['review']['records']:
+        review_items = r['review']['records']
+        for item in review_items:
             require(item['path'] in spec['review_records'], 'unrequested review record')
             if current:
                 require(sha_file(under(source_root, item['path'])) == item['sha256'], 'review record changed')
                 require(read_json(under(source_root, item['path'])) == item['record'], 'review snapshot mismatch')
-            record = item['record']
-            if record.get('task_id') == r['task_id'] and record.get('review_status') == 'Approved' and record.get('reviewed_inputs_sha256') == r['source']['build_inputs_sha256'] and record.get('approval_text'):
-                approved_reviews.add(record.get('review_kind','human'))
-        package = 'Failed' if errors else 'Passed' if set(required_reviews).issubset(approved_reviews) else 'InProgress'
+        if 'review_policy' in spec:
+            attachment = r['review']['archive']
+            require(sha_file(under(folder, attachment['path'])) == attachment['sha256'], 'review archive changed')
+            with zipfile.ZipFile(under(folder, attachment['path'])) as archive:
+                names = [item['path'] for item in review_items]
+                require(len(names) == len(set(names)) and set(archive.namelist()) == set(names)
+                        and len(archive.namelist()) == len(names), 'review archive contents differ or duplicated')
+                for item in review_items:
+                    under(source_root, item['path'])
+                    raw = archive.read(item['path'])
+                    require(sha_bytes(raw) == item['sha256'], 'archived review record hash mismatch')
+                    require(archived_json(raw) == item['record'], 'archived review snapshot mismatch')
+        with zipfile.ZipFile(under(folder, r['source']['archive'])) as archive:
+            review_errors, reviews_approved = evaluate(spec, [item['record'] for item in review_items],
+                r['task_id'], r['source']['build_inputs_sha256'], archive.read, r['source']['inputs'])
+        errors.extend(review_errors)
+        package = 'Failed' if errors else 'Passed' if reviews_approved else 'InProgress'
         if check_claims:
             require(r['automated_status'] == ('Failed' if errors else 'Passed'), 'automated status is inconsistent with actual evidence')
             require(r['package_status'] == package, 'package status lacks complete evidence/review')

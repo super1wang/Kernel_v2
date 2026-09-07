@@ -1,0 +1,22 @@
+{
+  "format": "ock.review-policy/1",
+  "version": 1,
+  "mode": "ai-self-review",
+  "user_text": "自我复核和自动验收，无需人工",
+  "user_source": "当前任务用户明确指令",
+  "recorded_at": "2026-09-07T07:38:27.271284+00:00",
+  "required_reviews": [
+    "spec",
+    "code"
+  ],
+  "review_actor": "AI",
+  "human_review_required": false,
+  "scope": "当前G0及后续v3.3规划内核工作包；自动推进、自我复核、自动验收、按必要节点提交和推送工作分支。",
+  "constraints": [
+    "规格与代码审核须真实完成并绑定精确实现输入摘要。",
+    "自动结果必须来自真实命令、原始材料及固定用例集合；不能手写成功或豁免失败。",
+    "AI审核明确记录actor_type=AI，不伪造human Approved，不改写历史人工字段。",
+    "历史报告保持原始字节；新增政策下的验收决策另行追加并绑定原报告、政策和验收规则摘要。",
+    "保持工作包前置和集成门禁顺序，只覆盖内核及规划必需验证设施。"
+  ]
+}
