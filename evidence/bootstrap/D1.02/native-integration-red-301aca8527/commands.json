@@ -1,0 +1,61 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--fresh",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "build/d1.02-debug-integration",
+      "-DOCK_BUILD_G0_TESTS=OFF",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DCMAKE_VS_GLOBALS=ForceImportBeforeCppTargets=E:/VS2019Qt5.15/3D/build/d1.02-tools-probe-55d5771dfc/local-tools.props"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T12:21:08.388581+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 43,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 26928,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-07T12:21:21.130160+00:00"
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/d1.02-debug-integration",
+      "--config",
+      "Debug",
+      "--target",
+      "ock_contracts_tests",
+      "--parallel",
+      "2",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "E:\\VS2019Qt5.15\\3D",
+    "started_at": "2026-09-07T12:21:21.132166+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 12,
+      "terminated_owned_job": false
+    },
+    "executable": "F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 34408,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-07T12:21:26.633870+00:00"
+  }
+]

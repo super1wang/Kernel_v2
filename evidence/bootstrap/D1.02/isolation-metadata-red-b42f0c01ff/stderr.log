@@ -1,0 +1,14 @@
+test_cached_metadata_hardlink_cannot_overwrite_original (tests.architecture.test_msvc_isolation.MSVCIsolationTests.test_cached_metadata_hardlink_cannot_overwrite_original) ... FAIL
+
+======================================================================
+FAIL: test_cached_metadata_hardlink_cannot_overwrite_original (tests.architecture.test_msvc_isolation.MSVCIsolationTests.test_cached_metadata_hardlink_cannot_overwrite_original)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_msvc_isolation.py", line 41, in test_cached_metadata_hardlink_cannot_overwrite_original
+    with self.assertRaises(ValueError):prepare(lock,root)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.110s
+
+FAILED (failures=1)

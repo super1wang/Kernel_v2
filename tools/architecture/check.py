@@ -65,6 +65,11 @@ def validate_include(component,source,manifest,public=False):
     allowed=transitive_dependencies(component,targets)|{component}
     try:text,literals=preprocessing_view(source)
     except ValueError as exc:return [str(exc)]
+    if public and component == 'CoreContracts':
+        # 小型声明守卫；完整模板/能力边界仍由真实编译消费者和声明审核证明。
+        declarations=''.join(' ' if literals[i] else ch for i,ch in enumerate(text))
+        if re.search(r'\b(?:Host|Document|Payload|ServiceLocator)\b|\bstd\s*::\s*any\b|\bvoid\s*\*',declarations):
+            errors.append('CoreContracts公开声明不得暴露通用Host/状态/动态值或无类型服务指针')
     for match in re.finditer(r'^[ \t]*#[ \t]*include\b([^\n]*)',text,re.M):
         hash_position=text.index('#',match.start(),match.end())
         if literals[hash_position]:continue
@@ -104,7 +109,7 @@ FOUNDATION_PUBLIC_OPTIONS=['$<$<CXX_COMPILER_ID:MSVC>:/utf-8>', '$<$<CXX_COMPILE
 
 def validate_implementation_stage(manifest):
     """只允许已实施组件前进；公开第三方依赖不能混入产品DAG。"""
-    stages={'ContractBaseline':set(),'Foundation':{'Foundation'}}
+    stages={'ContractBaseline':set(),'Foundation':{'Foundation'},'CoreContracts':{'Foundation','CoreContracts'}}
     stage=manifest.get('stage')
     if stage not in stages:return ['未知SDK实施阶段']
     errors=[]
@@ -118,6 +123,20 @@ def validate_implementation_stage(manifest):
     return errors
 
 
+CORE_CONTRACTS_HEADERS = {
+    'packages/contracts/include/ock/contracts/'+name+'.hpp'
+    for name in ('identity','context','outcome','ports','observation','operation')}
+
+def validate_contracts_surface(manifest):
+    """D1.02受审六头集合；字节、存在性和实际包含关系由完整校验继续检查。"""
+    if manifest.get('stage') != 'CoreContracts':
+        return []
+    listed=[h['path'] for h in manifest['headers'] if h['target']=='CoreContracts']
+    if set(listed) != CORE_CONTRACTS_HEADERS or len(listed) != len(CORE_CONTRACTS_HEADERS):
+        return ['CoreContracts公开头集合与已审六头不符']
+    return []
+
+
 def validate_manifest(manifest,actual_graph=None):
     errors=[]
     def require(value,message):
@@ -126,6 +145,7 @@ def validate_manifest(manifest,actual_graph=None):
     require(manifest['format']=='ock.sdk-api/1','公开清单格式不符')
     require(manifest['sdk_version']=='0.1.0-dev.1','开发 SDK 版本必须独立于文档 v3.3')
     errors.extend(validate_implementation_stage(manifest))
+    errors.extend(validate_contracts_surface(manifest))
     require(set(targets)==set(norm),'产品 target 集合与 A02 不一致')
     for name,target in targets.items():
         require(target['dependencies']==norm.get(name),f'{name} 直接依赖与 A02 不一致')
@@ -135,8 +155,10 @@ def validate_manifest(manifest,actual_graph=None):
         require(target['export']=='OCK::'+name,f'{name} 导出名错误')
         require(target['kind']=='INTERFACE_LIBRARY',f'{name} 基线 target 类型错误')
         require(target['public_compile_features']==['cxx_std_20'],f'{name} 公开编译条件漂移')
-        expected_options=FOUNDATION_PUBLIC_OPTIONS if name=='Foundation' and manifest['stage']=='Foundation' else ['$<$<CXX_COMPILER_ID:MSVC>:/utf-8>']
+        expected_options=FOUNDATION_PUBLIC_OPTIONS if name=='Foundation' and manifest['targets']['Foundation']['implementation']=='Implemented' else ['$<$<CXX_COMPILER_ID:MSVC>:/utf-8>']
         require(target['public_compile_options']==expected_options,f'{name} 公开编码/异常选项漂移')
+        definitions=target.get('public_compile_definitions', [] if manifest['stage']!='CoreContracts' else None)
+        require(definitions==[],f'{name} 公开宏定义漂移')
         require(target['api_classification'] in ('experimental','stable','detail'),f'{name} 分类无效')
         if target['api_classification']=='stable':
             require(not any(targets[d]['api_classification']!='stable' for d in closure if d in targets),
@@ -147,6 +169,8 @@ def validate_manifest(manifest,actual_graph=None):
             require(actual_graph.get(name,{}).get('external_dependencies',[])==target.get('external_dependencies',[]),f'{name} 实际第三方公开依赖不符')
             require(actual_graph.get(name,{}).get('compile_features')==target['public_compile_features'],f'{name} 实际公开编译要求漂移')
             require(actual_graph.get(name,{}).get('compile_options')==target['public_compile_options'],f'{name} 实际公开选项漂移')
+            actual_definitions=actual_graph.get(name,{}).get('compile_definitions', [] if manifest['stage']!='CoreContracts' else None)
+            require(actual_definitions==definitions and actual_definitions is not None,f'{name} 实际公开宏定义漂移')
     if actual_graph is not None:require(set(actual_graph)==set(norm),'实际 CMake 目标集合漂移')
     if 'Runtime' in targets:
         require(transitive_dependencies('Runtime',targets)=={'CoreContracts','Foundation'},'Runtime 必须保持最小闭包')

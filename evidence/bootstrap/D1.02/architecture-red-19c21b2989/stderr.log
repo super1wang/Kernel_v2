@@ -1,0 +1,110 @@
+test_contracts_cannot_duplicate_or_add_third_party_backend (tests.architecture.test_contracts_stage.ComponentClosureTests.test_contracts_cannot_duplicate_or_add_third_party_backend) ... ok
+test_core_stage_preserves_foundation_and_only_adds_contracts (tests.architecture.test_contracts_stage.ComponentClosureTests.test_core_stage_preserves_foundation_and_only_adds_contracts) ... FAIL
+test_foundation_cannot_regress_or_lose_expected (tests.architecture.test_contracts_stage.ComponentClosureTests.test_foundation_cannot_regress_or_lose_expected) ... ok
+test_other_product_implementation_rejected (tests.architecture.test_contracts_stage.ComponentClosureTests.test_other_product_implementation_rejected) ... ok
+test_product_closure_rejects_other_modules_and_unknown_targets (tests.architecture.test_contracts_stage.ComponentClosureTests.test_product_closure_rejects_other_modules_and_unknown_targets) ... ERROR
+test_comments_literals_and_narrow_types_not_backdoors (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_comments_literals_and_narrow_types_not_backdoors) ... ok
+test_dom_sql_and_runtime_includes_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_dom_sql_and_runtime_includes_rejected) ... ok
+test_exact_six_headers_required (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_exact_six_headers_required) ... ERROR
+test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) ... 
+  test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) (text='class Host;') ... FAIL
+  test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) (text='Document* document();') ... FAIL
+  test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) (text='Payload payload();') ... FAIL
+  test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) (text='ServiceLocator& services();') ... FAIL
+  test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) (text='std::any get();') ... FAIL
+  test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) (text='void* service();') ... FAIL
+
+======================================================================
+ERROR: test_product_closure_rejects_other_modules_and_unknown_targets (tests.architecture.test_contracts_stage.ComponentClosureTests.test_product_closure_rejects_other_modules_and_unknown_targets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_contracts_stage.py", line 38, in test_product_closure_rejects_other_modules_and_unknown_targets
+    self.assertTrue(check.validate_manifest(changed))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\architecture\check.py", line 164, in validate_manifest
+    require(header['classification']=='experimental','0.x 基线公开头尚未承诺 Stable')
+            ~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'classification'
+
+======================================================================
+ERROR: test_exact_six_headers_required (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_exact_six_headers_required)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_contracts_stage.py", line 42, in test_exact_six_headers_required
+    self.assertEqual(check.validate_contracts_surface(manifest()), [])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'tools.architecture.check' has no attribute 'validate_contracts_surface'
+
+======================================================================
+FAIL: test_core_stage_preserves_foundation_and_only_adds_contracts (tests.architecture.test_contracts_stage.ComponentClosureTests.test_core_stage_preserves_foundation_and_only_adds_contracts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_contracts_stage.py", line 19, in test_core_stage_preserves_foundation_and_only_adds_contracts
+    self.assertEqual(check.validate_implementation_stage(manifest()), [])
+AssertionError: Lists differ: ['未知SDK实施阶段'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'未知SDK实施阶段'
+
+- ['未知SDK实施阶段']
++ []
+
+======================================================================
+FAIL: test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) (text='class Host;')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_contracts_stage.py", line 52, in test_public_capability_backdoors_rejected
+    with self.subTest(text=text): self.assertTrue(check.validate_include('CoreContracts', text, manifest(), True))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) (text='Document* document();')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_contracts_stage.py", line 52, in test_public_capability_backdoors_rejected
+    with self.subTest(text=text): self.assertTrue(check.validate_include('CoreContracts', text, manifest(), True))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) (text='Payload payload();')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_contracts_stage.py", line 52, in test_public_capability_backdoors_rejected
+    with self.subTest(text=text): self.assertTrue(check.validate_include('CoreContracts', text, manifest(), True))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) (text='ServiceLocator& services();')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_contracts_stage.py", line 52, in test_public_capability_backdoors_rejected
+    with self.subTest(text=text): self.assertTrue(check.validate_include('CoreContracts', text, manifest(), True))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) (text='std::any get();')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_contracts_stage.py", line 52, in test_public_capability_backdoors_rejected
+    with self.subTest(text=text): self.assertTrue(check.validate_include('CoreContracts', text, manifest(), True))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) (text='void* service();')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_contracts_stage.py", line 52, in test_public_capability_backdoors_rejected
+    with self.subTest(text=text): self.assertTrue(check.validate_include('CoreContracts', text, manifest(), True))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.029s
+
+FAILED (failures=7, errors=2)

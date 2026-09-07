@@ -105,6 +105,64 @@ authority真实发放实现的grant/proof记录必须使用私有构造和不可
 
 ActivityLease 与 ResourceLease 是不同抽象 RAII owner，只管理各自寿命/资源释放，没有到 ActionPermit 的转换。`EffectContext`保有已检查 CallerView、受限已解析 TargetView 和 ActionPermit 只读引用；授权消费仍走固定 PermitAuthorityPort。TargetView 的建立和重验沿同一已配置 authority 协议，不能由请求 ObjectId 隐式转为有效视图。
 
+### 3.1.1 Target authority 与真实接收者复验（增量冻结）
+
+下列具体入口落实原3.1的固定authority协议，依据[增量提案](../../evidence/bootstrap/D1.02/target-authority-proposal.md)及[独立AI规格批准](../../evidence/bootstrap/D1.02/spec-review-final-target-authority.md)。TargetView只描述已解析目标，不提供自报有效的revalidate；TargetAuthorityPort验证其真实发放集合、caller绑定、目标与失效状态。
+
+```cpp
+class TargetView : public PortLifetime {
+public:
+    virtual foundation::ObjectId target() const noexcept = 0;
+protected:
+    TargetView() = default;
+};
+class TargetAuthorityPort : public PortLifetime {
+public:
+    virtual Result<std::shared_ptr<const TargetView>> resolve(
+        const CallerView&, foundation::ObjectId requested) = 0;
+    virtual Result<void> validate(const TargetView&, const CallerView&,
+                                  foundation::ObjectId expected) const = 0;
+};
+
+class EffectContext final {
+public:
+    static Result<std::unique_ptr<EffectContext>> check(
+        std::shared_ptr<const CallerAuthorityPort> expected_caller_authority,
+        std::shared_ptr<const TargetAuthorityPort> expected_target_authority,
+        CallerView caller, std::shared_ptr<const TargetView> target,
+        std::shared_ptr<const ActionPermit> permit,
+        const PermitBinding& expected_binding,
+        WorkContext& work, EffectRecordPort& records);
+    Result<void> revalidate(const CallerAuthorityPort& expected_caller_authority,
+                            const TargetAuthorityPort& expected_target_authority,
+                            const PermitBinding& current_expected_binding) const;
+    // 其余已有窄访问器不变；构造私有、禁止复制和移动。
+};
+class TransitionView final {
+public:
+    static Result<std::unique_ptr<TransitionView>> check(
+        std::shared_ptr<const CallerAuthorityPort> expected_caller_authority,
+        std::shared_ptr<const TargetAuthorityPort> expected_target_authority,
+        CallerView caller, std::shared_ptr<const TargetView> target,
+        Name before, std::uint64_t generation,
+        std::shared_ptr<const ActionPermit> permit,
+        const PermitBinding& expected_binding, TransitionPort& transition);
+    Result<void> revalidate(const CallerAuthorityPort& expected_caller_authority,
+                            const TargetAuthorityPort& expected_target_authority,
+                            const PermitBinding& current_expected_binding,
+                            const Name& current_before) const;
+    // 其余已有窄访问器不变；构造私有、禁止复制和移动。
+};
+```
+
+EffectContext/TransitionView的构造均私有，禁止复制和移动。check拒绝空owner，先验证CallerView属于组合根装配的CallerAuthority并向该实例验证真实发放记录，再核对permit材料与真实接收端生成的expected_binding完全一致，主体与caller一致、目标非零、期限有效，最后由TargetAuthority验证真实目标grant与主体/目标绑定。Context保存两个authority及target/permit的owner，不保留调用者可改写的绑定容器别名；work/records/transition只借用同步作用域。
+
+expected/current PermitBinding必须由真实接收端当前已绑定Operation或组摘要、已解析目标、当前权限及生命周期世代和服务端截止政策生成，禁止用permit.binding()或请求字段直接充当expected。Transition的before/generation来自真实协调者当前状态，generation须与当前binding一致且非零。实际敏感接收端调用产品revalidate时先比较自身两个authority与Context记录的实例身份，再用自己的current_expected_binding/current_before重复当前记录、绑定、期限与状态检查。业务可在伪authority域构造本域Context，但不能穿过真实接收者复验。
+
+许可字段匹配不是真伪证明或授权消费。实际协调者在发送/转换/提交附近仍调用自身固定PermitAuthorityPort::consume(original_permit,current_expected_binding)，且与上述revalidate使用同一份由接收端可信状态生成的binding。Context::check/revalidate不提前consume；本包不实现生产策略或设备发送。
+
+既有context_capability_boundary/effect_shape/lifecycle_shape内补固定子断言：同一真实issuer的A/B两主体分别交换permit与target grant，均拒绝且consume计数为0；跨issuer、伪目标、撤销、过期另测。真实接收端改变当前operation/组摘要、目标、权限/生命周期世代或before，同时保持提交Context与permit不变，必须拒绝。合法上下文在真实接收端复验后才允许调用测试许可消费；38个CTest名称不变。
+
 ### 3.2 四种 shape 的声明
 
 ```cpp
@@ -131,7 +189,7 @@ class EffectContext final;
 class TransitionView final;
 ```
 
-WorkContext由协调入口用 stop_token、截止点、CheckedCount、trace Name和已授资源owner集合建立，不能继承扩张；返回资源 span 只借用当前调用，内部持有其owner。预算 charge 失败不改余额，stop_token仅表达协作取消。无任意服务查找和外部发送入口。
+WorkContext由协调入口用 stop_token、截止点、CheckedCount、trace Name和已授资源owner集合建立，不能继承扩张；返回资源 span 只借用当前调用，内部持有其owner。资源owner集合须复制shared owner条目到自己的存储，不接管仍可能被调用者持有元素别名的vector缓冲；调用者改写或销毁原集合不能令granted_resources悬空。预算 charge 失败不改余额，stop_token仅表达协作取消。无任意服务查找和外部发送入口。
 
 ReadServices<Reader> 只暴露 `const Reader& reader() const noexcept`，持有 `shared_ptr<const Reader>` 形式的受信已安装只读端口owner，reader()引用仅在包装器及其owner有效时使用；端口必须保证const操作只读，不能通过const方法返回可变状态后门。Reader是注册时固定、经过公开声明审核的领域只读端口，不是运行时可选任意服务类型。EditView<Provider> 只暴露 `Provider::EditPort& edit() noexcept` 和 `const AtomicDomainRef& domain()`；EditPort由provider固定为候选编辑接口，不包含 commit/Host/SQL/外部发送。后续领域包定义实际方法，本包两个小型 Reader/EditPort 夹具证明没有跨provider隐式转换。EditView仅借用当前受信Frame的EditPort，Frame的unique_ptr由同步协调作用域独占，必须覆盖视图和整个Handler调用；视图不能延长候选寿命或提取可变裸Provider/Frame。两种视图均禁止复制/移动以避免把调用借用视图存入异步闭包；并不声称能阻止恶意代码保存引用。
 

@@ -1,9 +1,9 @@
 {
   "format": "ock.sdk-api/1",
-  "task_id": "D1.01",
+  "task_id": "D1.02",
   "sdk_version": "0.1.0-dev.1",
   "document_version": "3.3",
-  "stage": "Foundation",
+  "stage": "CoreContracts",
   "review_status": "Pending",
   "targets": {
     "Foundation": {
@@ -25,7 +25,8 @@
       ],
       "external_dependencies": [
         "expected"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "CoreContracts": {
       "export": "OCK::CoreContracts",
@@ -35,14 +36,15 @@
       ],
       "include_root": "packages/contracts/include",
       "namespace_prefix": "ock/contracts/",
-      "implementation": "ContractBaseline",
+      "implementation": "Implemented",
       "api_classification": "experimental",
       "public_compile_features": [
         "cxx_std_20"
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Runtime": {
       "export": "OCK::Runtime",
@@ -59,7 +61,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Data": {
       "export": "OCK::Data",
@@ -76,7 +79,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Dynamic": {
       "export": "OCK::Dynamic",
@@ -94,7 +98,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Automation": {
       "export": "OCK::Automation",
@@ -112,7 +117,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "State": {
       "export": "OCK::State",
@@ -129,7 +135,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Workspace": {
       "export": "OCK::Workspace",
@@ -146,7 +153,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Durable": {
       "export": "OCK::Durable",
@@ -163,7 +171,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "StateDurable": {
       "export": "OCK::StateDurable",
@@ -181,7 +190,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "DurablePlan": {
       "export": "OCK::DurablePlan",
@@ -199,7 +209,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "ControlProtocol": {
       "export": "OCK::ControlProtocol",
@@ -217,7 +228,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Control": {
       "export": "OCK::Control",
@@ -236,7 +248,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "ControlClient": {
       "export": "OCK::ControlClient",
@@ -253,7 +266,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Adapter::CpuPool": {
       "export": "OCK::Adapter::CpuPool",
@@ -270,7 +284,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Adapter::Logging": {
       "export": "OCK::Adapter::Logging",
@@ -287,7 +302,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Adapter::Config": {
       "export": "OCK::Adapter::Config",
@@ -304,7 +320,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Adapter::SQLite": {
       "export": "OCK::Adapter::SQLite",
@@ -321,7 +338,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Adapter::Storage": {
       "export": "OCK::Adapter::Storage",
@@ -338,7 +356,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Adapter::LocalIPC": {
       "export": "OCK::Adapter::LocalIPC",
@@ -355,7 +374,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     },
     "Adapter::MCP": {
       "export": "OCK::Adapter::MCP",
@@ -372,7 +392,8 @@
       ],
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-      ]
+      ],
+      "public_compile_definitions": []
     }
   },
   "planned_executables": {
@@ -402,15 +423,45 @@
       "target": "Foundation",
       "classification": "experimental",
       "sha256": "1e3325f6077dd42d2f3ec8460d1eb4eeeca169c668975c41fb90556773940ae0"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/identity.hpp",
+      "target": "CoreContracts",
+      "classification": "experimental",
+      "sha256": "2c42e99c22301baeea4e1af5c45faee9c578e66b9f7f0d8c2eaf370bac54dbad"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/context.hpp",
+      "target": "CoreContracts",
+      "classification": "experimental",
+      "sha256": "42d85bac31c267050b6d6ac89d5df4bd209d059a1e2f616345060a35fc58cc9a"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/outcome.hpp",
+      "target": "CoreContracts",
+      "classification": "experimental",
+      "sha256": "9496e2c8224090d54446bfc93bfad2013a7b97da5e4d5fe5d11541d5ff2fa38e"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/ports.hpp",
+      "target": "CoreContracts",
+      "classification": "experimental",
+      "sha256": "abc625e954638cc1a0c79b86f268150647f936180b99486629443041524390a6"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/observation.hpp",
+      "target": "CoreContracts",
+      "classification": "experimental",
+      "sha256": "c1f65bcc013b604267d061cdacb21d6b39fa96cfc2ac713981409bd0c3b3c5cb"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/operation.hpp",
+      "target": "CoreContracts",
+      "classification": "experimental",
+      "sha256": "35a76e46db44d8bc8ee5c71103ae264869b125a318b2080d8d69b2ad26d6ae22"
     }
   ],
   "candidate_headers": [
-    {
-      "target": "CoreContracts",
-      "path": "packages/contracts/include/ock/contracts/operation.hpp",
-      "status": "Planned",
-      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
-    },
     {
       "target": "Runtime",
       "path": "packages/runtime/include/ock/runtime/runtime.hpp",

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\build\probe_cache_path.py", line 16, in <module>
+    ready=prepare(lock,root)
+          ^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tools\development\msvc_isolation.py", line 49, in prepare
+    if not parent.resolve().is_relative_to(workspace):raise ValueError('cache escaped workspace')
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: cache escaped workspace

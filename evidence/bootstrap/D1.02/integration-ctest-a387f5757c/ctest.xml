@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="38"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="MSI"
+	time="628"
+	timestamp="2026-09-07T21:50:20"
+	>
+	<testcase name="T01.contracts.component_closure" classname="T01.contracts.component_closure" time="1.15898" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>test_contracts_cannot_duplicate_or_add_third_party_backend (tests.architecture.test_contracts_stage.ComponentClosureTests.test_contracts_cannot_duplicate_or_add_third_party_backend) ... ok
+test_core_stage_preserves_foundation_and_only_adds_contracts (tests.architecture.test_contracts_stage.ComponentClosureTests.test_core_stage_preserves_foundation_and_only_adds_contracts) ... ok
+test_foundation_cannot_regress_or_lose_expected (tests.architecture.test_contracts_stage.ComponentClosureTests.test_foundation_cannot_regress_or_lose_expected) ... ok
+test_other_product_implementation_rejected (tests.architecture.test_contracts_stage.ComponentClosureTests.test_other_product_implementation_rejected) ... ok
+test_product_closure_rejects_other_modules_and_unknown_targets (tests.architecture.test_contracts_stage.ComponentClosureTests.test_product_closure_rejects_other_modules_and_unknown_targets) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.866s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T01.contracts.public_include_boundary" classname="T01.contracts.public_include_boundary" time="2.25062" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>test_actual_public_macros_and_compile_conditions_match_manifest (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_actual_public_macros_and_compile_conditions_match_manifest) ... ok
+test_comments_literals_and_narrow_types_not_backdoors (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_comments_literals_and_narrow_types_not_backdoors) ... ok
+test_dom_sql_and_runtime_includes_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_dom_sql_and_runtime_includes_rejected) ... ok
+test_exact_six_headers_required (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_exact_six_headers_required) ... ok
+test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) ... ok
+test_registered_public_macros_must_remain_explicitly_empty (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_registered_public_macros_must_remain_explicitly_empty) ... ok
+
+---------------------...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.contracts.public_headers" classname="T24.contracts.public_headers" time="44.5186" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "public_headers", "status": "Passed", "work": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-sdk\\675591f1982d4319aee87e35ee9519fa"}
+</system-out>
+	</testcase>
+	<testcase name="T24.contracts.installed_component_consumer" classname="T24.contracts.installed_component_consumer" time="71.4595" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "installed_component_consumer", "status": "Passed", "work": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-sdk\\051c287bb9494f8b86b31e3409f152ef"}
+</system-out>
+	</testcase>
+	<testcase name="T24.contracts.install_pruning_rejected" classname="T24.contracts.install_pruning_rejected" time="121.923" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "install_pruning_rejected", "status": "Passed", "work": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-sdk\\1e8b4ef6d72f49c7926cfe5c562980d9"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.type_contract_constraints" classname="T02.contracts.type_contract_constraints" time="54.1348" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.type_contract_constraints", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug-integration\\tests\\compile\\contracts\\child-runs\\e68890ed2bc04378a2ace69478de7718"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.typed_value_validation" classname="T02.contracts.typed_value_validation" time="32.8488" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.typed_value_validation", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug-integration\\tests\\compile\\contracts\\child-runs\\ce69ae9ef22f4e058bf172f97c3db929"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.read_shape" classname="T02.contracts.read_shape" time="37.7754" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.read_shape", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug-integration\\tests\\compile\\contracts\\child-runs\\c293b85678094383be6a77f4876970a8"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.state_edit_shape" classname="T02.contracts.state_edit_shape" time="36.8105" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.state_edit_shape", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug-integration\\tests\\compile\\contracts\\child-runs\\4ae279c0ebaf4691b2b1aeb5d67f4b9e"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.effect_shape" classname="T02.contracts.effect_shape" time="29.3183" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.effect_shape", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug-integration\\tests\\compile\\contracts\\child-runs\\526226b0478f48f39a4262a2030bd816"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.lifecycle_shape" classname="T02.contracts.lifecycle_shape" time="28.0594" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.lifecycle_shape", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug-integration\\tests\\compile\\contracts\\child-runs\\41443bfdf01a4c0ca99c4e6591664659"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.context_capability_boundary" classname="T02.contracts.context_capability_boundary" time="53.6477" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.context_capability_boundary", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug-integration\\tests\\compile\\contracts\\child-runs\\46edcd31feee4a879797cc506ec5b4a9"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.atomic_read_adapters" classname="T02.contracts.atomic_read_adapters" time="34.2592" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.atomic_read_adapters", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug-integration\\tests\\compile\\contracts\\child-runs\\4685df334f33489aa390909a9cadc49d"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.atomic_async_rejected" classname="T02.contracts.atomic_async_rejected" time="28.2155" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.atomic_async_rejected", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug-integration\\tests\\compile\\contracts\\child-runs\\73727f550aa64a4e9c043a2c3e1f88af"}
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.operation_exact_identity" classname="T05.contracts.operation_exact_identity" time="0.0172466" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T05.contracts.operation_exact_identity
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.typed_binding_fingerprint" classname="T05.contracts.typed_binding_fingerprint" time="51.3961" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T05.contracts.typed_binding_fingerprint", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug-integration\\tests\\compile\\contracts\\child-runs\\eb68356ffa28424cb18a816a60e1e8ad"}
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.binding_generation_before_access" classname="T05.contracts.binding_generation_before_access" time="0.0327844" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T05.contracts.binding_generation_before_access
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.binding_owner_lifetime" classname="T05.contracts.binding_owner_lifetime" time="0.0224733" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T05.contracts.binding_owner_lifetime
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.execution_identity_separation" classname="T05.contracts.execution_identity_separation" time="0.0214323" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T05.contracts.execution_identity_separation
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.outcome_closed_variants" classname="T06.contracts.outcome_closed_variants" time="0.0170584" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.outcome_closed_variants
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.known_facts_append_only" classname="T06.contracts.known_facts_append_only" time="0.0180321" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.known_facts_append_only
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.publication_proof_required" classname="T06.contracts.publication_proof_required" time="0.0215131" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.publication_proof_required
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.effect_report_preserves_fact" classname="T06.contracts.effect_report_preserves_fact" time="0.0163177" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.effect_report_preserves_fact
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.lifecycle_report_preserves_state" classname="T06.contracts.lifecycle_report_preserves_state" time="0.0171751" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.lifecycle_report_preserves_state
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.before_apply_and_composite_proofs" classname="T06.contracts.before_apply_and_composite_proofs" time="0.022878" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.before_apply_and_composite_proofs
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.reply_phase_completion_separation" classname="T06.contracts.reply_phase_completion_separation" time="0.0161043" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.reply_phase_completion_separation
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.executor_inline_ownership" classname="T06.contracts.executor_inline_ownership" time="0.0266642" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.executor_inline_ownership
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.executor_reject_exception_cleanup" classname="T06.contracts.executor_reject_exception_cleanup" time="0.423028" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T06.contracts.executor_reject_exception_cleanup", "status": "Passed", "evidence": "E:\\VS2019Qt5.15\\3D\\build\\d1.02-debug-integration\\tests\\compile\\contracts\\child-runs\\3341612587334954a7ba7b9d5b54b91b"}
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.completion_once_and_drain" classname="T06.contracts.completion_once_and_drain" time="0.0149673" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.completion_once_and_drain
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.atomic_prepared_identity" classname="T06.contracts.atomic_prepared_identity" time="0.0209337" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.atomic_prepared_identity
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.record_evidence_boundary" classname="T06.contracts.record_evidence_boundary" time="0.0311899" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.record_evidence_boundary
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.summary_owned_snapshot" classname="T19.contracts.summary_owned_snapshot" time="0.0221453" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.summary_owned_snapshot
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.observation_host_version" classname="T19.contracts.observation_host_version" time="0.0267101" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.observation_host_version
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.observation_budgets" classname="T19.contracts.observation_budgets" time="0.0382101" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.observation_budgets
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.authorized_owner_filter" classname="T19.contracts.authorized_owner_filter" time="0.0322092" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.authorized_owner_filter
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.completion_independent_of_observation" classname="T19.contracts.completion_independent_of_observation" time="0.0166837" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.completion_independent_of_observation
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.live_keyset_progress" classname="T19.contracts.live_keyset_progress" time="0.0158923" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.live_keyset_progress
+</system-out>
+	</testcase>
+	<testcase name="T24.contracts.port_factory_contract_manifest" classname="T24.contracts.port_factory_contract_manifest" time="0.0189618" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T24.contracts.port_factory_contract_manifest
+</system-out>
+	</testcase>
+</testsuite>

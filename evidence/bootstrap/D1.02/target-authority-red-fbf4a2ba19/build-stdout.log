@@ -1,0 +1,541 @@
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  contracts_tests.cpp
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(35,35): error C2504: “TargetAuthorityPort”: 未定义基类 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(46,45): error C3668: “target_test::TargetIssuer::resolve”: 包含重写说明符“override”的方法没有重写任何基类方法 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(55,16): error C3668: “target_test::TargetIssuer::validate”: 包含重写说明符“override”的方法没有重写任何基类方法 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(51,50): error C2259: “target_test::TargetIssuer::View”: 无法实例化抽象类 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(36,9):
+      参见“target_test::TargetIssuer::View”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(51,50):
+      由于下列成员:
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(51,50):
+      “tl::expected<void,ock::foundation::Error> ock::contracts::TargetView::revalidate(void) const”: 是抽象的
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(85,24):
+      参见“ock::contracts::TargetView::revalidate”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(51,54): error C2259: “target_test::TargetIssuer::View”: 无法实例化抽象类 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(36,9):
+      参见“target_test::TargetIssuer::View”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(51,54):
+      由于下列成员:
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(51,54):
+      “tl::expected<void,ock::foundation::Error> ock::contracts::TargetView::revalidate(void) const”: 是抽象的
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(85,24):
+      参见“ock::contracts::TargetView::revalidate”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(51,45): error C2440: “<function-style-cast>”: 无法从“target_test::TargetIssuer::View *”转换为“std::shared_ptr<const target_test::TargetIssuer::View>” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(51,45):
+      “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr”: 没有重载函数可以转换所有参数类型
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1578,5):
+          可能是“std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(std::nullptr_t) noexcept”
+              E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(51,45):
+              “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(std::nullptr_t) noexcept”: 无法将参数 1 从“target_test::TargetIssuer::View *”转换为“std::nullptr_t”
+                  E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(51,54):
+                  nullptr 只能转换成指针或句柄类型
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1673,5):
+          或    “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(std::unique_ptr<_Ux,_Dx> &&)”
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1654,5):
+          或    “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(const std::weak_ptr<_Ty2> &)”
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1649,5):
+          或    “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(std::shared_ptr<_Ty2> &&) noexcept”
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1639,5):
+          或    “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(const std::shared_ptr<_Ty2> &) noexcept”
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1629,5):
+          或    “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(std::shared_ptr<_Ty2> &&,const target_test::TargetIssuer::View *) noexcept”
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1623,5):
+          或    “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(const std::shared_ptr<_Ty2> &,const target_test::TargetIssuer::View *) noexcept”
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1618,5):
+          或    “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(std::nullptr_t,_Dx,_Alloc)”
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1612,5):
+          或    “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(std::nullptr_t,_Dx)”
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1606,5):
+          或    “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(_Ux *,_Dx,_Alloc)”
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1598,5):
+          或    “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(_Ux *,_Dx)”
+          F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1584,5):
+          或    “std::shared_ptr<const target_test::TargetIssuer::View>::shared_ptr(_Ux *)”
+          E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(51,45):
+          尝试匹配参数列表“(target_test::TargetIssuer::View *)”时
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(52,24): error C3536: “grant”: 初始化之前无法使用 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(52,13): error C2665: “std::vector<target_test::TargetIssuer::Issued,std::allocator<target_test::TargetIssuer::Issued>>::push_back”: 没有重载函数可以转换所有参数类型 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\vector(936,23):
+      可能是“void std::vector<target_test::TargetIssuer::Issued,std::allocator<target_test::TargetIssuer::Issued>>::push_back(_Ty &&)”
+          with
+          [
+              _Ty=target_test::TargetIssuer::Issued
+          ]
+          E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(52,13):
+          “void std::vector<target_test::TargetIssuer::Issued,std::allocator<target_test::TargetIssuer::Issued>>::push_back(_Ty &&)”: 无法将参数 1 从“initializer list”转换为“_Ty &&”
+          with
+          [
+              _Ty=target_test::TargetIssuer::Issued
+          ]
+              E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(52,23):
+              原因如下: 无法从“initializer list”转换为“_Ty”
+          with
+          [
+              _Ty=target_test::TargetIssuer::Issued
+          ]
+              E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(52,23):
+              无效的聚合初始化
+      F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\vector(932,23):
+      或    “void std::vector<target_test::TargetIssuer::Issued,std::allocator<target_test::TargetIssuer::Issued>>::push_back(const _Ty &)”
+          with
+          [
+              _Ty=target_test::TargetIssuer::Issued
+          ]
+          E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(52,13):
+          “void std::vector<target_test::TargetIssuer::Issued,std::allocator<target_test::TargetIssuer::Issued>>::push_back(const _Ty &)”: 无法将参数 1 从“initializer list”转换为“const _Ty &”
+          with
+          [
+              _Ty=target_test::TargetIssuer::Issued
+          ]
+              E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(52,23):
+              原因如下: 无法从“initializer list”转换为“const _Ty”
+          with
+          [
+              _Ty=target_test::TargetIssuer::Issued
+          ]
+              E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(52,23):
+              无效的聚合初始化
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(52,13):
+      尝试匹配参数列表“(initializer list)”时
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(59,14): error C2675: 一元“->”:“const std::shared_ptr<const target_test::TargetIssuer::View>”不定义该运算符或到预定义运算符可接收类型的转换 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1772,22):
+      可能是“_Ty2 *std::shared_ptr<const target_test::TargetIssuer::View>::operator ->(void) noexcept const”
+          E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(59,14):
+          未能使函数模板“_Ty2 *std::shared_ptr<const target_test::TargetIssuer::View>::operator ->(void) noexcept const”专用化
+              E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(59,14):
+              用下列模板参数:
+                  E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(59,14):
+                  “_Ty2=const target_test::TargetIssuer::View”
+                  E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(59,14):
+                  “__formal=0”
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(59,22): error C2039: "target": 不是 "std::shared_ptr<const target_test::TargetIssuer::View>" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      F:\VS2022\VS2022\VC\Tools\MSVC\14.44.35207\include\memory(1565,7):
+      参见“std::shared_ptr<const target_test::TargetIssuer::View>”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(132,75): error C2039: "check": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(132,75): error C2660: “check”: 函数不接受 8 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(132,75):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, ock::contracts::WorkContext, target_test::Records)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(133,81): error C2039: "check": 不是 "ock::contracts::TransitionView" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(191,7):
+      参见“ock::contracts::TransitionView”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(133,81): error C2660: “check”: 函数不接受 9 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(133,81):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, ock::foundation::Name, uint64_t, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, target_test::Transitions)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(135,76): error C2039: "revalidate": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(135,122): error C3536: “valid”: 初始化之前无法使用 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(136,71): error C2039: "revalidate": 不是 "ock::contracts::TransitionView" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(191,7):
+      参见“ock::contracts::TransitionView”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(136,125): error C3536: “valid”: 初始化之前无法使用 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(139,17): error C2607: 静态断言失败 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(141,52): error C2039: "revalidate": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(142,3): error C2039: "check": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(142,3): error C2660: “check”: 函数不接受 8 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(142,3):
+      尝试匹配参数列表“(initializer list, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, ock::contracts::WorkContext, target_test::Records)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(142,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(142,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(142,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(143,3): error C2039: "check": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(143,3): error C2660: “check”: 函数不接受 8 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(143,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, initializer list, _Ty, std::shared_ptr<const ock::contracts::TargetView>, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, ock::contracts::WorkContext, target_test::Records)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(143,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(143,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(143,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(144,3): error C2039: "check": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(144,3): error C2660: “check”: 函数不接受 8 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(144,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, initializer list, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, ock::contracts::WorkContext, target_test::Records)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(144,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(144,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(144,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(145,3): error C2039: "check": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(145,3): error C2660: “check”: 函数不接受 8 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(145,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, initializer list, ock::contracts::PermitBinding, ock::contracts::WorkContext, target_test::Records)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(145,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(145,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(145,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(146,3): error C2039: "check": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(146,3): error C2660: “check”: 函数不接受 8 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(146,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<target_test::FakeTarget>, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, ock::contracts::WorkContext, target_test::Records)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(146,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(146,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(146,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(147,3): error C2039: "check": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(147,3): error C2660: “check”: 函数不接受 8 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(147,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, ock::contracts::WorkContext, target_test::Records)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(147,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(147,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(147,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(148,3): error C2039: "check": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(148,3): error C2660: “check”: 函数不接受 8 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(148,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, ock::contracts::WorkContext, target_test::Records)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(148,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(148,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(148,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(149,3): error C2039: "check": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(149,3): error C2660: “check”: 函数不接受 8 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(149,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, std::shared_ptr<const ock::contracts::ActionPermit>, const ock::contracts::PermitBinding, ock::contracts::WorkContext, target_test::Records)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(149,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(149,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(149,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(150,3): error C2039: "check": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(150,3): error C2660: “check”: 函数不接受 8 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(150,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, std::shared_ptr<const ock::contracts::ActionPermit>, const ock::contracts::PermitBinding, ock::contracts::WorkContext, target_test::Records)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(150,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(150,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(150,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(154,3): error C2039: "check": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(154,3): error C2660: “check”: 函数不接受 8 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(154,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, ock::contracts::WorkContext, target_test::Records)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(154,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(154,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(154,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(155,3): error C2039: "revalidate": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(156,3): error C2039: "revalidate": 不是 "ock::contracts::EffectContext" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(161,7):
+      参见“ock::contracts::EffectContext”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(181,3): error C2039: "check": 不是 "ock::contracts::TransitionView" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(191,7):
+      参见“ock::contracts::TransitionView”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(181,3): error C2660: “check”: 函数不接受 9 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(181,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, ock::foundation::Name, int, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, target_test::Transitions)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(181,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(181,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(181,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(182,3): error C2039: "check": 不是 "ock::contracts::TransitionView" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(191,7):
+      参见“ock::contracts::TransitionView”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(182,3): error C2660: “check”: 函数不接受 9 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(182,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, ock::foundation::Name, uint64_t, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, target_test::Transitions)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(182,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(182,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(182,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(183,3): error C2039: "check": 不是 "ock::contracts::TransitionView" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(191,7):
+      参见“ock::contracts::TransitionView”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(183,3): error C2660: “check”: 函数不接受 9 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(183,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, ock::foundation::Name, uint64_t, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, target_test::Transitions)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(183,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(183,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(183,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(184,3): error C2039: "check": 不是 "ock::contracts::TransitionView" 的成员 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\packages\contracts\include\ock\contracts\context.hpp(191,7):
+      参见“ock::contracts::TransitionView”的声明
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(184,3): error C2660: “check”: 函数不接受 9 个参数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\test_support.hpp(11,13):
+      参见“check”的声明
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(184,3):
+      尝试匹配参数列表“(std::shared_ptr<target_test::CallerIssuer>, std::shared_ptr<target_test::TargetIssuer>, _Ty, std::shared_ptr<const ock::contracts::TargetView>, ock::foundation::Name, uint64_t, std::shared_ptr<const ock::contracts::ActionPermit>, ock::contracts::PermitBinding, target_test::Transitions)”时
+          with
+          [
+              _Ty=ock::contracts::CallerView
+          ]
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(184,3): error C2171: 运算符“!”不能应用于类型为“void”的操作数 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+  
+E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(184,3): error C2440: “<function-style-cast>”: 无法从“void”转换为“bool” [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+  (编译源文件“../../../../../tests/compile/contracts/contracts_tests.cpp”)
+      E:\VS2019Qt5.15\3D\tests\conformance\core_contracts\authority_factories.hpp(184,3):
+      void 类型的表达式不能转换为其他类型
+  
+E:\VS2019Qt5.15\3D\tests\compile\contracts\contracts_tests.cpp(661,5): warning C4297: “ThrowReceiver::candidate_ready”: 假定函数不引发异常，但确实发生了 [E:\VS2019Qt5.15\3D\build\d1.02-debug-integration\tests\compile\contracts\ock_contracts_tests.vcxproj]
+      E:\VS2019Qt5.15\3D\tests\compile\contracts\contracts_tests.cpp(661,5):
+      在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+  

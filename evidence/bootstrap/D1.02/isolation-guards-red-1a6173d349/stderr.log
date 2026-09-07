@@ -1,0 +1,19 @@
+test_msvc_isolation (unittest.loader._FailedTest.test_msvc_isolation) ... ERROR
+
+======================================================================
+ERROR: test_msvc_isolation (unittest.loader._FailedTest.test_msvc_isolation)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_msvc_isolation
+Traceback (most recent call last):
+  File "C:\Users\xrx10\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 162, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tests\architecture\test_msvc_isolation.py", line 7, in <module>
+    from tools.development.msvc_isolation import prepare
+ModuleNotFoundError: No module named 'tools.development'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

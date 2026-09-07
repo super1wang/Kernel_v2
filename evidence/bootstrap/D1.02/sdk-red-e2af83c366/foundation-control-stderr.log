@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 98, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 77, in main
+    if args.case=='public_headers':consume(prefix,'headers')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 73, in consume
+    run(['cmake','--build',str(target),'--config',args.config,'--parallel','2','--','/nr:false'],success,needle)
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 34, in run
+    raise RuntimeError('unexpected child result '+stem+' '+str(r)+'\n'+output)
+RuntimeError: unexpected child result 006 {'argv': ['cmake', '--build', 'E:\\VS2019Qt5.15\\3D\\build\\d1.01-sdk\\e6f78548086b4d5cbf6c25a3e47d4386\\consumer-144fab2b\\build', '--config', 'Debug', '--parallel', '2', '--', '/nr:false'], 'cwd': 'E:\\VS2019Qt5.15\\3D', 'started_at': '2026-09-07T10:50:44.726512+00:00', 'exit_code': 0, 'status': 'DescendantsAlive', 'process_tree': {'mechanism': 'WindowsJobObject', 'assigned_before_resume': True, 'active_after': 0, 'total_processes': 45, 'terminated_owned_job': True}, 'executable': 'F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe', 'pid': 25892, 'observed_exit_code': 0, 'finished_at': '2026-09-07T10:53:44.768487+00:00'}
+适用于 .NET Framework MSBuild 版本 17.14.40+3e7442088
+
+  1>Checking Build System
+  Building Custom Rule E:/VS2019Qt5.15/3D/build/d1.01-sdk/e6f78548086b4d5cbf6c25a3e47d4386/consumer-144fab2b/source/CMakeLists.txt
+  consumer0.cpp
+  Building Custom Rule E:/VS2019Qt5.15/3D/build/d1.01-sdk/e6f78548086b4d5cbf6c25a3e47d4386/consumer-144fab2b/source/CMakeLists.txt
+  consumer2.cpp
+  consumer0.vcxproj -> E:\VS2019Qt5.15\3D\build\d1.01-sdk\e6f78548086b4d5cbf6c25a3e47d4386\consumer-144fab2b\build\Debug\consumer0.exe
+  Building Custom Rule E:/VS2019Qt5.15/3D/build/d1.01-sdk/e6f78548086b4d5cbf6c25a3e47d4386/consumer-144fab2b/source/CMakeLists.txt
+  consumer2.vcxproj -> E:\VS2019Qt5.15\3D\build\d1.01-sdk\e6f78548086b4d5cbf6c25a3e47d4386\consumer-144fab2b\build\Debug\consumer2.exe
+  consumer1.cpp
+  consumer1.vcxproj -> E:\VS2019Qt5.15\3D\build\d1.01-sdk\e6f78548086b4d5cbf6c25a3e47d4386\consumer-144fab2b\build\Debug\consumer1.exe
+  Building Custom Rule E:/VS2019Qt5.15/3D/build/d1.01-sdk/e6f78548086b4d5cbf6c25a3e47d4386/consumer-144fab2b/source/CMakeLists.txt
+

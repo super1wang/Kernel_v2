@@ -1,0 +1,53 @@
+[
+  {
+    "path": "tests/runs/d1.02-win-msvc-debug.json",
+    "sha256": "1f651ad3114c73d9d9b018925f93f59aa0c2bbe35a48beb50078bfac32e99174",
+    "selected_existing_runtime_files": 1612,
+    "unmatched": [],
+    "expected": 191,
+    "regex_matched": 191,
+    "checks": [
+      "CHECK.dependencies.python",
+      "CHECK.conformance.bootstrap",
+      "CHECK.models.outcome_consistency"
+    ],
+    "source_inputs_sha256": "daad9b3588510afff1865f9717ea4d3da47bc788d375a8b585c6e67b29943aca",
+    "compiler_artifacts": [
+      "build/d1.02-debug/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake"
+    ]
+  },
+  {
+    "path": "tests/runs/d1.02-win-msvc-release.json",
+    "sha256": "f664d1289d501af4ad64cfceff3d72b6a471a82129e6c27bb6e45f457e5d7b7f",
+    "selected_existing_runtime_files": 1569,
+    "unmatched": [],
+    "expected": 191,
+    "regex_matched": 191,
+    "checks": [
+      "CHECK.dependencies.python",
+      "CHECK.conformance.bootstrap",
+      "CHECK.models.outcome_consistency"
+    ],
+    "source_inputs_sha256": "daad9b3588510afff1865f9717ea4d3da47bc788d375a8b585c6e67b29943aca",
+    "compiler_artifacts": [
+      "build/d1.02-release/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake"
+    ]
+  },
+  {
+    "path": "tests/runs/d1.02-win-msvc-asan.json",
+    "sha256": "a4722b6687c4ebb8ed2ad208a5d24667bfa3b5c80866d1c5455c20253b737b8e",
+    "selected_existing_runtime_files": 1612,
+    "unmatched": [],
+    "expected": 193,
+    "regex_matched": 193,
+    "checks": [
+      "CHECK.dependencies.python",
+      "CHECK.conformance.bootstrap",
+      "CHECK.models.outcome_consistency"
+    ],
+    "source_inputs_sha256": "daad9b3588510afff1865f9717ea4d3da47bc788d375a8b585c6e67b29943aca",
+    "compiler_artifacts": [
+      "build/d1.02-asan/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake"
+    ]
+  }
+]

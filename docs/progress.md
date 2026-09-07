@@ -136,3 +136,18 @@ D1.01最终验收：修复来源171907d已推送，Debug/Release/ASan正式34/34
 
 
 D1.02实施输入已冻结：[API声明](contracts/core-contracts-api.md)、[AI规格审核](reviews/D1.02-api.md)及[固定expected审核](reviews/D1.02-expected.md)。预期为新增38项，含既有回归共191/191/193与独立三CHECK；这些是待运行预期，不是通过计数。详见[验证登记](validation/D1.02.md)。
+
+
+D1.02首轮实现与自我复核正在进行：公共宏漂移反例已修复并完成17项针对性检查，SDK驱动补实际ASan传播；原生编译的vctip子进程遗留与identity/context三项审核问题仍在处理。失败未计Passed，正式矩阵尚未开始，详见[过程登记](validation/D1.02.md)。继续按既有AI审核/自动验收政策推进，无人工批准节点。
+
+
+D1.02本轮恢复点：局部工具副本对照正常退出；拥有性与owner别名已修复并验证，观察同版本冲突单项修复通过。Target补充规格已批准但实现未完成，正式矩阵尚未开始。独立执行/复核任务触发Codex用量限制，本轮不把未验收实现提交为通过；现场与后续顺序见[恢复记录](validation/D1.02-resume.md)。G0和D1.01的Passed保持不变。
+
+
+## 2026-09-07 继续执行：最终审核与正式矩阵准备
+
+以下更新替代上文恢复点的当前状态，上文作为历史保留。TargetAuthority补充实现、拥有性与观察快照修复已落实；六头公开合同没有扩展生产Runtime。确定性接收者现保存上下文owner及创建时原始许可，伪许可替换不能借用真实许可消费；发行集合及具体发行类型已私有化。独立复核 `evidence/bootstrap/D1.02/review-final-contracts-20260907-fixes-approved.md` 为AI Approved，旧反例在独立重新编译运行中均正确拒绝，历史失败保留。
+
+局部锁定MSVC副本已集成，90文件逐字节校验、整目录原子发布、只读复用及Windows扩展路径等价性均经实际验证；不修改原安装或放宽进程树要求。`integration-ctest-a387f5757c` 的38项集成检查全部通过（早于最终测试工厂修复）；`asan-sdk-probe-b8d1960213` 的实际ASan公共头消费者通过。最终修复后 `review-fixes-green-b719840ef2` 的5项缓存检查、扩展路径旧反例、33项原生主体全部通过；独立工具复核另有并发与来源SHA实证。上述均为局部事实，不替代正式矩阵。
+
+已准备三份D1.02正式run manifest，固定expected仍为191/191/193及每配置三CHECK；归档包含真实SDK安装/裁剪包、编译追踪、正例对象及三文件工厂组合摘要。归档模式增加明确层级以兼容采集器glob与独立validator的Path.match，仍保留递归采集。正式运行须在同一已审提交与输入摘要上执行；失败追加保留。D1.02当前仍InProgress，未开始D1.03。
