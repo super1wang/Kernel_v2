@@ -37,7 +37,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | 门禁 | 当前状态 | 事实 |
 |---|---|---|
 | G0 | Passed | 九组372次CTest、142项Git来源及AI规格/代码复核齐全，按用户政策自动验收 |
-| G1 | InProgress | G0已Passed，D1.01正在实现与验证；G1尚未验收 |
+| G1 | InProgress | D1.01自动验收Passed，D1.02开始合同与具体API冻结；G1尚未验收 |
 | G2 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G3 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G4 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
@@ -58,8 +58,8 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | D0.04 | Plan与Control wire、槽类型和观察合同 | D0.01、D0.03 | Passed |
 | D0.05 | 提交、许可、epoch和备份恢复参考模型 | D0.01、D0.03 | Passed |
 | D0.06 | 固定工具链、共享测试基建与自动证据采集 | D0.02 | Passed |
-| D1.01 | 实现Foundation与错误/标识原语 | D0.03、D0.06 | InProgress |
-| D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | NotStarted |
+| D1.01 | 实现Foundation与错误/标识原语 | D0.03、D0.06 | Passed |
+| D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | InProgress |
 | D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | NotStarted |
 | D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | NotStarted |
 | D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | NotStarted |
@@ -129,4 +129,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 
 政策工具适配已经过独立规格/代码复核及冻结版本68项回归，见 `evidence/bootstrap/D0.06-review-policy/all-final-2c8d2e4cf3`。政策与工具提交6250cd7、G0自动验收提交665febc均已推送。G0的[机器决策](../evidence/G0/automatic-20260907T080144Z/gate-summary.json)为Passed；此前人工记录转换方案被拒绝的历史已由上述明确新政策处理，不再是当前阻断。
 
-D1.01按[实施计划](plans/D1.01.md)完成Foundation实现和独立规格/代码复核，审核发现的可变详情别名、fail-fast反例、ASan路径及多配置路由已修复。最终修复后三配置各23项原语测试、35项架构检查通过；实现节点98a406f已推送；首轮正式Debug/Release各34项通过，ASan两项消费者配置超时，整包门禁Failed并保留原始报告。已局部隔离vcpkg和用户属性注入，正在复核最终驱动及重新准备完整34/34/36矩阵，D1.01保持InProgress。详见[验证记录](validation/D1.01.md)。
+D1.01先行阶段记录（以下状态已由后文最终验收更新）：按[实施计划](plans/D1.01.md)完成Foundation实现和独立规格/代码复核，审核发现的可变详情别名、fail-fast反例、ASan路径及多配置路由已修复。最终修复后三配置各23项原语测试、35项架构检查通过；实现节点98a406f已推送；首轮正式Debug/Release各34项通过，ASan两项消费者配置超时，整包门禁Failed并保留原始报告。已局部隔离vcpkg和用户属性注入，正在复核最终驱动及重新准备完整34/34/36矩阵，D1.01保持InProgress。详见[验证记录](validation/D1.01.md)。
+
+
+D1.01最终验收：修复来源171907d已推送，Debug/Release/ASan正式34/34/36全部通过、163项Git来源一致、AI两类审核齐全，[自动门禁](../evidence/D1.01/automatic-20260907T100928Z/gate-summary.json)Passed。早期失败和修复过程为历史记录，保留上述原文以区分各轮事实。D1.02已重新核对全部前置Passed，按[已审计划](plans/D1.02.md)及[启动记录](reviews/D1.02-start.json)进入具体API/固定测试集合冻结；尚未实现或验收CoreContracts。

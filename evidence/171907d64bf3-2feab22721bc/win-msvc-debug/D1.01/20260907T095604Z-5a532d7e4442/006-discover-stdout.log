@@ -1,0 +1,1587 @@
+{
+  "backtraceGraph" : 
+  {
+    "commands" : 
+    [
+      "add_test",
+      "ock_add_dependency_probes"
+    ],
+    "files" : 
+    [
+      "E:/VS2019Qt5.15/3D/CMakeLists.txt",
+      "E:/VS2019Qt5.15/3D/cmake/DependencyProbes.cmake"
+    ],
+    "nodes" : 
+    [
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 25,
+        "parent" : 0
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 28,
+        "parent" : 2
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 29,
+        "parent" : 4
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 31,
+        "parent" : 6
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 1,
+        "file" : 0,
+        "line" : 47,
+        "parent" : 8
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 18,
+        "parent" : 9
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 1,
+        "file" : 0,
+        "line" : 47,
+        "parent" : 11
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 22,
+        "parent" : 12
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 1,
+        "file" : 0,
+        "line" : 47,
+        "parent" : 14
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 23,
+        "parent" : 15
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 67,
+        "parent" : 17
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 67,
+        "parent" : 19
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 67,
+        "parent" : 21
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 67,
+        "parent" : 23
+      }
+    ]
+  },
+  "kind" : "ctestInfo",
+  "tests" : 
+  [
+    {
+      "backtrace" : 1,
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/Debug/ock_sdk_metadata_probe.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T24.sdk.version_header",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:/VS2022/VS2022/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.02"
+          ]
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug"
+        }
+      ]
+    },
+    {
+      "backtrace" : 3,
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "E:/VS2019Qt5.15/3D/tools/architecture/check.py",
+        "--graph",
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/ock-target-graph.json"
+      ],
+      "config" : "Debug",
+      "name" : "T01.architecture.dependency_dag",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.02"
+          ]
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug"
+        }
+      ]
+    },
+    {
+      "backtrace" : 5,
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "E:/VS2019Qt5.15/3D/tests/architecture",
+        "-v"
+      ],
+      "config" : "Debug",
+      "name" : "T01.architecture.negative_guards",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.02"
+          ]
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D"
+        }
+      ]
+    },
+    {
+      "backtrace" : 7,
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "E:/VS2019Qt5.15/3D/tests/install_consumer/verify_baseline.py",
+        "--build",
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug",
+        "--config",
+        "Debug"
+      ],
+      "config" : "Debug",
+      "name" : "T24.sdk.install_and_missing_components",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.02"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug"
+        }
+      ]
+    },
+    {
+      "backtrace" : 10,
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/Debug/ock_probe_expected.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T01.dependencies.expected",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:/VS2022/VS2022/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.06-a"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 60.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/dependency-probe-work"
+        }
+      ]
+    },
+    {
+      "backtrace" : 13,
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/Debug/ock_probe_toolchain.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T01.dependencies.toolchain",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:/VS2022/VS2022/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.06-a"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 60.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/dependency-probe-work"
+        }
+      ]
+    },
+    {
+      "backtrace" : 16,
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "E:/VS2019Qt5.15/3D/tests/dependencies",
+        "-p",
+        "test_lock.py",
+        "-v"
+      ],
+      "config" : "Debug",
+      "name" : "T01.dependencies.lock_contracts",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:/VS2022/VS2022/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.06-a"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 60.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/dependency-probe-work"
+        }
+      ]
+    },
+    {
+      "backtrace" : 18,
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "E:/VS2019Qt5.15/3D/tests/install_consumer/verify_foundation.py",
+        "--build",
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug",
+        "--config",
+        "Debug",
+        "--case",
+        "public_headers"
+      ],
+      "config" : "Debug",
+      "name" : "T24.foundation.public_headers",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 600.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D"
+        }
+      ]
+    },
+    {
+      "backtrace" : 20,
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "E:/VS2019Qt5.15/3D/tests/install_consumer/verify_foundation.py",
+        "--build",
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug",
+        "--config",
+        "Debug",
+        "--case",
+        "installed_consumer"
+      ],
+      "config" : "Debug",
+      "name" : "T24.foundation.installed_consumer",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 600.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D"
+        }
+      ]
+    },
+    {
+      "backtrace" : 22,
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "E:/VS2019Qt5.15/3D/tests/install_consumer/verify_foundation.py",
+        "--build",
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug",
+        "--config",
+        "Debug",
+        "--case",
+        "missing_dependency_rejected"
+      ],
+      "config" : "Debug",
+      "name" : "T24.foundation.missing_dependency_rejected",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 600.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D"
+        }
+      ]
+    },
+    {
+      "backtrace" : 24,
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "E:/VS2019Qt5.15/3D/tests/install_consumer/verify_foundation.py",
+        "--build",
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug",
+        "--config",
+        "Debug",
+        "--case",
+        "backend_mode_rejected"
+      ],
+      "config" : "Debug",
+      "name" : "T24.foundation.backend_mode_rejected",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 600.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T03.foundation.code_only_no_allocation"
+      ],
+      "config" : "Debug",
+      "name" : "T03.foundation.code_only_no_allocation",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T03.foundation.value_operations_no_allocation"
+      ],
+      "config" : "Debug",
+      "name" : "T03.foundation.value_operations_no_allocation",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T03.foundation.layout_statistics"
+      ],
+      "config" : "Debug",
+      "name" : "T03.foundation.layout_statistics",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T04.foundation.result_move_only_value"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.result_move_only_value",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T04.foundation.result_move_only_error"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.result_move_only_error",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T04.foundation.result_void"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.result_void",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T04.foundation.result_error_propagation"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.result_error_propagation",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T04.foundation.result_bad_access"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.result_bad_access",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T04.foundation.exception_not_business_failure"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.exception_not_business_failure",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "E:\\VS2019Qt5.15\\3D\\tests\\unit\\foundation\\verify_children.py",
+        "--case",
+        "T04.foundation.static_error_domain",
+        "--binary",
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "--includes",
+        "E:/VS2019Qt5.15/3D/packages/foundation/include|E:/VS2019Qt5.15/3D/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/child-runs",
+        "--runtime-dir",
+        "F:/VS2022/VS2022/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.static_error_domain",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 300.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T04.foundation.error_details_ownership"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.error_details_ownership",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T04.foundation.error_details_budget"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.error_details_budget",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T04.foundation.display_utf8"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.display_utf8",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T04.foundation.checked_arithmetic"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.checked_arithmetic",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T04.foundation.checked_narrowing"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.checked_narrowing",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T04.foundation.checked_count_atomic_update"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.checked_count_atomic_update",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "C:/Users/xrx10/AppData/Local/Programs/Python/Python311/python.exe",
+        "-X",
+        "utf8",
+        "E:\\VS2019Qt5.15\\3D\\tests\\unit\\foundation\\verify_children.py",
+        "--case",
+        "T04.foundation.invariant_fail_fast",
+        "--binary",
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "--includes",
+        "E:/VS2019Qt5.15/3D/packages/foundation/include|E:/VS2019Qt5.15/3D/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/child-runs",
+        "--runtime-dir",
+        "F:/VS2022/VS2022/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64"
+      ],
+      "config" : "Debug",
+      "name" : "T04.foundation.invariant_fail_fast",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T05.foundation.name_ascii_bounds"
+      ],
+      "config" : "Debug",
+      "name" : "T05.foundation.name_ascii_bounds",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T05.foundation.name_case_and_ownership"
+      ],
+      "config" : "Debug",
+      "name" : "T05.foundation.name_case_and_ownership",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T05.foundation.tagged_identity_types"
+      ],
+      "config" : "Debug",
+      "name" : "T05.foundation.tagged_identity_types",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T05.foundation.identity_canonical_codec"
+      ],
+      "config" : "Debug",
+      "name" : "T05.foundation.identity_canonical_codec",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T05.foundation.bound_handle_generation"
+      ],
+      "config" : "Debug",
+      "name" : "T05.foundation.bound_handle_generation",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    },
+    {
+      "command" : 
+      [
+        "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation/Debug/ock_foundation_tests.exe",
+        "T05.foundation.runtime_epoch_separation"
+      ],
+      "config" : "Debug",
+      "name" : "T05.foundation.runtime_epoch_separation",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.01"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 180.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "E:/VS2019Qt5.15/3D/build/d1.01-debug/tests/unit/foundation"
+        }
+      ]
+    }
+  ],
+  "version" : 
+  {
+    "major" : 1,
+    "minor" : 0
+  }
+}

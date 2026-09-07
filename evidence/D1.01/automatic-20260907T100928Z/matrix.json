@@ -1,0 +1,19 @@
+{
+  "format": "ock.gate-matrix/1",
+  "gate_id": "D1.01",
+  "scope": "仅D1.01包级自动验收，不代表G1放行；三配置与先行计划及已审run manifest一致。",
+  "required_runs": [
+    {
+      "task_id": "D1.01",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D1.01",
+      "profile": "win-msvc-release"
+    },
+    {
+      "task_id": "D1.01",
+      "profile": "win-msvc-asan"
+    }
+  ]
+}

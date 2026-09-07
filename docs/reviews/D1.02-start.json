@@ -1,0 +1,91 @@
+{
+  "format": "ock.work-package-start/1",
+  "task_id": "D1.02",
+  "checked_at": "2026-09-07T10:10:42.574453+00:00",
+  "actor_type": "AI",
+  "status": "Approved",
+  "human_review_required": false,
+  "plan": "docs/plans/D1.02.md",
+  "plan_sha256": "2e45fe3dba30e6604ca8c7d91c1f3b7e298d7ef8a741a99d9a19176d2a19b212",
+  "plan_review": "docs/reviews/D1.02-plan.md",
+  "plan_review_sha256": "97d67ba1f3cb8177dbda76c861e73902973a5a85e5772c69bbd766b6d7c17e98",
+  "prerequisites": [
+    {
+      "task_id": "D0.02",
+      "status": "Passed",
+      "gate": "evidence/G0/automatic-20260907T080144Z/gate-summary.json",
+      "gate_sha256": "4533863fcc11319773549be34be1e97cae9ebb38042c2248e6bf6e5a960daf68",
+      "runs": [
+        {
+          "task_id": "D0.02",
+          "profile": "win-msvc-debug",
+          "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.02/20260907T065743Z-67e6f14d2413/report.json",
+          "sha256": "5e19317c452a3b6d1aacf77858d00bd73886bfff6cad227107166e3da186ecd8",
+          "run_id": "20260907T065743Z-67e6f14d2413",
+          "original_package_status": "InProgress",
+          "original_source_dirty": true,
+          "ctest_executions": 4,
+          "technical_review_complete": true
+        },
+        {
+          "task_id": "D0.02",
+          "profile": "win-msvc-release",
+          "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-release/D0.02/20260907T065939Z-d9dfa0a6c245/report.json",
+          "sha256": "11aaa5baf1e5cf1f7298b6b3cd9a9ef48f98e6924f44814fc0d39834f2fec965",
+          "run_id": "20260907T065939Z-d9dfa0a6c245",
+          "original_package_status": "InProgress",
+          "original_source_dirty": true,
+          "ctest_executions": 4,
+          "technical_review_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "D0.03",
+      "status": "Passed",
+      "gate": "evidence/G0/automatic-20260907T080144Z/gate-summary.json",
+      "gate_sha256": "4533863fcc11319773549be34be1e97cae9ebb38042c2248e6bf6e5a960daf68",
+      "runs": [
+        {
+          "task_id": "D0.03",
+          "profile": "win-msvc-debug",
+          "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.03/20260907T070118Z-f2b0e7fb1826/report.json",
+          "sha256": "02ad6fc02964bedb2202079c2992fb4d45f8283ba652d2b7ec1ecbaf69b19197",
+          "run_id": "20260907T070118Z-f2b0e7fb1826",
+          "original_package_status": "InProgress",
+          "original_source_dirty": true,
+          "ctest_executions": 43,
+          "technical_review_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "D0.05",
+      "status": "Passed",
+      "gate": "evidence/G0/automatic-20260907T080144Z/gate-summary.json",
+      "gate_sha256": "4533863fcc11319773549be34be1e97cae9ebb38042c2248e6bf6e5a960daf68",
+      "runs": [
+        {
+          "task_id": "D0.05",
+          "profile": "win-msvc-debug",
+          "report": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.05/20260907T070251Z-68062f9276cd/report.json",
+          "sha256": "f5d13ee5d47ad266908ca662ae6d6a60181de43cd9e9d02a6178a1b57f49219c",
+          "run_id": "20260907T070251Z-68062f9276cd",
+          "original_package_status": "InProgress",
+          "original_source_dirty": true,
+          "ctest_executions": 63,
+          "technical_review_complete": true
+        }
+      ]
+    },
+    {
+      "task_id": "D1.01",
+      "status": "Passed",
+      "gate": "evidence/D1.01/automatic-20260907T100928Z/gate-summary.json",
+      "gate_sha256": "e2c86f956535b1fa39140750d2d19b712547124084cb5f1d630a1851ce0eabcc",
+      "source_commit": "171907d64bf396fef831348f8082c5b042ea31dc",
+      "ctest_executions": 104
+    }
+  ],
+  "scope": "仅CoreContracts窄合同及规划验证消费者；先冻结具体API与38项expected并完成内部规格复核，再按反例、实现、正向验证推进。"
+}
