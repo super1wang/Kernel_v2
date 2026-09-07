@@ -1,0 +1,226 @@
+{
+  "kind": "independent AI static manifest verification",
+  "profiles": [
+    {
+      "profile": "win-msvc-debug",
+      "expected_ctest": 283,
+      "checks": 3,
+      "native_minima": [
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/commands.json",
+          "minimum": 8
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/structure.json",
+          "minimum": 8
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/native-stdout.log",
+          "minimum": 8
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/native-stderr.log",
+          "minimum": 8
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/*.cpp",
+          "minimum": 6
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/build/positive.dir/Debug/positive.obj",
+          "minimum": 2
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/allocation.json",
+          "minimum": 4
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/probe-rejection.json",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/probe-rejection-stdout.log",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/probe-rejection-stderr.log",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/demo-stdout.log",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/demo-stderr.log",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/target-metadata.json",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/build/CMakeCache.txt",
+          "minimum": 2
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/build/CMakeFiles/CMakeConfigureLog.yaml",
+          "minimum": 2
+        },
+        {
+          "pattern": "build/d1.05-debug/tests/contract/native/child-runs/*/build/CMakeFiles/*/CMakeCXXCompiler.cmake",
+          "minimum": 2
+        }
+      ]
+    },
+    {
+      "profile": "win-msvc-release",
+      "expected_ctest": 283,
+      "checks": 3,
+      "native_minima": [
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/commands.json",
+          "minimum": 8
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/structure.json",
+          "minimum": 8
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/native-stdout.log",
+          "minimum": 8
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/native-stderr.log",
+          "minimum": 8
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/*.cpp",
+          "minimum": 6
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/build/positive.dir/Release/positive.obj",
+          "minimum": 2
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/allocation.json",
+          "minimum": 4
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/probe-rejection.json",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/probe-rejection-stdout.log",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/probe-rejection-stderr.log",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/demo-stdout.log",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/demo-stderr.log",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/target-metadata.json",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/build/CMakeCache.txt",
+          "minimum": 2
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/build/CMakeFiles/CMakeConfigureLog.yaml",
+          "minimum": 2
+        },
+        {
+          "pattern": "build/d1.05-release/tests/contract/native/child-runs/*/build/CMakeFiles/*/CMakeCXXCompiler.cmake",
+          "minimum": 2
+        }
+      ]
+    },
+    {
+      "profile": "win-msvc-asan",
+      "expected_ctest": 285,
+      "checks": 3,
+      "native_minima": [
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/commands.json",
+          "minimum": 8
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/structure.json",
+          "minimum": 8
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/native-stdout.log",
+          "minimum": 8
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/native-stderr.log",
+          "minimum": 8
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/*.cpp",
+          "minimum": 6
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/build/positive.dir/Debug/positive.obj",
+          "minimum": 2
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/allocation.json",
+          "minimum": 4
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/probe-rejection.json",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/probe-rejection-stdout.log",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/probe-rejection-stderr.log",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/demo-stdout.log",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/demo-stderr.log",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/target-metadata.json",
+          "minimum": 1
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/build/CMakeCache.txt",
+          "minimum": 2
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/build/CMakeFiles/CMakeConfigureLog.yaml",
+          "minimum": 2
+        },
+        {
+          "pattern": "build/d1.05-asan/tests/contract/native/child-runs/*/build/CMakeFiles/*/CMakeCXXCompiler.cmake",
+          "minimum": 2
+        }
+      ]
+    }
+  ],
+  "sha256": {
+    "tests/runs/d1.05-win-msvc-debug.json": "201b853a0d953120dc6dae0150040628f45381140bdb4590dfd5a8ad36757e13",
+    "tests/runs/d1.05-win-msvc-release.json": "8cb7f00fe30f3693a66e1ba477bdf0cf30b6cbb4505e63a2f64dc099d93dfff0",
+    "tests/runs/d1.05-win-msvc-asan.json": "b0f26f9fec26aae8cd31e12e0f7de01b4373ea8a8c913a65b110d0c0b81a9b02",
+    "tests/runs/d1.05-matrix.json": "564e3765efcfb6f5df588a268f0f7a0819ae9caa012291c29f1c49c3b61a92cb",
+    "tests/manifests/d1.05.expected.json": "37fee8ea9da96b3a553714f49426c85dd88181de96c8df313df57cbb0ba699a1"
+  },
+  "status": "Passed static configuration assertions; no behavior run"
+}

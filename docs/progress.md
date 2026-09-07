@@ -62,7 +62,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | Passed |
 | D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | Passed |
 | D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | Passed |
-| D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | NotStarted |
+| D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | InProgress |
 | D1.06 | 最小Host、Logging共同合同与原生占用基线 | D1.05、D0.06 | NotStarted |
 | D2.01 | 实现单DOM Payload、View与预算构建 | D1.01、D0.06 | NotStarted |
 | D2.02 | 实现TypeContract、Schema编译与Native等价绑定 | D2.01、D1.02、D1.05、D0.04 | NotStarted |

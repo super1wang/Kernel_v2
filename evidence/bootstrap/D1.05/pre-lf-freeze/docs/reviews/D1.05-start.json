@@ -1,0 +1,584 @@
+{
+  "format": "ock.work-package-start/1",
+  "task_id": "D1.05",
+  "checked_at": "2026-09-07T21:03:56.298626+00:00",
+  "actor_type": "AI",
+  "status": "Approved",
+  "human_review_required": false,
+  "base_commit": "17dd73e76eadb2a57ece560020f8bb600a77975d",
+  "prerequisites": [
+    {
+      "task_id": "D1.03",
+      "status": "Passed",
+      "gate": {
+        "path": "evidence/D1.03/current-20260907T165757Z/gate-summary.json",
+        "sha256": "5dd8c9ab8b0377bc1942e94af41ebc236a34e55693cf550c4413339a9eb87052",
+        "gate_status": "Passed",
+        "automated_status": "Passed",
+        "errors": [],
+        "missing": []
+      },
+      "runs": [
+        {
+          "profile": "win-msvc-debug",
+          "path": "evidence/fb08a1955ebf-75090b892715/win-msvc-debug/D1.03/20260907T160336Z-50f697a2e7f0/report.json",
+          "sha256": "9ef19842233a6b385401e5d83431f2139e341dc73ce9a6f195fbe310641e7765",
+          "original_automated_status": "Passed",
+          "original_package_status": "Passed",
+          "historical_audit_status": "Passed",
+          "historical_audit_errors": [],
+          "ctest_passed": 216,
+          "checks_passed": 3,
+          "source_archive_sha256": "3f5112e69acfb6ec7ea357ebe6b80d95b6d06dc74832a91ff493fe97f8afd845",
+          "reviews": [
+            {
+              "path": "docs/reviews/D1.03-spec.json",
+              "sha256": "097878fc20adefa5d0918b64d7bc67f485189ed74798663c65d7ab96e7b30593",
+              "actor_type": "AI",
+              "status": "Approved",
+              "review_kind": "spec",
+              "reviewed_inputs_sha256": "75090b8927158e4476b812c504be76a83144327ad4aaee5f20acfc63b3aa496b",
+              "evidence": [
+                {
+                  "path": "evidence/bootstrap/D1.03/review-core-final-approved.md",
+                  "sha256": "c5dc765d97ca13a0837fa97481c7c18e0bae8e9d0cb54b9a700dbfaff3dc8237"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.03/final-tools-review.md",
+                  "sha256": "5097c4d3cf7c03330718795a529f49313b224d095c50c39ae4069eac1cb8609f"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.03/develop-owned-review.md",
+                  "sha256": "2a0f192ffce701cd757e3ecc8a6d5dc7876663e4552948cb2a57e804c46d3bd1"
+                },
+                {
+                  "path": "docs/reviews/D1.03-api-revision2.md",
+                  "sha256": "21b3c0dedc1a1dcddb79669522ece3b18069e1c4b81e7dcde7cefdb31a2b674f"
+                },
+                {
+                  "path": "docs/reviews/D1.03-expected.md",
+                  "sha256": "f841aca4fbf30e035199dba9585d5a647d22fb6bc6089ef09c3efeb79c74b926"
+                },
+                {
+                  "path": "docs/reviews/D1.03-plan.md",
+                  "sha256": "38386b6e214cf8d5b2f648a252e86f138a7bf50b8b0a207ee31b07ededba09fc"
+                }
+              ]
+            },
+            {
+              "path": "docs/reviews/D1.03-code.json",
+              "sha256": "7b1e1dae19f6f68fd2f32e7482cff128e3c755a5b0c0504eabc87c1de1320680",
+              "actor_type": "AI",
+              "status": "Approved",
+              "review_kind": "code",
+              "reviewed_inputs_sha256": "75090b8927158e4476b812c504be76a83144327ad4aaee5f20acfc63b3aa496b",
+              "evidence": [
+                {
+                  "path": "evidence/bootstrap/D1.03/review-core-final-approved.md",
+                  "sha256": "c5dc765d97ca13a0837fa97481c7c18e0bae8e9d0cb54b9a700dbfaff3dc8237"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.03/final-tools-review.md",
+                  "sha256": "5097c4d3cf7c03330718795a529f49313b224d095c50c39ae4069eac1cb8609f"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.03/develop-owned-review.md",
+                  "sha256": "2a0f192ffce701cd757e3ecc8a6d5dc7876663e4552948cb2a57e804c46d3bd1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "profile": "win-msvc-release",
+          "path": "evidence/fb08a1955ebf-75090b892715/win-msvc-release/D1.03/20260907T162337Z-e9a9a3f1e228/report.json",
+          "sha256": "074e62d4404e673080275313d62a01521cbd159bb4d29264692255707b2327cb",
+          "original_automated_status": "Passed",
+          "original_package_status": "Passed",
+          "historical_audit_status": "Passed",
+          "historical_audit_errors": [],
+          "ctest_passed": 216,
+          "checks_passed": 3,
+          "source_archive_sha256": "3f5112e69acfb6ec7ea357ebe6b80d95b6d06dc74832a91ff493fe97f8afd845",
+          "reviews": [
+            {
+              "path": "docs/reviews/D1.03-spec.json",
+              "sha256": "097878fc20adefa5d0918b64d7bc67f485189ed74798663c65d7ab96e7b30593",
+              "actor_type": "AI",
+              "status": "Approved",
+              "review_kind": "spec",
+              "reviewed_inputs_sha256": "75090b8927158e4476b812c504be76a83144327ad4aaee5f20acfc63b3aa496b",
+              "evidence": [
+                {
+                  "path": "evidence/bootstrap/D1.03/review-core-final-approved.md",
+                  "sha256": "c5dc765d97ca13a0837fa97481c7c18e0bae8e9d0cb54b9a700dbfaff3dc8237"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.03/final-tools-review.md",
+                  "sha256": "5097c4d3cf7c03330718795a529f49313b224d095c50c39ae4069eac1cb8609f"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.03/develop-owned-review.md",
+                  "sha256": "2a0f192ffce701cd757e3ecc8a6d5dc7876663e4552948cb2a57e804c46d3bd1"
+                },
+                {
+                  "path": "docs/reviews/D1.03-api-revision2.md",
+                  "sha256": "21b3c0dedc1a1dcddb79669522ece3b18069e1c4b81e7dcde7cefdb31a2b674f"
+                },
+                {
+                  "path": "docs/reviews/D1.03-expected.md",
+                  "sha256": "f841aca4fbf30e035199dba9585d5a647d22fb6bc6089ef09c3efeb79c74b926"
+                },
+                {
+                  "path": "docs/reviews/D1.03-plan.md",
+                  "sha256": "38386b6e214cf8d5b2f648a252e86f138a7bf50b8b0a207ee31b07ededba09fc"
+                }
+              ]
+            },
+            {
+              "path": "docs/reviews/D1.03-code.json",
+              "sha256": "7b1e1dae19f6f68fd2f32e7482cff128e3c755a5b0c0504eabc87c1de1320680",
+              "actor_type": "AI",
+              "status": "Approved",
+              "review_kind": "code",
+              "reviewed_inputs_sha256": "75090b8927158e4476b812c504be76a83144327ad4aaee5f20acfc63b3aa496b",
+              "evidence": [
+                {
+                  "path": "evidence/bootstrap/D1.03/review-core-final-approved.md",
+                  "sha256": "c5dc765d97ca13a0837fa97481c7c18e0bae8e9d0cb54b9a700dbfaff3dc8237"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.03/final-tools-review.md",
+                  "sha256": "5097c4d3cf7c03330718795a529f49313b224d095c50c39ae4069eac1cb8609f"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.03/develop-owned-review.md",
+                  "sha256": "2a0f192ffce701cd757e3ecc8a6d5dc7876663e4552948cb2a57e804c46d3bd1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "profile": "win-msvc-asan",
+          "path": "evidence/fb08a1955ebf-75090b892715/win-msvc-asan/D1.03/20260907T164236Z-8ac266f18ec0/report.json",
+          "sha256": "511e4b0569660b76fb0996bc005579a37e819d7db7129148f8f3e7dd3a07b4fb",
+          "original_automated_status": "Passed",
+          "original_package_status": "Passed",
+          "historical_audit_status": "Passed",
+          "historical_audit_errors": [],
+          "ctest_passed": 218,
+          "checks_passed": 3,
+          "source_archive_sha256": "3f5112e69acfb6ec7ea357ebe6b80d95b6d06dc74832a91ff493fe97f8afd845",
+          "reviews": [
+            {
+              "path": "docs/reviews/D1.03-spec.json",
+              "sha256": "097878fc20adefa5d0918b64d7bc67f485189ed74798663c65d7ab96e7b30593",
+              "actor_type": "AI",
+              "status": "Approved",
+              "review_kind": "spec",
+              "reviewed_inputs_sha256": "75090b8927158e4476b812c504be76a83144327ad4aaee5f20acfc63b3aa496b",
+              "evidence": [
+                {
+                  "path": "evidence/bootstrap/D1.03/review-core-final-approved.md",
+                  "sha256": "c5dc765d97ca13a0837fa97481c7c18e0bae8e9d0cb54b9a700dbfaff3dc8237"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.03/final-tools-review.md",
+                  "sha256": "5097c4d3cf7c03330718795a529f49313b224d095c50c39ae4069eac1cb8609f"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.03/develop-owned-review.md",
+                  "sha256": "2a0f192ffce701cd757e3ecc8a6d5dc7876663e4552948cb2a57e804c46d3bd1"
+                },
+                {
+                  "path": "docs/reviews/D1.03-api-revision2.md",
+                  "sha256": "21b3c0dedc1a1dcddb79669522ece3b18069e1c4b81e7dcde7cefdb31a2b674f"
+                },
+                {
+                  "path": "docs/reviews/D1.03-expected.md",
+                  "sha256": "f841aca4fbf30e035199dba9585d5a647d22fb6bc6089ef09c3efeb79c74b926"
+                },
+                {
+                  "path": "docs/reviews/D1.03-plan.md",
+                  "sha256": "38386b6e214cf8d5b2f648a252e86f138a7bf50b8b0a207ee31b07ededba09fc"
+                }
+              ]
+            },
+            {
+              "path": "docs/reviews/D1.03-code.json",
+              "sha256": "7b1e1dae19f6f68fd2f32e7482cff128e3c755a5b0c0504eabc87c1de1320680",
+              "actor_type": "AI",
+              "status": "Approved",
+              "review_kind": "code",
+              "reviewed_inputs_sha256": "75090b8927158e4476b812c504be76a83144327ad4aaee5f20acfc63b3aa496b",
+              "evidence": [
+                {
+                  "path": "evidence/bootstrap/D1.03/review-core-final-approved.md",
+                  "sha256": "c5dc765d97ca13a0837fa97481c7c18e0bae8e9d0cb54b9a700dbfaff3dc8237"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.03/final-tools-review.md",
+                  "sha256": "5097c4d3cf7c03330718795a529f49313b224d095c50c39ae4069eac1cb8609f"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.03/develop-owned-review.md",
+                  "sha256": "2a0f192ffce701cd757e3ecc8a6d5dc7876663e4552948cb2a57e804c46d3bd1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source": {
+        "commit": "fb08a1955ebfc8b8d97062962b61cac901880953",
+        "inputs_sha256": "75090b8927158e4476b812c504be76a83144327ad4aaee5f20acfc63b3aa496b",
+        "git_blob_verified_count": 204,
+        "git_blob_mismatches": []
+      },
+      "supporting_evidence": [
+        {
+          "path": "evidence/D1.03/current-20260907T165757Z/command.json",
+          "sha256": "738fcaa19371c2b0de6fb058d1edec1fabe676601da9b67052bc047546dc383f"
+        },
+        {
+          "path": "evidence/D1.03/current-20260907T165757Z/source-provenance.json",
+          "sha256": "7d6d88783ea5ff6ba54d1960a9cae2217f813c99e524fa9ee98b2c14bc9a83a1"
+        },
+        {
+          "path": "evidence/D1.03/current-20260907T165757Z/matrix.json",
+          "sha256": "7c6cd1b7dbed0f1f25969506e5d83e92245d7d449770f19f006e3702098efc9d"
+        },
+        {
+          "path": "evidence/D1.03/current-20260907T165757Z/acceptance-context.json",
+          "sha256": "151243e2025faa9b717196de49198e22db0b823961f369e50349528c54f4d9f8"
+        }
+      ],
+      "final_ai_review": {
+        "path": "evidence/D1.03/final-acceptance-review.md",
+        "sha256": "40583106f7c6415da071af66e027876370ac0a61ff2e5e087dbe2fa6c384ed50",
+        "actor_type": "AI",
+        "status": "Approved"
+      },
+      "total_ctest_passed": 650,
+      "total_checks_passed": 9
+    },
+    {
+      "task_id": "D1.04",
+      "status": "Passed",
+      "gate": {
+        "path": "evidence/D1.04/current-20260907T203550Z/gate-summary.json",
+        "sha256": "4f1e6b7131e75fbc4a78d7b97a8ff26c23c7e9cc08af7b8bc1bdbe01c0d77e13",
+        "gate_status": "Passed",
+        "automated_status": "Passed",
+        "errors": [],
+        "missing": []
+      },
+      "runs": [
+        {
+          "profile": "win-msvc-debug",
+          "path": "evidence/8978b277850b-1a044ad0c5b5/win-msvc-debug/D1.04/20260907T194244Z-e3a6ad2e91a8/report.json",
+          "sha256": "44e16d1f26dbf890769f4cd83197b5b53a45cc0c0d504a21c4a5493491c50029",
+          "original_automated_status": "Passed",
+          "original_package_status": "Passed",
+          "historical_audit_status": "Passed",
+          "historical_audit_errors": [],
+          "ctest_passed": 251,
+          "checks_passed": 3,
+          "source_archive_sha256": "b769477fc07f8ab64d33fe1d1899677e7c4ead3ed87f7feb66e9d1630d19f0ac",
+          "reviews": [
+            {
+              "path": "docs/reviews/D1.04-spec.json",
+              "sha256": "7949783f6ecd527ebf63f40b73e3c825e11ff21dd6da694f1962f8983c2eb8df",
+              "actor_type": "AI",
+              "status": "Approved",
+              "review_kind": "spec",
+              "reviewed_inputs_sha256": "1a044ad0c5b50f1efa53a82125430a7002a61a1fbbd989f8f1ca2e1e50ac8352",
+              "evidence": [
+                {
+                  "path": "evidence/bootstrap/D1.04/final-contracts-fixes-review.md",
+                  "sha256": "d95aa99302c2426b99edfe2e0b1179c8ac4a0500f051eb0407036b5016ea7a41"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.04/final-tools-fixes-review.md",
+                  "sha256": "5541e2d55654d57472ae3c85ba4dbbcd1bbe38f9f6da3be29e362a0f232f59f6"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.04/asan-runtime-driver-fix-review.md",
+                  "sha256": "fb7ca38c8d7ff361cb858caa3c2e873bf6b063c91c9a7ce5aa7a9270ff1b765c"
+                },
+                {
+                  "path": "docs/reviews/D1.04-api-revision5.md",
+                  "sha256": "f2290787bd1e15eeb63b47c398803b8f614f1f06b6392bd0db3260bcef00f70e"
+                },
+                {
+                  "path": "docs/reviews/D1.04-plan-revision5.md",
+                  "sha256": "8987d7473610d2e98b2a105864ad48becb7c3c2e04b3441eb03e6ae2e3212d0d"
+                },
+                {
+                  "path": "docs/reviews/D1.04-expected.md",
+                  "sha256": "3aa44bc3dd2f99240164e63cc2edd843fedd1326dde32d32b87f65609c3ee177"
+                },
+                {
+                  "path": "docs/reviews/D1.04-start-revision5.json",
+                  "sha256": "79e9974324f1d7bd35f0d1014682e649bed16e9580c23ed70d9ddbe79ad7dfa9"
+                }
+              ]
+            },
+            {
+              "path": "docs/reviews/D1.04-code.json",
+              "sha256": "5207ea995bf12657ba42fac20acac89a87107a5a6708261c655122385474caaa",
+              "actor_type": "AI",
+              "status": "Approved",
+              "review_kind": "code",
+              "reviewed_inputs_sha256": "1a044ad0c5b50f1efa53a82125430a7002a61a1fbbd989f8f1ca2e1e50ac8352",
+              "evidence": [
+                {
+                  "path": "evidence/bootstrap/D1.04/final-contracts-fixes-review.md",
+                  "sha256": "d95aa99302c2426b99edfe2e0b1179c8ac4a0500f051eb0407036b5016ea7a41"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.04/final-tools-fixes-review.md",
+                  "sha256": "5541e2d55654d57472ae3c85ba4dbbcd1bbe38f9f6da3be29e362a0f232f59f6"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.04/asan-runtime-driver-fix-review.md",
+                  "sha256": "fb7ca38c8d7ff361cb858caa3c2e873bf6b063c91c9a7ce5aa7a9270ff1b765c"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "profile": "win-msvc-release",
+          "path": "evidence/8978b277850b-1a044ad0c5b5/win-msvc-release/D1.04/20260907T200010Z-4529dec17f39/report.json",
+          "sha256": "8667c58e316f049ff0ec1e260abae1c820fa7dafd32c306dc80ab12e7491c886",
+          "original_automated_status": "Passed",
+          "original_package_status": "Passed",
+          "historical_audit_status": "Passed",
+          "historical_audit_errors": [],
+          "ctest_passed": 251,
+          "checks_passed": 3,
+          "source_archive_sha256": "b769477fc07f8ab64d33fe1d1899677e7c4ead3ed87f7feb66e9d1630d19f0ac",
+          "reviews": [
+            {
+              "path": "docs/reviews/D1.04-spec.json",
+              "sha256": "7949783f6ecd527ebf63f40b73e3c825e11ff21dd6da694f1962f8983c2eb8df",
+              "actor_type": "AI",
+              "status": "Approved",
+              "review_kind": "spec",
+              "reviewed_inputs_sha256": "1a044ad0c5b50f1efa53a82125430a7002a61a1fbbd989f8f1ca2e1e50ac8352",
+              "evidence": [
+                {
+                  "path": "evidence/bootstrap/D1.04/final-contracts-fixes-review.md",
+                  "sha256": "d95aa99302c2426b99edfe2e0b1179c8ac4a0500f051eb0407036b5016ea7a41"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.04/final-tools-fixes-review.md",
+                  "sha256": "5541e2d55654d57472ae3c85ba4dbbcd1bbe38f9f6da3be29e362a0f232f59f6"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.04/asan-runtime-driver-fix-review.md",
+                  "sha256": "fb7ca38c8d7ff361cb858caa3c2e873bf6b063c91c9a7ce5aa7a9270ff1b765c"
+                },
+                {
+                  "path": "docs/reviews/D1.04-api-revision5.md",
+                  "sha256": "f2290787bd1e15eeb63b47c398803b8f614f1f06b6392bd0db3260bcef00f70e"
+                },
+                {
+                  "path": "docs/reviews/D1.04-plan-revision5.md",
+                  "sha256": "8987d7473610d2e98b2a105864ad48becb7c3c2e04b3441eb03e6ae2e3212d0d"
+                },
+                {
+                  "path": "docs/reviews/D1.04-expected.md",
+                  "sha256": "3aa44bc3dd2f99240164e63cc2edd843fedd1326dde32d32b87f65609c3ee177"
+                },
+                {
+                  "path": "docs/reviews/D1.04-start-revision5.json",
+                  "sha256": "79e9974324f1d7bd35f0d1014682e649bed16e9580c23ed70d9ddbe79ad7dfa9"
+                }
+              ]
+            },
+            {
+              "path": "docs/reviews/D1.04-code.json",
+              "sha256": "5207ea995bf12657ba42fac20acac89a87107a5a6708261c655122385474caaa",
+              "actor_type": "AI",
+              "status": "Approved",
+              "review_kind": "code",
+              "reviewed_inputs_sha256": "1a044ad0c5b50f1efa53a82125430a7002a61a1fbbd989f8f1ca2e1e50ac8352",
+              "evidence": [
+                {
+                  "path": "evidence/bootstrap/D1.04/final-contracts-fixes-review.md",
+                  "sha256": "d95aa99302c2426b99edfe2e0b1179c8ac4a0500f051eb0407036b5016ea7a41"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.04/final-tools-fixes-review.md",
+                  "sha256": "5541e2d55654d57472ae3c85ba4dbbcd1bbe38f9f6da3be29e362a0f232f59f6"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.04/asan-runtime-driver-fix-review.md",
+                  "sha256": "fb7ca38c8d7ff361cb858caa3c2e873bf6b063c91c9a7ce5aa7a9270ff1b765c"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "profile": "win-msvc-asan",
+          "path": "evidence/8978b277850b-1a044ad0c5b5/win-msvc-asan/D1.04/20260907T201743Z-19d70286dddb/report.json",
+          "sha256": "23d1a7fd0f5293618f7dd8b533a286f1f931bb7c8ad08582c75a3da31edf9085",
+          "original_automated_status": "Passed",
+          "original_package_status": "Passed",
+          "historical_audit_status": "Passed",
+          "historical_audit_errors": [],
+          "ctest_passed": 253,
+          "checks_passed": 3,
+          "source_archive_sha256": "b769477fc07f8ab64d33fe1d1899677e7c4ead3ed87f7feb66e9d1630d19f0ac",
+          "reviews": [
+            {
+              "path": "docs/reviews/D1.04-spec.json",
+              "sha256": "7949783f6ecd527ebf63f40b73e3c825e11ff21dd6da694f1962f8983c2eb8df",
+              "actor_type": "AI",
+              "status": "Approved",
+              "review_kind": "spec",
+              "reviewed_inputs_sha256": "1a044ad0c5b50f1efa53a82125430a7002a61a1fbbd989f8f1ca2e1e50ac8352",
+              "evidence": [
+                {
+                  "path": "evidence/bootstrap/D1.04/final-contracts-fixes-review.md",
+                  "sha256": "d95aa99302c2426b99edfe2e0b1179c8ac4a0500f051eb0407036b5016ea7a41"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.04/final-tools-fixes-review.md",
+                  "sha256": "5541e2d55654d57472ae3c85ba4dbbcd1bbe38f9f6da3be29e362a0f232f59f6"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.04/asan-runtime-driver-fix-review.md",
+                  "sha256": "fb7ca38c8d7ff361cb858caa3c2e873bf6b063c91c9a7ce5aa7a9270ff1b765c"
+                },
+                {
+                  "path": "docs/reviews/D1.04-api-revision5.md",
+                  "sha256": "f2290787bd1e15eeb63b47c398803b8f614f1f06b6392bd0db3260bcef00f70e"
+                },
+                {
+                  "path": "docs/reviews/D1.04-plan-revision5.md",
+                  "sha256": "8987d7473610d2e98b2a105864ad48becb7c3c2e04b3441eb03e6ae2e3212d0d"
+                },
+                {
+                  "path": "docs/reviews/D1.04-expected.md",
+                  "sha256": "3aa44bc3dd2f99240164e63cc2edd843fedd1326dde32d32b87f65609c3ee177"
+                },
+                {
+                  "path": "docs/reviews/D1.04-start-revision5.json",
+                  "sha256": "79e9974324f1d7bd35f0d1014682e649bed16e9580c23ed70d9ddbe79ad7dfa9"
+                }
+              ]
+            },
+            {
+              "path": "docs/reviews/D1.04-code.json",
+              "sha256": "5207ea995bf12657ba42fac20acac89a87107a5a6708261c655122385474caaa",
+              "actor_type": "AI",
+              "status": "Approved",
+              "review_kind": "code",
+              "reviewed_inputs_sha256": "1a044ad0c5b50f1efa53a82125430a7002a61a1fbbd989f8f1ca2e1e50ac8352",
+              "evidence": [
+                {
+                  "path": "evidence/bootstrap/D1.04/final-contracts-fixes-review.md",
+                  "sha256": "d95aa99302c2426b99edfe2e0b1179c8ac4a0500f051eb0407036b5016ea7a41"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.04/final-tools-fixes-review.md",
+                  "sha256": "5541e2d55654d57472ae3c85ba4dbbcd1bbe38f9f6da3be29e362a0f232f59f6"
+                },
+                {
+                  "path": "evidence/bootstrap/D1.04/asan-runtime-driver-fix-review.md",
+                  "sha256": "fb7ca38c8d7ff361cb858caa3c2e873bf6b063c91c9a7ce5aa7a9270ff1b765c"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source": {
+        "commit": "8978b277850beb98ab9da16838052d6f32a7a4c4",
+        "inputs_sha256": "1a044ad0c5b50f1efa53a82125430a7002a61a1fbbd989f8f1ca2e1e50ac8352",
+        "git_blob_verified_count": 224,
+        "git_blob_mismatches": []
+      },
+      "supporting_evidence": [
+        {
+          "path": "evidence/D1.04/current-20260907T203550Z/command.json",
+          "sha256": "9745b75a047c0b51b12906c6a4fe032175e4250183ca48e5c7ce348bf18bdd41"
+        },
+        {
+          "path": "evidence/D1.04/current-20260907T203550Z/source-provenance.json",
+          "sha256": "0a82877111be717e6d1f8a18da814ade4065bc72b4532f10764c14cfb9ecaaaa"
+        },
+        {
+          "path": "evidence/D1.04/current-20260907T203550Z/matrix.json",
+          "sha256": "3c58c8bcc67999054374c06bd03e89a759759cd0b458df4210d4113b872cc506"
+        },
+        {
+          "path": "evidence/D1.04/current-20260907T203550Z/acceptance-context.json",
+          "sha256": "f9abde57b3862c6f6bf1dc178527c825390632c443a4af920cb551e772a83c94"
+        }
+      ],
+      "final_ai_review": {
+        "path": "evidence/D1.04/final-acceptance-review.md",
+        "sha256": "ee9c1ce461ea7ad79e1ac3a27dbdb135dd81c1f7476257226f57720ac0662d9e",
+        "actor_type": "AI",
+        "status": "Approved"
+      },
+      "total_ctest_passed": 755,
+      "total_checks_passed": 9
+    }
+  ],
+  "approved_inputs": [
+    {
+      "path": "docs/plans/D1.05.md",
+      "sha256": "5437add4bef4cde29ba1d0123e3309361c4260c5125cb025c1a94aeb133ae0ec"
+    },
+    {
+      "path": "docs/contracts/native-invocation-api.md",
+      "sha256": "31757ff610fb162e639c714f85de9655706b7432632dc5599772cc7d0566d796"
+    },
+    {
+      "path": "docs/reviews/D1.05-prerequisites.json",
+      "sha256": "1ae9255b85cd904e51f3beba630fff1a1ba785cc7308873164717bc5c3dbc8f1"
+    },
+    {
+      "path": "tests/manifests/d1.05.expected.json",
+      "sha256": "37fee8ea9da96b3a553714f49426c85dd88181de96c8df313df57cbb0ba699a1"
+    },
+    {
+      "path": "tests/runs/d1.05-matrix.json",
+      "sha256": "564e3765efcfb6f5df588a268f0f7a0819ae9caa012291c29f1c49c3b61a92cb"
+    },
+    {
+      "path": "tests/runs/d1.05-win-msvc-debug.json",
+      "sha256": "201b853a0d953120dc6dae0150040628f45381140bdb4590dfd5a8ad36757e13"
+    },
+    {
+      "path": "tests/runs/d1.05-win-msvc-release.json",
+      "sha256": "8cb7f00fe30f3693a66e1ba477bdf0cf30b6cbb4505e63a2f64dc099d93dfff0"
+    },
+    {
+      "path": "tests/runs/d1.05-win-msvc-asan.json",
+      "sha256": "b0f26f9fec26aae8cd31e12e0f7de01b4373ea8a8c913a65b110d0c0b81a9b02"
+    },
+    {
+      "path": "docs/reviews/D1.05-api.md",
+      "sha256": "392ec903821d808c35b7226a7aca82286d4f9c888485c7edc41ce7dff3ba8338"
+    },
+    {
+      "path": "docs/reviews/D1.05-plan.md",
+      "sha256": "4e79003597d0abb63e387972bc4fb37f9975afdbb9aa78fd46d11aa8bcd26f58"
+    },
+    {
+      "path": "docs/reviews/D1.05-expected.md",
+      "sha256": "f38c6499d681c94ded0d020723a97e24b0b12763ebc448fd97f092db304eae67"
+    }
+  ],
+  "implementation_status": "NotStarted",
+  "acceptance_status": "NotStarted",
+  "scope": "仅D1.05受治理Native Read/Compute及规划验证消费者；32固定新增主项，完整283/283/285和九CHECK是未来预期。资源声明调用明确拒绝，无Host/任务/产品模块。"
+}
