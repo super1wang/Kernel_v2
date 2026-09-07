@@ -1,0 +1,91 @@
+{
+  "format": "ock.bootstrap-commands/1",
+  "task_id": "D0.01",
+  "run_id": "20260907T033057Z-4ff7dc85a3b1",
+  "started_at": "2026-09-07T03:30:57.773947+00:00",
+  "source": {
+    "commit": "3c413bdc34dceb37fe26cd287f28a6216a30aa0f",
+    "dirty": false,
+    "inputs_sha256": "d79ab8453fd58537079ccf5f43970fbe325c1cbd0f6913a5f4afe8564c7055d6"
+  },
+  "environment": {
+    "python": "3.11.9",
+    "python_executable": "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "profile": "bootstrap-python",
+  "build_status": "NotRun",
+  "build_reason": "D0.01 无 C++ 工程；MSVC、依赖 probe 和正式采集在 D0.02/D0.06 交付。",
+  "formal_evidence_status": "Incomplete",
+  "commands": [
+    {
+      "check_id": "CHECK.D0.01.traceability",
+      "argv": [
+        "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-X",
+        "utf8",
+        "tools/requirements/check.py"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T03:30:57.824021+00:00",
+      "exit_code": 0,
+      "process_status": "Exited",
+      "finished_at": "2026-09-07T03:30:57.920500+00:00",
+      "raw": [
+        {
+          "path": "01-stdout.log",
+          "sha256": "c5be52e6c74d54895488e79fd6badd11ca451d88586a2c002308d1cf04f04b78",
+          "size": 313,
+          "truncated": false
+        },
+        {
+          "path": "01-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "check_id": "CHECK.D0.01.negative_guards",
+      "argv": [
+        "C:\\Users\\xrx10\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/requirements",
+        "-v"
+      ],
+      "cwd": "E:\\VS2019Qt5.15\\3D",
+      "started_at": "2026-09-07T03:30:57.922116+00:00",
+      "exit_code": 0,
+      "process_status": "Exited",
+      "finished_at": "2026-09-07T03:30:58.405824+00:00",
+      "raw": [
+        {
+          "path": "02-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false
+        },
+        {
+          "path": "02-stderr.log",
+          "sha256": "8bd13f04ce205bd8fecdd0ed6e8f475c6366c5f82c70339c1f037a201805e619",
+          "size": 3484,
+          "truncated": false
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "仅保存本轮原始命令事实，不提供 CTest/JUnit/二进制验证或包级状态。",
+    "G0 前必须由 D0.06 正式采集器核对导入，不能将此记录视为 D0.06 Passed。",
+    "人工评审独立保留，未签核不得将 D0.01 标记 Passed。"
+  ],
+  "inputs_changed_during_run": [],
+  "finished_at": "2026-09-07T03:30:58.418964+00:00",
+  "collection_status": "Captured"
+}
