@@ -1,0 +1,121 @@
+{
+  "format": "ock.conformance-draft/1",
+  "maturity": "Draft",
+  "review_status": "Pending",
+  "contract_version_policy": "D0.06 固定 harness/manifest 版本；各端口责任包冻结自身共同合同，所有后端复用同版预期。",
+  "ports": [
+    {
+      "id": "ExecutorConformance",
+      "owner_task": "D3.01",
+      "common_required": [
+        "ownership_transfer",
+        "exactly_once_completion",
+        "rejected_work_cleanup",
+        "exception_boundary",
+        "drain_shutdown_lifetime",
+        "worker_wait_rejection"
+      ],
+      "capability_cases": {
+        "parallel": [
+          "real_thread_count",
+          "queue_stop_faults"
+        ],
+        "inline": [
+          "runtime_reentrancy"
+        ]
+      },
+      "planned_backends": [
+        "可控合法 Executor",
+        "生产 CpuPool"
+      ],
+      "qualified_backends": []
+    },
+    {
+      "id": "StorageConformance",
+      "owner_task": "D5.01",
+      "common_required": [
+        "single_transaction_owner",
+        "confirmed_commit_rollback",
+        "truthful_error_facts",
+        "access_lifetime",
+        "session_policy",
+        "capability_query"
+      ],
+      "capability_cases": {
+        "durable": [
+          "exclusive_host",
+          "wal_full_readback",
+          "process_kill",
+          "disk_faults"
+        ]
+      },
+      "planned_backends": [
+        "SQLite",
+        "合法内存事务 fixture"
+      ],
+      "qualified_backends": []
+    },
+    {
+      "id": "LoggingConformance",
+      "owner_task": "D1.06",
+      "common_required": [
+        "accept_reject_drop_accounting",
+        "format_redaction",
+        "error_isolation",
+        "flush_accepted_range",
+        "shutdown_callback_lifetime"
+      ],
+      "capability_cases": {
+        "async": [
+          "queue_full"
+        ],
+        "file": [
+          "rotation",
+          "disk_faults"
+        ]
+      },
+      "planned_backends": [
+        "Logging 生产适配器",
+        "合法测试 sink"
+      ],
+      "qualified_backends": []
+    },
+    {
+      "id": "AssetStorageConformance",
+      "owner_task": "D6.01",
+      "common_required": [
+        "non_overwrite_publication",
+        "complete_read",
+        "identity_length_validation",
+        "external_reference_protocol"
+      ],
+      "capability_cases": {
+        "file": [
+          "path_escape",
+          "flush_atomic_publish",
+          "real_file_backup_faults"
+        ]
+      },
+      "planned_backends": [
+        "文件资产适配器"
+      ],
+      "qualified_backends": []
+    }
+  ],
+  "rules": {
+    "common_cases_optional": false,
+    "not_applicable_is_passed": false,
+    "fault_backend_is_qualified": false,
+    "profile_missing_required_capability": "Failed",
+    "not_applicable_requires": "合同表达式、具体原因与独立评审"
+  },
+  "bootstrap": {
+    "owner_task": "D0.06",
+    "checkpoint": "D0.06-c",
+    "fixtures": [
+      "一个合法 mock 端口",
+      "一个故障/非法端口"
+    ],
+    "requires_future_production_backends": false
+  }
+}

@@ -1,0 +1,1095 @@
+{
+  "format": "ock.expected/1",
+  "maturity": "Draft",
+  "review_status": "Pending",
+  "task_id": "D0.01",
+  "note": "D0.01 登记草案；future_cases 为行为预期，不是已发现、已执行测试。具体 Profile/backend/轮次由责任包在实现前评审固定；D0.06 接入正式采集器。",
+  "checks": [
+    {
+      "id": "CHECK.D0.01.traceability",
+      "kind": "command",
+      "argv": [
+        "python",
+        "tools/requirements/check.py"
+      ]
+    },
+    {
+      "id": "CHECK.D0.01.negative_guards",
+      "kind": "command",
+      "argv": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/requirements",
+        "-v"
+      ]
+    }
+  ],
+  "future_cases": [
+    {
+      "id": "T01.requirements.primary_contract",
+      "family": "T01",
+      "requirements": [
+        "R01"
+      ],
+      "task_id": "D1.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "最小 Runtime 依赖闭包仅含 Foundation/CoreContracts",
+      "negative": "引入 Data、State、SQL、IPC 或 AI 路径时架构检查拒绝",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T02.requirements.primary_contract",
+      "family": "T02",
+      "requirements": [
+        "R02"
+      ],
+      "task_id": "D2.07",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "同一 Operation 定义在 Native、Dynamic 与真实 CLI 入口复用类型化业务及治理",
+      "negative": "相同非法输入从 Native/Dynamic 进入均拒绝且 Handler 调用数为零",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T03.requirements.primary_contract",
+      "family": "T03",
+      "requirements": [
+        "R03"
+      ],
+      "task_id": "D1.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "受限固定成功场景原生调用不建 DOM/Task 且零新增分配",
+      "negative": "已知分配正探针必须增加计数，禁止失效计数器报零",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T04.requirements.primary_contract",
+      "family": "T04",
+      "requirements": [
+        "R04"
+      ],
+      "task_id": "D2.01",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "合法边界输入在参数、输出和累计分配预算内完成",
+      "negative": "重复字段、非法 UTF-8、深度/节点/分配超限在预算内拒绝",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T05.requirements.primary_contract",
+      "family": "T05",
+      "requirements": [
+        "R05"
+      ],
+      "task_id": "D1.03",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "稳定 ID 与带 generation 的临时句柄分开使用",
+      "negative": "旧 registry generation 句柄不可在新注册世代复用",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T06.requirements.primary_contract",
+      "family": "T06",
+      "requirements": [
+        "R06"
+      ],
+      "task_id": "D0.03",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "参考模型分别表达接受、phase、九类 Outcome 和证据事实",
+      "negative": "模型拒绝将已应用或未知效果降为 FailedBeforeApply",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T07.requirements.primary_contract",
+      "family": "T07",
+      "requirements": [
+        "R07"
+      ],
+      "task_id": "D0.05",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "参考模型枚举取消/撤权与许可竞争的两种合法仲裁结果",
+      "negative": "模型中未获许可不得发布，迟到取消不得抹掉已发布事实",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T08.requirements.primary_contract",
+      "family": "T08",
+      "requirements": [
+        "R08"
+      ],
+      "task_id": "D4.04",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "无 Document 的单 provider 单 domain 原子组只提交一次",
+      "negative": "跨 domain/provider 或不支持原子的操作在执行前拒绝",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T09.requirements.primary_contract",
+      "family": "T09",
+      "requirements": [
+        "R09"
+      ],
+      "task_id": "D4.02",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "Edit 候选 read-your-writes、引用/索引与 History 差量准备一致，旧 Snapshot 不变",
+      "negative": "约束失败或丢弃候选不改变正式状态，EditView 不提供 commit 入口",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T10.requirements.primary_contract",
+      "family": "T10",
+      "requirements": [
+        "R10"
+      ],
+      "task_id": "D4.07",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "顺序已提交步骤与单域 Atomic 的提交范围各自明确",
+      "negative": "并行分支失败保留其他已提交事实并等待子执行收尾",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T11.requirements.primary_contract",
+      "family": "T11",
+      "requirements": [
+        "R11"
+      ],
+      "task_id": "D0.04",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "Plan 合同与 golden/model 明确 slots/exports/控制流及预算语义",
+      "negative": "合同拒绝 kind=return、非法 ticket Await、引用越域和超预算 Plan",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T12.requirements.primary_contract",
+      "family": "T12",
+      "requirements": [
+        "R12"
+      ],
+      "task_id": "D3.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "Submit 持有输入和必要子执行直到完成排空",
+      "negative": "inline/重复/迟到 callback 不重复完成或提前释放 owner",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T13.requirements.primary_contract",
+      "family": "T13",
+      "requirements": [
+        "R13"
+      ],
+      "task_id": "D3.07",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "MultiClaim 全部取得后运行，可运行任务公平调度且满载控制仍可用",
+      "negative": "资源不足不可部分持有；满载时 cancel/control 仍可用",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T14.requirements.primary_contract",
+      "family": "T14",
+      "requirements": [
+        "R14"
+      ],
+      "task_id": "D5.05",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "状态、Intent 回执、必要 Audit/Outbox 在同一事务提交",
+      "negative": "注入 begin/write/commit 故障时无撕裂，未知提交如实保留",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T15.requirements.primary_contract",
+      "family": "T15",
+      "requirements": [
+        "R15"
+      ],
+      "task_id": "D5.03",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "外部 Intent claim 与 epoch 水位同事务，GC 保留所需回执和 pin",
+      "negative": "GC/claim 竞争和旧 epoch 重试不得让老外部请求复活",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T16.requirements.primary_contract",
+      "family": "T16",
+      "requirements": [
+        "R16"
+      ],
+      "task_id": "D5.09",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "恢复只重建事实，外部未知效果进入查询或对账",
+      "negative": "COMMIT 后发布前崩溃不可重执行业务或盲重发效果",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T17.requirements.primary_contract",
+      "family": "T17",
+      "requirements": [
+        "R17"
+      ],
+      "task_id": "D6.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "父检查点落后时按同一 ChildKey 查询已完成子结果",
+      "negative": "子效果已发生后重启不得以新子键重复发送",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T18.requirements.primary_contract",
+      "family": "T18",
+      "requirements": [
+        "R18"
+      ],
+      "task_id": "D5.08",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "数据库备份/恢复有一致性校验，旧备份恢复创建新的 RestoreGeneration",
+      "negative": "旧世代观察值不得复用，缺失外部历史保留未知并进入对账；资产正文集成留 D6.02",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T19.requirements.primary_contract",
+      "family": "T19",
+      "requirements": [
+        "R19"
+      ],
+      "task_id": "D3.07",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "通知允许丢失但 gap/版本明确，内部完成和必要审计独立",
+      "negative": "慢订阅、撤权与断线不得取消执行、无限 pin 或泄漏排队数据",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T20.requirements.primary_contract",
+      "family": "T20",
+      "requirements": [
+        "R20"
+      ],
+      "task_id": "D2.07",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "真实 Shell 子进程经认证 Named Pipe 连接同一常驻 Host",
+      "negative": "帧超限/非法编码/认证失败拒绝，CLI 不初始化第二 Host",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T21.requirements.primary_contract",
+      "family": "T21",
+      "requirements": [
+        "R21"
+      ],
+      "task_id": "D7.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "AI 从精确 Catalog 获取权限内 Read/Check/Preview 和有界结果",
+      "negative": "模型自声明身份或批准不得提升权限或应用过期预览",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T22.requirements.primary_contract",
+      "family": "T22",
+      "requirements": [
+        "R22"
+      ],
+      "task_id": "D3.07",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "启动失败逆序撤销已启动服务，停止排空必要 callback",
+      "negative": "停止超时不释放仍被 worker/回调使用的依赖",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T23.requirements.primary_contract",
+      "family": "T23",
+      "requirements": [
+        "R23"
+      ],
+      "task_id": "D8.05",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "固定环境分别测 NativeSubset/Embedded 占用及有限阶段预算",
+      "negative": "不得用子集代替完整 Embedded，超预算不得自动提高上限",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T24.requirements.primary_contract",
+      "family": "T24",
+      "requirements": [
+        "R24"
+      ],
+      "task_id": "D8.01",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按工作包选定的实现；当前未登记合格后端",
+      "positive": "独立安装消费者验证当前公开 SDK 表面、声明、编译要求及版本政策",
+      "negative": "同名头破坏签名不能逃过检查，冻结消费者不能随实现改写",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T19.observation.ack_get_order",
+      "family": "T19",
+      "requirements": [
+        "R19"
+      ],
+      "increment": "N1",
+      "task_id": "D3.07",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "确认后 get 与事件按 observation_version 合并",
+      "negative": "ack 前事件、建立中终态及旧版本覆盖均有拒绝/纠正行为",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T19.observation.gap_revoke",
+      "family": "T19",
+      "requirements": [
+        "R19"
+      ],
+      "increment": "N1",
+      "task_id": "D3.07",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "coalesce/drop 带 gap，撤权清理排队数据",
+      "negative": "丢末条通知、断线和慢客户端不影响内部完成或永久 pin",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T20.execution.list_visibility",
+      "family": "T20",
+      "requirements": [
+        "R20"
+      ],
+      "increment": "N1",
+      "task_id": "D3.07",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "跨真实 CLI 分页只枚举可见 Submit 执行",
+      "negative": "权限变化、隐藏 owner、回收和插入不泄漏且页位置推进",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T23.footprint.native_subset",
+      "family": "T23",
+      "requirements": [
+        "R23"
+      ],
+      "increment": "N2",
+      "task_id": "D1.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "记录原生子集体积、内存、线程、Ready 时间和批准有限预算",
+      "negative": "不得代替完整 Embedded 或从本次结果反推宽松预算",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T23.footprint.embedded",
+      "family": "T23",
+      "requirements": [
+        "R23"
+      ],
+      "increment": "N2",
+      "task_id": "D3.07",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "完整 Embedded 记录初始/峰值/回收后占用和控制可用性",
+      "negative": "满载完成、取消和订阅回收后不得遗留无界固定占用",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T23.allocation.counter_probe",
+      "family": "T23",
+      "requirements": [
+        "R23"
+      ],
+      "increment": "N2",
+      "task_id": "D1.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "已知分配正探针触发计数，限定原生短调用成功场景零分配",
+      "negative": "探针失效或扩大零分配声明范围时门禁失败",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T24.conformance.common_required",
+      "family": "T24",
+      "requirements": [
+        "R24"
+      ],
+      "increment": "N3",
+      "task_id": "D0.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "合法 mock 与 fault 后端共同验证固定合同及能力规则",
+      "negative": "后端删除 capability 或 skip 不可关闭共同必需项",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T24.conformance.production_matrix",
+      "family": "T24",
+      "requirements": [
+        "R24"
+      ],
+      "increment": "N3",
+      "task_id": "D8.03",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "生产与可控测试后端运行同版本共同合同和适用专项",
+      "negative": "故障后端不得登记合格；确定性结果不冒充真实线程/进程",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T24.sdk.surface_declarations",
+      "family": "T24",
+      "requirements": [
+        "R24"
+      ],
+      "increment": "N4",
+      "task_id": "D8.01",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "清单、声明及编译要求分别检查，版本域分离",
+      "negative": "同名头签名变化仍应被捕获，不能只比文件名",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T24.sdk.frozen_consumer",
+      "family": "T24",
+      "requirements": [
+        "R24"
+      ],
+      "increment": "N4",
+      "task_id": "D8.01",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "固定旧消费者对当前安装树重新编译运行",
+      "negative": "不可更新旧消费者去迁就破坏；首发无历史样本不计为成功",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T24.evidence.inventory_integrity",
+      "family": "T24",
+      "requirements": [
+        "R24"
+      ],
+      "increment": "N5",
+      "task_id": "D0.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "独立 expected/discovered/executed 按本轮来源和配置核对",
+      "negative": "删除测试、过滤错误、零测试和缺轮次不得 Passed",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T24.evidence.process_failures",
+      "family": "T24",
+      "requirements": [
+        "R24"
+      ],
+      "increment": "N5",
+      "task_id": "D0.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "保留真实退出、异常、超时、进程树处置和原始输出",
+      "negative": "打印成功但非零退出、进程被杀或报告损坏不得 Passed",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T24.evidence.identity_reruns",
+      "family": "T24",
+      "requirements": [
+        "R24"
+      ],
+      "increment": "N5",
+      "task_id": "D0.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "源码/二进制指纹绑定，每次重跑追加 run_id",
+      "negative": "旧报告残留、替换二进制、失败后成功不覆盖早期失败",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T20.cursor.mac_binding",
+      "family": "T20",
+      "requirements": [
+        "R20"
+      ],
+      "increment": "N6",
+      "task_id": "D3.07",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "token 绑定 caller/filter/host/restore/排序位置/TTL 并校验 keyed MAC",
+      "negative": "篡改、越权、跨 host/世代、过期 cursor 均拒绝",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T20.cursor.bounded_progress",
+      "family": "T20",
+      "requirements": [
+        "R20"
+      ],
+      "increment": "N6",
+      "task_id": "D3.07",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "限制编码长度和扫描预算，服务端逐 cursor 句柄为零",
+      "negative": "超长或不推进 cursor 拒绝；不得建立无界 cursor 池",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T01.ui.operation_write_boundary",
+      "family": "T01",
+      "requirements": [
+        "R01"
+      ],
+      "increment": "N7",
+      "task_id": "D0.02",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "业务写、效果与生命周期通过同一 Operation，授权只读 Snapshot 可直读",
+      "negative": "UI/Workspace 直接调用业务写私有路径的架构负例失败",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T20.catalog.domain_read_only",
+      "family": "T20",
+      "requirements": [
+        "R20"
+      ],
+      "increment": "N8",
+      "task_id": "D2.03",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "领域状态由带 TypeContract 的 Read Operation 进入 Catalog",
+      "negative": "不注册 state.inspect/query 或任意无类型 path 状态 API",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T24.scope.optional_dsl",
+      "family": "T24",
+      "requirements": [
+        "R24"
+      ],
+      "increment": "N8",
+      "task_id": "D0.02",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "GUI 主人工前端，Plan/CLI 是自动化面；本阶段不开发 GUI",
+      "negative": "DSL/REPL 缺失不阻 G0/G8，不允许第二 Plan 解释器",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T11.plan.semantic_roundtrip",
+      "family": "T11",
+      "requirements": [
+        "R11"
+      ],
+      "increment": "N9",
+      "task_id": "D4.05",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "往返保留 opcode/精确 Operation/digest/slot/控制边/预算/exports",
+      "negative": "丢任一语义应不相等；不序列化指针/句柄或冻结 IR ABI",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T15.canonical.feasibility_vectors",
+      "family": "T15",
+      "requirements": [
+        "R15"
+      ],
+      "increment": "N10",
+      "task_id": "D5.02",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "先检验最短整数/浮点、-0、map 顺序并评审 A/B/C 实现选择",
+      "negative": "不以普通 encoder 或库名假定 canonical 等价",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T15.canonical.fingerprint_gate",
+      "family": "T15",
+      "requirements": [
+        "R15"
+      ],
+      "increment": "N10",
+      "task_id": "D5.02",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "D5.02-a 受审查结论通过后才实现正式指纹 codec",
+      "negative": "未验证字节或跨版本漂移不得用于 Intent/PlanDigest",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T24.gates.parent_checkpoints",
+      "family": "T24",
+      "requirements": [
+        "R24"
+      ],
+      "increment": "N11",
+      "task_id": "D0.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "D0.06 a/b/c 和 D3.07 G3-A/B/C 完整后才放行父包",
+      "negative": "单 checkpoint 成功不得标父包 Passed，也不得新增第 65 包",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T01.control.observation_directory",
+      "family": "T01",
+      "requirements": [
+        "R01"
+      ],
+      "increment": "N11",
+      "task_id": "D0.02",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "由对应工作包定案，不能宣称已验证",
+      "positive": "observation 仅为 Control 内部目录，wire 属 ControlProtocol",
+      "negative": "不得新增 OCK::Observation 或 Runtime 到 Control 的依赖",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": false,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T02.operation.all_entry_governance",
+      "family": "T02",
+      "requirements": [
+        "R02"
+      ],
+      "task_id": "D8.02",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按责任包在实现前评审固定",
+      "positive": "在已实现组合中验证 Native/Dynamic/Submit/Plan/UI 业务写共用 Operation 和治理",
+      "negative": "任何入口建立第二 Handler、绕授权或绕状态提交都使集成检查失败",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T09.state.atomic_publication",
+      "family": "T09",
+      "requirements": [
+        "R09"
+      ],
+      "task_id": "D4.03",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按责任包在实现前评审固定",
+      "positive": "同次 PublishedState 替换保持 root/index/history 与回执投影一致",
+      "negative": "取消/撤权/冲突或迟到回调不得发布撕裂状态或覆盖新根",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T15.children.stable_key_recovery",
+      "family": "T15",
+      "requirements": [
+        "R15"
+      ],
+      "task_id": "D6.06",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按责任包在实现前评审固定",
+      "positive": "内部子执行使用独立稳定 ChildKey，父落后时从同键回执衔接",
+      "negative": "不得伪造新外部 epoch 或新子键让已发生效果重发",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T18.assets.backup_pin_lifetime",
+      "family": "T18",
+      "requirements": [
+        "R18"
+      ],
+      "task_id": "D6.02",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按责任包在实现前评审固定",
+      "positive": "资产 pin、快照材料和备份一致，活跃引用期间资产仍可读",
+      "negative": "回收与备份竞争不得删去仍被引用材料，缺失资产不可当成功恢复",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    },
+    {
+      "id": "T18.preview.prepared_change_lifetime",
+      "family": "T18",
+      "requirements": [
+        "R18"
+      ],
+      "task_id": "D7.02",
+      "profile": [
+        "RelevantSelectedProfile"
+      ],
+      "backend": "按责任包在实现前评审固定",
+      "positive": "PreparedChange 绑定输入/资源/版本/权限及所需资产 pin",
+      "negative": "过期或已失效 Preview、撤权或版本变化不得复用旧批准执行",
+      "implementation_status": "Planned",
+      "repeat_required": 1,
+      "fault_probe_required": true,
+      "review_required": [
+        "行为预期与适用配置评审"
+      ]
+    }
+  ]
+}

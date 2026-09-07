@@ -1,0 +1,102 @@
+# 内核实施进度
+
+更新日期：2026-09-07。唯一规划仍为 [架构 v3.3](01_Architecture_v3.3.md) 与 [执行计划 v3.3](02_Execution_Plan_v3.3.md)，不新增或重新编号工作包。
+
+## 当前节点
+
+- 当前工作包：D0.01，InProgress；登记产物、29 项校验器测试及独立 AI 技术审查已完成，人工签核 Pending。
+- 当前分支：`work/d0-kernel-baseline`；远端：`https://github.com/super1wang/Kernel_v2.git`。用户已授权必要节点提交和推送。
+- 首个本地节点：`cce1db5`，保存两份原始规范及范围约束。该基线已用已登录且具写权限的 XU-RUiXIANG 推送到同名远端分支；默认账号 XU-Bruce 的首次推送返回 403，未写入远端。后续节点以 Git 实际日志为准。
+- 未实现 Runtime、C++ SDK 或任何产品模块；52 个 future_cases 是预期登记，不是已执行测试。
+- 下一步：D0.01 签核后，按依赖进入 D0.02（target DAG/公开头/威胁边界）及 D0.03（Outcome/phase 参考模型）；不越过 G0 进入原生实现。
+
+材料：[需求登记](requirements.md)、[消费者目标](consumer-targets.md)、[D0.01 评审](reviews/D0.01.md)、[原始证据说明](../evidence/README.md)。
+
+## 阶段门禁
+
+| 门禁 | 当前状态 | 事实 |
+|---|---|---|
+| G0 | InProgress | D0.01 尚待评审；D0.02–D0.06 未开始 |
+| G1 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
+| G2 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
+| G3 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
+| G4 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
+| G5 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
+| G6 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
+| G7 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
+| G8 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
+
+## 全部工作包
+
+状态仅使用 NotStarted / InProgress / Blocked / Failed / Passed。尚未开工的包不假标 Blocked，尚有评审缺项的包不标 Passed。自动命令事实保存在证据中，与下表分离。
+
+| 工作包 | 名称 | 前置包 | 包级状态 |
+|---|---|---|---|
+| D0.01 | 登记需求、不变量和三个消费者 | 无 | InProgress |
+| D0.02 | 冻结target DAG、公开头和威胁模型 | D0.01 | NotStarted |
+| D0.03 | Outcome、phase和完成回调参考模型 | D0.01 | NotStarted |
+| D0.04 | Plan与Control wire、槽类型和观察合同 | D0.01、D0.03 | NotStarted |
+| D0.05 | 提交、许可、epoch和备份恢复参考模型 | D0.01、D0.03 | NotStarted |
+| D0.06 | 固定工具链、共享测试基建与自动证据采集 | D0.02 | NotStarted |
+| D1.01 | 实现Foundation与错误/标识原语 | D0.03、D0.06 | NotStarted |
+| D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | NotStarted |
+| D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | NotStarted |
+| D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | NotStarted |
+| D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | NotStarted |
+| D1.06 | 最小Host、Logging共同合同与原生占用基线 | D1.05、D0.06 | NotStarted |
+| D2.01 | 实现单DOM Payload、View与预算构建 | D1.01、D0.06 | NotStarted |
+| D2.02 | 实现TypeContract、Schema编译与Native等价绑定 | D2.01、D1.02、D1.05、D0.04 | NotStarted |
+| D2.03 | 实现能力目录、精确命令卡和帮助导出 | D2.02、D1.03、D1.04 | NotStarted |
+| D2.04 | Control方法、观察协议帧与结果映射 | D2.02、D1.04、D0.03、D0.04 | NotStarted |
+| D2.05 | 实现真实Named Pipe与认证会话 | D2.04、D0.06 | NotStarted |
+| D2.06 | 实现薄CLI、意图文件和原生/动态演示 | D2.03、D2.05、D1.06 | NotStarted |
+| D2.07 | 验收双入口与首次Shell闭环 | D2.06 | NotStarted |
+| D3.01 | Executor Conformance Kit与生产/测试后端 | D1.02、D0.06 | NotStarted |
+| D3.02 | 实现公平Ready调度与依赖结构 | D3.01、D1.03 | NotStarted |
+| D3.03 | 实现资源归一化、MultiClaim与租约 | D3.02、D1.04 | NotStarted |
+| D3.04 | Submit、执行投影索引与拥有型输入 | D3.02、D3.03、D1.05 | NotStarted |
+| D3.05 | 实现取消、期限与permit竞争 | D3.04、D0.05 | NotStarted |
+| D3.06 | 实现父子寿命、Finalizing与失败收尾 | D3.04、D3.05 | NotStarted |
+| D3.07 | 真实任务观察CLI、完整Embedded占用与停止门禁 | D3.06、D2.07 | NotStarted |
+| D4.01 | 实现轻量状态域与结构共享Snapshot | D1.02、D0.06、D3.03 | NotStarted |
+| D4.02 | 实现EditView、WriteSet、约束与内存History | D4.01 | NotStarted |
+| D4.03 | 实现内存CommitCoordinator与发布gate | D4.02、D3.05、D0.05 | NotStarted |
+| D4.04 | 实现独立编辑与Atomic组同源绑定 | D4.03、D1.05 | NotStarted |
+| D4.05 | 实现PlanCompiler、slots与预算IR | D2.02、D0.04、D3.04 | NotStarted |
+| D4.06 | 实现顺序Call/Await与Atomic调度 | D4.05、D4.04、D3.06 | NotStarted |
+| D4.07 | 实现If/ForEach/Parallel与失败收尾 | D4.06 | NotStarted |
+| D4.08 | 验收内存套件、Shell Plan和无文档Atomic | D4.07、D3.07、D2.03 | NotStarted |
+| D5.01 | Storage Conformance与真实SQLite独占 | D0.05、D0.06、D3.01 | NotStarted |
+| D5.02 | 实现记录schema、codec和canonical指纹 | D5.01、D2.02 | NotStarted |
+| D5.03 | 实现外部Intent claim与epoch GC | D5.02、D1.04 | NotStarted |
+| D5.04 | 实现DurableAccepted与任务记录收尾 | D5.03、D3.06 | NotStarted |
+| D5.05 | 实现StateDurableBridge与无撕裂发布 | D5.04、D4.03 | NotStarted |
+| D5.06 | 实现ExternalEffect claim、许可和对账 | D5.04、D1.04、D0.03 | NotStarted |
+| D5.07 | 实现Outbox、pins与有界记录回收 | D5.05、D5.06 | NotStarted |
+| D5.08 | 实现数据库恢复、备份和RestoreGeneration | D5.05、D5.06、D5.07 | NotStarted |
+| D5.09 | 执行独立进程Durable门禁 | D5.08、D4.08 | NotStarted |
+| D6.01 | 实现资产Storage与类型codec | D4.02、D5.02 | NotStarted |
+| D6.02 | 实现资产pins、快照材料和备份一致性 | D6.01、D5.07、D5.08 | NotStarted |
+| D6.03 | 实现Project/Document组织与关闭协调 | D4.03、D3.06、D5.05 | NotStarted |
+| D6.04 | 完成持久History、Undo/Redo与状态消费者 | D6.02、D6.03 | NotStarted |
+| D6.05 | 实现DurablePlan运行驱动与检查点codec | D4.07、D5.04、D5.07 | NotStarted |
+| D6.06 | 实现内部StepKey、ChildAdmission与父落后恢复 | D6.05、D5.03、D5.06 | NotStarted |
+| D6.07 | 实现resume、重试、补偿与并行恢复 | D6.06、D3.06 | NotStarted |
+| D6.08 | 完成三个消费者与长寿命恢复门禁 | D6.04、D6.07、D5.09 | NotStarted |
+| D7.01 | 完成统一Client SDK与PlanBuilder | D4.08、D5.03、D6.07 | NotStarted |
+| D7.02 | 实现Check与PreparedChange Preview/Apply | D6.02、D6.04、D7.01 | NotStarted |
+| D7.03 | 实现受限委托、可信批准与撤权闭环 | D7.02、D1.04、D5.06 | NotStarted |
+| D7.04 | 实现MCP/模型投影和命令资料生成 | D2.03、D7.01、D7.03 | NotStarted |
+| D7.05 | 结果投影、分页与既有观察协议压力集成 | D6.02、D7.01、D5.07、D3.07 | NotStarted |
+| D7.06 | 执行AI确定性场景集与真实适配验收 | D7.04、D7.05、D6.08 | NotStarted |
+| D8.01 | SDK公开表面、冻结消费者与安装兼容门禁 | D6.08、D7.05、D0.06 | NotStarted |
+| D8.02 | 执行Profile矩阵与缺组件负例 | D8.01、D7.06 | NotStarted |
+| D8.03 | 模型、属性、fuzz与内存/并发检查 | D7.06、D6.08 | NotStarted |
+| D8.04 | 全故障窗口与恢复/存储组合复验 | D8.02、D8.03 | NotStarted |
+| D8.05 | 固定占用、零分配范围与性能容量正式定案 | D8.04、D7.06 | NotStarted |
+| D8.06 | 资料、Schema、例子、错误手册最终一致性 | D8.02、D8.05 | NotStarted |
+| D8.07 | 发布候选、证据索引和最终放行 | D8.04、D8.05、D8.06 | NotStarted |
+
+## 恢复工作时的规则
+
+先读本文件及当前包评审材料，再核对 Git 状态和真实证据；只能将已收到的人工批准写入评审记录。D0.06 前保存 bootstrap 命令事实，正式采集器完成后核对早期来源、报告与适用性。运行失败必须修复并追加证据，不能删预期、重写历史退出码或以更新文档代替实现。

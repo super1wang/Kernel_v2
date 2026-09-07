@@ -1,0 +1,84 @@
+test_added_work_package (test_traceability.TraceabilityTests.test_added_work_package) ... ok
+test_case_owned_by_unrelated_package (test_traceability.TraceabilityTests.test_case_owned_by_unrelated_package) ... ok
+test_changed_normative_hash (test_traceability.TraceabilityTests.test_changed_normative_hash) ... ok
+test_command_cannot_be_replaced_by_noop (test_traceability.TraceabilityTests.test_command_cannot_be_replaced_by_noop) ... FAIL
+test_conformance_cannot_waive_common_cases (test_traceability.TraceabilityTests.test_conformance_cannot_waive_common_cases) ... ok
+test_conformance_owner_matches_plan (test_traceability.TraceabilityTests.test_conformance_owner_matches_plan) ... FAIL
+test_deleted_expected_case (test_traceability.TraceabilityTests.test_deleted_expected_case) ... ok
+test_deleted_requirement (test_traceability.TraceabilityTests.test_deleted_requirement) ... ok
+test_dependency_cycle (test_traceability.TraceabilityTests.test_dependency_cycle) ... ok
+test_duplicate_expected_case (test_traceability.TraceabilityTests.test_duplicate_expected_case) ... ok
+test_fault_backend_cannot_be_qualified (test_traceability.TraceabilityTests.test_fault_backend_cannot_be_qualified) ... ok
+test_g0_cannot_demand_future_production_backend (test_traceability.TraceabilityTests.test_g0_cannot_demand_future_production_backend) ... ok
+test_increment_case_link_mismatch (test_traceability.TraceabilityTests.test_increment_case_link_mismatch) ... ok
+test_increment_lacks_final_revalidation (test_traceability.TraceabilityTests.test_increment_lacks_final_revalidation) ... ok
+test_increment_owner_matches_normative_responsibility (test_traceability.TraceabilityTests.test_increment_owner_matches_normative_responsibility) ... FAIL
+test_missing_command_check (test_traceability.TraceabilityTests.test_missing_command_check) ... ok
+test_missing_increment (test_traceability.TraceabilityTests.test_missing_increment) ... ok
+test_missing_plan_completed (test_traceability.TraceabilityTests.test_missing_plan_completed) ... ok
+test_no_production_backend_is_verified_yet (test_traceability.TraceabilityTests.test_no_production_backend_is_verified_yet) ... ok
+test_not_applicable_is_not_passed (test_traceability.TraceabilityTests.test_not_applicable_is_not_passed) ... ok
+test_planned_case_cannot_claim_passed (test_traceability.TraceabilityTests.test_planned_case_cannot_claim_passed) ... ok
+test_registering_legacy_migration_is_out_of_scope (test_traceability.TraceabilityTests.test_registering_legacy_migration_is_out_of_scope) ... ok
+test_removed_dependency (test_traceability.TraceabilityTests.test_removed_dependency) ... ok
+test_settings_consumer_cannot_require_fake_document (test_traceability.TraceabilityTests.test_settings_consumer_cannot_require_fake_document) ... ok
+test_stateless_consumer_cannot_select_state (test_traceability.TraceabilityTests.test_stateless_consumer_cannot_select_state) ... ok
+test_stateless_consumer_requires_runtime (test_traceability.TraceabilityTests.test_stateless_consumer_requires_runtime) ... FAIL
+test_task_anchor_must_point_to_own_task (test_traceability.TraceabilityTests.test_task_anchor_must_point_to_own_task) ... FAIL
+test_valid_registration (test_traceability.TraceabilityTests.test_valid_registration) ... ok
+test_wrong_requirement_owner (test_traceability.TraceabilityTests.test_wrong_requirement_owner) ... ok
+
+======================================================================
+FAIL: test_command_cannot_be_replaced_by_noop (test_traceability.TraceabilityTests.test_command_cannot_be_replaced_by_noop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\requirements\test_traceability.py", line 114, in test_command_cannot_be_replaced_by_noop
+    self.assertRejected("命令与登记入口不一致")
+  File "E:\VS2019Qt5.15\3D\tests\requirements\test_traceability.py", line 16, in assertRejected
+    self.assertTrue(any(message in error for error in validate(
+AssertionError: False is not true : 命令与登记入口不一致
+
+======================================================================
+FAIL: test_conformance_owner_matches_plan (test_traceability.TraceabilityTests.test_conformance_owner_matches_plan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\requirements\test_traceability.py", line 126, in test_conformance_owner_matches_plan
+    self.assertRejected("端口责任包与规范不一致")
+  File "E:\VS2019Qt5.15\3D\tests\requirements\test_traceability.py", line 16, in assertRejected
+    self.assertTrue(any(message in error for error in validate(
+AssertionError: False is not true : 端口责任包与规范不一致
+
+======================================================================
+FAIL: test_increment_owner_matches_normative_responsibility (test_traceability.TraceabilityTests.test_increment_owner_matches_normative_responsibility)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\requirements\test_traceability.py", line 130, in test_increment_owner_matches_normative_responsibility
+    self.assertRejected("超出 E05.2 的责任范围")
+  File "E:\VS2019Qt5.15\3D\tests\requirements\test_traceability.py", line 16, in assertRejected
+    self.assertTrue(any(message in error for error in validate(
+AssertionError: False is not true : 超出 E05.2 的责任范围
+
+======================================================================
+FAIL: test_stateless_consumer_requires_runtime (test_traceability.TraceabilityTests.test_stateless_consumer_requires_runtime)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\requirements\test_traceability.py", line 122, in test_stateless_consumer_requires_runtime
+    self.assertRejected("必须共用 Runtime")
+  File "E:\VS2019Qt5.15\3D\tests\requirements\test_traceability.py", line 16, in assertRejected
+    self.assertTrue(any(message in error for error in validate(
+AssertionError: False is not true : 必须共用 Runtime
+
+======================================================================
+FAIL: test_task_anchor_must_point_to_own_task (test_traceability.TraceabilityTests.test_task_anchor_must_point_to_own_task)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\requirements\test_traceability.py", line 118, in test_task_anchor_must_point_to_own_task
+    self.assertRejected("锚点不属于自身")
+  File "E:\VS2019Qt5.15\3D\tests\requirements\test_traceability.py", line 16, in assertRejected
+    self.assertTrue(any(message in error for error in validate(
+AssertionError: False is not true : 锚点不属于自身
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.342s
+
+FAILED (failures=5)
