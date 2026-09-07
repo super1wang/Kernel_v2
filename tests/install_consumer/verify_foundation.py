@@ -32,6 +32,7 @@ def main():
         output=(logs/(stem+'-stdout.log')).read_text(encoding='utf-8',errors='replace')+(logs/(stem+'-stderr.log')).read_text(encoding='utf-8',errors='replace')
         if r['status']!='Exited' or (r['exit_code']==0)!=success or (needle is not None and needle not in output):
             raise RuntimeError('unexpected child result '+stem+' '+str(r)+'\n'+output)
+        return output
     def install(producer):
         original=work/('install-'+uuid.uuid4().hex[:8]);moved=work/('relocated-'+uuid.uuid4().hex[:8])
         run(['cmake','--install',str(producer),'--config',args.config,'--prefix',str(original)])
@@ -46,6 +47,8 @@ def main():
     def consume(prefix,mode='normal',success=True,needle=None):
         folder=work/('consumer-'+uuid.uuid4().hex[:8]);source=folder/'source';source.mkdir(parents=True)
         cmake=['cmake_minimum_required(VERSION 3.25)','project(FoundationConsumer LANGUAGES CXX)','find_package(OCK 0.1.0 CONFIG REQUIRED COMPONENTS Foundation)']
+        if mode=='headers':
+            cmake.append('file(WRITE "${CMAKE_BINARY_DIR}/msbuild-command.txt" "${CMAKE_VS_MSBUILD_COMMAND}")')
         if mode=='no-exceptions':
             cmake.append('set_property(TARGET OCK::Foundation PROPERTY INTERFACE_COMPILE_OPTIONS "/utf-8;/Zc:__cplusplus;/permissive-;/EHs-c-")')
         headers=['ock/foundation/sdk_version.hpp','ock/foundation/foundation.hpp','windows-macros'] if mode=='headers' else [None]
@@ -55,7 +58,18 @@ def main():
             cmake.extend([f'add_executable(consumer{index} consumer{index}.cpp)',f'target_link_libraries(consumer{index} PRIVATE OCK::Foundation)'])
         (source/'CMakeLists.txt').write_text('\n'.join(cmake)+'\n',encoding='utf-8',newline='\n')
         target=folder/'build'
-        run(['cmake','-S',str(source),'-B',str(target),'-G','Visual Studio 17 2022','-A','x64','-T','v143,version=14.44.35207','-DCMAKE_SYSTEM_VERSION=10.0.26100.0',f'-DOCK_DIR={prefix}/lib/cmake/OCK'])
+        run(['cmake','-S',str(source),'-B',str(target),'-G','Visual Studio 17 2022','-A','x64','-T','v143,version=14.44.35207','-DCMAKE_SYSTEM_VERSION=10.0.26100.0',f'-DCMAKE_TOOLCHAIN_FILE={ROOT}/cmake/LockedMSVC.cmake',*(['--debug-trycompile'] if mode=='headers' else []),f'-DOCK_DIR={prefix}/lib/cmake/OCK'])
+        if mode=='headers':
+            # 查询真实 MSBuild 求值结果；不通过 /p 覆盖被测属性。
+            msbuild=(target/'msbuild-command.txt').read_text(encoding='utf-8')
+            assert Path(msbuild).is_file()
+            projects=[next(target.glob('CMakeFiles/*/CompilerIdCXX/CompilerIdCXX.vcxproj')),
+                      next(target.glob('CMakeFiles/CMakeScratch/TryCompile-*/cmTC*.vcxproj')),target/'consumer0.vcxproj']
+            for index,project in enumerate(projects):
+                configuration=args.config if index==2 else "Debug"
+                properties=json.loads(run([msbuild,str(project),'-getProperty:VcpkgEnabled,UserRootDir',f'/p:Configuration={configuration}','/p:Platform=x64','/nr:false']))['Properties']
+                assert properties['VcpkgEnabled']=='false'
+                assert Path(properties['UserRootDir']).resolve()==(ROOT/'cmake/msbuild-user').resolve()
         run(['cmake','--build',str(target),'--config',args.config,'--parallel','2','--','/nr:false'],success,needle)
         if success:
             for index in range(len(headers)):run([str(target/args.config/f'consumer{index}.exe')])

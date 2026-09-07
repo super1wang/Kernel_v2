@@ -3,11 +3,11 @@
   "task_id": "D1.01",
   "review_kind": "spec",
   "review_status": "Approved",
-  "reviewed_inputs_sha256": "1728e978a21b7cedce112e9e5c63018d44797993bd6eb60681b7b6a7a231dd39",
-  "reviewed_at": "2026-09-07T08:52:41.731033+00:00",
+  "reviewed_inputs_sha256": "2feab22721bc96a47006a4e0f955ebe79ebf036266d7387ec85d71893461b692",
+  "reviewed_at": "2026-09-07T09:55:00.518331+00:00",
   "reviewer": "Codex独立规格复核代理 review_auto_acceptance_spec；主集成者核对当前输入一致",
   "actor_type": "AI",
-  "approval_text": "已完成原始规格及不可变性增量复核，当前字节无未关闭规格阻断；按已生效AI复核政策批准规格，正式运行结果和代码审核分别验证。",
+  "approval_text": "原Foundation技术审核继续适用于未变API；新增受控工具链隔离、真实MSBuild定位及配置路由已独立AI增量复核，无未关闭必须修复项。正式三配置矩阵及包级验收另行计算，不以局部通过提前放行。",
   "evidence": [
     {
       "path": "evidence/bootstrap/D1.01/spec-review.md",
@@ -16,6 +16,14 @@
     {
       "path": "evidence/bootstrap/D1.01/spec-review-immutability.md",
       "sha256": "dbdef535549725fa31fd55691fa8fd308be4d1b12f0a4df0ba8eb4c870673c7e"
+    },
+    {
+      "path": "evidence/bootstrap/D1.01/spec-review-build-isolation.md",
+      "sha256": "41a18dd1051194ca506e29db1d51e77604543b919b28329b1686f80c413a9f71"
+    },
+    {
+      "path": "evidence/bootstrap/D1.01/spec-review-query-configuration.md",
+      "sha256": "5743cf5445061be0ba73aa920ff6a01911cdbcae7efe8d12545119d8a8146504"
     }
   ],
   "limitations": [

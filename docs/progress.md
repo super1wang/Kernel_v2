@@ -129,4 +129,4 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 
 政策工具适配已经过独立规格/代码复核及冻结版本68项回归，见 `evidence/bootstrap/D0.06-review-policy/all-final-2c8d2e4cf3`。政策与工具提交6250cd7、G0自动验收提交665febc均已推送。G0的[机器决策](../evidence/G0/automatic-20260907T080144Z/gate-summary.json)为Passed；此前人工记录转换方案被拒绝的历史已由上述明确新政策处理，不再是当前阻断。
 
-D1.01按[实施计划](plans/D1.01.md)完成Foundation实现和独立规格/代码复核，审核发现的可变详情别名、fail-fast反例、ASan路径及多配置路由已修复。最终修复后三配置各23项原语测试、35项架构检查通过；正在采集完整34/34/36正式矩阵，D1.01保持InProgress。详见[验证记录](validation/D1.01.md)。
+D1.01按[实施计划](plans/D1.01.md)完成Foundation实现和独立规格/代码复核，审核发现的可变详情别名、fail-fast反例、ASan路径及多配置路由已修复。最终修复后三配置各23项原语测试、35项架构检查通过；实现节点98a406f已推送；首轮正式Debug/Release各34项通过，ASan两项消费者配置超时，整包门禁Failed并保留原始报告。已局部隔离vcpkg和用户属性注入，正在复核最终驱动及重新准备完整34/34/36矩阵，D1.01保持InProgress。详见[验证记录](validation/D1.01.md)。

@@ -1,0 +1,75 @@
+{
+  "format": "ock.gate-summary/1",
+  "gate_id": "D1.01",
+  "generated_at": "2026-09-07T09:43:26.980140+00:00",
+  "matrix_sha256": "ac22c4c929030131a04e0032a20d69397d34cfeca2c5f9dea6708880d7cf6e57",
+  "rules_sha256": "8e1526662d21c341baf6ad35cf139b039e6df65dd0e0fb774c7f8d3e3856013f",
+  "required_runs": [
+    {
+      "task_id": "D1.01",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D1.01",
+      "profile": "win-msvc-release"
+    },
+    {
+      "task_id": "D1.01",
+      "profile": "win-msvc-asan"
+    }
+  ],
+  "runs": [
+    {
+      "task_id": "D1.01",
+      "profile": "win-msvc-debug",
+      "report": "E:\\VS2019Qt5.15\\3D\\evidence\\98a406f2b612-1728e978a21b\\win-msvc-debug\\D1.01\\20260907T090005Z-a3eb47de7b07\\report.json",
+      "sha256": "bbe669db65159b0f7b57cca95d933260b41ccb8fa2911dff24b455ac3947afc6",
+      "automated_status": "Failed",
+      "package_status": "Failed",
+      "review_required": [
+        "spec",
+        "code"
+      ]
+    },
+    {
+      "task_id": "D1.01",
+      "profile": "win-msvc-release",
+      "report": "E:\\VS2019Qt5.15\\3D\\evidence\\98a406f2b612-1728e978a21b\\win-msvc-release\\D1.01\\20260907T090718Z-c5957e7fb8c0\\report.json",
+      "sha256": "357eed22b735ef1ec18bf3e4b1cf3d0db4f2d8b225ca0791f247dbd5e38b2987",
+      "automated_status": "Failed",
+      "package_status": "Failed",
+      "review_required": [
+        "spec",
+        "code"
+      ]
+    },
+    {
+      "task_id": "D1.01",
+      "profile": "win-msvc-asan",
+      "report": "E:\\VS2019Qt5.15\\3D\\evidence\\98a406f2b612-1728e978a21b\\win-msvc-asan\\D1.01\\20260907T091517Z-d7596b3ddc82\\report.json",
+      "sha256": "3837f20ea5e5f83d990e9557f0da6fb55ddc1358509686a47e1b3b8755d4039a",
+      "automated_status": "Failed",
+      "package_status": "Failed",
+      "review_required": [
+        "spec",
+        "code"
+      ]
+    }
+  ],
+  "missing": [],
+  "errors": [
+    "('D1.01', 'win-msvc-debug'): current source set or fingerprint differs",
+    "('D1.01', 'win-msvc-debug'): automated status is inconsistent with actual evidence",
+    "('D1.01', 'win-msvc-debug'): package status lacks complete evidence/review",
+    "('D1.01', 'win-msvc-release'): current source set or fingerprint differs",
+    "('D1.01', 'win-msvc-release'): automated status is inconsistent with actual evidence",
+    "('D1.01', 'win-msvc-release'): package status lacks complete evidence/review",
+    "('D1.01', 'win-msvc-asan'): required runtime child artifacts missing",
+    "('D1.01', 'win-msvc-asan'): current source set or fingerprint differs",
+    "('D1.01', 'win-msvc-asan'): command failed: test-001",
+    "('D1.01', 'win-msvc-asan'): required case failed or skipped"
+  ],
+  "automated_status": "Failed",
+  "gate_status": "Failed",
+  "note": "自动验证与人工放行分开；历史批准另行保留，不凭历史批准推导当前变更已批准。"
+}

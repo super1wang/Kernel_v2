@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 95, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 74, in main
+    if args.case=='public_headers':consume(prefix,'headers')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 63, in consume
+    msbuild=next(line.split('=',1)[1] for line in cache.splitlines() if line.startswith('CMAKE_MAKE_PROGRAM:FILEPATH='))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration

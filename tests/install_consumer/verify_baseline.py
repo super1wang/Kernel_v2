@@ -31,7 +31,7 @@ def main():
         if str(ROOT).replace('\\','/') in data or str(original).replace('\\','/') in data:
             raise AssertionError('install export contains source or original absolute path')
     source=ROOT/'tests/install_consumer/baseline'
-    base=['cmake','-S',str(source),'-G','Visual Studio 17 2022','-A','x64',f'-DCMAKE_PREFIX_PATH={moved}']
+    base=['cmake','-S',str(source),'-G','Visual Studio 17 2022','-A','x64',f'-DCMAKE_TOOLCHAIN_FILE={ROOT}/cmake/LockedMSVC.cmake',f'-DCMAKE_PREFIX_PATH={moved}']
     run([*base,'-B',str(work/'consumer')])
     run(['cmake','--build',str(work/'consumer'),'--config',args.config,'--parallel'])
     output=run([str(work/'consumer'/args.config/'installed_metadata.exe')])

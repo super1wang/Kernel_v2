@@ -117,3 +117,11 @@ All 配置固定 15 项 CTest：12 个 `T01.dependencies.<依赖名>`，加 `too
 | asan / Embedded / Debug | exit 0 | exit 0 | 8/8，20260907T054829Z-45447d87 |
 
 14/14 锁合同通过（20260907T054512Z-c190d8ea）。新空缓存 Embedded 实际只下载四项（20260907T054128Z-e1ce7f4d），完整库存核对 exit 0（20260907T055011Z-63b5c2a8）。ASan 故障子进程真实 exit 1，stderr 3518 字节，包含 heap-buffer-overflow；父检查的成功不改写该原始失败。两组全量构建并发时曾引起机器资源争用，后续测试已在构建结束后串行运行；正式采集应顺序执行配置矩阵。人工评审待进行。
+
+## D1.01 验证工具链局部隔离
+
+2026-09-07 的首轮 D1.01 正式矩阵中，Debug 34/34、Release 34/34 通过；ASan 两项 T24 消费者配置超过原定 180 秒，按失败保存，尚不构成 D1.01 验收。配置日志发现全局 vcpkg 自动链接及用户 VLD 搜索目录注入；同时存在其他工程编译占用资源，不能把 vcpkg 当作超时的唯一原因。原报告保留于 `evidence/98a406f2b612-1728e978a21b/`。
+
+受控 preset 及三个独立验证驱动统一使用 `cmake/LockedMSVC.cmake`，在编译器识别前设置 `VcpkgEnabled=false`，将 `UserRootDir` 指向仓库无用户属性文件的目录，并把 `CMAKE_VS_GLOBALS` 显式传播给 ABI 的 `try_compile`。工具链保留其他 globals；正式矩阵使用 `--fresh` 重新进行编译器探测。SDK 导出不携带该验证工具链路径，消费者仍可独立选择其构建环境。此设置不修改机器全局配置，也不宣称屏蔽所有系统扩展或环境变量。[CMake globals](https://cmake.org/cmake/help/v3.31/variable/CMAKE_VS_GLOBALS.html)、[try_compile 传播](https://cmake.org/cmake/help/v3.31/variable/CMAKE_TRY_COMPILE_PLATFORM_VARIABLES.html)、[微软 vcpkg 开关](https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/msbuild-integration#vcpkgenabled-use-vcpkg)。
+
+隔离实验 `evidence/bootstrap/D1.01/full-isolation-probe-ba20bf2d12/` 保存实际配置、编译、运行及无 `/p` 覆盖的 MSBuild 查询。CompilerId、ABI、消费者三类项目均实际求值为关闭 vcpkg、使用隔离用户目录，配置日志不再带本机两项已知外部路径。T24 公开头消费者持续查询这三类项目；超时仍为 180 秒，失败仍保留且拒绝放行。后续以新来源、新完整矩阵另行验收。

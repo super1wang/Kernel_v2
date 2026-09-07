@@ -59,7 +59,7 @@ def main():
                 'target_compile_options('+name+' PRIVATE /EHsc /utf-8 /Zc:__cplusplus /permissive-)',
                 'target_include_directories('+name+' PRIVATE '+' '.join('[==['+p.replace('\\','/')+']==]' for p in includes)+')']
         (out/'CMakeLists.txt').write_text('\n'.join(lines)+'\n',encoding='utf-8',newline='\n')
-        argv=['cmake','-S',str(out),'-B',str(out/'build'),'-G',args.generator]
+        argv=['cmake','-S',str(out),'-B',str(out/'build'),'-G',args.generator,f'-DCMAKE_TOOLCHAIN_FILE={ROOT}/cmake/LockedMSVC.cmake']
         if args.platform:argv+=['-A',args.platform]
         if args.toolset:argv+=['-T',args.toolset]
         if args.sdk:argv+=['-DCMAKE_SYSTEM_VERSION='+args.sdk]

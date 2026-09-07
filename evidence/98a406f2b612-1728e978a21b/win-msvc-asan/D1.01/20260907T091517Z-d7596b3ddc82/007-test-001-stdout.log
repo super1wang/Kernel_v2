@@ -1,0 +1,126 @@
+Internal ctest changing into directory: E:/VS2019Qt5.15/3D/build/d1.01-asan
+Test project E:/VS2019Qt5.15/3D/build/d1.01-asan
+      Start  1: T24.sdk.version_header
+ 1/36 Test  #1: T24.sdk.version_header ..........................   Passed    0.22 sec
+      Start  2: T01.architecture.dependency_dag
+ 2/36 Test  #2: T01.architecture.dependency_dag .................   Passed    0.12 sec
+      Start  3: T01.architecture.negative_guards
+ 3/36 Test  #3: T01.architecture.negative_guards ................   Passed    0.41 sec
+      Start  4: T24.sdk.install_and_missing_components
+ 4/36 Test  #4: T24.sdk.install_and_missing_components ..........   Passed   49.01 sec
+      Start  5: T01.dependencies.expected
+ 5/36 Test  #5: T01.dependencies.expected .......................   Passed    0.24 sec
+      Start  6: T01.dependencies.toolchain
+ 6/36 Test  #6: T01.dependencies.toolchain ......................   Passed    0.35 sec
+      Start  7: T01.dependencies.lock_contracts
+ 7/36 Test  #7: T01.dependencies.lock_contracts .................   Passed    0.35 sec
+      Start  8: T23.dependencies.asan_healthy
+ 8/36 Test  #8: T23.dependencies.asan_healthy ...................   Passed    0.22 sec
+      Start  9: T23.dependencies.asan_detects_heap_overflow
+ 9/36 Test  #9: T23.dependencies.asan_detects_heap_overflow .....   Passed    0.44 sec
+      Start 10: T24.foundation.public_headers
+10/36 Test #10: T24.foundation.public_headers ...................   Passed   95.93 sec
+      Start 11: T24.foundation.installed_consumer
+11/36 Test #11: T24.foundation.installed_consumer ...............***Failed  367.78 sec
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 84, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 68, in main
+    run(['cmake','--preset','win-msvc-debug','-B',str(producer),'-DBUILD_TESTING=OFF','-DOCK_BUILD_G0_TESTS=OFF','-DOCK_BUILD_DEPENDENCY_PROBES=OFF','-DOCK_DEPENDENCY_COMPONENTS=Foundation','-DOCK_DEPENDENCIES_OFFLINE=ON'])
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 34, in run
+    raise RuntimeError('unexpected child result '+stem+' '+str(r)+'\n'+output)
+RuntimeError: unexpected child result 005 {'argv': ['cmake', '--preset', 'win-msvc-debug', '-B', 'E:\\VS2019Qt5.15\\3D\\build\\d1.01-sdk\\96b28132c9ae41738ca161a43c7a3b2b\\producer-no-tests', '-DBUILD_TESTING=OFF', '-DOCK_BUILD_G0_TESTS=OFF', '-DOCK_BUILD_DEPENDENCY_PROBES=OFF', '-DOCK_DEPENDENCY_COMPONENTS=Foundation', '-DOCK_DEPENDENCIES_OFFLINE=ON'], 'cwd': 'E:\\VS2019Qt5.15\\3D', 'started_at': '2026-09-07T09:20:52.301416+00:00', 'exit_code': None, 'status': 'Timeout', 'process_tree': {'mechanism': 'WindowsJobObject', 'assigned_before_resume': True, 'active_after': 0, 'total_processes': 17, 'terminated_owned_job': True}, 'executable': 'F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe', 'pid': 25348, 'observed_exit_code': 124, 'finished_at': '2026-09-07T09:23:59.015969+00:00'}
+Preset CMake variables:
+
+  CMAKE_CXX_EXTENSIONS="OFF"
+  CMAKE_CXX_STANDARD="20"
+  CMAKE_CXX_STANDARD_REQUIRED="ON"
+  CMAKE_MSVC_DEBUG_INFORMATION_FORMAT="Embedded"
+  CMAKE_SYSTEM_VERSION="10.0.26100.0"
+  OCK_DEPENDENCY_CACHE="E:/VS2019Qt5.15/3D/build/d0.06-a/cache"
+
+Preset environment variables:
+
+  MSBUILDDISABLENODEREUSE="1"
+
+
+
+      Start 12: T24.foundation.missing_dependency_rejected
+12/36 Test #12: T24.foundation.missing_dependency_rejected ......***Failed  204.29 sec
+Traceback (most recent call last):
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 84, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 71, in main
+    consume(prefix)
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 58, in consume
+    run(['cmake','-S',str(source),'-B',str(target),'-G','Visual Studio 17 2022','-A','x64','-T','v143,version=14.44.35207','-DCMAKE_SYSTEM_VERSION=10.0.26100.0',f'-DOCK_DIR={prefix}/lib/cmake/OCK'])
+  File "E:\VS2019Qt5.15\3D\tests\install_consumer\verify_foundation.py", line 34, in run
+    raise RuntimeError('unexpected child result '+stem+' '+str(r)+'\n'+output)
+RuntimeError: unexpected child result 002 {'argv': ['cmake', '-S', 'E:\\VS2019Qt5.15\\3D\\build\\d1.01-sdk\\c4679ed3050e45309fb48bb5a2076807\\consumer-dff4b679\\source', '-B', 'E:\\VS2019Qt5.15\\3D\\build\\d1.01-sdk\\c4679ed3050e45309fb48bb5a2076807\\consumer-dff4b679\\build', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DOCK_DIR=E:\\VS2019Qt5.15\\3D\\build\\d1.01-sdk\\c4679ed3050e45309fb48bb5a2076807\\relocated-d446a295/lib/cmake/OCK'], 'cwd': 'E:\\VS2019Qt5.15\\3D', 'started_at': '2026-09-07T09:24:19.200296+00:00', 'exit_code': None, 'status': 'Timeout', 'process_tree': {'mechanism': 'WindowsJobObject', 'assigned_before_resume': True, 'active_after': 0, 'total_processes': 27, 'terminated_owned_job': True}, 'executable': 'F:\\VS2022\\VS2022\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe', 'pid': 30896, 'observed_exit_code': 124, 'finished_at': '2026-09-07T09:27:23.212393+00:00'}
+-- The CXX compiler identification is MSVC 19.44.35228.0
+-- Detecting CXX compiler ABI info
+
+
+      Start 13: T24.foundation.backend_mode_rejected
+13/36 Test #13: T24.foundation.backend_mode_rejected ............   Passed  236.85 sec
+      Start 14: T03.foundation.code_only_no_allocation
+14/36 Test #14: T03.foundation.code_only_no_allocation ..........   Passed    1.31 sec
+      Start 15: T03.foundation.value_operations_no_allocation
+15/36 Test #15: T03.foundation.value_operations_no_allocation ...   Passed    0.70 sec
+      Start 16: T03.foundation.layout_statistics
+16/36 Test #16: T03.foundation.layout_statistics ................   Passed    0.78 sec
+      Start 17: T04.foundation.result_move_only_value
+17/36 Test #17: T04.foundation.result_move_only_value ...........   Passed    0.74 sec
+      Start 18: T04.foundation.result_move_only_error
+18/36 Test #18: T04.foundation.result_move_only_error ...........   Passed    0.81 sec
+      Start 19: T04.foundation.result_void
+19/36 Test #19: T04.foundation.result_void ......................   Passed    0.86 sec
+      Start 20: T04.foundation.result_error_propagation
+20/36 Test #20: T04.foundation.result_error_propagation .........   Passed    0.95 sec
+      Start 21: T04.foundation.result_bad_access
+21/36 Test #21: T04.foundation.result_bad_access ................   Passed    0.87 sec
+      Start 22: T04.foundation.exception_not_business_failure
+22/36 Test #22: T04.foundation.exception_not_business_failure ...   Passed    1.01 sec
+      Start 23: T04.foundation.static_error_domain
+23/36 Test #23: T04.foundation.static_error_domain ..............   Passed  111.04 sec
+      Start 24: T04.foundation.error_details_ownership
+24/36 Test #24: T04.foundation.error_details_ownership ..........   Passed    0.92 sec
+      Start 25: T04.foundation.error_details_budget
+25/36 Test #25: T04.foundation.error_details_budget .............   Passed    0.61 sec
+      Start 26: T04.foundation.display_utf8
+26/36 Test #26: T04.foundation.display_utf8 .....................   Passed    0.84 sec
+      Start 27: T04.foundation.checked_arithmetic
+27/36 Test #27: T04.foundation.checked_arithmetic ...............   Passed    0.72 sec
+      Start 28: T04.foundation.checked_narrowing
+28/36 Test #28: T04.foundation.checked_narrowing ................   Passed    0.78 sec
+      Start 29: T04.foundation.checked_count_atomic_update
+29/36 Test #29: T04.foundation.checked_count_atomic_update ......   Passed    0.82 sec
+      Start 30: T04.foundation.invariant_fail_fast
+30/36 Test #30: T04.foundation.invariant_fail_fast ..............   Passed    5.15 sec
+      Start 31: T05.foundation.name_ascii_bounds
+31/36 Test #31: T05.foundation.name_ascii_bounds ................   Passed    0.74 sec
+      Start 32: T05.foundation.name_case_and_ownership
+32/36 Test #32: T05.foundation.name_case_and_ownership ..........   Passed    1.15 sec
+      Start 33: T05.foundation.tagged_identity_types
+33/36 Test #33: T05.foundation.tagged_identity_types ............   Passed    1.15 sec
+      Start 34: T05.foundation.identity_canonical_codec
+34/36 Test #34: T05.foundation.identity_canonical_codec .........   Passed    0.97 sec
+      Start 35: T05.foundation.bound_handle_generation
+35/36 Test #35: T05.foundation.bound_handle_generation ..........   Passed    0.69 sec
+      Start 36: T05.foundation.runtime_epoch_separation
+36/36 Test #36: T05.foundation.runtime_epoch_separation .........   Passed    0.96 sec
+
+94% tests passed, 2 tests failed out of 36
+
+Label Time Summary:
+D0.02      =  49.75 sec*proc (4 tests)
+D0.06-a    =   1.60 sec*proc (5 tests)
+D1.01      = 1039.44 sec*proc (27 tests)
+
+Total Test time (real) = 1091.06 sec
+
+The following tests FAILED:
+	 11 - T24.foundation.installed_consumer (Failed)        D1.01
+	 12 - T24.foundation.missing_dependency_rejected (Failed) D1.01
