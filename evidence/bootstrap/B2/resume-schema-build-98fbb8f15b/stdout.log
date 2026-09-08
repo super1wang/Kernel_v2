@@ -1,0 +1,50 @@
+CMake is re-running because J:/Code/Kernel_v2/build/b2-data-debug/CMakeFiles/generate.stamp is out-of-date.
+  the file 'J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt'
+  is newer than 'J:/Code/Kernel_v2/build/b2-data-debug/CMakeFiles/generate.stamp.depend'
+  result='-1'
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.
+-- Configuring done (1.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: J:/Code/Kernel_v2/build/b2-data-debug
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  payload.cpp
+  ock_data_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-data-debug\Debug\ock_data_contract.lib
+  Building Custom Rule J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt
+  schema.cpp
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\json_schema_factory.hpp(252,56): error C2440: “初始化”: 无法从“initializer list”转换为“std::vector<std::function<Json (const jsoncons::uri &)>,std::allocator<std::function<Json (const jsoncons::uri &)>>>” [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\json_schema_factory.hpp(252,56): error C2440:         with [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\json_schema_factory.hpp(252,56): error C2440:         [ [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\json_schema_factory.hpp(252,56): error C2440:             Json=jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::JsonAlloc> [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\json_schema_factory.hpp(252,56): error C2440:         ] [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+  (编译源文件“../../packages/dynamic/binding/schema.cpp”)
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\json_schema_factory.hpp(252,56):
+      “std::vector<std::function<Json (const jsoncons::uri &)>,std::allocator<std::function<Json (const jsoncons::uri &)>>>::vector(std::initializer_list<_Ty>,const _Alloc &)”: 无法将参数 1 从“initializer list”转换为“std::initializer_list<_Ty>”
+          with
+          [
+              Json=jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::JsonAlloc>,
+              _Ty=std::function<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::JsonAlloc> (const jsoncons::uri &)>,
+              _Alloc=std::allocator<std::function<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::JsonAlloc> (const jsoncons::uri &)>>
+          ]
+          and
+          [
+              _Ty=std::function<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::JsonAlloc> (const jsoncons::uri &)>
+          ]
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\json_schema_factory.hpp(252,56):
+          元素“1”: 没有从“initializer list”到“_Ty”的转换
+          with
+          [
+              _Ty=std::function<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::JsonAlloc> (const jsoncons::uri &)>
+          ]
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\json_schema_factory.hpp(252,56):
+          尝试匹配参数列表“(initializer list)”时
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\json_schema_factory.hpp(252,56):
+      模板实例化上下文(最早的实例化上下文)为
+          J:\Code\Kernel_v2\packages\dynamic\binding\schema.cpp(50,101):
+          查看对正在编译的函数 模板 实例化“jsoncons::jsonschema::json_schema<ock::binding::Json> jsoncons::jsonschema::make_json_schema<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::JsonAlloc>,ock::binding::CompiledSchema::compile::<lambda_1>>(Json,const URIResolver &,jsoncons::jsonschema::evaluation_options)”的引用
+          with
+          [
+              Json=jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::JsonAlloc>,
+              URIResolver=ock::binding::CompiledSchema::compile::<lambda_1>
+          ]
+  

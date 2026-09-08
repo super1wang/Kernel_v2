@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 project(OCKStatelessService LANGUAGES CXX)
 find_package(OCK 0.1.0 CONFIG REQUIRED COMPONENTS Runtime)
-if(NOT OCK_SDK_VERSION STREQUAL "0.1.0-dev.2" OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL "NativeSubset" OR NOT OCK_RUNTIME_AVAILABLE)
+if(NOT OCK_SDK_VERSION STREQUAL "0.1.0-dev.3" OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL "B2Subset" OR NOT OCK_RUNTIME_AVAILABLE)
   message(FATAL_ERROR "NativeSubset SDK identity mismatch")
 endif()
 get_target_property(_kind OCK::Runtime TYPE)

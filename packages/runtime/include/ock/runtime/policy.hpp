@@ -255,6 +255,10 @@ public:
 };
 class SessionAuthority final {
 public:
+  const PolicyBudget& limits() const noexcept;
+  struct CatalogStatus { bool visible=false, eligible=false; };
+  // 只读提示，不分配 Action、不发放许可；每次读取按当前政策判断。
+  Result<CatalogStatus> inspect_catalog(const VerifiedCaller&,const OperationSelector&,ObjectId) const;
   Result<std::shared_ptr<const VerifiedCaller>>
   verify(const CallerDescription &);
   std::shared_ptr<CallerAuthorityPort> callers() const noexcept;
@@ -329,6 +333,11 @@ private:
   explicit PageBinding(PageBindingData d) : value_(std::move(d)) {};
   PageBindingData value_;
 };
+// 可信装配的无状态续页校验器；返回位置不授予读取权限，list 仍重验全部政策。
+class PageContinuationPort : public PortLifetime {
+public:
+  virtual Result<KeysetPosition> restore(const PageBindingData &) = 0;
+};
 enum class ProjectionKind { Summary, Page, Hint };
 class ProjectionSnapshot final {
 public:
@@ -364,6 +373,8 @@ public:
 };
 class ObservationAuthorization final {
 public:
+  Result<PageBinding> resume(const VerifiedCaller &, const ListRequest &,
+                            PageContinuationPort &);
   Result<AuthorizedSummary> get(const VerifiedCaller &, ExecutionRef,
                                 AccessUse);
   Result<AuthorizedPage> list(const VerifiedCaller &, const ListRequest &,

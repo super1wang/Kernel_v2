@@ -1,0 +1,23 @@
+CMake is re-running because J:/Code/Kernel_v2/build/b2-data-debug/CMakeFiles/generate.stamp is out-of-date.
+  the file 'J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt'
+  is newer than 'J:/Code/Kernel_v2/build/b2-data-debug/CMakeFiles/generate.stamp.depend'
+  result='-1'
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.
+-- Configuring done (1.6s)
+-- Generating done (0.1s)
+-- Build files have been written to: J:/Code/Kernel_v2/build/b2-data-debug
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  ock_data_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-data-debug\Debug\ock_data_contract.lib
+  ock_binding_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-data-debug\Debug\ock_binding_contract.lib
+  ock_catalog_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-data-debug\Debug\ock_catalog_contract.lib
+  ock_protocol_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-data-debug\Debug\ock_protocol_contract.lib
+  Building Custom Rule J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt
+  subscription.cpp
+  ock_subscription_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-data-debug\Debug\ock_subscription_contract.lib
+  Building Custom Rule J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt
+  subscription.cpp
+J:\Code\Kernel_v2\tests\contract\protocol\subscription.cpp(27,147): error C3445: "std::chrono::milliseconds" 的复制列表初始化不能使用显式构造函数 [J:\Code\Kernel_v2\build\b2-data-debug\subscription_contract.vcxproj]
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\__msvc_chrono.hpp(106,9):
+      参见“std::chrono::duration<__int64,std::milli>::duration”的声明
+  

@@ -117,6 +117,7 @@ struct Source final : ExecutionAccessSourcePort {
                                       RestoreMode::Absent};
   std::vector<std::pair<std::uint64_t, ExecutionAccessInput>> rows;
   unsigned scans = 0;
+  Name retention_scope = name("retained");
   bool find_failure = false, scan_failure = false;
   Source() {
     for (unsigned n = 1; n <= 2; ++n) {
@@ -149,7 +150,7 @@ struct Source final : ExecutionAccessSourcePort {
     ++scans;
     if (scan_failure)
       throw std::bad_alloc();
-    AccessScanPage p{{}, {}, source_id.host, name("retained")};
+    AccessScanPage p{{}, {}, source_id.host, retention_scope};
     std::size_t seen = 0;
     for (auto &row : rows) {
       if (r.list.position && (row.first >= r.list.position->before_ordinal ||

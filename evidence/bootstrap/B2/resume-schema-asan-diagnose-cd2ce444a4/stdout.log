@@ -1,0 +1,121 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b2-data-asan
+Test project J:/Code/Kernel_v2/build/b2-data-asan
+    Start 2: T23.binding.schema_concurrent
+1/1 Test #2: T23.binding.schema_concurrent ....***Failed    0.74 sec
+=================================================================
+==18352==ERROR: AddressSanitizer: heap-use-after-free on address 0x00ba01332a00 at pc 0x7ff7cb075acf bp 0x0080000fc1e0 sp 0x0080000fc1e8
+READ of size 8 at 0x00ba01332a00 thread T0
+    #0 0x7ff7cb075ace in std::_Iterator_base12::_Adopt_unlocked(struct std::_Container_base12 const *) E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xmemory:1347
+    #1 0x7ff7cb0758a9 in std::_Iterator_base12::_Adopt_locked(struct std::_Container_base12 const *) E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xmemory:1355
+    #2 0x7ff7cb0757ea in std::_Iterator_base12::_Adopt(struct std::_Container_base12 const *) E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xmemory:1295
+    #3 0x7ff7cb007f03 in std::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<class jsoncons::key_value<struct ock::data::detail::Key<char, struct std::char_traits<char>, struct ock::data::detail::Alloc<char>>, class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>>>>>::_Vector_const_iterator<class std::_Vector_val<struct std::_Simple_types<class jsoncons::key_value<struct ock::data::detail::Key<char, struct std::char_traits<char>, struct ock::data::detail::Alloc<char>>, class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>>>>>(class jsoncons::key_value<struct ock::data::detail::Key<char, struct std::char_traits<char>, struct ock::data::detail::Alloc<char>>, class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>> *, struct std::_Container_base12 const *) E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\vector:47
+    #4 0x7ff7cb126776 in std::vector<class jsoncons::key_value<struct ock::data::detail::Key<char, struct std::char_traits<char>, struct ock::data::detail::Alloc<char>>, class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>>, struct ock::data::detail::Alloc<class jsoncons::key_value<struct ock::data::detail::Key<char, struct std::char_traits<char>, struct ock::data::detail::Alloc<char>>, class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>>>>::end(void) const E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\vector:1857
+    #5 0x7ff7cb12ca3e in jsoncons::sorted_json_object<struct ock::data::detail::Key<char, struct std::char_traits<char>, struct ock::data::detail::Alloc<char>>, class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>, class std::vector>::find(class std::basic_string_view<char, struct std::char_traits<char>> const &) const J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\json_object.hpp:486
+    #6 0x7ff7cb12c142 in jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>::find(class std::basic_string_view<char, struct std::char_traits<char>> const &) const J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\basic_json.hpp:4161
+    #7 0x7ff7cb140aab in jsoncons::jsonschema::schema_builder<class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>>::make_cross_draft_schema_validator(class jsoncons::jsonschema::compilation_context const &, class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>> const &, class jsoncons::detail::span<class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>> const, -1>, class std::unordered_map<class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>>, class jsoncons::jsonschema::uri_wrapper, struct std::hash<class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>>>, struct std::equal_to<class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>>>, class std::allocator<struct std::pair<class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>> const, class jsoncons::jsonschema::uri_wrapper>>> &) J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\schema_builder.hpp:303
+    #8 0x7ff7cb130e53 in jsoncons::jsonschema::schema_builder<class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>>::get_schema_validator(void) J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\schema_builder.hpp:140
+    #9 0x7ff7caf2d74e in ock::binding::CompiledSchema::compile(class std::basic_string_view<char, struct std::char_traits<char>>, class std::map<class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>>, class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>>, struct std::less<void>, class std::allocator<struct std::pair<class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>> const, class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>>>>> const &) J:\Code\Kernel_v2\packages\dynamic\binding\schema.cpp:67
+    #10 0x7ff7caf11b49 in main J:\Code\Kernel_v2\tests\contract\binding_parity\schema.cpp:11
+    #11 0x7ff7cb286c28 in invoke_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:78
+    #12 0x7ff7cb286b71 in __scrt_common_main_seh D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:288
+    #13 0x7ff7cb286a2d in __scrt_common_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:330
+    #14 0x7ff7cb286c9d in mainCRTStartup D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_main.cpp:16
+    #15 0x7ffa3efb5766  (C:\WINDOWS\System32\KERNEL32.DLL+0x180035766)
+    #16 0x7ffa3f69491f  (C:\WINDOWS\SYSTEM32\ntdll.dll+0x1800f491f)
+
+0x00ba01332a00 is located 1920 bytes inside of 2056-byte region [0x00ba01332280,0x00ba01332a88)
+freed by thread T0 here:
+    #0 0x7ff7cb285cc3 in operator delete(void *, unsigned __int64) D:\a\_work\1\s\src\vctools\asan\llvm\compiler-rt\lib\asan\asan_win_delete_scalar_size_thunk.cpp:41
+    #1 0x7ff7cb04a92c in ock::data::detail::Account::~Account(void) J:\Code\Kernel_v2\packages\dynamic\data\backend.hpp:15
+    #2 0x7ff7cb1ecaf6 in ock::data::detail::Owner::~Owner(void) (J:\Code\Kernel_v2\build\b2-data-asan\Debug\schema_contract.exe+0x1402dcaf6)
+    #3 0x7ff7cb1f0776 in ock::data::detail::Owner::`scalar deleting dtor'(unsigned int) (J:\Code\Kernel_v2\build\b2-data-asan\Debug\schema_contract.exe+0x1402e0776)
+    #4 0x7ff7cb1f019e in std::default_delete<struct ock::data::detail::Owner>::operator()(struct ock::data::detail::Owner *) const E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\memory:3309
+    #5 0x7ff7cb1ebc23 in std::unique_ptr<struct ock::data::detail::Owner, struct std::default_delete<struct ock::data::detail::Owner>>::~unique_ptr<struct ock::data::detail::Owner, struct std::default_delete<struct ock::data::detail::Owner>>(void) E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\memory:3427
+    #6 0x7ff7cb1a4b15 in ock::data::Payload::~Payload(void) J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp:88
+    #7 0x7ff7caf22b66 in ock::data::Payload::`scalar deleting dtor'(unsigned int) (J:\Code\Kernel_v2\build\b2-data-asan\Debug\schema_contract.exe+0x140012b66)
+    #8 0x7ff7caf20ee3 in tl::detail::expected_storage_base<class ock::data::Payload, class ock::foundation::Error, 0, 0>::~expected_storage_base<class ock::data::Payload, class ock::foundation::Error, 0, 0>(void) J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp:480
+    #9 0x7ff7caf20d82 in tl::detail::expected_operations_base<class ock::data::Payload, class ock::foundation::Error>::~expected_operations_base<class ock::data::Payload, class ock::foundation::Error>(void) (J:\Code\Kernel_v2\build\b2-data-asan\Debug\schema_contract.exe+0x140010d82)
+    #10 0x7ff7caf20c62 in tl::detail::expected_copy_base<class ock::data::Payload, class ock::foundation::Error, 0>::~expected_copy_base<class ock::data::Payload, class ock::foundation::Error, 0>(void) (J:\Code\Kernel_v2\build\b2-data-asan\Debug\schema_contract.exe+0x140010c62)
+    #11 0x7ff7caf20d22 in tl::detail::expected_move_base<class ock::data::Payload, class ock::foundation::Error, 0>::~expected_move_base<class ock::data::Payload, class ock::foundation::Error, 0>(void) (J:\Code\Kernel_v2\build\b2-data-asan\Debug\schema_contract.exe+0x140010d22)
+    #12 0x7ff7caf20c02 in tl::detail::expected_copy_assign_base<class ock::data::Payload, class ock::foundation::Error, 0>::~expected_copy_assign_base<class ock::data::Payload, class ock::foundation::Error, 0>(void) (J:\Code\Kernel_v2\build\b2-data-asan\Debug\schema_contract.exe+0x140010c02)
+    #13 0x7ff7caf20cc2 in tl::detail::expected_move_assign_base<class ock::data::Payload, class ock::foundation::Error, 0>::~expected_move_assign_base<class ock::data::Payload, class ock::foundation::Error, 0>(void) (J:\Code\Kernel_v2\build\b2-data-asan\Debug\schema_contract.exe+0x140010cc2)
+    #14 0x7ff7caf20ba2 in tl::expected<class ock::data::Payload, class ock::foundation::Error>::~expected<class ock::data::Payload, class ock::foundation::Error>(void) (J:\Code\Kernel_v2\build\b2-data-asan\Debug\schema_contract.exe+0x140010ba2)
+    #15 0x7ff7caf52ece in `ock::binding::CompiledSchema::compile'::`15'::<lambda_1>::operator()<jsoncons::uri> J:\Code\Kernel_v2\packages\dynamic\binding\schema.cpp:59
+    #16 0x7ff7cafd5c5e in std::invoke<`ock::binding::CompiledSchema::compile'::`15'::<lambda_1> &,jsoncons::uri const &> E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\type_traits:1680
+    #17 0x7ff7caf2f2d5 in std::_Func_impl_no_alloc<`ock::binding::CompiledSchema::compile'::`15'::<lambda_1>,jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::Alloc<char> >,jsoncons::uri const &>::_Do_call E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\functional:882
+    #18 0x7ff7cb0683cc in std::_Func_class<class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>, class jsoncons::uri const &>::operator()(class jsoncons::uri const &) const E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\functional:926
+    #19 0x7ff7cb130baf in jsoncons::jsonschema::schema_builder<class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>>::get_schema_validator(void) J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\schema_builder.hpp:135
+    #20 0x7ff7caf2d74e in ock::binding::CompiledSchema::compile(class std::basic_string_view<char, struct std::char_traits<char>>, class std::map<class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>>, class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>>, struct std::less<void>, class std::allocator<struct std::pair<class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>> const, class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>>>>> const &) J:\Code\Kernel_v2\packages\dynamic\binding\schema.cpp:67
+    #21 0x7ff7caf11b49 in main J:\Code\Kernel_v2\tests\contract\binding_parity\schema.cpp:11
+    #22 0x7ff7cb286c28 in invoke_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:78
+    #23 0x7ff7cb286b71 in __scrt_common_main_seh D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:288
+    #24 0x7ff7cb286a2d in __scrt_common_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:330
+    #25 0x7ff7cb286c9d in mainCRTStartup D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_main.cpp:16
+    #26 0x7ffa3efb5766  (C:\WINDOWS\System32\KERNEL32.DLL+0x180035766)
+    #27 0x7ffa3f69491f  (C:\WINDOWS\SYSTEM32\ntdll.dll+0x1800f491f)
+
+previously allocated by thread T0 here:
+    #0 0x7ff7cb285ba5 in operator new(unsigned __int64) D:\a\_work\1\s\src\vctools\asan\llvm\compiler-rt\lib\asan\asan_win_new_scalar_thunk.cpp:40
+    #1 0x7ff7cb1819ca in ock::data::detail::Account::reserve_proxies(unsigned __int64) J:\Code\Kernel_v2\packages\dynamic\data\backend.hpp:17
+    #2 0x7ff7cb027dd0 in ock::data::detail::Account::Account(struct ock::data::Budget) J:\Code\Kernel_v2\packages\dynamic\data\backend.hpp:9
+    #3 0x7ff7cb1e7dd1 in ock::data::detail::Owner::Owner(struct ock::data::Budget) J:\Code\Kernel_v2\packages\dynamic\data\backend.hpp:87
+    #4 0x7ff7cb1df456 in std::make_unique<struct ock::data::detail::Owner, struct ock::data::Budget &, 0>(struct ock::data::Budget &) E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\memory:3630
+    #5 0x7ff7cb1e72af in ock::data::detail::BuilderState::BuilderState(struct ock::data::Budget) J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp:25
+    #6 0x7ff7cb1df3b6 in std::make_unique<struct ock::data::detail::BuilderState, struct ock::data::Budget &, 0>(struct ock::data::Budget &) E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\memory:3630
+    #7 0x7ff7cb1a6e4b in ock::data::PayloadBuilder::PayloadBuilder(struct ock::data::Budget) J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp:91
+    #8 0x7ff7cb1a5079 in ock::data::Payload::parse(class std::basic_string_view<char, struct std::char_traits<char>>, struct ock::data::Budget) J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp:112
+    #9 0x7ff7caf52ca1 in `ock::binding::CompiledSchema::compile'::`15'::<lambda_1>::operator()<jsoncons::uri> J:\Code\Kernel_v2\packages\dynamic\binding\schema.cpp:57
+    #10 0x7ff7cafd5c5e in std::invoke<`ock::binding::CompiledSchema::compile'::`15'::<lambda_1> &,jsoncons::uri const &> E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\type_traits:1680
+    #11 0x7ff7caf2f2d5 in std::_Func_impl_no_alloc<`ock::binding::CompiledSchema::compile'::`15'::<lambda_1>,jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::Alloc<char> >,jsoncons::uri const &>::_Do_call E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\functional:882
+    #12 0x7ff7cb0683cc in std::_Func_class<class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>, class jsoncons::uri const &>::operator()(class jsoncons::uri const &) const E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\functional:926
+    #13 0x7ff7cb130baf in jsoncons::jsonschema::schema_builder<class jsoncons::basic_json<char, struct ock::data::detail::Policy, struct ock::data::detail::Alloc<char>>>::get_schema_validator(void) J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\schema_builder.hpp:135
+    #14 0x7ff7caf2d74e in ock::binding::CompiledSchema::compile(class std::basic_string_view<char, struct std::char_traits<char>>, class std::map<class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>>, class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>>, struct std::less<void>, class std::allocator<struct std::pair<class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>> const, class std::basic_string<char, struct std::char_traits<char>, class std::allocator<char>>>>> const &) J:\Code\Kernel_v2\packages\dynamic\binding\schema.cpp:67
+    #15 0x7ff7caf11b49 in main J:\Code\Kernel_v2\tests\contract\binding_parity\schema.cpp:11
+    #16 0x7ff7cb286c28 in invoke_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:78
+    #17 0x7ff7cb286b71 in __scrt_common_main_seh D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:288
+    #18 0x7ff7cb286a2d in __scrt_common_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:330
+    #19 0x7ff7cb286c9d in mainCRTStartup D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_main.cpp:16
+    #20 0x7ffa3efb5766  (C:\WINDOWS\System32\KERNEL32.DLL+0x180035766)
+    #21 0x7ffa3f69491f  (C:\WINDOWS\SYSTEM32\ntdll.dll+0x1800f491f)
+
+SUMMARY: AddressSanitizer: heap-use-after-free E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xmemory:1347 in std::_Iterator_base12::_Adopt_unlocked(struct std::_Container_base12 const *)
+Shadow bytes around the buggy address:
+  0x00ba01332780: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x00ba01332800: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x00ba01332880: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x00ba01332900: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x00ba01332980: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+=>0x00ba01332a00:[fd]fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x00ba01332a80: fd fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x00ba01332b00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x00ba01332b80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x00ba01332c00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x00ba01332c80: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==18352==ABORTING
+
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.75 sec
+
+The following tests FAILED:
+	  2 - T23.binding.schema_concurrent (Failed)

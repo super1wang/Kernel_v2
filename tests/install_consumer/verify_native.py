@@ -38,6 +38,8 @@ def verify_actual_traces(producer, consumer, config, asan):
     text=links[0].read_text(encoding='utf-16').upper()
     if 'OCK_RUNTIME.LIB' not in text or not re.search(r'\bBCRYPT\.LIB\b',text):
         raise ValueError('actual required Runtime/bcrypt link absent')
+    if any(name in text for name in ('OCK_DATA.LIB','OCK_DYNAMIC.LIB','OCK_CONTROL.LIB','OCK_CONTROLPROTOCOL.LIB','JSONCONS')):
+        raise ValueError('Native consumer pulled dynamic SDK dependencies')
     records.append({'kind':'link','path':str(links[0]),'sha256':sha_file(links[0]),'size':links[0].stat().st_size})
     return records
 
@@ -48,6 +50,7 @@ def main():
     parser.add_argument('--config', choices=['Debug', 'Release'], required=True)
     parser.add_argument('--case', choices=CASES, required=True)
     parser.add_argument('--expect-unavailable', action='store_true')
+    parser.add_argument('--evidence-task', choices=('D1.06','B2'), default='D1.06')
     a = parser.parse_args()
     producer = a.build.resolve()
     if not producer.is_relative_to(ROOT/'build'):
@@ -65,7 +68,7 @@ def main():
     # 只改变当前验证进程及其子进程的环境，与 CTest compiler-dir 路径一致。
     os.environ['PATH'] = str(compiler.parent)+os.pathsep+os.environ.get('PATH', '')
     os.environ['MSBUILDDISABLENODEREUSE'] = '1'
-    out = ROOT/'evidence/bootstrap/D1.06'/('sdk-'+a.case+'-'+uuid.uuid4().hex[:10])
+    out = ROOT/'evidence/bootstrap'/a.evidence_task/('sdk-'+a.case+'-'+uuid.uuid4().hex[:10])
     out.mkdir(parents=True)
     shutil.copyfile(__file__,out/'driver.py')
     shutil.copyfile(ROOT/'cmake/LockedMSVC.cmake',out/'LockedMSVC.cmake')
@@ -113,7 +116,7 @@ def main():
         configure(Path(cache['CMAKE_HOME_DIRECTORY']), producer, extra=(
             '-DBUILD_TESTING=OFF', '-DOCK_ENABLE_ASAN='+('ON' if asan else 'OFF'),
             '-DOCK_DEPENDENCIES_OFFLINE=ON', '-DOCK_DEPENDENCY_CACHE='+cache['OCK_DEPENDENCY_CACHE']))
-        build(producer, 'ock_Runtime')
+        build(producer, 'ALL_BUILD')
         if 'BUILD_TESTING:BOOL=OFF' not in (producer/'CMakeCache.txt').read_text():
             raise ValueError('producer tests not disabled')
 
@@ -141,21 +144,21 @@ def main():
     build(positive)
     binary = positive/a.config/'ock_stateless_service.exe'
     report = json.loads(run('run-consumer', [str(binary)]))
-    if report != {'sdk':'0.1.0-dev.2','stage':'NativeSubset','checks':dict.fromkeys(('read','compute','invalid_input','ready_gate','shutdown'),True)}:
+    if report != {'sdk':'0.1.0-dev.3','stage':'B2Subset','checks':dict.fromkeys(('read','compute','invalid_input','ready_gate','shutdown'),True)}:
         raise ValueError('real consumer checks mismatch')
     save_json(out/'actual-traces.json',verify_actual_traces(producer,positive,a.config,asan))
 
     if a.case == 'metadata':
         manifest = json.loads((prefix/'share/ock/sdk_api_manifest.json').read_text(encoding='utf-8'))
-        if manifest['sdk_version']!='0.1.0-dev.2' or manifest['stage']!='NativeSubset' or manifest['targets']['Runtime']['kind']!='STATIC_LIBRARY':
+        if manifest['sdk_version']!='0.1.0-dev.3' or manifest['stage']!='B2Subset' or manifest['targets']['Runtime']['kind']!='STATIC_LIBRARY':
             raise ValueError('installed metadata mismatch')
-        for component in ('Data','State','Durable','Control','Adapter::Logging','Observation'):
+        for component in ('State','Durable','Automation','Adapter::Logging','Observation'):
             candidate=out/('reject-'+component.replace('::','-'));candidate.mkdir()
             (candidate/'CMakeLists.txt').write_text('cmake_minimum_required(VERSION 3.25)\nproject(RejectedComponent LANGUAGES NONE)\nfind_package(OCK CONFIG REQUIRED COMPONENTS '+component+')\n')
             configure(candidate,candidate/'build',prefix,success=False,diagnostic=('OCK component '+component+' is not implemented').encode())
     elif a.case == 'public_headers':
         manifest = json.loads((prefix/'share/ock/sdk_api_manifest.json').read_text(encoding='utf-8'))
-        headers=[x['path'].split('/include/',1)[1] for x in manifest['headers'] if x['classification']=='experimental']
+        headers=[x['path'].split('/include/',1)[1] for x in manifest['headers'] if x['classification']=='experimental' and x['target'] in ('Foundation','CoreContracts','Runtime')]
         lines=['cmake_minimum_required(VERSION 3.25)','project(PublicHeaders LANGUAGES CXX)',
                'find_package(OCK CONFIG REQUIRED COMPONENTS Runtime)']
         directory=out/'headers';directory.mkdir()

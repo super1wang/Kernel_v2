@@ -1,0 +1,48 @@
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  1>Checking Build System
+  Building Custom Rule J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt
+  payload.cpp
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\basic_json.hpp(403,80): error C2338: static_assert failed: 'Regular stateful allocators must be wrapped with std::scoped_allocator_adaptor' [J:\Code\Kernel_v2\build\b2-data-debug\ock_data_contract.vcxproj]
+  (编译源文件“../../packages/dynamic/data/payload.cpp”)
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\basic_json.hpp(403,80):
+      模板实例化上下文(最早的实例化上下文)为
+          J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp(31,38):
+          查看对正在编译的 类 模板 实例化“jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>”的引用
+  
+J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp(156,238): error C2039: "as_uint64": 不是 "jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>" 的成员 [J:\Code\Kernel_v2\build\b2-data-debug\ock_data_contract.vcxproj]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\basic_json.hpp(400,11):
+      参见“jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>”的声明
+  
+J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp(156,333): error C2039: "as_int64": 不是 "jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>" 的成员 [J:\Code\Kernel_v2\build\b2-data-debug\ock_data_contract.vcxproj]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\basic_json.hpp(400,11):
+      参见“jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>”的声明
+  
+J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp(157,239): error C2039: "as_int64": 不是 "jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>" 的成员 [J:\Code\Kernel_v2\build\b2-data-debug\ock_data_contract.vcxproj]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\basic_json.hpp(400,11):
+      参见“jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>”的声明
+  
+J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp(157,325): error C2039: "as_uint64": 不是 "jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>" 的成员 [J:\Code\Kernel_v2\build\b2-data-debug\ock_data_contract.vcxproj]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\basic_json.hpp(400,11):
+      参见“jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>”的声明
+  
+J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp(158,171): error C2039: "as_uint64": 不是 "jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>" 的成员 [J:\Code\Kernel_v2\build\b2-data-debug\ock_data_contract.vcxproj]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\basic_json.hpp(400,11):
+      参见“jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>”的声明
+  
+J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp(158,233): error C2039: "as_uint64": 不是 "jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>" 的成员 [J:\Code\Kernel_v2\build\b2-data-debug\ock_data_contract.vcxproj]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\basic_json.hpp(400,11):
+      参见“jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>”的声明
+  
+J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp(158,272): error C2039: "as_int64": 不是 "jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>" 的成员 [J:\Code\Kernel_v2\build\b2-data-debug\ock_data_contract.vcxproj]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\basic_json.hpp(400,11):
+      参见“jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>”的声明
+  
+J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp(158,307): error C2039: "as_int64": 不是 "jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>" 的成员 [J:\Code\Kernel_v2\build\b2-data-debug\ock_data_contract.vcxproj]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\basic_json.hpp(400,11):
+      参见“jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>”的声明
+  
+J:\Code\Kernel_v2\packages\dynamic\data\payload.cpp(158,367): error C2039: "as_int64": 不是 "jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>" 的成员 [J:\Code\Kernel_v2\build\b2-data-debug\ock_data_contract.vcxproj]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons\basic_json.hpp(400,11):
+      参见“jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char>>”的声明
+  

@@ -1,5 +1,13 @@
 # D0.03｜Outcome、phase 与完成寿命合同草案
 
+## D2.04 生产 wire 接线（2026-09-08）
+
+历史 D0 Schema 与 golden 保留不变。生产入口使用 [rpc-v1/outcome.schema.json](../../schemas/rpc-v1/outcome.schema.json) 和 `encode_invoke`，仍只有 Rejected/Completed 及原九类 Outcome、六类 KnownFact。Tagged128 使用规范小写 hex；原子域完整保留 provider/domain_id/generation；Error 使用 domain/code/可选 message。conditions 保留收尾、必要记录失败及应用前决定材料，不能仅输出成功布尔值。
+
+结果编码失败或抛出时写入 result_error（Plan 为 exports_error），保留 Outcome kind/evidence/known_facts；不降级为 Rejected。Plan exports 必须为对象，不合格的结果材料明确报编码错误。整体输出预算仍生效，不能编码完整回执时返回编码失败，由 Control 关闭不确定传输而非伪造业务拒绝。原生 failure_phase 是阶段标签（例如 native），不冒充 ExecutionPhase；PartialCompletion 允许已发生应用事实且有一个失败步骤，与现行 CoreContracts 校验一致。业务事实来源、跨事实关系及追加历史仍由 CoreContracts 和实际 owner 验证，Schema 不承担真实性证明。
+
+本节只记录 B2 生产编码，不将后文历史 D0 的模型验收改写为当前实现验收。
+
 本合同落实唯一规范 [架构 v3.3](../01_Architecture_v3.3.md) 的 A04、A05、A09、A17，以及 [执行计划 D0.03](../02_Execution_Plan_v3.3.md#d003)。A06 仅引用 publication gate 的可见性要求；不在本包实现 permit、epoch、持久提交或恢复协议。前置 D0.01 的实际用户批准见 [批准记录](../reviews/D0.01-approval.json)。
 
 当前产物是可执行 Python 参考模型、Draft 2020-12 JSON Schema 草案和固定 golden。自动运行结果与包级人工评审分离；本合同不声称 D0.03 已人工批准、G0 已通过或真实 C++ Runtime 已实现。

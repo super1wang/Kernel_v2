@@ -1,9 +1,9 @@
 {
   "format": "ock.sdk-api/1",
-  "task_id": "D1.06",
-  "sdk_version": "0.1.0-dev.2",
+  "task_id": "B2",
+  "sdk_version": "0.1.0-dev.3",
   "document_version": "3.3",
-  "stage": "NativeSubset",
+  "stage": "B2Subset",
   "review_status": "Pending",
   "targets": {
     "Foundation": {
@@ -73,13 +73,13 @@
     },
     "Data": {
       "export": "OCK::Data",
-      "kind": "INTERFACE_LIBRARY",
+      "kind": "STATIC_LIBRARY",
       "dependencies": [
         "Foundation"
       ],
-      "include_root": "packages/data/include",
+      "include_root": "packages/dynamic/data/include",
       "namespace_prefix": "ock/data/",
-      "implementation": "ContractBaseline",
+      "implementation": "B2Subset",
       "api_classification": "experimental",
       "public_compile_features": [
         "cxx_std_20"
@@ -91,14 +91,14 @@
     },
     "Dynamic": {
       "export": "OCK::Dynamic",
-      "kind": "INTERFACE_LIBRARY",
+      "kind": "STATIC_LIBRARY",
       "dependencies": [
         "Runtime",
         "Data"
       ],
       "include_root": "packages/dynamic/include",
       "namespace_prefix": "ock/dynamic/",
-      "implementation": "ContractBaseline",
+      "implementation": "B2Subset",
       "api_classification": "experimental",
       "public_compile_features": [
         "cxx_std_20"
@@ -106,7 +106,14 @@
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
       ],
-      "public_compile_definitions": []
+      "public_compile_definitions": [],
+      "system_dependencies": [
+        {
+          "name": "bcrypt",
+          "platform": "Windows",
+          "link_only": true
+        }
+      ]
     },
     "Automation": {
       "export": "OCK::Automation",
@@ -221,14 +228,14 @@
     },
     "ControlProtocol": {
       "export": "OCK::ControlProtocol",
-      "kind": "INTERFACE_LIBRARY",
+      "kind": "STATIC_LIBRARY",
       "dependencies": [
         "CoreContracts",
         "Data"
       ],
       "include_root": "packages/control/protocol/include",
       "namespace_prefix": "ock/control_protocol/",
-      "implementation": "ContractBaseline",
+      "implementation": "B2Subset",
       "api_classification": "experimental",
       "public_compile_features": [
         "cxx_std_20"
@@ -240,7 +247,7 @@
     },
     "Control": {
       "export": "OCK::Control",
-      "kind": "INTERFACE_LIBRARY",
+      "kind": "STATIC_LIBRARY",
       "dependencies": [
         "Runtime",
         "Dynamic",
@@ -248,7 +255,7 @@
       ],
       "include_root": "packages/control/server/include",
       "namespace_prefix": "ock/control/",
-      "implementation": "ContractBaseline",
+      "implementation": "B2Subset",
       "api_classification": "experimental",
       "public_compile_features": [
         "cxx_std_20"
@@ -256,7 +263,18 @@
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
       ],
-      "public_compile_definitions": []
+      "public_compile_definitions": [],
+      "system_dependencies": [
+        {
+          "name": "bcrypt",
+          "platform": "Windows",
+          "link_only": true
+        }
+      ],
+      "source_roots": [
+        "packages/control/server",
+        "packages/control/observation"
+      ]
     },
     "ControlClient": {
       "export": "OCK::ControlClient",
@@ -418,123 +436,205 @@
   },
   "headers": [
     {
-      "path": "packages/foundation/include/ock/foundation/sdk_version.hpp",
-      "installed_path": "include/ock/foundation/sdk_version.hpp",
       "target": "Foundation",
-      "classification": "experimental",
-      "implementation": "VersionMetadata",
-      "sha256": "47c714355b5a3c8a8e2a3a715626c26b545933024c581be7a5c5cc2b56b1fd59"
-    },
-    {
       "path": "packages/foundation/include/ock/foundation/foundation.hpp",
-      "target": "Foundation",
       "classification": "experimental",
       "sha256": "1e3325f6077dd42d2f3ec8460d1eb4eeeca169c668975c41fb90556773940ae0"
     },
     {
-      "path": "packages/contracts/include/ock/contracts/identity.hpp",
-      "target": "CoreContracts",
+      "target": "Foundation",
+      "path": "packages/foundation/include/ock/foundation/sdk_version.hpp",
       "classification": "experimental",
-      "sha256": "2c42e99c22301baeea4e1af5c45faee9c578e66b9f7f0d8c2eaf370bac54dbad"
+      "sha256": "fdcb78f505859c28554be6149ef8063d1e5b1b946f060a46868b308d943e474b"
     },
     {
-      "path": "packages/contracts/include/ock/contracts/context.hpp",
       "target": "CoreContracts",
+      "path": "packages/contracts/include/ock/contracts/context.hpp",
       "classification": "experimental",
       "sha256": "326bc830ed564a3489c67465f70ee07fb817a7880d706f990d4a95782e16f5b1"
     },
     {
-      "path": "packages/contracts/include/ock/contracts/outcome.hpp",
       "target": "CoreContracts",
+      "path": "packages/contracts/include/ock/contracts/identity.hpp",
       "classification": "experimental",
-      "sha256": "371115831086ff1afb03cedac709f9c51bc8acf86f92c94886072c098f266dac"
+      "sha256": "2c42e99c22301baeea4e1af5c45faee9c578e66b9f7f0d8c2eaf370bac54dbad"
     },
     {
-      "path": "packages/contracts/include/ock/contracts/ports.hpp",
       "target": "CoreContracts",
-      "classification": "experimental",
-      "sha256": "abc625e954638cc1a0c79b86f268150647f936180b99486629443041524390a6"
-    },
-    {
-      "path": "packages/contracts/include/ock/contracts/observation.hpp",
-      "target": "CoreContracts",
-      "classification": "experimental",
-      "sha256": "c1f65bcc013b604267d061cdacb21d6b39fa96cfc2ac713981409bd0c3b3c5cb"
-    },
-    {
-      "path": "packages/contracts/include/ock/contracts/operation.hpp",
-      "target": "CoreContracts",
-      "classification": "experimental",
-      "sha256": "35a76e46db44d8bc8ee5c71103ae264869b125a318b2080d8d69b2ad26d6ae22"
-    },
-    {
       "path": "packages/contracts/include/ock/contracts/logging.hpp",
-      "target": "CoreContracts",
       "classification": "experimental",
       "sha256": "efbaf36bbb24fbbc4edbe55a576e24b27ffef9a3b8f25dd30fbe043713a3b7a7"
     },
     {
-      "path": "packages/runtime/include/ock/runtime/host.hpp",
-      "target": "Runtime",
+      "target": "CoreContracts",
+      "path": "packages/contracts/include/ock/contracts/observation.hpp",
       "classification": "experimental",
-      "sha256": "6c53eddaa6ad8a343c6d06b113374afe3795337aadaea853f3851d80dac9a279"
+      "sha256": "4cdf03dd9575d2c540e7ab2945ded79b8f946f89c724118f264550fa9e46adfa"
     },
     {
-      "path": "packages/runtime/include/ock/runtime/logging.hpp",
-      "target": "Runtime",
+      "target": "CoreContracts",
+      "path": "packages/contracts/include/ock/contracts/operation.hpp",
       "classification": "experimental",
-      "sha256": "fea2a70741172afe7f2d6f690176de02976ab1be03aac2fab011395877aa320c"
+      "sha256": "35a76e46db44d8bc8ee5c71103ae264869b125a318b2080d8d69b2ad26d6ae22"
     },
     {
-      "path": "packages/runtime/include/ock/runtime/native_types.hpp",
-      "target": "Runtime",
+      "target": "CoreContracts",
+      "path": "packages/contracts/include/ock/contracts/outcome.hpp",
       "classification": "experimental",
-      "sha256": "ef746141206e22f6eacb016ebf5f471c743a24520d63b099faa3b22eef610322"
+      "sha256": "371115831086ff1afb03cedac709f9c51bc8acf86f92c94886072c098f266dac"
     },
     {
-      "path": "packages/runtime/include/ock/runtime/policy.hpp",
-      "target": "Runtime",
+      "target": "CoreContracts",
+      "path": "packages/contracts/include/ock/contracts/ports.hpp",
       "classification": "experimental",
-      "sha256": "e40bc4f6748fe3e149f2fa9e6ab8abef792e37e91933df57abcdd5908ff2af7d"
+      "sha256": "abc625e954638cc1a0c79b86f268150647f936180b99486629443041524390a6"
     },
     {
-      "path": "packages/runtime/include/ock/runtime/registry.hpp",
       "target": "Runtime",
-      "classification": "experimental",
-      "sha256": "ce475e3a09052c93f40a6e2c0a23c5a39870a62d0cfb8023583ab3668894cc05"
-    },
-    {
       "path": "packages/runtime/include/ock/runtime/detail/host.hpp",
-      "target": "Runtime",
       "classification": "detail",
       "sha256": "4c8ad948aa390d42e9284e749ed7d71e3d0df2ae6896d2062a243a514e50e7d6"
     },
     {
-      "path": "packages/runtime/include/ock/runtime/detail/invocation.hpp",
       "target": "Runtime",
+      "path": "packages/runtime/include/ock/runtime/detail/invocation.hpp",
       "classification": "detail",
       "sha256": "4a70f0920a915ee46a51dbfa05598c30afed8fc7adc1d696f602edf08bfee54f"
     },
     {
-      "path": "packages/runtime/include/ock/runtime/detail/private_bridge.hpp",
       "target": "Runtime",
+      "path": "packages/runtime/include/ock/runtime/detail/private_bridge.hpp",
       "classification": "detail",
       "sha256": "d0f6b6ac4a3721f4624ef4043a0cebda1c305ebc6ce3925a04687d5b141bda8c"
-    }
-  ],
-  "candidate_headers": [
+    },
+    {
+      "target": "Runtime",
+      "path": "packages/runtime/include/ock/runtime/host.hpp",
+      "classification": "experimental",
+      "sha256": "6c53eddaa6ad8a343c6d06b113374afe3795337aadaea853f3851d80dac9a279"
+    },
+    {
+      "target": "Runtime",
+      "path": "packages/runtime/include/ock/runtime/logging.hpp",
+      "classification": "experimental",
+      "sha256": "fea2a70741172afe7f2d6f690176de02976ab1be03aac2fab011395877aa320c"
+    },
+    {
+      "target": "Runtime",
+      "path": "packages/runtime/include/ock/runtime/native_types.hpp",
+      "classification": "experimental",
+      "sha256": "ef746141206e22f6eacb016ebf5f471c743a24520d63b099faa3b22eef610322"
+    },
+    {
+      "target": "Runtime",
+      "path": "packages/runtime/include/ock/runtime/policy.hpp",
+      "classification": "experimental",
+      "sha256": "be356a2741531e737d98a158526b86199671d4f176b549504b3a3f66f0bc3285"
+    },
+    {
+      "target": "Runtime",
+      "path": "packages/runtime/include/ock/runtime/registry.hpp",
+      "classification": "experimental",
+      "sha256": "ce475e3a09052c93f40a6e2c0a23c5a39870a62d0cfb8023583ab3668894cc05"
+    },
     {
       "target": "Data",
-      "path": "packages/data/include/ock/data/data.hpp",
-      "status": "Planned",
-      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+      "path": "packages/dynamic/data/include/ock/data/payload.hpp",
+      "classification": "experimental",
+      "sha256": "daef756c2c6c6a8e188b6b36c905a7f87bbdecb521867bf8b608be2acbf205d8"
     },
     {
       "target": "Dynamic",
-      "path": "packages/dynamic/include/ock/dynamic/dynamic.hpp",
-      "status": "Planned",
-      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
+      "path": "packages/dynamic/include/ock/dynamic/binding/bound_operation.hpp",
+      "classification": "experimental",
+      "sha256": "ef99d2596cb644ccc5288660e4b42c79b70ed43ae9b9416960be58a2543f5e0c"
     },
+    {
+      "target": "Dynamic",
+      "path": "packages/dynamic/include/ock/dynamic/binding/record.hpp",
+      "classification": "experimental",
+      "sha256": "ba372cd6a187ced27a4f70e1ac3c5eef9168d589b4024a521ef9ab4894debe67"
+    },
+    {
+      "target": "Dynamic",
+      "path": "packages/dynamic/include/ock/dynamic/binding/registered_record.hpp",
+      "classification": "experimental",
+      "sha256": "6362110149f5ae8894fdfb079268bf33550c03c1e421a8fa6915530bd84771b1"
+    },
+    {
+      "target": "Dynamic",
+      "path": "packages/dynamic/include/ock/dynamic/binding/schema.hpp",
+      "classification": "experimental",
+      "sha256": "d037601f63d0501af7d024144f491d50690e4b774538f89f58c7fcba0888681e"
+    },
+    {
+      "target": "Dynamic",
+      "path": "packages/dynamic/include/ock/dynamic/binding/type_contract.hpp",
+      "classification": "experimental",
+      "sha256": "822307550244bfb4cfbae6e385bafe02d939245638dfdd44810b3225b532ba14"
+    },
+    {
+      "target": "Dynamic",
+      "path": "packages/dynamic/include/ock/dynamic/catalog/catalog.hpp",
+      "classification": "experimental",
+      "sha256": "e54ca75714e4b7f16120d3dfd6ba5e75b0fc8ddb3fcfab8fd84f0d32cdd939db"
+    },
+    {
+      "target": "ControlProtocol",
+      "path": "packages/control/protocol/include/ock/control_protocol/observation_wire.hpp",
+      "classification": "experimental",
+      "sha256": "b857cf221cee48735170a0631f847ca183b4599a52782fe1765ade63d4d75cda"
+    },
+    {
+      "target": "ControlProtocol",
+      "path": "packages/control/protocol/include/ock/control_protocol/outcome_wire.hpp",
+      "classification": "experimental",
+      "sha256": "7471c62046128787897e66670ccced92f2a404491832ead2116756b47b6480c8"
+    },
+    {
+      "target": "ControlProtocol",
+      "path": "packages/control/protocol/include/ock/control_protocol/protocol.hpp",
+      "classification": "experimental",
+      "sha256": "51a04c3ba3c2e731d18f8d0a8e2f190795e44816cb3f305cfd82ff385b017639"
+    },
+    {
+      "target": "Control",
+      "path": "packages/control/server/include/ock/control/cursor.hpp",
+      "classification": "experimental",
+      "sha256": "07146f0f3863099dc516e72a4ffda46bac662246311d2672744fbe129c2f1a21"
+    },
+    {
+      "target": "Control",
+      "path": "packages/control/server/include/ock/control/invoke_method.hpp",
+      "classification": "experimental",
+      "sha256": "73114308999bad9c849ebb661c20c56a97e1f60c7a65887463a1e25e1abd7638"
+    },
+    {
+      "target": "Control",
+      "path": "packages/control/server/include/ock/control/list_method.hpp",
+      "classification": "experimental",
+      "sha256": "b2a135af32dcab02a35c7c944585f1e2592730c8947e7b08714c5047f218ea21"
+    },
+    {
+      "target": "Control",
+      "path": "packages/control/server/include/ock/control/router.hpp",
+      "classification": "experimental",
+      "sha256": "783b38126e347f1fd0d4a5b146b599aeff95a2f8517098b2531bc86e73e40698"
+    },
+    {
+      "target": "Control",
+      "path": "packages/control/server/include/ock/control/subscription.hpp",
+      "classification": "experimental",
+      "sha256": "0a68c99cf38901b4bc5dd3d94a49d7ab73f75957cc719fab034666b84c0e87e0"
+    },
+    {
+      "target": "Control",
+      "path": "packages/control/server/include/ock/control/subscription_methods.hpp",
+      "classification": "experimental",
+      "sha256": "e469758ec2504c512e2fb81fe1d54ecfd3ab8b1113933b0af98aecaeeb515da6"
+    }
+  ],
+  "candidate_headers": [
     {
       "target": "Automation",
       "path": "packages/automation/include/ock/automation/automation.hpp",
@@ -568,18 +668,6 @@
     {
       "target": "DurablePlan",
       "path": "packages/durable_plan/include/ock/durable_plan/durable_plan.hpp",
-      "status": "Planned",
-      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
-    },
-    {
-      "target": "ControlProtocol",
-      "path": "packages/control/protocol/include/ock/control_protocol/control_protocol.hpp",
-      "status": "Planned",
-      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
-    },
-    {
-      "target": "Control",
-      "path": "packages/control/server/include/ock/control/control.hpp",
       "status": "Planned",
       "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
     },

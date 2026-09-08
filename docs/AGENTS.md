@@ -16,4 +16,4 @@
 - 生产阶段若连续两个提交都没有生产源码变更，应立即检查是否偏离 Code-First；纯文档包、Critical 前置冻结、真实工具阻断修复和最终 Gate 归档例外。
 - 自动验收继续使用 `docs/reviews/automatic-acceptance-policy.json`：AI SPEC/CODE 与机器事实分离，不写 human Approved，不逐节点请求人工批准。
 - 已授权必要节点提交并推送本任务分支；不强推、不覆盖他人历史。提交说明带工作包/批次标识且用英文。
-- **当前状态：B1 / D1.06 与 G1 已 Passed。** 下一开发批次为 B2（D2.01–D2.04），尚未开始；按 progress 与 E02 推进生产实现，历史 Passed 前置不重验，不重开 D1.06 工具优化。
+- **当前状态：B1 / D1.06 与 G1 已 Passed。** 当前开发批次为 B2（D2.01–D2.04），已开始；按 progress 与 E02 推进生产实现，历史 Passed 前置不重验，不重开 D1.06 工具优化。

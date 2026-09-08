@@ -1,0 +1,60 @@
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  payload.cpp
+  ock_data_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-data-debug\Debug\ock_data_contract.lib
+  schema.cpp
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\keyword_validators.hpp(3777,83): error C2440: “<function-style-cast>”: 无法从“initializer list”转换为“jsoncons::jsonschema::validation_message” [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+  (编译源文件“../../packages/dynamic/binding/schema.cpp”)
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\keyword_validators.hpp(3777,83):
+      “jsoncons::jsonschema::validation_message::validation_message”: 没有重载函数可以转换所有参数类型
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\validation_message.hpp(34,9):
+          可能是“jsoncons::jsonschema::validation_message::validation_message(std::string,jsoncons::jsonpointer::json_pointer,jsoncons::uri,jsoncons::jsonpointer::json_pointer,std::string)”
+              J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\keyword_validators.hpp(3777,83):
+              “jsoncons::jsonschema::validation_message::validation_message(std::string,jsoncons::jsonpointer::json_pointer,jsoncons::uri,jsoncons::jsonpointer::json_pointer,std::string)”: 无法将参数 5 从“std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char>>”转换为“std::string”
+                  J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\keyword_validators.hpp(3781,71):
+                  没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\keyword_validators.hpp(3777,83):
+          尝试匹配参数列表“(const std::string, const jsoncons::jsonpointer::json_pointer, const jsoncons::uri, jsoncons::jsonpointer::json_pointer, std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char>>)”时
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\keyword_validators.hpp(3777,83):
+      模板实例化上下文(最早的实例化上下文)为
+          J:\Code\Kernel_v2\packages\dynamic\binding\schema.cpp(28,5):
+          在编译 类 模板 成员函数“std::unique_ptr<jsoncons::jsonschema::schema_builder<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::schema_builder<ock::binding::Json>>>::unique_ptr(std::unique_ptr<_Ux,_Dx> &&) noexcept”时
+          J:\Code\Kernel_v2\packages\dynamic\binding\schema.cpp(28,5):
+          处理“std::unique_ptr<jsoncons::jsonschema::schema_builder<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::schema_builder<ock::binding::Json>>>::unique_ptr(std::unique_ptr<_Ux,_Dx> &&) noexcept”的默认模板参数时
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\memory(3392,20):
+          查看指向正在编译的变量模板“const bool conjunction_v<std::negation<std::is_array<jsoncons::jsonschema::draft202012::schema_builder_202012<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::Alloc<char> > > > >,std::is_convertible<jsoncons::jsonschema::draft202012::schema_builder_202012<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::Alloc<char> > > *,jsoncons::jsonschema::schema_builder<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::Alloc<char> > > *>,std::is_convertible<std::default_delete<jsoncons::jsonschema::draft202012::schema_builder_202012<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::Alloc<char> > > >,std::default_delete<jsoncons::jsonschema::schema_builder<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::Alloc<char> > > > > >”的引用
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\memory(3392,20):
+          查看对正在编译的 类 模板 实例化“std::is_convertible<jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json> *,_Ty *>”的引用
+          with
+          [
+              _Ty=jsoncons::jsonschema::schema_builder<ock::binding::Json>
+          ]
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\type_traits(323,39):
+          查看对正在编译的 类 模板 实例化“jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>”的引用
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(32,42):
+          查看对正在编译的 类 模板 实例化“jsoncons::jsonschema::schema_builder<ock::binding::Json>”的引用
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\schema_builder.hpp(967,73):
+          在编译 类 模板 成员函数“std::unique_ptr<jsoncons::jsonschema::unevaluated_properties_validator<Json>,std::default_delete<jsoncons::jsonschema::unevaluated_properties_validator<Json>>> jsoncons::jsonschema::schema_builder<Json>::make_unevaluated_properties_validator(const jsoncons::jsonschema::compilation_context &,const Json &,const Json &,jsoncons::jsonschema::schema_builder<Json>::anchor_uri_map_type &)”时
+          with
+          [
+              Json=ock::binding::Json
+          ]
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\schema_builder.hpp(974,30):
+          查看对正在编译的函数 模板 实例化“std::unique_ptr<jsoncons::jsonschema::unevaluated_properties_validator<Json>,std::default_delete<jsoncons::jsonschema::unevaluated_properties_validator<Json>>> std::make_unique<jsoncons::jsonschema::unevaluated_properties_validator<Json>,const Json&,jsoncons::uri,std::unique_ptr<jsoncons::jsonschema::schema_validator<Json>,std::default_delete<jsoncons::jsonschema::schema_validator<Json>>>,0>(const Json &,jsoncons::uri &&,std::unique_ptr<jsoncons::jsonschema::schema_validator<Json>,std::default_delete<jsoncons::jsonschema::schema_validator<Json>>> &&)”的引用
+          with
+          [
+              Json=ock::binding::Json
+          ]
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\memory(3630,32):
+          查看对正在编译的 类 模板 实例化“jsoncons::jsonschema::unevaluated_properties_validator<Json>”的引用
+          with
+          [
+              Json=ock::binding::Json
+          ]
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\common\keyword_validators.hpp(3745,21):
+          在编译 类 模板 成员函数“jsoncons::jsonschema::walk_result jsoncons::jsonschema::unevaluated_properties_validator<Json>::do_validate(const jsoncons::jsonschema::evaluation_context<Json> &,const Json &,const jsoncons::jsonpointer::json_pointer &,jsoncons::jsonschema::evaluation_results &,jsoncons::jsonschema::error_reporter &,Json &) const”时
+          with
+          [
+              Json=ock::binding::Json
+          ]
+  

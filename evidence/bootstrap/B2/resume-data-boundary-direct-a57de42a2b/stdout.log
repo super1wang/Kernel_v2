@@ -1,0 +1,51 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b2-data-debug
+Test project J:/Code/Kernel_v2/build/b2-data-debug
+      Start  1: T04.data.values
+ 1/11 Test  #1: T04.data.values ..................   Passed    0.13 sec
+      Start  2: T04.data.duplicate
+ 2/11 Test  #2: T04.data.duplicate ...............   Passed    0.03 sec
+      Start  3: T04.data.invalid
+ 3/11 Test  #3: T04.data.invalid .................   Passed    0.03 sec
+      Start  4: T04.data.budgets
+ 4/11 Test  #4: T04.data.budgets .................   Passed    0.04 sec
+      Start  5: T04.data.freeze
+ 5/11 Test  #5: T04.data.freeze ..................   Passed    0.03 sec
+      Start  6: T04.data.allocation_failures
+ 6/11 Test  #6: T04.data.allocation_failures .....***Failed    0.07 sec
+`main'::`2'::<lambda_1>::operator()
+`main'::`2'::<lambda_1>::<lambda_invoker_cdecl>
+terminate
+_CxxFrameHandler4
+_chkstk
+RtlInitializeExtendedContext
+RtlRaiseException
+RaiseException
+CxxThrowException
+ock::data::detail::Account::charge
+ock::data::detail::Alloc<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > >::allocate
+std::_Allocate_at_least_helper<ock::data::detail::Alloc<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > > >
+std::vector<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,ock::data::detail::Alloc<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > > >::_Emplace_reallocate<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > >
+std::vector<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,ock::data::detail::Alloc<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > > >::_Emplace_one_at_back<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > >
+std::vector<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,ock::data::detail::Alloc<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > > >::emplace_back<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > >
+jsoncons::json_array<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,std::vector>::emplace_back<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > >
+jsoncons::sorted_json_object<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,std::vector>::flatten_and_destroy
+jsoncons::sorted_json_object<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,std::vector>::~sorted_json_object<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,std::vector>
+jsoncons::sorted_json_object<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,std::vector>::`scalar deleting destructor'
+std::destroy_at<jsoncons::sorted_json_object<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,std::vector> >
+std::_Normal_allocator_traits<ock::data::detail::Alloc<jsoncons::sorted_json_object<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,std::vector> > >::destroy<jsoncons::sorted_json_object<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,std::vector> >
+jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >::destroy
+jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >::~basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >
+ock::data::detail::Owner::~Owner
+ock::data::detail::Owner::`scalar deleting destructor'
+std::default_delete<ock::data::detail::Owner>::operator()
+std::unique_ptr<ock::data::detail::Owner,std::default_delete<ock::data::detail::Owner> >::~unique_ptr<ock::data::detail::Owner,std::default_delete<ock::data::detail::Owner> >
+ock::data::Payload::~Payload
+ock::data::Payload::`scalar deleting destructor'
+
+
+83% tests passed, 1 tests failed out of 6
+
+Total Test time (real) =   0.34 sec
+
+The following tests FAILED:
+	  6 - T04.data.allocation_failures (Failed)

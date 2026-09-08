@@ -1,0 +1,48 @@
+CMake is re-running because J:/Code/Kernel_v2/build/b2-data-debug/CMakeFiles/generate.stamp is out-of-date.
+  the file 'J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt'
+  is newer than 'J:/Code/Kernel_v2/build/b2-data-debug/CMakeFiles/generate.stamp.depend'
+  result='-1'
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.
+-- Configuring done (1.6s)
+-- Generating done (0.1s)
+-- Build files have been written to: J:/Code/Kernel_v2/build/b2-data-debug
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  ock_data_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-data-debug\Debug\ock_data_contract.lib
+  schema.cpp
+  ock_binding_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-data-debug\Debug\ock_binding_contract.lib
+  Building Custom Rule J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt
+  catalog.cpp
+  policy.cpp
+  正在生成代码...
+  ock_catalog_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-data-debug\Debug\ock_catalog_contract.lib
+  Building Custom Rule J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt
+  catalog.cpp
+J:\Code\Kernel_v2\tests\contract\catalog\catalog.cpp(16,64): error C2440: “初始化”: 无法从“bool”转换为“ock::foundation::Name” [J:\Code\Kernel_v2\build\b2-data-debug\catalog_contract.vcxproj]
+      J:\Code\Kernel_v2\tests\contract\catalog\catalog.cpp(16,64):
+      “ock::foundation::Name::Name”: 没有重载函数可以转换所有参数类型
+          J:\Code\Kernel_v2\packages\foundation\include\ock\foundation\foundation.hpp(158,1):
+          可能是“ock::foundation::Name::Name(ock::foundation::Name &&)”
+              J:\Code\Kernel_v2\tests\contract\catalog\catalog.cpp(16,64):
+              “ock::foundation::Name::Name(ock::foundation::Name &&)”: 无法将参数 1 从“bool”转换为“ock::foundation::Name &&”
+                  J:\Code\Kernel_v2\tests\contract\catalog\catalog.cpp(16,64):
+                  原因如下: 无法从“bool”转换为“ock::foundation::Name”
+                  J:\Code\Kernel_v2\tests\contract\catalog\catalog.cpp(16,64):
+                  转换要求第二个用户定义的转换运算符或构造函数
+          J:\Code\Kernel_v2\packages\foundation\include\ock\foundation\foundation.hpp(158,1):
+          或    “ock::foundation::Name::Name(const ock::foundation::Name &)”
+              J:\Code\Kernel_v2\tests\contract\catalog\catalog.cpp(16,64):
+              “ock::foundation::Name::Name(const ock::foundation::Name &)”: 无法将参数 1 从“bool”转换为“const ock::foundation::Name &”
+                  J:\Code\Kernel_v2\tests\contract\catalog\catalog.cpp(16,64):
+                  原因如下: 无法从“bool”转换为“const ock::foundation::Name”
+                  J:\Code\Kernel_v2\tests\contract\catalog\catalog.cpp(16,64):
+                  转换要求第二个用户定义的转换运算符或构造函数
+          J:\Code\Kernel_v2\tests\contract\catalog\catalog.cpp(16,64):
+          尝试匹配参数列表“(bool)”时
+  
+J:\Code\Kernel_v2\tests\contract\catalog\catalog.cpp(16,46): error C2248: “ock::foundation::Name::Name”: 无法访问 private 成员(在“ock::foundation::Name”类中声明) [J:\Code\Kernel_v2\build\b2-data-debug\catalog_contract.vcxproj]
+      J:\Code\Kernel_v2\packages\foundation\include\ock\foundation\foundation.hpp(155,5):
+      参见“ock::foundation::Name::Name”的声明
+      J:\Code\Kernel_v2\packages\foundation\include\ock\foundation\foundation.hpp(139,7):
+      参见“ock::foundation::Name”的声明
+  

@@ -1,0 +1,133 @@
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  ock_data_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-data-debug\Debug\ock_data_contract.lib
+  schema.cpp
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(267,74): error C2440: “初始化”: 无法从“const std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char>>”转换为“std::string” [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+  (编译源文件“../../packages/dynamic/binding/schema.cpp”)
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(267,74):
+      没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(267,74):
+      模板实例化上下文(最早的实例化上下文)为
+          J:\Code\Kernel_v2\packages\dynamic\binding\schema.cpp(28,5):
+          在编译 类 模板 成员函数“std::unique_ptr<jsoncons::jsonschema::schema_builder<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::schema_builder<ock::binding::Json>>>::unique_ptr(std::unique_ptr<_Ux,_Dx> &&) noexcept”时
+          J:\Code\Kernel_v2\packages\dynamic\binding\schema.cpp(28,5):
+          处理“std::unique_ptr<jsoncons::jsonschema::schema_builder<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::schema_builder<ock::binding::Json>>>::unique_ptr(std::unique_ptr<_Ux,_Dx> &&) noexcept”的默认模板参数时
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\memory(3392,20):
+          查看指向正在编译的变量模板“const bool conjunction_v<std::negation<std::is_array<jsoncons::jsonschema::draft202012::schema_builder_202012<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::Alloc<char> > > > >,std::is_convertible<jsoncons::jsonschema::draft202012::schema_builder_202012<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::Alloc<char> > > *,jsoncons::jsonschema::schema_builder<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::Alloc<char> > > *>,std::is_convertible<std::default_delete<jsoncons::jsonschema::draft202012::schema_builder_202012<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::Alloc<char> > > >,std::default_delete<jsoncons::jsonschema::schema_builder<jsoncons::basic_json<char,ock::data::detail::Policy,ock::data::detail::Alloc<char> > > > > >”的引用
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\memory(3392,20):
+          查看对正在编译的 类 模板 实例化“std::is_convertible<jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json> *,_Ty *>”的引用
+          with
+          [
+              _Ty=jsoncons::jsonschema::schema_builder<ock::binding::Json>
+          ]
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\type_traits(323,39):
+          查看对正在编译的 类 模板 实例化“jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>”的引用
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(239,31):
+          在编译 类 模板 成员函数“std::unique_ptr<jsoncons::jsonschema::schema_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::schema_validator<ock::binding::Json>>> jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::make_object_schema_validator(const jsoncons::jsonschema::compilation_context &,const Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<Json>::anchor_uri_map_type &)”时
+          with
+          [
+              Json=ock::binding::Json
+          ]
+              J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(215,42):
+              请参阅 "jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::make_schema_validator" 中对 "jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::make_object_schema_validator" 的第一个引用
+  
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(277,64): error C2440: “初始化”: 无法从“const std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char>>”转换为“std::string” [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+  (编译源文件“../../packages/dynamic/binding/schema.cpp”)
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(277,64):
+      没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+  
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63): error C2665: “std::_Hash<std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>::find”: 没有重载函数可以转换所有参数类型 [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63): error C2665:         with [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63): error C2665:         [ [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63): error C2665:             _Kty=std::string, [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63): error C2665:             _Ty=std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>, [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63): error C2665:             _Hasher=std::hash<std::string>, [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63): error C2665:             _Keyeq=std::equal_to<std::string>, [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63): error C2665:             _Alloc=std::allocator<std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>> [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63): error C2665:         ] [J:\Code\Kernel_v2\build\b2-data-debug\ock_binding_contract.vcxproj]
+  (编译源文件“../../packages/dynamic/binding/schema.cpp”)
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xhash(1243,31):
+      可能是“std::_List_const_iterator<std::_List_val<std::_List_simple_types<_Ty>>> std::_Hash<std::_Umap_traits<_Kty,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<Json>>> (const jsoncons::jsonschema::compilation_context &,const Json &,const Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<Json>::anchor_uri_map_type &)>,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>::find(const std::basic_string<char,std::char_traits<char>,std::allocator<char>> &) const”
+          with
+          [
+              _Ty=std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>,
+              _Kty=std::string,
+              Json=ock::binding::Json,
+              _Hasher=std::hash<std::string>,
+              _Keyeq=std::equal_to<std::string>,
+              _Alloc=std::allocator<std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>>
+          ]
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63):
+          “std::_List_const_iterator<std::_List_val<std::_List_simple_types<_Ty>>> std::_Hash<std::_Umap_traits<_Kty,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<Json>>> (const jsoncons::jsonschema::compilation_context &,const Json &,const Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<Json>::anchor_uri_map_type &)>,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>::find(const std::basic_string<char,std::char_traits<char>,std::allocator<char>> &) const”: 无法将参数 1 从“const std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char>>”转换为“const std::basic_string<char,std::char_traits<char>,std::allocator<char>> &”
+          with
+          [
+              _Ty=std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>,
+              _Kty=std::string,
+              Json=ock::binding::Json,
+              _Hasher=std::hash<std::string>,
+              _Keyeq=std::equal_to<std::string>,
+              _Alloc=std::allocator<std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>>
+          ]
+              J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,81):
+              原因如下: 无法从“const std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char>>”转换为“const std::basic_string<char,std::char_traits<char>,std::allocator<char>>”
+              J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,81):
+              没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xhash(1231,25):
+      或    “std::_List_iterator<std::_List_val<std::_List_simple_types<_Ty>>> std::_Hash<std::_Umap_traits<_Kty,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<Json>>> (const jsoncons::jsonschema::compilation_context &,const Json &,const Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<Json>::anchor_uri_map_type &)>,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>::find(const std::basic_string<char,std::char_traits<char>,std::allocator<char>> &)”
+          with
+          [
+              _Ty=std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>,
+              _Kty=std::string,
+              Json=ock::binding::Json,
+              _Hasher=std::hash<std::string>,
+              _Keyeq=std::equal_to<std::string>,
+              _Alloc=std::allocator<std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>>
+          ]
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63):
+          “std::_List_iterator<std::_List_val<std::_List_simple_types<_Ty>>> std::_Hash<std::_Umap_traits<_Kty,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<Json>>> (const jsoncons::jsonschema::compilation_context &,const Json &,const Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<Json>::anchor_uri_map_type &)>,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>::find(const std::basic_string<char,std::char_traits<char>,std::allocator<char>> &)”: 无法将参数 1 从“const std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char>>”转换为“const std::basic_string<char,std::char_traits<char>,std::allocator<char>> &”
+          with
+          [
+              _Ty=std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>,
+              _Kty=std::string,
+              Json=ock::binding::Json,
+              _Hasher=std::hash<std::string>,
+              _Keyeq=std::equal_to<std::string>,
+              _Alloc=std::allocator<std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>>
+          ]
+              J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,81):
+              原因如下: 无法从“const std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char>>”转换为“const std::basic_string<char,std::char_traits<char>,std::allocator<char>>”
+              J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,81):
+              没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xhash(1250,31):
+      或    “std::_List_const_iterator<std::_List_val<std::_List_simple_types<_Ty>>> std::_Hash<std::_Umap_traits<_Kty,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<Json>>> (const jsoncons::jsonschema::compilation_context &,const Json &,const Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<Json>::anchor_uri_map_type &)>,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>::find(const _KeyTy &) const”
+          with
+          [
+              _Ty=std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>,
+              _Kty=std::string,
+              Json=ock::binding::Json,
+              _Hasher=std::hash<std::string>,
+              _Keyeq=std::equal_to<std::string>,
+              _Alloc=std::allocator<std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>>
+          ]
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63):
+          未满足关联约束
+              E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xhash(1249,18):
+              未满足约束
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xhash(1238,25):
+      或    “std::_List_iterator<std::_List_val<std::_List_simple_types<_Ty>>> std::_Hash<std::_Umap_traits<_Kty,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<Json>>> (const jsoncons::jsonschema::compilation_context &,const Json &,const Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<Json>::anchor_uri_map_type &)>,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>::find(const _KeyTy &)”
+          with
+          [
+              _Ty=std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>,
+              _Kty=std::string,
+              Json=ock::binding::Json,
+              _Hasher=std::hash<std::string>,
+              _Keyeq=std::equal_to<std::string>,
+              _Alloc=std::allocator<std::pair<const std::string,std::function<std::unique_ptr<jsoncons::jsonschema::keyword_validator<ock::binding::Json>,std::default_delete<jsoncons::jsonschema::keyword_validator<ock::binding::Json>>> (const jsoncons::jsonschema::compilation_context &,const ock::binding::Json &,const ock::binding::Json &,jsoncons::jsonschema::draft202012::schema_builder_202012<ock::binding::Json>::anchor_uri_map_type &)>>>
+          ]
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63):
+          未满足关联约束
+              E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xhash(1237,18):
+              未满足约束
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\jsoncons-f0d3e80a95db\include\jsoncons_ext\jsonschema\draft202012\schema_builder_202012.hpp(415,63):
+      尝试匹配参数列表“(const std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char>>)”时
+  

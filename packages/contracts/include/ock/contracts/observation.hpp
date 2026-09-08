@@ -35,8 +35,32 @@ struct FactSummary {
   FactId fact;
   FactKind kind;
   Application application;
+  // 业务引用保持强类型；旧的纯列表摘要可以缺省，通知不得用 FactId 替代。
+  std::optional<std::variant<CommitId, EffectId, TransitionId, FactId>> reference;
   bool operator==(const FactSummary &) const = default;
 };
+inline FactSummary summarize_fact(const Fact &fact) {
+  return std::visit([](const auto &f) -> FactSummary {
+    using F = std::decay_t<decltype(f)>;
+    if constexpr (std::same_as<F, CommitFact>)
+      return {f.fact_id, FactKind::Commit, Application::Applied, f.commit};
+    else if constexpr (std::same_as<F, PublishedFact>)
+      return {f.fact_id, FactKind::Published, Application::Applied, f.commit};
+    else if constexpr (std::same_as<F, EffectFact>)
+      return {f.fact_id, FactKind::Effect, f.application, f.effect};
+    else if constexpr (std::same_as<F, LifecycleFact>)
+      return {f.fact_id, FactKind::Lifecycle, Application::Applied, f.transition};
+    else if constexpr (std::same_as<F, UnknownFact>)
+      return std::visit([&](const auto &ref) -> FactSummary {
+        return {f.fact_id, FactKind::Unknown, Application::NotApplied, ref};
+      }, f.reference);
+    else
+      return {f.fact_id, FactKind::Resolution,
+              f.determination == Determination::Applied ? Application::Applied
+                                                        : Application::NotApplied,
+              f.unknown_id};
+  }, fact);
+}
 struct ProgressSummary {
   std::uint64_t completed = 0, total = 0;
   ResultScope scope = ResultScope::ReadOnly;
@@ -74,6 +98,16 @@ inline Result<void> validate_summary(const SummaryInput &s) {
     if (f.fact.empty() || f.kind > FactKind::Resolution ||
         f.application > Application::PartiallyApplied)
       return reject(ContractsErrc::InvalidFact);
+    if (f.reference) {
+      const auto index = f.reference->index();
+      if (std::visit([](const auto &id) { return id.empty(); }, *f.reference) ||
+          ((f.kind == FactKind::Commit || f.kind == FactKind::Published) && index != 0) ||
+          (f.kind == FactKind::Effect && index != 1) ||
+          (f.kind == FactKind::Lifecycle && index != 2) ||
+          (f.kind == FactKind::Unknown && index > 1) ||
+          (f.kind == FactKind::Resolution && index != 3))
+        return reject(ContractsErrc::InvalidFact);
+    }
     for (std::size_t j = 0; j < i; ++j)
       if (s.facts[j].fact == f.fact)
         return reject(ContractsErrc::InvalidFact);

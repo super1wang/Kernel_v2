@@ -1,5 +1,8 @@
 # D1.06 NativeSubset SDK 表面合同
 
+B2 增量（2026-09-08）：当前开发 SDK 为 `0.1.0-dev.3 / B2Subset`，新增 Data、Dynamic、ControlProtocol、Control 可安装静态库；Runtime 目标自身仍为 NativeSubset，最小链接闭包不变。jsoncons 仅在 Data/Dynamic 的私有实现编译中使用，不安装后端头、不导出其 CMake target。下文 D1.06 来源/验收记录保留为历史，不重新宣称其包状态。B2 当前仍 InProgress，详见 progress。
+
+
 状态：**现行 NativeSubset SDK 合同，最终来源集中复核中**。本文件依据 v3.3 A19、A20、A21.4–A21.6、A22 和 D1.06，配合 [NativeHost 合同](native-host-api.md)与本包日志合同。只统一这次实现的 SDK 输入，不表示实现、测试、预算或审核已通过；Host/日志的签名、所有权、错误与停止语义仍以各自合同为准。
 
 ## 最初设计基线（历史）

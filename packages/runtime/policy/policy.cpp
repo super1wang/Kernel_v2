@@ -1046,6 +1046,20 @@ SessionAuthority::verify(const CallerDescription &d) {
         PolicyErrc::BudgetExceeded);
   }
 }
+const PolicyBudget& SessionAuthority::limits() const noexcept {return state_->value->session->hold.store->budget;}
+Result<SessionAuthority::CatalogStatus> SessionAuthority::inspect_catalog(
+    const VerifiedCaller& caller,const OperationSelector& operation,ObjectId target) const {
+  auto session=state_->value->session;
+  auto verified=Access::record(caller);
+  if(verified->session!=session)return failure<CatalogStatus>(PolicyErrc::InvalidAuthority);
+  auto store=session->hold.store;
+  std::lock_guard lock(store->mutex);
+  auto live=current(*session);if(!live)return make_unexpected(live.error());
+  const auto* grant=dynamic_cast<const Grant*>(verified->grant.get());
+  if(!grant || grant->generation!=session->generation)return failure<CatalogStatus>(PolicyErrc::InvalidAuthority);
+  bool visible=allowed(*session,AccessUse::Catalog,operation,target,session->principal);
+  return CatalogStatus{visible,visible && allowed(*session,AccessUse::Invoke,operation,target,session->principal)};
+}
 Result<void>
 SessionAuthority::restrict_delegation(const DelegationInput &input) {
   try {
@@ -2188,6 +2202,46 @@ Result<void> SendCoordinator::enqueue_response(
   } catch (const std::bad_alloc &) {
     return deny(PolicyErrc::BudgetExceeded);
   }
+}
+Result<PageBinding> ObservationAuthorization::resume(
+    const VerifiedCaller &caller, const ListRequest &request,
+    PageContinuationPort &verifier) {
+  auto session = state_->value->session;
+  auto s = session->hold.store;
+  if (Access::record(caller)->session != session || request.position ||
+      request.owner.principal_id.empty() ||
+      request.phases < PhaseSet::Nonterminal || request.phases > PhaseSet::All ||
+      !request.budget.page_size || request.budget.page_size > s->budget.page_size ||
+      !request.budget.scan_limit || request.budget.scan_limit > s->budget.scan_limit)
+    return failure<PageBinding>(PolicyErrc::InvalidInput);
+  auto check = caller.view().revalidate();
+  if (!check) return make_unexpected(check.error());
+  check = source_current(s);
+  if (!check) return make_unexpected(check.error());
+  std::optional<PageBinding> context;
+  {
+    std::lock_guard lock(s->mutex);
+    check = current(*session);
+    if (!check) return make_unexpected(check.error());
+    if (!owner_candidate(*session, AccessUse::ListSummary, request.owner))
+      return failure<PageBinding>(PolicyErrc::Denied);
+    auto deadline = expires(s->clock->now(), s->budget.page_ttl);
+    if (!deadline) return make_unexpected(deadline.error());
+    context = Access::page({identity<StoreId>(s->serial, 0), session->id,
+        session->generation, s->generation, request.owner, request.phases,
+        request.budget, s->source_id.host, s->source_id.restore, 0, 0,
+        (std::min)(*deadline, session->deadline)});
+  }
+  // 密码学/编码工作在政策锁外；并发权限变更由随后 list 的精确世代检查拒绝。
+  auto position = verifier.restore(context->value());
+  if (!position) return make_unexpected(position.error());
+  auto value = context->value();
+  if (position->host != value.host || !position->before_ordinal ||
+      position->before_ordinal > position->upper_ordinal)
+    return failure<PageBinding>(PolicyErrc::CursorInvalid);
+  value.upper_ordinal = position->upper_ordinal;
+  value.before_ordinal = position->before_ordinal;
+  return Access::page(std::move(value));
 }
 Result<AuthorizedPage>
 ObservationAuthorization::list(const VerifiedCaller &caller,

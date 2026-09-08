@@ -50,8 +50,8 @@ def main():
     run([*base,'-B',str(work/'consumer')])
     run(['cmake','--build',str(work/'consumer'),'--config',args.config,'--parallel'])
     output=run([str(work/'consumer'/args.config/'installed_metadata.exe')])
-    assert output.stdout.strip()==b'0.1.0-dev.2'
-    for component in ('Data','Observation'):
+    assert output.stdout.strip()==b'0.1.0-dev.3'
+    for component in ('Automation','Observation'):
         rejected=run([*base,'-B',str(work/component),f'-DREQUIRE_COMPONENT={component}'],False)
         assert b'is not implemented in the current SDK' in rejected.stderr
     print('installed metadata and missing-component contracts verified; artifacts:',work)

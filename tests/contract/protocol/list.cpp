@@ -1,0 +1,154 @@
+#include "tests/contract/authorization/fixtures.hpp"
+#include <fstream>
+#include <ock/control/list_method.hpp>
+using namespace ock;
+struct Clock final : control::CursorClock {
+  std::uint64_t elapsed = 0;
+  std::uint64_t utc_seconds() const noexcept override { return 1000 + elapsed; }
+  std::uint64_t monotonic_seconds() const noexcept override { return elapsed; }
+};
+struct Transport final : control::ObservationTransport {
+  struct Reservation final : runtime::policy::TransmissionReservation {
+    std::size_t n;
+    explicit Reservation(std::size_t size) : n(size) {}
+    std::size_t capacity() const noexcept override { return n; }
+  };
+  std::vector<std::vector<std::byte>> frames;
+  Result<void> queue_ack(std::span<const std::byte>) override {
+    throw std::logic_error("unexpected ack");
+  }
+  void close() noexcept override {}
+  Result<std::unique_ptr<runtime::policy::TransmissionReservation>>
+  reserve(std::size_t n) override {
+    return std::unique_ptr<runtime::policy::TransmissionReservation>(
+        std::make_unique<Reservation>(n));
+  }
+  runtime::policy::StartResult
+  start_now(const runtime::policy::PreparedTransmission &frame,
+            runtime::policy::TransmissionReservation &) noexcept override {
+    try {
+      frames.emplace_back(frame.bytes().begin(), frame.bytes().end());
+      return runtime::policy::StartResult::Started;
+    } catch (...) {
+      return runtime::policy::StartResult::Unknown;
+    }
+  }
+};
+int main(int argc, char **argv) try {
+  CHECK(argc == 3);
+  auto read = [](const char *path) {
+    std::ifstream f(path);
+    return std::string(std::istreambuf_iterator<char>(f), {});
+  };
+  binding::SchemaResources resources{
+      {"urn:ock:rpc:execution-list:1", read(argv[1])},
+      {"urn:ock:rpc:common:1", read(argv[2])}};
+  auto schema = binding::CompiledSchema::compile(
+      R"({"$schema":"https://json-schema.org/draft/2020-12/schema","$ref":"urn:ock:rpc:execution-list:1#/$defs/response"})",
+      resources);
+  CHECK(schema);
+  policy_test::Env env;
+  env.source->retention_scope = name("managed_active_and_retained_terminal");
+  auto clock = std::make_shared<Clock>();
+  auto codec = control::CursorCodec::create(
+      control::wire_text(env.source->source_id.host), clock);
+  CHECK(codec);
+  control::CursorContext context;
+  context.host = control::wire_text(env.source->source_id.host);
+  auto transport = std::make_shared<Transport>();
+  auto method = control::ListMethod::create(env.session, env.caller, transport,
+                                            *codec, context);
+  CHECK(method);
+  auto send = [&](std::string_view text) {
+    auto p = data::Payload::parse(text);
+    CHECK(p);
+    return (*method)->dispatch(*env.caller, "list", p->view());
+  };
+  auto first = send(R"({"page_size":1})");
+  CHECK(first && !*first && transport->frames.empty());
+  CHECK((*method)->pump() == runtime::policy::StartResult::Started);
+  control::FrameDecoder decoder;
+  auto frame = decoder.consume(transport->frames.back());
+  CHECK(frame && frame->message && schema->validate(frame->message->view()));
+  auto result = frame->message->view().at("result");
+  CHECK(result.at("items").size() == 1);
+  std::string token(*result.at("next_cursor").string());
+  auto request = [&](std::string_view cursor,
+                     std::string_view phase = "nonterminal") {
+    return "{\"page_size\":1,\"phase_set\":\"" + std::string(phase) +
+           "\",\"cursor\":\"" + std::string(cursor) + "\"}";
+  };
+  const auto scans = env.source->scans;
+  auto tampered = token;
+  tampered[8] = tampered[8] == 'A' ? 'B' : 'A';
+  CHECK(!send(request(tampered)));
+  CHECK(!send(request(token, "all")));
+  CHECK(env.source->scans == scans);
+  env.auth->identity.principal = policy_test::principal(2);
+  auto other_session = env.assembly.store->open(
+      {{std::byte{7}}},
+      {policy_test::rules(), env.auth->identity.deadline, false});
+  CHECK(other_session);
+  auto other_caller =
+      (*other_session)->verify({policy_test::principal(2), {}, {}});
+  CHECK(other_caller);
+  auto other_method = control::ListMethod::create(*other_session, *other_caller,
+                                                  std::make_shared<Transport>(),
+                                                  *codec, context);
+  CHECK(other_method);
+  auto other_input = data::Payload::parse(request(token));
+  CHECK(other_input);
+  CHECK(!(*other_method)
+             ->dispatch(**other_caller, "cross-caller", other_input->view()));
+  CHECK(env.source->scans == scans);
+  CHECK(send(request(token)));
+  CHECK((*method)->pump() == runtime::policy::StartResult::Started);
+  frame = decoder.consume(transport->frames.back());
+  CHECK(frame && schema->validate(frame->message->view()));
+  CHECK(frame->message->view().at("result").at("next_cursor").missing());
+  auto parameters = binding::CompiledSchema::compile(
+      R"({"$schema":"https://json-schema.org/draft/2020-12/schema","$ref":"urn:ock:rpc:execution-list:1#/$defs/request/properties/params"})",
+      resources);
+  CHECK(parameters);
+  control::Hello hello{"test.app", context.host, context.host};
+  hello.observation_backend = "mock";
+  auto router = control::Router::create(
+      hello, env.caller, {{"execution.list", *parameters, *method}});
+  CHECK(router);
+  auto greeting = data::Payload::parse(
+      R"({"jsonrpc":"2.0","id":"hello","method":"host.hello","params":{"api_version":"ock.control/1"}})");
+  CHECK(greeting && router->dispatch(greeting->view()));
+  auto bad_rpc =
+      data::Payload::parse("{\"jsonrpc\":\"2.0\",\"id\":\"bad-cursor\","
+                           "\"method\":\"execution.list\",\"params\":" +
+                           request(tampered) + "}");
+  CHECK(bad_rpc);
+  auto bad_reply = router->dispatch(bad_rpc->view());
+  CHECK(bad_reply);
+  auto bad_payload = data::Payload::parse(bad_reply->json);
+  CHECK(bad_payload && bad_payload->view().at("error").at("message").string() ==
+                           "CursorInvalid");
+  auto routed_request = data::Payload::parse(
+      R"({"jsonrpc":"2.0","id":"routed-list","method":"execution.list","params":{"page_size":1}})");
+  CHECK(routed_request);
+  auto routed = router->dispatch(routed_request->view());
+  CHECK(routed && routed->queued && routed->json.empty());
+  CHECK((*method)->pump() == runtime::policy::StartResult::Started);
+  clock->elapsed = 120;
+  CHECK(!send(request(token)));
+  CHECK(env.source->scans == scans + 2);
+  auto before = transport->frames.size();
+  CHECK(send(R"({"page_size":1})"));
+  auto policy = policy_test::configuration().principals[0];
+  policy.rules.clear();
+  CHECK(env.assembly.administration->replace_principal_policy(policy));
+  CHECK(!(*method)->pump());
+  CHECK(transport->frames.size() == before);
+  CHECK(control::CursorCodec::cursor_handles() == 0);
+  (*method)->disconnect();
+  std::cout << "List authorized frames, stateless continuation, tamper, "
+               "filter, TTL and revoke passed\n";
+} catch (const std::exception &e) {
+  std::cerr << e.what() << '\n';
+  return 1;
+}

@@ -1,0 +1,55 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b2-data-debug
+Test project J:/Code/Kernel_v2/build/b2-data-debug
+      Start  1: T04.data.values
+ 1/10 Test  #1: T04.data.values ..................   Passed    0.18 sec
+      Start  2: T04.data.duplicate
+ 2/10 Test  #2: T04.data.duplicate ...............   Passed    0.07 sec
+      Start  3: T04.data.invalid
+ 3/10 Test  #3: T04.data.invalid .................   Passed    0.07 sec
+      Start  4: T04.data.budgets
+ 4/10 Test  #4: T04.data.budgets .................***Failed    0.11 sec
+frame
+token
+depth
+nodes
+container
+text
+allocation minimum
+allocation boundary
+`main'::`2'::<lambda_1>::operator()
+`main'::`2'::<lambda_1>::<lambda_invoker_cdecl>
+terminate
+_CxxFrameHandler4
+_chkstk
+RtlInitializeExtendedContext
+RtlRaiseException
+RaiseException
+CxxThrowException
+ock::data::detail::Account::charge
+ock::data::detail::Alloc<std::_Container_proxy>::allocate
+std::_Container_base12::_Alloc_proxy<ock::data::detail::Alloc<std::_Container_proxy> >
+std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >
+jsoncons::key_value<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > >::key_value<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > ><jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > >
+std::_Construct_in_place<jsoncons::key_value<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > >,std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > >
+std::vector<jsoncons::key_value<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > >,ock::data::detail::Alloc<jsoncons::key_value<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > > > >::_Emplace_back_with_unused_capacity<std::basic_string<char,std::char_traits<char>,ock::data::detail::A
+std::vector<jsoncons::key_value<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > >,ock::data::detail::Alloc<jsoncons::key_value<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > > > >::_Emplace_one_at_back<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,j
+std::vector<jsoncons::key_value<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > >,ock::data::detail::Alloc<jsoncons::key_value<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> > > > >::emplace_back<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons:
+jsoncons::sorted_json_object<std::basic_string<char,std::char_traits<char>,ock::data::detail::Alloc<char> >,jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,std::vector>::uninitialized_init
+jsoncons::json_decoder<jsoncons::basic_json<char,jsoncons::sorted_policy,ock::data::detail::Alloc<char> >,ock::data::detail::Alloc<char> >::visit_end_object
+jsoncons::basic_json_visitor<char>::end_object
+ock::data::detail::BuilderState::visit_end_object
+jsoncons::basic_json_visitor<char>::end_object
+jsoncons::basic_json_parser<char,ock::data::detail::Alloc<char> >::end_object
+jsoncons::basic_json_parser<char,ock::data::detail::Alloc<char> >::parse_some_
+jsoncons::basic_json_parser<char,ock::data::detail::Alloc<char> >::parse_some
+jsoncons::basic_json_parser<char,ock::data::detail::Alloc<char> >::finish_parse
+jsoncons::basic_json_parser<char,ock::data::detail::Alloc<char> >::finish_parse
+ock::data::Payload::parse
+
+
+75% tests passed, 1 tests failed out of 4
+
+Total Test time (real) =   0.45 sec
+
+The following tests FAILED:
+	  4 - T04.data.budgets (Failed)

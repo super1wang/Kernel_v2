@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_native.py", line 236, in <module>
+    main()
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_native.py", line 143, in main
+    configure(source, positive, prefix)
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_native.py", line 108, in configure
+    return run('configure-'+build.name, args+list(extra), success, diagnostic)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_native.py", line 91, in run
+    raise ValueError('unexpected exit/diagnostic: '+label)
+ValueError: unexpected exit/diagnostic: configure-positive-build

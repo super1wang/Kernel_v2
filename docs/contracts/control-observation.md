@@ -23,6 +23,8 @@ filter 二选一：1–32个去重 ExecutionRef；或 owner=self/PrincipalRef。
 
 进度 data 为 `{completed,total,published:false}`，数字仍为64位字符串；phase 为 `{phase}`；fact 为 `{kind,reference,published}` 的最小摘要，StateCommitted 必须 published=true。完整 Args、Outcome、资产正文不进通知。list条目仅允许 ExecutionRef、operation、可公开owner/parent、phase、version、小进度/最多8项事实摘要；不加载大结果。Unknown/无权目标统一不可枚举存在性的NotAvailable；owner过滤、总数、cursor或退订均不提供隐式权限。
 
+B2 生产映射：`FactSummary.reference` 保留可选的强类型业务引用，`summarize_fact` 从事实结构提取，不能将 FactId 当成 CommitId/EffectId/TransitionId。PublishedFact→StateCommitted/CommitId/published=true，EffectFact→EffectResolved/EffectId/false，LifecycleFact→LifecycleResolved/TransitionId/false。单条有损提示最多携带一个可投影事实，多事实合并置 gap；没有业务引用、仅 Commit（尚未 Published）、Unknown/Resolution 且没有可投影事实时丢弃提示并记 gap，依赖 get/wait 获取完整事实，不伪造“效果已确定”。旧纯列表摘要可缺省 reference，不因此获得事实通知的编码资格。
+
 ## 建立、查询与寿命
 
 短注册屏障：验证当前权限和配额 → 安装pending-ack监听 → 先将成功响应加入连接发送序列 → 允许事件发送。屏障中变化可合并/丢弃，必须记gap；失败不留监听。确认响应丢失时客户端关闭连接释放未知订阅，再重新认证连接，不能无界重复subscribe。
@@ -44,6 +46,10 @@ sequence 在初步授权/过滤后、合并/丢弃前递增，不因隐藏全局
 慢读超过受控transport_timeout时关闭连接并清理。实际字节流已开始的大帧仍有队头阻塞，写调度优先控制应答并限制通知帧。可靠及时控制默认独立认证的观察与控制连接；不要求第二Host。D0显式模型close_slow表示期限已判定，不声称测过真实Named Pipe超时或公平调度。
 
 ## 列表与cursor
+
+B2 wire 错误映射：观察方法使用 JSON-RPC error，`-32010 / NotAvailable` 统一隐藏对象及无权对象，`-32011 / CursorInvalid`、`-32012 / CursorExpired` 区分续页校验失败，`-32013 / BudgetExceeded` 表示预算拒绝；结构/参数错误仍为 `-32600/-32602`。不把内部政策码直接暴露成可枚举对象存在性的差异。operation 方法的业务 Outcome 映射独立，不能套用观察错误抹去事实。
+
+生产续页由 Control codec 先校验签名和当前上下文，再经 Runtime `PageContinuationPort` 恢复本次调用的短寿命 PageBinding。该绑定不分配 cursor 句柄、不缓存或 pin 执行；Runtime `list` 仍核对主体、权限/委托世代、来源与逐条可见性，排队后发送前再次仲裁。Control 不能用恢复位置绕过政策扫描。
 
 顺序固定listing_ordinal降序，身份在当前host唯一递增不复用。第一页固定upper_ordinal；后续严格小于上一扫描position。新执行只出现在重开的列表；状态/权限每页重新判断，删除可消失，页间变化可能需重开列表才看到。consistency固定live_keyset，retention_scope固定managed_active_and_retained_terminal，不返回全局一致快照或精确总数。nonterminal包含Suspended/Finalizing等全部非Terminal阶段，短Invoke不列举。
 

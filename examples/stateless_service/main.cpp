@@ -88,8 +88,8 @@ struct StopGuard {
 int main() {
   using namespace native_service;
   try {
-    static_assert(ock::sdk::version == "0.1.0-dev.2");
-    static_assert(ock::sdk::runtime_available && ock::sdk::implementation_stage == "NativeSubset");
+    static_assert(ock::sdk::version == "0.1.0-dev.3");
+    static_assert(ock::sdk::runtime_available && ock::sdk::implementation_stage == "B2Subset");
     auto clock=std::make_shared<Clock>();
     auto auth=std::make_shared<Authentication>(clock->now()+std::chrono::hours(1));
     PolicyConfiguration config;
@@ -144,7 +144,7 @@ int main() {
     auto stopped=computing->invoke(Value{5},options);
     require(std::holds_alternative<Rejected>(stopped)&&entered==before);
     require(!runtime.open({{std::byte{7}}},{rules(),auth->deadline,false}));
-    std::cout << R"({"sdk":"0.1.0-dev.2","stage":"NativeSubset","checks":{"read":true,"compute":true,"invalid_input":true,"ready_gate":true,"shutdown":true}})" << '\n';
+    std::cout << "{\"sdk\":\"" << ock::sdk::version << "\",\"stage\":\"" << ock::sdk::implementation_stage << R"(","checks":{"read":true,"compute":true,"invalid_input":true,"ready_gate":true,"shutdown":true}})" << '\n';
     return 0;
   } catch(const std::exception& error) { std::cerr<<error.what()<<'\n';return 1; }
 }
