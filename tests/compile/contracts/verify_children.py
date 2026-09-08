@@ -28,14 +28,20 @@ NEGATIVE={
  'typed_binding_fingerprint':{'token_ctor':'auto forged=CppTypeToken(static_cast<const unsigned char*>(nullptr));','frozen_definition':'void test(DefinitionSnapshot& a,const DefinitionSnapshot& b){a=b;}','raw_handler':'void test(const BoundOperation<int,int>& b){b.handler();}','false_cpp_type':'auto rejected=make_compute_definition<Other,Other>(compute_handler,input(AtomicMode::PureCompute));'},
 }
 
+def check_native(row):
+    from fixture import good
+    if not good(row):
+        raise ValueError('native control failed')
+
+
 def main():
     parser=argparse.ArgumentParser()
-    for name in ('case','binary','includes','generator','platform','toolset','sdk','config','work','runtime-dir'):
-        parser.add_argument('--'+name,required=True)
+    from fixture import arguments
+    arguments(parser)
+    parser.add_argument('--case',required=True)
     a=parser.parse_args();runtime=Path(a.runtime_dir).resolve()
     if not (runtime/'cl.exe').is_file():raise ValueError('实际MSVC目录无效')
     os.environ['MSBUILDDISABLENODEREUSE']='1'
-    os.environ['PATH']=str(runtime)+os.pathsep+os.environ.get('PATH','')
     out=Path(a.work)/uuid.uuid4().hex;out.mkdir(parents=True,exist_ok=False);commands=[]
     def command(name,argv):
         stdout=out/(name+'-stdout.log');stderr=out/(name+'-stderr.log')
@@ -43,30 +49,26 @@ def main():
         row['raw']=[{'path':p.name,'sha256':sha_file(p),'size':p.stat().st_size} for p in (stdout,stderr)]
         commands.append(row);save_json(out/'commands.json',{'case':a.case,'commands':commands})
         return row,stdout.read_bytes()+stderr.read_bytes()
-    def good(row):return row['status']=='Exited' and row['exit_code']==0 and row['process_tree']['active_after']==0
-    row,_=command('native',[str(Path(a.binary).resolve()),a.case]);assert good(row)
+    from fixture import good
+    row,_=command('native',[str(Path(a.binary).resolve()),a.case]);check_native(row)
     if a.case=='T06.contracts.executor_reject_exception_cleanup':
         def aborted(row,raw):return row['status'] in ('Exited','Crashed') and row.get('observed_exit_code')==3 and row['process_tree']['active_after']==0 and not row['process_tree']['terminated_owned_job'] and b'contract noexcept requested' in raw and b'contract noexcept returned' not in raw
-        row,raw=command('return-control',[a.binary,'--noexcept-control']);assert good(row) and b'contract noexcept returned' in raw and not aborted(row,raw)
-        row,raw=command('noexcept-fault',[a.binary,'--noexcept-fault']);assert aborted(row,raw)
+        row,raw=command('return-control',[a.binary,'--noexcept-control'])
+        if not (good(row) and b'contract noexcept returned' in raw and not aborted(row,raw)):
+            raise ValueError('noexcept return control failed')
+        row,raw=command('noexcept-fault',[a.binary,'--noexcept-fault'])
+        if not aborted(row,raw): raise ValueError('noexcept fault control failed')
     else:
-        sources={'positive':'auto accepted=make_compute_definition(compute_handler,input(AtomicMode::PureCompute));',**NEGATIVE[a.case.split('.')[-1]]}
-        includes=[p for p in a.includes.split('|') if p]+[str(Path(__file__).parent)]
-        lines=['cmake_minimum_required(VERSION 3.25)','project(CoreContractRejection LANGUAGES CXX)','set(CMAKE_CXX_STANDARD 20)','set(CMAKE_CXX_STANDARD_REQUIRED ON)']
-        for name,body in sources.items():
-            (out/(name+'.cpp')).write_text('#include "test_support.hpp"\n'+body+'\n',encoding='utf-8',newline='\n')
-            lines+=['add_library('+name+' OBJECT EXCLUDE_FROM_ALL '+name+'.cpp)','target_compile_options('+name+' PRIVATE /EHsc /utf-8 /Zc:__cplusplus /permissive-)','target_include_directories('+name+' PRIVATE '+' '.join('[==['+p.replace('\\','/')+']==]' for p in includes)+')']
-        (out/'CMakeLists.txt').write_text('\n'.join(lines)+'\n',encoding='utf-8',newline='\n')
-        argv=['cmake','-S',str(out),'-B',str(out/'build'),'-G',a.generator,f'-DCMAKE_TOOLCHAIN_FILE={ROOT}/cmake/LockedMSVC.cmake','-DCMAKE_MSVC_DEBUG_INFORMATION_FORMAT=Embedded']
-        if a.platform:argv+=['-A',a.platform]
-        if a.toolset:argv+=['-T',a.toolset]
-        if a.sdk:argv+=['-DCMAKE_SYSTEM_VERSION='+a.sdk]
-        row,_=command('configure',argv);assert good(row)
-        row,_=command('positive',['cmake','--build',str(out/'build'),'--config',a.config,'--target','positive','--parallel','2','--','/nr:false']);assert good(row)
-        for name in sources:
-            if name=='positive':continue
-            row,raw=command(name,['cmake','--build',str(out/'build'),'--config',a.config,'--target',name,'--parallel','2','--','/nr:false'])
-            assert row['status']=='Exited' and row['exit_code']!=0 and row['process_tree']['active_after']==0
-            assert re.search(rb'error C(?:2248|2672|2664|2280|2039|3892|2440|2783|2784|7602)',raw),'必须是目标C++合同拒绝诊断'
+        from fixture import targets, build_target, check_execution, require_ready
+        ready = require_ready(a)
+        selected = [name for name, item in targets().items() if item['case'] == a.case.split('.')[-1]]
+        if not selected: raise ValueError('unknown compile wrapper')
+        observed = []
+        for name in selected:
+            build_target(a, name, command)
+            observed.append(name)
+        check_execution(selected, observed)
+        save_json(out/'fixture-use.json', {'run_id':a.run_id,'fixture':a.fixture,
+                  'identity_sha256':ready['identity_sha256'],'targets':observed})
     print(json.dumps({'case':a.case,'status':'Passed','evidence':str(out)},ensure_ascii=False))
 if __name__=='__main__':main()

@@ -23,6 +23,22 @@ string(SHA256 _contracts_factory_sha "${_contracts_factory_input}")
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/factory-inputs.json" "{\"inputs\":${_contracts_factory_json}],\"sha256\":\"${_contracts_factory_sha}\"}\n")
 target_compile_definitions(ock_contracts_tests PRIVATE OCK_TEST_FACTORY_SHA="${_contracts_factory_sha}")
 get_filename_component(_contracts_compiler_dir "${CMAKE_CXX_COMPILER}" DIRECTORY)
+# 读取实际父 target 的生效选项；每个配置独立身份，夹具不从配置名猜CRT/ASan。
+file(GENERATE OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/compile-profile-$<CONFIG>.txt" CONTENT
+"compiler=${CMAKE_CXX_COMPILER}
+compiler_version=${CMAKE_CXX_COMPILER_VERSION}
+cmake_version=${CMAKE_VERSION}
+generator=${CMAKE_GENERATOR}
+platform=${CMAKE_GENERATOR_PLATFORM}
+toolset=${CMAKE_GENERATOR_TOOLSET}
+sdk=${CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION}
+config=$<CONFIG>
+crt=$<TARGET_GENEX_EVAL:ock_contracts_tests,$<TARGET_PROPERTY:ock_contracts_tests,MSVC_RUNTIME_LIBRARY>>
+asan=${OCK_ENABLE_ASAN}
+options=$<JOIN:$<TARGET_PROPERTY:ock_contracts_tests,COMPILE_OPTIONS>,|>
+flags=${CMAKE_CXX_FLAGS}
+config_flags=$<$<CONFIG:Debug>:${CMAKE_CXX_FLAGS_DEBUG}>$<$<CONFIG:Release>:${CMAKE_CXX_FLAGS_RELEASE}>$<$<CONFIG:RelWithDebInfo>:${CMAKE_CXX_FLAGS_RELWITHDEBINFO}>$<$<CONFIG:MinSizeRel>:${CMAKE_CXX_FLAGS_MINSIZEREL}>
+" CONDITION "$<COMPILE_LANGUAGE:CXX>" TARGET ock_contracts_tests)
 add_custom_command(TARGET ock_contracts_tests POST_BUILD
   COMMAND "${Python3_EXECUTABLE}" -X utf8 "${CMAKE_CURRENT_SOURCE_DIR}/discover.py"
     --binary "$<TARGET_FILE:ock_contracts_tests>"
@@ -32,6 +48,7 @@ add_custom_command(TARGET ock_contracts_tests POST_BUILD
     --generator "${CMAKE_GENERATOR}" --platform "${CMAKE_GENERATOR_PLATFORM}"
     --toolset "${CMAKE_GENERATOR_TOOLSET}" --sdk "${CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION}"
     --config "$<CONFIG>" --work "${CMAKE_CURRENT_BINARY_DIR}/child-runs"
+    --profile "${CMAKE_CURRENT_BINARY_DIR}/compile-profile-$<CONFIG>.txt"
   VERBATIM)
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/contracts-tests.cmake" [=[
 if(NOT CTEST_CONFIGURATION_TYPE MATCHES "^(Debug|Release|RelWithDebInfo|MinSizeRel)$")

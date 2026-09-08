@@ -1,0 +1,127 @@
+{
+  "scope": "P0 CompileContracts开发支持验证；不代表D1.06包Passed",
+  "sources": [
+    {
+      "path": "tests/compile/contracts/CMakeLists.txt",
+      "sha256": "ff5f540b5ffbab5eb7417f3a2eebd5e8b27be1d218067e16a3af314fc9328644"
+    },
+    {
+      "path": "tests/compile/contracts/discover.py",
+      "sha256": "e5b94f92063d84f59fd3388ff81e5d5aa8b5a39a0da14d78aef2fe0c5b1e2098"
+    },
+    {
+      "path": "tests/compile/contracts/fixture.py",
+      "sha256": "243b292a785087afbd941bfe0a693a56c848d484dd07a00c9b4cd801eb32b96f"
+    },
+    {
+      "path": "tests/compile/contracts/verify_children.py",
+      "sha256": "99efc3f582c9e3805444fb3676aa819dbcd1fc3e1dc8e9f8d56cbaf6520e58b5"
+    },
+    {
+      "path": "tests/tools/compile/test_fixture.py",
+      "sha256": "69d5b8fd962ad3a7fba7e448d95fffa7a4062de04f19c24e88c76c5aebea57af"
+    },
+    {
+      "path": "tests/tools/compile/measure.py",
+      "sha256": "bc14bfcc1d6e7ef5e27606b58343f7af1c4cc50670c14cd2efa0f3e41c811c48"
+    },
+    {
+      "path": "tests/tools/compile/controls.py",
+      "sha256": "ec47bd123da871bac3e063f85dff8a4983ce5f4f80d6eb973fafe2007e9341f6"
+    }
+  ],
+  "debug": {
+    "path": "compile-ctest-a54cabb9c181",
+    "ctest_passed": 13,
+    "ctest_expected": 13,
+    "counts": {
+      "configure": 1,
+      "positive_builds": 10,
+      "negative_builds": 23,
+      "owned_commands": 47,
+      "all_drained": true,
+      "none_required_job_kill": true
+    }
+  },
+  "release": {
+    "path": "compile-risk-release-off-cca18e07b8",
+    "ctest_passed": 2,
+    "profile": {
+      "compiler": "E:/VS2019Qt5.15/3D/build/msvc-validation/67414627e4e76f7e/bin/cl.exe",
+      "compiler_version": "19.44.35228.0",
+      "cmake_version": "3.31.6-msvc6",
+      "generator": "Visual Studio 17 2022",
+      "platform": "x64",
+      "toolset": "v143,version=14.44.35207",
+      "sdk": "10.0.26100.0",
+      "config": "Release",
+      "crt": "MultiThreadedDLL",
+      "asan": "OFF",
+      "options": "/utf-8|/Zc:__cplusplus|/permissive-|/EHsc|/utf-8|/Zc:__cplusplus|/permissive-|/EHsc|/utf-8|/utf-8|/EHsc|/Zc:__cplusplus|/permissive-",
+      "flags": "/DWIN32 /D_WINDOWS /EHsc",
+      "config_flags": "/O2 /Ob2 /DNDEBUG"
+    }
+  },
+  "asan": {
+    "raw_path": "compile-risk-debug-on-aca361896c",
+    "verification_path": "compile-risk-debug-on-63a76f56a0",
+    "ctest_passed": 2,
+    "profile": {
+      "compiler": "E:/VS2019Qt5.15/3D/build/msvc-validation/67414627e4e76f7e/bin/cl.exe",
+      "compiler_version": "19.44.35228.0",
+      "cmake_version": "3.31.6-msvc6",
+      "generator": "Visual Studio 17 2022",
+      "platform": "x64",
+      "toolset": "v143,version=14.44.35207",
+      "sdk": "10.0.26100.0",
+      "config": "Debug",
+      "crt": "MultiThreadedDebugDLL",
+      "asan": "ON",
+      "options": "/fsanitize=address|/utf-8|/Zc:__cplusplus|/permissive-|/EHsc|/utf-8|/Zc:__cplusplus|/permissive-|/EHsc|/utf-8|/utf-8|/EHsc|/Zc:__cplusplus|/permissive-",
+      "flags": "/DWIN32 /D_WINDOWS /EHsc",
+      "config_flags": "/Ob0 /Od "
+    },
+    "reader_correction": "原XML读器误用EnableASAN，实际为EnableAsan；原测试2/2，后续只读核验不重跑编译。"
+  },
+  "controls": {
+    "path": "compile-controls-76275046d617",
+    "checks": {
+      "positive_recompiled_twice": true,
+      "actual_positive_failure_rejected": true,
+      "actual_toolchain_failure_not_contract_rejection": true,
+      "existing_run_not_reprepared": true,
+      "actual_prepare_failure_no_ready": true,
+      "failed_prepare_actual_old_object_cannot_pass": true
+    }
+  },
+  "comparison": {
+    "baseline": {
+      "path": "compile-baseline-ee5f1a463a23",
+      "elapsed_seconds": 58.20848790000309,
+      "configure": 2,
+      "positive_builds": 2,
+      "negative_builds": 3,
+      "owned_commands": 9,
+      "all_drained": true,
+      "none_required_job_kill": true
+    },
+    "fixture": {
+      "path": "compile-fixture-60c7d4cd0af4",
+      "elapsed_seconds": 65.68809720000718,
+      "configure": 1,
+      "positive_builds": 2,
+      "negative_builds": 3,
+      "owned_commands": 8,
+      "all_drained": true,
+      "none_required_job_kill": true
+    },
+    "wall_change_percent": 12.849688369939072,
+    "verdict": "配置次数减少已证实；最终单次墙钟更慢，稳定提速未证实。"
+  },
+  "limitations": [
+    "只做单次最终串行双包装性能对照，非全Profile统计或完整矩阵收益。",
+    "初次预览71.82→61.63秒，最终58.21→65.69秒，方向相反；不选择有利轮次。",
+    "没有修改历史expected、生产Host/Logging或包状态；独立AI结论由主任务维护。"
+  ],
+  "source_digest": "eb5fc3027ee9513b7a0b27e0f696b3119a037105eac636d5ff25d88ead241327"
+}

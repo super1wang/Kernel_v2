@@ -4,9 +4,9 @@
 
 ## 当前节点
 
-- **最新结论（2026-09-08）**：D1.01–D1.05 Passed；D1.05验收提交 `9cd8439` 已推送。D1.06 InProgress（仅前置核对与设计草稿，未实现/验收），G1 InProgress。
+- **最新结论（2026-09-08）**：D1.01–D1.05 Passed；D1.05验收提交 `9cd8439` 已推送。D1.06 InProgress（已完成前置核对，当前收口工具批次与行为设计，Host未实现/验收），G1 InProgress。
 - **后续策略已修订**：采用[提速方案v2](Kernel_v2_开发提速与Token精简决策方案_v2_2026-09-08.md)与[当前批次计划](plans/D1.06.md)：微批次、Debug最小影响集及风险专项、稳定后集中正式验收，SPEC/CODE共享必要上下文但结论独立。D1.05不重跑。
-- **待实施**：Compile Contracts夹具复用→dev-fast→AI导航→Evidence摘要；安装深度复用按实测热点决定。尚无工具改造或提速实测结果，不能把策略更新记为工具Passed。下列旧节点说明保留为历史背景，当前状态以本段及门禁/包表为准。
+- **工具批次实际结果**：Compile Contracts共享夹具Debug13项、Release/ASan各2项及六项真实控制通过；dev-fast/导航18项、Evidence摘要最终15项通过，独立审核见[当前索引](reviews/D1.06-index.md)。配置2→1，但最终对照58.21→65.69秒，墙钟提速未证实。安装深度复用暂缓，停止扩展基建优化并回到Host/Logging/NativeSubset主线。下列旧节点说明保留为历史背景，当前状态以本段及门禁/包表为准。
 
 - D0.01 已收到用户“批准”，包级状态 Passed；[批准记录](reviews/D0.01-approval.json) 绑定已审查提交。D0.02/D0.03 也已收到用户“继续”作为本轮验收批准；D0.04–D0.06已完成AI复核与自动验收，G0 Passed。
 - 当前分支：`work/d0-kernel-baseline`；远端：`https://github.com/super1wang/Kernel_v2.git`。用户已授权必要节点提交和推送。

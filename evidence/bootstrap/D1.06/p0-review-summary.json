@@ -1,0 +1,101 @@
+{
+  "format": "ock.tool-review-index/1",
+  "actor_type": "AI",
+  "scope": "D0.06工具支持D1.06；不改变包或门禁状态",
+  "spec": "Approved",
+  "code": "Approved",
+  "inputs": [
+    {
+      "path": "tests/compile/contracts/CMakeLists.txt",
+      "sha256": "ff5f540b5ffbab5eb7417f3a2eebd5e8b27be1d218067e16a3af314fc9328644"
+    },
+    {
+      "path": "tests/compile/contracts/discover.py",
+      "sha256": "e5b94f92063d84f59fd3388ff81e5d5aa8b5a39a0da14d78aef2fe0c5b1e2098"
+    },
+    {
+      "path": "tests/compile/contracts/fixture.py",
+      "sha256": "243b292a785087afbd941bfe0a693a56c848d484dd07a00c9b4cd801eb32b96f"
+    },
+    {
+      "path": "tests/compile/contracts/verify_children.py",
+      "sha256": "99efc3f582c9e3805444fb3676aa819dbcd1fc3e1dc8e9f8d56cbaf6520e58b5"
+    },
+    {
+      "path": "tests/tools/compile/test_fixture.py",
+      "sha256": "69d5b8fd962ad3a7fba7e448d95fffa7a4062de04f19c24e88c76c5aebea57af"
+    },
+    {
+      "path": "tests/tools/compile/measure.py",
+      "sha256": "bc14bfcc1d6e7ef5e27606b58343f7af1c4cc50670c14cd2efa0f3e41c811c48"
+    },
+    {
+      "path": "tests/tools/compile/controls.py",
+      "sha256": "ec47bd123da871bac3e063f85dff8a4983ce5f4f80d6eb973fafe2007e9341f6"
+    },
+    {
+      "path": "tools/dev/verify.py",
+      "sha256": "a21597bb92e65d21978f59f516880f3296f3c9eb3e687f54a8adf980c794cb9e"
+    },
+    {
+      "path": "tools/dev/current.py",
+      "sha256": "ee05f2457c3fbf3a80ff1133292bc51ca9a39e5df2e43d6bc2b8d7bfa501b24f"
+    },
+    {
+      "path": "tools/dev/README.md",
+      "sha256": "dec4a695bbf79dc792a7b33cc7a4d63f8390554411f054b8dd9069c7fa92af43"
+    },
+    {
+      "path": "tests/tools/dev/test_verify.py",
+      "sha256": "5f6f8acaf7010837578ec4e8f6557add37705c8f677b28057b98ca93d68ae5b6"
+    },
+    {
+      "path": "tests/tools/dev/test_current.py",
+      "sha256": "74dfa48192c0201a97b95a23d0950b82d252f07e539981f9173331bdebb9e944"
+    },
+    {
+      "path": "tests/manifests/d1.06-tools.expected.json",
+      "sha256": "fb6e6b27f9661ff6679e9381fc95b964cc4c64f6bf5b8837352e6577a5069784"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "e3783c2643d6deca546765ae8bcede905290f007e1608ebcaea01a6fde0d72f7"
+    },
+    {
+      "path": "tools/evidence/summary.py",
+      "sha256": "1a21ff50b78027f822e94649638c6d52a6dadd654440cf8109bb5ccf4f6b1161",
+      "size": 14270
+    },
+    {
+      "path": "tools/evidence/run.py",
+      "sha256": "2334bda9d13410cf09e1ac61e053290e45b54bac57635b3a537c9bb85ffcdc2b",
+      "size": 14558
+    },
+    {
+      "path": "schemas/evidence-summary-v1.schema.json",
+      "sha256": "67dd1d8066602d1dbeeb6e38e900a88200d62ca314c81b14851a76127cae4a44",
+      "size": 11238
+    },
+    {
+      "path": "tests/tools/evidence/test_summary.py",
+      "sha256": "b3ef55d6631a5442e9278eb7d12887c76e7bdf6e6ebf6449236ecb092cf89522",
+      "size": 11863
+    }
+  ],
+  "reviews": [
+    {
+      "path": "evidence/bootstrap/D1.06/p0-compile-review-final.md",
+      "sha256": "e9f6307045c68958b07e762e0a47b32fdfaa733d9381e3c64345959ecafdff6f"
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/p0-dev-final-review.md",
+      "sha256": "8377f0ebd0d2d4f38204879dde97d1036455f3978cc6c619cdfd46463a04f0c7"
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/p0-summary-independent-review.md",
+      "sha256": "0d108b9344304a02a707108231dbc41f7624144819e6c9a42f173cbab2bc36da"
+    }
+  ],
+  "performance": "重复configure减少；墙钟提速未证实",
+  "next": "停止工具扩展，继续D1.06内核设计与实现"
+}

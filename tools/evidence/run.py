@@ -211,6 +211,14 @@ def run(root, manifest_path):
     report['automated_status'] = 'Failed' if errors else 'Passed'
     report['package_status'] = 'Failed' if errors else package
     save_json(path, report)
+    # 快读摘要只是导航；生成失败不改写已完成的原报告及门禁结论。
+    try:
+        from tools.evidence.summary import write_summary
+        write_summary(path)
+    except (ValueError, ImportError, OSError) as error:
+        save_json(out / 'summary-error.json', {'format': 'ock.evidence-summary-error/1',
+                  'report': path.name, 'report_sha256': sha_file(path), 'error': str(error)})
+        print('summary generation failed: ' + str(error), file=sys.stderr, flush=True)
     print(f'{spec["task_id"]} {spec["profile"]}: {report["automated_status"]}; {path.relative_to(root).as_posix()}', flush=True)
     return path
 
@@ -218,7 +226,7 @@ def run(root, manifest_path):
 def main():
     parser = argparse.ArgumentParser(); parser.add_argument('manifest', type=Path)
     args = parser.parse_args(); path = run(ROOT, args.manifest.resolve())
-    return read_json(path)['automated_status'] != 'Passed'
+    return read_json(path)['automated_status'] != 'Passed' or (path.parent / 'summary-error.json').is_file()
 
 if __name__ == '__main__':
     sys.exit(main())

@@ -1,0 +1,522 @@
+{
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "ock.evidence-summary/1"
+    },
+    "purpose": {
+      "const": "navigation-only; full audit remains required"
+    },
+    "task_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "run_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "profile": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "report_claims": {
+      "type": "object",
+      "properties": {
+        "automated_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "package_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "automated_status",
+        "package_status"
+      ],
+      "additionalProperties": false
+    },
+    "duration_seconds": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "counts": {
+      "type": "object",
+      "properties": {
+        "expected": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "discovered": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "executed": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "rounds": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      },
+      "required": [
+        "expected",
+        "discovered",
+        "executed",
+        "rounds"
+      ],
+      "additionalProperties": false
+    },
+    "discovery": {
+      "type": "object",
+      "properties": {
+        "missing": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "unexpected": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "missing",
+        "unexpected"
+      ],
+      "additionalProperties": false
+    },
+    "rounds": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "round": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "executed": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "failed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "skipped": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "missing": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "unexpected": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "round",
+          "executed",
+          "failed",
+          "skipped",
+          "missing",
+          "unexpected"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "commands": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "started_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "finished_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "argv": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "exit_code": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "duration_seconds": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          }
+        },
+        "required": [
+          "id",
+          "role",
+          "status",
+          "started_at",
+          "finished_at",
+          "argv",
+          "exit_code",
+          "duration_seconds"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "failure_signals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_claims": {
+      "type": "object",
+      "properties": {
+        "source": {},
+        "manifest": {},
+        "requirements_manifest_sha256": {},
+        "collector": {}
+      },
+      "required": [
+        "source",
+        "manifest",
+        "requirements_manifest_sha256",
+        "collector"
+      ],
+      "additionalProperties": false
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "enum": [
+              "report",
+              "manifest",
+              "expected",
+              "discovered",
+              "source-archive",
+              "build-archive",
+              "runtime_archive",
+              "selftest_fixtures",
+              "review-archive",
+              "source-inputs",
+              "command-raw",
+              "junit"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "path",
+          "role",
+          "sha256",
+          "size"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 3
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "set_digests": {
+      "type": "object",
+      "properties": {
+        "expected": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "discovered": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "executed": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "expected",
+        "discovered",
+        "executed"
+      ],
+      "additionalProperties": false
+    },
+    "command_costs": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "const": "top-level-only"
+        },
+        "total": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "duration_seconds": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "by_role": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "count": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "duration_seconds": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              }
+            },
+            "required": [
+              "role",
+              "count",
+              "duration_seconds"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "configure": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "duration_seconds": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "count",
+            "duration_seconds"
+          ],
+          "additionalProperties": false
+        },
+        "build": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "duration_seconds": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "count",
+            "duration_seconds"
+          ],
+          "additionalProperties": false
+        },
+        "install": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "duration_seconds": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "count",
+            "duration_seconds"
+          ],
+          "additionalProperties": false
+        },
+        "nested_command_count": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "scope",
+        "total",
+        "duration_seconds",
+        "by_role",
+        "configure",
+        "build",
+        "install",
+        "nested_command_count"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "format",
+    "purpose",
+    "task_id",
+    "run_id",
+    "profile",
+    "report_claims",
+    "duration_seconds",
+    "counts",
+    "discovery",
+    "rounds",
+    "commands",
+    "failure_signals",
+    "source_claims",
+    "references",
+    "content_sha256",
+    "set_digests",
+    "command_costs"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ock:evidence-summary:1",
+  "title": "证据快读导航摘要；不产生验收结论"
+}
