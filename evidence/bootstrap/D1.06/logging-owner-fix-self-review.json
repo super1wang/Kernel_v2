@@ -1,0 +1,69 @@
+{
+  "scope": "Logging独立CODE意见两项修复增量；不是独立审核结论",
+  "source_digest": "eb4d620021221d3dba5fd9b81f771d415b7463f7047bad5911f8e17a363bb399",
+  "sources": [
+    {
+      "path": "packages/contracts/include/ock/contracts/logging.hpp",
+      "sha256": "efbaf36bbb24fbbc4edbe55a576e24b27ffef9a3b8f25dd30fbe043713a3b7a7"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/logging.hpp",
+      "sha256": "fea2a70741172afe7f2d6f690176de02976ab1be03aac2fab011395877aa320c"
+    },
+    {
+      "path": "packages/runtime/observability/logging.cpp",
+      "sha256": "a28ab62996a4360eb0907dff6cff65ead4b1ce5939b0f3ed7bd2bc3887c79067"
+    },
+    {
+      "path": "tests/conformance/logging/CMakeLists.txt",
+      "sha256": "e01d0d2a64bf3b4de9a368cfef3669630909a971b2b27be6c135e70757400f9b"
+    },
+    {
+      "path": "tests/conformance/logging/README.md",
+      "sha256": "2a88f1338eb651a66332bc0c0ecdc20ced1db93477de9b86dbf317266b623d1b"
+    },
+    {
+      "path": "tests/conformance/logging/cases.json",
+      "sha256": "748de72c00261d90278ebff40f746e0b000da953d9292a5519fe8617f5971e7a"
+    },
+    {
+      "path": "tests/conformance/logging/develop.py",
+      "sha256": "a6126d51911faec4a058e802781e92817693b1e8424210c06ff4a026af830959"
+    },
+    {
+      "path": "tests/conformance/logging/logging_tests.cpp",
+      "sha256": "c57d91df0b45823420cf9024a3edafb4f5a883af1d0a021791764851c2ce5350"
+    },
+    {
+      "path": "tests/conformance/logging/reference_backend.hpp",
+      "sha256": "85e6f421a6b3841a3533e482a720f55aa03ca5f44f31e41d2df5e503a2587ef0"
+    }
+  ],
+  "changed_from_initial_final": [
+    "packages/runtime/observability/logging.cpp",
+    "tests/conformance/logging/logging_tests.cpp"
+  ],
+  "red": "evidence/bootstrap/D1.06/logging-debug-153137881b23",
+  "green": "evidence/bootstrap/D1.06/logging-debug-07dbd6b738d9",
+  "executed": [
+    {
+      "name": "T22.logging.memory.error_isolation",
+      "status": "Passed"
+    },
+    {
+      "name": "T22.logging.memory.shutdown_callback_lifetime",
+      "status": "Passed"
+    },
+    {
+      "name": "T22.logging.test.error_isolation",
+      "status": "Passed"
+    },
+    {
+      "name": "T22.logging.test.shutdown_callback_lifetime",
+      "status": "Passed"
+    }
+  ],
+  "junit_sha256": "629a9218d79d277961e897d5c739a3e572fa3aa8a94fe58f318947e472a0cabb",
+  "commands_sha256": "63de1c30e4701c791113dfc6ed3dd2226742a0a51d747f83f6a676fa01e33d46",
+  "all_owned_exited_zero": true
+}

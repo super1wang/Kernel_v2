@@ -1,0 +1,267 @@
+{
+  "format": "ock.work-package-prerequisites/1",
+  "task_id": "D1.06",
+  "checked_at": "2026-09-08T01:15:32.035805+00:00",
+  "actor_type": "AI",
+  "reviewer": "独立AI review_foundations",
+  "head": "9cd8439a1fd9d95bb4062e04f3f6ab7bb4d781b9",
+  "status": "Passed",
+  "method": "先读progress及唯一执行计划D1.06前置；历史report使用audit(root=None)，逐字节核对归档与原实现Git blob；不将当前工作树用于历史源码重审。D0.06原InProgress不改写，以最终G0自动决定与重算结果确认放行。",
+  "normative_dependencies": {
+    "path": "docs/02_Execution_Plan_v3.3.md",
+    "sha256": "7daf3c8a7e68462a97cd593d2ab9a35c1888b720428c72bc9f915049050df511",
+    "section": "D1.06",
+    "required": [
+      "D1.05",
+      "D0.06"
+    ]
+  },
+  "review_policy": {
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80",
+    "actor_type": "AI",
+    "human_review_required": false
+  },
+  "prerequisites": [
+    {
+      "task_id": "D1.05",
+      "status": "Passed",
+      "gate": {
+        "path": "evidence/D1.05/current-20260908T010205Z/gate-summary.json",
+        "sha256": "aa92551ba75d71463ffe1bc7a95b5fb755b3f630298fd44e11eeb7c041613c0f"
+      },
+      "runs": [
+        {
+          "profile": "win-msvc-debug",
+          "path": "evidence/a8049df35d74-028ca1c8afab/win-msvc-debug/D1.05/20260907T235925Z-a07bf46d5760/report.json",
+          "sha256": "cd162ff112b27110569381db14bc223748df0ba3b613831c9302afa85cd2acf1",
+          "original_automated_status": "Passed",
+          "original_package_status": "Passed",
+          "historical_audit_status": "Passed",
+          "historical_audit_errors": [],
+          "ctest_passed": 283,
+          "checks_passed": 3,
+          "source_archive_sha256": "0cc7e4ac1c4b6dd93b5649dcb87ce5a4f79e840d8e4770278af26ec8b1d35caa",
+          "reviews": [
+            {
+              "path": "docs/reviews/D1.05-spec.json",
+              "sha256": "cfa929876813854255207650c17d57c55c7cea3d40864d6b40a0a00821758d15",
+              "review_kind": "spec",
+              "review_status": "Approved",
+              "actor_type": "AI",
+              "reviewed_inputs_sha256": "028ca1c8afab6dfb2b5c3c6758ce4b71f13311957cc78bdc2463e6993a265560"
+            },
+            {
+              "path": "docs/reviews/D1.05-code.json",
+              "sha256": "157ad758c2b3dc7aaf834ec5f2fe48bd9e3108da2d92a74a68121c265a65a14a",
+              "review_kind": "code",
+              "review_status": "Approved",
+              "actor_type": "AI",
+              "reviewed_inputs_sha256": "028ca1c8afab6dfb2b5c3c6758ce4b71f13311957cc78bdc2463e6993a265560"
+            }
+          ]
+        },
+        {
+          "profile": "win-msvc-release",
+          "path": "evidence/a8049df35d74-028ca1c8afab/win-msvc-release/D1.05/20260908T001937Z-799b5f40252d/report.json",
+          "sha256": "e70a92bc34d039e8e85eb75b3d63680406dc4c2bfead934106c9310a2baa7ab4",
+          "original_automated_status": "Passed",
+          "original_package_status": "Passed",
+          "historical_audit_status": "Passed",
+          "historical_audit_errors": [],
+          "ctest_passed": 283,
+          "checks_passed": 3,
+          "source_archive_sha256": "0cc7e4ac1c4b6dd93b5649dcb87ce5a4f79e840d8e4770278af26ec8b1d35caa",
+          "reviews": [
+            {
+              "path": "docs/reviews/D1.05-spec.json",
+              "sha256": "cfa929876813854255207650c17d57c55c7cea3d40864d6b40a0a00821758d15",
+              "review_kind": "spec",
+              "review_status": "Approved",
+              "actor_type": "AI",
+              "reviewed_inputs_sha256": "028ca1c8afab6dfb2b5c3c6758ce4b71f13311957cc78bdc2463e6993a265560"
+            },
+            {
+              "path": "docs/reviews/D1.05-code.json",
+              "sha256": "157ad758c2b3dc7aaf834ec5f2fe48bd9e3108da2d92a74a68121c265a65a14a",
+              "review_kind": "code",
+              "review_status": "Approved",
+              "actor_type": "AI",
+              "reviewed_inputs_sha256": "028ca1c8afab6dfb2b5c3c6758ce4b71f13311957cc78bdc2463e6993a265560"
+            }
+          ]
+        },
+        {
+          "profile": "win-msvc-asan",
+          "path": "evidence/a8049df35d74-028ca1c8afab/win-msvc-asan/D1.05/20260908T004118Z-0cdd375d90c8/report.json",
+          "sha256": "8cc0d7e5ec2f3ebbc4b00bc57df033d475e39e6c780be353a10a61a95c01f9e0",
+          "original_automated_status": "Passed",
+          "original_package_status": "Passed",
+          "historical_audit_status": "Passed",
+          "historical_audit_errors": [],
+          "ctest_passed": 285,
+          "checks_passed": 3,
+          "source_archive_sha256": "0cc7e4ac1c4b6dd93b5649dcb87ce5a4f79e840d8e4770278af26ec8b1d35caa",
+          "reviews": [
+            {
+              "path": "docs/reviews/D1.05-spec.json",
+              "sha256": "cfa929876813854255207650c17d57c55c7cea3d40864d6b40a0a00821758d15",
+              "review_kind": "spec",
+              "review_status": "Approved",
+              "actor_type": "AI",
+              "reviewed_inputs_sha256": "028ca1c8afab6dfb2b5c3c6758ce4b71f13311957cc78bdc2463e6993a265560"
+            },
+            {
+              "path": "docs/reviews/D1.05-code.json",
+              "sha256": "157ad758c2b3dc7aaf834ec5f2fe48bd9e3108da2d92a74a68121c265a65a14a",
+              "review_kind": "code",
+              "review_status": "Approved",
+              "actor_type": "AI",
+              "reviewed_inputs_sha256": "028ca1c8afab6dfb2b5c3c6758ce4b71f13311957cc78bdc2463e6993a265560"
+            }
+          ]
+        }
+      ],
+      "source": {
+        "commit": "a8049df35d7428e79d89df9b0f2f223fa7002bda",
+        "inputs_sha256": "028ca1c8afab6dfb2b5c3c6758ce4b71f13311957cc78bdc2463e6993a265560",
+        "source_count": 255,
+        "git_blob_matches": true
+      },
+      "total_ctest_passed": 851,
+      "total_checks_passed": 9,
+      "independent_machine_audit": {
+        "path": "evidence/bootstrap/D1.06/prerequisites-independent-20260908-6826/d1.05-historical-audit.json",
+        "sha256": "0558b44d0b30ab002c58a6edeee3ed9c9c796fbc31313350ea5f0b7421675623"
+      },
+      "final_ai_review": {
+        "path": "evidence/D1.05/final-acceptance-review.md",
+        "sha256": "dd5374856dce03ff1981b2d8ed91f0659ba6e938a09a34f5ae351300e471e72e",
+        "status": "Approved"
+      }
+    },
+    {
+      "task_id": "D0.06",
+      "status": "Passed",
+      "gate": {
+        "path": "evidence/G0/automatic-20260907T080144Z/gate-summary.json",
+        "sha256": "4533863fcc11319773549be34be1e97cae9ebb38042c2248e6bf6e5a960daf68"
+      },
+      "runs": [
+        {
+          "profile": "win-msvc-debug",
+          "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-debug/D0.06/20260907T065329Z-a2b072eceb5c/report.json",
+          "sha256": "fe59f26a5a117c430b19bb818bcb038cfe844bd8536e7b2a131801132b742469",
+          "original_automated_status": "Passed",
+          "original_package_status": "InProgress",
+          "historical_audit_status": "InProgress",
+          "historical_audit_errors": [],
+          "final_ai_acceptance": "Passed",
+          "ctest_passed": 70,
+          "checks_passed": 3,
+          "source_archive_sha256": "03d8599d3e017375c0e7e04dd6a9fe4edf4097068b6d6fa29a56904794e8fa12",
+          "reviews": [
+            {
+              "path": "docs/reviews/D0.06-spec-g0.json",
+              "sha256": "6900b37e4ab42688ab80db69f377204cf9a4f11e51483f5d4054438b5cfb115e",
+              "review_kind": "spec",
+              "review_status": "Approved",
+              "actor_type": "AI",
+              "reviewed_inputs_sha256": "63230d872612046ee7eec0ad30a9806926d8c9118253993b7b6103298d02d84b"
+            },
+            {
+              "path": "docs/reviews/D0.06-code-g0.json",
+              "sha256": "170f1a564ef18de924be1348f43905a020a88d1c8c326754ed585da497246f2a",
+              "review_kind": "code",
+              "review_status": "Approved",
+              "actor_type": "AI",
+              "reviewed_inputs_sha256": "63230d872612046ee7eec0ad30a9806926d8c9118253993b7b6103298d02d84b"
+            }
+          ]
+        },
+        {
+          "profile": "win-msvc-asan",
+          "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-asan/D0.06/20260907T070324Z-8d7fbd7796cf/report.json",
+          "sha256": "f4003bab63883041ea09bd9a14bf25c5d5fa4993113a9d9f0406c49465621cd4",
+          "original_automated_status": "Passed",
+          "original_package_status": "InProgress",
+          "historical_audit_status": "InProgress",
+          "historical_audit_errors": [],
+          "final_ai_acceptance": "Passed",
+          "ctest_passed": 63,
+          "checks_passed": 3,
+          "source_archive_sha256": "03d8599d3e017375c0e7e04dd6a9fe4edf4097068b6d6fa29a56904794e8fa12",
+          "reviews": [
+            {
+              "path": "docs/reviews/D0.06-spec-g0.json",
+              "sha256": "6900b37e4ab42688ab80db69f377204cf9a4f11e51483f5d4054438b5cfb115e",
+              "review_kind": "spec",
+              "review_status": "Approved",
+              "actor_type": "AI",
+              "reviewed_inputs_sha256": "63230d872612046ee7eec0ad30a9806926d8c9118253993b7b6103298d02d84b"
+            },
+            {
+              "path": "docs/reviews/D0.06-code-g0.json",
+              "sha256": "170f1a564ef18de924be1348f43905a020a88d1c8c326754ed585da497246f2a",
+              "review_kind": "code",
+              "review_status": "Approved",
+              "actor_type": "AI",
+              "reviewed_inputs_sha256": "63230d872612046ee7eec0ad30a9806926d8c9118253993b7b6103298d02d84b"
+            }
+          ]
+        },
+        {
+          "profile": "win-msvc-release",
+          "path": "evidence/194dcdfeeac5-63230d872612/win-msvc-release/D0.06/20260907T070641Z-3ff26cf00bd5/report.json",
+          "sha256": "a61f9d5e558e9d3dd500521c436535a4bfdc4fc97d6a7b779db92de8d0e26e3e",
+          "original_automated_status": "Passed",
+          "original_package_status": "InProgress",
+          "historical_audit_status": "InProgress",
+          "historical_audit_errors": [],
+          "final_ai_acceptance": "Passed",
+          "ctest_passed": 70,
+          "checks_passed": 3,
+          "source_archive_sha256": "03d8599d3e017375c0e7e04dd6a9fe4edf4097068b6d6fa29a56904794e8fa12",
+          "reviews": [
+            {
+              "path": "docs/reviews/D0.06-spec-g0.json",
+              "sha256": "6900b37e4ab42688ab80db69f377204cf9a4f11e51483f5d4054438b5cfb115e",
+              "review_kind": "spec",
+              "review_status": "Approved",
+              "actor_type": "AI",
+              "reviewed_inputs_sha256": "63230d872612046ee7eec0ad30a9806926d8c9118253993b7b6103298d02d84b"
+            },
+            {
+              "path": "docs/reviews/D0.06-code-g0.json",
+              "sha256": "170f1a564ef18de924be1348f43905a020a88d1c8c326754ed585da497246f2a",
+              "review_kind": "code",
+              "review_status": "Approved",
+              "actor_type": "AI",
+              "reviewed_inputs_sha256": "63230d872612046ee7eec0ad30a9806926d8c9118253993b7b6103298d02d84b"
+            }
+          ]
+        }
+      ],
+      "source": {
+        "commit": "194dcdfeeac55cf7088b8fce8bdb65184e40fd95",
+        "inputs_sha256": "63230d872612046ee7eec0ad30a9806926d8c9118253993b7b6103298d02d84b",
+        "source_count": 142,
+        "git_blob_matches": true
+      },
+      "total_ctest_passed": 203,
+      "total_checks_passed": 9,
+      "independent_machine_audit": {
+        "path": "evidence/bootstrap/D1.06/prerequisites-independent-20260908-6826/d0.06-historical-audit.json",
+        "sha256": "1feac2a2a292d119f3543dea6cbfa53b3aa95056a717c30a7ba6a20081f2b657"
+      },
+      "acceptance_basis": "三份原始自动结果Passed；原包级与历史audit状态保持InProgress。最终G0 AI自动验收Passed；本轮按原固定矩阵重算其全部九报告、政策/原review、决定输入和历史Git来源，通过后确认D0.06前置Passed。",
+      "final_decision_recheck": {
+        "path": "evidence/bootstrap/D1.06/prerequisites-independent-20260908-6826/g0-historical-decision-recheck.json",
+        "sha256": "590362c8978bd520e2e2653f69f52c2fe5df239025f81867f7b998bbcc9bc390"
+      }
+    }
+  ],
+  "scope": "仅确认D1.06全部前置实际Passed；未批准D1.06设计、API、固定预期、预算、实现或G1。",
+  "remaining_prerequisite_gaps": [],
+  "history_preservation": "所有原始report、历史InProgress字段、失败轮次及旧验收记录保持原字节；仅新增本记录与独立机器核对材料。"
+}

@@ -1,0 +1,104 @@
+{
+  "scope": "Logging supplement implementation self-review; not independent approval",
+  "source_digest_algorithm": "SHA256(sorted(path+TAB+sha256+LF))",
+  "source_digest": "c2210fef93a5185f1f48e8929a16772ae6bd08f803950bf206343f099bb90a67",
+  "sources": [
+    {
+      "path": "packages/contracts/include/ock/contracts/logging.hpp",
+      "sha256": "efbaf36bbb24fbbc4edbe55a576e24b27ffef9a3b8f25dd30fbe043713a3b7a7"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/logging.hpp",
+      "sha256": "fea2a70741172afe7f2d6f690176de02976ab1be03aac2fab011395877aa320c"
+    },
+    {
+      "path": "packages/runtime/observability/logging.cpp",
+      "sha256": "a28ab62996a4360eb0907dff6cff65ead4b1ce5939b0f3ed7bd2bc3887c79067"
+    },
+    {
+      "path": "tests/conformance/logging/CMakeLists.txt",
+      "sha256": "4b547f8af56efdfcbb23ba34edd0bffd59f761b26b3f85c597b4a9bd73206f00"
+    },
+    {
+      "path": "tests/conformance/logging/README.md",
+      "sha256": "e8a44faa10476ed56a23d6eb47e300e5d22f73f80b81a3777faf91fadac5e175"
+    },
+    {
+      "path": "tests/conformance/logging/cases.json",
+      "sha256": "c10c1cae79dcc1df12cd77d03ae23c28179226c1b835e714d7ce22c25407d1e4"
+    },
+    {
+      "path": "tests/conformance/logging/develop.py",
+      "sha256": "294a4a1de6c15c38d5a799867ac5fad3eb0f0014317ab28cdaddbae27366c520"
+    },
+    {
+      "path": "tests/conformance/logging/logging_tests.cpp",
+      "sha256": "e54b6bffd79ad9179f0b6c57535d822ecc45d07138c0ca130244637bf0b75a8b"
+    },
+    {
+      "path": "tests/conformance/logging/reference_backend.hpp",
+      "sha256": "680599c5b09d6d9dbe7d635168728f7a6439b22c23cd75a11ded9bb359d9797b"
+    },
+    {
+      "path": "tests/conformance/logging/supplemental_cases.hpp",
+      "sha256": "724cc116f15e66eb42db7d7ab5386782e8a82a9ebce8c47e02d51a32939d7361"
+    },
+    {
+      "path": "tests/contract/native/allocation_probe.cpp",
+      "sha256": "92343e81324bc4cf3895b89160f6b3768ac97387edcf0a1251dea51de5f1f448"
+    },
+    {
+      "path": "tests/contract/native/allocation_probe.hpp",
+      "sha256": "69cada784e0d8646d0e1fc42577ef083ef4b20a269b71bc8bce5c8e314d872ac"
+    }
+  ],
+  "post_run_nonbehavior_metadata": [
+    {
+      "path": "tests/conformance/logging/README.md",
+      "tested_sha256": "2a88f1338eb651a66332bc0c0ecdc20ced1db93477de9b86dbf317266b623d1b",
+      "current_sha256": "e8a44faa10476ed56a23d6eb47e300e5d22f73f80b81a3777faf91fadac5e175",
+      "scope": "documentation/coverage metadata only; not read by C++ or discovery"
+    },
+    {
+      "path": "tests/conformance/logging/cases.json",
+      "tested_sha256": "748de72c00261d90278ebff40f746e0b000da953d9292a5519fe8617f5971e7a",
+      "current_sha256": "c10c1cae79dcc1df12cd77d03ae23c28179226c1b835e714d7ce22c25407d1e4",
+      "scope": "documentation/coverage metadata only; not read by C++ or discovery"
+    }
+  ],
+  "red": "evidence/bootstrap/D1.06/logging-debug-31f4d8578d6c",
+  "green": "evidence/bootstrap/D1.06/logging-debug-a38cae37b3cc",
+  "executed": [
+    {
+      "name": "T22.logging.memory.accept_reject_drop_accounting",
+      "status": "Passed"
+    },
+    {
+      "name": "T22.logging.memory.format_redaction",
+      "status": "Passed"
+    },
+    {
+      "name": "T22.logging.test.accept_reject_drop_accounting",
+      "status": "Passed"
+    },
+    {
+      "name": "T22.logging.test.format_redaction",
+      "status": "Passed"
+    },
+    {
+      "name": "T19.logging.memory_pages",
+      "status": "Passed"
+    },
+    {
+      "name": "T23.logging.fixed_write_allocation",
+      "status": "Passed"
+    }
+  ],
+  "allocation_report_sha256": "24c9e3a54eb6cd5762fd879eb1e11775843aee94995d5f9552b8bd0c26fcc4d3",
+  "junit_sha256": "da64565d01329ba299cefd3baa837554ca6562e1a6f1d37facccfbba1cf08590",
+  "commands_sha256": "7c8a24d876ff8e0f68b17d61ae58cffb3a625e985621f2b81a5b84b86f2aaba9",
+  "configuration": "Debug only",
+  "per_backend_fixed_accepted_windows": 40,
+  "per_backend_sustained_full_windows": 40,
+  "all_owned_exited_zero": true
+}

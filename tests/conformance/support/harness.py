@@ -3,6 +3,7 @@ import hashlib
 import inspect
 from pathlib import Path
 from .fixtures import MockExecutor, DuplicateCallbackExecutor, ContractError
+from .identity import descriptor_errors
 
 CONTRACT_VERSION = 'ock.executor.bootstrap/1'
 COMMON_CASES = (
@@ -76,17 +77,8 @@ def run_contract(factory, manifest, required_capabilities=()):
         result['errors'].append('descriptor cannot override or waive common cases')
         return result
     actual = descriptor_for(factory, manifest['name'], manifest['kind'])
-    for key in ('factory', 'implementation_sha256', 'port_contract_version'):
-        if manifest[key] != actual[key]:
-            result['errors'].append(key + ' mismatch')
     caps = manifest['capabilities']
-    if set(caps) != {'inline', 'parallel'} or any(type(v) is not bool for v in caps.values()):
-        result['errors'].append('capability descriptor incomplete')
-    if manifest['kind'] not in ('mock', 'fault'):
-        result['errors'].append('unsupported fixture kind')
-    for capability in required_capabilities:
-        if caps.get(capability) is not True:
-            result['errors'].append('profile requires capability: ' + capability)
+    result['errors'].extend(descriptor_errors(manifest, actual, {'inline', 'parallel'}, ('mock', 'fault'), required_capabilities))
     if result['errors']:
         return result
     for case in COMMON_CASES:

@@ -20,6 +20,8 @@ NEGATIVE={
  'cold_docs_separation':{}
 }
 def main():
+ if not __debug__:
+     raise RuntimeError("optimized_python_not_supported")
  p=argparse.ArgumentParser()
  for n in ('case','binary','includes','generator','platform','toolset','sdk','config','work','runtime-dir','root-build','target-metadata'):p.add_argument('--'+n,required=True)
  a=p.parse_args();runtime=Path(a.runtime_dir);assert (runtime/'cl.exe').is_file()
@@ -28,29 +30,29 @@ def main():
  def command(n,argv):
   stdout=out/(n+'-stdout.log');stderr=out/(n+'-stderr.log');row=execute(argv,ROOT,stdout,stderr,240)
   row['raw']=[{'path':x.name,'sha256':sha_file(x),'size':x.stat().st_size} for x in (stdout,stderr)];commands.append(row);save_json(out/'commands.json',{'case':a.case,'commands':commands});return row,stdout.read_bytes()+stderr.read_bytes()
- def good(r):return r['status']=='Exited' and r['exit_code']==0 and r['process_tree']['active_after']==0
+ def good(r):return r['status']=='Exited' and r['exit_code']==0 and r['process_tree']['active_after']==0 and r['process_tree']['assigned_before_resume'] and not r['process_tree']['terminated_owned_job']
  r,_=command('native',[a.binary,a.case]);assert good(r)
- short=a.case.split('.')[-1];header=(ROOT/'packages/runtime/registry/registry.hpp').read_text(encoding='utf-8-sig')
+ short=a.case.split('.')[-1];header=(ROOT/'packages/runtime/include/ock/runtime/registry.hpp').read_text(encoding='utf-8-sig')
  checks={}
  if short=='cold_docs_separation':
   hot=header.split('struct HotEntry final {',1)[1].split('\n};',1)[0]
   assert not any(x in hot for x in ('Docs','docs','DefinitionSnapshot','Catalog','Name','string'))
   assert 'std::vector<detail::HotEntry> hot_' in header and 'std::vector<std::shared_ptr<const DefinitionSnapshot>> cold_' in header
-  checks={'hot_structure':hot,'header_sha256':sha_file(ROOT/'packages/runtime/registry/registry.hpp')}
+  checks={'hot_structure':hot,'header_sha256':sha_file(ROOT/'packages/runtime/include/ock/runtime/registry.hpp')}
  if short=='internal_component_boundary':
   cmake=(ROOT/'tests/contract/registration/CMakeLists.txt').read_text()
   assert not re.search(r'install\s*\(',cmake)
-  target=json.loads(Path(a.target_metadata).read_text());assert target['link_libraries']=='OCK::CoreContracts';assert target['core_contracts_links']=='OCK::Foundation'
+  target=json.loads(Path(a.target_metadata).read_text());assert target['link_libraries']=='OCK::CoreContracts|bcrypt';assert target['core_contracts_links']=='OCK::Foundation'
   save_json(out/'target-metadata.json',target)
   prefix=out/'install';r,_=command('install',['cmake','--install',a.root_build,'--config',a.config,'--prefix',str(prefix)]);assert good(r)
-  assert not (prefix/'include/ock/runtime/registry.hpp').exists()
-  for component in ('CoreContracts','Runtime'):
+  assert (prefix/'include/ock/runtime/registry.hpp').is_file()
+  for component in ('CoreContracts','Runtime','Data'):
    source=out/component;source.mkdir();lines=['cmake_minimum_required(VERSION 3.25)','project(InstalledRegistryBoundary LANGUAGES NONE)',f'find_package(OCK 0.1.0 CONFIG REQUIRED COMPONENTS {component})']
-   if component=='CoreContracts':lines+=['if(OCK_RUNTIME_AVAILABLE)','message(FATAL_ERROR "Runtime unexpectedly available")','endif()']
+   if component in ('CoreContracts','Runtime'):lines+=['if(NOT OCK_RUNTIME_AVAILABLE OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL NativeSubset)','message(FATAL_ERROR "NativeSubset metadata missing")','endif()']
    (source/'CMakeLists.txt').write_text('\n'.join(lines)+'\n')
    r,raw=command('installed-'+component,['cmake','-S',str(source),'-B',str(source/'build'),f'-DOCK_DIR={prefix}/lib/cmake/OCK'])
-   if component=='CoreContracts':assert good(r)
-   else:assert r['status']=='Exited' and r['exit_code']!=0 and r['process_tree']['active_after']==0 and b'OCK component Runtime is not implemented in the current SDK' in raw
+   if component in ('CoreContracts','Runtime'):assert good(r)
+   else:assert r['status']=='Exited' and r['exit_code']!=0 and r['process_tree']['active_after']==0 and b'OCK component Data is not implemented in the current SDK' in raw
   checks={'registry_cmake_sha256':sha_file(ROOT/'tests/contract/registration/CMakeLists.txt'),'actual_target':target,'installed_config_sha256':sha_file(prefix/'lib/cmake/OCK/OCKConfig.cmake')}
  save_json(out/'structure.json',checks)
  if short in ('cold_docs_separation','internal_component_boundary'):print(json.dumps({'case':a.case,'status':'Passed','evidence':str(out)}));return

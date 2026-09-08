@@ -1,0 +1,45 @@
+{
+  "scope": "Host开发代码复核，非包验收，故障补充exe待实现",
+  "files": [
+    {
+      "path": "packages/runtime/host/host.cpp",
+      "sha256": "ddc0996b9fc95dbe46c4c46654e119e9442844f973d18acbf70aa6de841ab74c",
+      "matches_stage": true
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/host.hpp",
+      "sha256": "6c53eddaa6ad8a343c6d06b113374afe3795337aadaea853f3851d80dac9a279",
+      "matches_stage": true
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/detail/host.hpp",
+      "sha256": "4c8ad948aa390d42e9284e749ed7d71e3d0df2ae6896d2062a243a514e50e7d6",
+      "matches_stage": true
+    },
+    {
+      "path": "tests/contract/host/host_tests.cpp",
+      "sha256": "310ab0e5f12f48a929bca8fa4ef27bd9964fa168dc997a713eaf91c054852cae",
+      "matches_stage": true
+    },
+    {
+      "path": "tests/contract/host/verify_runtime.py",
+      "sha256": "027cd47e508186fe6366d0c02da1248791ecda4b26f02b79f46ebba9fd805590",
+      "matches_stage": true
+    },
+    {
+      "path": "tests/contract/host/CMakeLists.txt",
+      "sha256": "577d99f73a08b7dddf07de6d9328e88f61b39a1897e49a01ed83735eae1b38ff",
+      "matches_stage": true
+    }
+  ],
+  "runs": [
+    "host-ctest-59106d6953",
+    "sdk-stage-41f224b68b",
+    "sdk-stage-754054ec5d",
+    "sdk-stage-3593be88f8"
+  ],
+  "limitations": [
+    "各开发来源独立，不拼接为最终稳定正式矩阵",
+    "尚需故障窗口补充、配置风险专项及测量"
+  ]
+}

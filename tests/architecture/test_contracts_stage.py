@@ -8,6 +8,8 @@ HEADERS = ('identity', 'context', 'outcome', 'ports', 'observation', 'operation'
 def manifest():
     value = deepcopy(check.load_manifest())
     value['stage'] = 'CoreContracts'
+    value['sdk_version'] = '0.1.0-dev.1'
+    value['targets']['Runtime'].update(implementation='ContractBaseline',kind='INTERFACE_LIBRARY',system_dependencies=[])
     for target in value['targets'].values(): target['public_compile_definitions'] = []
     value['targets']['CoreContracts']['implementation'] = 'Implemented'
     value['headers'] = [h for h in value['headers'] if h['target'] != 'CoreContracts'] + [

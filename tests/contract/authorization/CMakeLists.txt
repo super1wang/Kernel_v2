@@ -1,7 +1,3 @@
-add_library(ock_policy_internal STATIC "${PROJECT_SOURCE_DIR}/packages/runtime/policy/policy.cpp")
-target_link_libraries(ock_policy_internal PRIVATE OCK::CoreContracts)
-target_compile_features(ock_policy_internal PRIVATE cxx_std_20)
-target_compile_options(ock_policy_internal PRIVATE /utf-8 /Zc:__cplusplus /permissive- /EHsc)
 add_executable(ock_policy_tests policy_tests.cpp)
 target_link_libraries(ock_policy_tests PRIVATE ock_policy_internal OCK::CoreContracts)
 target_include_directories(ock_policy_tests PRIVATE "${PROJECT_SOURCE_DIR}" "${PROJECT_SOURCE_DIR}/tests/compile/contracts")

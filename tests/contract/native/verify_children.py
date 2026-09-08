@@ -43,7 +43,7 @@ def exited(row, code=0):
     tree = row['process_tree']
     return (row['status'] == 'Exited' and row['exit_code'] == code and
             tree['mechanism'] == 'WindowsJobObject' and tree['assigned_before_resume'] and
-            tree['active_after'] == 0)
+            tree['active_after'] == 0 and not tree['terminated_owned_job'])
 
 
 def allocation(raw, case):
@@ -76,6 +76,8 @@ def allocation(raw, case):
 
 
 def main():
+    if not __debug__:
+        raise RuntimeError("optimized_python_not_supported")
     parser = argparse.ArgumentParser()
     for key in ('case', 'binary', 'runtime-dir', 'includes', 'generator', 'platform',
                 'toolset', 'sdk', 'config', 'work', 'root-build', 'target-metadata', 'example'):
@@ -101,7 +103,7 @@ def main():
 
     native, stdout, _ = command('native', [args.binary, args.case])
     assert exited(native)
-    structure = {'case': args.case, 'header_sha256': sha_file(ROOT / 'packages/runtime/invocation/invocation.hpp')}
+    structure = {'case': args.case, 'header_sha256': sha_file(ROOT / 'packages/runtime/include/ock/runtime/detail/invocation.hpp')}
     if short == 'private_dispatch':
         terminated, _, stderr = command('throwing-transport', [args.binary, '--throwing-transport-probe'])
         save_json(out / 'throwing-transport.json', terminated)
@@ -152,29 +154,30 @@ def main():
         cmake = ROOT / 'tests/contract/native/CMakeLists.txt'
         assert not re.search(r'install\s*\(', cmake.read_text(encoding='utf-8'))
         target = json.loads(Path(args.target_metadata).read_text(encoding='utf-8'))
-        assert target['link_libraries'].split('|') == ['ock_registry_internal', 'ock_policy_internal', 'OCK::CoreContracts']
+        assert target['link_libraries'].split('|') == ['OCK::CoreContracts', 'bcrypt']
         assert target['core_contracts_links'] == 'OCK::Foundation'
-        assert target['registry_links'] == target['policy_links'] == 'OCK::CoreContracts'
+        assert target['registry_links'] == target['policy_links'] == 'OCK::CoreContracts|bcrypt'
         save_json(out / 'target-metadata.json', target)
         prefix = out / 'install'
         installed, _, _ = command('install', ['cmake', '--install', args.root_build, '--config', args.config, '--prefix', str(prefix)])
         assert exited(installed)
-        assert not any(any(word in p.name.lower() for word in ('invocation', 'native', 'private_bridge', 'policy', 'registry'))
-                       for p in prefix.rglob('*') if p.suffix in ('.lib', '.hpp'))
-        for component in ('CoreContracts', 'Runtime'):
+        assert (prefix / 'lib/ock_Runtime.lib').is_file()
+        assert (prefix / 'include/ock/runtime/detail/private_bridge.hpp').is_file()
+        assert not any(p.name.endswith('_internal.lib') for p in prefix.rglob('*.lib'))
+        for component in ('CoreContracts', 'Runtime', 'Data'):
             source = out / component
             source.mkdir()
             lines = ['cmake_minimum_required(VERSION 3.25)', 'project(InstalledNativeBoundary LANGUAGES NONE)',
                      f'find_package(OCK 0.1.0 CONFIG REQUIRED COMPONENTS {component})']
-            if component == 'CoreContracts':
-                lines += ['if(OCK_RUNTIME_AVAILABLE)', 'message(FATAL_ERROR "Runtime unexpectedly available")', 'endif()']
+            if component in ('CoreContracts', 'Runtime'):
+                lines += ['if(NOT OCK_RUNTIME_AVAILABLE OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL NativeSubset)', 'message(FATAL_ERROR "NativeSubset metadata missing")', 'endif()']
             (source / 'CMakeLists.txt').write_text('\n'.join(lines) + '\n', encoding='utf-8')
             configured, raw, err = command('installed-' + component, ['cmake', '-S', str(source), '-B', str(source / 'build'), f'-DOCK_DIR={prefix}/lib/cmake/OCK'])
-            if component == 'CoreContracts':
+            if component in ('CoreContracts', 'Runtime'):
                 assert exited(configured)
             else:
                 assert exited(configured, 1)
-                assert b'OCK component Runtime is not implemented in the current SDK' in raw + err
+                assert b'OCK component Data is not implemented in the current SDK' in raw + err
         structure['actual_target'] = target
     else:
         sources = CONTROLS[short]

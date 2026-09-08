@@ -4,7 +4,7 @@
 
 ## 当前节点
 
-- **最新结论（2026-09-08）**：D1.01–D1.05 Passed；D1.05验收提交 `9cd8439` 已推送。D1.06 InProgress（已完成前置核对，当前收口工具批次与行为设计，Host未实现/验收），G1 InProgress。
+- **最新结论（2026-09-08）**：D1.01–D1.05 Passed；D1.05验收提交 `9cd8439`、工具节点 `af5ff2b` 已推送。本次按用户“D1.06只完成开发任务即可，测试不要做了”收口开发代码，停止后续测试/构建/消费者/pilot/预算验证，提交推送后暂停。D1.06保持InProgress（开发交付、未验收），G1保持InProgress；不启动后续工作包。范围、已有事实与未完成项见[开发交付](validation/D1.06-development-delivery.md)。
 - **后续策略已修订**：采用[提速方案v2](Kernel_v2_开发提速与Token精简决策方案_v2_2026-09-08.md)与[当前批次计划](plans/D1.06.md)：微批次、Debug最小影响集及风险专项、稳定后集中正式验收，SPEC/CODE共享必要上下文但结论独立。D1.05不重跑。
 - **工具批次实际结果**：Compile Contracts共享夹具Debug13项、Release/ASan各2项及六项真实控制通过；dev-fast/导航18项、Evidence摘要最终15项通过，独立审核见[当前索引](reviews/D1.06-index.md)。配置2→1，但最终对照58.21→65.69秒，墙钟提速未证实。安装深度复用暂缓，停止扩展基建优化并回到Host/Logging/NativeSubset主线。下列旧节点说明保留为历史背景，当前状态以本段及门禁/包表为准。
 
@@ -223,3 +223,6 @@ D1.05 正式 Release 已完成，283/283 CTest 与3/3 CHECK均通过，报告自
 当前完整门禁 `evidence/D1.05/current-20260908T010205Z/gate-summary.json` 与独立重算门禁均实际Passed。最终独立AI验收 `evidence/D1.05/final-acceptance-review.md` Approved，核对了24包装、82条子命令、207个分配样本、原始流、进程树排空和审核来源；没有本包剩余验收条件。来源与计数索引见同目录acceptance-context.json。
 
 本包完成内部受治理Native Read/Compute、精确绑定、原始身份与每次授权、可信线程、结果事实、有界观察及受限固定场景的零新增分配验证。ASan独立通道如实保留CRT盲区；历史失败、旧局部来源和运输限制不改写。SDK Runtime、Host、异步或产品模块未在本包声明完成。D1.05包级Passed，G1仍InProgress；提交推送验收节点后，只按实际前置进入D1.06。
+
+
+D1.05验收节点 `9cd8439a1fd9d95bb4062e04f3f6ab7bb4d781b9` 已提交推送，远端任务分支逐SHA核对一致。D1.06前置D1.05与D0.06全部实际Passed已独立核对，见 `docs/reviews/D1.06-prerequisites.json`；历史G0原报告InProgress保留，以绑定原报告的最终AI验收为准。D1.06现进入Host/Logging/NativeSubset测量与安装表面设计，尚未冻结API/expected、实施行为或批准有限占用预算，G1仍InProgress。

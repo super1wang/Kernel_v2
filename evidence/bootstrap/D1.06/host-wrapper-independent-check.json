@@ -1,0 +1,176 @@
+{
+  "actor_type": "AI",
+  "scope": "三配置实际wrapper及ASan诊断，未重跑；wrapper严格性修复待核",
+  "wrapper_run_sha256": "aadb7e7da43b49e063cbadcc1fde275c17e3597838637677dd6c22539fff094b",
+  "asan_inputs_verified": 280,
+  "wrappers": [
+    {
+      "stage": "sdk-stage-da08b48728",
+      "configuration": "Debug",
+      "case": "T03.host.configuration",
+      "modes": [
+        {
+          "mode": "T03.host.configuration",
+          "exit": 0
+        },
+        {
+          "mode": "create-recoverable",
+          "exit": 0
+        },
+        {
+          "mode": "create-ordinal-2",
+          "exit": 86
+        },
+        {
+          "mode": "stl-default-vector",
+          "exit": 86
+        }
+      ],
+      "owned_raw_binary_verified": true
+    },
+    {
+      "stage": "sdk-stage-da08b48728",
+      "configuration": "Debug",
+      "case": "T03.host.start_failures",
+      "modes": [
+        {
+          "mode": "T03.host.start_failures",
+          "exit": 0
+        },
+        {
+          "mode": "start",
+          "exit": 0
+        }
+      ],
+      "owned_raw_binary_verified": true
+    },
+    {
+      "stage": "sdk-stage-da08b48728",
+      "configuration": "Debug",
+      "case": "T22.host.shutdown_errors",
+      "modes": [
+        {
+          "mode": "T22.host.shutdown_errors",
+          "exit": 0
+        },
+        {
+          "mode": "internal",
+          "exit": 0
+        }
+      ],
+      "owned_raw_binary_verified": true
+    },
+    {
+      "stage": "sdk-stage-e353eebb66",
+      "configuration": "Release",
+      "case": "T03.host.configuration",
+      "modes": [
+        {
+          "mode": "T03.host.configuration",
+          "exit": 0
+        },
+        {
+          "mode": "create-full",
+          "exit": 0
+        },
+        {
+          "mode": "stl-default-vector",
+          "exit": 0
+        }
+      ],
+      "owned_raw_binary_verified": true
+    },
+    {
+      "stage": "sdk-stage-e353eebb66",
+      "configuration": "Release",
+      "case": "T03.host.start_failures",
+      "modes": [
+        {
+          "mode": "T03.host.start_failures",
+          "exit": 0
+        },
+        {
+          "mode": "start",
+          "exit": 0
+        }
+      ],
+      "owned_raw_binary_verified": true
+    },
+    {
+      "stage": "sdk-stage-e353eebb66",
+      "configuration": "Release",
+      "case": "T22.host.shutdown_errors",
+      "modes": [
+        {
+          "mode": "T22.host.shutdown_errors",
+          "exit": 0
+        },
+        {
+          "mode": "internal",
+          "exit": 0
+        }
+      ],
+      "owned_raw_binary_verified": true
+    },
+    {
+      "stage": "sdk-stage-94e68a6578",
+      "configuration": "Debug",
+      "case": "T03.host.configuration",
+      "modes": [
+        {
+          "mode": "T03.host.configuration",
+          "exit": 0
+        },
+        {
+          "mode": "create-recoverable",
+          "exit": 0
+        },
+        {
+          "mode": "create-ordinal-2",
+          "exit": 86
+        },
+        {
+          "mode": "stl-default-vector",
+          "exit": 86
+        }
+      ],
+      "owned_raw_binary_verified": true
+    },
+    {
+      "stage": "sdk-stage-94e68a6578",
+      "configuration": "Debug",
+      "case": "T03.host.start_failures",
+      "modes": [
+        {
+          "mode": "T03.host.start_failures",
+          "exit": 0
+        },
+        {
+          "mode": "start",
+          "exit": 0
+        }
+      ],
+      "owned_raw_binary_verified": true
+    },
+    {
+      "stage": "sdk-stage-94e68a6578",
+      "configuration": "Debug",
+      "case": "T22.host.shutdown_errors",
+      "modes": [
+        {
+          "mode": "T22.host.shutdown_errors",
+          "exit": 0
+        },
+        {
+          "mode": "internal",
+          "exit": 0
+        }
+      ],
+      "owned_raw_binary_verified": true
+    }
+  ],
+  "wrapper_count": 9,
+  "child_count": 23,
+  "actual_records": "Verified",
+  "code_status": "ChangesRequested:精确流标记及observed_exit_code必须拒绝异常事实"
+}

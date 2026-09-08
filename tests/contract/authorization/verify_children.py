@@ -126,10 +126,14 @@ def succeeded(command):
         command["status"] == "Exited"
         and command["exit_code"] == 0
         and command["process_tree"]["active_after"] == 0
+        and command["process_tree"]["assigned_before_resume"]
+        and not command["process_tree"]["terminated_owned_job"]
     )
 
 
 def main():
+    if not __debug__:
+        raise RuntimeError("optimized_python_not_supported")
     parser = argparse.ArgumentParser()
     for name in (
         "case", "binary", "includes", "generator", "platform", "toolset",
@@ -161,12 +165,12 @@ def main():
 
     native, _ = command("native", [args.binary, args.case])
     assert succeeded(native)
-    structure = {"header_sha256": sha_file(ROOT / "packages/runtime/policy/policy.hpp")}
+    structure = {"header_sha256": sha_file(ROOT / "packages/runtime/include/ock/runtime/policy.hpp")}
     if short == "internal_component_boundary":
         cmake = ROOT / "tests/contract/authorization/CMakeLists.txt"
         assert not re.search(r"install\s*\(", cmake.read_text(encoding="utf-8"))
         target = json.loads(Path(args.target_metadata).read_text(encoding="utf-8"))
-        assert target["link_libraries"] == "OCK::CoreContracts"
+        assert target["link_libraries"] == "OCK::CoreContracts|bcrypt"
         assert target["core_contracts_links"] == "OCK::Foundation"
         save_json(out / "target-metadata.json", target)
         prefix = out / "install"
@@ -175,10 +179,10 @@ def main():
             "--prefix", str(prefix),
         ])
         assert succeeded(installed)
-        assert not (prefix / "include/ock/runtime/policy.hpp").exists()
+        assert (prefix / "include/ock/runtime/policy.hpp").is_file()
         assert not any("policy" in path.name.lower() for path in prefix.rglob("*.lib"))
-        assert not any(path.name.lower() == "policy.hpp" for path in prefix.rglob("*.hpp"))
-        for component in ("CoreContracts", "Runtime"):
+        assert (prefix / "include/ock/runtime/detail/invocation.hpp").is_file()
+        for component in ("CoreContracts", "Runtime", "Data"):
             source = out / component
             source.mkdir()
             lines = [
@@ -186,20 +190,20 @@ def main():
                 "project(InstalledPolicyBoundary LANGUAGES NONE)",
                 f"find_package(OCK 0.1.0 CONFIG REQUIRED COMPONENTS {component})",
             ]
-            if component == "CoreContracts":
-                lines += ["if(OCK_RUNTIME_AVAILABLE)",
-                          'message(FATAL_ERROR "Runtime unexpectedly available")', "endif()"]
+            if component in ("CoreContracts", "Runtime"):
+                lines += ["if(NOT OCK_RUNTIME_AVAILABLE OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL NativeSubset)",
+                          'message(FATAL_ERROR "NativeSubset metadata missing")', "endif()"]
             (source / "CMakeLists.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
             configured, raw = command("installed-" + component, [
                 "cmake", "-S", str(source), "-B", str(source / "build"),
                 f"-DOCK_DIR={prefix}/lib/cmake/OCK",
             ])
-            if component == "CoreContracts":
+            if component in ("CoreContracts", "Runtime"):
                 assert succeeded(configured)
             else:
                 assert configured["status"] == "Exited" and configured["exit_code"] != 0
                 assert configured["process_tree"]["active_after"] == 0
-                assert b"OCK component Runtime is not implemented in the current SDK" in raw
+                assert b"OCK component Data is not implemented in the current SDK" in raw
         structure.update(
             cmake_sha256=sha_file(cmake), actual_target=target,
             installed_config_sha256=sha_file(prefix / "lib/cmake/OCK/OCKConfig.cmake"),

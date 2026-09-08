@@ -1,0 +1,79 @@
+{
+  "scope": "D1.06 finite observation bootstrap and calibration facts; not pilot, formal matrix or budget approval",
+  "source_digest_algorithm": "SHA256(sorted(path+TAB+sha256+LF))",
+  "source_digest": "2341f290d6ac6e2b7fffd31bee0b5c5a3e4023439b6a8304ee4e266e785fb767",
+  "sources": [
+    {
+      "path": "tests/tools/footprint/test_observation.py",
+      "sha256": "9aee637bcda66d2f416b252ed1354b206fc5db036a607e751cc3330b780143e6"
+    },
+    {
+      "path": "tools/evidence/process.py",
+      "sha256": "1f49872091ab5ec967a5c900a48e714284290e29c4f2baffad7cb614933c3c94"
+    },
+    {
+      "path": "tools/footprint/analyze.py",
+      "sha256": "1c8bf188f7730055d7ce673065c3f0d5dcff8b5fafe7018f702314f42c398db7"
+    },
+    {
+      "path": "tools/footprint/configuration-development.json",
+      "sha256": "4d735d553c4a2968ae0bc19aeb46ddca4bfc3590656fc3ee257b39bcc74429ea"
+    },
+    {
+      "path": "tools/footprint/consumer/channel.hpp",
+      "sha256": "30cea85d5563f603fe6935acb69481b73ffd74e9e2048c8d08c1f73a151fba08"
+    },
+    {
+      "path": "tools/footprint/controls/calibration.cpp",
+      "sha256": "edcac651533bbfac8cbb57387b4ebb0e225470f5c9d5aa7e307883fa67fd5e62"
+    },
+    {
+      "path": "tools/footprint/controls/required.cpp",
+      "sha256": "9d96040f24c83abf05cfbc4b0e53979d67f63697a615fa18c8c9def6ee97bb94"
+    },
+    {
+      "path": "tools/footprint/run.py",
+      "sha256": "827196aac705fc90e16d78549c4c3e49c8c2f33b1cfdaa0cc48af908e764c1c9"
+    },
+    {
+      "path": "tools/footprint/windows_process.py",
+      "sha256": "afd352c0efe47e753aad30c132d40f80ed131e491e45f65dfc51ec902e301476"
+    }
+  ],
+  "legacy_none_regression": {
+    "run": "evidence/bootstrap/D1.06/footprint-guards-41ff95618ae3",
+    "tests": 7,
+    "status": "Passed",
+    "process_source_unchanged": true
+  },
+  "final_guard_tests": {
+    "run": "evidence/bootstrap/D1.06/footprint-guards-final-9efd3a19f05a",
+    "tests": 8,
+    "status": "Passed",
+    "command_sha256": "79082d19dd2559d620aca0ce3540c947568ef5fcf430b8176232b9f8a05807d7"
+  },
+  "real_calibration": {
+    "run": "evidence/bootstrap/D1.06/footprint-calibrate-62da4e053df4",
+    "controls": 9,
+    "local_controls_status": "Passed",
+    "commands_sha256": "320c63a90f56111d4fa8aa18fd83495419737ed2b281678874fc5795ce0361cf",
+    "controls_sha256": "8554aa7a3700c6b080531a58a476c6bf5454bf3c6c59abb4c7e3ea9cb19c11dd"
+  },
+  "quality": {
+    "actual_5ms_coverage": "NotSatisfied",
+    "baseline_samples": 47,
+    "baseline_missed_intervals": 1512,
+    "baseline_ready_threads": 4,
+    "main_thread_only_negative_control": "NotEstablished",
+    "kernel_added_threads_zero": "NotMeasured",
+    "native_pair": "NotRun",
+    "pilot": "NotRun",
+    "formal": "NotRun",
+    "budget_status": "NotApproved"
+  },
+  "preserved_failures": [
+    "footprint-red-17bfa644d2a5",
+    "footprint-module-red-e557fc100e13",
+    "footprint-calibrate-ee21c4f3b47a"
+  ]
+}

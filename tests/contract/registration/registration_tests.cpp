@@ -178,8 +178,16 @@ void module_dag_order() {
   CHECK(b->add(c));
   CHECK(b->add(a));
   CHECK(b->add(z));
-  CHECK(b->publish());
+  auto published = b->publish();
+  CHECK(published);
   CHECK(order == "zac");
+  b.reset();
+  const auto frozen_order = (*published)->module_order();
+  CHECK(frozen_order.size() == 3);
+  CHECK(frozen_order[0] == name("z"));
+  CHECK(frozen_order[1] == name("a"));
+  CHECK(frozen_order[2] == name("c"));
+  CHECK((*published)->module_order().data() == frozen_order.data());
   auto cycle = batch();
   a.manifest.dependencies = {{name("c"), ver()}};
   CHECK(cycle->add(a));

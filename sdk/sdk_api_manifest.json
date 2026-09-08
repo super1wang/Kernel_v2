@@ -1,9 +1,9 @@
 {
   "format": "ock.sdk-api/1",
-  "task_id": "D1.02",
-  "sdk_version": "0.1.0-dev.1",
+  "task_id": "D1.06",
+  "sdk_version": "0.1.0-dev.2",
   "document_version": "3.3",
-  "stage": "CoreContracts",
+  "stage": "NativeSubset",
   "review_status": "Pending",
   "targets": {
     "Foundation": {
@@ -48,13 +48,13 @@
     },
     "Runtime": {
       "export": "OCK::Runtime",
-      "kind": "INTERFACE_LIBRARY",
+      "kind": "STATIC_LIBRARY",
       "dependencies": [
         "CoreContracts"
       ],
       "include_root": "packages/runtime/include",
       "namespace_prefix": "ock/runtime/",
-      "implementation": "ContractBaseline",
+      "implementation": "NativeSubset",
       "api_classification": "experimental",
       "public_compile_features": [
         "cxx_std_20"
@@ -62,7 +62,14 @@
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
       ],
-      "public_compile_definitions": []
+      "public_compile_definitions": [],
+      "system_dependencies": [
+        {
+          "name": "bcrypt",
+          "platform": "Windows",
+          "link_only": true
+        }
+      ]
     },
     "Data": {
       "export": "OCK::Data",
@@ -416,7 +423,7 @@
       "target": "Foundation",
       "classification": "experimental",
       "implementation": "VersionMetadata",
-      "sha256": "e8c742c6f8a602b1691ce1587525d885791f4b5aa0c310a6ba88ee682ebde616"
+      "sha256": "47c714355b5a3c8a8e2a3a715626c26b545933024c581be7a5c5cc2b56b1fd59"
     },
     {
       "path": "packages/foundation/include/ock/foundation/foundation.hpp",
@@ -459,15 +466,63 @@
       "target": "CoreContracts",
       "classification": "experimental",
       "sha256": "35a76e46db44d8bc8ee5c71103ae264869b125a318b2080d8d69b2ad26d6ae22"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/logging.hpp",
+      "target": "CoreContracts",
+      "classification": "experimental",
+      "sha256": "efbaf36bbb24fbbc4edbe55a576e24b27ffef9a3b8f25dd30fbe043713a3b7a7"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/host.hpp",
+      "target": "Runtime",
+      "classification": "experimental",
+      "sha256": "6c53eddaa6ad8a343c6d06b113374afe3795337aadaea853f3851d80dac9a279"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/logging.hpp",
+      "target": "Runtime",
+      "classification": "experimental",
+      "sha256": "fea2a70741172afe7f2d6f690176de02976ab1be03aac2fab011395877aa320c"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/native_types.hpp",
+      "target": "Runtime",
+      "classification": "experimental",
+      "sha256": "ef746141206e22f6eacb016ebf5f471c743a24520d63b099faa3b22eef610322"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/policy.hpp",
+      "target": "Runtime",
+      "classification": "experimental",
+      "sha256": "e40bc4f6748fe3e149f2fa9e6ab8abef792e37e91933df57abcdd5908ff2af7d"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/registry.hpp",
+      "target": "Runtime",
+      "classification": "experimental",
+      "sha256": "ce475e3a09052c93f40a6e2c0a23c5a39870a62d0cfb8023583ab3668894cc05"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/detail/host.hpp",
+      "target": "Runtime",
+      "classification": "detail",
+      "sha256": "4c8ad948aa390d42e9284e749ed7d71e3d0df2ae6896d2062a243a514e50e7d6"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/detail/invocation.hpp",
+      "target": "Runtime",
+      "classification": "detail",
+      "sha256": "4a70f0920a915ee46a51dbfa05598c30afed8fc7adc1d696f602edf08bfee54f"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/detail/private_bridge.hpp",
+      "target": "Runtime",
+      "classification": "detail",
+      "sha256": "d0f6b6ac4a3721f4624ef4043a0cebda1c305ebc6ce3925a04687d5b141bda8c"
     }
   ],
   "candidate_headers": [
-    {
-      "target": "Runtime",
-      "path": "packages/runtime/include/ock/runtime/runtime.hpp",
-      "status": "Planned",
-      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
-    },
     {
       "target": "Data",
       "path": "packages/data/include/ock/data/data.hpp",
@@ -612,5 +667,16 @@
   "frozen_previous_release": {
     "exists": false,
     "reason": "首发开发基线，没有上一正式SDK；当前安装样例仅为0.x开发对照。"
+  },
+  "implementation_includes": {
+    "packages/runtime/include/ock/runtime/host.hpp": [
+      "ock/runtime/detail/host.hpp"
+    ],
+    "packages/runtime/include/ock/runtime/detail/host.hpp": [
+      "ock/runtime/detail/invocation.hpp"
+    ],
+    "packages/runtime/include/ock/runtime/detail/invocation.hpp": [
+      "ock/runtime/detail/private_bridge.hpp"
+    ]
   }
 }

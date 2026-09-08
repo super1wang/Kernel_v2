@@ -1,0 +1,308 @@
+{
+  "actor_type": "AI",
+  "source_digest": "8778564bab2711ad492c17dcd55ba269bcfe338f5e70aff2a6b0e5d0f527976e",
+  "scope": "有限v2采样raw回读；无重跑OS",
+  "sources": [
+    {
+      "path": "cmake/LockedMSVC.cmake",
+      "sha256": "ed0e029ec8e77653b2db779059b8b3483e600e8b27027c660ba01076ce94b3a3"
+    },
+    {
+      "path": "cmake/msvc-validation-tools.json",
+      "sha256": "67414627e4e76f7ea66817f14525c16f0d2e80ac30d0ef125724852f29339ed8"
+    },
+    {
+      "path": "dependencies.lock",
+      "sha256": "e6ee3e75590bb5d7d8fcf8d133fd237f823f496512444a0cc344684c88c492e7"
+    },
+    {
+      "path": "docs/contracts/native-footprint-method.md",
+      "sha256": "fdd83a79899712c65ae3a4e0f1e879badd3fcc9a50f9da0dd1519cf7af29609e"
+    },
+    {
+      "path": "tests/tools/footprint/owner_consumer.py",
+      "sha256": "81caf72f0902bb8417292fb72d4dc9388891d54c008daff4c66e64a379826951"
+    },
+    {
+      "path": "tests/tools/footprint/test_observation.py",
+      "sha256": "9e75e490b785d3a46ef82752f36bcd4b2c5424a3b0af5b146a11467cc784de4c"
+    },
+    {
+      "path": "tests/tools/footprint/test_pair_record.py",
+      "sha256": "72ba5c17e8ab9e1c31c8acb4a990355207219629da1fb9c45ff522c4730b8c15"
+    },
+    {
+      "path": "tests/tools/footprint/test_regressions.py",
+      "sha256": "d40af655605f80bc33acb6fe9897f4c29b4c076d01989488655f88706de27af5"
+    },
+    {
+      "path": "tests/tools/footprint/test_sampling_v2.py",
+      "sha256": "e7c22a139512999fb1d263f2169974d0ddd423718d6e774641e4ce197b1509ff"
+    },
+    {
+      "path": "tools/evidence/process.py",
+      "sha256": "1f49872091ab5ec967a5c900a48e714284290e29c4f2baffad7cb614933c3c94"
+    },
+    {
+      "path": "tools/footprint/analyze.py",
+      "sha256": "d6f67e00c0e37354f3d682fc6060372123d54af9aac2e6506313f5aeaa8a07cb"
+    },
+    {
+      "path": "tools/footprint/configuration-development.json",
+      "sha256": "4d735d553c4a2968ae0bc19aeb46ddca4bfc3590656fc3ee257b39bcc74429ea"
+    },
+    {
+      "path": "tools/footprint/consumer/CMakeLists.txt",
+      "sha256": "a89963e44a09f95008115fb5423e6c8a05e821d1b1f67e314fa19c37c27c350a"
+    },
+    {
+      "path": "tools/footprint/consumer/baseline_fixture.hpp",
+      "sha256": "e2b950140d4ad30366e1b4f255e947ac6e89119ebca6a64fd411903547a9fe79"
+    },
+    {
+      "path": "tools/footprint/consumer/channel.hpp",
+      "sha256": "30cea85d5563f603fe6935acb69481b73ffd74e9e2048c8d08c1f73a151fba08"
+    },
+    {
+      "path": "tools/footprint/consumer/native_fixture.hpp",
+      "sha256": "6070f1f57f1bff208459e4c601faaf555c052c2a6143f41fc221ecce01a50c84"
+    },
+    {
+      "path": "tools/footprint/consumer/native_value.hpp",
+      "sha256": "57b6e450ed5f28aa30f29bf1965055480e3358ae33c6d325def25c4727b157f4"
+    },
+    {
+      "path": "tools/footprint/consumer/pair_main.cpp",
+      "sha256": "74ceda381552b803e4d66ad983605bb6b316ac3fd1e34cd79be4728d2b71f900"
+    },
+    {
+      "path": "tools/footprint/controls/calibration.cpp",
+      "sha256": "edcac651533bbfac8cbb57387b4ebb0e225470f5c9d5aa7e307883fa67fd5e62"
+    },
+    {
+      "path": "tools/footprint/controls/required.cpp",
+      "sha256": "9d96040f24c83abf05cfbc4b0e53979d67f63697a615fa18c8c9def6ee97bb94"
+    },
+    {
+      "path": "tools/footprint/owner_controls.py",
+      "sha256": "57dbcfb9256ca3343b188c1c31dcf7e1b4df72947fbac5e933d05f590d4d6496"
+    },
+    {
+      "path": "tools/footprint/pair_develop.py",
+      "sha256": "026ea447fe6a19e38dfac2788e226e73edb04d90dd2adde0d93ee5685e04aeeb"
+    },
+    {
+      "path": "tools/footprint/pair_record.py",
+      "sha256": "92334d6739500fcb137b2904d45b34cd8c630e9e63dae5278b70e7906078a19e"
+    },
+    {
+      "path": "tools/footprint/run.py",
+      "sha256": "3471a9a301e5fdc0622ef160eb842b36baa61300c14d15c6be606017ed341d45"
+    },
+    {
+      "path": "tools/footprint/sampling_develop.py",
+      "sha256": "16418e568255dddbe86a346c8fcdf890d859182766b52320b129500ffd8720bf"
+    },
+    {
+      "path": "tools/footprint/windows_process.py",
+      "sha256": "b0b217a9573d624349a740870df675debf4fd8e3200928ac9b4ba324d5826682"
+    }
+  ],
+  "records": [
+    {
+      "run": "footprint-v2-held-d3d9e5cba335",
+      "records": [
+        {
+          "label": "guards",
+          "owned_raw_verified": true
+        },
+        {
+          "label": "none",
+          "owned_raw_verified": true,
+          "method_digest": "63fc080f01f6066fcceba092d844a9554cc6e40137710297883cf3079babb3a7",
+          "samples": 304,
+          "thread_boundaries": 12,
+          "missed_intervals": 598,
+          "thread_sets": {
+            "HostConstructionBegin": [
+              12440,
+              20944,
+              39148,
+              39452
+            ],
+            "HostReady": [
+              12440,
+              20944,
+              39148,
+              39452
+            ],
+            "ShutdownComplete": [
+              12440,
+              20944,
+              39148,
+              39452
+            ]
+          }
+        },
+        {
+          "label": "thread",
+          "owned_raw_verified": true,
+          "method_digest": "63fc080f01f6066fcceba092d844a9554cc6e40137710297883cf3079babb3a7",
+          "samples": 304,
+          "thread_boundaries": 12,
+          "missed_intervals": 582,
+          "thread_sets": {
+            "HostConstructionBegin": [
+              11528,
+              27152,
+              41400,
+              41688
+            ],
+            "HostReady": [
+              11528,
+              27152,
+              37772,
+              41400,
+              41688
+            ],
+            "ShutdownComplete": [
+              11528,
+              27152,
+              41400,
+              41688
+            ]
+          }
+        }
+      ],
+      "result": {
+        "status": "Passed",
+        "scope": "v2 guards and held-thread boundary control only",
+        "baseline": [
+          12440,
+          20944,
+          39148,
+          39452
+        ],
+        "before": [
+          11528,
+          27152,
+          41400,
+          41688
+        ],
+        "held": [
+          11528,
+          27152,
+          37772,
+          41400,
+          41688
+        ],
+        "after_join": [
+          11528,
+          27152,
+          41400,
+          41688
+        ],
+        "baseline_thread_attribution": "Unresolved",
+        "pilot": false,
+        "budget_status": "NotApproved"
+      }
+    },
+    {
+      "run": "footprint-native-pair-2fe91f109e7e",
+      "records": [
+        {
+          "label": "record-guards",
+          "owned_raw_verified": true
+        },
+        {
+          "label": "configure",
+          "owned_raw_verified": true
+        },
+        {
+          "label": "build",
+          "owned_raw_verified": true
+        },
+        {
+          "label": "baseline-imports",
+          "owned_raw_verified": true
+        },
+        {
+          "label": "baseline",
+          "owned_raw_verified": true,
+          "method_digest": "63fc080f01f6066fcceba092d844a9554cc6e40137710297883cf3079babb3a7",
+          "samples": 304,
+          "thread_boundaries": 12,
+          "missed_intervals": 742,
+          "thread_sets": {
+            "HostConstructionBegin": [
+              22084,
+              26252,
+              26280,
+              34476
+            ],
+            "HostReady": [
+              22084,
+              26252,
+              26280,
+              34476
+            ],
+            "ShutdownComplete": [
+              22084,
+              26252,
+              26280,
+              34476
+            ]
+          }
+        },
+        {
+          "label": "native-imports",
+          "owned_raw_verified": true
+        },
+        {
+          "label": "native",
+          "owned_raw_verified": true,
+          "method_digest": "63fc080f01f6066fcceba092d844a9554cc6e40137710297883cf3079babb3a7",
+          "samples": 305,
+          "thread_boundaries": 12,
+          "missed_intervals": 650,
+          "thread_sets": {
+            "HostConstructionBegin": [
+              5016,
+              25540,
+              29056,
+              43368
+            ],
+            "HostReady": [
+              5016,
+              25540,
+              29056,
+              43368
+            ],
+            "ShutdownComplete": [
+              5016,
+              25540,
+              29056,
+              43368
+            ]
+          }
+        }
+      ],
+      "result": {
+        "status": "Passed",
+        "scope": "single Debug installed consumer connectivity and raw occupancy collection only",
+        "order": [
+          "baseline",
+          "native"
+        ],
+        "pair_count": 1,
+        "pilot": false,
+        "budget_status": "NotApproved",
+        "sampling_coverage": "NotEstablished",
+        "allocation_counting": "NotMeasured",
+        "formal_latency": "NotMeasured"
+      }
+    }
+  ],
+  "identity_guard_status": "ChangesRequested:unknown/missing method bypass, independent red preserved",
+  "measurement_scope": "NotEstablished/no budget/no pilot"
+}

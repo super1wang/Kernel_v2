@@ -25,7 +25,7 @@ def build(root, head, branch):
         return {'path': path, 'sections': sections, 'sha256': sha_file(root/path)}
     return {'format':'ock.ai-current/1', 'normative':False,
             'current_package':'D1.06', 'package_state':'InProgress',
-            'phase':'P0测试设施优化；Host行为尚未实现',
+            'phase':'D1.06开发交付；按用户要求停止测试，提交推送后暂停；包级未验收',
             'branch':branch, 'head':head, 'last_passed':'D1.05', 'gate':'G1',
             'prerequisites':['D1.05','D0.06'],
             'architecture_refs':[ref(ARCH, ['A15','A16','A19','A21','A22','A23'])],

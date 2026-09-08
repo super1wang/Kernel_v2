@@ -21,7 +21,12 @@ PYTHON_GROUPS = {
 }
 FAMILIES = {'foundation': '.foundation.', 'contracts': '.contracts.',
             'registry': '.registration.', 'policy': '.policy.', 'native': '.native.',
-            'sdk': '.sdk.'}
+            'sdk': ('.sdk.', '.native_sdk.'), 'host': '.host.',
+            'logging': '.logging.', 'footprint': '.footprint.'}
+
+def matches_family(name, group):
+    patterns = FAMILIES[group]
+    return any(pattern in name for pattern in (patterns if isinstance(patterns, tuple) else (patterns,)))
 
 
 def select(paths):
@@ -29,7 +34,7 @@ def select(paths):
     for raw in sorted(set(paths)):
         p = raw.replace('\\', '/')
         if p == 'tests/compile/contracts/test_support.hpp' or p.startswith('tests/conformance/core_contracts/'):
-            groups.update(('contracts', 'registry', 'policy', 'native'))
+            groups.update(('contracts', 'registry', 'policy', 'native', 'host', 'logging'))
         if p.startswith(('packages/', 'tests/contract/', 'tests/compile/', 'tests/conformance/core_contracts/')) and p.endswith(('.h', '.hpp')):
             risks.add('release')
         if p.startswith(('build/', 'evidence/')):
@@ -38,28 +43,39 @@ def select(paths):
             groups.add('dev-tools')
         elif p.startswith(('tools/evidence/', 'tests/tools/evidence/')):
             groups.add('evidence-tools')
+            if p == 'tools/evidence/process.py': groups.add('footprint')
             reasons.add('证据采集或结果映射变化：验证证据工具影响集')
+        elif p.startswith(('tools/footprint/', 'tests/tools/footprint/')):
+            groups.update(('footprint', 'evidence-tools'))
         elif p.startswith('tests/tools/compile/'):
             groups.add('compile-tools')
         elif p.startswith('tests/compile/contracts/'):
             groups.update(('contracts', 'compile-tools'))
             reasons.add('编译夹具或测试注册变化：验证编译合同及夹具反例')
         elif p.startswith('tests/conformance/core_contracts/'):
-            groups.update(('contracts', 'registry', 'policy', 'native'))
+            groups.update(('contracts', 'registry', 'policy', 'native', 'host', 'logging'))
         elif p.startswith('packages/foundation/'):
             groups.update(FAMILIES)
             risks.update(('release', 'asan'))
             reasons.add('公共Foundation合同影响全部Native消费者')
-        elif p.startswith('packages/contracts/'):
-            groups.update(('contracts', 'registry', 'policy', 'native', 'sdk'))
+        elif p.startswith(('packages/contracts/', 'packages/runtime/include/')):
+            groups.update(('contracts', 'registry', 'policy', 'native', 'sdk', 'host', 'logging'))
             risks.update(('release', 'asan'))
             reasons.add('公共CoreContracts影响直接及传递消费者')
         elif p.startswith(('packages/runtime/registry/', 'tests/contract/registration/')):
-            groups.update(('registry', 'native'))
+            groups.update(('registry', 'native', 'host'))
         elif p.startswith(('packages/runtime/policy/', 'tests/contract/authorization/')):
-            groups.update(('policy', 'native'))
+            groups.update(('policy', 'native', 'host'))
         elif p.startswith(('packages/runtime/invocation/', 'tests/contract/native/', 'examples/native_service/')):
-            groups.add('native')
+            groups.update(('native', 'host'))
+        elif p.startswith(('packages/runtime/host/', 'tests/contract/host/')):
+            groups.update(('host', 'native', 'policy'))
+            risks.add('asan')
+        elif p.startswith(('packages/runtime/observability/', 'tests/conformance/logging/')):
+            groups.update(('logging', 'host'))
+            risks.add('asan')
+        elif p.startswith('examples/stateless_service/'):
+            groups.update(('sdk', 'host', 'footprint'))
         elif p.startswith('tests/unit/foundation/'):
             groups.add('foundation')
         elif p in ('CMakeLists.txt', 'CMakePresets.json', 'dependencies.lock') or p.startswith(
@@ -120,6 +136,35 @@ def exact_regex(names):
     if not names:
         raise ValueError('禁止空CTest集合')
     return '^(' + '|'.join(re.escape(n) for n in sorted(names)) + ')$'
+
+
+def selected_cases(root, package, profile, groups):
+    if 'full-package' in groups:
+        return package_cases(root, package, profile)
+    baseline = 'D1.06' if package == 'D1.06' else 'D1.05'
+    known = package_cases(root, baseline, profile)
+    for group in groups:
+        if group not in FAMILIES or not any(matches_family(n, group) for n in known):
+            raise ValueError(f'{group}映射没有当前配置固定用例，拒绝少跑')
+    names = [n for n in known if any(matches_family(n, group) for group in groups)]
+    if 'contracts' in groups and baseline != 'D1.06':
+        support = read_json(root/'tests/manifests/d1.06-tools.expected.json')
+        names += [case['id'] for case in support['cases']]
+    return sorted(set(names))
+
+
+def development_configure(argv, old, new, full):
+    result = []
+    index = 0
+    while index < len(argv):
+        item = argv[index]
+        if item == '--fresh':
+            index += 1;continue
+        if not full and item == '-C' and index+1 < len(argv) and argv[index+1] == 'tests/runs/d1.06-prerequisites.cmake':
+            # 只去掉当前候选的正式运行阻断；L0仍严格核对选择的实际CTest。
+            index += 2;continue
+        result.append(item.replace(old, new));index += 1
+    return result
 
 
 def check_executed(names, rows):
@@ -213,22 +258,13 @@ def main():
         native_groups = set(selection['groups']) - set(PYTHON_GROUPS)
         if native_groups:
             for profile in selection['profiles']:
-                # 当前D1.06 P0复用已实现构建配置，绝不以D1.05 expected替代D1.06 full。
-                spec = read_json(ROOT/f'tests/runs/d1.05-win-msvc-{profile}.json')
-                if 'full-package' in native_groups:
-                    names = package_cases(ROOT, a.package, spec['profile'])
-                else:
-                    known = package_cases(ROOT, 'D1.05', spec['profile'])
-                    for group in native_groups:
-                        if not any(FAMILIES[group] in n for n in known):
-                            raise ValueError(f'{group}映射没有固定用例，拒绝少跑')
-                    names = [n for n in known if any(FAMILIES[g] in n for g in native_groups)]
-                if 'contracts' in native_groups or 'full-package' in native_groups:
-                    support = read_json(ROOT/'tests/manifests/d1.06-tools.expected.json')
-                    names = sorted(set(names) | {c['id'] for c in support['cases']})
+                run_package = 'd1.06' if a.package == 'D1.06' else 'd1.05'
+                spec = read_json(ROOT/f'tests/runs/{run_package}-win-msvc-{profile}.json')
+                names = selected_cases(ROOT, a.package, spec['profile'], native_groups)
                 regex = exact_regex(names)
                 build = f'build/dev-fast/{profile}'
-                configure = [x.replace(spec['build_dir'], build) for x in spec['configure'] if x != '--fresh']
+                configure = development_configure(spec['configure'], spec['build_dir'], build, 'full-package' in native_groups)
+                result.setdefault('formal_candidate_preload_removed', {})[profile] = '-C' in spec['configure'] and '-C' not in configure
                 run(profile+'-configure', configure)
                 build_argv = build_command(spec, build)
                 run(profile+'-build', build_argv)

@@ -38,9 +38,9 @@ Result<RegistryId> issue_id() {
 } // namespace
 Catalog::Catalog(RegistryId id, std::vector<detail::HotEntry> h,
                  std::vector<std::shared_ptr<const DefinitionSnapshot>> c,
-                 std::vector<std::shared_ptr<const void>> owners)
+                 std::vector<std::shared_ptr<const void>> owners, std::vector<Name> module_order)
     : id_(id), hot_(std::move(h)), cold_(std::move(c)),
-      owners_(std::move(owners)) {
+      owners_(std::move(owners)), module_order_(std::move(module_order)) {
   generation_.bytes[15] = 1;
 }
 Result<OperationHandle> Catalog::find(const OperationKey &k) const {
@@ -601,8 +601,11 @@ Result<std::shared_ptr<const Catalog>> RegistrationBatch::publish() {
       for (auto &c : m.configurations)
         owners.push_back(c.owner_);
     }
+    std::vector<Name> module_order;
+    module_order.reserve(order.size());
+    for (auto i : order) module_order.push_back(modules_[i].manifest.name);
     auto catalog = std::shared_ptr<const Catalog>(
-        new Catalog(*id, std::move(hot_), std::move(cold_), std::move(owners)));
+        new Catalog(*id, std::move(hot_), std::move(cold_), std::move(owners), std::move(module_order)));
     state_ = State::Published;
     modules_.clear();
     return catalog;

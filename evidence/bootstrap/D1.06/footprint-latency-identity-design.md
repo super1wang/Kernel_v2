@@ -1,0 +1,7 @@
+# D1.06 轻量时延模式身份修正
+
+现有owner在mode=latency时已禁周期查询，但ObservationConfig.memory_sampling仍无条件写due_5ms，属于报告身份不准确。本增量落实已批准方法§3：仅无计数Release消费者形成正式时延统计。
+
+拟将latency的memory_sampling写phase_boundaries、sample_interval_ms写null；occupancy/allocation保持due_5ms及5。thread_sampling仍phase_boundaries，阶段ACK/模块查询/固定窗口/绝对期限均不变。方法摘要含这些实际设置，不能与现有诊断模式或旧标记混用。分析器按已验证configuration要求相应元数据，latency拒绝任何periodic点。
+
+先补身份与伪周期点拒绝反例，再修报告元数据与校验，不修改生产或owner调度。实际验证使用Release安装的同消费者、编译不链接分配probe，固定单对；pilot仍在控制与工具CODE收口之后。此处不承诺阶段查询无开销，内部/创建到Ready/父观察时延分别记录。

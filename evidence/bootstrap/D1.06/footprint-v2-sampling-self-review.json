@@ -1,0 +1,227 @@
+{
+  "scope": "v2 finite sampling implementation self-review; not independent approval",
+  "source_digest": "8778564bab2711ad492c17dcd55ba269bcfe338f5e70aff2a6b0e5d0f527976e",
+  "source_count": 26,
+  "sources": [
+    {
+      "path": "cmake/LockedMSVC.cmake",
+      "sha256": "ed0e029ec8e77653b2db779059b8b3483e600e8b27027c660ba01076ce94b3a3"
+    },
+    {
+      "path": "cmake/msvc-validation-tools.json",
+      "sha256": "67414627e4e76f7ea66817f14525c16f0d2e80ac30d0ef125724852f29339ed8"
+    },
+    {
+      "path": "dependencies.lock",
+      "sha256": "e6ee3e75590bb5d7d8fcf8d133fd237f823f496512444a0cc344684c88c492e7"
+    },
+    {
+      "path": "docs/contracts/native-footprint-method.md",
+      "sha256": "fdd83a79899712c65ae3a4e0f1e879badd3fcc9a50f9da0dd1519cf7af29609e"
+    },
+    {
+      "path": "tests/tools/footprint/owner_consumer.py",
+      "sha256": "81caf72f0902bb8417292fb72d4dc9388891d54c008daff4c66e64a379826951"
+    },
+    {
+      "path": "tests/tools/footprint/test_observation.py",
+      "sha256": "9e75e490b785d3a46ef82752f36bcd4b2c5424a3b0af5b146a11467cc784de4c"
+    },
+    {
+      "path": "tests/tools/footprint/test_pair_record.py",
+      "sha256": "72ba5c17e8ab9e1c31c8acb4a990355207219629da1fb9c45ff522c4730b8c15"
+    },
+    {
+      "path": "tests/tools/footprint/test_regressions.py",
+      "sha256": "d40af655605f80bc33acb6fe9897f4c29b4c076d01989488655f88706de27af5"
+    },
+    {
+      "path": "tests/tools/footprint/test_sampling_v2.py",
+      "sha256": "e7c22a139512999fb1d263f2169974d0ddd423718d6e774641e4ce197b1509ff"
+    },
+    {
+      "path": "tools/evidence/process.py",
+      "sha256": "1f49872091ab5ec967a5c900a48e714284290e29c4f2baffad7cb614933c3c94"
+    },
+    {
+      "path": "tools/footprint/analyze.py",
+      "sha256": "d6f67e00c0e37354f3d682fc6060372123d54af9aac2e6506313f5aeaa8a07cb"
+    },
+    {
+      "path": "tools/footprint/configuration-development.json",
+      "sha256": "4d735d553c4a2968ae0bc19aeb46ddca4bfc3590656fc3ee257b39bcc74429ea"
+    },
+    {
+      "path": "tools/footprint/consumer/CMakeLists.txt",
+      "sha256": "a89963e44a09f95008115fb5423e6c8a05e821d1b1f67e314fa19c37c27c350a"
+    },
+    {
+      "path": "tools/footprint/consumer/baseline_fixture.hpp",
+      "sha256": "e2b950140d4ad30366e1b4f255e947ac6e89119ebca6a64fd411903547a9fe79"
+    },
+    {
+      "path": "tools/footprint/consumer/channel.hpp",
+      "sha256": "30cea85d5563f603fe6935acb69481b73ffd74e9e2048c8d08c1f73a151fba08"
+    },
+    {
+      "path": "tools/footprint/consumer/native_fixture.hpp",
+      "sha256": "6070f1f57f1bff208459e4c601faaf555c052c2a6143f41fc221ecce01a50c84"
+    },
+    {
+      "path": "tools/footprint/consumer/native_value.hpp",
+      "sha256": "57b6e450ed5f28aa30f29bf1965055480e3358ae33c6d325def25c4727b157f4"
+    },
+    {
+      "path": "tools/footprint/consumer/pair_main.cpp",
+      "sha256": "74ceda381552b803e4d66ad983605bb6b316ac3fd1e34cd79be4728d2b71f900"
+    },
+    {
+      "path": "tools/footprint/controls/calibration.cpp",
+      "sha256": "edcac651533bbfac8cbb57387b4ebb0e225470f5c9d5aa7e307883fa67fd5e62"
+    },
+    {
+      "path": "tools/footprint/controls/required.cpp",
+      "sha256": "9d96040f24c83abf05cfbc4b0e53979d67f63697a615fa18c8c9def6ee97bb94"
+    },
+    {
+      "path": "tools/footprint/owner_controls.py",
+      "sha256": "57dbcfb9256ca3343b188c1c31dcf7e1b4df72947fbac5e933d05f590d4d6496"
+    },
+    {
+      "path": "tools/footprint/pair_develop.py",
+      "sha256": "026ea447fe6a19e38dfac2788e226e73edb04d90dd2adde0d93ee5685e04aeeb"
+    },
+    {
+      "path": "tools/footprint/pair_record.py",
+      "sha256": "92334d6739500fcb137b2904d45b34cd8c630e9e63dae5278b70e7906078a19e"
+    },
+    {
+      "path": "tools/footprint/run.py",
+      "sha256": "3471a9a301e5fdc0622ef160eb842b36baa61300c14d15c6be606017ed341d45"
+    },
+    {
+      "path": "tools/footprint/sampling_develop.py",
+      "sha256": "16418e568255dddbe86a346c8fcdf890d859182766b52320b129500ffd8720bf"
+    },
+    {
+      "path": "tools/footprint/windows_process.py",
+      "sha256": "b0b217a9573d624349a740870df675debf4fd8e3200928ac9b4ba324d5826682"
+    }
+  ],
+  "consumer_sources_unchanged_from_v1_pair": true,
+  "guards": 18,
+  "new_pair_metrics": [
+    {
+      "kind": "baseline",
+      "method": "ock.native-footprint/2",
+      "method_digest": "63fc080f01f6066fcceba092d844a9554cc6e40137710297883cf3079babb3a7",
+      "sample_count": 304,
+      "thread_sample_count": 12,
+      "missed_intervals": 742,
+      "ready_threads": 4,
+      "observed_thread_peak": 4,
+      "max_memory_query_ticks": 111054,
+      "max_thread_query_ticks": 2392576,
+      "qpc_frequency": 10000000
+    },
+    {
+      "kind": "native",
+      "method": "ock.native-footprint/2",
+      "method_digest": "63fc080f01f6066fcceba092d844a9554cc6e40137710297883cf3079babb3a7",
+      "sample_count": 305,
+      "thread_sample_count": 12,
+      "missed_intervals": 650,
+      "ready_threads": 4,
+      "observed_thread_peak": 4,
+      "max_memory_query_ticks": 26789,
+      "max_thread_query_ticks": 1577861,
+      "qpc_frequency": 10000000
+    }
+  ],
+  "raw_references": [
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-v2-red-58b142149ece/command.json",
+      "sha256": "3499552cc57f770ccd9d00c2153dab9130b22479ddc936083f7b1cf88da33a51",
+      "bytes": 772
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-v2-red-58b142149ece/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-v2-red-58b142149ece/stderr.log",
+      "sha256": "3907674acf575d66becf1a3d0bb0ea7724c4bfa02bc95f4aee8a7e578cfab739",
+      "bytes": 3501
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-v2-held-d3d9e5cba335/commands.json",
+      "sha256": "3d828fdbc74f8b387d68ae9643aaacb43478f3bcfc922232e00e9add262513a0",
+      "bytes": 454968
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-v2-held-d3d9e5cba335/sources.json",
+      "sha256": "413bc4f9feaf2abf2d706303b4e62e2b67ae32b89208a308cdd28f92717f84bb",
+      "bytes": 3380
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-v2-held-d3d9e5cba335/reused-artifacts.json",
+      "sha256": "f5e79c83c4d5c565ce8924a3a7dc3fdc4c321d07837cf8206ee0453529280703",
+      "bytes": 737
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-v2-held-d3d9e5cba335/result.json",
+      "sha256": "042b1d8227d59819ade10209d875722162e1b1d070648deadfab2fcb2fa4de0a",
+      "bytes": 481
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-v2-held-d3d9e5cba335/none-summary.json",
+      "sha256": "fb67bd1131f06c7ff1d31c3df2ea112c495378087ba65ef61fc605ec9ca4a5b8",
+      "bytes": 926
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-v2-held-d3d9e5cba335/thread-summary.json",
+      "sha256": "691c2ec5124849555980232d7204b777f9f300558b9c6cce0c5d9a5e010c4100",
+      "bytes": 926
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-native-pair-2fe91f109e7e/commands.json",
+      "sha256": "c6619b60cc90925d0622b070de3ac91e4ca55a9af4a18d48fc9785f90af69ca7",
+      "bytes": 460011
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-native-pair-2fe91f109e7e/sources.json",
+      "sha256": "f7d1aa3d87724004bacff16d11d89292d79ff0428c8f1ee6de71294d6a14661c",
+      "bytes": 3781
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-native-pair-2fe91f109e7e/pair.json",
+      "sha256": "debd77a067bf25548e28481653e3eedbbbfcd698fa19540e88c1631284f23d47",
+      "bytes": 6379
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-native-pair-2fe91f109e7e/result.json",
+      "sha256": "175d9178f30fad018ab1d23365bf0e1d133c225a1168614270314e2154411f73",
+      "bytes": 366
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-native-pair-2fe91f109e7e/install-record.json",
+      "sha256": "983824db92f099a28e5dcc0baf5d6a9338643b9d933f3fa10e6584fc427d4ab5",
+      "bytes": 4617
+    },
+    {
+      "path": "docs/contracts/native-footprint-method.md",
+      "sha256": "fdd83a79899712c65ae3a4e0f1e879badd3fcc9a50f9da0dd1519cf7af29609e"
+    },
+    {
+      "path": "docs/contracts/native-test-scope.md",
+      "sha256": "b2cfc3f836708782b6bc61fdd79d53b3436310b36a8500d37f4eb8124397a0c3"
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-sampling-amendment-review.md",
+      "sha256": "0ee8bf9113a63c2b6cc745ca65e3fc849dfa4e5ac0c63d8d992a3e9f7c5e6177"
+    }
+  ],
+  "pilot": false,
+  "budget_status": "NotApproved"
+}

@@ -1,4 +1,5 @@
 #include "policy.hpp"
+#include "validation.hpp"
 #include <algorithm>
 #include <atomic>
 #include <deque>
@@ -169,6 +170,13 @@ Usage config_usage(const PolicyConfiguration &c, const PolicyBudget &b,
   }
   good = m.valid;
   return m.value;
+}
+Result<void> validate_configuration(PolicyBudget budget, const PolicyConfiguration& input) {
+  if (!valid_budget(budget)) return failure<void>(PolicyErrc::InvalidInput);
+  bool good = false;
+  (void)config_usage(input, budget, good);
+  if (!good) return failure<void>(PolicyErrc::BudgetExceeded);
+  return {};
 }
 std::atomic<std::uint64_t> store_sequence{0};
 Result<std::uint64_t> issue_process() {

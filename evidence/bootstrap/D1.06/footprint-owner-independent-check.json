@@ -1,0 +1,181 @@
+{
+  "actor_type": "AI",
+  "scope": "有限owner控制回读，无OS重跑",
+  "source_digest": "3744dda7de3d321396c60e41efb9e23115f75775d823c0f09a30ad9125f4024f",
+  "sources": [
+    {
+      "path": "tests/tools/footprint/owner_consumer.py",
+      "sha256": "81caf72f0902bb8417292fb72d4dc9388891d54c008daff4c66e64a379826951"
+    },
+    {
+      "path": "tests/tools/footprint/test_observation.py",
+      "sha256": "9e75e490b785d3a46ef82752f36bcd4b2c5424a3b0af5b146a11467cc784de4c"
+    },
+    {
+      "path": "tests/tools/footprint/test_regressions.py",
+      "sha256": "d40af655605f80bc33acb6fe9897f4c29b4c076d01989488655f88706de27af5"
+    },
+    {
+      "path": "tools/evidence/process.py",
+      "sha256": "1f49872091ab5ec967a5c900a48e714284290e29c4f2baffad7cb614933c3c94"
+    },
+    {
+      "path": "tools/footprint/analyze.py",
+      "sha256": "8ddad2cb1bb6e7af7ed9539a231e194253a70daccd05235c9d267725566aed46"
+    },
+    {
+      "path": "tools/footprint/configuration-development.json",
+      "sha256": "4d735d553c4a2968ae0bc19aeb46ddca4bfc3590656fc3ee257b39bcc74429ea"
+    },
+    {
+      "path": "tools/footprint/consumer/channel.hpp",
+      "sha256": "30cea85d5563f603fe6935acb69481b73ffd74e9e2048c8d08c1f73a151fba08"
+    },
+    {
+      "path": "tools/footprint/controls/calibration.cpp",
+      "sha256": "edcac651533bbfac8cbb57387b4ebb0e225470f5c9d5aa7e307883fa67fd5e62"
+    },
+    {
+      "path": "tools/footprint/controls/required.cpp",
+      "sha256": "9d96040f24c83abf05cfbc4b0e53979d67f63697a615fa18c8c9def6ee97bb94"
+    },
+    {
+      "path": "tools/footprint/owner_controls.py",
+      "sha256": "57dbcfb9256ca3343b188c1c31dcf7e1b4df72947fbac5e933d05f590d4d6496"
+    },
+    {
+      "path": "tools/footprint/run.py",
+      "sha256": "3471a9a301e5fdc0622ef160eb842b36baa61300c14d15c6be606017ed341d45"
+    },
+    {
+      "path": "tools/footprint/windows_process.py",
+      "sha256": "388ddedf4ff0f4742f8242b62c962cde77cb3f601796255b74d52d9334c6429b"
+    }
+  ],
+  "records": [
+    {
+      "run": "footprint-owner-extra-6233535fd310",
+      "current_source_delta": [
+        "tests/tools/footprint/test_regressions.py",
+        "tools/footprint/analyze.py",
+        "tools/footprint/windows_process.py"
+      ],
+      "records": [
+        {
+          "label": "extra_phase",
+          "status": "Exited",
+          "exit_code": 0,
+          "observed_exit_code": 0,
+          "terminated_owned_job": false,
+          "observation_status": "Complete",
+          "phases": 11,
+          "samples": 12,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "run": "footprint-owner-all-2407ed0d4d7c",
+      "current_source_delta": [
+        "tools/footprint/analyze.py"
+      ],
+      "records": [
+        {
+          "label": "permanent-regressions",
+          "status": "Exited",
+          "exit_code": 1,
+          "observed_exit_code": 1,
+          "terminated_owned_job": false,
+          "observation_status": null,
+          "phases": 0,
+          "samples": 0,
+          "errors": []
+        },
+        {
+          "label": "normal",
+          "status": "Exited",
+          "exit_code": 0,
+          "observed_exit_code": 0,
+          "terminated_owned_job": false,
+          "observation_status": "Complete",
+          "phases": 11,
+          "samples": 12,
+          "errors": []
+        },
+        {
+          "label": "extra_phase",
+          "status": "Exited",
+          "exit_code": 0,
+          "observed_exit_code": 0,
+          "terminated_owned_job": false,
+          "observation_status": "ObserverFailed",
+          "phases": 11,
+          "samples": 12,
+          "errors": [
+            "UnconsumedPhaseEventAtRootExit"
+          ]
+        },
+        {
+          "label": "descendants_alive",
+          "status": "DescendantsAlive",
+          "exit_code": 0,
+          "observed_exit_code": 0,
+          "terminated_owned_job": true,
+          "observation_status": "Incomplete",
+          "phases": 1,
+          "samples": 2,
+          "errors": [
+            "RootExitedBeforeProtocolComplete"
+          ]
+        },
+        {
+          "label": "sentinel",
+          "status": "Exited",
+          "exit_code": 0,
+          "observed_exit_code": 0,
+          "terminated_owned_job": false,
+          "observation_status": null,
+          "phases": 0,
+          "samples": 0,
+          "errors": []
+        },
+        {
+          "label": "stage_timeout",
+          "status": "LaunchFailed",
+          "exit_code": 125,
+          "observed_exit_code": 125,
+          "terminated_owned_job": true,
+          "observation_status": "ObserverFailed",
+          "phases": 1,
+          "samples": 2,
+          "errors": [
+            "ObservationError: StageDeadlineReached"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "footprint-owner-guards-05c96273fe61",
+      "current_source_delta": [],
+      "records": [
+        {
+          "label": "guards",
+          "status": "Exited",
+          "exit_code": 0,
+          "observed_exit_code": 0,
+          "terminated_owned_job": false,
+          "observation_status": null,
+          "phases": 0,
+          "samples": 0,
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "result": "VerifiedScopedEvidence",
+  "not_claimed": [
+    "旧OS轮整体Passed",
+    "当前十二源重跑OS",
+    "采样覆盖或Native/pilot/预算完成"
+  ]
+}

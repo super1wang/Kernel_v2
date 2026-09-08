@@ -1,0 +1,122 @@
+{
+  "actor_type": "AI",
+  "scope": "有限故障测试源码与Debug/Release诊断；ASan未运行",
+  "source_inputs": [
+    {
+      "path": "tests/contract/host/fault_main.cpp",
+      "sha256": "78bed297889ce089ddeb54bdb7d53f532a21f1a16c28099395651c8ba3529789"
+    },
+    {
+      "path": "tests/contract/host/fault_allocations.cpp",
+      "sha256": "289df71358ea3d8ecd12d23cf9bd5dcbb18aef3467d5053b5f00dd0d5e6f1016"
+    },
+    {
+      "path": "tests/contract/host/fault_allocations.hpp",
+      "sha256": "0d853395860673fdd483f1a500b3b16484cba8464e013cb08db0df6f499c8d45"
+    },
+    {
+      "path": "tests/contract/host/fault_host_unit.cpp",
+      "sha256": "0704cff1078d5aacb4f4fcbb008a909b101fd0b2003281c4796a2a0bd739a264"
+    },
+    {
+      "path": "tests/contract/host/fault_windows.md",
+      "sha256": "571479914e66201fc3696eaf25e7707dce41b2959072610bb46505bdab5fe6a7"
+    }
+  ],
+  "builds": [
+    {
+      "tag": "9a33ff654c",
+      "configuration": "Debug",
+      "inputs_sha256": "3be0a1ba8cf6f769cd0a3e3eb503fdac0d5ff8dc07d908d1650885dd17e927fc",
+      "verified_inputs": 278,
+      "binary": {
+        "path": "E:\\VS2019Qt5.15\\3D\\build\\d1.06-host-fault-9a33ff654c\\Debug\\ock_host_fault_tests.exe",
+        "sha256": "4b12c7ab216b4bee5fe6c740dae6ac5c7786937b525b5b6adbad77d5a0ca5a36",
+        "size": 2412032
+      },
+      "raw_and_owned_verified": true,
+      "sole_direct_host_unit": true
+    },
+    {
+      "tag": "65f554f44b",
+      "configuration": "Release",
+      "inputs_sha256": "fa29e674fa2022cd13373b21f3c0780f3e614d354dc64afbff93368e3c109a2f",
+      "verified_inputs": 280,
+      "binary": {
+        "path": "E:\\VS2019Qt5.15\\3D\\build\\d1.06-host-fault-65f554f44b\\Release\\ock_host_fault_tests.exe",
+        "sha256": "c12827ac029eee07fb312566c84be2a438d9fe1c47d7898afe6aac41c55756b8",
+        "size": 248320
+      },
+      "raw_and_owned_verified": true,
+      "sole_direct_host_unit": true
+    }
+  ],
+  "commands": [
+    {
+      "configuration": "Debug",
+      "mode": "create-ordinal-2",
+      "expected_exit": 86,
+      "actual_exit": 86,
+      "raw_owned_binary_verified": true
+    },
+    {
+      "configuration": "Debug",
+      "mode": "stl-default-vector",
+      "expected_exit": 86,
+      "actual_exit": 86,
+      "raw_owned_binary_verified": true
+    },
+    {
+      "configuration": "Debug",
+      "mode": "create-recoverable",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "raw_owned_binary_verified": true
+    },
+    {
+      "configuration": "Debug",
+      "mode": "start",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "raw_owned_binary_verified": true
+    },
+    {
+      "configuration": "Debug",
+      "mode": "internal",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "raw_owned_binary_verified": true
+    },
+    {
+      "configuration": "Release",
+      "mode": "create-full",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "raw_owned_binary_verified": true
+    },
+    {
+      "configuration": "Release",
+      "mode": "stl-default-vector",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "raw_owned_binary_verified": true
+    },
+    {
+      "configuration": "Release",
+      "mode": "start",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "raw_owned_binary_verified": true
+    },
+    {
+      "configuration": "Release",
+      "mode": "internal",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "raw_owned_binary_verified": true
+    }
+  ],
+  "release_full_ordinal_count": 9,
+  "diagnostic_result": "Verified",
+  "asan_execution": "Pending"
+}

@@ -1,0 +1,39 @@
+{
+  "actor_type": "AI",
+  "scope": "有限v2身份修复；只读重验证四真实记录",
+  "sources": [
+    {
+      "path": "tools/footprint/analyze.py",
+      "sha256": "4bf8208897c7766c178f74db3dcf08eb4b2edc2ba6b764ba87c48116b0557a13"
+    },
+    {
+      "path": "tests/tools/footprint/test_observation.py",
+      "sha256": "79e0970390c25c11feadffed2549bbd96d659417f2c5a0a7b64a88bc344555b2"
+    },
+    {
+      "path": "tests/tools/footprint/test_sampling_v2.py",
+      "sha256": "93a25fd2eef1c5cbda2d7c2527fce07939ac40b783f5ad8e9d7420a6696c879e"
+    }
+  ],
+  "commands": [
+    {
+      "run": "footprint-v2-identity-red-263478fef16d",
+      "exit": 1,
+      "command_sha256": "041fcd81ca8afdbf038e2f36a2990e2e84ff6170f939aa2cb3ccfd6e4db035c2",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d4fbf8a7d0b7da967ad9985118e4f5a8b61c6e8a78867f70ea7eed0876e47393"
+    },
+    {
+      "run": "footprint-v2-identity-green-552bff69828a",
+      "exit": 0,
+      "command_sha256": "463e812134bc9812d60c832482261b6c66dcc61467715fcc2ad5c58b16f5dff7",
+      "stdout_sha256": "30d05f14d0ba7a0e413718b1ec988d093eea643602c2e82715238171ff4a50cb",
+      "stderr_sha256": "64debfd2b649f329ab82ab05ca4add466a70a65c08e5adf838c4f739e8190c0c"
+    }
+  ],
+  "real_raw_revalidation": 4,
+  "reused_exe_dll_and_consumer_sources_verified": true,
+  "install_files_verified": 26,
+  "new_os_runs": 0,
+  "code_status": "ApprovedScoped"
+}

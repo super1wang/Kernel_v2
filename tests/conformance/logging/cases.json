@@ -1,0 +1,26 @@
+{
+  "scope": "D1.06 LoggingConformance 局部执行集合；不是历史 expected 替换或后端资格批准",
+  "prefix": "T22.logging",
+  "backends": {
+    "memory": {"implementation": "default MemoryLogging", "full": "DropOldest"},
+    "test": {"implementation": "independent TestBackend", "full": "RejectNewest"}
+  },
+  "capabilities": {"async": false, "file": false, "callbacks": false, "volatile_retention": true},
+  "common_required": {
+    "accept_reject_drop_accounting": ["quota_default_max_invalid", "full_strategy_difference", "filtered_invalid_closed_disjoint", "facade_backend_conservation", "finite_concurrent_acceptance", "busy_rejection_and_next_accept"],
+    "format_redaction": ["three_golden_records", "sort_and_four_fields", "duplicate_unknown_type_range_reject", "redacted_numeric_sentinel", "input_borrow_ends_at_return", "tail_zero", "invalid_page_output_unchanged"],
+    "error_isolation": ["ordinary_diagnostic_cannot_replace_business_result", "qualified_preaccept_exception", "illegal_write_combinations", "facade_control_error_families", "foreign_error_domain_and_details", "nonqualified_postaccept_throw_detected_by_controller", "create_invalid_snapshot", "moved_facade"],
+    "flush_accepted_range": ["empty_old_foreign_future", "eviction_less_equal_greater_than_H", "repeat_with_intervening_eviction", "covered_H_unchanged", "read_gap_upper_next", "repeat_close_and_old_flush", "failed_flush_no_fake_success", "invalid_close_report"],
+    "shutdown_callback_lifetime": ["closing_failure_keeps_gate", "explicit_close_retry_once", "four_by_four_cross_method_reentrancy", "same_backend_multiple_facades", "A_B_A_cycle", "independent_backend_allowed", "depth_16_limit", "create_reentrancy", "four_methods_facade_self_destruction_and_exception_return", "last_inflight_state_owner", "final_backend_owner_release"]
+  },
+  "optional": {
+    "queue_full": {"required_if": "async", "current": "NotApplicable"},
+    "rotation": {"required_if": "file", "current": "NotApplicable"},
+    "disk_faults": {"required_if": "file", "current": "NotApplicable"}
+  },
+  "supplemental": {
+    "T19.logging.memory_pages": ["real_default_page_formula", "eviction_between_pages", "global_E_and_gap", "last_empty_page", "future_foreign_zero_over_capacity_reject", "failure_output_unchanged", "reading_does_not_consume", "closed_read"],
+    "T23.logging.fixed_write_allocation": ["unchanged_D1_05_probe_source", "12_independent_positive_entries", "negative_no_allocation", "two_legal_backends", "40_fixed_accepted_windows_each", "40_sustained_full_windows_each", "complete_result_destruction", "finite_initialize_first_warmup_fill_costs", "last_owner_release_and_retained_baseline", "independent_channels_not_added"]
+  },
+  "qualification_rule": "所有共同项始终必需；可选项仅由上述能力表达式决定。callbacks=false 不关闭任何寿命项。故意接受后抛或非法报告的控制模式不属于合法后端。"
+}

@@ -1,0 +1,20 @@
+# 在每次 CTest 读取时生成；-N 不创建任何结果，不能复用上一轮目录。
+string(RANDOM LENGTH 24 ALPHABET "0123456789abcdef" _logging_run_id)
+set(_logging_cases "")
+foreach(_backend IN ITEMS memory test)
+  foreach(_case IN ITEMS accept_reject_drop_accounting format_redaction error_isolation flush_accepted_range shutdown_callback_lifetime)
+    list(APPEND _logging_cases "T22.logging.${_backend}.${_case}")
+  endforeach()
+endforeach()
+list(APPEND _logging_cases T19.logging.memory_pages)
+set(_logging_predecessors "${_logging_cases}")
+list(APPEND _logging_cases T23.logging.fixed_write_allocation)
+foreach(_case IN LISTS _logging_cases)
+  add_test("${_case}" "@Python3_EXECUTABLE@" -X utf8 "@CMAKE_CURRENT_SOURCE_DIR@/verify_contract.py"
+    --binary "$<TARGET_FILE:ock_logging_tests>" --case "${_case}" --run-id "${_logging_run_id}"
+    --binding "@CMAKE_CURRENT_BINARY_DIR@/logging-binding.json" --work "@CMAKE_CURRENT_BINARY_DIR@/child-runs")
+  set_tests_properties("${_case}" PROPERTIES TIMEOUT 90
+    ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:@_logging_runtime@")
+endforeach()
+# DEPENDS 只保证顺序；聚合必须独立验证全部11项成功，不能以依赖关系代替证据。
+set_tests_properties(T23.logging.fixed_write_allocation PROPERTIES DEPENDS "${_logging_predecessors}")

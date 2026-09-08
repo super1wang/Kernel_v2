@@ -1,0 +1,130 @@
+{
+  "scope": "finite owner control implementation self-review; not independent approval",
+  "source_digest": "3744dda7de3d321396c60e41efb9e23115f75775d823c0f09a30ad9125f4024f",
+  "sources": [
+    {
+      "path": "tests/tools/footprint/owner_consumer.py",
+      "sha256": "81caf72f0902bb8417292fb72d4dc9388891d54c008daff4c66e64a379826951"
+    },
+    {
+      "path": "tests/tools/footprint/test_observation.py",
+      "sha256": "9e75e490b785d3a46ef82752f36bcd4b2c5424a3b0af5b146a11467cc784de4c"
+    },
+    {
+      "path": "tests/tools/footprint/test_regressions.py",
+      "sha256": "d40af655605f80bc33acb6fe9897f4c29b4c076d01989488655f88706de27af5"
+    },
+    {
+      "path": "tools/evidence/process.py",
+      "sha256": "1f49872091ab5ec967a5c900a48e714284290e29c4f2baffad7cb614933c3c94"
+    },
+    {
+      "path": "tools/footprint/analyze.py",
+      "sha256": "8ddad2cb1bb6e7af7ed9539a231e194253a70daccd05235c9d267725566aed46"
+    },
+    {
+      "path": "tools/footprint/configuration-development.json",
+      "sha256": "4d735d553c4a2968ae0bc19aeb46ddca4bfc3590656fc3ee257b39bcc74429ea"
+    },
+    {
+      "path": "tools/footprint/consumer/channel.hpp",
+      "sha256": "30cea85d5563f603fe6935acb69481b73ffd74e9e2048c8d08c1f73a151fba08"
+    },
+    {
+      "path": "tools/footprint/controls/calibration.cpp",
+      "sha256": "edcac651533bbfac8cbb57387b4ebb0e225470f5c9d5aa7e307883fa67fd5e62"
+    },
+    {
+      "path": "tools/footprint/controls/required.cpp",
+      "sha256": "9d96040f24c83abf05cfbc4b0e53979d67f63697a615fa18c8c9def6ee97bb94"
+    },
+    {
+      "path": "tools/footprint/owner_controls.py",
+      "sha256": "57dbcfb9256ca3343b188c1c31dcf7e1b4df72947fbac5e933d05f590d4d6496"
+    },
+    {
+      "path": "tools/footprint/run.py",
+      "sha256": "3471a9a301e5fdc0622ef160eb842b36baa61300c14d15c6be606017ed341d45"
+    },
+    {
+      "path": "tools/footprint/windows_process.py",
+      "sha256": "388ddedf4ff0f4742f8242b62c962cde77cb3f601796255b74d52d9334c6429b"
+    }
+  ],
+  "actual_control_source_delta": [
+    {
+      "path": "tools/footprint/analyze.py",
+      "actual_controls_sha256": "63cc4db5babac2af3f947e68d90872a66c4ce7f7de7cd6233719ee8af04d1981",
+      "current_sha256": "8ddad2cb1bb6e7af7ed9539a231e194253a70daccd05235c9d267725566aed46"
+    }
+  ],
+  "actual_controls": "evidence\\bootstrap\\D1.06\\footprint-owner-all-2407ed0d4d7c",
+  "real_red": "evidence\\bootstrap\\D1.06\\footprint-owner-extra-6233535fd310",
+  "final_permanent_guards": "evidence\\bootstrap\\D1.06\\footprint-owner-guards-05c96273fe61",
+  "final_guard_count": 12,
+  "actual_controls_aggregate_status": "Failed: initial guard None-tree error; all five real OS assertions true",
+  "raw_references": [
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-owner-extra-6233535fd310/commands.json",
+      "sha256": "31382e25e2bba65b7af4e6ef395a09a94f2f60354d4f997df687d6b20b9b3872",
+      "bytes": 16806
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-owner-extra-6233535fd310/sources.json",
+      "sha256": "d4abbd3d6c88d92f97d3854e0c89409f24f85788e62eea815f904d8a1b9c16f1",
+      "bytes": 1745
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-owner-extra-6233535fd310/result.json",
+      "sha256": "663966e2a79bf8033676567b8e22d0182ba1077d51532fe729f0cc88537c5e3a",
+      "bytes": 281
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-owner-extra-6233535fd310/assertions.json",
+      "sha256": "c644dffd0c8a73ccddd94085880f378b5c288186fa5de707af9af192290e2a16",
+      "bytes": 99
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-owner-all-2407ed0d4d7c/commands.json",
+      "sha256": "9b4769d85b11e5b3ee902a744af966c519acf39d663aa30169c2f7998926e48b",
+      "bytes": 45070
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-owner-all-2407ed0d4d7c/sources.json",
+      "sha256": "acef41f166acf9800ab7824023b4ce2e90282b283b7b7ae74102cc8ba74d1258",
+      "bytes": 1745
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-owner-all-2407ed0d4d7c/result.json",
+      "sha256": "eb9fe7d72df3ac61ce759f1215b004a1664167caea214f4756f3836dd2a61408",
+      "bytes": 990
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-owner-all-2407ed0d4d7c/assertions.json",
+      "sha256": "31ed3f09ea39c10d9220d084b359e9d0e375fe6bf5101e41d778de8306cfcc52",
+      "bytes": 752
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-owner-guards-05c96273fe61/command.json",
+      "sha256": "2b5fe37a8f06252e10ec62eff0977ed5194def7d7ac9a77fac2e9349d90ff755",
+      "bytes": 862
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-owner-guards-05c96273fe61/sources.json",
+      "sha256": "fe42354c3e2c6969aa4ba180981eaf4f1e94582f3e55e3fb8366461a59f43b35",
+      "bytes": 1745
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-owner-guards-05c96273fe61/stdout.log",
+      "sha256": "c855a8d3eef3280992e3eb91a97f41e356a67b45e7d1039d6c0955c2412d25b1",
+      "bytes": 139
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-owner-guards-05c96273fe61/stderr.log",
+      "sha256": "fc9a9ac7c598c1b8245f1be4cc66abf424faea1ac508e28cd96e4de7030a8ad6",
+      "bytes": 1834
+    }
+  ],
+  "pilot": false,
+  "budget_status": "NotApproved"
+}

@@ -92,7 +92,7 @@ def main():
             lines += ['string(REGEX REPLACE "/RTC[1su]" "" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")',
                       'add_compile_options(/fsanitize=address)', 'add_link_options(/INCREMENTAL:NO)']
         if component == 'CoreContracts':
-            lines += ['if(OCK_RUNTIME_AVAILABLE OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL "CoreContracts")',
+            lines += ['if(NOT OCK_RUNTIME_AVAILABLE OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL "NativeSubset")',
                       '  message(FATAL_ERROR "unexpected SDK stage")', 'endif()',
                       'get_target_property(_impl OCK::CoreContracts OCK_IMPLEMENTATION_STAGE)',
                       'get_target_property(_links OCK::CoreContracts INTERFACE_LINK_LIBRARIES)',
@@ -138,6 +138,7 @@ def main():
                  '-DOCK_ENABLE_ASAN='+('ON' if asan else 'OFF'),
                  '-DOCK_BUILD_G0_TESTS=OFF', '-DOCK_BUILD_DEPENDENCY_PROBES=OFF',
                  '-DOCK_DEPENDENCY_COMPONENTS=Foundation', '-DOCK_DEPENDENCIES_OFFLINE=ON'])
+            run(['cmake', '--build', str(producer), '--config', args.config, '--target', 'ock_Runtime', '--parallel', '2', '--', '/nr:false'])
             consume(install(producer))
         else:
             consume(prefix)
@@ -148,7 +149,7 @@ def main():
                 assert target.resolve().is_relative_to(work.resolve())
                 target.unlink()
                 consume(pruned, success=False, needles=['C1083', header])
-            for component in ('Runtime', 'Data', 'Observation'):
+            for component in ('Data', 'State', 'Observation'):
                 consume(prefix, component=component)
     except Exception:
         save_json(work / 'result.json', {'case': args.case, 'status': 'Failed', 'configuration': args.config,

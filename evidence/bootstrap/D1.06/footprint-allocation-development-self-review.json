@@ -1,0 +1,168 @@
+{
+  "scope": "allocation development static self-review after user stopped further testing",
+  "current_allocation_sources": [
+    {
+      "path": "tests/tools/footprint/test_allocation_record.py",
+      "sha256": "f8b124592c8dd1c73c353910a8f9a20e958a94dcc5f8fafdf8bed88ab9fbde52"
+    },
+    {
+      "path": "tools/footprint/allocation_develop.py",
+      "sha256": "7ca7ef31d9c8dca70c2407773b4a914c12c0d8d8ab70f6239513f4d4a0bd1282"
+    },
+    {
+      "path": "tools/footprint/allocation_record.py",
+      "sha256": "120585333eb929743e7626cd19f5f6fa410fe6d56b87e02244a57a02e8ebfc5d"
+    },
+    {
+      "path": "tools/footprint/consumer/CMakeLists.txt",
+      "sha256": "7b8b353d0a6c4520d17c17ee1e940d8b8f90418994c1509c8d0003acf0635a5b"
+    },
+    {
+      "path": "tools/footprint/consumer/allocation_trace.hpp",
+      "sha256": "7e8eeb5aec4acea0944e1dae70f564f0ca29c27cfd8cff044fbc7e925af9353f"
+    },
+    {
+      "path": "tools/footprint/consumer/baseline_fixture.hpp",
+      "sha256": "08ca7126eb6cb6720185aa2e7f0629ccdc0e8c385e8d8ffa2a728c381757768b"
+    },
+    {
+      "path": "tools/footprint/consumer/native_fixture.hpp",
+      "sha256": "6977c302e283b68b5ca53b518df25eca170d42de05b2587b0a2b0963ed1e0389"
+    },
+    {
+      "path": "tools/footprint/consumer/pair_main.cpp",
+      "sha256": "e17a23b63e04ba30a24fb657d51a88e8e03870ff9b51e236fc5bf96691f08a67"
+    },
+    {
+      "path": "tools/footprint/pair_record.py",
+      "sha256": "bff6d0d2e380d9e153d3ec824b6b2030657915b273388275cc203e3ce90a3088"
+    }
+  ],
+  "current_allocation_source_digest": "0e5455c9643fc70c572340d781e840ad6cb5fdba1b0cb679632fe40bbc817e53",
+  "main_run_full_source_digest": "eb2cbfe74597d2efb6c11432d41fe052e0e4c467d68bda787c3a7054ccc0dc23",
+  "main_run_source_count": 34,
+  "allocation_changes_after_main_run": [
+    {
+      "path": "tests/tools/footprint/test_allocation_record.py",
+      "main_run_sha256": "86edbfa192463af401438d1121ab56424ba60cce64ffadf0a917554d926b2d39",
+      "current_sha256": "f8b124592c8dd1c73c353910a8f9a20e958a94dcc5f8fafdf8bed88ab9fbde52"
+    },
+    {
+      "path": "tools/footprint/allocation_record.py",
+      "main_run_sha256": "65f7fe33d5e708a8838ee60f90605033dcfcadf4fc4715e2f476fb9e040c394b",
+      "current_sha256": "120585333eb929743e7626cd19f5f6fa410fe6d56b87e02244a57a02e8ebfc5d"
+    },
+    {
+      "path": "tools/footprint/consumer/allocation_trace.hpp",
+      "main_run_sha256": "2d1aa2c2233c4aa972367ab7207ad2e75609fa33c29c936192dae4a481b4b538",
+      "current_sha256": "7e8eeb5aec4acea0944e1dae70f564f0ca29c27cfd8cff044fbc7e925af9353f"
+    }
+  ],
+  "references": [
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-883396c98018/sources.json",
+      "sha256": "55614d9aebff1bee8e26cad3bfb6e5162cb4bb8795b57be7f25bb122f0776851",
+      "bytes": 4995
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-883396c98018/commands.json",
+      "sha256": "832ef8939fcde87f4ab6b473b4dbee6a3dc293d4ccaa59a263d097493eaf7a78",
+      "bytes": 1084239
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-883396c98018/result.json",
+      "sha256": "fb58f4779ee73dc03cdbbb358855f7899f33e32e1bf96b53d99357afc9fff027",
+      "bytes": 1016
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-883396c98018/artifacts.json",
+      "sha256": "b35833b234c938b723e241f6dcbaebd1b6198a017a0361a1c53e8120d38381b3",
+      "bytes": 1458
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-883396c98018/allocation-native_injected-counts.json",
+      "sha256": "6b888398676657cdecccaddb6a579dd08f7fc0f50bbd334ea4f0af71113827b1",
+      "bytes": 23328
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-883396c98018/allocation-native-counts.json",
+      "sha256": "dcb51403f277e0d82a407536ab142b581c613ff8456f2556b3a7b1e84599810a",
+      "bytes": 23325
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-883396c98018/allocation-baseline-counts.json",
+      "sha256": "242468d739b752af39fb8029089c13d01bdbe983e17c9d2f6e7996049d4bc61d",
+      "bytes": 22505
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-label-693a48ed3518/sources.json",
+      "sha256": "e7c55936f5b9d7d220fdea71e7337f8451e2ab2b55c919966a6948202ed8b686",
+      "bytes": 4995
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-label-693a48ed3518/commands.json",
+      "sha256": "bdeaf5b8a5d1f2e8c7472aa09f5195e763f00ff144ea8aee7ae5d2de608d1355",
+      "bytes": 210514
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-label-693a48ed3518/result.json",
+      "sha256": "c3a0a0cd8bc85fc6dc70aaec26b7ece46cc7fe8b636862b1a518a59fdfc52c5c",
+      "bytes": 148
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-label-693a48ed3518/counts.json",
+      "sha256": "d2f0b4c1333ba5c94da430a5c7397d87ffc20aebd226d6810540a3c7f2a6b6aa",
+      "bytes": 22513
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-ledger-red-c85b5b160313/command.json",
+      "sha256": "393857a8d8b37a53ab46f0a2a96634fb78cb9596d2a1582f1c53f1bfa331ad87",
+      "bytes": 779
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-ledger-red-c85b5b160313/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-ledger-red-c85b5b160313/stderr.log",
+      "sha256": "94a50b576794d981a9bfc369cd8c5d69817329478a636997983fcabefb466d8a",
+      "bytes": 23091
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-ledger-green-59066a0bcea9/command.json",
+      "sha256": "52a2d901d93d82e026180bfbe49377136ee10a74b6e6554b71a1454a95fe3c05",
+      "bytes": 779
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-ledger-green-59066a0bcea9/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-ledger-green-59066a0bcea9/stderr.log",
+      "sha256": "c67d2bd58f3f695ae0cb56f3faa439abf071b5bec702c4319711dc631a994984",
+      "bytes": 924
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/footprint-allocation-ledger-green-59066a0bcea9/readback.json",
+      "sha256": "d8242f8e6dc1ae3281f760af4d24a0da221012ccad1bf20b561ae12b24111854",
+      "bytes": 969
+    },
+    {
+      "path": "tests/contract/native/allocation_probe.cpp",
+      "sha256": "92343e81324bc4cf3895b89160f6b3768ac97387edcf0a1251dea51de5f1f448"
+    },
+    {
+      "path": "tests/contract/native/allocation_probe.hpp",
+      "sha256": "69cada784e0d8646d0e1fc42577ef083ef4b20a269b71bc8bce5c8e314d872ac"
+    }
+  ],
+  "active_owned_processes": 0,
+  "further_execution_stopped_by_user": true,
+  "release_executed": false,
+  "asan_executed": false,
+  "pilot": false,
+  "budget_status": "NotApproved",
+  "independent_allocation_code_review": "NotCompleted"
+}

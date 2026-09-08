@@ -1,0 +1,61 @@
+{
+  "scope": "D1.06 Logging implementation self-review, not independent approval",
+  "source_digest_algorithm": "SHA256(sorted(path + TAB + sha256 + LF))",
+  "source_digest": "5d72a029b7295ca7431130950765bb0b4c72a5cf6c3c88b311fda8383e69369a",
+  "sources": [
+    {
+      "path": "packages/contracts/include/ock/contracts/logging.hpp",
+      "sha256": "efbaf36bbb24fbbc4edbe55a576e24b27ffef9a3b8f25dd30fbe043713a3b7a7"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/logging.hpp",
+      "sha256": "fea2a70741172afe7f2d6f690176de02976ab1be03aac2fab011395877aa320c"
+    },
+    {
+      "path": "packages/runtime/observability/logging.cpp",
+      "sha256": "188e2d0a7e0680470be364351fb1b6272923906a7b6c0c51cd3021b49acc00ba"
+    },
+    {
+      "path": "tests/conformance/logging/CMakeLists.txt",
+      "sha256": "e01d0d2a64bf3b4de9a368cfef3669630909a971b2b27be6c135e70757400f9b"
+    },
+    {
+      "path": "tests/conformance/logging/README.md",
+      "sha256": "2a88f1338eb651a66332bc0c0ecdc20ced1db93477de9b86dbf317266b623d1b"
+    },
+    {
+      "path": "tests/conformance/logging/cases.json",
+      "sha256": "748de72c00261d90278ebff40f746e0b000da953d9292a5519fe8617f5971e7a"
+    },
+    {
+      "path": "tests/conformance/logging/develop.py",
+      "sha256": "a6126d51911faec4a058e802781e92817693b1e8424210c06ff4a026af830959"
+    },
+    {
+      "path": "tests/conformance/logging/logging_tests.cpp",
+      "sha256": "1be5a951a2fe58f0017cd30b9e621dbe83872e9b8c24832be6f8a7c7561d5aa0"
+    },
+    {
+      "path": "tests/conformance/logging/reference_backend.hpp",
+      "sha256": "85e6f421a6b3841a3533e482a720f55aa03ca5f44f31e41d2df5e503a2587ef0"
+    }
+  ],
+  "verified_current_equals_final_snapshot": true,
+  "debug_run": "evidence/bootstrap/D1.06/logging-debug-32c863fedb48",
+  "result_sha256": "d9d3f765e584d076384b956dfc746e4a8932bc37b0545db647193e7e1ebb8a0e",
+  "junit_sha256": "375fc194336eae5b2a85091221ea733f7d891086ed1b65b35d46773328a33839",
+  "commands_sha256": "ce6c7770e37d137799bad695471e88e0517102a8036b4af8c434258acc159323",
+  "expected": [
+    "T22.logging.memory.accept_reject_drop_accounting",
+    "T22.logging.memory.format_redaction",
+    "T22.logging.memory.error_isolation",
+    "T22.logging.memory.flush_accepted_range",
+    "T22.logging.memory.shutdown_callback_lifetime",
+    "T22.logging.test.accept_reject_drop_accounting",
+    "T22.logging.test.format_redaction",
+    "T22.logging.test.error_isolation",
+    "T22.logging.test.flush_accepted_range",
+    "T22.logging.test.shutdown_callback_lifetime"
+  ],
+  "all_commands_owned_and_exited_zero": true
+}

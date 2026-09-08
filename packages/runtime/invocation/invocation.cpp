@@ -1,3 +1,4 @@
+#include "validation.hpp"
 #include "invocation.hpp"
 #include <algorithm>
 #include <mutex>
@@ -117,11 +118,8 @@ Result<void> check_thread(const BoundState& state) noexcept {
 }
 } // namespace detail
 
-Result<std::shared_ptr<NativeEngine>> NativeEngine::create(
-    std::shared_ptr<const registry::Catalog> catalog,
-    std::shared_ptr<policy::SessionAuthority> session,
-    std::shared_ptr<TrustedThreadPort> thread, NativeBudget budget) {
-  if(!owned(catalog)||!owned(session)||!owned(thread)||!budget.bindings||
+Result<void> detail::validate_budget(NativeBudget budget) {
+  if(!budget.bindings||
      !budget.targets_per_binding||!budget.resources_per_binding||
      !budget.concurrent_calls_per_binding||!budget.observation_capacity||
      !budget.work_units||!budget.observation_counter_limit)
@@ -142,6 +140,16 @@ Result<std::shared_ptr<NativeEngine>> NativeEngine::create(
      !add(*slots,budget.targets_per_binding*sizeof(foundation::ObjectId)) ||
      !add(budget.bindings,budget.targets_per_binding*sizeof(foundation::ObjectId)))
     return make_unexpected(invocation_error(InvocationErrc::BudgetExceeded));
+  return {};
+}
+Result<std::shared_ptr<NativeEngine>> NativeEngine::create(
+    std::shared_ptr<const registry::Catalog> catalog,
+    std::shared_ptr<policy::SessionAuthority> session,
+    std::shared_ptr<TrustedThreadPort> thread, NativeBudget budget) {
+  if(!owned(catalog)||!owned(session)||!owned(thread))
+    return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
+  auto valid = detail::validate_budget(budget);
+  if(!valid) return make_unexpected(valid.error());
   try {
     auto state=std::make_shared<detail::EngineState>();
     state->catalog=std::move(catalog);

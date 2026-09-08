@@ -14,7 +14,7 @@ PROGRAM = """#include <ock/foundation/foundation.hpp>
 #include <ock/foundation/sdk_version.hpp>
 #include <type_traits>
 static_assert(std::is_same_v<ock::foundation::Result<int,int>,tl::expected<int,int>>);
-static_assert(!ock::sdk::runtime_available);
+static_assert(ock::sdk::runtime_available);
 int main() {ock::foundation::Result<int> result=42;return result && result.value()==42 ? 0:1;}
 """
 
@@ -80,6 +80,7 @@ def main():
         # 独立无测试生产配置也必须提供完整Foundation安装面。
         producer=work/'producer-no-tests'
         run(['cmake','--preset','win-msvc-debug','-B',str(producer),'-DBUILD_TESTING=OFF','-DOCK_BUILD_G0_TESTS=OFF','-DOCK_BUILD_DEPENDENCY_PROBES=OFF','-DOCK_DEPENDENCY_COMPONENTS=Foundation','-DOCK_DEPENDENCIES_OFFLINE=ON'])
+        run(['cmake','--build',str(producer),'--config',args.config,'--target','ock_Runtime','--parallel','2','--','/nr:false'])
         consume(install(producer))
     elif args.case=='missing_dependency_rejected':
         consume(prefix)

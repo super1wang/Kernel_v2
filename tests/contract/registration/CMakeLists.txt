@@ -1,7 +1,3 @@
-add_library(ock_registry_internal STATIC "${PROJECT_SOURCE_DIR}/packages/runtime/registry/registry.cpp")
-target_link_libraries(ock_registry_internal PRIVATE OCK::CoreContracts)
-target_compile_features(ock_registry_internal PRIVATE cxx_std_20)
-target_compile_options(ock_registry_internal PRIVATE /utf-8 /Zc:__cplusplus /permissive- /EHsc)
 add_executable(ock_registration_tests registration_tests.cpp)
 target_link_libraries(ock_registration_tests PRIVATE ock_registry_internal OCK::CoreContracts)
 target_include_directories(ock_registration_tests PRIVATE "${PROJECT_SOURCE_DIR}" "${PROJECT_SOURCE_DIR}/tests/compile/contracts")

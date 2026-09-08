@@ -33,7 +33,7 @@ public:
     unsigned calls = 0;
     Result<void> candidate_ready(Result<void> status) noexcept override { ++calls; return status; }
 };
-static_assert(!ock::sdk::runtime_available);
+static_assert(ock::sdk::runtime_available);
 static_assert(std::variant_size_v<Outcome<Value>::Candidate> == 9);
 static_assert(!std::is_default_constructible_v<BoundOperation<Value,Value>>);
 static_assert(!std::is_convertible_v<ResourceLease*,ActionPermit*>);

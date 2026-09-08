@@ -1,0 +1,96 @@
+{
+  "actor_type": "AI",
+  "scope": "Host故障适用性：规范/锁定平台源码/已有实际记录；尚未批准测试修改",
+  "status": "PendingDiagnostic",
+  "inputs": [
+    {
+      "path": "docs/01_Architecture_v3.3.md",
+      "sha256": "f20644428ed8c307109e26fe690e951f7e191659903bb496ba8dee51125bca2d"
+    },
+    {
+      "path": "docs/02_Execution_Plan_v3.3.md",
+      "sha256": "7daf3c8a7e68462a97cd593d2ab9a35c1888b720428c72bc9f915049050df511"
+    },
+    {
+      "path": "docs/contracts/native-host-api.md",
+      "sha256": "0220e3c7b75c2d39ce51e8fba5a041478e6d4940734beded399a3b6a46a3ae0f"
+    },
+    {
+      "path": "docs/contracts/native-test-scope.md",
+      "sha256": "11b8b47ec79562331e0a1a2aa95fd57ff0fcce06c20f4b7853dddd6ea53df4a6"
+    },
+    {
+      "path": "tests/contract/host/fault_windows.md",
+      "sha256": "571479914e66201fc3696eaf25e7707dce41b2959072610bb46505bdab5fe6a7"
+    },
+    {
+      "path": "tests/contract/host/fault_main.cpp",
+      "sha256": "78bed297889ce089ddeb54bdb7d53f532a21f1a16c28099395651c8ba3529789"
+    },
+    {
+      "path": "evidence/bootstrap/D1.06/host-fault-msvc-noexcept-diagnosis/source.json",
+      "sha256": "fd5468a9d536fe62862b875022085dcac381959103e5662db6c3922c39418961"
+    }
+  ],
+  "platform_sources_verified": [
+    {
+      "path": "F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\include\\vector",
+      "sha256": "351604d91a2ceac79f9bd9448c0553cccc22711e22955b5938eaf41de98334a6",
+      "size": 161282,
+      "lines": [
+        666,
+        676
+      ],
+      "excerpt_sha256": "7fa490bed7f14818407f56e20a192bd3f08534c3e615d95888f8dd9119d0d65d"
+    },
+    {
+      "path": "F:\\VS2022\\VS2022\\VC\\Tools\\MSVC\\14.44.35207\\include\\xmemory",
+      "sha256": "76359d0893ef63b0baa617e3f2d8729c50a24d349b41af51ad8e00ad7be82d70",
+      "size": 112178,
+      "lines": [
+        1199,
+        1224
+      ],
+      "excerpt_sha256": "d37e54fe007db3419cd50b29054d704bfce6f80478c689937b23c4906e6347f2"
+    }
+  ],
+  "existing_records": [
+    {
+      "run": "sdk-stage-da08b48728",
+      "argv_tail": "create",
+      "exit_code": 3,
+      "status": "Exited",
+      "owned_verified": true,
+      "raw_verified": true
+    },
+    {
+      "run": "host-fault-followup-c925c3b707",
+      "argv_tail": "start",
+      "exit_code": 0,
+      "status": "Exited",
+      "owned_verified": true,
+      "raw_verified": true
+    },
+    {
+      "run": "host-fault-followup-c925c3b707",
+      "argv_tail": "internal",
+      "exit_code": 0,
+      "status": "Exited",
+      "owned_verified": true,
+      "raw_verified": true
+    },
+    {
+      "run": "host-fault-followup-c925c3b707",
+      "argv_tail": "T22.host.shutdown_errors",
+      "exit_code": 0,
+      "status": "Exited",
+      "owned_verified": true,
+      "raw_verified": true
+    }
+  ],
+  "pending": [
+    "新Debug ordinal2 terminate86及孤立vector正交控制",
+    "Release同源完整逐ordinal实际结果",
+    "后续测试映射修订须单独核对，不以本记录作为CODE批准"
+  ]
+}

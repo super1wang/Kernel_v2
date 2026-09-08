@@ -14,7 +14,7 @@ spec.loader.exec_module(verify)
 class DevSelectionTests(unittest.TestCase):
     def test_native_change_is_narrow(self):
         selected = verify.select(['packages/runtime/invocation/invocation.cpp'])
-        self.assertEqual(selected['groups'], ['native'])
+        self.assertEqual(selected['groups'], ['host','native'])
         self.assertFalse(selected['full_reasons'])
 
     def test_public_contract_includes_transitive_consumers(self):
@@ -24,8 +24,8 @@ class DevSelectionTests(unittest.TestCase):
         self.assertIn('asan', selected['risks'])
 
     def test_unknown_cannot_fall_through_as_green(self):
-        selected = verify.select(['packages/runtime/host/new.cpp'])
-        self.assertEqual(selected['unknown'], ['packages/runtime/host/new.cpp'])
+        selected = verify.select(['packages/unmapped/new.cpp'])
+        self.assertEqual(selected['unknown'], ['packages/unmapped/new.cpp'])
         self.assertTrue(selected['full_reasons'])
 
     def test_empty_is_not_passed(self):
