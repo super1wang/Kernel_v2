@@ -1,3 +1,4 @@
+#include "query_lifetime.hpp"
 #include <mutex>
 #include <ock/control/list_method.hpp>
 namespace ock::control {
@@ -20,17 +21,14 @@ void ref(data::PayloadBuilder &b, std::string_view key, std::string_view field,
   (void)b.end_object();
 }
 } // namespace
-struct ListMethod::State {
-  std::mutex mutex;
+struct ListMethod::State : detail::QueryLifetime {
   std::shared_ptr<policy::SessionAuthority> session;
   std::shared_ptr<const policy::VerifiedCaller> caller;
   std::shared_ptr<ObservationTransport> transport;
   CursorCodec codec;
   CursorContext identity;
-  std::unique_ptr<policy::SendCoordinator> sender;
   std::string id;
   std::optional<std::string> next;
-  bool closed = false;
   State(CursorCodec c, CursorContext context)
       : codec(std::move(c)), identity(std::move(context)) {}
   CursorContext context(const policy::PageBindingData &page) const {
@@ -159,7 +157,7 @@ ListMethod::create(std::shared_ptr<policy::SessionAuthority> session,
   s->caller = std::move(caller);
   s->transport = std::move(transport);
   auto sender = policy::SendCoordinator::create(
-      s->session, s->transport, std::make_shared<State::Encoder>(s));
+      s->session, std::make_shared<detail::QueryLifetime::Sink>(s,s->transport), std::make_shared<State::Encoder>(s));
   if (!sender)
     return foundation::make_unexpected(sender.error());
   s->sender = std::move(*sender);
@@ -169,8 +167,8 @@ Result<std::optional<data::Payload>>
 ListMethod::dispatch(const policy::VerifiedCaller &caller, std::string_view id,
                      data::ValueView params) {
   auto s = state_;
-  std::lock_guard lock(s->mutex);
-  if (s->closed || &caller != s->caller.get() || id.empty() || id.size() > 96 ||
+  auto active=detail::QueryLifetime::enter(s);
+  if (!active || &caller != s->caller.get() || id.empty() || id.size() > 96 ||
       std::any_of(id.begin(), id.end(),
                   [](unsigned char c) { return c < 33 || c > 126; }))
     return invalid<std::optional<data::Payload>>();
@@ -204,7 +202,7 @@ ListMethod::dispatch(const policy::VerifiedCaller &caller, std::string_view id,
       return foundation::make_unexpected(token.error());
     s->next = std::move(*token);
   }
-  auto queued = s->sender->enqueue_response(page->response);
+  auto queued = active->sender->enqueue_response(page->response);
   s->id.clear();
   s->next.reset();
   if (!queued)
@@ -213,23 +211,12 @@ ListMethod::dispatch(const policy::VerifiedCaller &caller, std::string_view id,
 }
 Result<policy::StartResult> ListMethod::pump() {
   auto s = state_;
-  std::lock_guard lock(s->mutex);
-  if (s->closed)
-    return invalid<policy::StartResult>();
-  return s->sender->start_next();
+  auto active=detail::QueryLifetime::enter(s);
+  if (!active) return invalid<policy::StartResult>();
+  return active->sender->start_next();
 }
 void ListMethod::disconnect() noexcept {
-  auto s = state_;
-  std::unique_ptr<policy::SendCoordinator> retired;
-  {
-    std::lock_guard lock(s->mutex);
-    if (s->closed)
-      return;
-    s->closed = true;
-    retired = std::move(s->sender);
-  }
-  retired.reset();
-  s->transport->close();
+  state_->close(state_->transport);
 }
 ListMethod::~ListMethod() { disconnect(); }
 } // namespace ock::control

@@ -35,6 +35,8 @@ struct Spec {
 using Contract = binding::Record<Args, Spec>;
 namespace ock::contracts {template<> struct TypeContract<Args>:binding::TypeContract<Args,Spec>{};}
 static_assert(contracts::AsyncInput<Args>);
+static_assert(binding::RegisteredRecord<Args,Spec>::semantics()==binding::SchemaSemantics::SharedTypeContract);
+static_assert(!std::is_constructible_v<binding::RegisteredRecord<Args,Spec>,binding::CompiledSchema>);
 #define CHECK(x)                                                               \
   do {                                                                         \
     if (!(x)) {                                                                \

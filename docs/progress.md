@@ -4,7 +4,7 @@
 
 ## 当前生产节点
 
-- 当前分支：`work/d0-kernel-baseline`；恢复基线核对到 `e347234`，实际执行以实时 Git 为准。
+- 当前分支：`work/d0-kernel-baseline`；最新已推送开发检查点 `1de8743`，实际执行以实时 Git 为准。
 - 已 Passed：G0、G1、D0.01–D0.06、D1.01–D1.06。**这些 Passed 前置不重验**；D1.05 不重跑。
 - 当前 Development Batch：**B2 / D2.01–D2.04 InProgress**；B1 / D1.06 与 G1 已 Passed。
 - 当前门禁：**G1 Passed**；G2–G8 未开始。
@@ -13,6 +13,13 @@
 - 工具优化阶段已结束；禁止继续把 Fixture、Evidence、Install Consumer 性能优化或新流程文档设为 D1.06 前置。
 
 ## B2 当前开发
+
+- 收口批次：get/list 关闭回调跨线程等待反例 Debug 2/2（`resume-query-close-direct-b799bf0b18/`）；void Plan exports 与 Schema 显式语义 Debug 3/3（`resume-closure-final-direct-b7ede1d811/`）。正式 expected 与十二份运行清单已冻结，范围见 `docs/reviews/B2-formal-scope.md`；SPEC/CODE 分包记录同一来源。D2.01 首轮 Debug 自动 13/13，尚非包 Passed；统一提交来源后执行最终三配置。
+
+- D2.03 新增完整命令卡与 `capabilities.search/describe`：命令卡 Docs 从注册定义单次解析，共享冷 owner；版本/原子模式/权限从合同生成，字段 Schema 通过同一 TypeContract FieldSpec 投影，目录不额外编译绑定校验器。搜索只返回轻量条目，describe 才展开 Docs。真实 Registry 发布消费者覆盖查询及当前权限变化；命令卡 Schema 在 `schemas/catalog/`，合同见 `docs/contracts/catalog.md`。
+- 目录/Router Debug **2/2**：`resume-catalog-schema-direct-2d60a9422f/`；冷 Docs/真实注册链 ASan **1/1**：`resume-catalog-asan-direct-377ed8a0d3/`。初次目录错误仍走业务 Rejected 的失败保留于 `resume-catalog-routes-direct-5e989d6573/`，已改为查询 NotAvailable。均为直接开发影响集。
+- D2.04 `execution.get` 摘要查询骨架已接 Runtime GetSummary 与发送仲裁：明确 summary/full_result_available=false，保留观察版本、Unknown 及引用类型，发送前撤权不出帧；不冒充完整结果/真实任务。Debug **1/1**：`resume-get-reference-direct-a28914fbd9/`。新公开头已登记，最终安装矩阵尚待集中执行。
+- 本轮目录/get 变更尚未提交；前一 SDK 检查点 `1de8743` 已推送。B2 所有包仍 InProgress；后续重点为剩余合同差异核对、复杂 Schema 的 dynamic-only 标记、传输回调/关闭边界及统一来源正式验收，不重跑历史 Passed 包。
 
 - Native 安装消费者在 B2 SDK 下真实调用通过（`resume-root-native-final-1b67a2cd7b/`；详细 `sdk-installed_host-dd4910bd91/`），实际 CL/link tlog 验证 Runtime/bcrypt 存在、Data/Dynamic/Control/jsoncons 未进入 Native 链接。示例的旧 SDK 固定值已同步，之前失败保留。
 
@@ -31,12 +38,12 @@
 - 当前动态调用返回原始强类型 `InvokeReply<R>`，不将 Completed/FailedBeforeApply 改成 Rejected。新增生产 `encode_invoke` 与 `schemas/rpc-v1/outcome.schema.json`，覆盖九类 Outcome、六类 KnownFact、完整原子域、结构化错误、收尾/必要记录条件；结果编码失败写 result_error/exports_error 并保留事实。D0 模型 Schema/golden 不改写。Control operation.invoke 已接真实 HostBound，见下方接线记录。
 - Outcome 校验定位并修复了 jsoncons 0.178.0 无 default 也积累 null patch 的适配问题：只读 validator 包装关闭默认值投影，不关闭验证器、不增加预算，不修改依赖缓存；保留 `resume-outcome-stack-direct-75ba4c7150/` 等失败证据。当前默认值关键字拒绝策略仍保留；检查只遍历 Schema 位置，业务属性名和 const/enum 数据不作为关键字拒绝。
 - 本批最终直接结果：Debug 8/8（`evidence/bootstrap/B2/resume-outcome-affected-direct-b9d80c1fe3/`），覆盖绑定/并发 Schema/目录/Router/订阅/list/Native-Dynamic/Outcome；ASan 2/2（`evidence/bootstrap/B2/resume-outcome-asan-direct-5747ec8b63/`），覆盖复杂 Outcome 编码及并发 Schema 生命周期。仅 S_changed，未重跑历史包或冒充 B2 正式矩阵。
-- D2.03：能力目录 search/describe、分页/指纹、基于 Schema 字段的帮助导出已有首轮实现；复用当前 Session 政策，区分 installed/visible/eligible，查询不创建许可，冷 Docs 通过共享定义引用。精确命令卡完整内容及真实注册绑定的集成仍待完成。
+- D2.03：能力目录 search/describe、分页/指纹、基于 Schema 字段的帮助导出已有首轮实现；复用当前 Session 政策，区分 installed/visible/eligible，查询不创建许可，冷 Docs 通过共享定义引用。精确命令卡与真实 Registry/共享字段 Schema 的接线见最新记录；集中规格/代码审核仍待完成。
 - D2.04：已实现 OCK1 部分读取、帧头/预算/客户端请求方向检查；无状态 cursor 使用 Windows 随机密钥与 HMAC-SHA-256，匹配 D0.04 固定 golden，覆盖身份/过滤/世代绑定、篡改、规范编码、TTL/时钟回拨，逐 cursor 对象/句柄为零。固定 canonical 直接编码，不重建输入 DOM。
 - D2.04 后续推进：新增连接级 Router，握手校验 `ock.control/1`、规范身份与当前 Caller；从实际装配方法导出能力列表，未安装 Plan 路由返回 MethodNotFound。注册 Schema 校验参数后分派；业务 Payload 保留在 JSON-RPC result，未知效果事实不会被普通 RPC error 替换。未取得结构化业务结果的端口异常关闭连接，不伪造 Rejected。直接合同覆盖握手顺序/版本、方向、未知方法、参数反例、事实封装及异常关闭；基础路由验证使用受控端口；后续 operation.invoke 已通过真实 NativeHost 接线验证，其他端口按各自证据区分。
 - N1 wire 已推进：subscribe/unsubscribe/list 直接解码为现有 CoreContracts DTO，校验规范身份、uint64 溢出、单一过滤器、重复目标/topic、50ms 最小间隔、分页及 cursor 文本边界；同步把请求 id 收紧到 D0.04 的 1–96 个可打印 ASCII 字符。直接影响集 Debug 3/3：`evidence/bootstrap/B2/resume-observation-bounds-direct-06d9d873d5/`。订阅后续接线见下方记录；不把参数解码当成观察闭环。
 - 当前正式接线入口为根 `CMakeLists.txt`，B2 合同测试直接链接同一生产库；`tests/unit/data/CMakeLists.txt` 保留独立开发入口。公开头清单已同步；SDK 接线首轮通过不代表 B2 包级验收。
-- 剩余主线：完成精确命令卡与真实目录装配、execution.get 查询适配及剩余专项反例，集中 SPEC/CODE 与正式验收。B2 全部仍为 InProgress，不提前写 Passed。
+- 剩余主线：完成剩余合同差异核对及专项反例，集中 SPEC/CODE 与正式验收。B2 全部仍为 InProgress，不提前写 Passed。
 - 本轮集中直接结果：Debug **17/17**（`evidence/bootstrap/B2/resume-b2-debug-direct-64f8f457ca/`）、ASan **18/18**（`evidence/bootstrap/B2/resume-b2-asan-direct-b0f63a216e/`）。随后 cursor 改为固定直接编码、绑定补充共享 TypeContract 静态约束，分别只重跑受影响用例，日志见 `resume-cursor-canonical-*`、`resume-shared-contract-*`。这些是开发 S_changed，不能拼为包级正式验收。
 - Router 当前直接验证：`evidence/bootstrap/B2/resume-router-failure-direct-b1432ab583/`（T06.protocol.router，Debug 1/1 通过）。
 - N1 订阅生产实现已推进到 progress/phase 生命周期：注册屏障保证 ack 在事件之前；复用政策发送仲裁，发送前重验权限；限流丢弃保留 sequence/gap；退订、注册/ack 失败、序号耗尽及慢读超时清理监听和队列。外部 reserve 返回后重验配额，租约在连接锁外释放。实际 ack/progress/phase 帧通过冻结 N1 Schema 校验；首轮字段不符失败保留在 `resume-subscription-schema-direct-1735ca9a55/`。
@@ -46,7 +53,7 @@
 - 本次事实与 Router 接线直接验证：Debug 2/2（`evidence/bootstrap/B2/resume-subscription-integration-direct-ab8801dd73/`）、ASan 2/2（`evidence/bootstrap/B2/resume-subscription-integration-asan-direct-68f4cd7495/`），覆盖实际 ack/progress/phase/fact 帧 Schema、事实业务引用、Router 单次响应和并发注册清理。仍为 mock 源帧级 S_changed，不代表真实 Task/IPC 或 B2 正式验收。
 - list/cursor 生产接线已补齐：`ListMethod` 通过 Runtime 授权分页，`PageContinuationPort` 恢复本次短寿命绑定，Control 校验无状态 MAC/TTL/身份/过滤；响应经 SendCoordinator 排队并在发送前重验权限，Router 用 queued 避免二次响应。实际页帧符合冻结 execution-list Schema，公开错误区分 CursorInvalid/Expired，未知及无权统一 NotAvailable。
 - 本次 list 接线直接验证：Debug 3/3（`evidence/bootstrap/B2/resume-list-final-direct-0546d49deb/`）、ASan 1/1（`evidence/bootstrap/B2/resume-list-final-asan-direct-e44ba7b883/`）；覆盖两页、实际帧 Schema、MAC 篡改/过滤变化/跨 caller/TTL 在扫描前拒绝、Router 装配及发送前撤权，cursor 句柄为零。仅 mock 源帧级开发验证；真实索引/任务/IPC 未在 B2 宣称完成。
-- 观察剩余边界：execution.get 查询适配及整批合同复核仍待完成；list 的真实传输超时归 D2.05 接线。共享政策 Host 字节预算作为更严格主体上界，实际 ack 公布生效额度，不声称独立主体配额已实现。
+- 观察剩余边界：execution.get 摘要骨架已接线，完整结果由 D3 扩展；整批合同复核仍待完成；list 的真实传输超时归 D2.05 接线。共享政策 Host 字节预算作为更严格主体上界，实际 ack 公布生效额度，不声称独立主体配额已实现。
 - 未重跑 D1.06 或其他历史包矩阵；未新增流程政策文档。本次归档 B2 生产实现与 SDK 接线开发检查点；B2 仍 InProgress，提交与推送状态以实际 Git 为准。归档前公开头按仓库 LF 规则归一并更新 SHA，已核对 staged 字节与清单一致；不改变接口语义。
 
 ## 当前执行硬规则

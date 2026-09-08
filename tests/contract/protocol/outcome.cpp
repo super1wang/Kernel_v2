@@ -81,6 +81,14 @@ int main(int argc,char **argv)try{
   auto plan_wire=control::encode_invoke<int>(Completed<int>{*plan},[](const int &n){return data::Payload::parse("{\"value\":"+std::to_string(n)+"}");});
   CHECK(plan_wire && schema->validate(plan_wire->view()));
   CHECK(plan_wire->view().at("outcome").at("exports").at("value").int64()==3);
+  auto void_read=Outcome<void>::validate(ReadCompleted<void>{{},ResultScope::ReadOnly},facts(),EvidenceState::Volatile,conditions(),validation);CHECK(void_read);
+  auto void_plan=Outcome<void>::validate(PlanCompleted<void>{{},{{name("step"),StepStatus::Succeeded,true,ChildResult::Succeeded,true}}},facts(),EvidenceState::Volatile,conditions(),full_validation);CHECK(void_plan);
+  auto unused_encoder=[](const auto &)->Result<data::Payload>{throw std::logic_error("void encoder must not run");};
+  auto void_read_wire=control::encode_invoke<void>(Completed<void>{*void_read},unused_encoder);
+  auto void_plan_wire=control::encode_invoke<void>(Completed<void>{*void_plan},unused_encoder);
+  CHECK(void_read_wire && schema->validate(void_read_wire->view()));
+  CHECK(void_plan_wire && schema->validate(void_plan_wire->view()));
+  CHECK(void_plan_wire->view().at("outcome").at("exports").kind()==data::Kind::Object);
   auto before=conditions();before.before_apply=BeforeApplyDecision{true,ApplyDecision::NotReached,true};
   verify(FailedBeforeApply{name("run"),contracts::error(ContractsErrc::Rejected)},facts(),before);
   before.before_apply->decision=ApplyDecision::CancelWon;

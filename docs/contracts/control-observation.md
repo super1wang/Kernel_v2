@@ -2,6 +2,12 @@
 
 依据 A03/A05/A09.5/A10/A15/A17/A19/A21。独立 wire 为 `ock.notifications/1` 与 `ock.execution.list/1`；订阅不进入 Plan 节点。JSON Schema 2020-12、显式字段 pattern/范围、未知字段拒绝；format annotation 不能代替安全格式校验。仅从注册的本地 Schema 资源解析引用，不允许网络加载。D0 为确定性模型；D2.04 实现帧与连接生命周期，D3.04/D3.07 才验证真实执行和多进程观察。
 
+## B2 execution.get 查询骨架
+
+`GetMethod` 只使用现有 ObservationPort 的摘要，经 Runtime GetSummary 授权与 SendCoordinator 发送前复核。请求为 `{execution_ref:{execution_id}}`，强类型非零规范 ID；成功响应进入发送队列，Router 不重复回应。错误参数返回 Invalid params，未知/无权统一 NotAvailable。
+
+响应明确 `projection=summary`、`full_result_available=false`，携带 host/ExecutionRef、phase、observation_version、progress、fact_summaries。事实摘要保留 fact_id 和业务引用类型；Unknown 不输出 NotApplied 等确定性 application。形状见 `schemas/rpc-v1/execution-get-summary.schema.json`。这不是完整 Outcome/结果读取，不提供 wait/cancel；B2 仅用 mock 源证明帧与授权。D3 接入真实任务及完整结果后，另行扩展查询投影并验证，不能把 B2 骨架作为真实任务验收。
+
 ## 三种请求与一种推送
 
 | 方向 | 方法 | 字段/结果 |

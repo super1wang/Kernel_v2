@@ -8,6 +8,7 @@ template <class T, class Spec> class RegisteredRecord {
   static_assert(std::same_as<typename contracts::TypeContract<T>::FieldSpec,Spec>,
                 "Native and Dynamic must use the same generated TypeContract");
 public:
+  static constexpr SchemaSemantics semantics() noexcept { return SchemaSemantics::SharedTypeContract; }
   static Result<RegisteredRecord> create() {
     auto schema = Record<T, Spec>::schema();
     if (!schema)

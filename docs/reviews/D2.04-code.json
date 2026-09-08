@@ -1,0 +1,21 @@
+{
+  "format": "ock.technical-review/1",
+  "task_id": "D2.04",
+  "review_kind": "code",
+  "review_status": "Approved",
+  "reviewed_inputs_sha256": "6d21c3429b4c96ef4a330b4fdb49ce3b4c9163989e35756b79f1299d61cf6443",
+  "reviewed_at": "2026-09-08T15:04:18.219914+00:00",
+  "reviewer": "Codex 主集成 AI，分别执行规格与代码复核",
+  "actor_type": "AI",
+  "approval_text": "复核 invoke 保留业务事实、void Plan 对象编码；get/list 以调用租约保持发送器生命，外部 reserve 无连接锁，关闭后 start_now 拒绝。订阅/cursor/安装闭包反例保留；正式三配置验证仍为 Passed 必需条件。",
+  "evidence": [
+    {
+      "path": "docs/reviews/B2-formal-scope.md",
+      "sha256": "81a743d873dbc59a3d29860a8edfe701236e7a2be35ba767985a019708aa0714"
+    }
+  ],
+  "limitations": [
+    "AI 复核不是人工批准；包 Passed 仍需独立正式矩阵及实际 Passed 前置。",
+    "仅覆盖 B2，未验证真实 Task、IPC、设备或产品模块。"
+  ]
+}

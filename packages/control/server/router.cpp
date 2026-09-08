@@ -232,7 +232,8 @@ Result<RpcResponse> Router::dispatch(data::ValueView input) {
         if (!value) {
           const auto code = value.error().code();
           if (r.method.starts_with("notifications.") ||
-              r.method == "execution.list" || r.method == "execution.get") {
+              r.method == "execution.list" || r.method == "execution.get" ||
+              r.method == "capabilities.search" || r.method == "capabilities.describe") {
             if (code.domain().name() == "ock.control.cursor")
               return code.value() == 2 ? fault(r.id, -32012, "CursorExpired")
                                        : fault(r.id, -32011, "CursorInvalid");

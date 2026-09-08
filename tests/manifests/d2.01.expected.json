@@ -1,0 +1,132 @@
+{
+  "format": "ock.expected/1",
+  "task_id": "D2.01",
+  "scope": "B2 包级 S_required；依据 v3.3-r2 和 B2-formal-scope 冻结，不累计历史包。",
+  "cases": [
+    {
+      "id": "T04.data.values",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T04.data.duplicate",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T04.data.invalid",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T04.data.budgets",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T04.data.freeze",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T04.data.allocation_failures",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T04.data.ownership",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T04.data.builder_numbers",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T04.data.encode",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T04.data.concurrent",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T04.data.buffer",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T04.data.growth_cleanup",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T04.data.parser_seeds",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T12.data.view_escape",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-asan"
+      ]
+    }
+  ],
+  "checks": []
+}

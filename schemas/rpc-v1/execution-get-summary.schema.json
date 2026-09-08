@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "projection": {
+      "const": "summary"
+    },
+    "full_result_available": {
+      "const": false
+    },
+    "execution_ref": {
+      "type": "object",
+      "properties": {
+        "execution_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{32}$"
+        }
+      },
+      "required": [
+        "execution_id"
+      ],
+      "additionalProperties": false
+    },
+    "host_incarnation": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{32}$"
+    },
+    "phase": {
+      "enum": [
+        "Queued",
+        "WaitingResources",
+        "Running",
+        "WaitingChild",
+        "Finalizing",
+        "Suspended",
+        "Terminal"
+      ]
+    },
+    "observation_version": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "progress": {
+      "type": "object",
+      "properties": {
+        "completed": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)$"
+        },
+        "total": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)$"
+        }
+      },
+      "required": [
+        "completed",
+        "total"
+      ],
+      "additionalProperties": false
+    },
+    "fact_summaries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fact_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{32}$"
+          },
+          "kind": {
+            "enum": [
+              "Commit",
+              "Published",
+              "Effect",
+              "Lifecycle",
+              "Unknown",
+              "Resolution"
+            ]
+          },
+          "reference": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{32}$"
+          },
+          "application": {
+            "enum": [
+              "NotApplied",
+              "Applied",
+              "PartiallyApplied"
+            ]
+          },
+          "reference_kind": {
+            "enum": [
+              "Commit",
+              "Effect",
+              "Transition",
+              "Fact"
+            ]
+          }
+        },
+        "required": [
+          "fact_id",
+          "kind"
+        ],
+        "additionalProperties": false,
+        "if": {
+          "properties": {
+            "kind": {
+              "const": "Unknown"
+            }
+          }
+        },
+        "then": {
+          "not": {
+            "required": [
+              "application"
+            ]
+          }
+        },
+        "else": {
+          "required": [
+            "application"
+          ]
+        },
+        "dependentRequired": {
+          "reference": [
+            "reference_kind"
+          ],
+          "reference_kind": [
+            "reference"
+          ]
+        }
+      }
+    }
+  },
+  "required": [
+    "projection",
+    "full_result_available",
+    "execution_ref",
+    "host_incarnation",
+    "phase",
+    "observation_version",
+    "progress",
+    "fact_summaries"
+  ],
+  "additionalProperties": false
+}

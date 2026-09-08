@@ -48,6 +48,7 @@ int main() {
   auto complex = binding::CompiledSchema::compile(
       R"({"$schema":"https://json-schema.org/draft/2020-12/schema","oneOf":[{"const":1},{"const":2}]})");
   auto one = data::Payload::parse("1"), three = data::Payload::parse("3");
+  CHECK(complex && complex->semantics()==binding::SchemaSemantics::DynamicOnly);
   CHECK(complex && complex->validate(one->view()) &&
         !complex->validate(three->view()));
   auto named_default = binding::CompiledSchema::compile(

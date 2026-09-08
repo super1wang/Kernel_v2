@@ -14,12 +14,14 @@ struct Transport final : control::ObservationTransport {
     std::size_t capacity() const noexcept override { return n; }
   };
   std::vector<std::vector<std::byte>> frames;
+  std::function<void()> on_reserve;
   Result<void> queue_ack(std::span<const std::byte>) override {
     throw std::logic_error("unexpected ack");
   }
   void close() noexcept override {}
   Result<std::unique_ptr<runtime::policy::TransmissionReservation>>
   reserve(std::size_t n) override {
+    if (on_reserve) { auto callback=std::move(on_reserve); callback(); }
     return std::unique_ptr<runtime::policy::TransmissionReservation>(
         std::make_unique<Reservation>(n));
   }
@@ -146,6 +148,14 @@ int main(int argc, char **argv) try {
   CHECK(transport->frames.size() == before);
   CHECK(control::CursorCodec::cursor_handles() == 0);
   (*method)->disconnect();
+  policy_test::Env closing_env;
+  closing_env.source->retention_scope=name("managed_active_and_retained_terminal");
+  auto closing_transport=std::make_shared<Transport>();
+  auto closing=control::ListMethod::create(closing_env.session,closing_env.caller,closing_transport,*codec,context);CHECK(closing);
+  closing_transport->on_reserve=[&]{std::thread worker([&]{(*closing)->disconnect();});worker.join();};
+  auto closing_request=data::Payload::parse("{}");CHECK(closing_request);
+  CHECK(!(*closing)->dispatch(*closing_env.caller,"close",closing_request->view()));
+  CHECK(closing_transport->frames.empty() && !(*closing)->pump());
   std::cout << "List authorized frames, stateless continuation, tamper, "
                "filter, TTL and revoke passed\n";
 } catch (const std::exception &e) {

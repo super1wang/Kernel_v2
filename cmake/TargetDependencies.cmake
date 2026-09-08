@@ -73,8 +73,8 @@ ock_production_target(ControlProtocol packages/control/protocol/include
   packages/control/protocol/protocol.cpp packages/control/protocol/observation_wire.cpp packages/control/protocol/outcome_wire.cpp)
 target_link_libraries(ock_ControlProtocol PUBLIC OCK::CoreContracts OCK::Data)
 ock_production_target(Control packages/control/server/include
-  packages/control/server/cursor.cpp packages/control/server/router.cpp packages/control/server/invoke_method.cpp
-  packages/control/observation/subscription.cpp packages/control/observation/subscription_methods.cpp packages/control/observation/list_method.cpp)
+  packages/control/server/cursor.cpp packages/control/server/router.cpp packages/control/server/invoke_method.cpp packages/control/server/catalog_methods.cpp
+  packages/control/observation/subscription.cpp packages/control/observation/subscription_methods.cpp packages/control/observation/list_method.cpp packages/control/observation/get_method.cpp)
 target_link_libraries(ock_Control PUBLIC OCK::Runtime OCK::Dynamic OCK::ControlProtocol PRIVATE bcrypt)
 ock_contract_target(ControlClient packages/control/client/include ControlProtocol)
 ock_contract_target(Adapter::CpuPool packages/adapters/cpu_pool/include CoreContracts)

@@ -32,7 +32,8 @@ void result(data::PayloadBuilder &b, const Result<R> &r, Encoder &encode,
   }
   if constexpr (std::is_void_v<R>) {
     (void)b.key(key);
-    (void)b.null();
+    if (key == "exports") { (void)b.begin_object(); (void)b.end_object(); }
+    else (void)b.null();
   } else {
     // 编码失败属于结果材料失败，不修改已经验证的 Outcome 和 known_facts。
     auto encoded = [&]() -> Result<data::Payload> {
