@@ -1,0 +1,334 @@
+{
+  "profile": "win-msvc-debug",
+  "mode": "allocation",
+  "stage": "NativeSubset",
+  "architecture": "x64",
+  "os": "Windows-10-10.0.27749-SP0",
+  "cpu": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel",
+  "logical_cpus": 16,
+  "python": "3.11.9",
+  "configuration": "Debug",
+  "asan": false,
+  "lto": false,
+  "logging": "default-memory",
+  "counter_mode": "allocation",
+  "observation": "88bb3aed291cf2111744d453c287a66f883ec6ddec7d70db6b5113f0d4f9645f",
+  "sources": [
+    {
+      "path": "cmake\\Dependencies.cmake",
+      "sha256": "39802a87f2820d316fb5dcc8240db96b77b80400dd06fff5f0e32873d13c2624"
+    },
+    {
+      "path": "cmake\\DependencyProbes.cmake",
+      "sha256": "ebcc48ac4d7b3f2cc171544672baae567a71c918e73f3ef5579cbc90ac7006ff"
+    },
+    {
+      "path": "cmake\\LockedMSVC.cmake",
+      "sha256": "ed0e029ec8e77653b2db779059b8b3483e600e8b27027c660ba01076ce94b3a3"
+    },
+    {
+      "path": "cmake\\msbuild-user\\README.md",
+      "sha256": "185a7de1c71b550805f74d6b66324410066b271bd2d3497cc2ce52bf136e4615"
+    },
+    {
+      "path": "cmake\\msvc-validation-tools.json",
+      "sha256": "e8697b7e3597a578de41e051b29e4c0893a5b3c7c5733669b9f4bc12b2f81a94"
+    },
+    {
+      "path": "cmake\\OCKConfig.cmake.in",
+      "sha256": "d83e42861ed3acd687a99105de91cc2b0ddb73bf074f16dd75cb112463870d78"
+    },
+    {
+      "path": "cmake\\TargetDependencies.cmake",
+      "sha256": "2d49c379cc35e4a3689e662c97ef5256c571f685a7f1e3192b30c3db952ced4b"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "sha256": "f50afb07d9494f672d2d17c71b464cf8c41459ebbf72cd9f727eec144afd92bb"
+    },
+    {
+      "path": "CMakePresets.json",
+      "sha256": "f58398635bf46904c23cf387a2b01a4bf9db69fb08037d30659cc48f1b1779f6"
+    },
+    {
+      "path": "dependencies.lock",
+      "sha256": "ac03ac1d4cc82ea23403be553ed896b4f5540e9abf12f29311f4883f1711b822"
+    },
+    {
+      "path": "packages\\contracts\\include\\ock\\contracts\\context.hpp",
+      "sha256": "326bc830ed564a3489c67465f70ee07fb817a7880d706f990d4a95782e16f5b1"
+    },
+    {
+      "path": "packages\\contracts\\include\\ock\\contracts\\identity.hpp",
+      "sha256": "2c42e99c22301baeea4e1af5c45faee9c578e66b9f7f0d8c2eaf370bac54dbad"
+    },
+    {
+      "path": "packages\\contracts\\include\\ock\\contracts\\logging.hpp",
+      "sha256": "efbaf36bbb24fbbc4edbe55a576e24b27ffef9a3b8f25dd30fbe043713a3b7a7"
+    },
+    {
+      "path": "packages\\contracts\\include\\ock\\contracts\\observation.hpp",
+      "sha256": "c1f65bcc013b604267d061cdacb21d6b39fa96cfc2ac713981409bd0c3b3c5cb"
+    },
+    {
+      "path": "packages\\contracts\\include\\ock\\contracts\\operation.hpp",
+      "sha256": "35a76e46db44d8bc8ee5c71103ae264869b125a318b2080d8d69b2ad26d6ae22"
+    },
+    {
+      "path": "packages\\contracts\\include\\ock\\contracts\\outcome.hpp",
+      "sha256": "371115831086ff1afb03cedac709f9c51bc8acf86f92c94886072c098f266dac"
+    },
+    {
+      "path": "packages\\contracts\\include\\ock\\contracts\\ports.hpp",
+      "sha256": "abc625e954638cc1a0c79b86f268150647f936180b99486629443041524390a6"
+    },
+    {
+      "path": "packages\\foundation\\include\\ock\\foundation\\foundation.hpp",
+      "sha256": "1e3325f6077dd42d2f3ec8460d1eb4eeeca169c668975c41fb90556773940ae0"
+    },
+    {
+      "path": "packages\\foundation\\include\\ock\\foundation\\sdk_version.hpp",
+      "sha256": "47c714355b5a3c8a8e2a3a715626c26b545933024c581be7a5c5cc2b56b1fd59"
+    },
+    {
+      "path": "packages\\runtime\\host\\host.cpp",
+      "sha256": "ddc0996b9fc95dbe46c4c46654e119e9442844f973d18acbf70aa6de841ab74c"
+    },
+    {
+      "path": "packages\\runtime\\include\\ock\\runtime\\detail\\host.hpp",
+      "sha256": "4c8ad948aa390d42e9284e749ed7d71e3d0df2ae6896d2062a243a514e50e7d6"
+    },
+    {
+      "path": "packages\\runtime\\include\\ock\\runtime\\detail\\invocation.hpp",
+      "sha256": "4a70f0920a915ee46a51dbfa05598c30afed8fc7adc1d696f602edf08bfee54f"
+    },
+    {
+      "path": "packages\\runtime\\include\\ock\\runtime\\detail\\private_bridge.hpp",
+      "sha256": "d0f6b6ac4a3721f4624ef4043a0cebda1c305ebc6ce3925a04687d5b141bda8c"
+    },
+    {
+      "path": "packages\\runtime\\include\\ock\\runtime\\host.hpp",
+      "sha256": "6c53eddaa6ad8a343c6d06b113374afe3795337aadaea853f3851d80dac9a279"
+    },
+    {
+      "path": "packages\\runtime\\include\\ock\\runtime\\logging.hpp",
+      "sha256": "fea2a70741172afe7f2d6f690176de02976ab1be03aac2fab011395877aa320c"
+    },
+    {
+      "path": "packages\\runtime\\include\\ock\\runtime\\native_types.hpp",
+      "sha256": "ef746141206e22f6eacb016ebf5f471c743a24520d63b099faa3b22eef610322"
+    },
+    {
+      "path": "packages\\runtime\\include\\ock\\runtime\\policy.hpp",
+      "sha256": "e40bc4f6748fe3e149f2fa9e6ab8abef792e37e91933df57abcdd5908ff2af7d"
+    },
+    {
+      "path": "packages\\runtime\\include\\ock\\runtime\\registry.hpp",
+      "sha256": "ce475e3a09052c93f40a6e2c0a23c5a39870a62d0cfb8023583ab3668894cc05"
+    },
+    {
+      "path": "packages\\runtime\\invocation\\invocation.cpp",
+      "sha256": "9f5f2779b877d7e17ef93fae43312b4e3cc39600e2c3327bc02455e206e1f607"
+    },
+    {
+      "path": "packages\\runtime\\invocation\\invocation.hpp",
+      "sha256": "77f16f55a2224e8ac2c15425fe5cc90da35bf59fde0e6fa27edeb62c80abc6c6"
+    },
+    {
+      "path": "packages\\runtime\\invocation\\private_bridge.hpp",
+      "sha256": "8cb06eb5a4bbd0c851be98830a1db06ba3bcba88a4950bc3cb2773a96586c8e3"
+    },
+    {
+      "path": "packages\\runtime\\invocation\\validation.hpp",
+      "sha256": "51266d838473c5a9d2dde8f80b7fc77f07e59142319bcab1f7313569b66292cd"
+    },
+    {
+      "path": "packages\\runtime\\observability\\logging.cpp",
+      "sha256": "a28ab62996a4360eb0907dff6cff65ead4b1ce5939b0f3ed7bd2bc3887c79067"
+    },
+    {
+      "path": "packages\\runtime\\policy\\policy.cpp",
+      "sha256": "073e8f2167be3a2770a65a528f42a7804c7afe51f139c5d8dd02a8c39022fb5f"
+    },
+    {
+      "path": "packages\\runtime\\policy\\policy.hpp",
+      "sha256": "a867c850a0d15896777431d67ae547c3a2fc087d6f8b1c5b029150f100752bf4"
+    },
+    {
+      "path": "packages\\runtime\\policy\\validation.hpp",
+      "sha256": "817368290acf57cac174999cacb3c0ef3f12c34119f0aa1ccceb80081bcfad36"
+    },
+    {
+      "path": "packages\\runtime\\registry\\registry.cpp",
+      "sha256": "6e4c9580964002a06e51926353e58bf9e5ad3a6d74ae71097c4ab22ed6745ff0"
+    },
+    {
+      "path": "packages\\runtime\\registry\\registry.hpp",
+      "sha256": "d7b14becf0811e70bf0580546363c6e863abfa0297b5c3ec5de9eb40001c62eb"
+    },
+    {
+      "path": "sdk\\sdk_api_manifest.json",
+      "sha256": "dcc40489e6c57b9dbb55b71533dbd94576fe3708b6d7c3fc9ad2a98e565d60b8"
+    },
+    {
+      "path": "tests\\contract\\native\\allocation_cases.hpp",
+      "sha256": "ce92b0b29aad20668740fd65660a3b93e3df404379cc2973dfbd07ac55cef8b7"
+    },
+    {
+      "path": "tests\\contract\\native\\allocation_probe.cpp",
+      "sha256": "2635f4fa5cbb00d02718f7647b0904defe9ce2fa18438ce8cf7920adc9847cc1"
+    },
+    {
+      "path": "tests\\contract\\native\\allocation_probe.hpp",
+      "sha256": "69cada784e0d8646d0e1fc42577ef083ef4b20a269b71bc8bce5c8e314d872ac"
+    },
+    {
+      "path": "tests\\contract\\native\\CMakeLists.txt",
+      "sha256": "3377bf459f01a4bbdabc3bc1c98e7c443a11a3d040568490dfd59c5ac354f1a4"
+    },
+    {
+      "path": "tests\\contract\\native\\develop.py",
+      "sha256": "00792050fde57eb27595c1bd279c7e901d13b62b0d04a3c5c747bb8cd4ee5210"
+    },
+    {
+      "path": "tests\\contract\\native\\discover.py",
+      "sha256": "2429d3956f4a4a4d32c5bd34d2eb2c5cd02de5c12d1de233a2dde0f27406122d"
+    },
+    {
+      "path": "tests\\contract\\native\\fixtures.hpp",
+      "sha256": "70ea4f5ea260ee4c73e75dbd93dc03bd707a01831231fdfc22e74eb17e31dda7"
+    },
+    {
+      "path": "tests\\contract\\native\\integrate.py",
+      "sha256": "250cdd915b47f74557823b914c320b69c10dd14a31550ac9f532b10df747dd65"
+    },
+    {
+      "path": "tests\\contract\\native\\lifetime_cases.hpp",
+      "sha256": "aa21c0d8148bd5a5c009bf8ecd6e8b8bd93a28fc900f6ac7748a596867fffa1b"
+    },
+    {
+      "path": "tests\\contract\\native\\native_tests.cpp",
+      "sha256": "151b5bcec1beda868e64efa112cbe7b5dd599fcf66dd55963b3d03a3a8cdceae"
+    },
+    {
+      "path": "tests\\contract\\native\\pipeline_cases.hpp",
+      "sha256": "53a2bce7f5febba10f13a467382cda7d142d7e89653352dd6b7b40f8e7287a90"
+    },
+    {
+      "path": "tests\\contract\\native\\policy_inline_cases.hpp",
+      "sha256": "a6ac7ede4f0e91d2e04958e1ea1f56430e083444a5715e2ce2766e5fc5170883"
+    },
+    {
+      "path": "tests\\contract\\native\\shape_cases.hpp",
+      "sha256": "32d31b67a2a84c50f47b2f5eb07f2fc2f706d25bf82ed89e4a504e1d1444a2a5"
+    },
+    {
+      "path": "tests\\contract\\native\\value_cases.hpp",
+      "sha256": "153f47af9950848b3d7d2ff45ea2702649fba5971700dc74287432c19ddede00"
+    },
+    {
+      "path": "tests\\contract\\native\\verify_children.py",
+      "sha256": "960f77c1110bdf2869f3bcb780de7c652f4f09e7d36811b66dcee5e08aa5a798"
+    },
+    {
+      "path": "tools\\evidence\\process.py",
+      "sha256": "1f49872091ab5ec967a5c900a48e714284290e29c4f2baffad7cb614933c3c94"
+    },
+    {
+      "path": "tools\\footprint\\allocation_develop.py",
+      "sha256": "7ca7ef31d9c8dca70c2407773b4a914c12c0d8d8ab70f6239513f4d4a0bd1282"
+    },
+    {
+      "path": "tools\\footprint\\allocation_record.py",
+      "sha256": "120585333eb929743e7626cd19f5f6fa410fe6d56b87e02244a57a02e8ebfc5d"
+    },
+    {
+      "path": "tools\\footprint\\analyze.py",
+      "sha256": "2707dec624a56abca7e9b44614950a9703e256d985e47c999b7c5018a3b3e0f7"
+    },
+    {
+      "path": "tools\\footprint\\configuration-development.json",
+      "sha256": "4d735d553c4a2968ae0bc19aeb46ddca4bfc3590656fc3ee257b39bcc74429ea"
+    },
+    {
+      "path": "tools\\footprint\\consumer\\allocation_trace.hpp",
+      "sha256": "7e8eeb5aec4acea0944e1dae70f564f0ca29c27cfd8cff044fbc7e925af9353f"
+    },
+    {
+      "path": "tools\\footprint\\consumer\\baseline_fixture.hpp",
+      "sha256": "08ca7126eb6cb6720185aa2e7f0629ccdc0e8c385e8d8ffa2a728c381757768b"
+    },
+    {
+      "path": "tools\\footprint\\consumer\\channel.hpp",
+      "sha256": "30cea85d5563f603fe6935acb69481b73ffd74e9e2048c8d08c1f73a151fba08"
+    },
+    {
+      "path": "tools\\footprint\\consumer\\CMakeLists.txt",
+      "sha256": "1b406c7b4dad5176597216b8b05a2533231094f5f3ba3336811d0d445b25bc74"
+    },
+    {
+      "path": "tools\\footprint\\consumer\\native_fixture.hpp",
+      "sha256": "6977c302e283b68b5ca53b518df25eca170d42de05b2587b0a2b0963ed1e0389"
+    },
+    {
+      "path": "tools\\footprint\\consumer\\native_value.hpp",
+      "sha256": "57b6e450ed5f28aa30f29bf1965055480e3358ae33c6d325def25c4727b157f4"
+    },
+    {
+      "path": "tools\\footprint\\consumer\\pair_main.cpp",
+      "sha256": "e17a23b63e04ba30a24fb657d51a88e8e03870ff9b51e236fc5bf96691f08a67"
+    },
+    {
+      "path": "tools\\footprint\\consumer\\thread_origin.hpp",
+      "sha256": "0b0ed7f5a48861b09b6a51dcfaf57d8c0c17d891b0f80ccb1af030e1051516e9"
+    },
+    {
+      "path": "tools\\footprint\\controls\\calibration.cpp",
+      "sha256": "edcac651533bbfac8cbb57387b4ebb0e225470f5c9d5aa7e307883fa67fd5e62"
+    },
+    {
+      "path": "tools\\footprint\\controls\\required.cpp",
+      "sha256": "9d96040f24c83abf05cfbc4b0e53979d67f63697a615fa18c8c9def6ee97bb94"
+    },
+    {
+      "path": "tools\\footprint\\diagnostic_develop.py",
+      "sha256": "87b2bb17b5f306182d05a753faa81b93611db2a2eaafceca51ae92c715a9ab1f"
+    },
+    {
+      "path": "tools\\footprint\\formal.py",
+      "sha256": "40005e378764374a53350a3423a334e8ab75f414cd840eb911c659096544a882"
+    },
+    {
+      "path": "tools\\footprint\\method_checks.py",
+      "sha256": "4fce3850b4adc4942ab8dd52ac2346eadbba9773f360c953ca4d9fb1fe7d124c"
+    },
+    {
+      "path": "tools\\footprint\\owner_controls.py",
+      "sha256": "57dbcfb9256ca3343b188c1c31dcf7e1b4df72947fbac5e933d05f590d4d6496"
+    },
+    {
+      "path": "tools\\footprint\\pair_develop.py",
+      "sha256": "026ea447fe6a19e38dfac2788e226e73edb04d90dd2adde0d93ee5685e04aeeb"
+    },
+    {
+      "path": "tools\\footprint\\pair_record.py",
+      "sha256": "bff6d0d2e380d9e153d3ec824b6b2030657915b273388275cc203e3ce90a3088"
+    },
+    {
+      "path": "tools\\footprint\\run.py",
+      "sha256": "079df9009805819ce65cca4e04db18bf3d4ffa84bd3d87c966c24663066e66e9"
+    },
+    {
+      "path": "tools\\footprint\\sampling_develop.py",
+      "sha256": "16418e568255dddbe86a346c8fcdf890d859182766b52320b129500ffd8720bf"
+    },
+    {
+      "path": "tools\\footprint\\thread_record.py",
+      "sha256": "e44eca12675e590fd185c9a6af30166276669ac1036ffb9dfb73793031bfb6c2"
+    },
+    {
+      "path": "tools\\footprint\\windows_process.py",
+      "sha256": "76ceb88e93360a233baa921220fffaf7cf3626963e2214560b8a5f1501654124"
+    }
+  ]
+}

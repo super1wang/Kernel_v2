@@ -2,7 +2,17 @@
 
 本 checkpoint 按架构 A02/A19/A20 与执行卡 D0.06 固定 Windows 最小 dependency probes。前置 D0.02 已实际 Passed，D0.02/D0.03 已获人工批准。这里不实现 Runtime、适配器或产品模块；探针成功不等于 G0、生产认证、真实端口 Conformance 或 D5.02-a canonical feasibility 通过。包级结论与人工评审由 D0.06 总集成单独登记。
 
-## 固定工具链
+## 当前恢复环境（2026-09-08）
+
+本机 VS 位于 `E:/vs2022IDE`；相同 toolset 目录实际编译器为 `19.44.35216.0`（Microsoft 有效签名），与历史 checkpoint 的 `19.44.35228.0` 不同。本次显式更新 dependencies.lock、精确二进制 hash 清单和编译器宏探针；保留历史锁及 62 项字节变化于 `evidence/bootstrap/D1.06/resume-environment-lock/`。不将新工具链套用历史运行结论，也不放宽锁定检查。
+
+CMake/CTest 使用该 VS 随附 `3.31.6-msvc6`，Windows SDK `10.0.26100.0`；工作区恢复 Python `3.11.9` 与原 SHA 锁定的六个 wheel，通过每次进程环境选择工具，不更改系统 PATH。Debug 编译及 Host/Logging 32 项直接验证已实际通过；其他配置及正式验收见当前进度。
+
+当前系统为 Windows 11 Insider Preview 27749，i5-12600KF、16 逻辑处理器、约 32 GiB RAM；测量时实际安全工具和负载快照保留于 `evidence/bootstrap/D1.06/resume-environment.json`，不将其写成历史 Windows 10 环境。
+
+恢复时仅为当前 PowerShell 进程设置 PATH（Python311、VS 随附 CMake/bin 与 Ninja）及 `PYTHONPATH=J:/Code/Kernel_v2/build/python-deps;J:/Code/Kernel_v2`。直接 configure 显式传 `-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe`；PATH 优先级不能阻止 CMake 从注册表选中其他 Python。正式 manifest 已固定本次实际解释器。
+
+## 原 checkpoint 固定工具链（历史）
 
 | 项目 | 本机真实值/固定选项 |
 |---|---|

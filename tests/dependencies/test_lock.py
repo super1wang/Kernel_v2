@@ -26,6 +26,14 @@ class LockContracts(unittest.TestCase):
         for field,value in (("architecture","Win32"),("cxx_standard",17),("msvc_runtime","MultiThreaded")):
             lock=deepcopy(self.lock);lock["toolchain"][field]=value
             with self.assertRaises(LockError):validate_lock(lock)
+    def test_current_host_compiler_is_explicitly_locked(self):
+        self.assertEqual(self.lock["toolchain"]["compiler_version"], "19.44.35216.0")
+        for version in ("19.44.35228.0", "19.44.35217.0", "latest"):
+            candidate = deepcopy(self.lock)
+            candidate["toolchain"]["compiler_version"] = version
+            with self.assertRaises(LockError):
+                validate_lock(candidate)
+
     def test_reject_missing_license(self):
         lock=deepcopy(self.lock);lock["dependencies"]["expected"].pop("license")
         with self.assertRaises(LockError):validate_lock(lock)

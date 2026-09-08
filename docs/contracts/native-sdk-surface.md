@@ -1,12 +1,12 @@
 # D1.06 NativeSubset SDK 表面合同
 
-状态：**Candidate，待并入 D1.06 独立 AI 规格复核**。本文件依据 v3.3 A19、A20、A21.4–A21.6、A22 和 D1.06，配合 [NativeHost 合同](native-host-api.md)与本包日志合同。只统一这次实现的 SDK 输入，不表示实现、测试、预算或审核已通过；Host/日志的签名、所有权、错误与停止语义仍以各自合同为准。
+状态：**现行 NativeSubset SDK 合同，最终来源集中复核中**。本文件依据 v3.3 A19、A20、A21.4–A21.6、A22 和 D1.06，配合 [NativeHost 合同](native-host-api.md)与本包日志合同。只统一这次实现的 SDK 输入，不表示实现、测试、预算或审核已通过；Host/日志的签名、所有权、错误与停止语义仍以各自合同为准。
 
-## 已核对的实际基线
+## 最初设计基线（历史）
 
-当前生产文件仍是 `0.1.0-dev.1` / `CoreContracts` 阶段。
+最初设计时生产文件为 `0.1.0-dev.1` / `CoreContracts`。当前 d8a351e 已交付 `0.1.0-dev.2` / `NativeSubset`，以下旧值用于解释迁移边界，不是当前待办。
 
-| 实际文件 | 当前事实 | D1.06 必要变化 |
+| 文件 | 原设计基线事实 | D1.06 已落实变化 |
 |---|---|---|
 | `cmake/TargetDependencies.cmake` | `OCK::Runtime` 是 `INTERFACE` 合同占位，依赖 CoreContracts | 换成真正可安装的 STATIC Runtime；保留组件 DAG |
 | `cmake/OCKConfig.cmake.in` | `OCK_RUNTIME_AVAILABLE=FALSE`，只接受 Foundation/CoreContracts | 明确接受 Runtime，并仅报告 NativeSubset 能力 |
@@ -16,7 +16,7 @@
 | `examples/native_service/CMakeLists.txt` | 依赖三个内部库及源码根 include 路径 | 安装示例使用公开 Host 和 `OCK::Runtime`；已有 D1.05 行为证据保留 |
 | `tools/architecture/check.py` | 仅认识前三个旧阶段；公开头一律拒绝 detail include；图提取不识别 LINK_ONLY | 为本合同增加精确规则，不能放开任意 detail 或未知依赖 |
 
-当前 `packages/runtime/{registry,policy,invocation}` 的生产逻辑已经存在，头文件注释仍明确为内部 API。Runtime 可安装化不等于重新实现注册、授权或调用管线。上述事实来自只读源码核对，本次未运行构建或测试。
+当前 `packages/runtime/{registry,policy,invocation}` 的生产逻辑已经存在，头文件注释仍明确为内部 API。Runtime 可安装化不等于重新实现注册、授权或调用管线。上述旧值是设计时的只读核对记录，不代表本次恢复状态；当前编译和验证见 progress。
 
 ## 生产 target 与真实依赖
 

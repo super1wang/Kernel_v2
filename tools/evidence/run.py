@@ -13,7 +13,7 @@ import zipfile
 import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tools.evidence.common import now, sha_file, digest, read_json, save_json, under, inputs, expected_cases, junit_cases
+from tools.evidence.common import now, sha_file, digest, read_json, save_json, under, inputs, expected_cases, junit_cases, runtime_path_allowed
 from tools.evidence.process import execute
 
 
@@ -198,7 +198,7 @@ def run(root, manifest_path):
             for file in runtime:
                 name=file.relative_to(root).as_posix()
                 under(root,name)
-                if not file.is_relative_to(root/'build'): raise ValueError('runtime artifact must be in isolated build')
+                if not runtime_path_allowed(root,name): raise ValueError('runtime artifact outside isolated child output roots')
                 archive.write(file,name)
                 report['runtime_artifacts'].append({'path':name,'sha256':sha_file(file),'size':file.stat().st_size})
         report['runtime_archive']={'path':attachment.name,'sha256':sha_file(attachment)}

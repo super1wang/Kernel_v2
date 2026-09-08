@@ -1,6 +1,6 @@
 # D1.06 普通 Logging 与有界内存诊断 API
 
-状态：**Candidate awaiting independent review**。这是既有 D1.06 设计输入的合并稿，不是实现、测试 Passed 或新增审批节点。依据架构 A15、A16、A22.2 与执行计划 D1.06；合并 design-consolidation-review 第 3/4 条及 footprint-process-hook-candidate §7。旧候选和审核记录保留。
+状态：**现行 D1.06 实现合同，最终来源集中复核中**。这是既有 D1.06 设计输入的合并稿，不是实现、测试 Passed 或新增审批节点。依据架构 A15、A16、A22.2 与执行计划 D1.06；合并 design-consolidation-review 第 3/4 条及 footprint-process-hook-candidate §7。旧候选和审核记录保留。
 
 ## 1. 范围和唯一声明
 

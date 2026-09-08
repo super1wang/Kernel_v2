@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "cmake",
+    "--preset",
+    "win-msvc-asan",
+    "-B",
+    "build/d1.06-asan",
+    "-DOCK_DEPENDENCY_COMPONENTS=Foundation",
+    "-DOCK_BUILD_G0_TESTS=OFF",
+    "-DOCK_BUILD_HOST_TESTS=ON",
+    "-DOCK_BUILD_LOGGING_TESTS=ON",
+    "-DOCK_BUILD_NATIVE_TESTS=ON",
+    "-DOCK_BUILD_NATIVE_SDK_TESTS=ON",
+    "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe"
+  ],
+  "cwd": "J:\\Code\\Kernel_v2",
+  "started_at": "2026-09-08T06:24:25.528933+00:00",
+  "exit_code": 0,
+  "status": "Exited",
+  "process_tree": {
+    "mechanism": "WindowsJobObject",
+    "assigned_before_resume": true,
+    "active_after": 0,
+    "total_processes": 45,
+    "terminated_owned_job": false
+  },
+  "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+  "pid": 34188,
+  "observed_exit_code": 0,
+  "finished_at": "2026-09-08T06:24:30.693959+00:00"
+}

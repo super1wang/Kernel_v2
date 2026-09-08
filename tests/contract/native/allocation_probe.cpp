@@ -1,5 +1,7 @@
 // D1.05 测量消费者的分配通道；不进入内核链接产物。
 #include "allocation_probe.hpp"
+#define NOMINMAX
+#include <Windows.h>
 #include <atomic>
 #include <cstdlib>
 #include <cstdio>
@@ -18,17 +20,22 @@ thread_local Counts counts;
 // 使用 CRT usable-size，不声称包括堆元数据、DLL 或未经过替换入口的分配。
 constinit std::atomic<std::size_t> live_bytes{0},live_blocks{0};
 bool initialized=false;
+// ASan 可能在系统线程 TLS 尚未建立或已销毁时调用 hook。
+// 先读无 TLS 的固定 owner，只有显式计数窗口的线程才能接触 thread_local。
+constinit std::atomic<DWORD> counter_thread{0};
 #ifdef __SANITIZE_ADDRESS__
 void asan_allocate(const volatile void*,std::size_t) {
-  if(enabled)++counts.asan_allocations;
+  if(counter_thread.load(std::memory_order_relaxed)==GetCurrentThreadId()&&enabled)++counts.asan_allocations;
 }
-void asan_free(const volatile void*) {if(enabled)++counts.asan_frees;}
+void asan_free(const volatile void*) {
+  if(counter_thread.load(std::memory_order_relaxed)==GetCurrentThreadId()&&enabled)++counts.asan_frees;
+}
 void unused_allocate(const volatile void*,std::size_t) {}
 void unused_free(const volatile void*) {}
 #endif
 #ifdef _DEBUG
 int hook(int kind,void*,std::size_t,int,long,const unsigned char*,int) {
-  if(enabled && (kind==_HOOK_ALLOC || kind==_HOOK_REALLOC)) ++counts.crt;
+  if(counter_thread.load(std::memory_order_relaxed)==GetCurrentThreadId()&&enabled && (kind==_HOOK_ALLOC || kind==_HOOK_REALLOC)) ++counts.crt;
   return 1;
 }
 #endif
@@ -73,8 +80,10 @@ void start() noexcept {
   counts.live_bytes_before=counts.peak_live_bytes=live_bytes.load(std::memory_order_relaxed);
   counts.live_blocks_before=live_blocks.load(std::memory_order_relaxed);
   enabled=true;
+  counter_thread.store(GetCurrentThreadId(),std::memory_order_relaxed);
 }
 Counts stop() noexcept {
+  counter_thread.store(0,std::memory_order_relaxed);
   enabled=false;
   counts.live_bytes_after=live_bytes.load(std::memory_order_relaxed);
   counts.live_blocks_after=live_blocks.load(std::memory_order_relaxed);

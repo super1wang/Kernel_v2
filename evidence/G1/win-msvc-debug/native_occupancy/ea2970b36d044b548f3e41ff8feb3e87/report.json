@@ -1,0 +1,86 @@
+{
+  "format": "ock.native-footprint-report/1",
+  "status": "PilotComplete",
+  "created_at": "2026-09-08T06:24:42.778879+00:00",
+  "completed_at": "2026-09-08T06:26:09.434361+00:00",
+  "method_digest": "fc8f05544db4a7c9a8479013fec0a49dc94032181ceff0e44f3580a93678a43a",
+  "profile": "win-msvc-debug",
+  "mode": "occupancy",
+  "blocks": 3,
+  "run_ids": [
+    "25344-b0-0-baseline-ea2970b36d044b548f3e41ff8feb3e87",
+    "24696-b0-1-native-ea2970b36d044b548f3e41ff8feb3e87",
+    "57540-b0-2-native-ea2970b36d044b548f3e41ff8feb3e87",
+    "48216-b0-3-baseline-ea2970b36d044b548f3e41ff8feb3e87",
+    "38644-b1-0-baseline-ea2970b36d044b548f3e41ff8feb3e87",
+    "35252-b1-1-native-ea2970b36d044b548f3e41ff8feb3e87",
+    "36872-b1-2-native-ea2970b36d044b548f3e41ff8feb3e87",
+    "44268-b1-3-baseline-ea2970b36d044b548f3e41ff8feb3e87",
+    "62152-b2-0-baseline-ea2970b36d044b548f3e41ff8feb3e87",
+    "47872-b2-1-native-ea2970b36d044b548f3e41ff8feb3e87",
+    "63696-b2-2-native-ea2970b36d044b548f3e41ff8feb3e87",
+    "31780-b2-3-baseline-ea2970b36d044b548f3e41ff8feb3e87"
+  ],
+  "metrics": {
+    "private_peak_absolute_max": 1052672,
+    "private_peak_paired_max": 311296,
+    "working_set_peak_absolute_max": 6868992,
+    "working_set_peak_paired_max": 2334720,
+    "ready_private_absolute_max": 991232,
+    "ready_private_paired_max": 249856,
+    "distribution_increment_bytes": 2506240
+  },
+  "statistics": {
+    "private_peak": {
+      "native": {
+        "count": 6,
+        "min": 1024000,
+        "median": 1036288,
+        "p95": 1052672,
+        "max": 1052672
+      },
+      "paired_increment": {
+        "count": 6,
+        "min": 274432,
+        "median": 286720,
+        "p95": 311296,
+        "max": 311296
+      }
+    },
+    "working_set_peak": {
+      "native": {
+        "count": 6,
+        "min": 6856704,
+        "median": 6860800,
+        "p95": 6868992,
+        "max": 6868992
+      },
+      "paired_increment": {
+        "count": 6,
+        "min": 2301952,
+        "median": 2322432,
+        "p95": 2334720,
+        "max": 2334720
+      }
+    },
+    "ready_private": {
+      "native": {
+        "count": 6,
+        "min": 962560,
+        "median": 974848,
+        "p95": 991232,
+        "max": 991232
+      },
+      "paired_increment": {
+        "count": 6,
+        "min": 212992,
+        "median": 225280,
+        "p95": 249856,
+        "max": 249856
+      }
+    }
+  },
+  "budget_status": "NotApproved",
+  "new_native_threads": 0,
+  "scope": "NativeSubset only; sampled memory, no claim of full Embedded or physical-machine approval"
+}

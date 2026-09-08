@@ -1,0 +1,188 @@
+Microsoft (R) COFF/PE Dumper Version 14.44.35216.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file J:\Code\Kernel_v2\build\footprint-7ce89fe4049745f293701aa1e2963d87\Debug\footprint_native.exe
+
+File Type: EXECUTABLE IMAGE
+
+  Section contains the following imports:
+
+    bcrypt.dll
+             140273438 Import Address Table
+             140273B78 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1F BCryptGenRandom
+
+    KERNEL32.dll
+             140273000 Import Address Table
+             140273740 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         2DD GetProcAddress
+                         1D4 FreeLibrary
+                          9D CloseHandle
+                         481 QueryPerformanceCounter
+                         55C SetEvent
+                         625 WaitForSingleObject
+                         242 GetCurrentProcessId
+                         412 MapViewOfFile
+                         5FE UnmapViewOfFile
+                         4EB ReleaseSRWLockShared
+                           0 AcquireSRWLockExclusive
+                           1 AcquireSRWLockShared
+                         5F2 TryAcquireSRWLockExclusive
+                         5F3 TryAcquireSRWLockShared
+                         5CA SleepConditionVariableSRW
+                         5C8 Sleep
+                         246 GetCurrentThreadId
+                         33D GetTickCount64
+                         62D WakeAllConditionVariable
+                         509 RtlCaptureContext
+                         511 RtlLookupFunctionEntry
+                         518 RtlVirtualUnwind
+                         3B0 IsDebuggerPresent
+                         5FB UnhandledExceptionFilter
+                         5B8 SetUnhandledExceptionFilter
+                         301 GetStartupInfoW
+                         3B8 IsProcessorFeaturePresent
+                         2A5 GetModuleHandleW
+                         498 RaiseException
+                         423 MultiByteToWideChar
+                         64C WideCharToMultiByte
+                         241 GetCurrentProcess
+                         5D8 TerminateProcess
+                         31A GetSystemTimeAsFileTime
+                         39A InitializeSListHead
+                         28D GetLastError
+                         37C HeapAlloc
+                         380 HeapFree
+                         2E4 GetProcessHeap
+                         61C VirtualQuery
+                         4EA ReleaseSRWLockExclusive
+
+    MSVCP140D.dll
+             1402731E0 Import Address Table
+             140273920 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         599 _Query_perf_frequency
+                         5BC _Thrd_id
+                         1D0 ?_Getcvt@_Locinfo@std@@QEBA?AU_Cvtvec@@XZ
+                         28A ?_W_Getdays@_Locinfo@std@@QEBAPEBGXZ
+                         598 _Query_perf_counter
+                         296 ?_Xlength_error@std@@YAXPEBD@Z
+                          6D ??0_Lockit@std@@QEAA@H@Z
+                         28B ?_W_Getmonths@_Locinfo@std@@QEBAPEBGXZ
+                         294 ?_Xbad_function_call@std@@YAXXZ
+                         58D _Mtx_lock
+                         590 _Mtx_trylock
+                          A5 ??1_Lockit@std@@QEAA@XZ
+                         591 _Mtx_unlock
+                         293 ?_Xbad_alloc@std@@YAXXZ
+                         27D ?_Throw_Cpp_error@std@@YAXH@Z
+                         587 _Mtx_current_owns
+                         553 _Cnd_broadcast
+
+    VCRUNTIME140D.dll
+             1402732D8 Import Address Table
+             140273A18 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          36 _purecall
+                          1C __current_exception_context
+                          3C memcpy
+                          3D memmove
+                          21 __std_exception_copy
+                          22 __std_exception_destroy
+                           1 _CxxThrowException
+                          3E memset
+                          18 __RTDynamicCast
+                          3A memchr
+                          1B __current_exception
+                          31 __vcrt_LoadLibraryExW
+                          2F __vcrt_GetModuleHandleW
+                          2E __vcrt_GetModuleFileNameW
+                          25 __std_type_info_destroy_list
+                           9 __C_specific_handler_noexcept
+                          3B memcmp
+                           8 __C_specific_handler
+
+    VCRUNTIME140_1D.dll
+             1402733D8 Import Address Table
+             140273B18 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 __CxxFrameHandler4
+
+    ucrtbased.dll
+             140273498 Import Address Table
+             140273BD8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          49 __p___argc
+                          4A __p___argv
+                          9F _c_exit
+                         2B6 _register_thread_local_exe_atexit_callback
+                          B5 _configthreadlocale
+                         2CE _set_new_mode
+                          4D __p__commode
+                         52C strcpy_s
+                         528 strcat_s
+                          68 __stdio_common_vsprintf_s
+                         39C _wmakepath_s
+                         3B8 _wsplitpath_s
+                         564 wcscpy_s
+                         2CB _set_fmode
+                          EA _exit
+                         450 exit
+                         175 _initterm_e
+                         174 _initterm
+                         13D _get_initial_narrow_environment
+                          5B __setusermatherr
+                         2C6 _set_app_type
+                         2C3 _seh_filter_exe
+                           5 _CrtDbgReportW
+                          A4 _cexit
+                          C1 _crt_at_quick_exit
+                          C2 _crt_atexit
+                          E5 _execute_onexit_table
+                         2B5 _register_onexit_function
+                         172 _initialize_onexit_table
+                         171 _initialize_narrow_environment
+                         2C2 _seh_filter_dll
+                         11D _free_dbg
+                         4D8 malloc
+                          A1 _callnewh
+                         54B terminate
+                         2BA _rotl
+                         531 strlen
+                         342 _wassert
+                          5C __stdio_common_vfprintf
+                          35 __acrt_iob_func
+                         543 strtoull
+                         3D6 abort
+                           4 _CrtDbgReport
+                          A3 _calloc_dbg
+                         567 wcslen
+                         179 _invoke_watson
+                          B6 _configure_narrow_argv
+
+  Summary
+
+        1000 .00cfg
+        4000 .data
+        2000 .idata
+       2A000 .pdata
+       5A000 .rdata
+        4000 .reloc
+        1000 .rsrc
+      1EA000 .text
+        1000 .tls

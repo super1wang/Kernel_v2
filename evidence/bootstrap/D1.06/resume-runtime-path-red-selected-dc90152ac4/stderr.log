@@ -1,0 +1,18 @@
+test_T23_evidence_runtime_artifact_integrity (test_runner.EvidenceTests.test_T23_evidence_runtime_artifact_integrity) ... FAIL
+
+======================================================================
+FAIL: test_T23_evidence_runtime_artifact_integrity (test_runner.EvidenceTests.test_T23_evidence_runtime_artifact_integrity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\tools\evidence\test_runner.py", line 139, in test_T23_evidence_runtime_artifact_integrity
+    self.assertEqual(r['automated_status'],'Passed',r['errors']);self.assertEqual(len(r['runtime_artifacts']),1)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Failed' != 'Passed'
+- Failed
++ Passed
+ : ['required runtime child artifacts missing', 'command failed: configure', 'missing build command', 'build artifacts missing/duplicated', 'build archive missing', 'discovery was not executed', 'missing/duplicate repetition', 'missing/extra commands']
+
+----------------------------------------------------------------------
+Ran 1 test in 1.760s
+
+FAILED (failures=1)

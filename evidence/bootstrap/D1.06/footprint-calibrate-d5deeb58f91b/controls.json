@@ -1,0 +1,77 @@
+[
+  {
+    "name": "committed_touched_region_observed",
+    "passed": true,
+    "before": 798720,
+    "after": 17608704,
+    "committed_bytes": 16777216
+  },
+  {
+    "name": "held_thread_and_join_observed",
+    "passed": true,
+    "baseline": [
+      51068,
+      54112,
+      54152,
+      64444
+    ],
+    "held": [
+      34436,
+      35004,
+      37140,
+      44744,
+      45752
+    ],
+    "released": [
+      35004,
+      37140,
+      44744,
+      45752
+    ]
+  },
+  {
+    "name": "ready_delay_in_internal_clock",
+    "passed": true,
+    "actual_ticks": 1822514,
+    "minimum_ticks": 1000000
+  },
+  {
+    "name": "binary_raw_streams_unchanged",
+    "passed": true
+  },
+  {
+    "name": "bad_nonce_cannot_pass",
+    "passed": true,
+    "root_status": "LaunchFailed",
+    "root_exit_code": 125,
+    "observation_status": "ObserverFailed"
+  },
+  {
+    "name": "early_exit_cannot_pass",
+    "passed": true,
+    "root_status": "Exited",
+    "root_exit_code": 0,
+    "observation_status": "Incomplete"
+  },
+  {
+    "name": "sample_capacity_fails_owned",
+    "passed": true
+  },
+  {
+    "name": "sampling_cannot_extend_deadline",
+    "passed": true,
+    "status": "LaunchFailed",
+    "error": "ObservationError: RunDeadlineReached"
+  },
+  {
+    "name": "actual_required_import_omission_rejected",
+    "passed": true,
+    "required": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-calibrate-d5deeb58f91b\\Debug\\footprint_required.dll",
+        "sha256": "953d07e1992dd5664b4c6084a94b8dbd182b320eacded13cbc318ccad962a80e",
+        "bytes": 52224
+      }
+    ]
+  }
+]

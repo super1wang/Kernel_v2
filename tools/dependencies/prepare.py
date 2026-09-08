@@ -33,7 +33,7 @@ def load_lock(path):
 def validate_lock(lock):
     require(lock.get("format")=="ock.dependencies/1","invalid lock format")
     toolchain=lock.get("toolchain",{})
-    for key,value in {"cxx_standard":20,"architecture":"x64","generator":"Visual Studio 17 2022","toolset":"v143,version=14.44.35207","msvc_runtime":"MultiThreaded$<$<CONFIG:Debug>:Debug>DLL","compiler":"MSVC","compiler_version":"19.44.35228.0","cmake_version":"3.31.6-msvc6","windows_sdk":"10.0.26100.0","exceptions":True}.items():
+    for key,value in {"cxx_standard":20,"architecture":"x64","generator":"Visual Studio 17 2022","toolset":"v143,version=14.44.35207","msvc_runtime":"MultiThreaded$<$<CONFIG:Debug>:Debug>DLL","compiler":"MSVC","compiler_version":"19.44.35216.0","cmake_version":"3.31.6-msvc6","windows_sdk":"10.0.26100.0","exceptions":True}.items():
         require(toolchain.get(key)==value,"unreviewed toolchain: "+key)
     deps=lock.get("dependencies",{})
     require(set(deps)==NAMES,"default dependency table is incomplete or contains unknown entries")

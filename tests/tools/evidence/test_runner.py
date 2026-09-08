@@ -133,10 +133,15 @@ class EvidenceTests(unittest.TestCase):
         report=inventory(self.root/'legacy');self.assertEqual(report['automated_status'],'Incomplete');self.assertEqual(report['verified_local_hash_references'],1)
         self.write('legacy/stdout.log','changed bytes');self.assertEqual(inventory(self.root/'legacy')['automated_status'],'Failed')
     def test_T23_evidence_runtime_artifact_integrity(self):
-        self.write('case.py',"from pathlib import Path;import uuid;p=Path(__file__).parent/'build'/('fault-'+uuid.uuid4().hex);p.mkdir();(p/'artifact.bin').write_bytes(b'actual runtime bytes')\n")
-        path,r=self.collect(runtime_artifact_patterns=['build/fault-*/*'],required_runtime_artifacts=[{'pattern':'build/fault-*/artifact.bin','minimum':1}])
-        self.assertEqual(r['automated_status'],'Passed',r['errors']);self.assertEqual(len(r['runtime_artifacts']),1)
-        (path.parent/r['runtime_archive']['path']).write_bytes(b'corrupt');self.assertTrue(validate_report(path,self.root))
+        from tools.evidence.common import runtime_path_allowed
+        for name in ('packages/runtime/x','docs/x','evidence/commit/profile/report.json','evidence/bootstrap-other/x'):
+            self.assertFalse(runtime_path_allowed(self.root,name))
+        with self.assertRaises(ValueError):runtime_path_allowed(self.root,'../outside')
+        for base in ('build','evidence/bootstrap/D1.06','evidence/G1'):
+            self.write('case.py',f"from pathlib import Path;import uuid;p=Path(__file__).parent/{base!r}/('fault-'+uuid.uuid4().hex);p.mkdir(parents=True);(p/'artifact.bin').write_bytes(b'actual runtime bytes')\n")
+            path,r=self.collect(runtime_artifact_patterns=[base+'/fault-*/*'],required_runtime_artifacts=[{'pattern':base+'/fault-*/artifact.bin','minimum':1}])
+            self.assertEqual(r['automated_status'],'Passed',r['errors']);self.assertEqual(len(r['runtime_artifacts']),1)
+            (path.parent/r['runtime_archive']['path']).write_bytes(b'corrupt');self.assertTrue(validate_report(path,self.root))
     def test_T23_evidence_runtime_duplicate_rejected(self):
         self.write('case.py',"from pathlib import Path;import uuid;p=Path(__file__).parent/'build'/('fault-'+uuid.uuid4().hex);p.mkdir();(p/'artifact.bin').write_bytes(b'one actual artifact')\n")
         path,r=self.collect(runtime_artifact_patterns=['build/fault-*/*'],required_runtime_artifacts=[{'pattern':'build/fault-*/artifact.bin','minimum':1}])

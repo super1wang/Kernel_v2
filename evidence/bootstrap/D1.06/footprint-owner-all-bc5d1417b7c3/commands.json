@@ -1,0 +1,1786 @@
+[
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\footprint-owner-all-bc5d1417b7c3\\source\\tests\\tools\\footprint",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T06:22:45.520312+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "pid": 2972,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T06:22:45.822636+00:00",
+    "label": "permanent-regressions",
+    "raw": [
+      {
+        "path": "permanent-regressions-stdout.log",
+        "sha256": "b0f3ab8df34cfc554411a9d6acd9745589dd64dfc3ec53a96314ece9f450e3ea"
+      },
+      {
+        "path": "permanent-regressions-stderr.log",
+        "sha256": "678f67202aadb799562ded137345c4dfaeba20f483ce17c4ee51a3af3d431c56"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\footprint-owner-all-bc5d1417b7c3\\source\\tests\\tools\\footprint\\owner_consumer.py",
+      "normal"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T06:22:45.825143+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "observation": {
+      "status": "Complete",
+      "method": "ock.native-footprint/2",
+      "configuration": {
+        "mode": "latency",
+        "setup_timeout_ms": 3000,
+        "stage_timeout_ms": 4000,
+        "max_samples": 4000,
+        "max_modules": 256,
+        "max_threads": 1024,
+        "module_path_chars": 32768,
+        "module_attempts": 3,
+        "calibration_bytes": 16777216,
+        "calibration_hold_ms": 500,
+        "ready_delay_ms": 100
+      },
+      "memory_sampling": "phase_boundaries",
+      "thread_sampling": "phase_boundaries",
+      "method_digest": "f86bf4633d4d33d01c71474224ed906f8eb51813556061721f2d281a81d068d5",
+      "nonce": "d3b3e4767f1f4a46829e15fe5a8a22eb",
+      "generation": 6462041305213213518,
+      "qpc_frequency": 10000000,
+      "samples": [
+        {
+          "ticks": 4490368055957,
+          "reason": "assigned_suspended",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 389120,
+          "working_set_bytes": 1998848,
+          "peak_working_set_bytes": 1998848,
+          "peak_commit_bytes": 389120,
+          "thread_ids": [
+            36000
+          ],
+          "thread_query": {
+            "started_ticks": 4490368056507,
+            "completed_ticks": 4490368764867,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490368055957,
+            "completed_ticks": 4490368056496,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490368764885
+        },
+        {
+          "ticks": 4490369391210,
+          "reason": "ProcessMainEntered",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9932800,
+          "working_set_bytes": 16998400,
+          "peak_working_set_bytes": 16998400,
+          "peak_commit_bytes": 9932800,
+          "thread_ids": [
+            34808,
+            36000,
+            43516,
+            64560
+          ],
+          "thread_query": {
+            "started_ticks": 4490369391747,
+            "completed_ticks": 4490370114626,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490369391210,
+            "completed_ticks": 4490369391730,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490370114644
+        },
+        {
+          "ticks": 4490370220825,
+          "reason": "HostConstructionBegin",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9932800,
+          "working_set_bytes": 16998400,
+          "peak_working_set_bytes": 16998400,
+          "peak_commit_bytes": 9932800,
+          "thread_ids": [
+            34808,
+            36000,
+            43516,
+            64560
+          ],
+          "thread_query": {
+            "started_ticks": 4490370221432,
+            "completed_ticks": 4490370969854,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490370220825,
+            "completed_ticks": 4490370221415,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490370969914
+        },
+        {
+          "ticks": 4490371072721,
+          "reason": "HostReady",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9932800,
+          "working_set_bytes": 16998400,
+          "peak_working_set_bytes": 16998400,
+          "peak_commit_bytes": 9932800,
+          "thread_ids": [
+            34808,
+            36000,
+            43516,
+            64560
+          ],
+          "thread_query": {
+            "started_ticks": 4490371073268,
+            "completed_ticks": 4490371789380,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490371072721,
+            "completed_ticks": 4490371073255,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490371789400
+        },
+        {
+          "ticks": 4490371890687,
+          "reason": "WarmupComplete",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9932800,
+          "working_set_bytes": 16998400,
+          "peak_working_set_bytes": 16998400,
+          "peak_commit_bytes": 9932800,
+          "thread_ids": [
+            34808,
+            36000,
+            43516,
+            64560
+          ],
+          "thread_query": {
+            "started_ticks": 4490371891237,
+            "completed_ticks": 4490372573847,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490371890687,
+            "completed_ticks": 4490371891224,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490372573870
+        },
+        {
+          "ticks": 4490377652818,
+          "reason": "IdleSamplingBegin",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9932800,
+          "working_set_bytes": 16998400,
+          "peak_working_set_bytes": 16998400,
+          "peak_commit_bytes": 9932800,
+          "thread_ids": [
+            34808,
+            36000,
+            43516,
+            64560
+          ],
+          "thread_query": {
+            "started_ticks": 4490377653482,
+            "completed_ticks": 4490378408319,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490377652818,
+            "completed_ticks": 4490377653471,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490378408339
+        },
+        {
+          "ticks": 4490388490425,
+          "reason": "ShutdownBegin",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9932800,
+          "working_set_bytes": 16998400,
+          "peak_working_set_bytes": 16998400,
+          "peak_commit_bytes": 9932800,
+          "thread_ids": [
+            34808,
+            36000,
+            43516,
+            64560
+          ],
+          "thread_query": {
+            "started_ticks": 4490388490980,
+            "completed_ticks": 4490389180582,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490388490425,
+            "completed_ticks": 4490388490968,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490389180598
+        },
+        {
+          "ticks": 4490389282523,
+          "reason": "ShutdownComplete",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9932800,
+          "working_set_bytes": 16998400,
+          "peak_working_set_bytes": 16998400,
+          "peak_commit_bytes": 9932800,
+          "thread_ids": [
+            34808,
+            36000,
+            43516,
+            64560
+          ],
+          "thread_query": {
+            "started_ticks": 4490389283116,
+            "completed_ticks": 4490389963171,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490389282523,
+            "completed_ticks": 4490389283105,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490389963199
+        },
+        {
+          "ticks": 4490395059607,
+          "reason": "BoundReleased",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9932800,
+          "working_set_bytes": 16936960,
+          "peak_working_set_bytes": 16998400,
+          "peak_commit_bytes": 9932800,
+          "thread_ids": [
+            34808,
+            36000,
+            43516,
+            64560
+          ],
+          "thread_query": {
+            "started_ticks": 4490395060273,
+            "completed_ticks": 4490395771480,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490395059607,
+            "completed_ticks": 4490395060263,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490395771499
+        },
+        {
+          "ticks": 4490400782386,
+          "reason": "SessionReleased",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9932800,
+          "working_set_bytes": 16936960,
+          "peak_working_set_bytes": 16998400,
+          "peak_commit_bytes": 9932800,
+          "thread_ids": [
+            34808,
+            36000,
+            43516,
+            64560
+          ],
+          "thread_query": {
+            "started_ticks": 4490400782981,
+            "completed_ticks": 4490401505416,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490400782386,
+            "completed_ticks": 4490400782971,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490401505433
+        },
+        {
+          "ticks": 4490406589151,
+          "reason": "OwnersReleased",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9932800,
+          "working_set_bytes": 16936960,
+          "peak_working_set_bytes": 16998400,
+          "peak_commit_bytes": 9932800,
+          "thread_ids": [
+            34808,
+            36000,
+            43516,
+            64560
+          ],
+          "thread_query": {
+            "started_ticks": 4490406589694,
+            "completed_ticks": 4490407265728,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490406589151,
+            "completed_ticks": 4490406589685,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490407265744
+        },
+        {
+          "ticks": 4490412382895,
+          "reason": "ExitPermitted",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9932800,
+          "working_set_bytes": 16936960,
+          "peak_working_set_bytes": 16998400,
+          "peak_commit_bytes": 9932800,
+          "thread_ids": [
+            34808,
+            36000,
+            43516,
+            64560
+          ],
+          "thread_query": {
+            "started_ticks": 4490412383578,
+            "completed_ticks": 4490413070022,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490412382895,
+            "completed_ticks": 4490412383567,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490413070039
+        }
+      ],
+      "phases": [
+        {
+          "phase": "ProcessMainEntered",
+          "sequence": 1,
+          "child_ticks": 4490369390140,
+          "parent_observed_ticks": 4490369391075,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490370114809
+        },
+        {
+          "phase": "HostConstructionBegin",
+          "sequence": 2,
+          "child_ticks": 4490370115030,
+          "parent_observed_ticks": 4490370220627,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490370970134
+        },
+        {
+          "phase": "HostReady",
+          "sequence": 3,
+          "child_ticks": 4490370970362,
+          "parent_observed_ticks": 4490371072544,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490371789651
+        },
+        {
+          "phase": "WarmupComplete",
+          "sequence": 4,
+          "child_ticks": 4490371789848,
+          "parent_observed_ticks": 4490371890491,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490377547009
+        },
+        {
+          "phase": "IdleSamplingBegin",
+          "sequence": 5,
+          "child_ticks": 4490377547195,
+          "parent_observed_ticks": 4490377652631,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490388385179
+        },
+        {
+          "phase": "ShutdownBegin",
+          "sequence": 6,
+          "child_ticks": 4490388385417,
+          "parent_observed_ticks": 4490388490260,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490389180764
+        },
+        {
+          "phase": "ShutdownComplete",
+          "sequence": 7,
+          "child_ticks": 4490389180961,
+          "parent_observed_ticks": 4490389282332,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490394954274
+        },
+        {
+          "phase": "BoundReleased",
+          "sequence": 8,
+          "child_ticks": 4490394954459,
+          "parent_observed_ticks": 4490395059425,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490400676969
+        },
+        {
+          "phase": "SessionReleased",
+          "sequence": 9,
+          "child_ticks": 4490400677140,
+          "parent_observed_ticks": 4490400782255,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490406483910
+        },
+        {
+          "phase": "OwnersReleased",
+          "sequence": 10,
+          "child_ticks": 4490406484037,
+          "parent_observed_ticks": 4490406589024,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490412280850
+        },
+        {
+          "phase": "ExitPermitted",
+          "sequence": 11,
+          "child_ticks": 4490412281061,
+          "parent_observed_ticks": 4490412382763,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490413070159
+        }
+      ],
+      "modules": [
+        {
+          "phase": "WarmupComplete",
+          "ticks": 4490372578924,
+          "ok": true,
+          "attempts": 1,
+          "required_bytes": 224,
+          "paths": [
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+            "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+            "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+            "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+            "C:\\WINDOWS\\SYSTEM32\\apphelp.dll",
+            "C:\\WINDOWS\\System32\\ucrtbase.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python311.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\VCRUNTIME140.dll",
+            "C:\\WINDOWS\\System32\\WS2_32.dll",
+            "C:\\WINDOWS\\System32\\RPCRT4.dll",
+            "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+            "C:\\WINDOWS\\SYSTEM32\\VERSION.dll",
+            "C:\\WINDOWS\\System32\\msvcrt.dll",
+            "C:\\WINDOWS\\System32\\sechost.dll",
+            "C:\\WINDOWS\\SYSTEM32\\bcrypt.dll",
+            "C:\\WINDOWS\\System32\\bcryptprimitives.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python3.DLL",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\_ctypes.pyd",
+            "C:\\WINDOWS\\System32\\ole32.dll",
+            "C:\\WINDOWS\\System32\\msvcp_win.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\libffi-8.dll",
+            "C:\\WINDOWS\\System32\\GDI32.dll",
+            "C:\\WINDOWS\\System32\\win32u.dll",
+            "C:\\WINDOWS\\System32\\gdi32full.dll",
+            "C:\\WINDOWS\\System32\\USER32.dll",
+            "C:\\WINDOWS\\System32\\combase.dll",
+            "C:\\WINDOWS\\System32\\OLEAUT32.dll",
+            "C:\\WINDOWS\\System32\\IMM32.DLL"
+          ]
+        },
+        {
+          "phase": "ShutdownComplete",
+          "ticks": 4490389967819,
+          "ok": true,
+          "attempts": 1,
+          "required_bytes": 224,
+          "paths": [
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+            "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+            "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+            "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+            "C:\\WINDOWS\\SYSTEM32\\apphelp.dll",
+            "C:\\WINDOWS\\System32\\ucrtbase.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python311.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\VCRUNTIME140.dll",
+            "C:\\WINDOWS\\System32\\WS2_32.dll",
+            "C:\\WINDOWS\\System32\\RPCRT4.dll",
+            "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+            "C:\\WINDOWS\\SYSTEM32\\VERSION.dll",
+            "C:\\WINDOWS\\System32\\msvcrt.dll",
+            "C:\\WINDOWS\\System32\\sechost.dll",
+            "C:\\WINDOWS\\SYSTEM32\\bcrypt.dll",
+            "C:\\WINDOWS\\System32\\bcryptprimitives.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python3.DLL",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\_ctypes.pyd",
+            "C:\\WINDOWS\\System32\\ole32.dll",
+            "C:\\WINDOWS\\System32\\msvcp_win.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\libffi-8.dll",
+            "C:\\WINDOWS\\System32\\GDI32.dll",
+            "C:\\WINDOWS\\System32\\win32u.dll",
+            "C:\\WINDOWS\\System32\\gdi32full.dll",
+            "C:\\WINDOWS\\System32\\USER32.dll",
+            "C:\\WINDOWS\\System32\\combase.dll",
+            "C:\\WINDOWS\\System32\\OLEAUT32.dll",
+            "C:\\WINDOWS\\System32\\IMM32.DLL"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "assigned_suspended",
+          "ticks": 4490368055862
+        },
+        {
+          "event": "resumed",
+          "ticks": 4490368765149
+        },
+        {
+          "event": "root_exited",
+          "ticks": 4490413382804
+        }
+      ],
+      "errors": [],
+      "cleanup_errors": [],
+      "ready": {
+        "child_ticks": 4490370970362,
+        "observed_ticks": 4490371072544,
+        "sample_ticks": 4490371072721,
+        "internal_ticks": 855332,
+        "create_to_ready_ticks": 2968072,
+        "parent_observed_ticks_delta": 3070254,
+        "notification_lag_ticks": 102182,
+        "peak_working_set_bytes": 16998400,
+        "peak_commit_bytes": 9932800
+      },
+      "inherited_handle_count": 6,
+      "launch_argv": [
+        "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\footprint-owner-all-bc5d1417b7c3\\source\\tests\\tools\\footprint\\owner_consumer.py",
+        "normal",
+        "--ock-observation",
+        "652",
+        "668",
+        "660",
+        "d3b3e4767f1f4a46829e15fe5a8a22eb",
+        "6462041305213213518"
+      ],
+      "pre_create_ticks": 4490368002290,
+      "actual_pid": 62540
+    },
+    "pid": 62540,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T06:22:50.386724+00:00",
+    "label": "normal",
+    "raw": [
+      {
+        "path": "normal-stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "normal-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\footprint-owner-all-bc5d1417b7c3\\source\\tests\\tools\\footprint\\owner_consumer.py",
+      "extra_phase"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T06:22:50.387727+00:00",
+    "exit_code": 0,
+    "status": "LaunchFailed",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": true
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "observation": {
+      "status": "ObserverFailed",
+      "method": "ock.native-footprint/2",
+      "configuration": {
+        "mode": "latency",
+        "setup_timeout_ms": 3000,
+        "stage_timeout_ms": 4000,
+        "max_samples": 4000,
+        "max_modules": 256,
+        "max_threads": 1024,
+        "module_path_chars": 32768,
+        "module_attempts": 3,
+        "calibration_bytes": 16777216,
+        "calibration_hold_ms": 500,
+        "ready_delay_ms": 100
+      },
+      "memory_sampling": "phase_boundaries",
+      "thread_sampling": "phase_boundaries",
+      "method_digest": "f86bf4633d4d33d01c71474224ed906f8eb51813556061721f2d281a81d068d5",
+      "nonce": "bbfcc62ddf964c098fe0a27b989a1f4f",
+      "generation": 5000524689442256971,
+      "qpc_frequency": 10000000,
+      "samples": [
+        {
+          "ticks": 4490413688771,
+          "reason": "assigned_suspended",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 389120,
+          "working_set_bytes": 1998848,
+          "peak_working_set_bytes": 1998848,
+          "peak_commit_bytes": 389120,
+          "thread_ids": [
+            33704
+          ],
+          "thread_query": {
+            "started_ticks": 4490413689228,
+            "completed_ticks": 4490414404719,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490413688771,
+            "completed_ticks": 4490413689219,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490414404736
+        },
+        {
+          "ticks": 4490415036686,
+          "reason": "ProcessMainEntered",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9953280,
+          "working_set_bytes": 17018880,
+          "peak_working_set_bytes": 17018880,
+          "peak_commit_bytes": 9953280,
+          "thread_ids": [
+            31404,
+            33704,
+            35420,
+            53084
+          ],
+          "thread_query": {
+            "started_ticks": 4490415037221,
+            "completed_ticks": 4490415751405,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490415036686,
+            "completed_ticks": 4490415037210,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490415751420
+        },
+        {
+          "ticks": 4490415854073,
+          "reason": "HostConstructionBegin",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9953280,
+          "working_set_bytes": 17018880,
+          "peak_working_set_bytes": 17018880,
+          "peak_commit_bytes": 9953280,
+          "thread_ids": [
+            31404,
+            33704,
+            35420,
+            53084
+          ],
+          "thread_query": {
+            "started_ticks": 4490415854607,
+            "completed_ticks": 4490416560316,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490415854073,
+            "completed_ticks": 4490415854597,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490416560333
+        },
+        {
+          "ticks": 4490416663711,
+          "reason": "HostReady",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9953280,
+          "working_set_bytes": 17018880,
+          "peak_working_set_bytes": 17018880,
+          "peak_commit_bytes": 9953280,
+          "thread_ids": [
+            31404,
+            33704,
+            35420,
+            53084
+          ],
+          "thread_query": {
+            "started_ticks": 4490416664265,
+            "completed_ticks": 4490417345886,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490416663711,
+            "completed_ticks": 4490416664256,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490417345902
+        },
+        {
+          "ticks": 4490417447955,
+          "reason": "WarmupComplete",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9953280,
+          "working_set_bytes": 17018880,
+          "peak_working_set_bytes": 17018880,
+          "peak_commit_bytes": 9953280,
+          "thread_ids": [
+            31404,
+            33704,
+            35420,
+            53084
+          ],
+          "thread_query": {
+            "started_ticks": 4490417448421,
+            "completed_ticks": 4490418150830,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490417447955,
+            "completed_ticks": 4490417448411,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490418150848
+        },
+        {
+          "ticks": 4490423138966,
+          "reason": "IdleSamplingBegin",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9953280,
+          "working_set_bytes": 17018880,
+          "peak_working_set_bytes": 17018880,
+          "peak_commit_bytes": 9953280,
+          "thread_ids": [
+            31404,
+            33704,
+            35420,
+            53084
+          ],
+          "thread_query": {
+            "started_ticks": 4490423139553,
+            "completed_ticks": 4490423858958,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490423138966,
+            "completed_ticks": 4490423139540,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490423858974
+        },
+        {
+          "ticks": 4490433966780,
+          "reason": "ShutdownBegin",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9953280,
+          "working_set_bytes": 17018880,
+          "peak_working_set_bytes": 17018880,
+          "peak_commit_bytes": 9953280,
+          "thread_ids": [
+            31404,
+            33704,
+            35420,
+            53084
+          ],
+          "thread_query": {
+            "started_ticks": 4490433967298,
+            "completed_ticks": 4490434630032,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490433966780,
+            "completed_ticks": 4490433967287,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490434630050
+        },
+        {
+          "ticks": 4490434735877,
+          "reason": "ShutdownComplete",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9953280,
+          "working_set_bytes": 17018880,
+          "peak_working_set_bytes": 17018880,
+          "peak_commit_bytes": 9953280,
+          "thread_ids": [
+            31404,
+            33704,
+            35420,
+            53084
+          ],
+          "thread_query": {
+            "started_ticks": 4490434736484,
+            "completed_ticks": 4490435412138,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490434735877,
+            "completed_ticks": 4490434736475,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490435412155
+        },
+        {
+          "ticks": 4490440534946,
+          "reason": "BoundReleased",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9953280,
+          "working_set_bytes": 16941056,
+          "peak_working_set_bytes": 17018880,
+          "peak_commit_bytes": 9953280,
+          "thread_ids": [
+            31404,
+            33704,
+            35420,
+            53084
+          ],
+          "thread_query": {
+            "started_ticks": 4490440535428,
+            "completed_ticks": 4490441226391,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490440534946,
+            "completed_ticks": 4490440535419,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490441226408
+        },
+        {
+          "ticks": 4490446321879,
+          "reason": "SessionReleased",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9953280,
+          "working_set_bytes": 16941056,
+          "peak_working_set_bytes": 17018880,
+          "peak_commit_bytes": 9953280,
+          "thread_ids": [
+            31404,
+            33704,
+            35420,
+            53084
+          ],
+          "thread_query": {
+            "started_ticks": 4490446322504,
+            "completed_ticks": 4490447003281,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490446321879,
+            "completed_ticks": 4490446322495,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490447003297
+        },
+        {
+          "ticks": 4490452124596,
+          "reason": "OwnersReleased",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9953280,
+          "working_set_bytes": 16941056,
+          "peak_working_set_bytes": 17018880,
+          "peak_commit_bytes": 9953280,
+          "thread_ids": [
+            31404,
+            33704,
+            35420,
+            53084
+          ],
+          "thread_query": {
+            "started_ticks": 4490452125172,
+            "completed_ticks": 4490452826499,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490452124596,
+            "completed_ticks": 4490452125164,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490452826517
+        },
+        {
+          "ticks": 4490457812390,
+          "reason": "ExitPermitted",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9953280,
+          "working_set_bytes": 16941056,
+          "peak_working_set_bytes": 17018880,
+          "peak_commit_bytes": 9953280,
+          "thread_ids": [
+            31404,
+            33704,
+            35420,
+            53084
+          ],
+          "thread_query": {
+            "started_ticks": 4490457818676,
+            "completed_ticks": 4490458512044,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490457812390,
+            "completed_ticks": 4490457818662,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490458512063
+        }
+      ],
+      "phases": [
+        {
+          "phase": "ProcessMainEntered",
+          "sequence": 1,
+          "child_ticks": 4490414979121,
+          "parent_observed_ticks": 4490415036537,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490415751579
+        },
+        {
+          "phase": "HostConstructionBegin",
+          "sequence": 2,
+          "child_ticks": 4490415751836,
+          "parent_observed_ticks": 4490415853942,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490416560496
+        },
+        {
+          "phase": "HostReady",
+          "sequence": 3,
+          "child_ticks": 4490416561173,
+          "parent_observed_ticks": 4490416663571,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490417346099
+        },
+        {
+          "phase": "WarmupComplete",
+          "sequence": 4,
+          "child_ticks": 4490417346295,
+          "parent_observed_ticks": 4490417447849,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490423037508
+        },
+        {
+          "phase": "IdleSamplingBegin",
+          "sequence": 5,
+          "child_ticks": 4490423037705,
+          "parent_observed_ticks": 4490423138815,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490433861595
+        },
+        {
+          "phase": "ShutdownBegin",
+          "sequence": 6,
+          "child_ticks": 4490433861756,
+          "parent_observed_ticks": 4490433966670,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490434630174
+        },
+        {
+          "phase": "ShutdownComplete",
+          "sequence": 7,
+          "child_ticks": 4490434630363,
+          "parent_observed_ticks": 4490434735752,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490440429700
+        },
+        {
+          "phase": "BoundReleased",
+          "sequence": 8,
+          "child_ticks": 4490440429929,
+          "parent_observed_ticks": 4490440534818,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490446217148
+        },
+        {
+          "phase": "SessionReleased",
+          "sequence": 9,
+          "child_ticks": 4490446217821,
+          "parent_observed_ticks": 4490446321747,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490452019268
+        },
+        {
+          "phase": "OwnersReleased",
+          "sequence": 10,
+          "child_ticks": 4490452019461,
+          "parent_observed_ticks": 4490452124464,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490457707203
+        },
+        {
+          "phase": "ExitPermitted",
+          "sequence": 11,
+          "child_ticks": 4490457707406,
+          "parent_observed_ticks": 4490457812204,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490458512240
+        }
+      ],
+      "modules": [
+        {
+          "phase": "WarmupComplete",
+          "ticks": 4490418156368,
+          "ok": true,
+          "attempts": 1,
+          "required_bytes": 224,
+          "paths": [
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+            "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+            "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+            "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+            "C:\\WINDOWS\\SYSTEM32\\apphelp.dll",
+            "C:\\WINDOWS\\System32\\ucrtbase.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\VCRUNTIME140.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python311.dll",
+            "C:\\WINDOWS\\System32\\WS2_32.dll",
+            "C:\\WINDOWS\\System32\\RPCRT4.dll",
+            "C:\\WINDOWS\\SYSTEM32\\VERSION.dll",
+            "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+            "C:\\WINDOWS\\System32\\msvcrt.dll",
+            "C:\\WINDOWS\\System32\\sechost.dll",
+            "C:\\WINDOWS\\SYSTEM32\\bcrypt.dll",
+            "C:\\WINDOWS\\System32\\bcryptprimitives.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python3.DLL",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\_ctypes.pyd",
+            "C:\\WINDOWS\\System32\\ole32.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\libffi-8.dll",
+            "C:\\WINDOWS\\System32\\msvcp_win.dll",
+            "C:\\WINDOWS\\System32\\GDI32.dll",
+            "C:\\WINDOWS\\System32\\win32u.dll",
+            "C:\\WINDOWS\\System32\\gdi32full.dll",
+            "C:\\WINDOWS\\System32\\USER32.dll",
+            "C:\\WINDOWS\\System32\\combase.dll",
+            "C:\\WINDOWS\\System32\\OLEAUT32.dll",
+            "C:\\WINDOWS\\System32\\IMM32.DLL"
+          ]
+        },
+        {
+          "phase": "ShutdownComplete",
+          "ticks": 4490435416787,
+          "ok": true,
+          "attempts": 1,
+          "required_bytes": 224,
+          "paths": [
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+            "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+            "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+            "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+            "C:\\WINDOWS\\SYSTEM32\\apphelp.dll",
+            "C:\\WINDOWS\\System32\\ucrtbase.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\VCRUNTIME140.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python311.dll",
+            "C:\\WINDOWS\\System32\\WS2_32.dll",
+            "C:\\WINDOWS\\System32\\RPCRT4.dll",
+            "C:\\WINDOWS\\SYSTEM32\\VERSION.dll",
+            "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+            "C:\\WINDOWS\\System32\\msvcrt.dll",
+            "C:\\WINDOWS\\System32\\sechost.dll",
+            "C:\\WINDOWS\\SYSTEM32\\bcrypt.dll",
+            "C:\\WINDOWS\\System32\\bcryptprimitives.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python3.DLL",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\_ctypes.pyd",
+            "C:\\WINDOWS\\System32\\ole32.dll",
+            "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\libffi-8.dll",
+            "C:\\WINDOWS\\System32\\msvcp_win.dll",
+            "C:\\WINDOWS\\System32\\GDI32.dll",
+            "C:\\WINDOWS\\System32\\win32u.dll",
+            "C:\\WINDOWS\\System32\\gdi32full.dll",
+            "C:\\WINDOWS\\System32\\USER32.dll",
+            "C:\\WINDOWS\\System32\\combase.dll",
+            "C:\\WINDOWS\\System32\\OLEAUT32.dll",
+            "C:\\WINDOWS\\System32\\IMM32.DLL"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event": "assigned_suspended",
+          "ticks": 4490413688711
+        },
+        {
+          "event": "resumed",
+          "ticks": 4490414404945
+        }
+      ],
+      "errors": [
+        "ObservationError: InvalidRecordSizeOrExtraPhase"
+      ],
+      "cleanup_errors": [],
+      "ready": {
+        "child_ticks": 4490416561173,
+        "observed_ticks": 4490416663571,
+        "sample_ticks": 4490416663711,
+        "internal_ticks": 809337,
+        "create_to_ready_ticks": 2939846,
+        "parent_observed_ticks_delta": 3042244,
+        "notification_lag_ticks": 102398,
+        "peak_working_set_bytes": 17018880,
+        "peak_commit_bytes": 9953280
+      },
+      "inherited_handle_count": 6,
+      "launch_argv": [
+        "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\footprint-owner-all-bc5d1417b7c3\\source\\tests\\tools\\footprint\\owner_consumer.py",
+        "extra_phase",
+        "--ock-observation",
+        "692",
+        "696",
+        "700",
+        "bbfcc62ddf964c098fe0a27b989a1f4f",
+        "5000524689442256971"
+      ],
+      "pre_create_ticks": 4490413621327,
+      "actual_pid": 44548
+    },
+    "pid": 44548,
+    "error": "ObservationError: InvalidRecordSizeOrExtraPhase",
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T06:22:54.902616+00:00",
+    "label": "extra_phase",
+    "raw": [
+      {
+        "path": "extra_phase-stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "extra_phase-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\footprint-owner-all-bc5d1417b7c3\\source\\tests\\tools\\footprint\\owner_consumer.py",
+      "descendants_alive"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T06:22:54.987507+00:00",
+    "exit_code": 0,
+    "status": "DescendantsAlive",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 3,
+      "terminated_owned_job": true
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "observation": {
+      "status": "Incomplete",
+      "method": "ock.native-footprint/2",
+      "configuration": {
+        "mode": "latency",
+        "setup_timeout_ms": 3000,
+        "stage_timeout_ms": 4000,
+        "max_samples": 4000,
+        "max_modules": 256,
+        "max_threads": 1024,
+        "module_path_chars": 32768,
+        "module_attempts": 3,
+        "calibration_bytes": 16777216,
+        "calibration_hold_ms": 500,
+        "ready_delay_ms": 100
+      },
+      "memory_sampling": "phase_boundaries",
+      "thread_sampling": "phase_boundaries",
+      "method_digest": "f86bf4633d4d33d01c71474224ed906f8eb51813556061721f2d281a81d068d5",
+      "nonce": "8c43b0af14004237bd21880214070aa5",
+      "generation": 4675705755968115950,
+      "qpc_frequency": 10000000,
+      "samples": [
+        {
+          "ticks": 4490459707504,
+          "reason": "assigned_suspended",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 393216,
+          "working_set_bytes": 1998848,
+          "peak_working_set_bytes": 1998848,
+          "peak_commit_bytes": 393216,
+          "thread_ids": [
+            49324
+          ],
+          "thread_query": {
+            "started_ticks": 4490459707959,
+            "completed_ticks": 4490460446593,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490459707504,
+            "completed_ticks": 4490459707950,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490460446612
+        },
+        {
+          "ticks": 4490461274747,
+          "reason": "ProcessMainEntered",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 9687040,
+          "working_set_bytes": 16977920,
+          "peak_working_set_bytes": 17039360,
+          "peak_commit_bytes": 9695232,
+          "thread_ids": [
+            29036,
+            41692,
+            46476,
+            49324
+          ],
+          "thread_query": {
+            "started_ticks": 4490461275239,
+            "completed_ticks": 4490461998050,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490461274747,
+            "completed_ticks": 4490461275229,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490461998068
+        }
+      ],
+      "phases": [
+        {
+          "phase": "ProcessMainEntered",
+          "sequence": 1,
+          "child_ticks": 4490461178389,
+          "parent_observed_ticks": 4490461274618,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490461998219
+        }
+      ],
+      "modules": [],
+      "events": [
+        {
+          "event": "assigned_suspended",
+          "ticks": 4490459707441
+        },
+        {
+          "event": "resumed",
+          "ticks": 4490460446851
+        },
+        {
+          "event": "root_exited",
+          "ticks": 4490462307755
+        }
+      ],
+      "errors": [
+        "RootExitedBeforeProtocolComplete"
+      ],
+      "cleanup_errors": [],
+      "ready": null,
+      "inherited_handle_count": 6,
+      "launch_argv": [
+        "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\footprint-owner-all-bc5d1417b7c3\\source\\tests\\tools\\footprint\\owner_consumer.py",
+        "descendants_alive",
+        "--ock-observation",
+        "768",
+        "776",
+        "780",
+        "8c43b0af14004237bd21880214070aa5",
+        "4675705755968115950"
+      ],
+      "pre_create_ticks": 4490459615600,
+      "actual_pid": 62236
+    },
+    "pid": 62236,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T06:22:58.088498+00:00",
+    "label": "descendants_alive",
+    "raw": [
+      {
+        "path": "descendants_alive-stdout.log",
+        "sha256": "36bbe99dbab0abce39169284d031dd1bf133736dba428aee516fa39567f5f4ad"
+      },
+      {
+        "path": "descendants_alive-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\footprint-owner-all-bc5d1417b7c3\\source\\tests\\tools\\footprint\\owner_consumer.py",
+      "sentinel",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\footprint-owner-all-bc5d1417b7c3\\sentinel.ready",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\footprint-owner-all-bc5d1417b7c3\\sentinel.release"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T06:22:54.904615+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "pid": 50400,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T06:22:58.161995+00:00",
+    "label": "sentinel",
+    "raw": [
+      {
+        "path": "sentinel-stdout.log",
+        "sha256": "1d6b138f31a7d17ba36666b71cf45b686c07e226b7e12b85676f48c95b8b8ab1"
+      },
+      {
+        "path": "sentinel-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\footprint-owner-all-bc5d1417b7c3\\source\\tests\\tools\\footprint\\owner_consumer.py",
+      "stage_timeout"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T06:22:58.164058+00:00",
+    "exit_code": 125,
+    "status": "LaunchFailed",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": true
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "observation": {
+      "status": "ObserverFailed",
+      "method": "ock.native-footprint/2",
+      "configuration": {
+        "mode": "latency",
+        "setup_timeout_ms": 3000,
+        "stage_timeout_ms": 1600,
+        "max_samples": 4000,
+        "max_modules": 256,
+        "max_threads": 1024,
+        "module_path_chars": 32768,
+        "module_attempts": 3,
+        "calibration_bytes": 16777216,
+        "calibration_hold_ms": 500,
+        "ready_delay_ms": 100
+      },
+      "memory_sampling": "phase_boundaries",
+      "thread_sampling": "phase_boundaries",
+      "method_digest": "19462142314ccf7f6728e10517e7358c3c685e603cf4d579713533dc06ddc9b7",
+      "nonce": "54e1677611424908bf646f80cba6061c",
+      "generation": 4012131651451549789,
+      "qpc_frequency": 10000000,
+      "samples": [
+        {
+          "ticks": 4490491435839,
+          "reason": "assigned_suspended",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 393216,
+          "working_set_bytes": 1998848,
+          "peak_working_set_bytes": 1998848,
+          "peak_commit_bytes": 393216,
+          "thread_ids": [
+            26764
+          ],
+          "thread_query": {
+            "started_ticks": 4490491436350,
+            "completed_ticks": 4490492146365,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490491435839,
+            "completed_ticks": 4490491436340,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490492146385
+        },
+        {
+          "ticks": 4490492775727,
+          "reason": "ProcessMainEntered",
+          "missed_intervals": 0,
+          "ok": true,
+          "private_bytes": 10002432,
+          "working_set_bytes": 17006592,
+          "peak_working_set_bytes": 17006592,
+          "peak_commit_bytes": 10002432,
+          "thread_ids": [
+            6048,
+            8700,
+            26764,
+            47896
+          ],
+          "thread_query": {
+            "started_ticks": 4490492776237,
+            "completed_ticks": 4490493493642,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 28
+          },
+          "memory_query": {
+            "started_ticks": 4490492775727,
+            "completed_ticks": 4490492776222,
+            "ok": true,
+            "win32_error": 0,
+            "structure_bytes": 80
+          },
+          "win32_error": 0,
+          "structure_bytes": 80,
+          "completed_ticks": 4490493493659
+        }
+      ],
+      "phases": [
+        {
+          "phase": "ProcessMainEntered",
+          "sequence": 1,
+          "child_ticks": 4490492741837,
+          "parent_observed_ticks": 4490492775609,
+          "checks": 1,
+          "owners": 0,
+          "sentinels": 0,
+          "ack_ticks": 4490493493796
+        }
+      ],
+      "modules": [],
+      "events": [
+        {
+          "event": "assigned_suspended",
+          "ticks": 4490491435761
+        },
+        {
+          "event": "resumed",
+          "ticks": 4490492146592
+        }
+      ],
+      "errors": [
+        "ObservationError: StageDeadlineReached"
+      ],
+      "cleanup_errors": [],
+      "ready": null,
+      "inherited_handle_count": 6,
+      "launch_argv": [
+        "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\footprint-owner-all-bc5d1417b7c3\\source\\tests\\tools\\footprint\\owner_consumer.py",
+        "stage_timeout",
+        "--ock-observation",
+        "660",
+        "676",
+        "476",
+        "54e1677611424908bf646f80cba6061c",
+        "4012131651451549789"
+      ],
+      "pre_create_ticks": 4490491382386,
+      "actual_pid": 35084
+    },
+    "pid": 35084,
+    "error": "ObservationError: StageDeadlineReached",
+    "observed_exit_code": 125,
+    "finished_at": "2026-09-08T06:23:00.041111+00:00",
+    "label": "stage_timeout",
+    "raw": [
+      {
+        "path": "stage_timeout-stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "stage_timeout-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  }
+]

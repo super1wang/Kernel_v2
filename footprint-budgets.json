@@ -1,0 +1,361 @@
+{
+  "format": "ock.native-footprint-budgets/1",
+  "stage": "NativeSubset",
+  "decision": "docs/reviews/D1.06-budget-decision.md",
+  "budgets": {
+    "win-msvc-debug/occupancy": {
+      "status": "Approved",
+      "method_digest": "2c35269b815399839d581287a0a4a5009ca3f2be482f5bb64554641f813a82b9",
+      "approved_at": "2026-09-08T07:02:56.851471+00:00",
+      "pilot_run_ids": [
+        "51164-b0-0-baseline-6942fccb1c7a4249a8e7fb4c5cd97f3b",
+        "58528-b0-1-native-6942fccb1c7a4249a8e7fb4c5cd97f3b",
+        "42936-b0-2-native-6942fccb1c7a4249a8e7fb4c5cd97f3b",
+        "27960-b0-3-baseline-6942fccb1c7a4249a8e7fb4c5cd97f3b",
+        "26316-b1-0-baseline-6942fccb1c7a4249a8e7fb4c5cd97f3b",
+        "38552-b1-1-native-6942fccb1c7a4249a8e7fb4c5cd97f3b",
+        "27464-b1-2-native-6942fccb1c7a4249a8e7fb4c5cd97f3b",
+        "29952-b1-3-baseline-6942fccb1c7a4249a8e7fb4c5cd97f3b",
+        "28748-b2-0-baseline-6942fccb1c7a4249a8e7fb4c5cd97f3b",
+        "45908-b2-1-native-6942fccb1c7a4249a8e7fb4c5cd97f3b",
+        "60120-b2-2-native-6942fccb1c7a4249a8e7fb4c5cd97f3b",
+        "52520-b2-3-baseline-6942fccb1c7a4249a8e7fb4c5cd97f3b"
+      ],
+      "limits": {
+        "private_peak_absolute_max": 67108864,
+        "private_peak_paired_max": 16777216,
+        "ready_private_absolute_max": 67108864,
+        "ready_private_paired_max": 16777216,
+        "ready_peak_commit_absolute_max": 67108864,
+        "ready_peak_commit_paired_max": 16777216,
+        "working_set_peak_absolute_max": 134217728,
+        "working_set_peak_paired_max": 33554432,
+        "ready_peak_working_set_absolute_max": 134217728,
+        "ready_peak_working_set_paired_max": 33554432,
+        "distribution_increment_bytes": 16777216
+      }
+    },
+    "win-msvc-debug/allocation": {
+      "status": "Approved",
+      "method_digest": "52fb4d5e4516890a1832de31d457a4f0bb8099520c938b915672e6ed3ad6fcef",
+      "approved_at": "2026-09-08T07:02:56.872025+00:00",
+      "pilot_run_ids": [
+        "56888-b0-0-baseline-c358b65d854044b484faf29ffefed5ff",
+        "43440-b0-1-native-c358b65d854044b484faf29ffefed5ff",
+        "48108-b0-2-native-c358b65d854044b484faf29ffefed5ff",
+        "32176-b0-3-baseline-c358b65d854044b484faf29ffefed5ff",
+        "53520-b1-0-baseline-c358b65d854044b484faf29ffefed5ff",
+        "23572-b1-1-native-c358b65d854044b484faf29ffefed5ff",
+        "35312-b1-2-native-c358b65d854044b484faf29ffefed5ff",
+        "43420-b1-3-baseline-c358b65d854044b484faf29ffefed5ff",
+        "24944-b2-0-baseline-c358b65d854044b484faf29ffefed5ff",
+        "65464-b2-1-native-c358b65d854044b484faf29ffefed5ff",
+        "64056-b2-2-native-c358b65d854044b484faf29ffefed5ff",
+        "43840-b2-3-baseline-c358b65d854044b484faf29ffefed5ff"
+      ],
+      "limits": {
+        "private_peak_absolute_max": 67108864,
+        "private_peak_paired_max": 16777216,
+        "ready_private_absolute_max": 67108864,
+        "ready_private_paired_max": 16777216,
+        "ready_peak_commit_absolute_max": 67108864,
+        "ready_peak_commit_paired_max": 16777216,
+        "working_set_peak_absolute_max": 134217728,
+        "working_set_peak_paired_max": 33554432,
+        "ready_peak_working_set_absolute_max": 134217728,
+        "ready_peak_working_set_paired_max": 33554432,
+        "distribution_increment_bytes": 16777216
+      }
+    },
+    "win-msvc-release/occupancy": {
+      "status": "Approved",
+      "method_digest": "505a70680f2f6c2aa26f2977cea3b8598a6abe4ef01f2ed07768ca922c3abb34",
+      "approved_at": "2026-09-08T07:02:56.894752+00:00",
+      "pilot_run_ids": [
+        "53800-b0-0-baseline-36c70e3f853a48cb84b21866b5bd086a",
+        "42744-b0-1-native-36c70e3f853a48cb84b21866b5bd086a",
+        "28620-b0-2-native-36c70e3f853a48cb84b21866b5bd086a",
+        "59884-b0-3-baseline-36c70e3f853a48cb84b21866b5bd086a",
+        "59808-b1-0-baseline-36c70e3f853a48cb84b21866b5bd086a",
+        "12348-b1-1-native-36c70e3f853a48cb84b21866b5bd086a",
+        "31864-b1-2-native-36c70e3f853a48cb84b21866b5bd086a",
+        "58556-b1-3-baseline-36c70e3f853a48cb84b21866b5bd086a",
+        "48840-b2-0-baseline-36c70e3f853a48cb84b21866b5bd086a",
+        "44444-b2-1-native-36c70e3f853a48cb84b21866b5bd086a",
+        "52008-b2-2-native-36c70e3f853a48cb84b21866b5bd086a",
+        "24096-b2-3-baseline-36c70e3f853a48cb84b21866b5bd086a"
+      ],
+      "limits": {
+        "private_peak_absolute_max": 16777216,
+        "private_peak_paired_max": 4194304,
+        "ready_private_absolute_max": 16777216,
+        "ready_private_paired_max": 4194304,
+        "ready_peak_commit_absolute_max": 16777216,
+        "ready_peak_commit_paired_max": 4194304,
+        "working_set_peak_absolute_max": 67108864,
+        "working_set_peak_paired_max": 8388608,
+        "ready_peak_working_set_absolute_max": 67108864,
+        "ready_peak_working_set_paired_max": 8388608,
+        "distribution_increment_bytes": 4194304
+      }
+    },
+    "win-msvc-release/allocation": {
+      "status": "Approved",
+      "method_digest": "9c9c09526e411f97af6b5532b3d1c8189089303906bd1b002d4ed6ebbce483c5",
+      "approved_at": "2026-09-08T07:02:56.914901+00:00",
+      "pilot_run_ids": [
+        "29444-b0-0-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19",
+        "44148-b0-1-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
+        "63372-b0-2-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
+        "9468-b0-3-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19",
+        "36552-b1-0-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19",
+        "54548-b1-1-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
+        "26684-b1-2-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
+        "57244-b1-3-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19",
+        "39044-b2-0-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19",
+        "64672-b2-1-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
+        "50944-b2-2-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
+        "47620-b2-3-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19"
+      ],
+      "limits": {
+        "private_peak_absolute_max": 16777216,
+        "private_peak_paired_max": 4194304,
+        "ready_private_absolute_max": 16777216,
+        "ready_private_paired_max": 4194304,
+        "ready_peak_commit_absolute_max": 16777216,
+        "ready_peak_commit_paired_max": 4194304,
+        "working_set_peak_absolute_max": 67108864,
+        "working_set_peak_paired_max": 8388608,
+        "ready_peak_working_set_absolute_max": 67108864,
+        "ready_peak_working_set_paired_max": 8388608,
+        "distribution_increment_bytes": 4194304
+      }
+    },
+    "win-msvc-release/latency": {
+      "status": "Approved",
+      "method_digest": "ceca01ccc822e38acde5b85c2c93d9ee4ac77ba5a40104e297f357239f4a0ffa",
+      "approved_at": "2026-09-08T07:02:56.923925+00:00",
+      "pilot_run_ids": [
+        "46108-b0-0-baseline-f4947e741e6443a2861202a2917edf4c",
+        "50416-b0-1-native-f4947e741e6443a2861202a2917edf4c",
+        "56096-b0-2-native-f4947e741e6443a2861202a2917edf4c",
+        "25976-b0-3-baseline-f4947e741e6443a2861202a2917edf4c",
+        "28540-b1-0-baseline-f4947e741e6443a2861202a2917edf4c",
+        "63656-b1-1-native-f4947e741e6443a2861202a2917edf4c",
+        "14292-b1-2-native-f4947e741e6443a2861202a2917edf4c",
+        "63764-b1-3-baseline-f4947e741e6443a2861202a2917edf4c",
+        "164-b2-0-baseline-f4947e741e6443a2861202a2917edf4c",
+        "35196-b2-1-native-f4947e741e6443a2861202a2917edf4c",
+        "47328-b2-2-native-f4947e741e6443a2861202a2917edf4c",
+        "54540-b2-3-baseline-f4947e741e6443a2861202a2917edf4c"
+      ],
+      "limits": {
+        "internal_ms_absolute_max": 250,
+        "internal_ms_paired_max": 100,
+        "create_to_ready_ms_absolute_max": 1000,
+        "create_to_ready_ms_paired_max": 250,
+        "distribution_increment_bytes": 4194304
+      }
+    },
+    "win-msvc-asan/occupancy": {
+      "status": "Approved",
+      "method_digest": "1bd82ff319144d26d5177f2ebfbcac4725ea85066b84d1a4bf2e564514cd1651",
+      "approved_at": "2026-09-08T07:02:56.931931+00:00",
+      "pilot_run_ids": [
+        "45804-b0-0-baseline-9ea8611b01754c2ea4a54a590f98e247",
+        "52024-b0-1-native-9ea8611b01754c2ea4a54a590f98e247",
+        "25272-b0-2-native-9ea8611b01754c2ea4a54a590f98e247",
+        "35228-b0-3-baseline-9ea8611b01754c2ea4a54a590f98e247",
+        "24468-b1-0-baseline-9ea8611b01754c2ea4a54a590f98e247",
+        "13336-b1-1-native-9ea8611b01754c2ea4a54a590f98e247",
+        "50544-b1-2-native-9ea8611b01754c2ea4a54a590f98e247",
+        "63312-b1-3-baseline-9ea8611b01754c2ea4a54a590f98e247",
+        "57220-b2-0-baseline-9ea8611b01754c2ea4a54a590f98e247",
+        "27072-b2-1-native-9ea8611b01754c2ea4a54a590f98e247",
+        "36784-b2-2-native-9ea8611b01754c2ea4a54a590f98e247",
+        "45780-b2-3-baseline-9ea8611b01754c2ea4a54a590f98e247"
+      ],
+      "limits": {
+        "private_peak_absolute_max": 536870912,
+        "private_peak_paired_max": 134217728,
+        "ready_private_absolute_max": 536870912,
+        "ready_private_paired_max": 134217728,
+        "ready_peak_commit_absolute_max": 536870912,
+        "ready_peak_commit_paired_max": 134217728,
+        "working_set_peak_absolute_max": 536870912,
+        "working_set_peak_paired_max": 134217728,
+        "ready_peak_working_set_absolute_max": 536870912,
+        "ready_peak_working_set_paired_max": 134217728,
+        "distribution_increment_bytes": 33554432
+      }
+    },
+    "win-msvc-asan/allocation": {
+      "status": "Approved",
+      "method_digest": "2ec423e47b88c89a0acdca910f3be85deaef34b563245f5ffb708b79726e731f",
+      "approved_at": "2026-09-08T07:02:56.939931+00:00",
+      "pilot_run_ids": [
+        "21748-b0-0-baseline-3a7885a8041145f59f8710626e2f1ea3",
+        "64016-b0-1-native-3a7885a8041145f59f8710626e2f1ea3",
+        "49488-b0-2-native-3a7885a8041145f59f8710626e2f1ea3",
+        "56280-b0-3-baseline-3a7885a8041145f59f8710626e2f1ea3",
+        "46232-b1-0-baseline-3a7885a8041145f59f8710626e2f1ea3",
+        "60120-b1-1-native-3a7885a8041145f59f8710626e2f1ea3",
+        "21780-b1-2-native-3a7885a8041145f59f8710626e2f1ea3",
+        "49788-b1-3-baseline-3a7885a8041145f59f8710626e2f1ea3",
+        "55496-b2-0-baseline-3a7885a8041145f59f8710626e2f1ea3",
+        "61548-b2-1-native-3a7885a8041145f59f8710626e2f1ea3",
+        "47704-b2-2-native-3a7885a8041145f59f8710626e2f1ea3",
+        "50804-b2-3-baseline-3a7885a8041145f59f8710626e2f1ea3"
+      ],
+      "limits": {
+        "private_peak_absolute_max": 536870912,
+        "private_peak_paired_max": 134217728,
+        "ready_private_absolute_max": 536870912,
+        "ready_private_paired_max": 134217728,
+        "ready_peak_commit_absolute_max": 536870912,
+        "ready_peak_commit_paired_max": 134217728,
+        "working_set_peak_absolute_max": 536870912,
+        "working_set_peak_paired_max": 134217728,
+        "ready_peak_working_set_absolute_max": 536870912,
+        "ready_peak_working_set_paired_max": 134217728,
+        "distribution_increment_bytes": 33554432
+      }
+    }
+  },
+  "pilot_references": [
+    {
+      "profile": "win-msvc-debug",
+      "mode": "occupancy",
+      "path": "evidence/G1/win-msvc-debug/native_occupancy/6942fccb1c7a4249a8e7fb4c5cd97f3b/report.json",
+      "sha256": "03cbbd1c2449ab835957c529ee82f1cd998680e3989b852a4676f7b55f150c0f",
+      "method_digest": "2c35269b815399839d581287a0a4a5009ca3f2be482f5bb64554641f813a82b9",
+      "metrics": {
+        "private_peak_absolute_max": 1040384,
+        "private_peak_paired_max": 303104,
+        "working_set_peak_absolute_max": 6864896,
+        "working_set_peak_paired_max": 2330624,
+        "ready_private_absolute_max": 978944,
+        "ready_private_paired_max": 241664,
+        "ready_peak_commit_absolute_max": 978944,
+        "ready_peak_commit_paired_max": 241664,
+        "ready_peak_working_set_absolute_max": 6602752,
+        "ready_peak_working_set_paired_max": 2064384,
+        "distribution_increment_bytes": 2506240
+      }
+    },
+    {
+      "profile": "win-msvc-debug",
+      "mode": "allocation",
+      "path": "evidence/G1/win-msvc-debug/allocation_report/c358b65d854044b484faf29ffefed5ff/report.json",
+      "sha256": "102ed1daaa62d39785fc83f521c5aa88708c6e9d4a6503109b1c5386c363f7bb",
+      "method_digest": "52fb4d5e4516890a1832de31d457a4f0bb8099520c938b915672e6ed3ad6fcef",
+      "metrics": {
+        "private_peak_absolute_max": 1048576,
+        "private_peak_paired_max": 315392,
+        "working_set_peak_absolute_max": 6901760,
+        "working_set_peak_paired_max": 2334720,
+        "ready_private_absolute_max": 995328,
+        "ready_private_paired_max": 249856,
+        "ready_peak_commit_absolute_max": 995328,
+        "ready_peak_commit_paired_max": 249856,
+        "ready_peak_working_set_absolute_max": 6647808,
+        "ready_peak_working_set_paired_max": 2076672,
+        "distribution_increment_bytes": 2501632
+      }
+    },
+    {
+      "profile": "win-msvc-release",
+      "mode": "occupancy",
+      "path": "evidence/G1/win-msvc-release/native_occupancy/36c70e3f853a48cb84b21866b5bd086a/report.json",
+      "sha256": "d0864f1db4f884158e317f9776c69064731d5a0bf56fdacbbea27d978a208813",
+      "method_digest": "505a70680f2f6c2aa26f2977cea3b8598a6abe4ef01f2ed07768ca922c3abb34",
+      "metrics": {
+        "private_peak_absolute_max": 946176,
+        "private_peak_paired_max": 225280,
+        "working_set_peak_absolute_max": 5332992,
+        "working_set_peak_paired_max": 966656,
+        "ready_private_absolute_max": 897024,
+        "ready_private_paired_max": 176128,
+        "ready_peak_commit_absolute_max": 897024,
+        "ready_peak_commit_paired_max": 176128,
+        "ready_peak_working_set_absolute_max": 5251072,
+        "ready_peak_working_set_paired_max": 884736,
+        "distribution_increment_bytes": 302592
+      }
+    },
+    {
+      "profile": "win-msvc-release",
+      "mode": "allocation",
+      "path": "evidence/G1/win-msvc-release/allocation_report/1caa2a4ffcaa459f9ff97e2a29dedd19/report.json",
+      "sha256": "7b5aa0667fb2b1cae85212b1e6cef4de61b59dede10781f9e6f48e5b7201de91",
+      "method_digest": "9c9c09526e411f97af6b5532b3d1c8189089303906bd1b002d4ed6ebbce483c5",
+      "metrics": {
+        "private_peak_absolute_max": 970752,
+        "private_peak_paired_max": 241664,
+        "working_set_peak_absolute_max": 5382144,
+        "working_set_peak_paired_max": 978944,
+        "ready_private_absolute_max": 917504,
+        "ready_private_paired_max": 188416,
+        "ready_peak_commit_absolute_max": 917504,
+        "ready_peak_commit_paired_max": 188416,
+        "ready_peak_working_set_absolute_max": 5296128,
+        "ready_peak_working_set_paired_max": 892928,
+        "distribution_increment_bytes": 302592
+      }
+    },
+    {
+      "profile": "win-msvc-release",
+      "mode": "latency",
+      "path": "evidence/G1/win-msvc-release/ready_latency/f4947e741e6443a2861202a2917edf4c/report.json",
+      "sha256": "aeaa34a885256350289c3480474f71aa1cf1fda5983beeb6a2a04c10cb99352a",
+      "method_digest": "ceca01ccc822e38acde5b85c2c93d9ee4ac77ba5a40104e297f357239f4a0ffa",
+      "metrics": {
+        "internal_ms_absolute_max": 98.5406,
+        "internal_ms_paired_max": 7.850700000000003,
+        "create_to_ready_ms_absolute_max": 324.0253,
+        "create_to_ready_ms_paired_max": 25.74720000000002,
+        "distribution_increment_bytes": 302592
+      }
+    },
+    {
+      "profile": "win-msvc-asan",
+      "mode": "occupancy",
+      "path": "evidence/G1/win-msvc-asan/native_occupancy/9ea8611b01754c2ea4a54a590f98e247/report.json",
+      "sha256": "35313cca155b42c9d2ce96b5ca8885c6fd767830d9b3b3d21754221d4217fae2",
+      "method_digest": "1bd82ff319144d26d5177f2ebfbcac4725ea85066b84d1a4bf2e564514cd1651",
+      "metrics": {
+        "private_peak_absolute_max": 54804480,
+        "private_peak_paired_max": 3379200,
+        "working_set_peak_absolute_max": 20762624,
+        "working_set_peak_paired_max": 7675904,
+        "ready_private_absolute_max": 54800384,
+        "ready_private_paired_max": 3375104,
+        "ready_peak_commit_absolute_max": 54800384,
+        "ready_peak_commit_paired_max": 3375104,
+        "ready_peak_working_set_absolute_max": 19623936,
+        "ready_peak_working_set_paired_max": 6537216,
+        "distribution_increment_bytes": 3563008
+      }
+    },
+    {
+      "profile": "win-msvc-asan",
+      "mode": "allocation",
+      "path": "evidence/G1/win-msvc-asan/allocation_report/3a7885a8041145f59f8710626e2f1ea3/report.json",
+      "sha256": "e2ca6454052e515383d0f06bd43781ea7c488a952c1bca115c3a83bf6a66af00",
+      "method_digest": "2ec423e47b88c89a0acdca910f3be85deaef34b563245f5ffb708b79726e731f",
+      "metrics": {
+        "private_peak_absolute_max": 55590912,
+        "private_peak_paired_max": 3350528,
+        "working_set_peak_absolute_max": 20889600,
+        "working_set_peak_paired_max": 7569408,
+        "ready_private_absolute_max": 55586816,
+        "ready_private_paired_max": 3346432,
+        "ready_peak_commit_absolute_max": 55586816,
+        "ready_peak_commit_paired_max": 3346432,
+        "ready_peak_working_set_absolute_max": 19705856,
+        "ready_peak_working_set_paired_max": 6385664,
+        "distribution_increment_bytes": 3559424
+      }
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+[
+  {
+    "name": "committed_touched_region_observed",
+    "passed": true,
+    "before": 802816,
+    "after": 17612800,
+    "committed_bytes": 16777216
+  },
+  {
+    "name": "held_thread_and_join_observed",
+    "passed": true,
+    "baseline": [
+      33004,
+      46488,
+      48368,
+      61332
+    ],
+    "held": [
+      4148,
+      5700,
+      22884,
+      25168,
+      62868
+    ],
+    "released": [
+      5700,
+      22884,
+      25168,
+      62868
+    ]
+  },
+  {
+    "name": "ready_delay_in_internal_clock",
+    "passed": true,
+    "actual_ticks": 1703397,
+    "minimum_ticks": 1000000
+  },
+  {
+    "name": "binary_raw_streams_unchanged",
+    "passed": true
+  },
+  {
+    "name": "bad_nonce_cannot_pass",
+    "passed": true,
+    "root_status": "LaunchFailed",
+    "root_exit_code": 125,
+    "observation_status": "ObserverFailed"
+  },
+  {
+    "name": "early_exit_cannot_pass",
+    "passed": true,
+    "root_status": "Exited",
+    "root_exit_code": 0,
+    "observation_status": "Incomplete"
+  },
+  {
+    "name": "sample_capacity_fails_owned",
+    "passed": true
+  },
+  {
+    "name": "sampling_cannot_extend_deadline",
+    "passed": false
+  },
+  {
+    "name": "actual_required_import_omission_rejected",
+    "passed": true,
+    "required": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-calibrate-1953d0fc829b\\Debug\\footprint_required.dll",
+        "sha256": "499e138c0b92bf1e240fa9bd6792dc764817065b79abae04fefbbe18d854b45c",
+        "bytes": 52224
+      }
+    ]
+  }
+]

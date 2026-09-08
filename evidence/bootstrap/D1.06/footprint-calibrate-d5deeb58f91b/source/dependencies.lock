@@ -1,0 +1,302 @@
+{
+  "format": "ock.dependencies/1",
+  "task_id": "D0.06-a",
+  "scope": "固定源码与最小构建探针；不代表Runtime、canonical CBOR或真实后端Conformance通过。",
+  "toolchain": {
+    "cxx_standard": 20,
+    "architecture": "x64",
+    "generator": "Visual Studio 17 2022",
+    "toolset": "v143,version=14.44.35207",
+    "msvc_runtime": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
+    "exceptions": true,
+    "compiler": "MSVC",
+    "compiler_version": "19.44.35216.0",
+    "cmake_version": "3.31.6-msvc6",
+    "windows_sdk": "10.0.26100.0",
+    "python_version": "3.11.9",
+    "debug_information": "Embedded (/Z7)",
+    "cxx_compile_options": [
+      "/utf-8",
+      "/Zc:__cplusplus",
+      "/permissive-",
+      "/EHsc"
+    ],
+    "validation_python_requirements": "tests/model/requirements-validation.txt"
+  },
+  "dependencies": {
+    "expected": {
+      "repository": "TartanLlama/expected",
+      "tag": "v1.1.0",
+      "commit": "292eff8bd8ee230a7df1d6a1c00c4ea0eb2f0362",
+      "source_url": "https://codeload.github.com/TartanLlama/expected/tar.gz/292eff8bd8ee230a7df1d6a1c00c4ea0eb2f0362",
+      "release_url": "https://github.com/TartanLlama/expected/releases/tag/v1.1.0",
+      "committed_at": "2023-03-15T10:28:19Z",
+      "archive_sha256": "fe3b18aecb849029b6af94922be0c25eee1b7b86565b1c8350692ed776cf42fb",
+      "archive_format": "tar.gz",
+      "tree_sha256": "e96f34ceab21594d71eb853682944dd5d423498f5fc855d1c1a1df6088a68cbe",
+      "version": "1.1.0",
+      "license": {
+        "path": "COPYING",
+        "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+        "spdx": "CC0-1.0"
+      },
+      "cmake_options": {
+        "EXPECTED_BUILD_TESTS": "OFF",
+        "EXPECTED_BUILD_PACKAGE": "OFF"
+      },
+      "compile_definitions": {}
+    },
+    "jsoncons": {
+      "repository": "danielaparker/jsoncons",
+      "tag": "v0.178.0",
+      "commit": "e55f635c6db609a36b14c9a95cbcbca5324bf842",
+      "source_url": "https://codeload.github.com/danielaparker/jsoncons/tar.gz/e55f635c6db609a36b14c9a95cbcbca5324bf842",
+      "release_url": "https://github.com/danielaparker/jsoncons/releases/tag/v0.178.0",
+      "committed_at": "2024-10-31T13:20:33Z",
+      "archive_sha256": "f0d3e80a95dbac57f3943fc8d21326d34989698cb03bbd2e59a784d1f470b7b5",
+      "archive_format": "tar.gz",
+      "tree_sha256": "df4d18767954c53d89e4c2e505858347d6b5f3ed92c324f8166d107a2825725b",
+      "version": "0.178.0",
+      "license": {
+        "path": "LICENSE",
+        "sha256": "97550c71a0bdfc20bf85c6c5167d7b7785f9bd3448baee048fbedf742ed52270",
+        "spdx": "BSL-1.0"
+      },
+      "cmake_options": {
+        "JSONCONS_BUILD_TESTS": "OFF"
+      },
+      "compile_definitions": {}
+    },
+    "thread_pool": {
+      "repository": "bshoshany/thread-pool",
+      "tag": "v5.0.0",
+      "commit": "aa3fbfbe80762fe3ac90e2bf05e153b92536277a",
+      "source_url": "https://codeload.github.com/bshoshany/thread-pool/tar.gz/aa3fbfbe80762fe3ac90e2bf05e153b92536277a",
+      "release_url": "https://github.com/bshoshany/thread-pool/releases/tag/v5.0.0",
+      "committed_at": "2024-12-20T02:02:25Z",
+      "archive_sha256": "89514aca234c373becd6311f10fd6cff2868d8e5575d33b1ce7642a40fa95239",
+      "archive_format": "tar.gz",
+      "tree_sha256": "1a28cc06c7085423385fb6d763005a5b684a978de4c2b7e798030d3643c31f39",
+      "version": "5.0.0",
+      "license": {
+        "path": "LICENSE.txt",
+        "sha256": "877daafacf05b94f7292b670304d1e746ab8e393f47c0693b10531e3660c2912",
+        "spdx": "MIT"
+      },
+      "cmake_options": {},
+      "compile_definitions": {}
+    },
+    "asio": {
+      "repository": "chriskohlhoff/asio",
+      "tag": "asio-1-30-2",
+      "commit": "12e0ce9e0500bf0f247dbd1ae894272656456079",
+      "source_url": "https://codeload.github.com/chriskohlhoff/asio/tar.gz/12e0ce9e0500bf0f247dbd1ae894272656456079",
+      "release_url": "https://github.com/chriskohlhoff/asio/releases/tag/asio-1-30-2",
+      "committed_at": "2024-04-15T21:55:02Z",
+      "archive_sha256": "269344e5d51148a7da2e690bd6676b76257b2c636e94fec0ffe8f2acef3119d1",
+      "archive_format": "tar.gz",
+      "tree_sha256": "807b50c9f65f9f81ef0a8446c56c9d3e89de8c4bb6a2bb3b8fac8c6bf17b1825",
+      "version": "1.30.2",
+      "license": {
+        "path": "asio/LICENSE_1_0.txt",
+        "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+        "spdx": "BSL-1.0"
+      },
+      "cmake_options": {},
+      "compile_definitions": {
+        "ASIO_STANDALONE": "1",
+        "_WIN32_WINNT": "0x0A00"
+      }
+    },
+    "immer": {
+      "repository": "arximboldi/immer",
+      "tag": "v0.8.1",
+      "commit": "5875f7739a6c642ad58cbedadb509c86d421217e",
+      "source_url": "https://codeload.github.com/arximboldi/immer/tar.gz/5875f7739a6c642ad58cbedadb509c86d421217e",
+      "release_url": "https://github.com/arximboldi/immer/releases/tag/v0.8.1",
+      "committed_at": "2023-08-21T08:48:35Z",
+      "archive_sha256": "23f5774983da93fc2e2c0f20ae06d0752ad74fff71134d330b7af8a2738d714f",
+      "archive_format": "tar.gz",
+      "tree_sha256": "3d32e3f1c69800bd9d53a8a486546bd953c38e6d4b9727d6a9b1b73d43878882",
+      "version": "0.8.1",
+      "license": {
+        "path": "LICENSE",
+        "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+        "spdx": "BSL-1.0"
+      },
+      "cmake_options": {
+        "immer_BUILD_TESTS": "OFF",
+        "immer_BUILD_EXAMPLES": "OFF",
+        "immer_BUILD_DOCS": "OFF"
+      },
+      "compile_definitions": {}
+    },
+    "spdlog": {
+      "repository": "gabime/spdlog",
+      "tag": "v1.15.1",
+      "commit": "f355b3d58f7067eee1706ff3c801c2361011f3d5",
+      "source_url": "https://codeload.github.com/gabime/spdlog/tar.gz/f355b3d58f7067eee1706ff3c801c2361011f3d5",
+      "release_url": "https://github.com/gabime/spdlog/releases/tag/v1.15.1",
+      "committed_at": "2025-02-01T11:08:54Z",
+      "archive_sha256": "8730cb1e8f30db1449fce4e6de82cbf4203fb6294127c7922253513f0cbcbf17",
+      "archive_format": "tar.gz",
+      "tree_sha256": "e33e0a50ee5134c478f4ae4e02c7dcc7a3ff888edae3ec71c80dec4240e805a3",
+      "version": "1.15.1",
+      "license": {
+        "path": "LICENSE",
+        "sha256": "4ccecab18d1ff0b61174fe3d6c430541625d3ddb865b0d5887db296f883c76e7",
+        "spdx": "MIT"
+      },
+      "cmake_options": {
+        "SPDLOG_FMT_EXTERNAL": "ON",
+        "SPDLOG_BUILD_SHARED": "OFF",
+        "SPDLOG_BUILD_EXAMPLE": "OFF",
+        "SPDLOG_BUILD_TESTS": "OFF",
+        "SPDLOG_BUILD_BENCH": "OFF",
+        "SPDLOG_INSTALL": "OFF"
+      },
+      "compile_definitions": {}
+    },
+    "fmt": {
+      "repository": "fmtlib/fmt",
+      "tag": "11.1.4",
+      "commit": "123913715afeb8a437e6388b4473fcc4753e1c9a",
+      "source_url": "https://codeload.github.com/fmtlib/fmt/tar.gz/123913715afeb8a437e6388b4473fcc4753e1c9a",
+      "release_url": "https://github.com/fmtlib/fmt/releases/tag/11.1.4",
+      "committed_at": "2025-02-26T18:14:28Z",
+      "archive_sha256": "95f89f1eb3b53478417185afc0b7e3d40ec889687af86e890da20068534d29f7",
+      "archive_format": "tar.gz",
+      "tree_sha256": "a52a9506a5a6ac46c4c8916901ec56af4194c88cee5e71975a8647e7a78fdd9b",
+      "version": "11.1.4",
+      "license": {
+        "path": "LICENSE",
+        "sha256": "07580f2a3b35709ce703d523f447b242f6dfec7582a8c0df102c7fa2849375f8",
+        "spdx": "MIT"
+      },
+      "cmake_options": {
+        "FMT_DOC": "OFF",
+        "FMT_TEST": "OFF",
+        "FMT_INSTALL": "OFF"
+      },
+      "compile_definitions": {}
+    },
+    "toml11": {
+      "repository": "ToruNiina/toml11",
+      "tag": "v4.4.0",
+      "commit": "be08ba2be2a964edcdb3d3e3ea8d100abc26f286",
+      "source_url": "https://codeload.github.com/ToruNiina/toml11/tar.gz/be08ba2be2a964edcdb3d3e3ea8d100abc26f286",
+      "release_url": "https://github.com/ToruNiina/toml11/releases/tag/v4.4.0",
+      "committed_at": "2025-02-15T15:15:09Z",
+      "archive_sha256": "5f08eaa5cd867192fa821cd0ec9b6c91629ff6247350d1f45f8d432c28b7fe5f",
+      "archive_format": "tar.gz",
+      "tree_sha256": "037d54cc59911f73105043d27be792a37c86f8f441c2c4064108a8d72f0ddb51",
+      "version": "4.4.0",
+      "license": {
+        "path": "LICENSE",
+        "sha256": "b547d41695cdfbc1d054b5044578e476a0e9d756849f1e0cb3864cfc83e50a9e",
+        "spdx": "MIT"
+      },
+      "cmake_options": {
+        "TOML11_BUILD_TESTS": "OFF"
+      },
+      "compile_definitions": {}
+    },
+    "cli11": {
+      "repository": "CLIUtils/CLI11",
+      "tag": "v2.5.0",
+      "commit": "4160d259d961cd393fd8d67590a8c7d210207348",
+      "source_url": "https://codeload.github.com/CLIUtils/CLI11/tar.gz/4160d259d961cd393fd8d67590a8c7d210207348",
+      "release_url": "https://github.com/CLIUtils/CLI11/releases/tag/v2.5.0",
+      "committed_at": "2025-02-27T12:25:31Z",
+      "archive_sha256": "c91e8768600e61be11f7250e3cf3e71afd9d0f18f9c9e9e209a8e084ca08cd85",
+      "archive_format": "tar.gz",
+      "tree_sha256": "0d4e1cfbbd1c742543b1e1ee5d230276e6d8109ffe97c0ce9a57b76b32f6440a",
+      "version": "2.5.0",
+      "license": {
+        "path": "LICENSE",
+        "sha256": "88cffe4600851e8dad1b8eb1e304d54286a89d2373a1b98f59cb969b9e967b90",
+        "spdx": "BSD-3-Clause"
+      },
+      "cmake_options": {
+        "CLI11_BUILD_TESTS": "OFF",
+        "CLI11_BUILD_EXAMPLES": "OFF",
+        "CLI11_BUILD_DOCS": "OFF",
+        "CLI11_INSTALL": "OFF"
+      },
+      "compile_definitions": {}
+    },
+    "catch2": {
+      "repository": "catchorg/Catch2",
+      "tag": "v3.8.1",
+      "commit": "2b60af89e23d28eefc081bc930831ee9d45ea58b",
+      "source_url": "https://codeload.github.com/catchorg/Catch2/tar.gz/2b60af89e23d28eefc081bc930831ee9d45ea58b",
+      "release_url": "https://github.com/catchorg/Catch2/releases/tag/v3.8.1",
+      "committed_at": "2025-04-08T18:40:18Z",
+      "archive_sha256": "553e6c94498c42edaecc9c8459f1a320a7e4cf49155635cf7123212bb9f09cf2",
+      "archive_format": "tar.gz",
+      "tree_sha256": "83b5c1be8977df3d105ae45e680c335e8e0857f61404a56a8173183e09b45f59",
+      "version": "3.8.1",
+      "license": {
+        "path": "LICENSE.txt",
+        "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+        "spdx": "BSL-1.0"
+      },
+      "cmake_options": {
+        "CATCH_BUILD_TESTING": "OFF",
+        "CATCH_INSTALL_DOCS": "OFF",
+        "CATCH_INSTALL_EXTRAS": "OFF",
+        "CATCH_ENABLE_WERROR": "OFF"
+      },
+      "compile_definitions": {}
+    },
+    "benchmark": {
+      "repository": "google/benchmark",
+      "tag": "v1.9.1",
+      "commit": "c58e6d0710581e3a08d65c349664128a8d9a2461",
+      "source_url": "https://codeload.github.com/google/benchmark/tar.gz/c58e6d0710581e3a08d65c349664128a8d9a2461",
+      "release_url": "https://github.com/google/benchmark/releases/tag/v1.9.1",
+      "committed_at": "2024-11-28T16:51:38Z",
+      "archive_sha256": "17fbd9d8ea361688f3059bd381afe828a55479cf3ce77f96b351f30b4a481bc8",
+      "archive_format": "tar.gz",
+      "tree_sha256": "e98928f3314dddedaa515e15ff96c67db8ddd2c92ff12fc80947c1be28e1d48b",
+      "version": "1.9.1",
+      "license": {
+        "path": "LICENSE",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "spdx": "Apache-2.0"
+      },
+      "cmake_options": {
+        "BENCHMARK_ENABLE_TESTING": "OFF",
+        "BENCHMARK_ENABLE_GTEST_TESTS": "OFF",
+        "BENCHMARK_DOWNLOAD_DEPENDENCIES": "OFF",
+        "BENCHMARK_ENABLE_INSTALL": "OFF",
+        "BENCHMARK_ENABLE_WERROR": "OFF"
+      },
+      "compile_definitions": {}
+    },
+    "sqlite": {
+      "version": "3.51.3",
+      "commit": "737ae4a34738ffa0c3ff7f9bb18df914dd1cad163f28fd6b6e114a344fe6d618",
+      "source_url": "https://www.sqlite.org/2026/sqlite-amalgamation-3510300.zip",
+      "release_url": "https://www.sqlite.org/releaselog/3_51_3.html",
+      "archive_sha256": "acb1e6f5d832484bf6d32b681e858c38add8b2acdfd42ac5df24b8afb46552b4",
+      "archive_format": "zip",
+      "tree_sha256": "1e50b25792a33cbf31c28b2dff6227d7c70707df3bb61923628b119677c5fbbf",
+      "sqlite3_c_sha3_256": "32d5424f97e0a7fc5ed2f6335afbb58be4e0298bd7117a34e39d345ff13d859e",
+      "license": {
+        "path": "sqlite3.h",
+        "sha256": "19585c8b5230e9d4f223bf31b709ece7b6a0bb3faf00d8310625d8e58cda1b1d",
+        "spdx": "blessing"
+      },
+      "cmake_options": {},
+      "compile_definitions": {
+        "SQLITE_THREADSAFE": "1",
+        "SQLITE_DEFAULT_WAL_SYNCHRONOUS": "2",
+        "SQLITE_DEFAULT_SYNCHRONOUS": "2",
+        "SQLITE_DQS": "0",
+        "SQLITE_OMIT_LOAD_EXTENSION": "1",
+        "SQLITE_ENABLE_API_ARMOR": "1"
+      }
+    }
+  }
+}

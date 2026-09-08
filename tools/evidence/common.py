@@ -74,6 +74,14 @@ def inputs(root, spec, spec_relative):
     return result
 
 
+def runtime_path_allowed(root, name):
+    """仅隔离构建和既有子验证产物区；不包含正式报告树，避免自归档。"""
+    root=Path(root).resolve()
+    path=under(root,name)
+    return name==Path(name).as_posix() and any(path.is_relative_to(root/base)
+        for base in ('build','evidence/bootstrap','evidence/G1'))
+
+
 def expected_cases(expected, profile):
     cases = [c for c in expected['cases'] if 'profiles' not in c or profile in c['profiles']]
     names = [c['id'] for c in cases]

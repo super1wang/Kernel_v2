@@ -1,0 +1,21 @@
+test_T23_evidence_runtime_artifact_integrity (test_runner.EvidenceTests.test_T23_evidence_runtime_artifact_integrity) ... ERROR
+
+======================================================================
+ERROR: test_T23_evidence_runtime_artifact_integrity (test_runner.EvidenceTests.test_T23_evidence_runtime_artifact_integrity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\tools\evidence\test_runner.py", line 138, in test_T23_evidence_runtime_artifact_integrity
+    path,r=self.collect(runtime_artifact_patterns=[base+'/fault-*/*'],required_runtime_artifacts=[{'pattern':base+'/fault-*/artifact.bin','minimum':1}])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Code\Kernel_v2\tests\tools\evidence\test_runner.py", line 40, in collect
+    path=run(self.root,self.root/'run.json')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Code\Kernel_v2\tools\evidence\run.py", line 201, in run
+    if not file.is_relative_to(root/'build'): raise ValueError('runtime artifact must be in isolated build')
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: runtime artifact must be in isolated build
+
+----------------------------------------------------------------------
+Ran 1 test in 3.973s
+
+FAILED (errors=1)

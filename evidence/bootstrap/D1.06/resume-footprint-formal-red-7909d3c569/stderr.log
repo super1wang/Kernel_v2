@@ -1,0 +1,18 @@
+test_formal (unittest.loader._FailedTest.test_formal) ... ERROR
+
+======================================================================
+ERROR: test_formal (unittest.loader._FailedTest.test_formal)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_formal
+Traceback (most recent call last):
+  File "unittest\loader.py", line 419, in _find_test_path
+  File "unittest\loader.py", line 362, in _get_module_from_name
+  File "J:\Code\Kernel_v2\tests\tools\footprint\test_formal.py", line 3, in <module>
+    from tools.footprint.formal import bounded_metrics, verify_inventory
+ModuleNotFoundError: No module named 'tools.footprint.formal'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

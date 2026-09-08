@@ -1,6 +1,6 @@
 # D1.06 NativeSubset 占用与进程观测方法
 
-状态：**Candidate**，属于 D1.06 合并 SPEC 输入；方法标识 `ock.native-footprint/2`（[有限采样增量审核](../../evidence/bootstrap/D1.06/footprint-sampling-amendment-review.md)）。本文固定测量行为，不声明工具、消费者、预算或 G1 已通过。原始候选保持不变，来源摘要见末尾。依据唯一架构 v3.3 [A16](../01_Architecture_v3.3.md#a16)、[A19](../01_Architecture_v3.3.md#a19)、[A21.4–A21.6](../01_Architecture_v3.3.md#a21-footprint)、[A22](../01_Architecture_v3.3.md#a22)及执行计划 [D1.06](../02_Execution_Plan_v3.3.md#d106)。Host/Logging/SDK 的具体声明分别归本包对应合同；不在这里另造公开业务接口。
+状态：**D1.06 固定测量方法**，属于集中 SPEC 输入；方法标识 `ock.native-footprint/2`（[有限采样增量审核](../../evidence/bootstrap/D1.06/footprint-sampling-amendment-review.md)）。本文固定测量行为，不声明工具、消费者、预算或 G1 已通过。原始候选保持不变，来源摘要见末尾。依据唯一架构 v3.3 [A16](../01_Architecture_v3.3.md#a16)、[A19](../01_Architecture_v3.3.md#a19)、[A21.4–A21.6](../01_Architecture_v3.3.md#a21-footprint)、[A22](../01_Architecture_v3.3.md#a22)及执行计划 [D1.06](../02_Execution_Plan_v3.3.md#d106)。Host/Logging/SDK 的具体声明分别归本包对应合同；不在这里另造公开业务接口。
 
 ## 1. 测量对象与实际能力
 
@@ -99,7 +99,7 @@ shutdown 后不再访问借用 ModuleContext/SafeLogger，亦不从 Host.copy_lo
 
 ## 7. 唯一进程 owner 的有限观测扩展
 
-在现有五参数 execute 上扩展为 `execute(argv,cwd,stdout,stderr,timeout,*,observation=None)`，新增参数仅关键字；这是候选接口，不是当前已实现签名。None 分支保持原创建/归属/恢复、ResumeThread 后运行 timeout 起点、10 ms 轮询、返回/异常语义及原始流；不额外创建测量通道、线程或文件。现有真实进程反例继续证明该分支没有回退。
+在现有五参数 execute 上扩展为 `execute(argv,cwd,stdout,stderr,timeout,*,observation=None)`，新增参数仅关键字；该签名现已实现；下面描述现行行为。None 分支保持原创建/归属/恢复、ResumeThread 后运行 timeout 起点、10 ms 轮询、返回/异常语义及原始流；不额外创建测量通道、线程或文件。现有真实进程反例继续证明该分支没有回退。
 
 observation 只能是已验证的不可变有限方法配置，不能携带任意 callback、Python 表达式、命令、外部 PID/handle 或忽略错误开关。`windows_process.py` 的受审查询通过 process.py 的同一 owner 循环执行，不 sleep、不启动子进程/线程、不递归 execute、不等待消费者退出。统计/重格式化/hash 在进程结束后做。给任意同步 callback 加超时数字不能使其可抢占，本方法不提供这种扩展。
 
@@ -145,7 +145,7 @@ owner 时点固定为：创建前准备及 pre_create QPC → 创建返回 → a
 - `docs/01_Architecture_v3.3.md`：`f20644428ed8c307109e26fe690e951f7e191659903bb496ba8dee51125bca2d`
 - `docs/02_Execution_Plan_v3.3.md`：`7daf3c8a7e68462a97cd593d2ab9a35c1888b720428c72bc9f915049050df511`
 
-本轮仅编写 Candidate 合同，未运行测试、pilot 或修改进程工具。原候选中的 Logging §7 意见由日志合同收口，不把测量方法变成第二份日志 API 定义。
+以上合并来源为最初 Candidate 的历史身份；当前观测、分配及单对消费者已实现，正式 pilot/预算/验收状态以 progress 和实际新报告为准。原候选中的 Logging §7 意见由日志合同收口，不把测量方法变成第二份日志 API 定义。
 
 采样v2沿同一进程owner执行查询，耗时计入原绝对运行/阶段截止。旧v1轮次只保留诊断，不作为v2 pilot；新配置/工具/消费者/baseline及预算身份必须同步绑定。调整线程采样不放宽新增线程0；真实系统/CRT基线线程必须归因，不预填仅主线程。
 

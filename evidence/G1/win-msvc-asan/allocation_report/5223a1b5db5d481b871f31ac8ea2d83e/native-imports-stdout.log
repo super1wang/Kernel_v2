@@ -1,0 +1,311 @@
+Microsoft (R) COFF/PE Dumper Version 14.44.35216.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file J:\Code\Kernel_v2\build\footprint-5223a1b5db5d481b871f31ac8ea2d83e\Debug\footprint_native.exe
+
+File Type: EXECUTABLE IMAGE
+
+  Section contains the following imports:
+
+    bcrypt.dll
+             1403002E8 Import Address Table
+             140351C18 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1F BCryptGenRandom
+
+    KERNEL32.dll
+             140300000 Import Address Table
+             140351930 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         61C VirtualQuery
+                         2E4 GetProcessHeap
+                          9D CloseHandle
+                         481 QueryPerformanceCounter
+                         55C SetEvent
+                         625 WaitForSingleObject
+                         242 GetCurrentProcessId
+                         412 MapViewOfFile
+                         5FE UnmapViewOfFile
+                         4EB ReleaseSRWLockShared
+                           0 AcquireSRWLockExclusive
+                           1 AcquireSRWLockShared
+                         5F2 TryAcquireSRWLockExclusive
+                         5F3 TryAcquireSRWLockShared
+                         5CA SleepConditionVariableSRW
+                         5C8 Sleep
+                         246 GetCurrentThreadId
+                         33D GetTickCount64
+                         62D WakeAllConditionVariable
+                         509 RtlCaptureContext
+                         511 RtlLookupFunctionEntry
+                         518 RtlVirtualUnwind
+                         3B0 IsDebuggerPresent
+                         5FB UnhandledExceptionFilter
+                         5B8 SetUnhandledExceptionFilter
+                         301 GetStartupInfoW
+                         3B8 IsProcessorFeaturePresent
+                         2A5 GetModuleHandleW
+                         380 HeapFree
+                         37C HeapAlloc
+                         64C WideCharToMultiByte
+                         241 GetCurrentProcess
+                         5D8 TerminateProcess
+                         31A GetSystemTimeAsFileTime
+                         39A InitializeSListHead
+                         466 PssQuerySnapshot
+                         465 PssFreeSnapshot
+                         463 PssCaptureSnapshot
+                         423 MultiByteToWideChar
+                         3F6 LoadLibraryExW
+                         2DD GetProcAddress
+                         1D4 FreeLibrary
+                         43F OpenProcess
+                         2E6 GetProcessId
+                         28D GetLastError
+                         498 RaiseException
+                         329 GetTempPathW
+                         325 GetTempFileNameW
+                          E6 CreateFileW
+                         264 GetEnvironmentVariableW
+                         4EA ReleaseSRWLockExclusive
+
+    MSVCP140D.dll
+             1403001A0 Import Address Table
+             140351AD0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          6D ??0_Lockit@std@@QEAA@H@Z
+                          A5 ??1_Lockit@std@@QEAA@XZ
+                         293 ?_Xbad_alloc@std@@YAXXZ
+                         553 _Cnd_broadcast
+                         587 _Mtx_current_owns
+                         27D ?_Throw_Cpp_error@std@@YAXH@Z
+                         591 _Mtx_unlock
+                         590 _Mtx_trylock
+                         58D _Mtx_lock
+                         294 ?_Xbad_function_call@std@@YAXXZ
+                         28B ?_W_Getmonths@_Locinfo@std@@QEBAPEBGXZ
+                         28A ?_W_Getdays@_Locinfo@std@@QEBAPEBGXZ
+                         1D0 ?_Getcvt@_Locinfo@std@@QEBA?AU_Cvtvec@@XZ
+                         5BC _Thrd_id
+                         599 _Query_perf_frequency
+                         598 _Query_perf_counter
+                         296 ?_Xlength_error@std@@YAXPEBD@Z
+
+    clang_rt.asan_dynamic-x86_64.dll
+             1403002F8 Import Address Table
+             140351C28 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         158 __sanitizer_cov_store16__dll
+                         16D __sanitizer_cov_trace_switch__dll
+                         14D __sanitizer_cov_8bit_counters_init__dll
+                         14C __sanitizer_cov_8bit_counters_cleanup__dll
+                         14E __sanitizer_cov_bool_flag_init__dll
+                         156 __sanitizer_cov_pcs_init__dll
+                         155 __sanitizer_cov_pcs_cleanup__dll
+                          10 __asan_default_options__dll
+                          11 __asan_default_suppressions__dll
+                          52 __asan_on_error__dll
+                          96 __asan_should_detect_stack_use_after_return
+                          33 __asan_get_shadow_memory_dynamic_address
+                          87 __asan_set_seh_filter
+                          5D __asan_register_globals
+                          CA __asan_unregister_globals
+                          3B __asan_load2
+                         15B __sanitizer_cov_store4__dll
+                         15C __sanitizer_cov_store8__dll
+                         154 __sanitizer_cov_load8__dll
+                         153 __sanitizer_cov_load4__dll
+                         152 __sanitizer_cov_load2__dll
+                         151 __sanitizer_cov_load1__dll
+                         16C __sanitizer_cov_trace_pc_indir__dll
+                         16A __sanitizer_cov_trace_pc_guard_cleanup__dll
+                         16B __sanitizer_cov_trace_pc_guard_init__dll
+                         15A __sanitizer_cov_store2__dll
+                         169 __sanitizer_cov_trace_pc_guard__dll
+                         168 __sanitizer_cov_trace_gep__dll
+                         167 __sanitizer_cov_trace_div8__dll
+                         166 __sanitizer_cov_trace_div4__dll
+                         165 __sanitizer_cov_trace_const_cmp8__dll
+                         164 __sanitizer_cov_trace_const_cmp4__dll
+                         163 __sanitizer_cov_trace_const_cmp2__dll
+                         162 __sanitizer_cov_trace_const_cmp1__dll
+                         160 __sanitizer_cov_trace_cmp8__dll
+                         159 __sanitizer_cov_store1__dll
+                          BC __asan_store2
+                         148 __sanitizer_annotate_contiguous_container
+                          37 __asan_load1
+                          38 __asan_load16
+                          3D __asan_load4
+                          3F __asan_load8
+                          41 __asan_loadN
+                          46 __asan_memcpy
+                          86 __asan_set_error_report_callback
+                          2F __asan_get_report_description
+                          48 __asan_memset
+                          6C __asan_report_load1
+                          6D __asan_report_load16
+                          70 __asan_report_load2
+                          72 __asan_report_load4
+                          74 __asan_report_load8
+                          79 __asan_report_store1
+                          7A __asan_report_store16
+                          7D __asan_report_store2
+                          7F __asan_report_store4
+                          81 __asan_report_store8
+                          88 __asan_set_shadow_00
+                          94 __asan_set_shadow_f8
+                          B8 __asan_store1
+                          B9 __asan_store16
+                          BE __asan_store4
+                          C0 __asan_store8
+                          C2 __asan_storeN
+                         10F __asan_wrap_memcmp
+                         118 __asan_wrap_strlen
+                         180 __sanitizer_install_malloc_and_free_hooks
+                         186 __sanitizer_override_function
+                         18D __sanitizer_register_weak_function
+                         185 __sanitizer_on_print__dll
+                         18E __sanitizer_report_error_summary__dll
+                         18F __sanitizer_sandbox_on_notify__dll
+                         177 __sanitizer_get_dtls_size__dll
+                         1A1 __sanitizer_weak_hook_memcmp__dll
+                         150 __sanitizer_cov_load16__dll
+                         1A2 __sanitizer_weak_hook_strcmp__dll
+                         1A3 __sanitizer_weak_hook_strncmp__dll
+                         1A4 __sanitizer_weak_hook_strstr__dll
+                         172 __sanitizer_free_hook__dll
+                         184 __sanitizer_malloc_hook__dll
+                         17F __sanitizer_ignore_free_hook__dll
+                         146 __sancov_default_options__dll
+                         161 __sanitizer_cov_trace_cmp__dll
+                         15D __sanitizer_cov_trace_cmp1__dll
+                         15E __sanitizer_cov_trace_cmp2__dll
+                         15F __sanitizer_cov_trace_cmp4__dll
+
+    VCRUNTIME140D.dll
+             140300230 Import Address Table
+             140351B60 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          2F __vcrt_GetModuleHandleW
+                          2E __vcrt_GetModuleFileNameW
+                           9 __C_specific_handler_noexcept
+                          31 __vcrt_LoadLibraryExW
+                          46 wcsstr
+                          42 strstr
+                          25 __std_type_info_destroy_list
+                           8 __C_specific_handler
+                          1C __current_exception_context
+                          1B __current_exception
+                          3A memchr
+                          18 __RTDynamicCast
+                          3E memset
+                           1 _CxxThrowException
+                          22 __std_exception_destroy
+                          21 __std_exception_copy
+                          3D memmove
+                          3C memcpy
+                          3B memcmp
+                          36 _purecall
+
+    VCRUNTIME140_1D.dll
+             1403002D8 Import Address Table
+             140351C08 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 __CxxFrameHandler4
+
+    ucrtbased.dll
+             1403005B0 Import Address Table
+             140351EE0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         564 wcscpy_s
+                         56C wcsncpy_s
+                         561 wcscmp
+                         56D wcsnlen
+                         56A wcsncmp
+                         537 strnlen
+                          6C __stdio_common_vswprintf_s
+                         11D _free_dbg
+                         205 _malloc_dbg
+                         585 wmemcpy_s
+                          4D __p__commode
+                         2CE _set_new_mode
+                          B5 _configthreadlocale
+                         2B6 _register_thread_local_exe_atexit_callback
+                          9F _c_exit
+                          4A __p___argv
+                          49 __p___argc
+                         2CB _set_fmode
+                          EA _exit
+                         450 exit
+                         175 _initterm_e
+                         13D _get_initial_narrow_environment
+                         2C6 _set_app_type
+                         2C3 _seh_filter_exe
+                          A4 _cexit
+                          C1 _crt_at_quick_exit
+                          C2 _crt_atexit
+                          E5 _execute_onexit_table
+                         2B5 _register_onexit_function
+                         172 _initialize_onexit_table
+                         171 _initialize_narrow_environment
+                          B6 _configure_narrow_argv
+                         2C2 _seh_filter_dll
+                         54B terminate
+                         2BA _rotl
+                         174 _initterm
+                         47F fputs
+                         469 fflush
+                          1F _Exit
+                          80 _aligned_msize
+                         299 _msize
+                          14 _CrtSetAllocHook
+                         342 _wassert
+                          5C __stdio_common_vfprintf
+                         4FC puts
+                         4FB putchar
+                          35 __acrt_iob_func
+                         543 strtoull
+                         3D6 abort
+                          7E _aligned_malloc
+                          7C _aligned_free
+                         505 realloc
+                         4D8 malloc
+                         484 free
+                         3FD calloc
+                           4 _CrtDbgReport
+                           5 _CrtDbgReportW
+                         52C strcpy_s
+                         528 strcat_s
+                          68 __stdio_common_vsprintf_s
+                         39C _wmakepath_s
+                         3B8 _wsplitpath_s
+                          A3 _calloc_dbg
+                         567 wcslen
+                         179 _invoke_watson
+                          5B __setusermatherr
+
+  Summary
+
+        1000 .INTR
+        1000 .WEAK
+        D000 .data
+       24000 .pdata
+       54000 .rdata
+        2000 .reloc
+        1000 .rsrc
+      2FF000 .text

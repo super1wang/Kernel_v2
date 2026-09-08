@@ -1,0 +1,123 @@
+{
+  "format": "ock.native-footprint-report/1",
+  "status": "PilotComplete",
+  "created_at": "2026-09-08T06:54:57.461927+00:00",
+  "completed_at": "2026-09-08T06:56:31.423376+00:00",
+  "method_digest": "9c9c09526e411f97af6b5532b3d1c8189089303906bd1b002d4ed6ebbce483c5",
+  "profile": "win-msvc-release",
+  "mode": "allocation",
+  "blocks": 3,
+  "run_ids": [
+    "29444-b0-0-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19",
+    "44148-b0-1-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
+    "63372-b0-2-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
+    "9468-b0-3-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19",
+    "36552-b1-0-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19",
+    "54548-b1-1-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
+    "26684-b1-2-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
+    "57244-b1-3-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19",
+    "39044-b2-0-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19",
+    "64672-b2-1-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
+    "50944-b2-2-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
+    "47620-b2-3-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19"
+  ],
+  "metrics": {
+    "private_peak_absolute_max": 970752,
+    "private_peak_paired_max": 241664,
+    "working_set_peak_absolute_max": 5382144,
+    "working_set_peak_paired_max": 978944,
+    "ready_private_absolute_max": 917504,
+    "ready_private_paired_max": 188416,
+    "ready_peak_commit_absolute_max": 917504,
+    "ready_peak_commit_paired_max": 188416,
+    "ready_peak_working_set_absolute_max": 5296128,
+    "ready_peak_working_set_paired_max": 892928,
+    "distribution_increment_bytes": 302592
+  },
+  "statistics": {
+    "private_peak": {
+      "native": {
+        "count": 6,
+        "min": 954368,
+        "median": 962560,
+        "p95": 970752,
+        "max": 970752
+      },
+      "paired_increment": {
+        "count": 6,
+        "min": 225280,
+        "median": 229376,
+        "p95": 241664,
+        "max": 241664
+      }
+    },
+    "working_set_peak": {
+      "native": {
+        "count": 6,
+        "min": 5365760,
+        "median": 5369856,
+        "p95": 5382144,
+        "max": 5382144
+      },
+      "paired_increment": {
+        "count": 6,
+        "min": 958464,
+        "median": 966656,
+        "p95": 978944,
+        "max": 978944
+      }
+    },
+    "ready_private": {
+      "native": {
+        "count": 6,
+        "min": 901120,
+        "median": 905216,
+        "p95": 917504,
+        "max": 917504
+      },
+      "paired_increment": {
+        "count": 6,
+        "min": 167936,
+        "median": 172032,
+        "p95": 188416,
+        "max": 188416
+      }
+    },
+    "ready_peak_commit": {
+      "native": {
+        "count": 6,
+        "min": 901120,
+        "median": 905216,
+        "p95": 917504,
+        "max": 917504
+      },
+      "paired_increment": {
+        "count": 6,
+        "min": 167936,
+        "median": 172032,
+        "p95": 188416,
+        "max": 188416
+      }
+    },
+    "ready_peak_working_set": {
+      "native": {
+        "count": 6,
+        "min": 5279744,
+        "median": 5279744,
+        "p95": 5296128,
+        "max": 5296128
+      },
+      "paired_increment": {
+        "count": 6,
+        "min": 868352,
+        "median": 876544,
+        "p95": 892928,
+        "max": 892928
+      }
+    },
+    "steady_allocation": "40 windows per process, exact zero; injection rejected"
+  },
+  "budget_status": "NotApproved",
+  "new_native_threads": 0,
+  "scope": "NativeSubset only; sampled memory, no claim of full Embedded or physical-machine approval"
+}

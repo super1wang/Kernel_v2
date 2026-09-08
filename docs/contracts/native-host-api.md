@@ -1,6 +1,6 @@
 # D1.06 NativeHost 具体合同
 
-状态：Candidate，等待独立 AI 规格审核。依据 v3.3 A16、A15、A19、A21、A23 和 D1.06；本文件不是实现或验收通过声明。旧候选与 ChangesRequested 原文保留于 `evidence/bootstrap/D1.06/`。日志数据见 `logging-api.md`，安装表面见 `native-sdk-surface.md`，测量另见本包方法合同。
+状态：现行 D1.06 实现合同；已落实生产代码，最终来源的集中 SPEC/CODE 与正式验收以当前审核索引为准。依据 v3.3 A16、A15、A19、A21、A23 和 D1.06；本文件不是实现或验收通过声明。旧候选与 ChangesRequested 原文保留于 `evidence/bootstrap/D1.06/`。日志数据见 `logging-api.md`，安装表面见 `native-sdk-surface.md`，测量另见本包方法合同。
 
 ## 范围和类型位置
 

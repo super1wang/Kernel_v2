@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tools\footprint\method_checks.py", line 47, in <module>
+    if __name__=='__main__':sys.exit(main())
+                                     ^^^^^^
+  File "J:\Code\Kernel_v2\tools\footprint\method_checks.py", line 30, in main
+    if not owned_success(r):raise ValueError(label+' failed')
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: calibration failed

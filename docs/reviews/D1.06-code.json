@@ -1,0 +1,25 @@
+{
+  "format": "ock.technical-review/1",
+  "task_id": "D1.06",
+  "review_kind": "code",
+  "review_status": "Approved",
+  "reviewed_inputs_sha256": "eb60d2d67151ca1f90db2b16ef89fccb650239c90c439fdea1cd5dc164e6155e",
+  "reviewed_at": "2026-09-08T07:05:05.003671+00:00",
+  "reviewer": "Codex 主集成 AI，分别履行 SPEC 和 CODE 复核职责",
+  "actor_type": "AI",
+  "approval_text": "已检查 NativeHost 准入、停止及返回 owner 寿命、Logging 有界实现和异常隔离、SDK 真实安装路径，以及正式测量、固定计数/线程硬约束和证据归档。Debug Host/Logging 32项、环境探针及实际七模式 pilot 通过；真实 ASan TLS 退出故障已修复并验证 injected=1、baseline/native=0。批准此精确代码来源，最终正式矩阵结果由机器报告独立判定。",
+  "evidence": [
+    {
+      "path": "docs/reviews/D1.06-final-review.md",
+      "sha256": "a12162bb82a00b183d8b5fe7b5eb59550e7ac1104ccf746933eef7dd3b166faa"
+    },
+    {
+      "path": "docs/reviews/D1.06-budget-decision.md",
+      "sha256": "2419b5e58725238225986d7775677b48221ceb00a6a6f08d672bfe590b269503"
+    }
+  ],
+  "limitations": [
+    "本记录是 AI 复核，不是人工批准。",
+    "正式矩阵及 gate 齐备前不宣称 D1.06/G1 Passed；仅覆盖 NativeSubset。"
+  ]
+}

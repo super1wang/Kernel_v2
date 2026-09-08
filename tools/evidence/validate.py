@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / 'build/python-deps'))
 from jsonschema import Draft202012Validator
 from functools import lru_cache
-from tools.evidence.common import read_json, sha_file, sha_bytes, digest, under, inputs, expected_cases, junit_cases
+from tools.evidence.common import read_json, sha_file, sha_bytes, digest, under, inputs, expected_cases, junit_cases, runtime_path_allowed
 
 
 @lru_cache(maxsize=1)
@@ -42,7 +42,7 @@ def audit(report_path, root=None, check_claims=True):
         runtime_paths=[]
         for row in r['runtime_artifacts']:
             value=row['path'];resolved=under(source_root,value)
-            require(value==Path(value).as_posix() and resolved.is_relative_to(source_root/'build'),'runtime path must be canonical and under build')
+            require(runtime_path_allowed(source_root,value),'runtime path must be canonical and under isolated child output roots')
             require(any(Path(value).match(pattern) for pattern in spec.get('runtime_artifact_patterns',[])),'runtime artifact outside declared patterns')
             runtime_paths.append(os.path.normcase(str(resolved)))
         require(len(runtime_paths)==len(set(runtime_paths)),'duplicate runtime artifact path')

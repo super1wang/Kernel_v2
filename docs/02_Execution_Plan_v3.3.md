@@ -1,4 +1,4 @@
-# Open Command Kernel v3.3｜拆分执行步骤与验收计划
+# Open Command Kernel v3.3-r2｜拆分执行步骤与验收计划
 
 **设计日期：2026-09-07 · 文档代号：OCK-EXEC-3.3**  
 **唯一配套架构：[01_Architecture_v3.3.md](01_Architecture_v3.3.md)**  
@@ -7,13 +7,109 @@
 
 > 本计划从零建设，旧代码只可作为经验参考，不包含迁移、旧API兼容、旧数据库读取或历史分支合并。每个工作包都以真实行为和证据结束，不以生成了若干类或更新了文档结束。
 
+**2026-09-08 r2：进一步压缩中间交付：Passed 前置不重复验证；开发依赖与正式验收依赖分开；相关包连续开发；物理测试与 Review 批次化；G Gate 承担完整历史集成。文件名、规范代号、64 包编号、正式依赖、G0–G8 及行为合同不变。**
+
 ## E00｜如何使用这份计划
 
 先以架构 A00–A24 作为行为规范，再按下面工作包依赖执行。D0 不是再次讨论设计，而是把已定规则变成可执行模型、Schema、targets、锁定依赖和测试夹具。D1 起以实际编译运行验证。
 
-工作包编号可作为 issue/分支/提交前缀，例如 `D4.03 memory commit publication gate`。一个工作包可拆成多个小提交；不能把不相关的协议修改、库升级和性能重写放到一个提交。每次只执行前置依赖已完成的包；同阶段独立包可以并行，但公共协议由一个主集成者负责。
+工作包编号继续作为需求、验收和追踪边界，而**不再等同于必须停顿一次的开发交付边界**。一个 Development Batch 可连续实现多个相关包；不能把不相关的协议修改、库升级和性能重写混入同一批次。正式 Passed 与 G Gate 仍按 E04 的依赖 DAG 顺序确认；开发启动条件按下文 Implementation-Ready 规则执行。
 
 本版新增条款是已接受建议的明确化，不是默认实现已经具备。实现阶段有意保留未知的只有真实版本兼容、实测容量和平台结果。它们有指定任务，不允许实现者以“留待以后”为由跳过，也不允许在未验证时声称已关闭。
+
+### Code-First：默认先交付代码
+
+D1–D7 普通生产工作包以生产行为为主要交付。对已经 Passed 的前置只读取状态与所需公开合同，**不重新读取其 review/evidence，不重跑其测试**。相关规范明确后立即编码；若上游尚在同一 Development Batch 内，只要当前下游所需接口达到 Implementation-Ready，也允许继续下游开发。测试、审核和 Evidence 服务于代码，不得把完善验证设施变成生产实现的非必要前置。规划明确要求的 Conformance、测量和故障工具仍须交付，但只建设当前行为所需的最小范围。
+
+同包相关简单小项组成一个开发批次，连续实现、集中运行影响集、集中 review，不逐项建立“计划→SPEC→三配置→CODE→验收→提交”循环。新行为必须有对应验证；关键合同先补最小反例，简单实现允许代码与直接测试在同一步完成。批次内必要编译/自检可以即时运行，批次完成或出现失败时执行对应 S_changed，失败先修复，不累积未知问题。
+
+### Passed 复用、Implementation-Ready 与验收 DAG
+
+正式包状态仍只有 `NotStarted / InProgress / Blocked / Failed / Passed`；**不新增 ImplementationReady 状态**。Implementation-Ready 只是 Development Batch 内部的临时开发条件：
+
+```text
+上游所需接口/行为已实现
++ 直接编译/最小合同测试通过
++ 没有已知会推翻该接口的未决设计
+= 可供下游继续编码
+```
+
+它只允许继续开发，不允许形成正式包级成功声明。最终验收始终满足：
+
+```text
+A 是 B 的正式前置
+A Passed
+    ↓
+B 才可最终 Passed
+```
+
+但开发过程允许：
+
+```text
+A 实现 → A 直接验证 → A 对 B Implementation-Ready
+                          ↓
+                       继续写 B
+                          ↓
+A/B/相关包形成稳定批次来源
+                          ↓
+合并物理测试 + 批次 Review
+                          ↓
+按 DAG 顺序判定 A Passed → B Passed
+```
+
+**Passed 前置具有缓存语义。** 后续包默认只检查 `progress`/gate 中的 Passed 状态与公开契约；不得把“核对前置”扩张成再次读取全部历史审核、逐报告 SHA、重新运行前包矩阵。只有当前批次修改了该前置包的冻结输入/公共 API/构建边界、发现证据损坏或正式 Gate 明确要求复验时，才打开受影响范围。
+
+### 任务分级与集中收口
+
+| 级别 | 判定与默认流程 |
+|---|---|
+| Fast | 语义明确、低风险胶水、小数据结构、简单消费者或说明修改：读相关条款→代码及直接测试→批次集中 S_changed→继续下一项。不单建 plan、SPEC/CODE、acceptance 文档或全三配置循环 |
+| Standard | 普通生产工作包（D1.06 默认）：代码与直接调试为主体，相关小项批次开发；稳定后集中审核并执行 S_required，再判定包级状态 |
+| Critical | 权限/撤权、IPC认证、取消/Finalizing、Commit、耐久/外部效果、epoch、恢复/备份及并发安全边界：关键反例先行；仅有真实协议歧义或尚未解决的高风险设计时，编码前做简短风险设计/必要冻结；已明确的合同直接实现，包末正式复核 |
+
+按实际影响定级，不按文件名定级。target/export、小 codec 若影响 SDK、公共编译选项、安全或规范化指纹，必须执行相应专项；D1.06 的停止寿命风险也不能因整体 Standard 而免测。Fast 主要用于批次内轻量任务；E04明确的纯登记/资料生成包可整体Fast，但不豁免工作包的正式审核、完成条件或其中的风险专项。
+
+正式 SPEC/CODE 默认在 Development Batch 稳定后集中形成，并保留各包结论：先以计划/API/expected 为一次 SPEC 输入，确保 S_required 在正式发现与执行前已审定，再在同一最终来源上集中完成正式运行及 CODE 收口；两类结论职责独立，可共享一次上下文准备。开发期做内部自检，不为每个小项生成正式审核或 acceptance，不更新 Passed。Critical 的必要前置风险审核、明确语义变化及规定的预算前置批准是例外，不扩展为全部小项的审批链。
+
+ChangesRequested 只复核实际修改与关联风险；发现公共影响时扩大范围并说明原因。最终所需结果必须对应最终来源，不能因为采用增量复核就拼接不同版本配置。自动验收遵循 `docs/reviews/automatic-acceptance-policy.json`：保留真实 AI SPEC/CODE，不能标为 human Approved，不新增人工节点。
+
+### 工作包、Development Batch 与集中收口
+
+E04 的 64 张卡仍定义**逻辑责任、正式前置和最终完成条件**；它们不强迫 64 次独立 Codex 上下文、64 次完整构建或 64 套重复 Review。E02 给出默认 Development Batch，允许相关包连续编码并共享直接测试准备。
+
+“合并”分三层：
+
+1. **开发合并**：相关包共享上下文、连续实现；有依赖的下游可在上游 Implementation-Ready 后开始。
+2. **物理验证合并**：相同最终 source/profile/build 环境下，一次 configure/build/test 尽量覆盖批次多个逻辑集合；结果按 task/requirement 映射。
+3. **Review 合并**：同一批次一次加载规范、diff、测试摘要；可用一个批次审核材料给出各包独立 SPEC/CODE 决策。逻辑结论必须可定位，不要求重复搬运同一上下文。
+
+正式 Passed **不合并责任**：每个包的 required 条件仍分别满足，并按 DAG 顺序落状态。Development Batch 不是第 65 个工作包，也不是新的 Gate。
+
+Fast 小项默认吞并到最近生产批次，不创建独立计划、正式审核、Evidence 或“交付提交”。Critical 包仍可连续编码；只有规范未定、高风险冻结点或 E06 明确要求时才在中途建立必要 checkpoint。
+
+### 三种验证集合
+
+| 集合 | 定义与用途 |
+|---|---|
+| S_changed | 当前新增验证＋直接影响测试＋必要传递消费者＋明确风险专项；用于批次开发，默认 Debug、fail-fast，按风险补 ASan/Release |
+| S_required | 当前包完成条件与实际变更影响所需的受审正式集合；用于包级 Passed，**不等于全部历史测试累计集合** |
+| S_gate | 当前阶段跨包集成＋代表性历史回归＋规范要求的安装/Profile/性能/故障组合；承担完整阶段集成责任，不以“代表性”删去明确必需门禁 |
+
+不机械追加历史用例，也不临时删改已冻结集合；适用性、Profile、必要轮次与集合在正式执行前审定，不从当轮 discovered 反推 expected。集合与来源对应、现有工具明确支持时，同一次真实运行可供多个上层引用；公共运行只计实际执行次数，跨包审核/状态分别判定。工具未支持的分区或跨 Profile 公共证据不能手工拼成 Passed。
+
+开发期不以“更保险”为由运行 full CTest 或完整三配置。扩大范围只记录一行“改动→风险→扩大集合”：构建/工具链/SDK/依赖/公共编译选项变化、无法窄覆盖的公共合同、测试注册/夹具/发现/expected/证据工具变化、映射未知或漏测、审核发现跨包风险、跨配置问题，或本次确属正式验收/阶段门禁。触发扩大也应先确定必要范围，不自动等于全部历史测试。
+
+稳定后集中执行适用正式矩阵，不预先复制一轮相同局部全三配置。失败保留并追加重跑；源码变化按最终输入与适用配置规则补验，缺测/失败不能豁免。性能和预算仍按原工作包与 A21 规定执行，不因提速推迟必需前置批准。
+
+### 批次、上下文与证据成本
+
+- 一个 Development Batch 可包含有依赖关系的连续包；开始下游编码只要求其所需上游达到 Implementation-Ready。**批次最终状态仍按正式 DAG 顺序落地**，不能因为后包代码已经写完就跳过前包失败。
+- 已 Passed 的批次外前置仅做状态/合同读取，不重复审计。若当前批次修改其冻结输入，则它从“缓存事实”变成受影响对象，只重验受影响集合。
+- 恢复默认只读 progress 顶部、当前 Development Batch 相关规范/合同和 diff；失败、缺项、异常或语义疑点再展开历史 review/evidence。不要为了“确认已有 Passed”重复搬运历史上下文。
+- 正式审核/证据在批次稳定后集中整理。开发原始失败随运行保留，但非正式临时调试日志无需全部入 Git；正式报告引用材料必须可取可校验。
+- **物理运行优先合并。** 同一最终来源、Profile、构建/消费者环境中的多个 S_required/S_gate 子集，优先一次 configure/build/test 后按 manifest 分区引用；不得为了包编号不同机械重跑相同二进制和同一测试。
+- **Review 优先合并。** 同批一次准备 architecture/plan/contracts/diff/evidence summary，输出各包独立 SPEC/CODE 结论；只有结论职责或来源不同才需要额外上下文。
+- 主要推理与操作用于生产代码及直接调试；非当前阻塞、非工作包明确产物的测试/Evidence 基建不扩展。生产阶段原则上不连续两个流程性提交都没有生产源码变更。
 
 ### 工作包统一完成条件
 
@@ -24,7 +120,7 @@
 | 测试 | 正例、反例、相关故障/并发场景运行；确定性模型与实现一致；适配器运行同版适用Conformance，不各自改预期 |
 | 资料 | Contract/Schema/目录/示例/错误语义随实现同步更新 |
 | 性能 | 热路径/装配变更记录编码、分配、排队、锁、提交及固定占用的变化；比较已批准阶段预算，不必每包跑全部大基准 |
-| 证据 | E03工具采集source/build/二进制、命令/退出、expected/discovered/executed与原始日志；人工评审独立，不能填入自动通过 |
+| 证据 | E03工具采集source/build/二进制、命令/退出、expected/discovered/executed与原始日志；SPEC/CODE与自动结果独立，按现行AI政策验收，不能手写自动通过 |
 
 包级状态仅用 `NotStarted / InProgress / Blocked / Failed / Passed`，由当前证据、必需产物和评审共同判定。自动采集状态与单次测试结果见E03，不能混为一列。Blocked和Skipped不是Passed。仅文档评审通过不等于实现Passed；测试总数增加也不替代行为覆盖。生产部署或远端push需要明确授权，不由工作包自动触发。
 
@@ -79,7 +175,36 @@ D0 合同与模型
 | Assets/Workspace 与DurablePlan | Durable记录和pin合同稳定 | 同事务/子键协议禁止各自改写 |
 | 文档导出、测试场景、性能工具 | 对应协议已定 | 不改变业务预期迎合实现缺陷 |
 
-任何公共合同变化必须同时更新：架构条款→schema/头文件→golden示例→reference model→受影响工作包；不能只修一个编译错误就算完成。
+公共合同变化只同步实际受影响的架构条款、schema/头文件、golden 示例、reference model 和工作包；不适用的层级无需制造空变更。编译通过不能代替对应行为验证。
+
+### Development Batch 默认安排
+
+以下是**开发调度批次**，不是新工作包、不是新的正式状态，也不改变 E04 的包级 Passed DAG。目标是让 Codex 在一个上下文中持续写相关代码，把中间编号从“交付墙”变成“逻辑检查点”。
+
+| Batch | 默认范围 | 开发推进方式 | 正式收口 |
+|---|---|---|---|
+| B1 | D1.06 | Host→Logging→NativeSubset/install→footprint 连续实现 | D1.06 S_required 后 G1 |
+| B2 | D2.01–D2.04 | Data→Binding 后并行/连续推进 Catalog+Control；上游 Implementation-Ready 即继续 | 按 D2.01→D2.02→D2.03/D2.04 的 DAG 判 Passed |
+| B3 | D2.05–D2.07 | IPC→CLI→双入口/Shell 闭环连续开发 | 批次物理测试合并，最终 G2 |
+| B4 | D3.01–D3.03 | Executor→Scheduler→Resources 连续开发 | 各包逻辑结果独立 |
+| B5 | D3.04–D3.07 | Submit→Cancel→Lifetime→真实观察/Embedded 连续开发 | 关键风险专项集中，最终 G3 |
+| B6 | D4.01–D4.04 | Snapshot→Edit→Commit→Atomic 连续开发 | Commit/Atomic 风险仍单独映射 |
+| B7 | D4.05–D4.08 | Compiler→Runner→ControlFlow→内存套件连续开发 | 最终 G4 集中 |
+| B8 | D5.01–D5.04 | Storage→canonical/records→Intent→DurableAccepted | D5.02-a 是批次内真实阻塞 checkpoint |
+| B9 | D5.05–D5.09 | StateDurable/Effect→Outbox→Recovery→真实 Durable Gate | 故障窗口集中物理运行，最终 G5 |
+| B10 | D6.01–D6.08 | Assets/Workspace/DurablePlan 三线在接口 Ready 后协同，随后恢复集成 | 各逻辑包按 DAG 判定，最终 G6 |
+| B11 | D7.01–D7.06 | SDK→Preview/Approval→MCP/Results→AI场景 | Review/适配场景批次化，最终 G7 |
+| B12 | D8.01–D8.07 | 最终 SDK/Profile/Fuzz/Crash/Performance/Docs/RC | 尽量共享同一最终源码和构建矩阵，最终 G8 |
+
+规则：
+
+- Batch 内**开发依赖**使用 Implementation-Ready，不要求每个编号先完成完整 SPEC/CODE/Evidence 才允许写下一个编号。
+- Batch 内**正式验收依赖**仍按 E04 DAG：上游未 Passed 时，下游可以已有实现，但不能最终 Passed。
+- 已 Passed 的批次外前置不重验，只消费其公开合同；当前 Batch 若改动其冻结输入则按影响重新打开。
+- Batch 内可以多次小提交，但不要为每个包编号强制提交；优先在可审查代码边界、Critical checkpoint、批次收口或 Gate 提交。
+- 同一 source/profile 下，S_required 与 S_gate 重叠的测试优先只物理执行一次并按机器可追踪映射引用；工具暂不支持安全分区时才保守分开，不手工拼 Passed。
+- Batch Review 可是一份材料中的多包决策，只要每个 task_id 的 SPEC/CODE 结论、source digest、未满足项可独立读取；现有验收工具若要求分文件，可由同一批次上下文生成薄的 per-task 机器记录，而不是重复完整审核。
+- G0→G8 仍按顺序放行；**Gate 承担阶段完整历史集成**，普通中间包不复制整个阶段历史矩阵。
 
 ## E03｜自动证据、命令和工程目录约定
 
@@ -167,9 +292,11 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 工具只属于开发/CI/适配器作者工具包，不在生产Runtime链接或每请求执行。D0.06提供基础，所有后续包实际使用，D8.07汇总发布；不得64个包完成后才手工补证据。
 
+同一最终来源/Profile/构建环境的一次正式执行可以同时覆盖多个 task/gate 的已审适用集合；汇总器应记录“一次物理执行→多个逻辑引用”的映射，不因为 task_id 数量复制 configure/build/test。各 task 的 expected、缺项、失败与状态仍独立计算。
+
 ## E04｜逐工作包执行卡
 
-每张卡列出的前置是代码/合同依赖；阶段验收还受E01集成门禁约束。产物路径可在D0按项目统一命名，但责任、合同和验证不能省略。
+每张卡列出的前置同时定义正式验收 DAG 和代码/合同依赖。**正式 Passed 必须满足这些前置已 Passed；开发编码可以按 E00 的 Implementation-Ready 在同一 Development Batch 内提前衔接。** 已 Passed 前置默认不重复验证。产物路径可按项目统一命名，但责任、合同和验证不能省略。
 
 
 ### D0｜合同、模型与工程基线
@@ -177,6 +304,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d001"></a>
 #### D0.01｜登记需求、不变量和三个消费者
+
+**执行分级：** Fast。
+
+**合并安排：** 需求/不变量登记＋消费者边界＋测试族/增量责任映射，一批核对；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 登记完整性、无伪Document；仅补当前登记检查，不重跑未来行为。
 
 **前置依赖：** 无；以用户批准的两份v3.3规范为输入  
 **架构依据／测试族：** [A00](01_Architecture_v3.3.md#a00)、[A01](01_Architecture_v3.3.md#a01)、[A23](01_Architecture_v3.3.md#a23) ／ T01、T19、T20、T23、T24
@@ -193,6 +326,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d002"></a>
 #### D0.02｜冻结target DAG、公开头和威胁模型
 
+**执行分级：** Standard。
+
+**合并安排：** target DAG/导出＋公开头/SDK政策＋威胁模型/ADR，一批建立；可与D0.03条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 独立安装、缺组件/越层负例；公共编译选项与权限边界专项。
+
 **前置依赖：** [D0.01](#d001)  
 **架构依据／测试族：** [A02](01_Architecture_v3.3.md#a02)、[A10](01_Architecture_v3.3.md#a10)、[A20](01_Architecture_v3.3.md#a20)、[A19](01_Architecture_v3.3.md#a19)、[A22](01_Architecture_v3.3.md#a22) ／ T01、T05、T20、T24
 
@@ -207,6 +346,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d003"></a>
 #### D0.03｜Outcome、phase和完成回调参考模型
+
+**执行分级：** Critical。
+
+**合并安排：** Outcome/phase＋完成回调＋观察版本模型，集中枚举；可与D0.02条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 迟到/重复回调、Finalizing与终态、结果事实非法组合。
 
 **前置依赖：** [D0.01](#d001)  
 **架构依据／测试族：** [A04](01_Architecture_v3.3.md#a04)、[A05](01_Architecture_v3.3.md#a05)、[A09](01_Architecture_v3.3.md#a09)、[A17](01_Architecture_v3.3.md#a17) ／ T02、T06、T12、T19、T20
@@ -223,6 +368,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d004"></a>
 #### D0.04｜Plan与Control wire、槽类型和观察合同
 
+**执行分级：** Critical。
+
+**合并安排：** Plan Schema/slots/样例＋Control观察/cursor合同同批推进，目录与职责分开；可与D0.05、D0.06条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 类型/预算、ack/get竞态、MAC/身份/世代/TTL；保留a/b合同边界。
+
 **前置依赖：** [D0.01](#d001)、[D0.03](#d003)  
 **架构依据／测试族：** [A08](01_Architecture_v3.3.md#a08)、[A19](01_Architecture_v3.3.md#a19)、[A05](01_Architecture_v3.3.md#a05)、[A10](01_Architecture_v3.3.md#a10)、[A15](01_Architecture_v3.3.md#a15)、[A17](01_Architecture_v3.3.md#a17)、[A21](01_Architecture_v3.3.md#a21) ／ T04、T10、T11、T19、T20、T22
 
@@ -238,6 +389,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d005"></a>
 #### D0.05｜提交、许可、epoch和备份恢复参考模型
 
+**执行分级：** Critical。
+
+**合并安排：** 许可/提交状态机＋epoch/claim＋备份恢复模型集中验证；可与D0.04、D0.06条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** cancel/revoke/commit先后、崩溃窗口、水位与旧备份盲重放。
+
 **前置依赖：** [D0.01](#d001)、[D0.03](#d003)  
 **架构依据／测试族：** [A06](01_Architecture_v3.3.md#a06)、[A11](01_Architecture_v3.3.md#a11)、[A12](01_Architecture_v3.3.md#a12)、[A14](01_Architecture_v3.3.md#a14) ／ T07、T14、T15、T16、T18
 
@@ -252,6 +409,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d006"></a>
 #### D0.06｜固定工具链、共享测试基建与自动证据采集
+
+**执行分级：** Standard。
+
+**合并安排：** a工具链依赖→b最小采集器＋c共同harness，父包集中收口；可与D0.04、D0.05条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 真实干净构建、错来源/删测/旧报告不得Passed；a/b/c不新立门禁。
 
 **前置依赖：** [D0.02](#d002)  
 **架构依据／测试族：** [A20](01_Architecture_v3.3.md#a20)、[A21](01_Architecture_v3.3.md#a21)、[A22](01_Architecture_v3.3.md#a22)、[A19](01_Architecture_v3.3.md#a19) ／ T01、T19、T23、T24
@@ -276,6 +439,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d101"></a>
 #### D1.01｜实现Foundation与错误/标识原语
 
+**执行分级：** Standard。
+
+**合并安排：** expected/错误拥有性＋名称/身份＋受检计数一批编码；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** move-only/void、溢出、纯错误码分配；公共头与CRT专项。
+
 **前置依赖：** [D0.03](#d003)、[D0.06](#d006)  
 **架构依据／测试族：** [A03](01_Architecture_v3.3.md#a03) ／ T03、T04、T05
 
@@ -290,6 +459,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d102"></a>
 #### D1.02｜实现CoreContracts、四种shape与typed绑定
+
+**执行分级：** Standard。
+
+**合并安排：** 四shape/typed绑定＋窄端口/上下文＋公开头与工厂接入同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 非法类型/能力提取、跨世代、回调所有权；模板/SDK配置专项。
 
 **前置依赖：** [D1.01](#d101)、[D0.02](#d002)、[D0.03](#d003)、[D0.05](#d005)  
 **架构依据／测试族：** [A02](01_Architecture_v3.3.md#a02)、[A04](01_Architecture_v3.3.md#a04)、[A05](01_Architecture_v3.3.md#a05)、[A06](01_Architecture_v3.3.md#a06)、[A09](01_Architecture_v3.3.md#a09)、[A17](01_Architecture_v3.3.md#a17)、[A19](01_Architecture_v3.3.md#a19)、[A22](01_Architecture_v3.3.md#a22) ／ T01、T02、T05、T06、T19、T24
@@ -306,6 +481,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d103"></a>
 #### D1.03｜实现注册批次与不可变目录绑定
 
+**执行分级：** Standard。
+
+**合并安排：** manifest DAG＋候选批次/错误累积＋冻结目录/冷热分离同批；可与D1.04条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 部分失败零发布、缺服务/provider、Ready后替换拒绝。
+
 **前置依赖：** [D1.02](#d102)  
 **架构依据／测试族：** [A04](01_Architecture_v3.3.md#a04)、[A16](01_Architecture_v3.3.md#a16) ／ T02、T05、T24
 
@@ -320,6 +501,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d104"></a>
 #### D1.04｜实现授权主体、资源解析契约和许可原语
+
+**执行分级：** Critical。
+
+**合并安排：** 主体/target解析＋四方权限/permit＋观察与发送授权同批；可与D1.03条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 伪造/跨主体、撤权与消费/发送竞争、分页与连接隔离。
 
 **前置依赖：** [D1.02](#d102)、[D0.05](#d005)  
 **架构依据／测试族：** [A06](01_Architecture_v3.3.md#a06)、[A10](01_Architecture_v3.3.md#a10)、[A17](01_Architecture_v3.3.md#a17) ／ T07、T19、T20
@@ -336,6 +523,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d105"></a>
 #### D1.05｜实现Native Invocation与无任务短路径
 
+**执行分级：** Standard。
+
+**合并安排：** 参数/目标/授权分派＋Read/Compute＋结果处理/示例一批；计数集中；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 权限与线程拒绝、结果运输/寿命、无DOM/假Task、分配正负控制。
+
 **前置依赖：** [D1.03](#d103)、[D1.04](#d104)  
 **架构依据／测试族：** [A04](01_Architecture_v3.3.md#a04)、[A05](01_Architecture_v3.3.md#a05)、[A21](01_Architecture_v3.3.md#a21) ／ T02、T03、T06、T23
 
@@ -350,6 +543,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d106"></a>
 #### D1.06｜最小Host、Logging共同合同与原生占用基线
+
+**执行分级：** Standard。
+
+**合并安排：** Host→Logging→NativeSubset/安装消费者→footprint，一个包连续开发收口；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 停止/回调寿命、日志满载、独立安装；有限预算先审定再正式比较。
 
 **前置依赖：** [D1.05](#d105)、[D0.06](#d006)  
 **架构依据／测试族：** [A15](01_Architecture_v3.3.md#a15)、[A16](01_Architecture_v3.3.md#a16)、[A23](01_Architecture_v3.3.md#a23)、[A19](01_Architecture_v3.3.md#a19)、[A21](01_Architecture_v3.3.md#a21)、[A22](01_Architecture_v3.3.md#a22) ／ T01、T03、T19、T22、T23、T24
@@ -372,6 +571,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d201"></a>
 #### D2.01｜实现单DOM Payload、View与预算构建
 
+**执行分级：** Standard。
+
+**合并安排：** Payload/View＋clone/share/freeze＋预算解析/builder同批；可与D3.01条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 可变别名与View逃逸ASan；深度/节点/实际分配及重复键拒绝。
+
 **前置依赖：** [D1.01](#d101)、[D0.06](#d006)  
 **架构依据／测试族：** [A03](01_Architecture_v3.3.md#a03)、[A21](01_Architecture_v3.3.md#a21) ／ T04、T12
 
@@ -386,6 +591,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d202"></a>
 #### D2.02｜实现TypeContract、Schema编译与Native等价绑定
+
+**执行分级：** Standard。
+
+**合并安排：** 字段描述/validator＋Schema编译＋Native/Dynamic绑定同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 缺失/null/数值边界等价、Schema并发与无网络ref；模板配置专项。
 
 **前置依赖：** [D2.01](#d201)、[D1.02](#d102)、[D1.05](#d105)、[D0.04](#d004)  
 **架构依据／测试族：** [A03](01_Architecture_v3.3.md#a03)、[A04](01_Architecture_v3.3.md#a04)、[A19](01_Architecture_v3.3.md#a19) ／ T02、T04、T23
@@ -402,6 +613,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d203"></a>
 #### D2.03｜实现能力目录、精确命令卡和帮助导出
 
+**执行分级：** Standard。
+
+**合并安排：** search/describe＋Schema/帮助生成＋分页/指纹同批，生成项按Fast合并；可与D2.04条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** installed/visible/eligible区分、跨主体隐藏、长Docs不进入热复制。
+
 **前置依赖：** [D2.02](#d202)、[D1.03](#d103)、[D1.04](#d104)  
 **架构依据／测试族：** [A04](01_Architecture_v3.3.md#a04)、[A18](01_Architecture_v3.3.md#a18) ／ T05、T20、T21
 
@@ -416,6 +633,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d204"></a>
 #### D2.04｜Control方法、观察协议帧与结果映射
+
+**执行分级：** Critical。
+
+**合并安排：** 帧/路由/Outcome映射＋订阅序列＋cursor codec同批复用观察合同；可与D2.03条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 非法帧与方向、MAC/TTL/身份、ack/event竞态；mock仅作帧级证明。
 
 **前置依赖：** [D2.02](#d202)、[D1.04](#d104)、[D0.03](#d003)、[D0.04](#d004)  
 **架构依据／测试族：** [A05](01_Architecture_v3.3.md#a05)、[A17](01_Architecture_v3.3.md#a17)、[A09](01_Architecture_v3.3.md#a09)、[A10](01_Architecture_v3.3.md#a10)、[A15](01_Architecture_v3.3.md#a15)、[A21](01_Architecture_v3.3.md#a21) ／ T04、T06、T19、T20、T22
@@ -432,6 +655,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d205"></a>
 #### D2.05｜实现真实Named Pipe与认证会话
 
+**执行分级：** Critical。
+
+**合并安排：** Pipe/DACL/对端认证＋部分读写/关闭＋控制优先与慢流同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 真实双进程认证拒绝、断线/在途撤权、跨连接控制可用。
+
 **前置依赖：** [D2.04](#d204)、[D0.06](#d006)  
 **架构依据／测试族：** [A10](01_Architecture_v3.3.md#a10)、[A17](01_Architecture_v3.3.md#a17)、[A15](01_Architecture_v3.3.md#a15)、[A21](01_Architecture_v3.3.md#a21) ／ T19、T20、T22
 
@@ -447,6 +676,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d206"></a>
 #### D2.06｜实现薄CLI、意图文件和原生/动态演示
 
+**执行分级：** Standard。
+
+**合并安排：** CLI参数/UTF-8/输出＋意图文件＋能力探测/list/watch语法同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 真实Shell、同key改参、Ctrl+C只停止等待、薄客户端依赖边界。
+
 **前置依赖：** [D2.03](#d203)、[D2.05](#d205)、[D1.06](#d106)  
 **架构依据／测试族：** [A17](01_Architecture_v3.3.md#a17)、[A18](01_Architecture_v3.3.md#a18) ／ T02、T20、T24
 
@@ -461,6 +696,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d207"></a>
 #### D2.07｜验收双入口与首次Shell闭环
+
+**执行分级：** Standard。
+
+**合并安排：** 双入口正反例＋真实Shell闭环＋首轮成本统计集中运行；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 真实IPC、未装能力拒绝、结果一致；观察帧不冒充真实任务。
 
 **前置依赖：** [D2.06](#d206)  
 **架构依据／测试族：** [A03](01_Architecture_v3.3.md#a03)、[A04](01_Architecture_v3.3.md#a04)、[A17](01_Architecture_v3.3.md#a17)、[A22](01_Architecture_v3.3.md#a22)、[A15](01_Architecture_v3.3.md#a15)、[A21](01_Architecture_v3.3.md#a21) ／ T02、T03、T04、T06、T19、T20、T23
@@ -483,6 +724,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d301"></a>
 #### D3.01｜Executor Conformance Kit与生产/测试后端
 
+**执行分级：** Critical。
+
+**合并安排：** 生产池/可控/合法inline后端＋同版Executor合同同批；可与D2.01条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 恰好一次完成、拒绝无迟到work、worker自等待与真实线程排空。
+
 **前置依赖：** [D1.02](#d102)、[D0.06](#d006)  
 **架构依据／测试族：** [A04](01_Architecture_v3.3.md#a04)、[A09](01_Architecture_v3.3.md#a09)、[A22](01_Architecture_v3.3.md#a22) ／ T12、T22、T24
 
@@ -497,6 +744,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d302"></a>
 #### D3.02｜实现公平Ready调度与依赖结构
+
+**执行分级：** Critical。
+
+**合并安排：** Ready队列/权重＋依赖计数/deadline＋投递上限同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 满载/配额、公平与唤醒竞争、历史规模不线性pump。
 
 **前置依赖：** [D3.01](#d301)、[D1.03](#d103)  
 **架构依据／测试族：** [A09](01_Architecture_v3.3.md#a09)、[A21](01_Architecture_v3.3.md#a21) ／ T13、T23
@@ -513,6 +766,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d303"></a>
 #### D3.03｜实现资源归一化、MultiClaim与租约
 
+**执行分级：** Critical。
+
+**合并安排：** 资源归一＋MultiClaim/units＋租约释放/waiter唤醒同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 半获失败零占用、别名冲突、溢出、父子死锁与释放归属。
+
 **前置依赖：** [D3.02](#d302)、[D1.04](#d104)  
 **架构依据／测试族：** [A06](01_Architecture_v3.3.md#a06)、[A09](01_Architecture_v3.3.md#a09) ／ T07、T13
 
@@ -527,6 +786,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d304"></a>
 #### D3.04｜Submit、执行投影索引与拥有型输入
+
+**执行分级：** Critical。
+
+**合并安排：** Submit拥有输入/接受＋get/wait终态缓存＋list/观察索引同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 接受前后失败事实、输入寿命/ASan、owner权限与一致观察版本。
 
 **前置依赖：** [D3.02](#d302)、[D3.03](#d303)、[D1.05](#d105)  
 **架构依据／测试族：** [A04](01_Architecture_v3.3.md#a04)、[A05](01_Architecture_v3.3.md#a05)、[A09](01_Architecture_v3.3.md#a09)、[A10](01_Architecture_v3.3.md#a10)、[A15](01_Architecture_v3.3.md#a15)、[A17](01_Architecture_v3.3.md#a17)、[A21](01_Architecture_v3.3.md#a21) ／ T02、T06、T12、T19、T20、T23
@@ -543,6 +808,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d305"></a>
 #### D3.05｜实现取消、期限与permit竞争
 
+**执行分级：** Critical。
+
+**合并安排：** cancel/deadline仲裁＋等待超时分离＋控制预算同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 开始/取消/提交先后、时间边界、满载真实线程控制受理。
+
 **前置依赖：** [D3.04](#d304)、[D0.05](#d005)  
 **架构依据／测试族：** [A05](01_Architecture_v3.3.md#a05)、[A06](01_Architecture_v3.3.md#a06)、[A09](01_Architecture_v3.3.md#a09) ／ T07、T12、T13
 
@@ -558,6 +829,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d306"></a>
 #### D3.06｜实现父子寿命、Finalizing与失败收尾
 
+**执行分级：** Critical。
+
+**合并安排：** 父子归属/传播＋WaitingChild/Finalizing＋可靠完成和停止同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 父不早终态、回调排空/重入、故障隔离、丢通知仍能查终态。
+
 **前置依赖：** [D3.04](#d304)、[D3.05](#d305)  
 **架构依据／测试族：** [A05](01_Architecture_v3.3.md#a05)、[A09](01_Architecture_v3.3.md#a09)、[A16](01_Architecture_v3.3.md#a16)、[A15](01_Architecture_v3.3.md#a15)、[A17](01_Architecture_v3.3.md#a17)、[A22](01_Architecture_v3.3.md#a22) ／ T06、T12、T19、T22
 
@@ -572,6 +849,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d307"></a>
 #### D3.07｜真实任务观察CLI、完整Embedded占用与停止门禁
+
+**执行分级：** Critical。
+
+**合并安排：** 依次合并G3-A寿命、G3-B真实观察、G3-C占用；一个父包收口；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 多进程慢流/撤权/关闭、完整Embedded预算；三个checkpoint不能替代G3。
 
 **前置依赖：** [D3.06](#d306)、[D2.07](#d207)  
 **架构依据／测试族：** [A09](01_Architecture_v3.3.md#a09)、[A16](01_Architecture_v3.3.md#a16)、[A17](01_Architecture_v3.3.md#a17)、[A22](01_Architecture_v3.3.md#a22)、[A10](01_Architecture_v3.3.md#a10)、[A15](01_Architecture_v3.3.md#a15)、[A19](01_Architecture_v3.3.md#a19)、[A21](01_Architecture_v3.3.md#a21) ／ T01、T03、T12、T13、T19、T20、T22、T23、T24
@@ -596,6 +879,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d401"></a>
 #### D4.01｜实现轻量状态域与结构共享Snapshot
 
+**执行分级：** Standard。
+
+**合并安排：** StateDomain/配置根＋共享Snapshot＋revision/history/generation同批；可与D4.05条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 冻结别名/ASan、旧世代拒绝、无文档消费者与快照成本。
+
 **前置依赖：** [D1.02](#d102)、[D0.06](#d006)、[D3.03](#d303)  
 **架构依据／测试族：** [A07](01_Architecture_v3.3.md#a07) ／ T01、T08、T09、T23
 
@@ -610,6 +899,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d402"></a>
 #### D4.02｜实现EditView、WriteSet、约束与内存History
+
+**执行分级：** Standard。
+
+**合并安排：** EditView/WriteSet＋约束/反向引用＋差量History准备同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 悬空引用、无commit能力、空delta/Undo新revision、锁外释放。
 
 **前置依赖：** [D4.01](#d401)  
 **架构依据／测试族：** [A07](01_Architecture_v3.3.md#a07)、[A14](01_Architecture_v3.3.md#a14) ／ T08、T09、T18
@@ -626,6 +921,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d403"></a>
 #### D4.03｜实现内存CommitCoordinator与发布gate
 
+**执行分级：** Critical。
+
+**合并安排：** Preparing/许可＋reservation＋PublishedState/回执gate同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 撤权/关闭/版本竞争、无撕裂发布、迟到回调不覆盖新根。
+
 **前置依赖：** [D4.02](#d402)、[D3.05](#d305)、[D0.05](#d005)  
 **架构依据／测试族：** [A05](01_Architecture_v3.3.md#a05)、[A06](01_Architecture_v3.3.md#a06)、[A07](01_Architecture_v3.3.md#a07) ／ T06、T07、T09
 
@@ -640,6 +941,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d404"></a>
 #### D4.04｜实现独立编辑与Atomic组同源绑定
+
+**执行分级：** Critical。
+
+**合并安排：** 单操作/组同源绑定＋candidate_read/compute＋预检/逐项权限同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 单域一次提交、任一步失败零部分发布、Effect/Await/嵌套拒绝。
 
 **前置依赖：** [D4.03](#d403)、[D1.05](#d105)  
 **架构依据／测试族：** [A04](01_Architecture_v3.3.md#a04)、[A07](01_Architecture_v3.3.md#a07) ／ T02、T07、T08、T10
@@ -656,6 +963,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d405"></a>
 #### D4.05｜实现PlanCompiler、slots与预算IR
 
+**执行分级：** Standard。
+
+**合并安排：** Schema/作用域/绑定＋预算IR/slots＋测试级roundtrip同批；可与D4.01条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 错类型/控制边/预算损坏、精确身份重绑、动态权限不缓存。
+
 **前置依赖：** [D2.02](#d202)、[D0.04](#d004)、[D3.04](#d304)  
 **架构依据／测试族：** [A08](01_Architecture_v3.3.md#a08)、[A19](01_Architecture_v3.3.md#a19) ／ T04、T05、T11
 
@@ -670,6 +983,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d406"></a>
 #### D4.06｜实现顺序Call/Await与Atomic调度
+
+**执行分级：** Critical。
+
+**合并安排：** 顺序Call＋Await续体＋Atomic exports/槽回收同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** worker不阻塞、提交后导出、部分/未知事实、结果拥有性。
 
 **前置依赖：** [D4.05](#d405)、[D4.04](#d404)、[D3.06](#d306)  
 **架构依据／测试族：** [A05](01_Architecture_v3.3.md#a05)、[A07](01_Architecture_v3.3.md#a07)、[A08](01_Architecture_v3.3.md#a08) ／ T06、T08、T10、T11、T12
@@ -686,6 +1005,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d407"></a>
 #### D4.07｜实现If/ForEach/Parallel与失败收尾
 
+**执行分级：** Critical。
+
+**合并安排：** If/ForEach＋有界Parallel＋预算和失败收尾同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 并行子寿命、同EditView不并发、固定序号与预算超限不截断成功。
+
 **前置依赖：** [D4.06](#d406)  
 **架构依据／测试族：** [A08](01_Architecture_v3.3.md#a08)、[A09](01_Architecture_v3.3.md#a09) ／ T10、T11、T12、T13
 
@@ -700,6 +1025,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d408"></a>
 #### D4.08｜验收内存套件、Shell Plan和无文档Atomic
+
+**执行分级：** Critical。
+
+**合并安排：** Control Plan入口＋C-A/C-B＋Shell/Atomic观察一次集成；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 中间候选不外泄、同域提交次数、真实无文档安装；仅放行内存套件。
 
 **前置依赖：** [D4.07](#d407)、[D3.07](#d307)、[D2.03](#d203)  
 **架构依据／测试族：** [A02](01_Architecture_v3.3.md#a02)、[A08](01_Architecture_v3.3.md#a08)、[A17](01_Architecture_v3.3.md#a17)、[A23](01_Architecture_v3.3.md#a23)、[A15](01_Architecture_v3.3.md#a15) ／ T01、T08、T10、T11、T19、T20、T23、T24
@@ -722,6 +1053,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d501"></a>
 #### D5.01｜Storage Conformance与真实SQLite独占
 
+**执行分级：** Critical。
+
+**合并安排：** 存储独占/WAL-FULL＋有界writer＋共同Storage合同同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 第二进程零写入、Busy/full/I/O、真实持久配置；内存不冒充耐久。
+
 **前置依赖：** [D0.05](#d005)、[D0.06](#d006)、[D3.01](#d301)  
 **架构依据／测试族：** [A11](01_Architecture_v3.3.md#a11)、[A20](01_Architecture_v3.3.md#a20)、[A22](01_Architecture_v3.3.md#a22) ／ T14、T16、T22、T24
 
@@ -736,6 +1073,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d502"></a>
 #### D5.02｜实现记录schema、codec和canonical指纹
+
+**执行分级：** Critical。
+
+**合并安排：** 先完成a canonical spike并审定A/B/C，再合并schema/codec/指纹；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** spike是硬前置；独立路径字节、数值/缺失边界、未知组件与预算。
 
 **前置依赖：** [D5.01](#d501)、[D2.02](#d202)  
 **架构依据／测试族：** [A11](01_Architecture_v3.3.md#a11)、[A12](01_Architecture_v3.3.md#a12)、[A19](01_Architecture_v3.3.md#a19) ／ T04、T05、T14、T15
@@ -752,6 +1095,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d503"></a>
 #### D5.03｜实现外部Intent claim与epoch GC
 
+**执行分级：** Critical。
+
+**合并安排：** existing-first/claim＋epoch/floor事务GC＋意图文件接入同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 同key并发唯一、改参冲突、水位竞争不复活、不得自动换key。
+
 **前置依赖：** [D5.02](#d502)、[D1.04](#d104)  
 **架构依据／测试族：** [A12](01_Architecture_v3.3.md#a12) ／ T07、T15、T20
 
@@ -766,6 +1115,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d504"></a>
 #### D5.04｜实现DurableAccepted与任务记录收尾
+
+**执行分级：** Critical。
+
+**合并安排：** 输入耐久资格＋接受回执/调度＋终态记录/查询投影同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 接受前后crash、临时输入拒绝、提交未发布不误报已应用。
 
 **前置依赖：** [D5.03](#d503)、[D3.06](#d306)  
 **架构依据／测试族：** [A05](01_Architecture_v3.3.md#a05)、[A09](01_Architecture_v3.3.md#a09)、[A11](01_Architecture_v3.3.md#a11)、[A17](01_Architecture_v3.3.md#a17) ／ T06、T12、T14、T16、T19、T20
@@ -782,6 +1137,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d505"></a>
 #### D5.05｜实现StateDurableBridge与无撕裂发布
 
+**执行分级：** Critical。
+
+**合并安排：** CommitBatch材料＋DB等待reservation＋回域发布/gate同批；可与D5.06条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** SQL错误/异常/crash、COMMIT后不重执行业务、root/history无撕裂。
+
 **前置依赖：** [D5.04](#d504)、[D4.03](#d403)  
 **架构依据／测试族：** [A06](01_Architecture_v3.3.md#a06)、[A11](01_Architecture_v3.3.md#a11) ／ T06、T07、T09、T14、T16
 
@@ -796,6 +1157,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d506"></a>
 #### D5.06｜实现ExternalEffect claim、许可和对账
+
+**执行分级：** Critical。
+
+**合并安排：** Effect claim/permit/发送＋结果记录＋追加对账同批；可与D5.05条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 动作前无许可不发、动作后未知不重发；真实本地模拟效果计数。
 
 **前置依赖：** [D5.04](#d504)、[D1.04](#d104)、[D0.03](#d003)  
 **架构依据／测试族：** [A04](01_Architecture_v3.3.md#a04)、[A05](01_Architecture_v3.3.md#a05)、[A06](01_Architecture_v3.3.md#a06)、[A11](01_Architecture_v3.3.md#a11)、[A12](01_Architecture_v3.3.md#a12) ／ T06、T07、T16
@@ -812,6 +1179,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d507"></a>
 #### D5.07｜实现Outbox、pins与有界记录回收
 
+**执行分级：** Critical。
+
+**合并安排：** Outbox交付＋pins/引用GC＋通知与可靠事件隔离同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** Published屏障、重启重投不重执行、pin竞争、慢消费者不堵commit。
+
 **前置依赖：** [D5.05](#d505)、[D5.06](#d506)  
 **架构依据／测试族：** [A12](01_Architecture_v3.3.md#a12)、[A13](01_Architecture_v3.3.md#a13)、[A15](01_Architecture_v3.3.md#a15)、[A17](01_Architecture_v3.3.md#a17) ／ T14、T15、T19、T20
 
@@ -827,6 +1200,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d508"></a>
 #### D5.08｜实现数据库恢复、备份和RestoreGeneration
 
+**执行分级：** Critical。
+
+**合并安排：** 恢复/坏材料隔离＋备份manifest＋新世代/观察重建同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 旧备份封自动重放、损坏现场保留、游标失效；不冒充断电认证。
+
 **前置依赖：** [D5.05](#d505)、[D5.06](#d506)、[D5.07](#d507)  
 **架构依据／测试族：** [A12](01_Architecture_v3.3.md#a12)、[A14](01_Architecture_v3.3.md#a14)、[A17](01_Architecture_v3.3.md#a17) ／ T15、T16、T18、T19、T20、T22
 
@@ -841,6 +1220,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d509"></a>
 #### D5.09｜执行独立进程Durable门禁
+
+**执行分级：** Critical。
+
+**合并安排：** 接受/提交/效果各crash窗口＋CLI重查＋恢复观察集中集成；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 独立进程kill/FULL读回/执行计数；每个窗口分别判定，不合并成单一成功。
 
 **前置依赖：** [D5.08](#d508)、[D4.08](#d408)  
 **架构依据／测试族：** [A11](01_Architecture_v3.3.md#a11)、[A12](01_Architecture_v3.3.md#a12)、[A22](01_Architecture_v3.3.md#a22)、[A17](01_Architecture_v3.3.md#a17) ／ T06、T14、T15、T16、T18、T19、T20、T23、T24
@@ -863,6 +1248,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d601"></a>
 #### D6.01｜实现资产Storage与类型codec
 
+**执行分级：** Critical。
+
+**合并安排：** 资产codec/预算＋不可覆盖文件发布＋DataRef读取/共同合同同批；可与D6.03、D6.05条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 实际句柄路径/reparse、身份/长度/损坏、flush失败不留正式引用。
+
 **前置依赖：** [D4.02](#d402)、[D5.02](#d502)  
 **架构依据／测试族：** [A03](01_Architecture_v3.3.md#a03)、[A07](01_Architecture_v3.3.md#a07)、[A14](01_Architecture_v3.3.md#a14)、[A22](01_Architecture_v3.3.md#a22) ／ T04、T09、T18、T24
 
@@ -877,6 +1268,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d602"></a>
 #### D6.02｜实现资产pins、快照材料和备份一致性
+
+**执行分级：** Critical。
+
+**合并安排：** 执行/历史/预览pins＋备份正文manifest＋引用释放/GC同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 长寿命竞争、db与正文一致、恢复完整性；不得只复制数据库。
 
 **前置依赖：** [D6.01](#d601)、[D5.07](#d507)、[D5.08](#d508)  
 **架构依据／测试族：** [A07](01_Architecture_v3.3.md#a07)、[A14](01_Architecture_v3.3.md#a14) ／ T09、T15、T18
@@ -893,6 +1290,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d603"></a>
 #### D6.03｜实现Project/Document组织与关闭协调
 
+**执行分级：** Critical。
+
+**合并安排：** Project/Document注册＋关闭许可/归属＋墓碑/恢复目录同批；可与D6.01、D6.05条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 关闭重入/自lease死锁、旧generation拒绝、Runtime不依赖Document。
+
 **前置依赖：** [D4.03](#d403)、[D3.06](#d306)、[D5.05](#d505)  
 **架构依据／测试族：** [A02](01_Architecture_v3.3.md#a02)、[A07](01_Architecture_v3.3.md#a07)、[A16](01_Architecture_v3.3.md#a16) ／ T01、T07、T09、T22
 
@@ -907,6 +1310,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d604"></a>
 #### D6.04｜完成持久History、Undo/Redo与状态消费者
+
+**执行分级：** Critical。
+
+**合并安排：** History/游标/根同提交＋Undo/Redo＋两类状态消费者同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 新revision、授权/资产检查、不可撤销效果不伪装可Undo、截断GC。
 
 **前置依赖：** [D6.02](#d602)、[D6.03](#d603)  
 **架构依据／测试族：** [A07](01_Architecture_v3.3.md#a07)、[A14](01_Architecture_v3.3.md#a14) ／ T09、T14、T18、T24
@@ -923,6 +1332,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d605"></a>
 #### D6.05｜实现DurablePlan运行驱动与检查点codec
 
+**执行分级：** Critical。
+
+**合并安排：** 唯一IR驱动＋PC/栈/槽检查点＋固定分支/循环决策同批；可与D6.01、D6.03条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 重启不改决策、精确版本缺失暂停、无指针/coroutine栈持久化。
+
 **前置依赖：** [D4.07](#d407)、[D5.04](#d504)、[D5.07](#d507)  
 **架构依据／测试族：** [A08](01_Architecture_v3.3.md#a08)、[A13](01_Architecture_v3.3.md#a13) ／ T11、T14、T17
 
@@ -937,6 +1352,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d606"></a>
 #### D6.06｜实现内部StepKey、ChildAdmission与父落后恢复
+
+**执行分级：** Critical。
+
+**合并安排：** StepKey/首次参数＋ChildAdmission/pins＋父落后查子结果同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 重试不换键、参数冲突、跨epoch内部准入、子回执先于父检查点。
 
 **前置依赖：** [D6.05](#d605)、[D5.03](#d503)、[D5.06](#d506)  
 **架构依据／测试族：** [A12](01_Architecture_v3.3.md#a12)、[A13](01_Architecture_v3.3.md#a13) ／ T15、T16、T17
@@ -953,6 +1374,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d607"></a>
 #### D6.07｜实现resume、重试、补偿与并行恢复
 
+**执行分级：** Critical。
+
+**合并安排：** Suspended/resume＋有限重试/补偿＋并行child恢复同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 新授权不替版本、未知不新attempt、补偿失败与部分事实保留。
+
 **前置依赖：** [D6.06](#d606)、[D3.06](#d306)  
 **架构依据／测试族：** [A05](01_Architecture_v3.3.md#a05)、[A08](01_Architecture_v3.3.md#a08)、[A13](01_Architecture_v3.3.md#a13) ／ T06、T10、T12、T16、T17
 
@@ -967,6 +1394,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d608"></a>
 #### D6.08｜完成三个消费者与长寿命恢复门禁
+
+**执行分级：** Critical。
+
+**合并安排：** 三个消费者＋长快照/资产/History＋重启恢复集中集成；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 唯一Runtime/Plan、状态资产一致、实际长期回收；共享场景分消费者报告。
 
 **前置依赖：** [D6.04](#d604)、[D6.07](#d607)、[D5.09](#d509)  
 **架构依据／测试族：** [A02](01_Architecture_v3.3.md#a02)、[A14](01_Architecture_v3.3.md#a14)、[A22](01_Architecture_v3.3.md#a22)、[A23](01_Architecture_v3.3.md#a23) ／ T01、T09、T12、T17、T18、T22、T24
@@ -989,6 +1422,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d701"></a>
 #### D7.01｜完成统一Client SDK与PlanBuilder
 
+**执行分级：** Standard。
+
+**合并安排：** 统一Client/PlanBuilder＋意图resolve＋typed结果/观察辅助同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 重试同key、ticket/宿主、重连快照版本、SDK兼容与无Host任意exec。
+
 **前置依赖：** [D4.08](#d408)、[D5.03](#d503)、[D6.07](#d607)  
 **架构依据／测试族：** [A08](01_Architecture_v3.3.md#a08)、[A17](01_Architecture_v3.3.md#a17)、[A18](01_Architecture_v3.3.md#a18)、[A19](01_Architecture_v3.3.md#a19) ／ T02、T11、T19、T20、T21、T24
 
@@ -1003,6 +1442,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d702"></a>
 #### D7.02｜实现Check与PreparedChange Preview/Apply
+
+**执行分级：** Critical。
+
+**合并安排：** Check静态/未决项＋隔离Preview＋single-consumer Apply同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 无真实效果、过期/改参拒绝、并发不重复、同Intent查原结果。
 
 **前置依赖：** [D6.02](#d602)、[D6.04](#d604)、[D7.01](#d701)  
 **架构依据／测试族：** [A08](01_Architecture_v3.3.md#a08)、[A14](01_Architecture_v3.3.md#a14)、[A18](01_Architecture_v3.3.md#a18) ／ T07、T08、T18、T21
@@ -1019,6 +1464,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d703"></a>
 #### D7.03｜实现受限委托、可信批准与撤权闭环
 
+**执行分级：** Critical。
+
+**合并安排：** 委托范围＋可信批准材料＋撤权消费闭环同批；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 伪approved无效、身份/目标/版本/TTL绑定、撤权先后与OS边界。
+
 **前置依赖：** [D7.02](#d702)、[D1.04](#d104)、[D5.06](#d506)  
 **架构依据／测试族：** [A06](01_Architecture_v3.3.md#a06)、[A10](01_Architecture_v3.3.md#a10)、[A17](01_Architecture_v3.3.md#a17)、[A18](01_Architecture_v3.3.md#a18) ／ T07、T16、T20、T21
 
@@ -1033,6 +1484,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d704"></a>
 #### D7.04｜实现MCP/模型投影和命令资料生成
+
+**执行分级：** Standard。
+
+**合并安排：** 协议协商/Schema投影＋工具卡/帮助＋按需发现同批；可与D7.05条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** annotations不授权、不降服务器验证、私有通知不冒充MCP方法。
 
 **前置依赖：** [D2.03](#d203)、[D7.01](#d701)、[D7.03](#d703)  
 **架构依据／测试族：** [A18](01_Architecture_v3.3.md#a18)、[A19](01_Architecture_v3.3.md#a19)、[A17](01_Architecture_v3.3.md#a17) ／ T04、T19、T20、T21
@@ -1049,6 +1506,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d705"></a>
 #### D7.05｜结果投影、分页与既有观察协议压力集成
 
+**执行分级：** Critical。
+
+**合并安排：** 结果快照分页/DataRef＋复用观察队列＋慢流/重连压力同批；可与D7.04条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** owner/世代/TTL、不同cursor语义、撤权与回收、控制不被慢流堵塞。
+
 **前置依赖：** [D6.02](#d602)、[D7.01](#d701)、[D5.07](#d507)、[D3.07](#d307)  
 **架构依据／测试族：** [A14](01_Architecture_v3.3.md#a14)、[A15](01_Architecture_v3.3.md#a15)、[A17](01_Architecture_v3.3.md#a17)、[A18](01_Architecture_v3.3.md#a18)、[A09](01_Architecture_v3.3.md#a09)、[A21](01_Architecture_v3.3.md#a21) ／ T04、T18、T19、T20、T22、T23
 
@@ -1063,6 +1526,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d706"></a>
 #### D7.06｜执行AI确定性场景集与真实适配验收
+
+**执行分级：** Standard。
+
+**合并安排：** 确定性AI流程场景＋观察/断线场景＋可访问真实适配集中验收；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 无权限/冲突/混合效果拒绝；真实模型按访问事实报告，不用确定性结果冒充。
 
 **前置依赖：** [D7.04](#d704)、[D7.05](#d705)、[D6.08](#d608)  
 **架构依据／测试族：** [A18](01_Architecture_v3.3.md#a18)、[A22](01_Architecture_v3.3.md#a22)、[A17](01_Architecture_v3.3.md#a17)、[A19](01_Architecture_v3.3.md#a19) ／ T08、T10、T11、T16、T19、T20、T21、T23、T24
@@ -1085,6 +1554,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d801"></a>
 #### D8.01｜SDK公开表面、冻结消费者与安装兼容门禁
 
+**执行分级：** Standard。
+
+**合并安排：** 导出/独立安装＋公开声明检查＋冻结消费者兼容集中验证；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 干净改根/缺组件/CRT与依赖、旧消费者不随实现改、首发不假报历史兼容。
+
 **前置依赖：** [D6.08](#d608)、[D7.05](#d705)、[D0.06](#d006)  
 **架构依据／测试族：** [A02](01_Architecture_v3.3.md#a02)、[A20](01_Architecture_v3.3.md#a20)、[A23](01_Architecture_v3.3.md#a23)、[A19](01_Architecture_v3.3.md#a19)、[A22](01_Architecture_v3.3.md#a22) ／ T01、T02、T05、T24
 
@@ -1099,6 +1574,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d802"></a>
 #### D8.02｜执行Profile矩阵与缺组件负例
+
+**执行分级：** Standard。
+
+**合并安排：** 四Profile及State内存组合＋三个消费者＋缺组件负例集中验证；可与D8.03条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 每组合独立发现/结果与依赖闭包；NativeSubset不冒充Embedded。
 
 **前置依赖：** [D8.01](#d801)、[D7.06](#d706)  
 **架构依据／测试族：** [A02](01_Architecture_v3.3.md#a02)、[A20](01_Architecture_v3.3.md#a20)、[A22](01_Architecture_v3.3.md#a22)、[A19](01_Architecture_v3.3.md#a19)、[A21](01_Architecture_v3.3.md#a21) ／ T01、T02、T03、T08、T23、T24
@@ -1115,6 +1596,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d803"></a>
 #### D8.03｜模型、属性、fuzz与内存/并发检查
 
+**执行分级：** Critical。
+
+**合并安排：** 模型/属性/fuzz＋同版各端口合同＋内存/真实并发专项集中运行；可与D8.02条件协同（见E02），逻辑完成条件分别判定，物理测试/review优先共享。
+
+**专项重点：** 保留种子、探针有效、重入/迟到/观察故障；ASan不替代race验证。
+
 **前置依赖：** [D7.06](#d706)、[D6.08](#d608)  
 **架构依据／测试族：** [A03](01_Architecture_v3.3.md#a03)、[A06](01_Architecture_v3.3.md#a06)、[A08](01_Architecture_v3.3.md#a08)、[A09](01_Architecture_v3.3.md#a09)、[A22](01_Architecture_v3.3.md#a22) ／ T04、T05、T07、T10、T11、T12、T13、T19、T20、T24
 
@@ -1129,6 +1616,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d804"></a>
 #### D8.04｜全故障窗口与恢复/存储组合复验
+
+**执行分级：** Critical。
+
+**合并安排：** 最终crash窗口＋存储故障＋备份/GC/撤权/观察交错集中复验；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 同一最终来源、每必需窗口有证据、未知不重发、失败不覆盖。
 
 **前置依赖：** [D8.02](#d802)、[D8.03](#d803)  
 **架构依据／测试族：** [A11](01_Architecture_v3.3.md#a11)、[A12](01_Architecture_v3.3.md#a12)、[A13](01_Architecture_v3.3.md#a13)、[A14](01_Architecture_v3.3.md#a14)、[A22](01_Architecture_v3.3.md#a22)、[A17](01_Architecture_v3.3.md#a17) ／ T06、T14、T15、T16、T17、T18、T19、T20、T22、T24
@@ -1145,6 +1638,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d805"></a>
 #### D8.05｜固定占用、零分配范围与性能容量正式定案
 
+**执行分级：** Standard。
+
+**合并安排：** 各调用路径成本＋占用/线程/Ready＋容量样本集中测量；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 固定预算和正负探针、真实尾延迟样本、插桩与Release分开，不加余量抬线。
+
 **前置依赖：** [D8.04](#d804)、[D7.06](#d706)  
 **架构依据／测试族：** [A21](01_Architecture_v3.3.md#a21)、[A22](01_Architecture_v3.3.md#a22)、[A02](01_Architecture_v3.3.md#a02)、[A17](01_Architecture_v3.3.md#a17)、[A19](01_Architecture_v3.3.md#a19) ／ T01、T03、T09、T13、T19、T20、T22、T23、T24
 
@@ -1160,6 +1659,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 <a id="d806"></a>
 #### D8.06｜资料、Schema、例子、错误手册最终一致性
 
+**执行分级：** Fast。
+
+**合并安排：** 最终定义生成目录/Schema/帮助/示例＋错误/版本/预算资料集中核对；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 示例真实运行、wire/IR与能力一致、旧消费者不覆盖；行为变更升级并补相关回归。
+
 **前置依赖：** [D8.02](#d802)、[D8.05](#d805)  
 **架构依据／测试族：** [A00](01_Architecture_v3.3.md#a00)、[A05](01_Architecture_v3.3.md#a05)、[A08](01_Architecture_v3.3.md#a08)、[A17](01_Architecture_v3.3.md#a17)、[A18](01_Architecture_v3.3.md#a18)、[A19](01_Architecture_v3.3.md#a19)、[A15](01_Architecture_v3.3.md#a15)、[A21](01_Architecture_v3.3.md#a21)、[A22](01_Architecture_v3.3.md#a22) ／ T06、T11、T19、T20、T21、T23、T24
 
@@ -1174,6 +1679,12 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 
 <a id="d807"></a>
 #### D8.07｜发布候选、证据索引和最终放行
+
+**执行分级：** Critical。
+
+**合并安排：** 版本/许可/支持矩阵＋证据索引＋全部门禁判定集中收口；纳入E02对应Development Batch连续实现；逻辑完成条件独立，物理测试/review优先批次复用。
+
+**专项重点：** 最终来源完整、零缺项/混版本/假Passed；发布动作仍按授权，不能仅看包数量。
 
 **前置依赖：** [D8.04](#d804)、[D8.05](#d805)、[D8.06](#d806)  
 **架构依据／测试族：** [A20](01_Architecture_v3.3.md#a20)、[A22](01_Architecture_v3.3.md#a22)、[A23](01_Architecture_v3.3.md#a23)、[A19](01_Architecture_v3.3.md#a19) ／ T01、T06、T14、T16、T21、T23、T24
@@ -1284,30 +1795,33 @@ GUI 是 Workspace/桌面产品的主要人工前端；其业务写、外部效�
 
 远程网络部署、DeviceHost产品化、自动领域融合、其他存储后端为后续独立扩展。对D0定义的完整主目标不可用“以后再做”减少必需门禁；特别是原子事实、Finalizing、epoch与child回执不能降为文档承诺。
 
-## E08｜交给开发AI的单包执行规则
+## E08｜交给开发 AI 的批次执行规则
 
 ```text
-唯一规范：OCK-ARCH-3.3与OCK-EXEC-3.3。
-当前目标只执行指定任务ID；先核对全部前置是否实际Passed。
-旧代码仅作经验参考；不迁移旧API、不沿用旧测试成绩、不合并旧大内核。
-先检查当前实际工程和已完成产物，再增加反例/合同测试，再实现。
+唯一规范：OCK-ARCH-3.3与OCK-EXEC-3.3（当前r2）。
+当前目标按progress中的Development Batch推进，而不是把每个工作包编号当成独立Codex任务。
+已Passed前置只读状态和公开合同，不重读历史review/evidence、不重跑测试；除非当前修改触及其冻结输入。
+Batch内开发依赖使用Implementation-Ready：上游所需接口已实现并完成直接验证即可继续写下游。
+Implementation-Ready不是正式状态；下游最终Passed仍要求正式前置按DAG已经Passed。
+规范明确后立即写生产代码；Fast小项不先建plan/SPEC/CODE/acceptance/Evidence。
+开发只执行S_changed：Debug最小影响集、fail-fast；按真实风险补ASan/Release。
+同一最终source/profile/build环境的测试尽量一次物理执行，按task/requirement映射多个逻辑结论。
+不因为切换工作包编号重新configure/build、重复完整CTest或重新读取同一规范上下文。
+Batch稳定后集中确定expected/S_required，集中运行正式矩阵，集中SPEC/CODE review。
+批次Review共享一次上下文；各task结论仍独立可追踪。ChangesRequested只复核实际变化及关联风险。
+G Gate执行S_gate并承担阶段完整历史集成；普通包不机械累计所有历史Passed测试。
+Critical只在真实未决风险、E06硬边界或预算冻结点设置必要checkpoint，不把所有小步骤变审批链。
 不为缺能力返回空成功，不用假Document，不建立第二Handler/Plan运行时。
-Native、Dynamic、Submit、Plan、Atomic复用治理和业务，不强迫相同排队/编码成本。
-不在内部锁中调用业务或同步等必须回到本序列的完成回调。
-不改变Outcome、permit、publication、epoch和wire语义来绕过失败测试。
-观察遵循subscribe后get，终态以get/wait为准；不把Native短Invoke强制纳入任务枚举。
+不改变Outcome、permit、publication、epoch、wire、安全或durability语义来迎合测试。
 同版Conformance复用预期；NotApplicable由合同决定，不以skip逃避Profile必要能力。
-公开SDK变更按A19审查，冻结旧消费者不随实现修改；不把文件名快照当兼容证明。
-使用E03采集工具记录真实结果；人工只签评审，不能改exit、hash、自动Passed。
-占用基准区分NativeSubset/完整Embedded/Control组合；预算不能自动随本次结果上调。
-execution.list v1只实现无状态认证cursor，不增加服务端cursor池；UI业务写必须走Operation；不新增万能state RPC；DSL不是首发必需。
-D4.05的IR往返只用于语义测试，不冻结IR ABI；D5.02先通过canonical spike再实现持久指纹。
-完成时给出实际修改、构建/测试命令与退出码、原始证据、未运行和已知风险。
-没有目标工具链/权限的测试标Blocked，不声称通过。
-除用户明确授权外，不推送、合并、发布、清理生产数据或执行真实设备动作。
+使用E03记录正式真实结果；失败/缺项不覆盖，不手填exit/hash/Passed，不拼接不同源码成功配置。
+非当前阻塞且非规划交付物，不扩展测试/Evidence基础设施。
+完成一个Batch时报告：生产代码、直接测试、正式物理运行及其逻辑映射、各包状态、未运行/风险、下一Batch。
+没有目标工具链/权限的必需测试标Blocked，不声称通过。
+除用户授权外，不发布、不清理生产数据、不执行真实设备动作。
 ```
 
-工作复杂时可以拆更小提交，但新的子提交不改变原工作包通过条件。遇到真正合同冲突先提出最小ADR及受影响测试，不重新规划整套架构；已经明确的规则直接实现，不反复询问同一设计问题。
+工作复杂时可以小提交，但“包编号变化”本身不是提交理由。遇到真正合同冲突只做最小 ADR 和受影响测试；已经明确的规则直接实现。一个 Batch 中如果前包正式验收失败，下游已有代码可以保留为未验收实现，但必须先修复前包，禁止跳过 DAG 宣布后包 Passed。
 
 ## E09｜停止条件与最终放行
 
