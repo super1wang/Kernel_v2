@@ -37,7 +37,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | 门禁 | 当前状态 | 事实 |
 |---|---|---|
 | G0 | Passed | 九组372次CTest、142项Git来源及AI规格/代码复核齐全，按用户政策自动验收 |
-| G1 | InProgress | D1.01–D1.04自动验收Passed；D1.05、D1.06尚未完成，G1尚未验收 |
+| G1 | InProgress | D1.01–D1.05自动验收Passed；D1.06尚未完成，G1尚未验收 |
 | G2 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G3 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
 | G4 | NotStarted | 前序门禁尚未通过，无本阶段运行证据 |
@@ -62,7 +62,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | D1.02 | 实现CoreContracts、四种shape与typed绑定 | D1.01、D0.02、D0.03、D0.05 | Passed |
 | D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | Passed |
 | D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | Passed |
-| D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | InProgress |
+| D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | Passed |
 | D1.06 | 最小Host、Logging共同合同与原生占用基线 | D1.05、D0.06 | NotStarted |
 | D2.01 | 实现单DOM Payload、View与预算构建 | D1.01、D0.06 | NotStarted |
 | D2.02 | 实现TypeContract、Schema编译与Native等价绑定 | D2.01、D1.02、D1.05、D0.04 | NotStarted |
@@ -204,3 +204,18 @@ D1.05 最新实现验证：已修复锁定 ASan CRT 钩子的实际覆盖缺口�
 D1.05 提交前最终来源更新：已补齐基础独立CODE归档以及原SPEC要求的多Unknown集合、借用寿命和非空上下文计数控制。最终Debug/Release/ASan各32/32、零失败/跳过，255输入摘要更新为 `43ad6c2ecd162908932248ba430ab48c86a94a7d213cfca804cd0e7f972a02ef`，各来源逐项一致。原1685与90f1记录保留为历史，不混合作为最终来源；即将登记两类AI审核并提交实现，正式矩阵与包验收仍待运行。
 
 D1.05 两类 AI 技术审核已登记 Approved（`docs/reviews/D1.05-spec.json`、`D1.05-code.json`）。提交前仅规范化运输说明末尾一个多余LF，独立复核确认其余254输入完全不变；最终提交输入摘要为 `028ca1c8afab6dfb2b5c3c6758ce4b71f13311957cc78bdc2463e6993a265560`，局部三配置原始通过仍如实绑定43ad。核对证据见 `evidence/bootstrap/D1.05/precommit-verification.json`。即将提交并推送实现，随后按028ca来源运行正式矩阵；不提前声明包级Passed。
+
+D1.05 实现节点 `a8049df35d7428e79d89df9b0f2f223fa7002bda` 已提交并推送，远端任务分支读回同一提交。255项Git blob与最终028ca输入逐字节核对Passed，证据为 `evidence/D1.05/implementation-source.json`。正式Debug矩阵已开始，之后按同提交同来源依次运行Release、ASan，再进行完整自动门禁与独立最终验收；当前D1.05仍InProgress。
+
+D1.05 首份正式报告已完成：Debug 283/283 CTest、3/3 CHECK，automated_status 与 run package_status 均 Passed，errors 为空。报告 `evidence/a8049df35d74-028ca1c8afab/win-msvc-debug/D1.05/20260907T235925Z-a07bf46d5760/report.json` 绑定实现 a8049df 与028ca输入。Release 已启动，ASan及最终汇总待运行，整体包级仍 InProgress。
+
+D1.05 正式 Release 已完成，283/283 CTest 与3/3 CHECK均通过，报告自动状态及run包级状态Passed、errors为空；来源与Debug同为a8049df/028ca。报告路径 `evidence/a8049df35d74-028ca1c8afab/win-msvc-release/D1.05/20260908T001937Z-799b5f40252d/report.json`。ASan已启动，整体包级仍待最后配置与最终门禁。
+
+
+## 2026-09-08 D1.05 完整自动验收
+
+实现节点 `a8049df35d7428e79d89df9b0f2f223fa7002bda` 已推送，255项来源与Git逐blob核对一致，摘要 `028ca1c8afab6dfb2b5c3c6758ce4b71f13311957cc78bdc2463e6993a265560`。正式Debug283/283、Release283/283、ASan285/285，共851次CTest和九CHECK均Passed；零失败、禁用和跳过，三份报告errors为空。
+
+当前完整门禁 `evidence/D1.05/current-20260908T010205Z/gate-summary.json` 与独立重算门禁均实际Passed。最终独立AI验收 `evidence/D1.05/final-acceptance-review.md` Approved，核对了24包装、82条子命令、207个分配样本、原始流、进程树排空和审核来源；没有本包剩余验收条件。来源与计数索引见同目录acceptance-context.json。
+
+本包完成内部受治理Native Read/Compute、精确绑定、原始身份与每次授权、可信线程、结果事实、有界观察及受限固定场景的零新增分配验证。ASan独立通道如实保留CRT盲区；历史失败、旧局部来源和运输限制不改写。SDK Runtime、Host、异步或产品模块未在本包声明完成。D1.05包级Passed，G1仍InProgress；提交推送验收节点后，只按实际前置进入D1.06。

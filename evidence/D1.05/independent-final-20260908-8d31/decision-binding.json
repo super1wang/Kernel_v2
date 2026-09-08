@@ -1,0 +1,43 @@
+{
+  "actor_type": "AI",
+  "reviewer": "review_foundations",
+  "checked_at": "2026-09-08T01:07:02.240253+00:00",
+  "status": "Approved",
+  "package_status": "Passed",
+  "implementation_commit": "a8049df35d7428e79d89df9b0f2f223fa7002bda",
+  "inputs_sha256": "028ca1c8afab6dfb2b5c3c6758ce4b71f13311957cc78bdc2463e6993a265560",
+  "gate_entry": "tools/evidence/gate.py",
+  "gate_command_exit_code": 0,
+  "gate_summary_sha256": "f7e77e3bb3895cec8e0567d11b56c0918c4e7e77a477c78e9577db56542155f7",
+  "prerequisite_record_sha256": "1ae9255b85cd904e51f3beba630fff1a1ba785cc7308873164717bc5c3dbc8f1",
+  "prerequisites": [
+    {
+      "task_id": "D1.03",
+      "gate": {
+        "path": "evidence/D1.03/current-20260907T165757Z/gate-summary.json",
+        "sha256": "5dd8c9ab8b0377bc1942e94af41ebc236a34e55693cf550c4413339a9eb87052",
+        "gate_status": "Passed",
+        "automated_status": "Passed",
+        "errors": [],
+        "missing": []
+      },
+      "run_report_hashes_match": true,
+      "status": "Passed"
+    },
+    {
+      "task_id": "D1.04",
+      "gate": {
+        "path": "evidence/D1.04/current-20260907T203550Z/gate-summary.json",
+        "sha256": "4f1e6b7131e75fbc4a78d7b97a8ff26c23c7e9cc08af7b8bc1bdbe01c0d77e13",
+        "gate_status": "Passed",
+        "automated_status": "Passed",
+        "errors": [],
+        "missing": []
+      },
+      "run_report_hashes_match": true,
+      "status": "Passed"
+    }
+  ],
+  "scope": "D1.05内核与规划验证消费者；不批准G1、SDK Runtime、Host或产品模块",
+  "remaining_conditions": []
+}

@@ -1,0 +1,48 @@
+{
+  "format": "ock.acceptance-context/1",
+  "created_at": "2026-09-08T01:07:18.848357+00:00",
+  "task_id": "D1.05",
+  "review_mode": "ai-self-review",
+  "human_review_required": false,
+  "source_identity": [
+    "a8049df35d7428e79d89df9b0f2f223fa7002bda",
+    "028ca1c8afab6dfb2b5c3c6758ce4b71f13311957cc78bdc2463e6993a265560",
+    "e6ee3e75590bb5d7d8fcf8d133fd237f823f496512444a0cc344684c88c492e7"
+  ],
+  "gate_summary_sha256": "aa92551ba75d71463ffe1bc7a95b5fb755b3f630298fd44e11eeb7c041613c0f",
+  "policy_sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80",
+  "final_ai_review": {
+    "path": "evidence/D1.05/final-acceptance-review.md",
+    "sha256": "dd5374856dce03ff1981b2d8ed91f0659ba6e938a09a34f5ae351300e471e72e"
+  },
+  "git_input_verification": {
+    "path": "evidence/D1.05/implementation-source.json",
+    "sha256": "b3dda151a1077dc8deed26eb187b23f0998d1c3f6a68e031d92674a059a889d2"
+  },
+  "runs": [
+    {
+      "profile": "win-msvc-debug",
+      "report": "evidence/a8049df35d74-028ca1c8afab/win-msvc-debug/D1.05/20260907T235925Z-a07bf46d5760/report.json",
+      "sha256": "cd162ff112b27110569381db14bc223748df0ba3b613831c9302afa85cd2acf1",
+      "ctest_executions": 283,
+      "checks_passed": 3
+    },
+    {
+      "profile": "win-msvc-release",
+      "report": "evidence/a8049df35d74-028ca1c8afab/win-msvc-release/D1.05/20260908T001937Z-799b5f40252d/report.json",
+      "sha256": "e70a92bc34d039e8e85eb75b3d63680406dc4c2bfead934106c9310a2baa7ab4",
+      "ctest_executions": 283,
+      "checks_passed": 3
+    },
+    {
+      "profile": "win-msvc-asan",
+      "report": "evidence/a8049df35d74-028ca1c8afab/win-msvc-asan/D1.05/20260908T004118Z-0cdd375d90c8/report.json",
+      "sha256": "8cc0d7e5ec2f3ebbc4b00bc57df033d475e39e6c780be353a10a61a95c01f9e0",
+      "ctest_executions": 285,
+      "checks_passed": 3
+    }
+  ],
+  "ctest_executions": 851,
+  "checks_passed": 9,
+  "scope": "仅D1.05内核Native Read/Compute及规划验证消费者；G1仍InProgress，不声明Host、异步或产品模块完成。"
+}
