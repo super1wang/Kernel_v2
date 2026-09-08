@@ -4,6 +4,10 @@
 
 ## 当前节点
 
+- **最新结论（2026-09-08）**：D1.01–D1.05 Passed；D1.05验收提交 `9cd8439` 已推送。D1.06 InProgress（仅前置核对与设计草稿，未实现/验收），G1 InProgress。
+- **后续策略已修订**：采用[提速方案v2](Kernel_v2_开发提速与Token精简决策方案_v2_2026-09-08.md)与[当前批次计划](plans/D1.06.md)：微批次、Debug最小影响集及风险专项、稳定后集中正式验收，SPEC/CODE共享必要上下文但结论独立。D1.05不重跑。
+- **待实施**：Compile Contracts夹具复用→dev-fast→AI导航→Evidence摘要；安装深度复用按实测热点决定。尚无工具改造或提速实测结果，不能把策略更新记为工具Passed。下列旧节点说明保留为历史背景，当前状态以本段及门禁/包表为准。
+
 - D0.01 已收到用户“批准”，包级状态 Passed；[批准记录](reviews/D0.01-approval.json) 绑定已审查提交。D0.02/D0.03 也已收到用户“继续”作为本轮验收批准；D0.04–D0.06已完成AI复核与自动验收，G0 Passed。
 - 当前分支：`work/d0-kernel-baseline`；远端：`https://github.com/super1wang/Kernel_v2.git`。用户已授权必要节点提交和推送。
 - 首个本地节点：`cce1db5`，保存两份原始规范及范围约束。该基线已用已登录且具写权限的 XU-RUiXIANG 推送到同名远端分支；默认账号 XU-Bruce 的首次推送返回 403，未写入远端。后续节点以 Git 实际日志为准。
@@ -63,7 +67,7 @@ D0.02 材料：[评审](reviews/D0.02.md)、[验证索引](validation/D0.02.md)�
 | D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | Passed |
 | D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | Passed |
 | D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | Passed |
-| D1.06 | 最小Host、Logging共同合同与原生占用基线 | D1.05、D0.06 | NotStarted |
+| D1.06 | 最小Host、Logging共同合同与原生占用基线 | D1.05、D0.06 | InProgress |
 | D2.01 | 实现单DOM Payload、View与预算构建 | D1.01、D0.06 | NotStarted |
 | D2.02 | 实现TypeContract、Schema编译与Native等价绑定 | D2.01、D1.02、D1.05、D0.04 | NotStarted |
 | D2.03 | 实现能力目录、精确命令卡和帮助导出 | D2.02、D1.03、D1.04 | NotStarted |
