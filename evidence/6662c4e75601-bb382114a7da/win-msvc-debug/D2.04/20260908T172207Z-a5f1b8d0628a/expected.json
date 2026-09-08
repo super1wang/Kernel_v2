@@ -1,0 +1,101 @@
+{
+  "format": "ock.expected/1",
+  "task_id": "D2.04",
+  "scope": "B2→B3 Closure Patch：按 plans/B2 和独立责任复核冻结，仅当前影响范围，不重写历史包验收。",
+  "cases": [
+    {
+      "id": "T19.protocol.subscription",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T20.protocol.list",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T20.protocol.cursor",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T03.host.start_failures",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T22.host.shutdown_errors",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T19.host.logging_ownership",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T03.host.native_results",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T24.b2.installed_consumer",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T01.architecture.dependency_dag",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug"
+      ]
+    },
+    {
+      "id": "T01.architecture.negative_guards",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug"
+      ]
+    },
+    {
+      "id": "T24.b2.native_pruning",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug"
+      ]
+    }
+  ],
+  "checks": []
+}

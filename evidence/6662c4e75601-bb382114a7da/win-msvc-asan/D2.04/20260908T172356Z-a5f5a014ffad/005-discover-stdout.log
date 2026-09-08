@@ -1,0 +1,380 @@
+{
+  "backtraceGraph" : 
+  {
+    "commands" : 
+    [
+      "add_test"
+    ],
+    "files" : 
+    [
+      "J:/Code/Kernel_v2/CMakeLists.txt",
+      "J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt",
+      "J:/Code/Kernel_v2/tests/contract/host/CMakeLists.txt"
+    ],
+    "nodes" : 
+    [
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 50,
+        "parent" : 0
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 78,
+        "parent" : 2
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 89,
+        "parent" : 4
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 93,
+        "parent" : 6
+      },
+      {
+        "file" : 2
+      },
+      {
+        "command" : 0,
+        "file" : 2,
+        "line" : 20,
+        "parent" : 8
+      },
+      {
+        "file" : 2
+      },
+      {
+        "command" : 0,
+        "file" : 2,
+        "line" : 20,
+        "parent" : 10
+      },
+      {
+        "file" : 2
+      },
+      {
+        "command" : 0,
+        "file" : 2,
+        "line" : 25,
+        "parent" : 12
+      },
+      {
+        "file" : 2
+      },
+      {
+        "command" : 0,
+        "file" : 2,
+        "line" : 25,
+        "parent" : 14
+      }
+    ]
+  },
+  "kind" : "ctestInfo",
+  "tests" : 
+  [
+    {
+      "backtrace" : 1,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/install_consumer/verify_b2.py",
+        "--build",
+        "J:/Code/Kernel_v2/build/b2-sdk-asan",
+        "--config",
+        "Debug"
+      ],
+      "config" : "Debug",
+      "name" : "T24.b2.installed_consumer",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B2"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 600.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace" : 3,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/unit/data/Debug/cursor_contract.exe",
+        "J:/Code/Kernel_v2/tests/control/golden/cursor.json"
+      ],
+      "config" : "Debug",
+      "name" : "T20.protocol.cursor",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 20.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace" : 5,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/unit/data/Debug/subscription_contract.exe",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/notifications.schema.json",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/common.schema.json"
+      ],
+      "config" : "Debug",
+      "name" : "T19.protocol.subscription",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 20.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace" : 7,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/unit/data/Debug/list_contract.exe",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/execution-list.schema.json",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/common.schema.json"
+      ],
+      "config" : "Debug",
+      "name" : "T20.protocol.list",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace" : 9,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/contract/host/Debug/ock_host_tests.exe",
+        "T03.host.native_results"
+      ],
+      "config" : "Debug",
+      "name" : "T03.host.native_results",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.06"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 90.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/contract/host"
+        }
+      ]
+    },
+    {
+      "backtrace" : 11,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/contract/host/Debug/ock_host_tests.exe",
+        "T19.host.logging_ownership"
+      ],
+      "config" : "Debug",
+      "name" : "T19.host.logging_ownership",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.06"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 90.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/contract/host"
+        }
+      ]
+    },
+    {
+      "backtrace" : 13,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/contract/host/verify_runtime.py",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/contract/host/Debug/ock_host_tests.exe",
+        "--case",
+        "T03.host.start_failures",
+        "--work",
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/contract/host/child-runs",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--fault-binary",
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/contract/host/Debug/ock_host_fault_tests.exe",
+        "--configuration",
+        "Debug"
+      ],
+      "config" : "Debug",
+      "name" : "T03.host.start_failures",
+      "properties" : 
+      [
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.06"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 120.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/contract/host"
+        }
+      ]
+    },
+    {
+      "backtrace" : 15,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/contract/host/verify_runtime.py",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/contract/host/Debug/ock_host_tests.exe",
+        "--case",
+        "T22.host.shutdown_errors",
+        "--work",
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/contract/host/child-runs",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--fault-binary",
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/contract/host/Debug/ock_host_fault_tests.exe",
+        "--configuration",
+        "Debug"
+      ],
+      "config" : "Debug",
+      "name" : "T22.host.shutdown_errors",
+      "properties" : 
+      [
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D1.06"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 120.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/contract/host"
+        }
+      ]
+    }
+  ],
+  "version" : 
+  {
+    "major" : 1,
+    "minor" : 0
+  }
+}

@@ -1,12 +1,12 @@
 # 内核实施进度
 
-更新：2026-09-08。唯一规范为 [架构 v3.3-r2](01_Architecture_v3.3.md) 与 [执行计划 v3.3-r2](02_Execution_Plan_v3.3.md)。恢复任务默认只读本文件顶部、当前 Development Batch 的相关规范/合同和 diff；历史 review/evidence 按需读取。
+更新：2026-09-09。唯一规范为 [架构 v3.3-r2](01_Architecture_v3.3.md) 与 [执行计划 v3.3-r2](02_Execution_Plan_v3.3.md)。恢复任务默认只读本文件顶部、当前 Development Batch 的相关规范/合同和 diff；历史 review/evidence 按需读取。
 
 ## 当前生产节点
 
-- 当前分支：`work/d0-kernel-baseline`；已推送实现检查点 `621d8ea`，实际执行以实时 Git 为准。
+- 当前分支：`work/d0-kernel-baseline`；本轮被测实现检查点 `6662c4e`，归档与推送状态以实时 Git 为准。
 - 已 Passed：G0、G1、D0.01–D0.06、D1.01–D1.06。**这些 Passed 前置不重验**；D1.05 不重跑。
-- 当前 Development Batch：**B2 / D2.01–D2.04 Passed**；B1 / D1.06 与 G1 已 Passed。
+- 当前 Development Batch：**B2 / D2.01–D2.04 Passed，B3 前影响收口 Passed**；B3 / D2.05–D2.07 已具备开发准入、生产实现未开始；B1 / D1.06 与 G1 已 Passed。
 - 当前门禁：**G1 Passed**；G2–G8 未开始。
 - Host、Logging、NativeSubset/独立安装消费者及 footprint 正式测量/预算已交付并完成本包验收。
 - 本次恢复已完成：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[本次交付与自动验收](validation/D1.06-resume-delivery.md)。
@@ -17,7 +17,7 @@
 - 用户提供收口建议已核对；本次修复不改写 B1/B2 历史 Passed。已实现 Subscription 锁外外部调用与 ACK 预算、cursor 原始期限/完整授权视图、Host Logging limits、一致的 Runtime-only 生产裁剪。
 - Debug 直接影响集 7/7 与 Runtime-only configure/build/install/真实 Native 消费专项 1/1 通过；首次 list 测试误用委托收缩前旧 VerifiedCaller 的失败已保留并纠正为新可信调用者检验 cursor 自身失效。
 - [B2 规划补录及本次执行前计划](plans/B2.md)、[B3 执行前计划](plans/B3.md)和[重大决定 ADR](adr/ADR-b2-closure-boundaries.md)已建立。今后执行前须已有批次规划，重大变更必须 ADR。
-- 冻结本次影响矩阵 Debug 11、Release 8、ASan 8；同一最终来源收口，尚未完成前不放行 B3。未重跑历史 Passed 矩阵，DynamicOnly 执行注册明确由 D7.04 承接。
+- 同一已提交来源 `6662c4e` 的正式影响矩阵 Debug 11/11、Release 8/8、ASan 8/8 全部通过；自动验收 Passed，错误与审核错误均为空。**B3 开发放行，G2 未开始**，见[收口交付及证据](validation/B2-B3-closure-delivery.md)。未重跑历史 Passed 矩阵，DynamicOnly 执行注册明确由 D7.04 承接。
 
 ## B2 交付
 

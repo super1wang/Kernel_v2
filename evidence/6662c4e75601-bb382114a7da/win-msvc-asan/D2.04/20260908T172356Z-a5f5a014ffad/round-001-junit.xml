@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="8"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-U2F62TA"
+	time="24"
+	timestamp="2026-09-09T01:24:17"
+	>
+	<testcase name="T24.b2.installed_consumer" classname="T24.b2.installed_consumer" time="20.4323" status="run">
+		<properties>
+			<property name="cmake_labels" value="B2"/>
+		</properties>
+		<system-out>argv: ['cmake', '--install', 'J:/Code/Kernel_v2/build/b2-sdk-asan', '--config', 'Debug', '--prefix', 'J:\\Code\\Kernel_v2\\build\\b2-install-jpe31wfh\\original'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\b2-install-jpe31wfh\\consumer-source', '-B', 'J:\\Code\\Kernel_v2\\build\\b2-install-jpe31wfh\\consumer', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\b2-install-jpe31wfh\\relocated', '-DCMAKE_CXX_FLAGS=/fsanitize=address', '-DCMAKE_CXX_FLAGS_DEBUG=/Ob0 /Od ', '-DCMAKE_EXE_LINKER_FLAGS=/INCREMENTAL:NO'] exit_code: 0
+argv: ['cmake', '--build', 'J:\\Code\\Kernel_v2\\build\\b2-install-jpe31wfh\\consumer', '--config', 'Debug', '--parallel', '4'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\b2-install-jpe31wfh\\consumer\\Debug\\installed_b2.exe'] exit_code: 0
+B2 installed consumer and standalone public...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T20.protocol.cursor" classname="T20.protocol.cursor" time="0.240455" status="run">
+		<properties/>
+		<system-out>Cursor golden, MAC tamper, bindings and monotonic expiration passed
+</system-out>
+	</testcase>
+	<testcase name="T19.protocol.subscription" classname="T19.protocol.subscription" time="1.28697" status="run">
+		<properties/>
+		<system-out>Subscription ack ordering, loss sequence, revoke and cleanup passed
+</system-out>
+	</testcase>
+	<testcase name="T20.protocol.list" classname="T20.protocol.list" time="0.806029" status="run">
+		<properties/>
+		<system-out>List authorized frames, stateless continuation, tamper, filter, TTL and revoke passed
+</system-out>
+	</testcase>
+	<testcase name="T03.host.native_results" classname="T03.host.native_results" time="0.352592" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T19.host.logging_ownership" classname="T19.host.logging_ownership" time="0.19016" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.host.start_failures" classname="T03.host.start_failures" time="1.07405" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"case": "T03.host.start_failures", "evidence": "J:\\Code\\Kernel_v2\\build\\b2-sdk-asan\\tests\\contract\\host\\child-runs\\e1817025dc7d4a75bce296e554ea0bac", "status": "Passed"}
+</system-out>
+	</testcase>
+	<testcase name="T22.host.shutdown_errors" classname="T22.host.shutdown_errors" time="0.504767" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"case": "T22.host.shutdown_errors", "evidence": "J:\\Code\\Kernel_v2\\build\\b2-sdk-asan\\tests\\contract\\host\\child-runs\\b0051c0b728343d589e7fbff5c3fbf62", "status": "Passed"}
+</system-out>
+	</testcase>
+</testsuite>

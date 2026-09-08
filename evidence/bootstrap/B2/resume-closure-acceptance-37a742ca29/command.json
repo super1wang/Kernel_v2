@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "build/runtime/python311/python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "tools/evidence/accept_gate.py",
+    "tests/runs/b2-closure-matrix.json",
+    "evidence/6662c4e75601-bb382114a7da/win-msvc-debug/D2.04/20260908T172207Z-a5f1b8d0628a/report.json",
+    "evidence/6662c4e75601-bb382114a7da/win-msvc-release/D2.04/20260908T172312Z-8fb4bac953af/report.json",
+    "evidence/6662c4e75601-bb382114a7da/win-msvc-asan/D2.04/20260908T172356Z-a5f5a014ffad/report.json",
+    "--policy",
+    "docs/reviews/automatic-acceptance-policy.json",
+    "--output",
+    "evidence/bootstrap/B2/closure-acceptance-6662c4e.json"
+  ],
+  "cwd": "J:\\Code\\Kernel_v2",
+  "started_at": "2026-09-08T17:25:09.774654+00:00",
+  "exit_code": 0,
+  "status": "Exited",
+  "process_tree": {
+    "mechanism": "WindowsJobObject",
+    "assigned_before_resume": true,
+    "active_after": 0,
+    "total_processes": 886,
+    "terminated_owned_job": false
+  },
+  "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+  "pid": 70136,
+  "observed_exit_code": 0,
+  "finished_at": "2026-09-08T17:25:43.622234+00:00"
+}

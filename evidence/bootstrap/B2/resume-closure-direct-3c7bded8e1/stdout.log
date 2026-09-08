@@ -1,0 +1,20 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b2-sdk-debug
+Test project J:/Code/Kernel_v2/build/b2-sdk-debug
+    Start 16: T20.protocol.cursor
+1/5 Test #16: T20.protocol.cursor ..............   Passed    0.16 sec
+    Start 19: T19.protocol.subscription
+2/5 Test #19: T19.protocol.subscription ........   Passed    0.40 sec
+    Start 20: T20.protocol.list
+3/5 Test #20: T20.protocol.list ................***Failed    0.31 sec
+dispatch(R"({"page_size":1})")
+
+
+67% tests passed, 1 tests failed out of 3
+
+Label Time Summary:
+D1.06    =   0.00 sec*proc (0 test)
+
+Total Test time (real) =   0.88 sec
+
+The following tests FAILED:
+	 20 - T20.protocol.list (Failed)
