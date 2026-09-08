@@ -1,0 +1,496 @@
+{
+  "format": "ock.evidence-summary/1",
+  "purpose": "navigation-only; full audit remains required",
+  "task_id": "D1.06",
+  "run_id": "20260908T074026Z-eee3d4dd9941",
+  "profile": "win-msvc-debug",
+  "report_claims": {
+    "automated_status": "Passed",
+    "package_status": "Passed"
+  },
+  "duration_seconds": 1039.773901,
+  "counts": {
+    "expected": 270,
+    "discovered": 270,
+    "executed": 270,
+    "rounds": 1
+  },
+  "set_digests": {
+    "expected": "fe03b74300d9aa7dcf164cd9ede77c7397b2cb5b061fc01533cd245ccdcd7747",
+    "discovered": "fe03b74300d9aa7dcf164cd9ede77c7397b2cb5b061fc01533cd245ccdcd7747",
+    "executed": "fe03b74300d9aa7dcf164cd9ede77c7397b2cb5b061fc01533cd245ccdcd7747"
+  },
+  "discovery": {
+    "missing": [],
+    "unexpected": []
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "executed": 270,
+      "failed": [],
+      "skipped": [],
+      "missing": [],
+      "unexpected": []
+    }
+  ],
+  "commands": [
+    {
+      "id": "cmake-version",
+      "role": "metadata",
+      "argv": [
+        "cmake",
+        "--version"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T07:40:29.926020+00:00",
+      "finished_at": "2026-09-08T07:40:30.117271+00:00",
+      "duration_seconds": 0.191251
+    },
+    {
+      "id": "ctest-version",
+      "role": "metadata",
+      "argv": [
+        "ctest",
+        "--version"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T07:40:30.130553+00:00",
+      "finished_at": "2026-09-08T07:40:30.244780+00:00",
+      "duration_seconds": 0.114227
+    },
+    {
+      "id": "configure",
+      "role": "configure",
+      "argv": [
+        "cmake",
+        "-C",
+        "tests/runs/d1.06-prerequisites.cmake",
+        "--fresh",
+        "--preset",
+        "win-msvc-debug",
+        "-B",
+        "build/d1.06-debug",
+        "-DOCK_DEPENDENCY_COMPONENTS=Foundation",
+        "-DOCK_DEPENDENCIES_OFFLINE=ON",
+        "-DOCK_BUILD_G0_TESTS=ON",
+        "-DOCK_BUILD_EXECUTION_MODEL_TESTS=OFF",
+        "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+        "-DOCK_BUILD_FOUNDATION_TESTS=ON",
+        "-DOCK_BUILD_CORE_CONTRACTS_TESTS=ON",
+        "-DOCK_ENABLE_ASAN=OFF",
+        "-DOCK_BUILD_REGISTRATION_TESTS=ON",
+        "-DOCK_BUILD_AUTHORIZATION_TESTS=ON",
+        "-DOCK_BUILD_NATIVE_TESTS=ON",
+        "-DOCK_BUILD_HOST_TESTS=ON",
+        "-DOCK_BUILD_LOGGING_TESTS=ON",
+        "-DOCK_BUILD_NATIVE_SDK_TESTS=ON",
+        "-DOCK_BUILD_FOOTPRINT_TESTS=ON",
+        "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T07:40:30.257289+00:00",
+      "finished_at": "2026-09-08T07:40:36.898239+00:00",
+      "duration_seconds": 6.64095
+    },
+    {
+      "id": "build",
+      "role": "build",
+      "argv": [
+        "cmake",
+        "--build",
+        "build/d1.06-debug",
+        "--config",
+        "Debug",
+        "--parallel",
+        "2",
+        "--",
+        "/nr:false"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T07:40:36.910764+00:00",
+      "finished_at": "2026-09-08T07:40:39.161084+00:00",
+      "duration_seconds": 2.25032
+    },
+    {
+      "id": "check-000",
+      "role": "check",
+      "argv": [
+        "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+        "-X",
+        "utf8",
+        "tools/dependencies/verify_python.py"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T07:40:40.405368+00:00",
+      "finished_at": "2026-09-08T07:40:40.737265+00:00",
+      "duration_seconds": 0.331897
+    },
+    {
+      "id": "check-001",
+      "role": "check",
+      "argv": [
+        "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+        "-X",
+        "utf8",
+        "tests/conformance/run.py"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T07:40:40.738775+00:00",
+      "finished_at": "2026-09-08T07:40:40.880031+00:00",
+      "duration_seconds": 0.141256
+    },
+    {
+      "id": "check-002",
+      "role": "check",
+      "argv": [
+        "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.EXE",
+        "-X",
+        "utf8",
+        "tools/testing/cross_outcomes.py"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T07:40:40.881543+00:00",
+      "finished_at": "2026-09-08T07:40:41.378854+00:00",
+      "duration_seconds": 0.497311
+    },
+    {
+      "id": "discover",
+      "role": "discover",
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "J:\\Code\\Kernel_v2\\build\\d1.06-debug",
+        "-C",
+        "Debug",
+        "-R",
+        "^(T01\\.architecture\\.dependency_dag|T01\\.architecture\\.negative_guards|T01\\.contracts\\.component_closure|T01\\.contracts\\.public_include_boundary|T01\\.dependencies\\.expected|T01\\.dependencies\\.lock_contracts|T01\\.dependencies\\.toolchain|T01\\.native_sdk\\.surface_guard|T02\\.contracts\\.atomic_async_rejected|T02\\.contracts\\.atomic_read_adapters|T02\\.contracts\\.compile_fixture_guards|T02\\.contracts\\.compile_fixture_setup|T02\\.contracts\\.context_capability_boundary|T02\\.contracts\\.effect_shape|T02\\.contracts\\.lifecycle_shape|T02\\.contracts\\.read_shape|T02\\.contracts\\.state_edit_shape|T02\\.contracts\\.type_contract_constraints|T02\\.contracts\\.typed_value_validation|T02\\.native\\.candidate_read_dispatch|T02\\.native\\.exact_binding|T02\\.native\\.invalid_input|T02\\.native\\.private_dispatch|T02\\.native\\.registered_compute|T02\\.native\\.registered_read|T02\\.native\\.validation_exception|T02\\.native_sdk\\.private_dispatch|T02\\.registration\\.atomic_candidate_contract|T02\\.registration\\.batch_k_failure_atomic|T02\\.registration\\.callback_exception_cleanup|T02\\.registration\\.declared_operations_complete|T02\\.registration\\.error_budget_sticky|T02\\.registration\\.exact_operation_versions|T02\\.registration\\.execution_capabilities|T02\\.registration\\.ignored_errors_sticky|T02\\.registration\\.manifest_owned_budget|T02\\.registration\\.module_cycles_rejected|T02\\.registration\\.module_dag_order|T02\\.registration\\.module_identity_versions|T02\\.registration\\.provider_binding|T02\\.registration\\.schema_capability_absent|T02\\.registration\\.service_binding|T02\\.registration\\.shape_compile_contract|T03\\.foundation\\.code_only_no_allocation|T03\\.foundation\\.layout_statistics|T03\\.foundation\\.value_operations_no_allocation|T03\\.host\\.catalog_registration|T03\\.host\\.configuration|T03\\.host\\.delegation_revoke|T03\\.host\\.native_results|T03\\.host\\.ready_gate|T03\\.host\\.session_ownership|T03\\.host\\.start_failures|T03\\.host\\.start_order|T03\\.native\\.cancel_and_budget|T03\\.native\\.component_boundary|T03\\.native\\.example_consumer|T03\\.native\\.no_self_wait|T03\\.native\\.no_task_path|T03\\.native\\.provider_unavailable|T03\\.native\\.reentrant_and_concurrent|T03\\.native\\.resource_lifetime|T03\\.native\\.thread_modes|T03\\.native\\.thread_origin|T04\\.foundation\\.checked_arithmetic|T04\\.foundation\\.checked_count_atomic_update|T04\\.foundation\\.checked_narrowing|T04\\.foundation\\.display_utf8|T04\\.foundation\\.error_details_budget|T04\\.foundation\\.error_details_ownership|T04\\.foundation\\.exception_not_business_failure|T04\\.foundation\\.invariant_fail_fast|T04\\.foundation\\.result_bad_access|T04\\.foundation\\.result_error_propagation|T04\\.foundation\\.result_move_only_error|T04\\.foundation\\.result_move_only_value|T04\\.foundation\\.result_void|T04\\.foundation\\.static_error_domain|T05\\.contracts\\.binding_generation_before_access|T05\\.contracts\\.binding_owner_lifetime|T05\\.contracts\\.execution_identity_separation|T05\\.contracts\\.operation_exact_identity|T05\\.contracts\\.typed_binding_fingerprint|T05\\.foundation\\.bound_handle_generation|T05\\.foundation\\.identity_canonical_codec|T05\\.foundation\\.name_ascii_bounds|T05\\.foundation\\.name_case_and_ownership|T05\\.foundation\\.runtime_epoch_separation|T05\\.foundation\\.tagged_identity_types|T05\\.registration\\.exact_fingerprint|T05\\.registration\\.failure_preserves_catalog|T05\\.registration\\.publish_once_freeze|T05\\.registration\\.registry_generation|T05\\.registration\\.snapshot_lifetime|T05\\.registration\\.typed_binding_success|T06\\.contracts\\.atomic_prepared_identity|T06\\.contracts\\.before_apply_and_composite_proofs|T06\\.contracts\\.completion_once_and_drain|T06\\.contracts\\.effect_report_preserves_fact|T06\\.contracts\\.executor_inline_ownership|T06\\.contracts\\.executor_reject_exception_cleanup|T06\\.contracts\\.known_facts_append_only|T06\\.contracts\\.lifecycle_report_preserves_state|T06\\.contracts\\.outcome_closed_variants|T06\\.contracts\\.publication_proof_required|T06\\.contracts\\.record_evidence_boundary|T06\\.contracts\\.reply_phase_completion_separation|T06\\.native\\.admission_order|T06\\.native\\.authority_origin|T06\\.native\\.business_failure|T06\\.native\\.invalid_output|T06\\.native\\.lifecycle_replacement|T06\\.native\\.outcome_consistency|T06\\.native\\.permission_intersection|T06\\.native\\.policy_contract_alignment|T06\\.native\\.revoke_and_regrant|T06\\.native\\.session_and_deadline|T06\\.native\\.target_binding|T07\\.policy\\.authentication_source|T07\\.policy\\.cancel_arbitration|T07\\.policy\\.consume_before_revoke|T07\\.policy\\.delegation_shrink|T07\\.policy\\.exception_atomicity|T07\\.policy\\.expiry_boundary|T07\\.policy\\.generation_exhaustion|T07\\.policy\\.group_members_complete|T07\\.policy\\.group_substitution|T07\\.policy\\.operation_exact_contract|T07\\.policy\\.owned_inputs_budget|T07\\.policy\\.owner_scope|T07\\.policy\\.permit_concurrent|T07\\.policy\\.permit_once|T07\\.policy\\.permit_origin_binding|T07\\.policy\\.recursive_delegation_denied|T07\\.policy\\.revoke_before_consume|T07\\.policy\\.scope_four_way|T07\\.policy\\.service_principal|T07\\.policy\\.session_isolation|T07\\.policy\\.target_frozen_set|T07\\.policy\\.target_issued_identity|T07\\.policy\\.target_lifecycle|T19\\.conformance\\.backend_exception|T19\\.conformance\\.common_cannot_be_waived|T19\\.conformance\\.common_contract|T19\\.conformance\\.factory_identity|T19\\.conformance\\.false_capability|T19\\.conformance\\.fault_flag_not_qualification|T19\\.conformance\\.fault_not_qualified|T19\\.conformance\\.missing_required_capability|T19\\.conformance\\.nested_worker_rejection|T19\\.conformance\\.optional_not_passed|T19\\.conformance\\.profile_requires_capability|T19\\.conformance\\.wrong_contract_version|T19\\.conformance\\.wrong_implementation_digest|T19\\.contracts\\.authorized_owner_filter|T19\\.contracts\\.completion_independent_of_observation|T19\\.contracts\\.live_keyset_progress|T19\\.contracts\\.observation_budgets|T19\\.contracts\\.observation_host_version|T19\\.contracts\\.summary_owned_snapshot|T19\\.host\\.logging_ownership|T19\\.logging\\.memory_pages|T19\\.policy\\.page_binding_isolation|T19\\.policy\\.page_owner_authorization|T19\\.policy\\.page_revoke_live_keyset|T19\\.policy\\.query_field_projection|T19\\.policy\\.subscription_connection_cleanup|T19\\.policy\\.subscription_scope_atomic|T20\\.policy\\.failed_start_not_started|T20\\.policy\\.internal_component_boundary|T20\\.policy\\.queued_revoke_drop|T20\\.policy\\.transmission_start_arbitration|T20\\.policy\\.unknown_start_no_retry|T20\\.policy\\.unsubscribe_inflight|T22\\.host\\.admission_race|T22\\.host\\.destructor_guard|T22\\.host\\.lifecycle_reentrancy|T22\\.host\\.pending_report|T22\\.host\\.return_lifetime|T22\\.host\\.shutdown_deadline|T22\\.host\\.shutdown_errors|T22\\.host\\.shutdown_order|T22\\.logging\\.memory\\.accept_reject_drop_accounting|T22\\.logging\\.memory\\.error_isolation|T22\\.logging\\.memory\\.flush_accepted_range|T22\\.logging\\.memory\\.format_redaction|T22\\.logging\\.memory\\.shutdown_callback_lifetime|T22\\.logging\\.test\\.accept_reject_drop_accounting|T22\\.logging\\.test\\.error_isolation|T22\\.logging\\.test\\.flush_accepted_range|T22\\.logging\\.test\\.format_redaction|T22\\.logging\\.test\\.shutdown_callback_lifetime|T23\\.evidence\\.actual_execution|T23\\.evidence\\.added_source|T23\\.evidence\\.all_rounds_retained|T23\\.evidence\\.binary_mutation_during_test|T23\\.evidence\\.changed_binary|T23\\.evidence\\.changed_lock|T23\\.evidence\\.changed_raw|T23\\.evidence\\.changed_source|T23\\.evidence\\.collector_process_fingerprint|T23\\.evidence\\.configuration_mismatch|T23\\.evidence\\.corrupt_report|T23\\.evidence\\.failed_then_rerun|T23\\.evidence\\.forged_human_approval|T23\\.evidence\\.forged_status_rejected|T23\\.evidence\\.gate_duplicate_runs|T23\\.evidence\\.gate_missing_profiles|T23\\.evidence\\.gate_mixed_source_rejected|T23\\.evidence\\.legacy_corruption|T23\\.evidence\\.missing_artifact|T23\\.evidence\\.missing_report|T23\\.evidence\\.old_report_not_reused|T23\\.evidence\\.print_success_exit_failure|T23\\.evidence\\.removed_expected_case|T23\\.evidence\\.repeat_required|T23\\.evidence\\.review_required_not_waived|T23\\.evidence\\.runtime_artifact_integrity|T23\\.evidence\\.runtime_duplicate_rejected|T23\\.evidence\\.schema_unknown_field|T23\\.evidence\\.skip_rejected|T23\\.evidence\\.source_directory_named_evidence|T23\\.evidence\\.source_mutation_during_test|T23\\.evidence\\.stale_runtime_artifact_rejected|T23\\.evidence\\.wrong_filter|T23\\.evidence\\.zero_tests|T23\\.footprint\\.allocation_report|T23\\.footprint\\.budget_provenance|T23\\.footprint\\.memory_calibration|T23\\.footprint\\.method_identity|T23\\.footprint\\.module_accounting|T23\\.footprint\\.native_occupancy|T23\\.footprint\\.owned_process|T23\\.footprint\\.phase_repetition|T23\\.footprint\\.raw_integrity|T23\\.footprint\\.thread_clock_calibration|T23\\.host\\.allocation_controls|T23\\.host\\.owner_reclamation|T23\\.host\\.steady_allocation|T23\\.logging\\.fixed_write_allocation|T23\\.native\\.allocation_governance|T23\\.native\\.allocation_other_costs|T23\\.native\\.allocation_probe|T23\\.native\\.allocation_steady|T23\\.process\\.crashed_exit|T23\\.process\\.launch_failure|T23\\.process\\.leaked_child_rejected|T23\\.process\\.nonfinite_timeout_rejected|T23\\.process\\.printed_success_nonzero|T23\\.process\\.raw_bytes|T23\\.process\\.timeout_tree|T24\\.contracts\\.install_pruning_rejected|T24\\.contracts\\.installed_component_consumer|T24\\.contracts\\.port_factory_contract_manifest|T24\\.contracts\\.public_headers|T24\\.foundation\\.backend_mode_rejected|T24\\.foundation\\.installed_consumer|T24\\.foundation\\.missing_dependency_rejected|T24\\.foundation\\.public_headers|T24\\.native_sdk\\.install_pruning_rejected|T24\\.native_sdk\\.installed_host|T24\\.native_sdk\\.link_closure|T24\\.native_sdk\\.metadata|T24\\.native_sdk\\.no_tests_producer|T24\\.native_sdk\\.public_headers|T24\\.registration\\.cold_docs_separation|T24\\.registration\\.handler_not_exposed|T24\\.registration\\.internal_component_boundary|T24\\.sdk\\.install_and_missing_components|T24\\.sdk\\.version_header)$",
+        "--show-only=json-v1"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T07:40:41.380793+00:00",
+      "finished_at": "2026-09-08T07:40:41.611244+00:00",
+      "duration_seconds": 0.230451
+    },
+    {
+      "id": "test-001",
+      "role": "test",
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "J:\\Code\\Kernel_v2\\build\\d1.06-debug",
+        "-C",
+        "Debug",
+        "-R",
+        "^(T01\\.architecture\\.dependency_dag|T01\\.architecture\\.negative_guards|T01\\.contracts\\.component_closure|T01\\.contracts\\.public_include_boundary|T01\\.dependencies\\.expected|T01\\.dependencies\\.lock_contracts|T01\\.dependencies\\.toolchain|T01\\.native_sdk\\.surface_guard|T02\\.contracts\\.atomic_async_rejected|T02\\.contracts\\.atomic_read_adapters|T02\\.contracts\\.compile_fixture_guards|T02\\.contracts\\.compile_fixture_setup|T02\\.contracts\\.context_capability_boundary|T02\\.contracts\\.effect_shape|T02\\.contracts\\.lifecycle_shape|T02\\.contracts\\.read_shape|T02\\.contracts\\.state_edit_shape|T02\\.contracts\\.type_contract_constraints|T02\\.contracts\\.typed_value_validation|T02\\.native\\.candidate_read_dispatch|T02\\.native\\.exact_binding|T02\\.native\\.invalid_input|T02\\.native\\.private_dispatch|T02\\.native\\.registered_compute|T02\\.native\\.registered_read|T02\\.native\\.validation_exception|T02\\.native_sdk\\.private_dispatch|T02\\.registration\\.atomic_candidate_contract|T02\\.registration\\.batch_k_failure_atomic|T02\\.registration\\.callback_exception_cleanup|T02\\.registration\\.declared_operations_complete|T02\\.registration\\.error_budget_sticky|T02\\.registration\\.exact_operation_versions|T02\\.registration\\.execution_capabilities|T02\\.registration\\.ignored_errors_sticky|T02\\.registration\\.manifest_owned_budget|T02\\.registration\\.module_cycles_rejected|T02\\.registration\\.module_dag_order|T02\\.registration\\.module_identity_versions|T02\\.registration\\.provider_binding|T02\\.registration\\.schema_capability_absent|T02\\.registration\\.service_binding|T02\\.registration\\.shape_compile_contract|T03\\.foundation\\.code_only_no_allocation|T03\\.foundation\\.layout_statistics|T03\\.foundation\\.value_operations_no_allocation|T03\\.host\\.catalog_registration|T03\\.host\\.configuration|T03\\.host\\.delegation_revoke|T03\\.host\\.native_results|T03\\.host\\.ready_gate|T03\\.host\\.session_ownership|T03\\.host\\.start_failures|T03\\.host\\.start_order|T03\\.native\\.cancel_and_budget|T03\\.native\\.component_boundary|T03\\.native\\.example_consumer|T03\\.native\\.no_self_wait|T03\\.native\\.no_task_path|T03\\.native\\.provider_unavailable|T03\\.native\\.reentrant_and_concurrent|T03\\.native\\.resource_lifetime|T03\\.native\\.thread_modes|T03\\.native\\.thread_origin|T04\\.foundation\\.checked_arithmetic|T04\\.foundation\\.checked_count_atomic_update|T04\\.foundation\\.checked_narrowing|T04\\.foundation\\.display_utf8|T04\\.foundation\\.error_details_budget|T04\\.foundation\\.error_details_ownership|T04\\.foundation\\.exception_not_business_failure|T04\\.foundation\\.invariant_fail_fast|T04\\.foundation\\.result_bad_access|T04\\.foundation\\.result_error_propagation|T04\\.foundation\\.result_move_only_error|T04\\.foundation\\.result_move_only_value|T04\\.foundation\\.result_void|T04\\.foundation\\.static_error_domain|T05\\.contracts\\.binding_generation_before_access|T05\\.contracts\\.binding_owner_lifetime|T05\\.contracts\\.execution_identity_separation|T05\\.contracts\\.operation_exact_identity|T05\\.contracts\\.typed_binding_fingerprint|T05\\.foundation\\.bound_handle_generation|T05\\.foundation\\.identity_canonical_codec|T05\\.foundation\\.name_ascii_bounds|T05\\.foundation\\.name_case_and_ownership|T05\\.foundation\\.runtime_epoch_separation|T05\\.foundation\\.tagged_identity_types|T05\\.registration\\.exact_fingerprint|T05\\.registration\\.failure_preserves_catalog|T05\\.registration\\.publish_once_freeze|T05\\.registration\\.registry_generation|T05\\.registration\\.snapshot_lifetime|T05\\.registration\\.typed_binding_success|T06\\.contracts\\.atomic_prepared_identity|T06\\.contracts\\.before_apply_and_composite_proofs|T06\\.contracts\\.completion_once_and_drain|T06\\.contracts\\.effect_report_preserves_fact|T06\\.contracts\\.executor_inline_ownership|T06\\.contracts\\.executor_reject_exception_cleanup|T06\\.contracts\\.known_facts_append_only|T06\\.contracts\\.lifecycle_report_preserves_state|T06\\.contracts\\.outcome_closed_variants|T06\\.contracts\\.publication_proof_required|T06\\.contracts\\.record_evidence_boundary|T06\\.contracts\\.reply_phase_completion_separation|T06\\.native\\.admission_order|T06\\.native\\.authority_origin|T06\\.native\\.business_failure|T06\\.native\\.invalid_output|T06\\.native\\.lifecycle_replacement|T06\\.native\\.outcome_consistency|T06\\.native\\.permission_intersection|T06\\.native\\.policy_contract_alignment|T06\\.native\\.revoke_and_regrant|T06\\.native\\.session_and_deadline|T06\\.native\\.target_binding|T07\\.policy\\.authentication_source|T07\\.policy\\.cancel_arbitration|T07\\.policy\\.consume_before_revoke|T07\\.policy\\.delegation_shrink|T07\\.policy\\.exception_atomicity|T07\\.policy\\.expiry_boundary|T07\\.policy\\.generation_exhaustion|T07\\.policy\\.group_members_complete|T07\\.policy\\.group_substitution|T07\\.policy\\.operation_exact_contract|T07\\.policy\\.owned_inputs_budget|T07\\.policy\\.owner_scope|T07\\.policy\\.permit_concurrent|T07\\.policy\\.permit_once|T07\\.policy\\.permit_origin_binding|T07\\.policy\\.recursive_delegation_denied|T07\\.policy\\.revoke_before_consume|T07\\.policy\\.scope_four_way|T07\\.policy\\.service_principal|T07\\.policy\\.session_isolation|T07\\.policy\\.target_frozen_set|T07\\.policy\\.target_issued_identity|T07\\.policy\\.target_lifecycle|T19\\.conformance\\.backend_exception|T19\\.conformance\\.common_cannot_be_waived|T19\\.conformance\\.common_contract|T19\\.conformance\\.factory_identity|T19\\.conformance\\.false_capability|T19\\.conformance\\.fault_flag_not_qualification|T19\\.conformance\\.fault_not_qualified|T19\\.conformance\\.missing_required_capability|T19\\.conformance\\.nested_worker_rejection|T19\\.conformance\\.optional_not_passed|T19\\.conformance\\.profile_requires_capability|T19\\.conformance\\.wrong_contract_version|T19\\.conformance\\.wrong_implementation_digest|T19\\.contracts\\.authorized_owner_filter|T19\\.contracts\\.completion_independent_of_observation|T19\\.contracts\\.live_keyset_progress|T19\\.contracts\\.observation_budgets|T19\\.contracts\\.observation_host_version|T19\\.contracts\\.summary_owned_snapshot|T19\\.host\\.logging_ownership|T19\\.logging\\.memory_pages|T19\\.policy\\.page_binding_isolation|T19\\.policy\\.page_owner_authorization|T19\\.policy\\.page_revoke_live_keyset|T19\\.policy\\.query_field_projection|T19\\.policy\\.subscription_connection_cleanup|T19\\.policy\\.subscription_scope_atomic|T20\\.policy\\.failed_start_not_started|T20\\.policy\\.internal_component_boundary|T20\\.policy\\.queued_revoke_drop|T20\\.policy\\.transmission_start_arbitration|T20\\.policy\\.unknown_start_no_retry|T20\\.policy\\.unsubscribe_inflight|T22\\.host\\.admission_race|T22\\.host\\.destructor_guard|T22\\.host\\.lifecycle_reentrancy|T22\\.host\\.pending_report|T22\\.host\\.return_lifetime|T22\\.host\\.shutdown_deadline|T22\\.host\\.shutdown_errors|T22\\.host\\.shutdown_order|T22\\.logging\\.memory\\.accept_reject_drop_accounting|T22\\.logging\\.memory\\.error_isolation|T22\\.logging\\.memory\\.flush_accepted_range|T22\\.logging\\.memory\\.format_redaction|T22\\.logging\\.memory\\.shutdown_callback_lifetime|T22\\.logging\\.test\\.accept_reject_drop_accounting|T22\\.logging\\.test\\.error_isolation|T22\\.logging\\.test\\.flush_accepted_range|T22\\.logging\\.test\\.format_redaction|T22\\.logging\\.test\\.shutdown_callback_lifetime|T23\\.evidence\\.actual_execution|T23\\.evidence\\.added_source|T23\\.evidence\\.all_rounds_retained|T23\\.evidence\\.binary_mutation_during_test|T23\\.evidence\\.changed_binary|T23\\.evidence\\.changed_lock|T23\\.evidence\\.changed_raw|T23\\.evidence\\.changed_source|T23\\.evidence\\.collector_process_fingerprint|T23\\.evidence\\.configuration_mismatch|T23\\.evidence\\.corrupt_report|T23\\.evidence\\.failed_then_rerun|T23\\.evidence\\.forged_human_approval|T23\\.evidence\\.forged_status_rejected|T23\\.evidence\\.gate_duplicate_runs|T23\\.evidence\\.gate_missing_profiles|T23\\.evidence\\.gate_mixed_source_rejected|T23\\.evidence\\.legacy_corruption|T23\\.evidence\\.missing_artifact|T23\\.evidence\\.missing_report|T23\\.evidence\\.old_report_not_reused|T23\\.evidence\\.print_success_exit_failure|T23\\.evidence\\.removed_expected_case|T23\\.evidence\\.repeat_required|T23\\.evidence\\.review_required_not_waived|T23\\.evidence\\.runtime_artifact_integrity|T23\\.evidence\\.runtime_duplicate_rejected|T23\\.evidence\\.schema_unknown_field|T23\\.evidence\\.skip_rejected|T23\\.evidence\\.source_directory_named_evidence|T23\\.evidence\\.source_mutation_during_test|T23\\.evidence\\.stale_runtime_artifact_rejected|T23\\.evidence\\.wrong_filter|T23\\.evidence\\.zero_tests|T23\\.footprint\\.allocation_report|T23\\.footprint\\.budget_provenance|T23\\.footprint\\.memory_calibration|T23\\.footprint\\.method_identity|T23\\.footprint\\.module_accounting|T23\\.footprint\\.native_occupancy|T23\\.footprint\\.owned_process|T23\\.footprint\\.phase_repetition|T23\\.footprint\\.raw_integrity|T23\\.footprint\\.thread_clock_calibration|T23\\.host\\.allocation_controls|T23\\.host\\.owner_reclamation|T23\\.host\\.steady_allocation|T23\\.logging\\.fixed_write_allocation|T23\\.native\\.allocation_governance|T23\\.native\\.allocation_other_costs|T23\\.native\\.allocation_probe|T23\\.native\\.allocation_steady|T23\\.process\\.crashed_exit|T23\\.process\\.launch_failure|T23\\.process\\.leaked_child_rejected|T23\\.process\\.nonfinite_timeout_rejected|T23\\.process\\.printed_success_nonzero|T23\\.process\\.raw_bytes|T23\\.process\\.timeout_tree|T24\\.contracts\\.install_pruning_rejected|T24\\.contracts\\.installed_component_consumer|T24\\.contracts\\.port_factory_contract_manifest|T24\\.contracts\\.public_headers|T24\\.foundation\\.backend_mode_rejected|T24\\.foundation\\.installed_consumer|T24\\.foundation\\.missing_dependency_rejected|T24\\.foundation\\.public_headers|T24\\.native_sdk\\.install_pruning_rejected|T24\\.native_sdk\\.installed_host|T24\\.native_sdk\\.link_closure|T24\\.native_sdk\\.metadata|T24\\.native_sdk\\.no_tests_producer|T24\\.native_sdk\\.public_headers|T24\\.registration\\.cold_docs_separation|T24\\.registration\\.handler_not_exposed|T24\\.registration\\.internal_component_boundary|T24\\.sdk\\.install_and_missing_components|T24\\.sdk\\.version_header)$",
+        "--no-tests=error",
+        "--output-on-failure",
+        "--output-junit",
+        "J:\\Code\\Kernel_v2\\evidence\\6e2a1ba1c6b9-e34cc8b392fc\\win-msvc-debug\\D1.06\\20260908T074026Z-eee3d4dd9941\\round-001-junit.xml"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T07:40:41.681143+00:00",
+      "finished_at": "2026-09-08T07:57:33.763992+00:00",
+      "duration_seconds": 1012.082849
+    }
+  ],
+  "command_costs": {
+    "scope": "top-level-only",
+    "total": 9,
+    "duration_seconds": 1022.480512,
+    "by_role": [
+      {
+        "role": "build",
+        "count": 1,
+        "duration_seconds": 2.25032
+      },
+      {
+        "role": "check",
+        "count": 3,
+        "duration_seconds": 0.970464
+      },
+      {
+        "role": "configure",
+        "count": 1,
+        "duration_seconds": 6.64095
+      },
+      {
+        "role": "discover",
+        "count": 1,
+        "duration_seconds": 0.230451
+      },
+      {
+        "role": "metadata",
+        "count": 2,
+        "duration_seconds": 0.305478
+      },
+      {
+        "role": "test",
+        "count": 1,
+        "duration_seconds": 1012.082849
+      }
+    ],
+    "configure": {
+      "count": 1,
+      "duration_seconds": 6.64095
+    },
+    "build": {
+      "count": 1,
+      "duration_seconds": 2.25032
+    },
+    "install": {
+      "count": 0,
+      "duration_seconds": 0
+    },
+    "nested_command_count": null
+  },
+  "failure_signals": [],
+  "source_claims": {
+    "source": {
+      "commit": "6e2a1ba1c6b9ea01b20fe897d2486ca4b761dc92",
+      "dirty": true,
+      "root": "J:\\Code\\Kernel_v2",
+      "build_inputs_sha256": "e34cc8b392fc90249e70f94065c6880d129335bdd5d9522825b644e075cc56d6",
+      "archive": "source-inputs.zip",
+      "archive_sha256": "61f254fe2ee91802d300841910b97eaa9e429b69edcd2ff80752d1312dd7deb3"
+    },
+    "manifest": {
+      "path": "tests/runs/d1.06-win-msvc-debug.json",
+      "sha256": "db720ad7bbfcd7144a325d42fa2ad94f9ea62eb23426d44359609cc52a56c722",
+      "snapshot": "manifest.json"
+    },
+    "requirements_manifest_sha256": "f0e86ee8fc821b142a6b9298756f135c0874dcf2f0ad508625a04af611d1187c",
+    "collector": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\accept_gate.py",
+        "sha256": "a33a4efe90b080a64ca6579922eb0ec55816076a018faef1f358096203016d38"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\build_identity.py",
+        "sha256": "23620838037ab4dd49ad30bc7ff96cdb29abbd67036a87edcd8d76a8119dee86"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\common.py",
+        "sha256": "1026f8e9ce8a6ca79d019e15f7cd9f810180423e88aa58f9c4e5aa4d145e221b"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\gate.py",
+        "sha256": "8e1526662d21c341baf6ad35cf139b039e6df65dd0e0fb774c7f8d3e3856013f"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\import_bootstrap.py",
+        "sha256": "1e4260dc6356ab17749772457f27873fa1b2c5864290e38d1494e4aa0ee2b759"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\process.py",
+        "sha256": "1f49872091ab5ec967a5c900a48e714284290e29c4f2baffad7cb614933c3c94"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\review_policy.py",
+        "sha256": "35f3628a58d464d27978fbe9eaa58d2944f32eca766c31215e729f9048bbdd40"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\run.py",
+        "sha256": "fc2b3e5e50996db54cf276aa18db84854b9f58eb03a369dc9c3e5a23b88c1465"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\summary.py",
+        "sha256": "1a21ff50b78027f822e94649638c6d52a6dadd654440cf8109bb5ccf4f6b1161"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\validate.py",
+        "sha256": "bef0acaf56a5e21bf04e8bd176b00fe5e62852698b38259a88447bbc2cc107a3"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\schemas\\evidence-v1.schema.json",
+        "sha256": "eeeca84a12fa7e9f62234902aa77f2147fb174f65c8a7a748456fcc2c9ab2a32"
+      }
+    ]
+  },
+  "references": [
+    {
+      "path": "001-cmake-version-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "001-cmake-version-stdout.log",
+      "role": "command-raw",
+      "sha256": "02282b1eefbb0dd98bd4578caa8861cc2de062ebcbef435bace0359683bbfa57",
+      "size": 97
+    },
+    {
+      "path": "002-ctest-version-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "002-ctest-version-stdout.log",
+      "role": "command-raw",
+      "sha256": "a1f1a612ac841f12ccc139b534f734d054a3c12b13186dc706bc385b662fa1ac",
+      "size": 97
+    },
+    {
+      "path": "003-configure-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "003-configure-stdout.log",
+      "role": "command-raw",
+      "sha256": "3d15a159ebd4f2f2a900509a655a9f964a0d94d9caec55e9d3749288801d3a30",
+      "size": 1099
+    },
+    {
+      "path": "004-build-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "004-build-stdout.log",
+      "role": "command-raw",
+      "sha256": "50097d33ee286332d8b6870d1595771d5f78d25ab00919611e450ce8b7a83a53",
+      "size": 7371
+    },
+    {
+      "path": "005-check-000-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "005-check-000-stdout.log",
+      "role": "command-raw",
+      "sha256": "c655f3998df1a394aa7946bb6b310cbfe93b4dfd0946d1639a79a7b92d1c0ef9",
+      "size": 2217
+    },
+    {
+      "path": "006-check-001-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "006-check-001-stdout.log",
+      "role": "command-raw",
+      "sha256": "09c6a3dc6d0dae015038c93a0c110aa5bf54f98fab6c842fdf53285156bcf921",
+      "size": 3493
+    },
+    {
+      "path": "007-check-002-stderr.log",
+      "role": "command-raw",
+      "sha256": "96fdb58c5b3910a56c46986110f4db4f6d24f6040482c3fcfd6fff347fcf415d",
+      "size": 167
+    },
+    {
+      "path": "007-check-002-stdout.log",
+      "role": "command-raw",
+      "sha256": "512441fd505aaccdb580b465f90c908b7ef87073be86bffa1eda7b5dfcf91cb5",
+      "size": 122
+    },
+    {
+      "path": "008-discover-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "008-discover-stdout.log",
+      "role": "command-raw",
+      "sha256": "f0e95d0c311af0c101856e4388eb6e5b893dbf81c720fbf1d1f7bea8872ea268",
+      "size": 326031
+    },
+    {
+      "path": "009-test-001-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "009-test-001-stdout.log",
+      "role": "command-raw",
+      "sha256": "6ced75b609b9499111730c04ad5cccb527741f565873f8a2db3b5825eed5fcc1",
+      "size": 41017
+    },
+    {
+      "path": "build-artifacts.zip",
+      "role": "build-archive",
+      "sha256": "48600ad3156d91f1ca34feb7b544bdfbe9954bea510d3a0249b61c29e2df9860",
+      "size": 8129795
+    },
+    {
+      "path": "discovered.json",
+      "role": "discovered",
+      "sha256": "3c8625d51f0c8d13a9441f737270496b231dd8f89ae90f969d4381f0819dda51",
+      "size": 310024
+    },
+    {
+      "path": "expected.json",
+      "role": "expected",
+      "sha256": "f0e86ee8fc821b142a6b9298756f135c0874dcf2f0ad508625a04af611d1187c",
+      "size": 49702
+    },
+    {
+      "path": "manifest.json",
+      "role": "manifest",
+      "sha256": "db720ad7bbfcd7144a325d42fa2ad94f9ea62eb23426d44359609cc52a56c722",
+      "size": 114037
+    },
+    {
+      "path": "report.json",
+      "role": "report",
+      "sha256": "7bc6cdc76877729cc1ede89090783459075d0ec69d2e85c402c8a7f5733c7eeb",
+      "size": 1155888
+    },
+    {
+      "path": "review-records.zip",
+      "role": "review-archive",
+      "sha256": "c9659c4e2851c08afcf0be5c33f02ece7e0b12f405de1d9138a5dbe7799426eb",
+      "size": 2081
+    },
+    {
+      "path": "round-001-junit.xml",
+      "role": "junit",
+      "sha256": "891cca04fdb346c5312f0e93c7948a3baeb949a8878954d66a831b070ff36903",
+      "size": 110391
+    },
+    {
+      "path": "runtime-artifacts.zip",
+      "role": "runtime_archive",
+      "sha256": "52017badaa880f009a417e95dfac67422419de0cc87bbed2d4d28a3eb7ce93ff",
+      "size": 35427039
+    },
+    {
+      "path": "selftest-fixtures.zip",
+      "role": "selftest_fixtures",
+      "sha256": "4dbcf38cc2c8eb0f9a7848dd445da7954b39b21068aff55a6a8a9c8745fe4bfa",
+      "size": 1125765
+    },
+    {
+      "path": "source-inputs.json",
+      "role": "source-inputs",
+      "sha256": "6ab67406929cc221e24edb6cb2a1f77a4e6d877057a85c37630ffdbe0d404038",
+      "size": 59654
+    },
+    {
+      "path": "source-inputs.zip",
+      "role": "source-archive",
+      "sha256": "61f254fe2ee91802d300841910b97eaa9e429b69edcd2ff80752d1312dd7deb3",
+      "size": 1166034
+    }
+  ],
+  "content_sha256": "eb8aa85d36c2fc714d8cc0e79d4d24ebf4b3578b36b62b03b81f379574ace44c"
+}

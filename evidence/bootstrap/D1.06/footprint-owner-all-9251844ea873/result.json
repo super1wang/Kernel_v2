@@ -1,0 +1,41 @@
+{
+  "status": "Passed",
+  "scope": "finite owner fault controls only; latency protocol mode",
+  "budget_status": "NotApproved",
+  "pilot": false,
+  "assertions": [
+    {
+      "name": "permanent_regressions",
+      "passed": true
+    },
+    {
+      "name": "full_protocol_positive",
+      "passed": true
+    },
+    {
+      "name": "extra_final_event_rejected",
+      "passed": true,
+      "errors": [
+        "ObservationError: InvalidRecordSizeOrExtraPhase"
+      ]
+    },
+    {
+      "name": "root_exit_owned_descendants_drained",
+      "passed": true
+    },
+    {
+      "name": "same_name_external_sentinel_survives",
+      "passed": true,
+      "scope": "test driver coordination thread only; separate execute-owned Job; no sampler thread",
+      "sentinel_pid": 60176,
+      "observed_pid": 51052
+    },
+    {
+      "name": "absolute_stage_deadline",
+      "passed": true,
+      "errors": [
+        "ObservationError: StageDeadlineReached"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "created_at": "2026-09-08T09:13:40.913669+00:00",
+  "note": "原始运行归档与补充日志/配置为提交载体；成员名就是仓库相对路径。原正式附件均按 SHA/size 校验。展开目录和可再生构建缓存保留本地并按精确目录设置本地排除；缓存不冒充正式证据，见 local-derived-cache-index.json。",
+  "archives": [
+    {
+      "path": "evidence/0c86ee7a48fd-eb60d2d67151/win-msvc-debug/D1.06/20260908T071231Z-693363f24ad8/runtime-artifacts.zip",
+      "sha256": "81e1d89a8569a51b18646889df603d9b666d1945129945be9f5c5829caadc848",
+      "members": 3790
+    },
+    {
+      "path": "evidence/6e2a1ba1c6b9-e34cc8b392fc/win-msvc-asan/D1.06/20260908T081234Z-0893983131f6/runtime-artifacts.zip",
+      "sha256": "dcba8fe84450b003566b6c0e272b2dc1a19f960db7cd2c5be69b1d80d5d525b0",
+      "members": 2347
+    },
+    {
+      "path": "evidence/6e2a1ba1c6b9-e34cc8b392fc/win-msvc-debug/D1.06/20260908T074026Z-eee3d4dd9941/runtime-artifacts.zip",
+      "sha256": "52017badaa880f009a417e95dfac67422419de0cc87bbed2d4d28a3eb7ce93ff",
+      "members": 3790
+    },
+    {
+      "path": "evidence/6e2a1ba1c6b9-e34cc8b392fc/win-msvc-release/D1.06/20260908T075814Z-8011de58bcc9/runtime-artifacts.zip",
+      "sha256": "90fc75ff49bb8d069cabca50761797a2cd2e1556ae2b7c54533e4ea8905b969c",
+      "members": 2671
+    },
+    {
+      "path": "evidence/0452fad9c894-2ff0d2b44d6b/win-msvc-asan/D1.06/20260908T082256Z-867b8ba50173/runtime-artifacts.zip",
+      "sha256": "1b4015683cbce1f5d2ce0dcd11859d162feed80c6bea8290ee4307c35414f190",
+      "members": 2572
+    },
+    {
+      "path": "evidence/0452fad9c894-2ff0d2b44d6b/win-msvc-debug/D1.06/20260908T083458Z-e90b5cf0e5e0/runtime-artifacts.zip",
+      "sha256": "77f8c28a9e479cde851c42c60d6cf96c2fb4bd962730130183b82a0128060a29",
+      "members": 3790
+    },
+    {
+      "path": "evidence/0452fad9c894-2ff0d2b44d6b/win-msvc-release/D1.06/20260908T085242Z-ec1abfce7b66/runtime-artifacts.zip",
+      "sha256": "3db3347102b7ad3092e4df267611af0b26e14343d81f90064baedfe01b7cc3c6",
+      "members": 2671
+    },
+    {
+      "path": "evidence/0452fad9c894-2ff0d2b44d6b/acceptance-D1.06-G1-final/supplemental-runtime.zip",
+      "sha256": "d0b5abd63454c31f282f2353540c590d00163f8b2c23782b68b99c1feb9a45a2",
+      "members": 3204,
+      "note": "未进入原正式运行附件的失败子验证原始材料；不赋予 Passed"
+    }
+  ],
+  "local_expanded_directories": [
+    "evidence/G1/win-msvc-asan/allocation_report/f740017c4f644ffeb6c8ce96c68c36f8",
+    "evidence/G1/win-msvc-asan/native_occupancy/1d9bab5fb14f4a97abdc49973c17d82c",
+    "evidence/G1/win-msvc-debug/allocation_report/8a1c466859284bc0b6ac8f194c217a53",
+    "evidence/G1/win-msvc-debug/allocation_report/8c11328e2f1e4ee0aabc0cdef8ba90cd",
+    "evidence/G1/win-msvc-debug/allocation_report/92ad2331e5774dedb9639319bf09b19b",
+    "evidence/G1/win-msvc-debug/allocation_report/ed74eac085334abe97818311e1efa6c4",
+    "evidence/G1/win-msvc-debug/native_occupancy/13315910888442b7b350a8c006455035",
+    "evidence/G1/win-msvc-debug/native_occupancy/43534d06a35d428cacc10161fec8b6ca",
+    "evidence/G1/win-msvc-debug/native_occupancy/d5893b9d434c4fba8630548175a3fa11",
+    "evidence/G1/win-msvc-debug/native_occupancy/f758243108fd45a683835b74d30f9702",
+    "evidence/G1/win-msvc-release/allocation_report/5566f645c23f48a881d7d0b4ee507945",
+    "evidence/G1/win-msvc-release/allocation_report/67b3217827cb4313862713db54916f77",
+    "evidence/G1/win-msvc-release/native_occupancy/76eb5cfb557d490881e7fa6d00328ec3",
+    "evidence/G1/win-msvc-release/native_occupancy/a9c7ae7698524c66a4c40df995f3ab9c",
+    "evidence/G1/win-msvc-release/ready_latency/807abcc7eaf54f47905dd242dadfdd98",
+    "evidence/G1/win-msvc-release/ready_latency/e9199df15ef243fb9139ca90065df6d5",
+    "evidence/bootstrap/D1.06/footprint-calibrate-d43236a12cf3",
+    "evidence/bootstrap/D1.06/footprint-calibrate-dbda4abc47cc",
+    "evidence/bootstrap/D1.06/footprint-calibrate-fe5b5bfe2a64",
+    "evidence/bootstrap/D1.06/footprint-owner-all-5ce0f0c419b8",
+    "evidence/bootstrap/D1.06/footprint-owner-all-7db67d3d1161",
+    "evidence/bootstrap/D1.06/footprint-owner-all-9251844ea873",
+    "evidence/bootstrap/D1.06/sdk-install_pruning_rejected-65808907fb",
+    "evidence/bootstrap/D1.06/sdk-install_pruning_rejected-bc339f4f52",
+    "evidence/bootstrap/D1.06/sdk-install_pruning_rejected-e0784ffa5c",
+    "evidence/bootstrap/D1.06/sdk-installed_host-220bdb9bac",
+    "evidence/bootstrap/D1.06/sdk-installed_host-7abe14a8af",
+    "evidence/bootstrap/D1.06/sdk-installed_host-bb33440572",
+    "evidence/bootstrap/D1.06/sdk-installed_host-c126dd72c2",
+    "evidence/bootstrap/D1.06/sdk-installed_host-c2b9537e2a",
+    "evidence/bootstrap/D1.06/sdk-installed_host-d542513206",
+    "evidence/bootstrap/D1.06/sdk-installed_host-fb539e9e03",
+    "evidence/bootstrap/D1.06/sdk-link_closure-09dcadc3c2",
+    "evidence/bootstrap/D1.06/sdk-link_closure-0b0b4fb2ea",
+    "evidence/bootstrap/D1.06/sdk-link_closure-5c3f626da6",
+    "evidence/bootstrap/D1.06/sdk-link_closure-81358edb3e",
+    "evidence/bootstrap/D1.06/sdk-link_closure-9033fce187",
+    "evidence/bootstrap/D1.06/sdk-link_closure-e755bf0b3c",
+    "evidence/bootstrap/D1.06/sdk-link_closure-ec397d79d9",
+    "evidence/bootstrap/D1.06/sdk-metadata-5cbe25c0bb",
+    "evidence/bootstrap/D1.06/sdk-metadata-b88e94325d",
+    "evidence/bootstrap/D1.06/sdk-metadata-d12829d005",
+    "evidence/bootstrap/D1.06/sdk-no_tests_producer-1adec8dfcb",
+    "evidence/bootstrap/D1.06/sdk-no_tests_producer-1fcb62057e",
+    "evidence/bootstrap/D1.06/sdk-no_tests_producer-70b3aa1dc0",
+    "evidence/bootstrap/D1.06/sdk-no_tests_producer-7771752a34",
+    "evidence/bootstrap/D1.06/sdk-no_tests_producer-a6fac60135",
+    "evidence/bootstrap/D1.06/sdk-no_tests_producer-b281c4daa7",
+    "evidence/bootstrap/D1.06/sdk-no_tests_producer-dbb5c8301e",
+    "evidence/bootstrap/D1.06/sdk-private_dispatch-14c8cb96e7",
+    "evidence/bootstrap/D1.06/sdk-private_dispatch-2386c11687",
+    "evidence/bootstrap/D1.06/sdk-private_dispatch-4a50878fe7",
+    "evidence/bootstrap/D1.06/sdk-private_dispatch-6c1dabdbcc",
+    "evidence/bootstrap/D1.06/sdk-private_dispatch-9a42cff1df",
+    "evidence/bootstrap/D1.06/sdk-private_dispatch-9fddc897e6",
+    "evidence/bootstrap/D1.06/sdk-private_dispatch-b1b734b3d9",
+    "evidence/bootstrap/D1.06/sdk-public_headers-507fe19630",
+    "evidence/bootstrap/D1.06/sdk-public_headers-6c9948a4d9",
+    "evidence/bootstrap/D1.06/sdk-public_headers-a2decb7ca3",
+    "evidence/bootstrap/D1.06/sdk-public_headers-a9721cb1cd",
+    "evidence/bootstrap/D1.06/sdk-public_headers-b609836144",
+    "evidence/bootstrap/D1.06/sdk-public_headers-d7fc390e09",
+    "evidence/bootstrap/D1.06/sdk-public_headers-e1c0f6b4b2",
+    "evidence/bootstrap/D1.06/sdk-wrapper-guard-2ff23d77c3",
+    "evidence/bootstrap/D1.06/sdk-wrapper-guard-6b981feb3b",
+    "evidence/bootstrap/D1.06/sdk-wrapper-guard-8bc61145a4"
+  ],
+  "expanded_files": 12853,
+  "local_derived_cache_files": 546
+}

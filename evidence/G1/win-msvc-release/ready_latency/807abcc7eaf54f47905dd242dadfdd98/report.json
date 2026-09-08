@@ -1,0 +1,80 @@
+{
+  "format": "ock.native-footprint-report/1",
+  "status": "Passed",
+  "created_at": "2026-09-08T08:03:43.442648+00:00",
+  "completed_at": "2026-09-08T08:06:11.688977+00:00",
+  "method_digest": "ceca01ccc822e38acde5b85c2c93d9ee4ac77ba5a40104e297f357239f4a0ffa",
+  "profile": "win-msvc-release",
+  "mode": "latency",
+  "blocks": 6,
+  "run_ids": [
+    "36252-b0-0-baseline-807abcc7eaf54f47905dd242dadfdd98",
+    "62408-b0-1-native-807abcc7eaf54f47905dd242dadfdd98",
+    "62088-b0-2-native-807abcc7eaf54f47905dd242dadfdd98",
+    "58548-b0-3-baseline-807abcc7eaf54f47905dd242dadfdd98",
+    "24140-b1-0-baseline-807abcc7eaf54f47905dd242dadfdd98",
+    "39712-b1-1-native-807abcc7eaf54f47905dd242dadfdd98",
+    "34204-b1-2-native-807abcc7eaf54f47905dd242dadfdd98",
+    "29952-b1-3-baseline-807abcc7eaf54f47905dd242dadfdd98",
+    "38200-b2-0-baseline-807abcc7eaf54f47905dd242dadfdd98",
+    "32312-b2-1-native-807abcc7eaf54f47905dd242dadfdd98",
+    "33064-b2-2-native-807abcc7eaf54f47905dd242dadfdd98",
+    "52092-b2-3-baseline-807abcc7eaf54f47905dd242dadfdd98",
+    "46972-b3-0-baseline-807abcc7eaf54f47905dd242dadfdd98",
+    "14556-b3-1-native-807abcc7eaf54f47905dd242dadfdd98",
+    "59984-b3-2-native-807abcc7eaf54f47905dd242dadfdd98",
+    "33816-b3-3-baseline-807abcc7eaf54f47905dd242dadfdd98",
+    "31116-b4-0-baseline-807abcc7eaf54f47905dd242dadfdd98",
+    "44384-b4-1-native-807abcc7eaf54f47905dd242dadfdd98",
+    "1828-b4-2-native-807abcc7eaf54f47905dd242dadfdd98",
+    "17072-b4-3-baseline-807abcc7eaf54f47905dd242dadfdd98",
+    "41552-b5-0-baseline-807abcc7eaf54f47905dd242dadfdd98",
+    "63648-b5-1-native-807abcc7eaf54f47905dd242dadfdd98",
+    "31844-b5-2-native-807abcc7eaf54f47905dd242dadfdd98",
+    "51072-b5-3-baseline-807abcc7eaf54f47905dd242dadfdd98"
+  ],
+  "metrics": {
+    "internal_ms_absolute_max": 103.877,
+    "internal_ms_paired_max": 5.0154,
+    "create_to_ready_ms_absolute_max": 371.2177,
+    "create_to_ready_ms_paired_max": 25.210300000000018,
+    "distribution_increment_bytes": 302592
+  },
+  "statistics": {
+    "internal_ms": {
+      "native": {
+        "count": 12,
+        "min": 76.2951,
+        "median": 95.4371,
+        "p95": 103.877,
+        "max": 103.877
+      },
+      "paired_increment": {
+        "count": 12,
+        "min": -15.124899999999997,
+        "median": 0.04420000000000357,
+        "p95": 5.0154,
+        "max": 5.0154
+      }
+    },
+    "create_to_ready_ms": {
+      "native": {
+        "count": 12,
+        "min": 241.3976,
+        "median": 316.0451,
+        "p95": 371.2177,
+        "max": 371.2177
+      },
+      "paired_increment": {
+        "count": 12,
+        "min": -43.373099999999965,
+        "median": -5.05619999999999,
+        "p95": 25.210300000000018,
+        "max": 25.210300000000018
+      }
+    }
+  },
+  "budget_status": "Approved",
+  "new_native_threads": 0,
+  "scope": "NativeSubset only; sampled memory, no claim of full Embedded or physical-machine approval"
+}

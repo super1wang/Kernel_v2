@@ -1,0 +1,1371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="193"
+	failures="2"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-U2F62TA"
+	time="391"
+	timestamp="2026-09-08T16:13:05"
+	>
+	<testcase name="T23.footprint.native_occupancy" classname="T23.footprint.native_occupancy" time="9.27739" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>J:\Code\Kernel_v2\evidence\G1\win-msvc-debug\native_occupancy\d5893b9d434c4fba8630548175a3fa11
+command failed: build
+</system-out>
+	</testcase>
+	<testcase name="T23.footprint.allocation_report" classname="T23.footprint.allocation_report" time="9.95686" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>J:\Code\Kernel_v2\evidence\G1\win-msvc-debug\allocation_report\8a1c466859284bc0b6ac8f194c217a53
+command failed: build
+</system-out>
+	</testcase>
+	<testcase name="T24.sdk.version_header" classname="T24.sdk.version_header" time="0.136062" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>0.1.0-dev.2
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.expected" classname="T01.dependencies.expected" time="0.130032" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>expected move-only/void/error/exception smoke
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.toolchain" classname="T01.dependencies.toolchain" time="0.133577" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>MSVC_FULL_VER=194435216 __cplusplus=202002 pointer_bits=64 CRT=/MDd
+</system-out>
+	</testcase>
+	<testcase name="T01.dependencies.lock_contracts" classname="T01.dependencies.lock_contracts" time="0.203057" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>test_archive_symlink_refused (test_lock.LockContracts.test_archive_symlink_refused) ... ok
+test_archive_traversal_refused (test_lock.LockContracts.test_archive_traversal_refused) ... ok
+test_complete_default_table (test_lock.LockContracts.test_complete_default_table) ... ok
+test_component_selection (test_lock.LockContracts.test_component_selection) ... ok
+test_current_host_compiler_is_explicitly_locked (test_lock.LockContracts.test_current_host_compiler_is_explicitly_locked) ... ok
+test_hash_mismatch_refused (test_lock.LockContracts.test_hash_mismatch_refused) ... ok
+test_internal_document_link_materialized (test_lock.LockContracts.test_internal_document_link_materialized) ... ok
+test_offline_missing_refused (test_lock.LockContracts.test_offline_missing_refused) ... ok
+test_reject_floating_revision (test_lock.LockContracts.test_reject_floating_revision) ... ok
+test_reject_incompatible_toolchain (test_lock.LockContracts.test_reject_incompatible_toolchain) ... ok
+test_reject_missing_license (test_lock.LockContr...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T23.dependencies.asan_healthy" classname="T23.dependencies.asan_healthy" time="0.132185" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T23.dependencies.asan_detects_heap_overflow" classname="T23.dependencies.asan_detects_heap_overflow" time="0.292629" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>=================================================================
+==60100==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x008400f20300 at pc 0x7ff6e78911a3 bp 0x0080000ff840 sp 0x0080000ff848
+WRITE of size 4 at 0x008400f20300 thread T0
+    #0 0x7ff6e78911a2 in main J:\Code\Kernel_v2\tests\dependencies\probes\asan.cpp:5
+    #1 0x7ff6e7894838 in invoke_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:78
+    #2 0x7ff6e7894781 in __scrt_common_main_seh D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:288
+    #3 0x7ff6e789463d in __scrt_common_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:330
+    #4 0x7ff6e78948ad in mainCRTStartup D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_main.cpp:16
+    #5 0x7ffa3efb5766  (C:\WINDOWS\System32\KERNEL32.DLL+0x180035766)
+    #6 0x7ffa3f69491f  (C:\WINDOWS\SYSTEM32\ntdll.dll+0x1800f491f)
+
+0x008400f20300 is located 0 bytes after 16-byte region [0x008400f202f0,0x008400f20300)
+allocated by ...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.native_sdk.public_headers" classname="T24.native_sdk.public_headers" time="27.5119" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"case": "public_headers", "evidence": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\sdk-public_headers-e1c0f6b4b2", "status": "Passed"}
+</system-out>
+	</testcase>
+	<testcase name="T24.native_sdk.installed_host" classname="T24.native_sdk.installed_host" time="8.58489" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"case": "installed_host", "evidence": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\sdk-installed_host-fb539e9e03", "status": "Passed"}
+</system-out>
+	</testcase>
+	<testcase name="T24.native_sdk.no_tests_producer" classname="T24.native_sdk.no_tests_producer" time="24.7" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"case": "no_tests_producer", "evidence": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\sdk-no_tests_producer-dbb5c8301e", "status": "Passed"}
+</system-out>
+	</testcase>
+	<testcase name="T24.native_sdk.link_closure" classname="T24.native_sdk.link_closure" time="16.7098" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"case": "link_closure", "evidence": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\sdk-link_closure-0b0b4fb2ea", "status": "Passed"}
+</system-out>
+	</testcase>
+	<testcase name="T02.native_sdk.private_dispatch" classname="T02.native_sdk.private_dispatch" time="27.5946" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"case": "private_dispatch", "evidence": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\D1.06\\sdk-private_dispatch-9fddc897e6", "status": "Passed"}
+</system-out>
+	</testcase>
+	<testcase name="T03.foundation.code_only_no_allocation" classname="T03.foundation.code_only_no_allocation" time="0.162079" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>allocation_window=code_only control=3 observed=0
+T03.foundation.code_only_no_allocation Passed
+</system-out>
+	</testcase>
+	<testcase name="T03.foundation.value_operations_no_allocation" classname="T03.foundation.value_operations_no_allocation" time="0.161952" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>allocation_window=value_operations observed=0
+T03.foundation.value_operations_no_allocation Passed
+</system-out>
+	</testcase>
+	<testcase name="T03.foundation.layout_statistics" classname="T03.foundation.layout_statistics" time="0.107586" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>ErrorCode size=16 align=8
+ErrorInfo size=40 align=8
+Error size=32 align=8
+Result&lt;int&gt; size=48 align=8
+Result&lt;void&gt; size=48 align=8
+Name size=97 align=1
+TaskId size=16 align=1
+BoundHandle&lt;TaskTag&gt; size=36 align=4
+T03.foundation.layout_statistics Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.result_move_only_value" classname="T04.foundation.result_move_only_value" time="0.103739" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.result_move_only_value Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.result_move_only_error" classname="T04.foundation.result_move_only_error" time="0.104643" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.result_move_only_error Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.result_void" classname="T04.foundation.result_void" time="0.0940374" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.result_void Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.result_error_propagation" classname="T04.foundation.result_error_propagation" time="0.0847136" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.result_error_propagation Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.result_bad_access" classname="T04.foundation.result_bad_access" time="0.0865971" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.result_bad_access Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.exception_not_business_failure" classname="T04.foundation.exception_not_business_failure" time="0.0862678" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.exception_not_business_failure Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.static_error_domain" classname="T04.foundation.static_error_domain" time="9.9742" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>{"case": "T04.foundation.static_error_domain", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\unit\\foundation\\child-runs\\e440b9387a7a4658a8c1a717e3c17683"}
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.error_details_ownership" classname="T04.foundation.error_details_ownership" time="0.0599962" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.error_details_ownership Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.error_details_budget" classname="T04.foundation.error_details_budget" time="0.0842845" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.error_details_budget Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.display_utf8" classname="T04.foundation.display_utf8" time="0.0743753" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.display_utf8 Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.checked_arithmetic" classname="T04.foundation.checked_arithmetic" time="0.0600882" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.checked_arithmetic Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.checked_narrowing" classname="T04.foundation.checked_narrowing" time="0.0570526" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.checked_narrowing Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.checked_count_atomic_update" classname="T04.foundation.checked_count_atomic_update" time="0.0587687" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T04.foundation.checked_count_atomic_update Passed
+</system-out>
+	</testcase>
+	<testcase name="T04.foundation.invariant_fail_fast" classname="T04.foundation.invariant_fail_fast" time="0.449636" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>{"case": "T04.foundation.invariant_fail_fast", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\unit\\foundation\\child-runs\\0f61bb35d7bd4c7c9530ec8608964985"}
+</system-out>
+	</testcase>
+	<testcase name="T05.foundation.name_ascii_bounds" classname="T05.foundation.name_ascii_bounds" time="0.0637791" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T05.foundation.name_ascii_bounds Passed
+</system-out>
+	</testcase>
+	<testcase name="T05.foundation.name_case_and_ownership" classname="T05.foundation.name_case_and_ownership" time="0.0645029" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T05.foundation.name_case_and_ownership Passed
+</system-out>
+	</testcase>
+	<testcase name="T05.foundation.tagged_identity_types" classname="T05.foundation.tagged_identity_types" time="0.0609405" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T05.foundation.tagged_identity_types Passed
+</system-out>
+	</testcase>
+	<testcase name="T05.foundation.identity_canonical_codec" classname="T05.foundation.identity_canonical_codec" time="0.0714843" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T05.foundation.identity_canonical_codec Passed
+</system-out>
+	</testcase>
+	<testcase name="T05.foundation.bound_handle_generation" classname="T05.foundation.bound_handle_generation" time="0.0494914" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T05.foundation.bound_handle_generation Passed
+</system-out>
+	</testcase>
+	<testcase name="T05.foundation.runtime_epoch_separation" classname="T05.foundation.runtime_epoch_separation" time="0.0627057" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.01"/>
+		</properties>
+		<system-out>T05.foundation.runtime_epoch_separation Passed
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.compile_fixture_setup" classname="T02.contracts.compile_fixture_setup" time="4.28596" status="run">
+		<properties>
+			<property name="cmake_labels" value="CompileContracts;Tools"/>
+		</properties>
+		<system-out>{"status": "Ready", "fixture": "J:/Code/Kernel_v2/build/d1.06-asan/tests/compile/contracts/child-runs/fixtures/484c4d0dc7950dd886dc32cf", "run_id": "484c4d0dc7950dd886dc32cf", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\compile\\contracts\\child-runs\\setup-484c4d0dc7950dd886dc32cf"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.type_contract_constraints" classname="T02.contracts.type_contract_constraints" time="12.2918" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.type_contract_constraints", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\compile\\contracts\\child-runs\\309ec727b35c4dfebb3894585148456e"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.typed_value_validation" classname="T02.contracts.typed_value_validation" time="5.51422" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.typed_value_validation", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\compile\\contracts\\child-runs\\1ee99673aa424869a8e4d43956bc625d"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.read_shape" classname="T02.contracts.read_shape" time="7.67257" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.read_shape", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\compile\\contracts\\child-runs\\790d667f6f3f453895165de975d618df"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.state_edit_shape" classname="T02.contracts.state_edit_shape" time="7.70013" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.state_edit_shape", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\compile\\contracts\\child-runs\\9224b4c4931347cdb3970d9e617cfab0"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.effect_shape" classname="T02.contracts.effect_shape" time="6.58842" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.effect_shape", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\compile\\contracts\\child-runs\\d45cc53535ac473e99faf842f9966677"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.lifecycle_shape" classname="T02.contracts.lifecycle_shape" time="5.86526" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.lifecycle_shape", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\compile\\contracts\\child-runs\\49f4ceb7d283439ab146ef146577f791"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.context_capability_boundary" classname="T02.contracts.context_capability_boundary" time="15.1005" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.context_capability_boundary", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\compile\\contracts\\child-runs\\6cffc193c5534ea1a60ceeb1ad6e3121"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.atomic_read_adapters" classname="T02.contracts.atomic_read_adapters" time="8.08631" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.atomic_read_adapters", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\compile\\contracts\\child-runs\\d09bf308560e43fbb4b8dd8938e9d5b0"}
+</system-out>
+	</testcase>
+	<testcase name="T02.contracts.atomic_async_rejected" classname="T02.contracts.atomic_async_rejected" time="5.66107" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T02.contracts.atomic_async_rejected", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\compile\\contracts\\child-runs\\41c31268760e4f6a94f9d197a19c0b66"}
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.operation_exact_identity" classname="T05.contracts.operation_exact_identity" time="0.0977877" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T05.contracts.operation_exact_identity
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.typed_binding_fingerprint" classname="T05.contracts.typed_binding_fingerprint" time="12.0991" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T05.contracts.typed_binding_fingerprint", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\compile\\contracts\\child-runs\\1b2d6e3322334bf8a859b2cae656fc0c"}
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.binding_generation_before_access" classname="T05.contracts.binding_generation_before_access" time="0.0657636" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T05.contracts.binding_generation_before_access
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.binding_owner_lifetime" classname="T05.contracts.binding_owner_lifetime" time="0.0628217" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T05.contracts.binding_owner_lifetime
+</system-out>
+	</testcase>
+	<testcase name="T05.contracts.execution_identity_separation" classname="T05.contracts.execution_identity_separation" time="0.0686127" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T05.contracts.execution_identity_separation
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.outcome_closed_variants" classname="T06.contracts.outcome_closed_variants" time="0.0615619" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.outcome_closed_variants
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.known_facts_append_only" classname="T06.contracts.known_facts_append_only" time="0.0618881" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.known_facts_append_only
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.publication_proof_required" classname="T06.contracts.publication_proof_required" time="0.0652097" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.publication_proof_required
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.effect_report_preserves_fact" classname="T06.contracts.effect_report_preserves_fact" time="0.0597682" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.effect_report_preserves_fact
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.lifecycle_report_preserves_state" classname="T06.contracts.lifecycle_report_preserves_state" time="0.0613566" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.lifecycle_report_preserves_state
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.before_apply_and_composite_proofs" classname="T06.contracts.before_apply_and_composite_proofs" time="0.0624152" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.before_apply_and_composite_proofs
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.reply_phase_completion_separation" classname="T06.contracts.reply_phase_completion_separation" time="0.0607539" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.reply_phase_completion_separation
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.executor_inline_ownership" classname="T06.contracts.executor_inline_ownership" time="0.0604551" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.executor_inline_ownership
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.executor_reject_exception_cleanup" classname="T06.contracts.executor_reject_exception_cleanup" time="0.439216" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "T06.contracts.executor_reject_exception_cleanup", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\compile\\contracts\\child-runs\\bf09fabe2d004c24b14b05c92985e8c7"}
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.completion_once_and_drain" classname="T06.contracts.completion_once_and_drain" time="0.0598374" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.completion_once_and_drain
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.atomic_prepared_identity" classname="T06.contracts.atomic_prepared_identity" time="0.0603398" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.atomic_prepared_identity
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.record_evidence_boundary" classname="T06.contracts.record_evidence_boundary" time="0.0625796" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.record_evidence_boundary
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.summary_owned_snapshot" classname="T19.contracts.summary_owned_snapshot" time="0.0784564" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.summary_owned_snapshot
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.observation_host_version" classname="T19.contracts.observation_host_version" time="0.0750169" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.observation_host_version
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.observation_budgets" classname="T19.contracts.observation_budgets" time="0.0610378" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.observation_budgets
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.authorized_owner_filter" classname="T19.contracts.authorized_owner_filter" time="0.06155" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.authorized_owner_filter
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.completion_independent_of_observation" classname="T19.contracts.completion_independent_of_observation" time="0.0665331" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.completion_independent_of_observation
+</system-out>
+	</testcase>
+	<testcase name="T19.contracts.live_keyset_progress" classname="T19.contracts.live_keyset_progress" time="0.0588375" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T19.contracts.live_keyset_progress
+</system-out>
+	</testcase>
+	<testcase name="T02.registration.atomic_candidate_contract" classname="T02.registration.atomic_candidate_contract" time="0.11046" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.batch_k_failure_atomic" classname="T02.registration.batch_k_failure_atomic" time="0.0927121" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.callback_exception_cleanup" classname="T02.registration.callback_exception_cleanup" time="0.0837691" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.declared_operations_complete" classname="T02.registration.declared_operations_complete" time="0.101233" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.error_budget_sticky" classname="T02.registration.error_budget_sticky" time="0.0928364" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.exact_operation_versions" classname="T02.registration.exact_operation_versions" time="0.0919021" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.execution_capabilities" classname="T02.registration.execution_capabilities" time="0.0902599" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.ignored_errors_sticky" classname="T02.registration.ignored_errors_sticky" time="0.0943928" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.manifest_owned_budget" classname="T02.registration.manifest_owned_budget" time="9.41893" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out>{"case": "T02.registration.manifest_owned_budget", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\registration\\child-runs\\e3546c46ddf34829bc799caf35dfa917"}
+</system-out>
+	</testcase>
+	<testcase name="T02.registration.module_cycles_rejected" classname="T02.registration.module_cycles_rejected" time="0.0878652" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.module_dag_order" classname="T02.registration.module_dag_order" time="0.0621182" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.module_identity_versions" classname="T02.registration.module_identity_versions" time="0.0632514" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.provider_binding" classname="T02.registration.provider_binding" time="0.0672519" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.schema_capability_absent" classname="T02.registration.schema_capability_absent" time="0.0631043" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.service_binding" classname="T02.registration.service_binding" time="0.0716819" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.registration.shape_compile_contract" classname="T02.registration.shape_compile_contract" time="15.4076" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out>{"case": "T02.registration.shape_compile_contract", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\registration\\child-runs\\5f625ce7b03b452699182d83dc703958"}
+</system-out>
+	</testcase>
+	<testcase name="T05.registration.exact_fingerprint" classname="T05.registration.exact_fingerprint" time="0.0627909" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T05.registration.failure_preserves_catalog" classname="T05.registration.failure_preserves_catalog" time="0.060021" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T05.registration.publish_once_freeze" classname="T05.registration.publish_once_freeze" time="0.0513619" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T05.registration.registry_generation" classname="T05.registration.registry_generation" time="0.0671242" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T05.registration.snapshot_lifetime" classname="T05.registration.snapshot_lifetime" time="0.0709008" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T05.registration.typed_binding_success" classname="T05.registration.typed_binding_success" time="0.0616267" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T24.registration.cold_docs_separation" classname="T24.registration.cold_docs_separation" time="0.225542" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out>{"case": "T24.registration.cold_docs_separation", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\registration\\child-runs\\6b31e69d1df4462190dbf0b8dd395fbb"}
+</system-out>
+	</testcase>
+	<testcase name="T24.registration.handler_not_exposed" classname="T24.registration.handler_not_exposed" time="15.3052" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out>{"case": "T24.registration.handler_not_exposed", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\registration\\child-runs\\2c3d34497b4540e6810736d6b2dbb56c"}
+</system-out>
+	</testcase>
+	<testcase name="T24.registration.internal_component_boundary" classname="T24.registration.internal_component_boundary" time="2.35356" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.03"/>
+		</properties>
+		<system-out>{"case": "T24.registration.internal_component_boundary", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\registration\\child-runs\\ccd33a04f6af42e5b11f06e77fd2b08d"}
+</system-out>
+	</testcase>
+	<testcase name="T07.policy.authentication_source" classname="T07.policy.authentication_source" time="11.5947" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out>{"case": "T07.policy.authentication_source", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\authorization\\child-runs\\437e2775f54542bbaea3a9749b9e96f6"}
+</system-out>
+	</testcase>
+	<testcase name="T07.policy.cancel_arbitration" classname="T07.policy.cancel_arbitration" time="0.181544" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.consume_before_revoke" classname="T07.policy.consume_before_revoke" time="0.138994" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.delegation_shrink" classname="T07.policy.delegation_shrink" time="0.1373" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.exception_atomicity" classname="T07.policy.exception_atomicity" time="1.15017" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out>allocation-point 0
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 1
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 2
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 3
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 4
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 5
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 6
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 7
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 8
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 9
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 10
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 11
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 12
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 13
+env-ready
+issued
+update-returned
+consume-returned
+allocation-point 14
+env-ready
+issued
+update-returned
+c...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T07.policy.expiry_boundary" classname="T07.policy.expiry_boundary" time="0.245198" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.generation_exhaustion" classname="T07.policy.generation_exhaustion" time="0.331149" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.group_members_complete" classname="T07.policy.group_members_complete" time="0.336801" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.group_substitution" classname="T07.policy.group_substitution" time="12.0674" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out>{"case": "T07.policy.group_substitution", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\authorization\\child-runs\\e5c459f791d7465e8c386ef2e968e0ba"}
+</system-out>
+	</testcase>
+	<testcase name="T07.policy.operation_exact_contract" classname="T07.policy.operation_exact_contract" time="0.481405" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.owned_inputs_budget" classname="T07.policy.owned_inputs_budget" time="1.52888" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out>budget-session
+session-denial-ok
+caller-reset
+session-reset
+budget-action
+action-env
+action-consumed
+action-denied
+action-reset
+action-restored
+budget-response
+</system-out>
+	</testcase>
+	<testcase name="T07.policy.owner_scope" classname="T07.policy.owner_scope" time="0.167151" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.permit_concurrent" classname="T07.policy.permit_concurrent" time="0.126037" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.permit_once" classname="T07.policy.permit_once" time="0.116626" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.permit_origin_binding" classname="T07.policy.permit_origin_binding" time="12.6679" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out>{"case": "T07.policy.permit_origin_binding", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\authorization\\child-runs\\e4c37a5b1dc848b8a894642c9903ca38"}
+</system-out>
+	</testcase>
+	<testcase name="T07.policy.recursive_delegation_denied" classname="T07.policy.recursive_delegation_denied" time="0.122816" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.revoke_before_consume" classname="T07.policy.revoke_before_consume" time="0.13293" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.scope_four_way" classname="T07.policy.scope_four_way" time="0.929777" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.service_principal" classname="T07.policy.service_principal" time="0.121212" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.session_isolation" classname="T07.policy.session_isolation" time="0.116075" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.target_frozen_set" classname="T07.policy.target_frozen_set" time="0.129499" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.target_issued_identity" classname="T07.policy.target_issued_identity" time="0.271917" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.target_lifecycle" classname="T07.policy.target_lifecycle" time="0.174913" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T19.policy.page_binding_isolation" classname="T19.policy.page_binding_isolation" time="0.171351" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T19.policy.page_owner_authorization" classname="T19.policy.page_owner_authorization" time="0.127111" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T19.policy.page_revoke_live_keyset" classname="T19.policy.page_revoke_live_keyset" time="0.205535" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T19.policy.query_field_projection" classname="T19.policy.query_field_projection" time="0.333462" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T19.policy.subscription_connection_cleanup" classname="T19.policy.subscription_connection_cleanup" time="0.120257" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T19.policy.subscription_scope_atomic" classname="T19.policy.subscription_scope_atomic" time="0.253574" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T20.policy.failed_start_not_started" classname="T20.policy.failed_start_not_started" time="0.229039" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T20.policy.internal_component_boundary" classname="T20.policy.internal_component_boundary" time="2.93246" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out>{"case": "T20.policy.internal_component_boundary", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\authorization\\child-runs\\b0b8934fb8fb49a5ae06a24a56d0decd"}
+</system-out>
+	</testcase>
+	<testcase name="T20.policy.queued_revoke_drop" classname="T20.policy.queued_revoke_drop" time="0.665986" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T20.policy.transmission_start_arbitration" classname="T20.policy.transmission_start_arbitration" time="11.6129" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out>{"case": "T20.policy.transmission_start_arbitration", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\authorization\\child-runs\\de5247ea860449a99598282e73d5f18f"}
+</system-out>
+	</testcase>
+	<testcase name="T20.policy.unknown_start_no_retry" classname="T20.policy.unknown_start_no_retry" time="0.126332" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T20.policy.unsubscribe_inflight" classname="T20.policy.unsubscribe_inflight" time="0.162083" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.native.candidate_read_dispatch" classname="T02.native.candidate_read_dispatch" time="0.149057" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.native.exact_binding" classname="T02.native.exact_binding" time="0.151267" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.native.invalid_input" classname="T02.native.invalid_input" time="0.193369" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.native.private_dispatch" classname="T02.native.private_dispatch" time="18.471" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out>{"case": "T02.native.private_dispatch", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\native\\child-runs\\dd62916e45f648d0950ebf98ea975bb5"}
+</system-out>
+	</testcase>
+	<testcase name="T02.native.registered_compute" classname="T02.native.registered_compute" time="0.145508" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.native.registered_read" classname="T02.native.registered_read" time="0.140531" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.native.validation_exception" classname="T02.native.validation_exception" time="0.151028" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.cancel_and_budget" classname="T03.native.cancel_and_budget" time="0.251349" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.component_boundary" classname="T03.native.component_boundary" time="2.50688" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out>{"case": "T03.native.component_boundary", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\native\\child-runs\\657e852b3dcd4aeaa1ed4b01398a2990"}
+</system-out>
+	</testcase>
+	<testcase name="T03.native.example_consumer" classname="T03.native.example_consumer" time="0.876422" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out>{"case": "T03.native.example_consumer", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\native\\child-runs\\bd4bb72ea00d405daaa6f43c3410f03e"}
+</system-out>
+	</testcase>
+	<testcase name="T03.native.no_self_wait" classname="T03.native.no_self_wait" time="17.2893" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out>{"case": "T03.native.no_self_wait", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\native\\child-runs\\59d18f98bd69452ea9481666ec06b753"}
+</system-out>
+	</testcase>
+	<testcase name="T03.native.no_task_path" classname="T03.native.no_task_path" time="0.167192" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.provider_unavailable" classname="T03.native.provider_unavailable" time="0.257028" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.reentrant_and_concurrent" classname="T03.native.reentrant_and_concurrent" time="0.323758" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.resource_lifetime" classname="T03.native.resource_lifetime" time="0.215697" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.thread_modes" classname="T03.native.thread_modes" time="0.264449" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.thread_origin" classname="T03.native.thread_origin" time="0.11682" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.admission_order" classname="T06.native.admission_order" time="0.253958" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.authority_origin" classname="T06.native.authority_origin" time="0.261324" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.business_failure" classname="T06.native.business_failure" time="0.127245" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.invalid_output" classname="T06.native.invalid_output" time="0.306872" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.lifecycle_replacement" classname="T06.native.lifecycle_replacement" time="0.212039" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.outcome_consistency" classname="T06.native.outcome_consistency" time="0.166878" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.permission_intersection" classname="T06.native.permission_intersection" time="0.528392" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.policy_contract_alignment" classname="T06.native.policy_contract_alignment" time="0.548535" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.revoke_and_regrant" classname="T06.native.revoke_and_regrant" time="0.427563" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.session_and_deadline" classname="T06.native.session_and_deadline" time="0.298823" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.target_binding" classname="T06.native.target_binding" time="0.155902" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T23.native.allocation_governance" classname="T23.native.allocation_governance" time="0.377566" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out>{"case": "T23.native.allocation_governance", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\native\\child-runs\\4a48a4a2574d48deae4f232dde5eecc8"}
+</system-out>
+	</testcase>
+	<testcase name="T23.native.allocation_other_costs" classname="T23.native.allocation_other_costs" time="0.334534" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out>{"case": "T23.native.allocation_other_costs", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\native\\child-runs\\e9e665431b18465e85f0df5709896feb"}
+</system-out>
+	</testcase>
+	<testcase name="T23.native.allocation_probe" classname="T23.native.allocation_probe" time="0.44864" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out>{"case": "T23.native.allocation_probe", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\native\\child-runs\\a7b88d19a9e24bbe8c003fb96c6c7075"}
+</system-out>
+	</testcase>
+	<testcase name="T23.native.allocation_steady" classname="T23.native.allocation_steady" time="0.284653" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out>{"case": "T23.native.allocation_steady", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\native\\child-runs\\73f6429b3339456ab30941d7dcef4085"}
+</system-out>
+	</testcase>
+	<testcase name="T03.host.ready_gate" classname="T03.host.ready_gate" time="0.377898" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.host.start_order" classname="T03.host.start_order" time="0.160825" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T22.host.pending_report" classname="T22.host.pending_report" time="0.146118" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T22.host.lifecycle_reentrancy" classname="T22.host.lifecycle_reentrancy" time="0.290605" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.host.catalog_registration" classname="T03.host.catalog_registration" time="0.340184" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.host.native_results" classname="T03.host.native_results" time="0.209419" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.host.session_ownership" classname="T03.host.session_ownership" time="0.270105" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.host.delegation_revoke" classname="T03.host.delegation_revoke" time="0.216807" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T22.host.shutdown_deadline" classname="T22.host.shutdown_deadline" time="0.302109" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T19.host.logging_ownership" classname="T19.host.logging_ownership" time="0.207437" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T22.host.admission_race" classname="T22.host.admission_race" time="0.179745" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T22.host.return_lifetime" classname="T22.host.return_lifetime" time="0.1805" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T22.host.shutdown_order" classname="T22.host.shutdown_order" time="0.123981" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T23.host.steady_allocation" classname="T23.host.steady_allocation" time="0.130964" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"format":"ock.host-allocation/1","case":"T23.host.steady_allocation","modules":["Host","Invocation","Policy","Registry","Logging","CoreContracts","Foundation"],"ordinary_log_per_invoke":false,"warmup":4,"samples":[{"index":0,"success":true,"cpp":0,"crt":0,"asan":0},{"index":1,"success":true,"cpp":0,"crt":0,"asan":0},{"index":2,"success":true,"cpp":0,"crt":0,"asan":0},{"index":3,"success":true,"cpp":0,"crt":0,"asan":0},{"index":4,"success":true,"cpp":0,"crt":0,"asan":0},{"index":5,"success":true,"cpp":0,"crt":0,"asan":0},{"index":6,"success":true,"cpp":0,"crt":0,"asan":0},{"index":7,"success":true,"cpp":0,"crt":0,"asan":0},{"index":8,"success":true,"cpp":0,"crt":0,"asan":0},{"index":9,"success":true,"cpp":0,"crt":0,"asan":0},{"index":10,"success":true,"cpp":0,"crt":0,"asan":0},{"index":11,"success":true,"cpp":0,"crt":0,"asan":0},{"index":12,"success":true,"cpp":0,"crt":0,"asan":0},{"index":13,"success":true,"cpp":0,"crt":0,"asan":0},{"index":14,"success":true,"cpp":0,"crt":0,"asan":0},{"index":15,"success":tr...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T23.host.owner_reclamation" classname="T23.host.owner_reclamation" time="0.126606" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T22.host.destructor_guard" classname="T22.host.destructor_guard" time="0.778533" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"case": "T22.host.destructor_guard", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\host\\child-runs\\85314476db47401692908da23810849e", "status": "Passed"}
+</system-out>
+	</testcase>
+	<testcase name="T23.host.allocation_controls" classname="T23.host.allocation_controls" time="0.451481" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"case": "T23.host.allocation_controls", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\host\\child-runs\\4549cf2e77ca4ac0bc4b15507786b7d8", "status": "Passed"}
+</system-out>
+	</testcase>
+	<testcase name="T03.host.configuration" classname="T03.host.configuration" time="0.942961" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"case": "T03.host.configuration", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\host\\child-runs\\6a7fb8785ea24f47afe782531505be10", "status": "Passed"}
+</system-out>
+	</testcase>
+	<testcase name="T03.host.start_failures" classname="T03.host.start_failures" time="0.827321" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"case": "T03.host.start_failures", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\host\\child-runs\\58b1ff39132249e28d96c609e1878935", "status": "Passed"}
+</system-out>
+	</testcase>
+	<testcase name="T22.host.shutdown_errors" classname="T22.host.shutdown_errors" time="0.559865" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out>{"case": "T22.host.shutdown_errors", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\contract\\host\\child-runs\\2140d16d9c254cc3a23c307eebc4b0c8", "status": "Passed"}
+</system-out>
+	</testcase>
+	<testcase name="T22.logging.memory.accept_reject_drop_accounting" classname="T22.logging.memory.accept_reject_drop_accounting" time="0.323357" status="run">
+		<properties/>
+		<system-out>{"case": "T22.logging.memory.accept_reject_drop_accounting", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\conformance\\logging\\child-runs\\f5b8b202376db34cb1f39ab4\\T22.logging.memory.accept_reject_drop_accounting"}
+</system-out>
+	</testcase>
+	<testcase name="T22.logging.memory.format_redaction" classname="T22.logging.memory.format_redaction" time="0.26462" status="run">
+		<properties/>
+		<system-out>{"case": "T22.logging.memory.format_redaction", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\conformance\\logging\\child-runs\\f5b8b202376db34cb1f39ab4\\T22.logging.memory.format_redaction"}
+</system-out>
+	</testcase>
+	<testcase name="T22.logging.memory.error_isolation" classname="T22.logging.memory.error_isolation" time="0.302034" status="run">
+		<properties/>
+		<system-out>{"case": "T22.logging.memory.error_isolation", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\conformance\\logging\\child-runs\\f5b8b202376db34cb1f39ab4\\T22.logging.memory.error_isolation"}
+</system-out>
+	</testcase>
+	<testcase name="T22.logging.memory.flush_accepted_range" classname="T22.logging.memory.flush_accepted_range" time="0.246497" status="run">
+		<properties/>
+		<system-out>{"case": "T22.logging.memory.flush_accepted_range", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\conformance\\logging\\child-runs\\f5b8b202376db34cb1f39ab4\\T22.logging.memory.flush_accepted_range"}
+</system-out>
+	</testcase>
+	<testcase name="T22.logging.memory.shutdown_callback_lifetime" classname="T22.logging.memory.shutdown_callback_lifetime" time="0.266354" status="run">
+		<properties/>
+		<system-out>{"case": "T22.logging.memory.shutdown_callback_lifetime", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\conformance\\logging\\child-runs\\f5b8b202376db34cb1f39ab4\\T22.logging.memory.shutdown_callback_lifetime"}
+</system-out>
+	</testcase>
+	<testcase name="T22.logging.test.accept_reject_drop_accounting" classname="T22.logging.test.accept_reject_drop_accounting" time="0.28608" status="run">
+		<properties/>
+		<system-out>{"case": "T22.logging.test.accept_reject_drop_accounting", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\conformance\\logging\\child-runs\\f5b8b202376db34cb1f39ab4\\T22.logging.test.accept_reject_drop_accounting"}
+</system-out>
+	</testcase>
+	<testcase name="T22.logging.test.format_redaction" classname="T22.logging.test.format_redaction" time="0.253697" status="run">
+		<properties/>
+		<system-out>{"case": "T22.logging.test.format_redaction", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\conformance\\logging\\child-runs\\f5b8b202376db34cb1f39ab4\\T22.logging.test.format_redaction"}
+</system-out>
+	</testcase>
+	<testcase name="T22.logging.test.error_isolation" classname="T22.logging.test.error_isolation" time="0.23664" status="run">
+		<properties/>
+		<system-out>{"case": "T22.logging.test.error_isolation", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\conformance\\logging\\child-runs\\f5b8b202376db34cb1f39ab4\\T22.logging.test.error_isolation"}
+</system-out>
+	</testcase>
+	<testcase name="T22.logging.test.flush_accepted_range" classname="T22.logging.test.flush_accepted_range" time="0.267805" status="run">
+		<properties/>
+		<system-out>{"case": "T22.logging.test.flush_accepted_range", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\conformance\\logging\\child-runs\\f5b8b202376db34cb1f39ab4\\T22.logging.test.flush_accepted_range"}
+</system-out>
+	</testcase>
+	<testcase name="T22.logging.test.shutdown_callback_lifetime" classname="T22.logging.test.shutdown_callback_lifetime" time="0.252577" status="run">
+		<properties/>
+		<system-out>{"case": "T22.logging.test.shutdown_callback_lifetime", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\conformance\\logging\\child-runs\\f5b8b202376db34cb1f39ab4\\T22.logging.test.shutdown_callback_lifetime"}
+</system-out>
+	</testcase>
+	<testcase name="T19.logging.memory_pages" classname="T19.logging.memory_pages" time="0.23305" status="run">
+		<properties/>
+		<system-out>{"case": "T19.logging.memory_pages", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\conformance\\logging\\child-runs\\f5b8b202376db34cb1f39ab4\\T19.logging.memory_pages"}
+</system-out>
+	</testcase>
+	<testcase name="T23.logging.fixed_write_allocation" classname="T23.logging.fixed_write_allocation" time="0.29266" status="run">
+		<properties/>
+		<system-out>{"case": "T23.logging.fixed_write_allocation", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\d1.06-asan\\tests\\conformance\\logging\\child-runs\\f5b8b202376db34cb1f39ab4\\T23.logging.fixed_write_allocation"}
+</system-out>
+	</testcase>
+</testsuite>

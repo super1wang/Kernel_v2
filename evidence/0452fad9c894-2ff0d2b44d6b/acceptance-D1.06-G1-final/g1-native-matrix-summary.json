@@ -1,0 +1,64 @@
+{
+  "format": "ock.gate-summary/1",
+  "gate_id": "G1",
+  "generated_at": "2026-09-08T09:10:22.200276+00:00",
+  "matrix_sha256": "fa12fc2e28159343e13776cf34d278f714e87daf42c629a57a30ee8210fde476",
+  "rules_sha256": "8e1526662d21c341baf6ad35cf139b039e6df65dd0e0fb774c7f8d3e3856013f",
+  "required_runs": [
+    {
+      "task_id": "D1.06",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D1.06",
+      "profile": "win-msvc-release"
+    },
+    {
+      "task_id": "D1.06",
+      "profile": "win-msvc-asan"
+    }
+  ],
+  "runs": [
+    {
+      "task_id": "D1.06",
+      "profile": "win-msvc-debug",
+      "report": "J:\\Code\\Kernel_v2\\evidence\\0452fad9c894-2ff0d2b44d6b\\win-msvc-debug\\D1.06\\20260908T083458Z-e90b5cf0e5e0\\report.json",
+      "sha256": "0c71b2a66e18a81f9cae311b66ee9aba1d3c6f864810f2498373ef7d038a3917",
+      "automated_status": "Passed",
+      "package_status": "Passed",
+      "review_required": [
+        "spec",
+        "code"
+      ]
+    },
+    {
+      "task_id": "D1.06",
+      "profile": "win-msvc-release",
+      "report": "J:\\Code\\Kernel_v2\\evidence\\0452fad9c894-2ff0d2b44d6b\\win-msvc-release\\D1.06\\20260908T085242Z-ec1abfce7b66\\report.json",
+      "sha256": "eb38fc0380f6f538184a98a902362d899ddfbe72d4be611ae6e1343540825b24",
+      "automated_status": "Passed",
+      "package_status": "Passed",
+      "review_required": [
+        "spec",
+        "code"
+      ]
+    },
+    {
+      "task_id": "D1.06",
+      "profile": "win-msvc-asan",
+      "report": "J:\\Code\\Kernel_v2\\evidence\\0452fad9c894-2ff0d2b44d6b\\win-msvc-asan\\D1.06\\20260908T082256Z-867b8ba50173\\report.json",
+      "sha256": "b0e40bb0b37cd11309843dfc43ba1bff501edd149e4ede3a220dbbbf827e7830",
+      "automated_status": "Passed",
+      "package_status": "Passed",
+      "review_required": [
+        "spec",
+        "code"
+      ]
+    }
+  ],
+  "missing": [],
+  "errors": [],
+  "automated_status": "Passed",
+  "gate_status": "Passed",
+  "note": "自动验证与人工放行分开；历史批准另行保留，不凭历史批准推导当前变更已批准。"
+}

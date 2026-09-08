@@ -5,11 +5,11 @@
 ## 当前生产节点
 
 - 当前分支：`work/d0-kernel-baseline`；恢复基线核对到 `d8a351e`，实际执行以实时 Git 为准。
-- 已 Passed：G0、D0.01–D0.06、D1.01–D1.05。**这些 Passed 前置不重验**；D1.05 不重跑。
-- 当前 Development Batch：**B1 / D1.06**，状态 `InProgress / 集中验收准备`。
-- 当前门禁：**G1 InProgress**；G2–G8 未开始。
-- Host、Logging、NativeSubset/独立安装消费者代码已交付；当前补 footprint 正式测量/预算及最终验收，不重做已实现部分。
-- 本次恢复已完成：本机精确工具链校准、Debug 编译、Host/Logging 32/32 直接测试，以及 Release/ASan Runtime 编译。正式 footprint 已接线；pilot/有限预算及三配置集中验收进行中，尚未 Passed。
+- 已 Passed：G0、G1、D0.01–D0.06、D1.01–D1.06。**这些 Passed 前置不重验**；D1.05 不重跑。
+- 当前 Development Batch：**B1 / D1.06 已完成并 Passed**；下一批 **B2 / D2.01–D2.04 NotStarted**。
+- 当前门禁：**G1 Passed**；G2–G8 未开始。
+- Host、Logging、NativeSubset/独立安装消费者及 footprint 正式测量/预算已交付并完成本包验收。
+- 本次恢复已完成：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[本次交付与自动验收](validation/D1.06-resume-delivery.md)。
 - 工具优化阶段已结束；禁止继续把 Fixture、Evidence、Install Consumer 性能优化或新流程文档设为 D1.06 前置。
 
 ## 当前执行硬规则
@@ -44,7 +44,7 @@
 | Gate | 状态 |
 |---|---|
 | G0 | Passed |
-| G1 | InProgress |
+| G1 | Passed |
 | G2 | NotStarted |
 | G3 | NotStarted |
 | G4 | NotStarted |
@@ -70,7 +70,7 @@
 | D1.03 | 实现注册批次与不可变目录绑定 | D1.02 | Passed | Standard | 历史已完成 |
 | D1.04 | 实现授权主体、资源解析契约和许可原语 | D1.02、D0.05 | Passed | Critical | 历史已完成 |
 | D1.05 | 实现Native Invocation与无任务短路径 | D1.03、D1.04 | Passed | Standard | 历史已完成 |
-| D1.06 | 最小Host、Logging共同合同与原生占用基线 | D1.05、D0.06 | InProgress | Standard | B1 |
+| D1.06 | 最小Host、Logging共同合同与原生占用基线 | D1.05、D0.06 | Passed | Standard | B1 |
 | D2.01 | 实现单DOM Payload、View与预算构建 | D1.01、D0.06 | NotStarted | Standard | B2 |
 | D2.02 | 实现TypeContract、Schema编译与Native等价绑定 | D2.01、D1.02、D1.05、D0.04 | NotStarted | Standard | B2 |
 | D2.03 | 实现能力目录、精确命令卡和帮助导出 | D2.02、D1.03、D1.04 | NotStarted | Standard | B2 |

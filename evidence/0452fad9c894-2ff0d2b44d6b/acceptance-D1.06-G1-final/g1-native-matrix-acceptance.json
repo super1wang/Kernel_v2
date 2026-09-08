@@ -1,0 +1,147 @@
+{
+  "format": "ock.automatic-gate-acceptance/1",
+  "created_at": "2026-09-08T09:11:21.523227+00:00",
+  "gate_id": "G1",
+  "review_mode": "ai-self-review",
+  "human_review_required": false,
+  "policy": {
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80",
+    "version": 1
+  },
+  "rules": [
+    {
+      "path": "tools/evidence/accept_gate.py",
+      "sha256": "a33a4efe90b080a64ca6579922eb0ec55816076a018faef1f358096203016d38"
+    },
+    {
+      "path": "tools/evidence/build_identity.py",
+      "sha256": "23620838037ab4dd49ad30bc7ff96cdb29abbd67036a87edcd8d76a8119dee86"
+    },
+    {
+      "path": "tools/evidence/common.py",
+      "sha256": "1026f8e9ce8a6ca79d019e15f7cd9f810180423e88aa58f9c4e5aa4d145e221b"
+    },
+    {
+      "path": "tools/evidence/gate.py",
+      "sha256": "8e1526662d21c341baf6ad35cf139b039e6df65dd0e0fb774c7f8d3e3856013f"
+    },
+    {
+      "path": "tools/evidence/import_bootstrap.py",
+      "sha256": "1e4260dc6356ab17749772457f27873fa1b2c5864290e38d1494e4aa0ee2b759"
+    },
+    {
+      "path": "tools/evidence/process.py",
+      "sha256": "1f49872091ab5ec967a5c900a48e714284290e29c4f2baffad7cb614933c3c94"
+    },
+    {
+      "path": "tools/evidence/review_policy.py",
+      "sha256": "35f3628a58d464d27978fbe9eaa58d2944f32eca766c31215e729f9048bbdd40"
+    },
+    {
+      "path": "tools/evidence/run.py",
+      "sha256": "fc2b3e5e50996db54cf276aa18db84854b9f58eb03a369dc9c3e5a23b88c1465"
+    },
+    {
+      "path": "tools/evidence/summary.py",
+      "sha256": "1a21ff50b78027f822e94649638c6d52a6dadd654440cf8109bb5ccf4f6b1161"
+    },
+    {
+      "path": "tools/evidence/validate.py",
+      "sha256": "bef0acaf56a5e21bf04e8bd176b00fe5e62852698b38259a88447bbc2cc107a3"
+    },
+    {
+      "path": "schemas/evidence-v1.schema.json",
+      "sha256": "eeeca84a12fa7e9f62234902aa77f2147fb174f65c8a7a748456fcc2c9ab2a32"
+    }
+  ],
+  "decision_inputs": [
+    {
+      "path": "docs/reviews/automatic-acceptance-policy.json",
+      "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+    },
+    {
+      "path": "docs/reviews/D1.06-budget-decision.md",
+      "sha256": "2419b5e58725238225986d7775677b48221ceb00a6a6f08d672bfe590b269503"
+    },
+    {
+      "path": "docs/reviews/D1.06-code.json",
+      "sha256": "7bfdd4898b63e2b8f5ad536d5a6cbb90c7c22cc5c5d7a351bc5cc3bd48d94337"
+    },
+    {
+      "path": "docs/reviews/D1.06-final-review.md",
+      "sha256": "3a9171c113e0740d3f2d93c23ac465b057fb79683473b8227e92a44acf578c5b"
+    },
+    {
+      "path": "docs/reviews/D1.06-spec.json",
+      "sha256": "af8dc7f16628dd0491eef2f2a7e28303d6c4faccc99e3b18b72e07ab59469255"
+    },
+    {
+      "path": "evidence/0452fad9c894-2ff0d2b44d6b/win-msvc-asan/D1.06/20260908T082256Z-867b8ba50173/report.json",
+      "sha256": "b0e40bb0b37cd11309843dfc43ba1bff501edd149e4ede3a220dbbbf827e7830"
+    },
+    {
+      "path": "evidence/0452fad9c894-2ff0d2b44d6b/win-msvc-debug/D1.06/20260908T083458Z-e90b5cf0e5e0/report.json",
+      "sha256": "0c71b2a66e18a81f9cae311b66ee9aba1d3c6f864810f2498373ef7d038a3917"
+    },
+    {
+      "path": "evidence/0452fad9c894-2ff0d2b44d6b/win-msvc-release/D1.06/20260908T085242Z-ec1abfce7b66/report.json",
+      "sha256": "eb38fc0380f6f538184a98a902362d899ddfbe72d4be611ae6e1343540825b24"
+    },
+    {
+      "path": "tests/runs/g1-native-matrix.json",
+      "sha256": "fa12fc2e28159343e13776cf34d278f714e87daf42c629a57a30ee8210fde476"
+    }
+  ],
+  "matrix": {
+    "path": "tests/runs/g1-native-matrix.json",
+    "sha256": "fa12fc2e28159343e13776cf34d278f714e87daf42c629a57a30ee8210fde476"
+  },
+  "implementation_identities": [
+    {
+      "commit": "0452fad9c894376845c674d408e397deb30c5438",
+      "inputs_sha256": "2ff0d2b44d6b6ced538cf53a6cf8cc4056b765fcc8912992d0fc6d31a4c728da",
+      "dependency_lock_sha256": "ac03ac1d4cc82ea23403be553ed896b4f5540e9abf12f29311f4883f1711b822"
+    }
+  ],
+  "runs": [
+    {
+      "task_id": "D1.06",
+      "profile": "win-msvc-debug",
+      "report": "evidence/0452fad9c894-2ff0d2b44d6b/win-msvc-debug/D1.06/20260908T083458Z-e90b5cf0e5e0/report.json",
+      "sha256": "0c71b2a66e18a81f9cae311b66ee9aba1d3c6f864810f2498373ef7d038a3917",
+      "run_id": "20260908T083458Z-e90b5cf0e5e0",
+      "original_package_status": "Passed",
+      "original_source_dirty": true,
+      "ctest_executions": 270,
+      "technical_review_complete": true
+    },
+    {
+      "task_id": "D1.06",
+      "profile": "win-msvc-release",
+      "report": "evidence/0452fad9c894-2ff0d2b44d6b/win-msvc-release/D1.06/20260908T085242Z-ec1abfce7b66/report.json",
+      "sha256": "eb38fc0380f6f538184a98a902362d899ddfbe72d4be611ae6e1343540825b24",
+      "run_id": "20260908T085242Z-ec1abfce7b66",
+      "original_package_status": "Passed",
+      "original_source_dirty": true,
+      "ctest_executions": 192,
+      "technical_review_complete": true
+    },
+    {
+      "task_id": "D1.06",
+      "profile": "win-msvc-asan",
+      "report": "evidence/0452fad9c894-2ff0d2b44d6b/win-msvc-asan/D1.06/20260908T082256Z-867b8ba50173/report.json",
+      "sha256": "b0e40bb0b37cd11309843dfc43ba1bff501edd149e4ede3a220dbbbf827e7830",
+      "run_id": "20260908T082256Z-867b8ba50173",
+      "original_package_status": "Passed",
+      "original_source_dirty": true,
+      "ctest_executions": 193,
+      "technical_review_complete": true
+    }
+  ],
+  "errors": [],
+  "review_errors": [],
+  "automated_status": "Passed",
+  "gate_status": "Passed",
+  "note": "本决策验收列出的精确已提交历史实现及原始运行；不是对后续源码执行过同一测试的声明。所有旧报告及人工字段保持原样。"
+}

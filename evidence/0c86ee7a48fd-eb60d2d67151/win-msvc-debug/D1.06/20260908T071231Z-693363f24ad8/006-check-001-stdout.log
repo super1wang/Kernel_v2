@@ -1,0 +1,114 @@
+{
+  "format": "ock.conformance-bootstrap-result/1",
+  "manifest_sha256": "b84440c8ab8403ce557cfe68c7cf9000981e726caee8bd0c3a0f1d9b096a960d",
+  "contract_version": "ock.executor.bootstrap/1",
+  "results": [
+    {
+      "descriptor": {
+        "name": "mock-inline",
+        "factory": "support.fixtures.MockExecutor",
+        "kind": "mock",
+        "port_contract_version": "ock.executor.bootstrap/1",
+        "implementation_sha256": "5526a65ef59adffb4de6bf2b3e236e0020dddf149ac0e4de531fe084f3835b94",
+        "capabilities": {
+          "inline": true,
+          "parallel": false
+        }
+      },
+      "result": {
+        "port_contract_version": "ock.executor.bootstrap/1",
+        "backend": "mock-inline",
+        "cases": [
+          {
+            "id": "ownership_transfer",
+            "status": "Passed"
+          },
+          {
+            "id": "exactly_once_completion",
+            "status": "Passed"
+          },
+          {
+            "id": "rejected_work_cleanup",
+            "status": "Passed"
+          },
+          {
+            "id": "exception_boundary",
+            "status": "Passed"
+          },
+          {
+            "id": "drain_shutdown_lifetime",
+            "status": "Passed"
+          },
+          {
+            "id": "worker_wait_rejection",
+            "status": "Passed"
+          },
+          {
+            "id": "real_parallel",
+            "status": "NotApplicable",
+            "reason": "contract expression capabilities.parallel == false"
+          }
+        ],
+        "errors": [],
+        "qualified": true,
+        "scope": "D0.06-c harness mock only; not production Executor"
+      }
+    },
+    {
+      "descriptor": {
+        "name": "fault-duplicate",
+        "factory": "support.fixtures.DuplicateCallbackExecutor",
+        "kind": "fault",
+        "port_contract_version": "ock.executor.bootstrap/1",
+        "implementation_sha256": "5526a65ef59adffb4de6bf2b3e236e0020dddf149ac0e4de531fe084f3835b94",
+        "capabilities": {
+          "inline": true,
+          "parallel": false
+        }
+      },
+      "result": {
+        "port_contract_version": "ock.executor.bootstrap/1",
+        "backend": "fault-duplicate",
+        "cases": [
+          {
+            "id": "ownership_transfer",
+            "status": "Failed",
+            "reason": "accepted owner/completion mismatch"
+          },
+          {
+            "id": "exactly_once_completion",
+            "status": "Failed",
+            "reason": "completion count/order/value mismatch"
+          },
+          {
+            "id": "rejected_work_cleanup",
+            "status": "Passed"
+          },
+          {
+            "id": "exception_boundary",
+            "status": "Failed",
+            "reason": "work exception boundary failed"
+          },
+          {
+            "id": "drain_shutdown_lifetime",
+            "status": "Failed",
+            "reason": "shutdown before accepted completion"
+          },
+          {
+            "id": "worker_wait_rejection",
+            "status": "Passed"
+          },
+          {
+            "id": "real_parallel",
+            "status": "NotApplicable",
+            "reason": "contract expression capabilities.parallel == false"
+          }
+        ],
+        "errors": [],
+        "qualified": false,
+        "scope": "D0.06-c harness mock only; not production Executor"
+      }
+    }
+  ],
+  "self_check_passed": true
+}

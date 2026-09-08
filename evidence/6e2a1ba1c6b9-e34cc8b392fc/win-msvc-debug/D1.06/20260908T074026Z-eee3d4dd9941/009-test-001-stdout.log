@@ -1,0 +1,559 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/d1.06-debug
+Test project J:/Code/Kernel_v2/build/d1.06-debug
+        Start   1: T23.footprint.method_identity
+  1/270 Test   #1: T23.footprint.method_identity .........................   Passed   48.65 sec
+        Start   2: T23.footprint.module_accounting
+  2/270 Test   #2: T23.footprint.module_accounting .......................   Passed    0.22 sec
+        Start   3: T23.footprint.memory_calibration
+  3/270 Test   #3: T23.footprint.memory_calibration ......................   Passed    0.25 sec
+        Start   4: T23.footprint.thread_clock_calibration
+  4/270 Test   #4: T23.footprint.thread_clock_calibration ................   Passed    0.22 sec
+        Start   5: T23.footprint.phase_repetition
+  5/270 Test   #5: T23.footprint.phase_repetition ........................   Passed    0.22 sec
+        Start   6: T23.footprint.owned_process
+  6/270 Test   #6: T23.footprint.owned_process ...........................   Passed    0.24 sec
+        Start   7: T23.footprint.raw_integrity
+  7/270 Test   #7: T23.footprint.raw_integrity ...........................   Passed    0.20 sec
+        Start   8: T23.footprint.budget_provenance
+  8/270 Test   #8: T23.footprint.budget_provenance .......................   Passed    0.22 sec
+        Start   9: T23.footprint.native_occupancy
+  9/270 Test   #9: T23.footprint.native_occupancy ........................   Passed  159.29 sec
+        Start  10: T23.footprint.allocation_report
+ 10/270 Test  #10: T23.footprint.allocation_report .......................   Passed  153.74 sec
+        Start  11: T24.sdk.version_header
+ 11/270 Test  #11: T24.sdk.version_header ................................   Passed    0.06 sec
+        Start  12: T01.architecture.dependency_dag
+ 12/270 Test  #12: T01.architecture.dependency_dag .......................   Passed    0.25 sec
+        Start  13: T01.architecture.negative_guards
+ 13/270 Test  #13: T01.architecture.negative_guards ......................   Passed    4.62 sec
+        Start  14: T24.sdk.install_and_missing_components
+ 14/270 Test  #14: T24.sdk.install_and_missing_components ................   Passed   14.51 sec
+        Start  58: T01.dependencies.expected
+ 15/270 Test  #58: T01.dependencies.expected .............................   Passed    0.06 sec
+        Start  59: T01.dependencies.toolchain
+ 16/270 Test  #59: T01.dependencies.toolchain ............................   Passed    0.06 sec
+        Start  60: T01.dependencies.lock_contracts
+ 17/270 Test  #60: T01.dependencies.lock_contracts .......................   Passed    0.20 sec
+        Start 180: T23.process.nonfinite_timeout_rejected
+ 18/270 Test #180: T23.process.nonfinite_timeout_rejected ................   Passed    0.14 sec
+        Start 181: T23.process.raw_bytes
+ 19/270 Test #181: T23.process.raw_bytes .................................   Passed    0.25 sec
+        Start 182: T23.process.printed_success_nonzero
+ 20/270 Test #182: T23.process.printed_success_nonzero ...................   Passed    0.24 sec
+        Start 183: T23.process.launch_failure
+ 21/270 Test #183: T23.process.launch_failure ............................   Passed    0.14 sec
+        Start 184: T23.process.crashed_exit
+ 22/270 Test #184: T23.process.crashed_exit ..............................   Passed    0.25 sec
+        Start 185: T23.process.timeout_tree
+ 23/270 Test #185: T23.process.timeout_tree ..............................   Passed    5.20 sec
+        Start 186: T23.process.leaked_child_rejected
+ 24/270 Test #186: T23.process.leaked_child_rejected .....................   Passed    5.18 sec
+        Start 187: T23.evidence.actual_execution
+ 25/270 Test #187: T23.evidence.actual_execution .........................   Passed    2.64 sec
+        Start 188: T23.evidence.print_success_exit_failure
+ 26/270 Test #188: T23.evidence.print_success_exit_failure ...............   Passed    2.49 sec
+        Start 189: T23.evidence.zero_tests
+ 27/270 Test #189: T23.evidence.zero_tests ...............................   Passed    2.24 sec
+        Start 190: T23.evidence.wrong_filter
+ 28/270 Test #190: T23.evidence.wrong_filter .............................   Passed    2.37 sec
+        Start 191: T23.evidence.removed_expected_case
+ 29/270 Test #191: T23.evidence.removed_expected_case ....................   Passed    2.18 sec
+        Start 192: T23.evidence.skip_rejected
+ 30/270 Test #192: T23.evidence.skip_rejected ............................   Passed    2.24 sec
+        Start 193: T23.evidence.old_report_not_reused
+ 31/270 Test #193: T23.evidence.old_report_not_reused ....................   Passed    2.31 sec
+        Start 194: T23.evidence.repeat_required
+ 32/270 Test #194: T23.evidence.repeat_required ..........................   Passed    2.38 sec
+        Start 195: T23.evidence.all_rounds_retained
+ 33/270 Test #195: T23.evidence.all_rounds_retained ......................   Passed    2.60 sec
+        Start 196: T23.evidence.missing_report
+ 34/270 Test #196: T23.evidence.missing_report ...........................   Passed    2.35 sec
+        Start 197: T23.evidence.corrupt_report
+ 35/270 Test #197: T23.evidence.corrupt_report ...........................   Passed    2.57 sec
+        Start 198: T23.evidence.changed_binary
+ 36/270 Test #198: T23.evidence.changed_binary ...........................   Passed    2.54 sec
+        Start 199: T23.evidence.changed_source
+ 37/270 Test #199: T23.evidence.changed_source ...........................   Passed    2.64 sec
+        Start 200: T23.evidence.added_source
+ 38/270 Test #200: T23.evidence.added_source .............................   Passed    2.31 sec
+        Start 201: T23.evidence.changed_lock
+ 39/270 Test #201: T23.evidence.changed_lock .............................   Passed    2.39 sec
+        Start 202: T23.evidence.changed_raw
+ 40/270 Test #202: T23.evidence.changed_raw ..............................   Passed    2.34 sec
+        Start 203: T23.evidence.failed_then_rerun
+ 41/270 Test #203: T23.evidence.failed_then_rerun ........................   Passed    3.73 sec
+        Start 204: T23.evidence.source_mutation_during_test
+ 42/270 Test #204: T23.evidence.source_mutation_during_test ..............   Passed    2.36 sec
+        Start 205: T23.evidence.binary_mutation_during_test
+ 43/270 Test #205: T23.evidence.binary_mutation_during_test ..............   Passed    2.30 sec
+        Start 206: T23.evidence.missing_artifact
+ 44/270 Test #206: T23.evidence.missing_artifact .........................   Passed    2.51 sec
+        Start 207: T23.evidence.forged_status_rejected
+ 45/270 Test #207: T23.evidence.forged_status_rejected ...................   Passed    2.39 sec
+        Start 208: T23.evidence.configuration_mismatch
+ 46/270 Test #208: T23.evidence.configuration_mismatch ...................   Passed    2.27 sec
+        Start 209: T23.evidence.review_required_not_waived
+ 47/270 Test #209: T23.evidence.review_required_not_waived ...............   Passed    2.47 sec
+        Start 210: T23.evidence.gate_missing_profiles
+ 48/270 Test #210: T23.evidence.gate_missing_profiles ....................   Passed    2.56 sec
+        Start 211: T23.evidence.gate_duplicate_runs
+ 49/270 Test #211: T23.evidence.gate_duplicate_runs ......................   Passed    2.54 sec
+        Start 212: T23.evidence.legacy_corruption
+ 50/270 Test #212: T23.evidence.legacy_corruption ........................   Passed    0.89 sec
+        Start 213: T23.evidence.runtime_artifact_integrity
+ 51/270 Test #213: T23.evidence.runtime_artifact_integrity ...............   Passed    5.24 sec
+        Start 214: T23.evidence.runtime_duplicate_rejected
+ 52/270 Test #214: T23.evidence.runtime_duplicate_rejected ...............   Passed    2.40 sec
+        Start 215: T23.evidence.stale_runtime_artifact_rejected
+ 53/270 Test #215: T23.evidence.stale_runtime_artifact_rejected ..........   Passed    2.23 sec
+        Start 216: T23.evidence.gate_mixed_source_rejected
+ 54/270 Test #216: T23.evidence.gate_mixed_source_rejected ...............   Passed    3.71 sec
+        Start 217: T23.evidence.source_directory_named_evidence
+ 55/270 Test #217: T23.evidence.source_directory_named_evidence ..........   Passed    2.42 sec
+        Start 218: T23.evidence.collector_process_fingerprint
+ 56/270 Test #218: T23.evidence.collector_process_fingerprint ............   Passed    0.89 sec
+        Start 219: T23.evidence.schema_unknown_field
+ 57/270 Test #219: T23.evidence.schema_unknown_field .....................   Passed    2.33 sec
+        Start 220: T23.evidence.forged_human_approval
+ 58/270 Test #220: T23.evidence.forged_human_approval ....................   Passed    2.30 sec
+        Start 221: T19.conformance.common_contract
+ 59/270 Test #221: T19.conformance.common_contract .......................   Passed    0.13 sec
+        Start 222: T19.conformance.fault_not_qualified
+ 60/270 Test #222: T19.conformance.fault_not_qualified ...................   Passed    0.12 sec
+        Start 223: T19.conformance.optional_not_passed
+ 61/270 Test #223: T19.conformance.optional_not_passed ...................   Passed    0.12 sec
+        Start 224: T19.conformance.profile_requires_capability
+ 62/270 Test #224: T19.conformance.profile_requires_capability ...........   Passed    0.12 sec
+        Start 225: T19.conformance.common_cannot_be_waived
+ 63/270 Test #225: T19.conformance.common_cannot_be_waived ...............   Passed    0.12 sec
+        Start 226: T19.conformance.missing_required_capability
+ 64/270 Test #226: T19.conformance.missing_required_capability ...........   Passed    0.12 sec
+        Start 227: T19.conformance.false_capability
+ 65/270 Test #227: T19.conformance.false_capability ......................   Passed    0.12 sec
+        Start 228: T19.conformance.wrong_contract_version
+ 66/270 Test #228: T19.conformance.wrong_contract_version ................   Passed    0.13 sec
+        Start 229: T19.conformance.wrong_implementation_digest
+ 67/270 Test #229: T19.conformance.wrong_implementation_digest ...........   Passed    0.13 sec
+        Start 230: T19.conformance.factory_identity
+ 68/270 Test #230: T19.conformance.factory_identity ......................   Passed    0.11 sec
+        Start 231: T19.conformance.backend_exception
+ 69/270 Test #231: T19.conformance.backend_exception .....................   Passed    0.13 sec
+        Start 232: T19.conformance.nested_worker_rejection
+ 70/270 Test #232: T19.conformance.nested_worker_rejection ...............   Passed    0.13 sec
+        Start 233: T19.conformance.fault_flag_not_qualification
+ 71/270 Test #233: T19.conformance.fault_flag_not_qualification ..........   Passed    0.13 sec
+        Start 234: T24.foundation.public_headers
+ 72/270 Test #234: T24.foundation.public_headers .........................   Passed    8.02 sec
+        Start 235: T24.foundation.installed_consumer
+ 73/270 Test #235: T24.foundation.installed_consumer .....................   Passed   29.16 sec
+        Start 236: T24.foundation.missing_dependency_rejected
+ 74/270 Test #236: T24.foundation.missing_dependency_rejected ............   Passed   10.64 sec
+        Start 237: T24.foundation.backend_mode_rejected
+ 75/270 Test #237: T24.foundation.backend_mode_rejected ..................   Passed   16.19 sec
+        Start 238: T01.contracts.component_closure
+ 76/270 Test #238: T01.contracts.component_closure .......................   Passed    0.74 sec
+        Start 239: T01.contracts.public_include_boundary
+ 77/270 Test #239: T01.contracts.public_include_boundary .................   Passed    1.72 sec
+        Start 240: T24.contracts.public_headers
+ 78/270 Test #240: T24.contracts.public_headers ..........................   Passed   11.96 sec
+        Start 241: T24.contracts.installed_component_consumer
+ 79/270 Test #241: T24.contracts.installed_component_consumer ............   Passed   30.65 sec
+        Start 242: T24.contracts.install_pruning_rejected
+ 80/270 Test #242: T24.contracts.install_pruning_rejected ................   Passed   29.15 sec
+        Start 243: T24.native_sdk.metadata
+ 81/270 Test #243: T24.native_sdk.metadata ...............................   Passed   16.96 sec
+        Start 244: T24.native_sdk.public_headers
+ 82/270 Test #244: T24.native_sdk.public_headers .........................   Passed   28.95 sec
+        Start 245: T24.native_sdk.installed_host
+ 83/270 Test #245: T24.native_sdk.installed_host .........................   Passed    8.62 sec
+        Start 246: T24.native_sdk.no_tests_producer
+ 84/270 Test #246: T24.native_sdk.no_tests_producer ......................   Passed   24.97 sec
+        Start 247: T24.native_sdk.link_closure
+ 85/270 Test #247: T24.native_sdk.link_closure ...........................   Passed   17.40 sec
+        Start 248: T24.native_sdk.install_pruning_rejected
+ 86/270 Test #248: T24.native_sdk.install_pruning_rejected ...............   Passed   31.00 sec
+        Start 249: T02.native_sdk.private_dispatch
+ 87/270 Test #249: T02.native_sdk.private_dispatch .......................   Passed   28.01 sec
+        Start 250: T01.native_sdk.surface_guard
+ 88/270 Test #250: T01.native_sdk.surface_guard ..........................   Passed    1.30 sec
+        Start 251: T03.foundation.code_only_no_allocation
+ 89/270 Test #251: T03.foundation.code_only_no_allocation ................   Passed    0.06 sec
+        Start 252: T03.foundation.value_operations_no_allocation
+ 90/270 Test #252: T03.foundation.value_operations_no_allocation .........   Passed    0.06 sec
+        Start 253: T03.foundation.layout_statistics
+ 91/270 Test #253: T03.foundation.layout_statistics ......................   Passed    0.07 sec
+        Start 254: T04.foundation.result_move_only_value
+ 92/270 Test #254: T04.foundation.result_move_only_value .................   Passed    0.07 sec
+        Start 255: T04.foundation.result_move_only_error
+ 93/270 Test #255: T04.foundation.result_move_only_error .................   Passed    0.07 sec
+        Start 256: T04.foundation.result_void
+ 94/270 Test #256: T04.foundation.result_void ............................   Passed    0.08 sec
+        Start 257: T04.foundation.result_error_propagation
+ 95/270 Test #257: T04.foundation.result_error_propagation ...............   Passed    0.08 sec
+        Start 258: T04.foundation.result_bad_access
+ 96/270 Test #258: T04.foundation.result_bad_access ......................   Passed    0.07 sec
+        Start 259: T04.foundation.exception_not_business_failure
+ 97/270 Test #259: T04.foundation.exception_not_business_failure .........   Passed    0.04 sec
+        Start 260: T04.foundation.static_error_domain
+ 98/270 Test #260: T04.foundation.static_error_domain ....................   Passed    9.41 sec
+        Start 261: T04.foundation.error_details_ownership
+ 99/270 Test #261: T04.foundation.error_details_ownership ................   Passed    0.08 sec
+        Start 262: T04.foundation.error_details_budget
+100/270 Test #262: T04.foundation.error_details_budget ...................   Passed    0.05 sec
+        Start 263: T04.foundation.display_utf8
+101/270 Test #263: T04.foundation.display_utf8 ...........................   Passed    0.04 sec
+        Start 264: T04.foundation.checked_arithmetic
+102/270 Test #264: T04.foundation.checked_arithmetic .....................   Passed    0.04 sec
+        Start 265: T04.foundation.checked_narrowing
+103/270 Test #265: T04.foundation.checked_narrowing ......................   Passed    0.02 sec
+        Start 266: T04.foundation.checked_count_atomic_update
+104/270 Test #266: T04.foundation.checked_count_atomic_update ............   Passed    0.04 sec
+        Start 267: T04.foundation.invariant_fail_fast
+105/270 Test #267: T04.foundation.invariant_fail_fast ....................   Passed    0.41 sec
+        Start 268: T05.foundation.name_ascii_bounds
+106/270 Test #268: T05.foundation.name_ascii_bounds ......................   Passed    0.05 sec
+        Start 269: T05.foundation.name_case_and_ownership
+107/270 Test #269: T05.foundation.name_case_and_ownership ................   Passed    0.04 sec
+        Start 270: T05.foundation.tagged_identity_types
+108/270 Test #270: T05.foundation.tagged_identity_types ..................   Passed    0.03 sec
+        Start 271: T05.foundation.identity_canonical_codec
+109/270 Test #271: T05.foundation.identity_canonical_codec ...............   Passed    0.05 sec
+        Start 272: T05.foundation.bound_handle_generation
+110/270 Test #272: T05.foundation.bound_handle_generation ................   Passed    0.04 sec
+        Start 273: T05.foundation.runtime_epoch_separation
+111/270 Test #273: T05.foundation.runtime_epoch_separation ...............   Passed    0.04 sec
+        Start 274: T02.contracts.compile_fixture_setup
+112/270 Test #274: T02.contracts.compile_fixture_setup ...................   Passed    4.22 sec
+        Start 275: T02.contracts.compile_fixture_guards
+113/270 Test #275: T02.contracts.compile_fixture_guards ..................   Passed    0.36 sec
+        Start 276: T02.contracts.type_contract_constraints
+114/270 Test #276: T02.contracts.type_contract_constraints ...............   Passed   12.29 sec
+        Start 277: T02.contracts.typed_value_validation
+115/270 Test #277: T02.contracts.typed_value_validation ..................   Passed    5.54 sec
+        Start 278: T02.contracts.read_shape
+116/270 Test #278: T02.contracts.read_shape ..............................   Passed    7.83 sec
+        Start 279: T02.contracts.state_edit_shape
+117/270 Test #279: T02.contracts.state_edit_shape ........................   Passed    7.71 sec
+        Start 280: T02.contracts.effect_shape
+118/270 Test #280: T02.contracts.effect_shape ............................   Passed    6.50 sec
+        Start 281: T02.contracts.lifecycle_shape
+119/270 Test #281: T02.contracts.lifecycle_shape .........................   Passed    5.51 sec
+        Start 282: T02.contracts.context_capability_boundary
+120/270 Test #282: T02.contracts.context_capability_boundary .............   Passed   14.33 sec
+        Start 283: T02.contracts.atomic_read_adapters
+121/270 Test #283: T02.contracts.atomic_read_adapters ....................   Passed    7.55 sec
+        Start 284: T02.contracts.atomic_async_rejected
+122/270 Test #284: T02.contracts.atomic_async_rejected ...................   Passed    5.40 sec
+        Start 285: T05.contracts.operation_exact_identity
+123/270 Test #285: T05.contracts.operation_exact_identity ................   Passed    0.07 sec
+        Start 286: T05.contracts.typed_binding_fingerprint
+124/270 Test #286: T05.contracts.typed_binding_fingerprint ...............   Passed   11.82 sec
+        Start 287: T05.contracts.binding_generation_before_access
+125/270 Test #287: T05.contracts.binding_generation_before_access ........   Passed    0.04 sec
+        Start 288: T05.contracts.binding_owner_lifetime
+126/270 Test #288: T05.contracts.binding_owner_lifetime ..................   Passed    0.05 sec
+        Start 289: T05.contracts.execution_identity_separation
+127/270 Test #289: T05.contracts.execution_identity_separation ...........   Passed    0.04 sec
+        Start 290: T06.contracts.outcome_closed_variants
+128/270 Test #290: T06.contracts.outcome_closed_variants .................   Passed    0.04 sec
+        Start 291: T06.contracts.known_facts_append_only
+129/270 Test #291: T06.contracts.known_facts_append_only .................   Passed    0.04 sec
+        Start 292: T06.contracts.publication_proof_required
+130/270 Test #292: T06.contracts.publication_proof_required ..............   Passed    0.04 sec
+        Start 293: T06.contracts.effect_report_preserves_fact
+131/270 Test #293: T06.contracts.effect_report_preserves_fact ............   Passed    0.03 sec
+        Start 294: T06.contracts.lifecycle_report_preserves_state
+132/270 Test #294: T06.contracts.lifecycle_report_preserves_state ........   Passed    0.04 sec
+        Start 295: T06.contracts.before_apply_and_composite_proofs
+133/270 Test #295: T06.contracts.before_apply_and_composite_proofs .......   Passed    0.04 sec
+        Start 296: T06.contracts.reply_phase_completion_separation
+134/270 Test #296: T06.contracts.reply_phase_completion_separation .......   Passed    0.04 sec
+        Start 297: T06.contracts.executor_inline_ownership
+135/270 Test #297: T06.contracts.executor_inline_ownership ...............   Passed    0.03 sec
+        Start 298: T06.contracts.executor_reject_exception_cleanup
+136/270 Test #298: T06.contracts.executor_reject_exception_cleanup .......   Passed    0.40 sec
+        Start 299: T06.contracts.completion_once_and_drain
+137/270 Test #299: T06.contracts.completion_once_and_drain ...............   Passed    0.04 sec
+        Start 300: T06.contracts.atomic_prepared_identity
+138/270 Test #300: T06.contracts.atomic_prepared_identity ................   Passed    0.04 sec
+        Start 301: T06.contracts.record_evidence_boundary
+139/270 Test #301: T06.contracts.record_evidence_boundary ................   Passed    0.05 sec
+        Start 302: T19.contracts.summary_owned_snapshot
+140/270 Test #302: T19.contracts.summary_owned_snapshot ..................   Passed    0.06 sec
+        Start 303: T19.contracts.observation_host_version
+141/270 Test #303: T19.contracts.observation_host_version ................   Passed    0.05 sec
+        Start 304: T19.contracts.observation_budgets
+142/270 Test #304: T19.contracts.observation_budgets .....................   Passed    0.04 sec
+        Start 305: T19.contracts.authorized_owner_filter
+143/270 Test #305: T19.contracts.authorized_owner_filter .................   Passed    0.03 sec
+        Start 306: T19.contracts.completion_independent_of_observation
+144/270 Test #306: T19.contracts.completion_independent_of_observation ...   Passed    0.04 sec
+        Start 307: T19.contracts.live_keyset_progress
+145/270 Test #307: T19.contracts.live_keyset_progress ....................   Passed    0.05 sec
+        Start 308: T24.contracts.port_factory_contract_manifest
+146/270 Test #308: T24.contracts.port_factory_contract_manifest ..........   Passed    0.05 sec
+        Start 309: T02.registration.atomic_candidate_contract
+147/270 Test #309: T02.registration.atomic_candidate_contract ............   Passed    0.07 sec
+        Start 310: T02.registration.batch_k_failure_atomic
+148/270 Test #310: T02.registration.batch_k_failure_atomic ...............   Passed    0.06 sec
+        Start 311: T02.registration.callback_exception_cleanup
+149/270 Test #311: T02.registration.callback_exception_cleanup ...........   Passed    0.06 sec
+        Start 312: T02.registration.declared_operations_complete
+150/270 Test #312: T02.registration.declared_operations_complete .........   Passed    0.06 sec
+        Start 313: T02.registration.error_budget_sticky
+151/270 Test #313: T02.registration.error_budget_sticky ..................   Passed    0.06 sec
+        Start 314: T02.registration.exact_operation_versions
+152/270 Test #314: T02.registration.exact_operation_versions .............   Passed    0.06 sec
+        Start 315: T02.registration.execution_capabilities
+153/270 Test #315: T02.registration.execution_capabilities ...............   Passed    0.05 sec
+        Start 316: T02.registration.ignored_errors_sticky
+154/270 Test #316: T02.registration.ignored_errors_sticky ................   Passed    0.06 sec
+        Start 317: T02.registration.manifest_owned_budget
+155/270 Test #317: T02.registration.manifest_owned_budget ................   Passed    9.06 sec
+        Start 318: T02.registration.module_cycles_rejected
+156/270 Test #318: T02.registration.module_cycles_rejected ...............   Passed    0.06 sec
+        Start 319: T02.registration.module_dag_order
+157/270 Test #319: T02.registration.module_dag_order .....................   Passed    0.06 sec
+        Start 320: T02.registration.module_identity_versions
+158/270 Test #320: T02.registration.module_identity_versions .............   Passed    0.04 sec
+        Start 321: T02.registration.provider_binding
+159/270 Test #321: T02.registration.provider_binding .....................   Passed    0.03 sec
+        Start 322: T02.registration.schema_capability_absent
+160/270 Test #322: T02.registration.schema_capability_absent .............   Passed    0.04 sec
+        Start 323: T02.registration.service_binding
+161/270 Test #323: T02.registration.service_binding ......................   Passed    0.04 sec
+        Start 324: T02.registration.shape_compile_contract
+162/270 Test #324: T02.registration.shape_compile_contract ...............   Passed   14.94 sec
+        Start 325: T05.registration.exact_fingerprint
+163/270 Test #325: T05.registration.exact_fingerprint ....................   Passed    0.05 sec
+        Start 326: T05.registration.failure_preserves_catalog
+164/270 Test #326: T05.registration.failure_preserves_catalog ............   Passed    0.03 sec
+        Start 327: T05.registration.publish_once_freeze
+165/270 Test #327: T05.registration.publish_once_freeze ..................   Passed    0.03 sec
+        Start 328: T05.registration.registry_generation
+166/270 Test #328: T05.registration.registry_generation ..................   Passed    0.03 sec
+        Start 329: T05.registration.snapshot_lifetime
+167/270 Test #329: T05.registration.snapshot_lifetime ....................   Passed    0.04 sec
+        Start 330: T05.registration.typed_binding_success
+168/270 Test #330: T05.registration.typed_binding_success ................   Passed    0.07 sec
+        Start 331: T24.registration.cold_docs_separation
+169/270 Test #331: T24.registration.cold_docs_separation .................   Passed    0.25 sec
+        Start 332: T24.registration.handler_not_exposed
+170/270 Test #332: T24.registration.handler_not_exposed ..................   Passed   15.08 sec
+        Start 333: T24.registration.internal_component_boundary
+171/270 Test #333: T24.registration.internal_component_boundary ..........   Passed    2.21 sec
+        Start 334: T07.policy.authentication_source
+172/270 Test #334: T07.policy.authentication_source ......................   Passed   10.65 sec
+        Start 335: T07.policy.cancel_arbitration
+173/270 Test #335: T07.policy.cancel_arbitration .........................   Passed    0.08 sec
+        Start 336: T07.policy.consume_before_revoke
+174/270 Test #336: T07.policy.consume_before_revoke ......................   Passed    0.07 sec
+        Start 337: T07.policy.delegation_shrink
+175/270 Test #337: T07.policy.delegation_shrink ..........................   Passed    0.07 sec
+        Start 338: T07.policy.exception_atomicity
+176/270 Test #338: T07.policy.exception_atomicity ........................   Passed    0.18 sec
+        Start 339: T07.policy.expiry_boundary
+177/270 Test #339: T07.policy.expiry_boundary ............................   Passed    0.07 sec
+        Start 340: T07.policy.generation_exhaustion
+178/270 Test #340: T07.policy.generation_exhaustion ......................   Passed    0.09 sec
+        Start 341: T07.policy.group_members_complete
+179/270 Test #341: T07.policy.group_members_complete .....................   Passed    0.08 sec
+        Start 342: T07.policy.group_substitution
+180/270 Test #342: T07.policy.group_substitution .........................   Passed   10.81 sec
+        Start 343: T07.policy.operation_exact_contract
+181/270 Test #343: T07.policy.operation_exact_contract ...................   Passed    0.10 sec
+        Start 344: T07.policy.owned_inputs_budget
+182/270 Test #344: T07.policy.owned_inputs_budget ........................   Passed    0.23 sec
+        Start 345: T07.policy.owner_scope
+183/270 Test #345: T07.policy.owner_scope ................................   Passed    0.05 sec
+        Start 346: T07.policy.permit_concurrent
+184/270 Test #346: T07.policy.permit_concurrent ..........................   Passed    0.04 sec
+        Start 347: T07.policy.permit_once
+185/270 Test #347: T07.policy.permit_once ................................   Passed    0.04 sec
+        Start 348: T07.policy.permit_origin_binding
+186/270 Test #348: T07.policy.permit_origin_binding ......................   Passed   10.80 sec
+        Start 349: T07.policy.recursive_delegation_denied
+187/270 Test #349: T07.policy.recursive_delegation_denied ................   Passed    0.04 sec
+        Start 350: T07.policy.revoke_before_consume
+188/270 Test #350: T07.policy.revoke_before_consume ......................   Passed    0.04 sec
+        Start 351: T07.policy.scope_four_way
+189/270 Test #351: T07.policy.scope_four_way .............................   Passed    0.14 sec
+        Start 352: T07.policy.service_principal
+190/270 Test #352: T07.policy.service_principal ..........................   Passed    0.06 sec
+        Start 353: T07.policy.session_isolation
+191/270 Test #353: T07.policy.session_isolation ..........................   Passed    0.05 sec
+        Start 354: T07.policy.target_frozen_set
+192/270 Test #354: T07.policy.target_frozen_set ..........................   Passed    0.05 sec
+        Start 355: T07.policy.target_issued_identity
+193/270 Test #355: T07.policy.target_issued_identity .....................   Passed    0.05 sec
+        Start 356: T07.policy.target_lifecycle
+194/270 Test #356: T07.policy.target_lifecycle ...........................   Passed    0.05 sec
+        Start 357: T19.policy.page_binding_isolation
+195/270 Test #357: T19.policy.page_binding_isolation .....................   Passed    0.06 sec
+        Start 358: T19.policy.page_owner_authorization
+196/270 Test #358: T19.policy.page_owner_authorization ...................   Passed    0.05 sec
+        Start 359: T19.policy.page_revoke_live_keyset
+197/270 Test #359: T19.policy.page_revoke_live_keyset ....................   Passed    0.06 sec
+        Start 360: T19.policy.query_field_projection
+198/270 Test #360: T19.policy.query_field_projection .....................   Passed    0.07 sec
+        Start 361: T19.policy.subscription_connection_cleanup
+199/270 Test #361: T19.policy.subscription_connection_cleanup ............   Passed    0.04 sec
+        Start 362: T19.policy.subscription_scope_atomic
+200/270 Test #362: T19.policy.subscription_scope_atomic ..................   Passed    0.06 sec
+        Start 363: T20.policy.failed_start_not_started
+201/270 Test #363: T20.policy.failed_start_not_started ...................   Passed    0.06 sec
+        Start 364: T20.policy.internal_component_boundary
+202/270 Test #364: T20.policy.internal_component_boundary ................   Passed    2.27 sec
+        Start 365: T20.policy.queued_revoke_drop
+203/270 Test #365: T20.policy.queued_revoke_drop .........................   Passed    0.10 sec
+        Start 366: T20.policy.transmission_start_arbitration
+204/270 Test #366: T20.policy.transmission_start_arbitration .............   Passed   10.86 sec
+        Start 367: T20.policy.unknown_start_no_retry
+205/270 Test #367: T20.policy.unknown_start_no_retry .....................   Passed    0.06 sec
+        Start 368: T20.policy.unsubscribe_inflight
+206/270 Test #368: T20.policy.unsubscribe_inflight .......................   Passed    0.05 sec
+        Start 369: T02.native.candidate_read_dispatch
+207/270 Test #369: T02.native.candidate_read_dispatch ....................   Passed    0.06 sec
+        Start 370: T02.native.exact_binding
+208/270 Test #370: T02.native.exact_binding ..............................   Passed    0.05 sec
+        Start 371: T02.native.invalid_input
+209/270 Test #371: T02.native.invalid_input ..............................   Passed    0.07 sec
+        Start 372: T02.native.private_dispatch
+210/270 Test #372: T02.native.private_dispatch ...........................   Passed   17.20 sec
+        Start 373: T02.native.registered_compute
+211/270 Test #373: T02.native.registered_compute .........................   Passed    0.07 sec
+        Start 374: T02.native.registered_read
+212/270 Test #374: T02.native.registered_read ............................   Passed    0.07 sec
+        Start 375: T02.native.validation_exception
+213/270 Test #375: T02.native.validation_exception .......................   Passed    0.07 sec
+        Start 376: T03.native.cancel_and_budget
+214/270 Test #376: T03.native.cancel_and_budget ..........................   Passed    0.09 sec
+        Start 377: T03.native.component_boundary
+215/270 Test #377: T03.native.component_boundary .........................   Passed    2.40 sec
+        Start 378: T03.native.example_consumer
+216/270 Test #378: T03.native.example_consumer ...........................   Passed    0.39 sec
+        Start 379: T03.native.no_self_wait
+217/270 Test #379: T03.native.no_self_wait ...............................   Passed   15.74 sec
+        Start 380: T03.native.no_task_path
+218/270 Test #380: T03.native.no_task_path ...............................   Passed    0.05 sec
+        Start 381: T03.native.provider_unavailable
+219/270 Test #381: T03.native.provider_unavailable .......................   Passed    0.07 sec
+        Start 382: T03.native.reentrant_and_concurrent
+220/270 Test #382: T03.native.reentrant_and_concurrent ...................   Passed    0.09 sec
+        Start 383: T03.native.resource_lifetime
+221/270 Test #383: T03.native.resource_lifetime ..........................   Passed    0.06 sec
+        Start 384: T03.native.thread_modes
+222/270 Test #384: T03.native.thread_modes ...............................   Passed    0.07 sec
+        Start 385: T03.native.thread_origin
+223/270 Test #385: T03.native.thread_origin ..............................   Passed    0.05 sec
+        Start 386: T06.native.admission_order
+224/270 Test #386: T06.native.admission_order ............................   Passed    0.06 sec
+        Start 387: T06.native.authority_origin
+225/270 Test #387: T06.native.authority_origin ...........................   Passed    0.06 sec
+        Start 388: T06.native.business_failure
+226/270 Test #388: T06.native.business_failure ...........................   Passed    0.04 sec
+        Start 389: T06.native.invalid_output
+227/270 Test #389: T06.native.invalid_output .............................   Passed    0.07 sec
+        Start 390: T06.native.lifecycle_replacement
+228/270 Test #390: T06.native.lifecycle_replacement ......................   Passed    0.06 sec
+        Start 391: T06.native.outcome_consistency
+229/270 Test #391: T06.native.outcome_consistency ........................   Passed    0.06 sec
+        Start 392: T06.native.permission_intersection
+230/270 Test #392: T06.native.permission_intersection ....................   Passed    0.10 sec
+        Start 393: T06.native.policy_contract_alignment
+231/270 Test #393: T06.native.policy_contract_alignment ..................   Passed    0.10 sec
+        Start 394: T06.native.revoke_and_regrant
+232/270 Test #394: T06.native.revoke_and_regrant .........................   Passed    0.09 sec
+        Start 395: T06.native.session_and_deadline
+233/270 Test #395: T06.native.session_and_deadline .......................   Passed    0.06 sec
+        Start 396: T06.native.target_binding
+234/270 Test #396: T06.native.target_binding .............................   Passed    0.04 sec
+        Start 397: T23.native.allocation_governance
+235/270 Test #397: T23.native.allocation_governance ......................   Passed    0.22 sec
+        Start 398: T23.native.allocation_other_costs
+236/270 Test #398: T23.native.allocation_other_costs .....................   Passed    0.19 sec
+        Start 399: T23.native.allocation_probe
+237/270 Test #399: T23.native.allocation_probe ...........................   Passed    0.30 sec
+        Start 400: T23.native.allocation_steady
+238/270 Test #400: T23.native.allocation_steady ..........................   Passed    0.21 sec
+        Start 401: T03.host.ready_gate
+239/270 Test #401: T03.host.ready_gate ...................................   Passed    0.12 sec
+        Start 402: T03.host.start_order
+240/270 Test #402: T03.host.start_order ..................................   Passed    0.07 sec
+        Start 403: T22.host.pending_report
+241/270 Test #403: T22.host.pending_report ...............................   Passed    0.10 sec
+        Start 404: T22.host.lifecycle_reentrancy
+242/270 Test #404: T22.host.lifecycle_reentrancy .........................   Passed    0.09 sec
+        Start 405: T03.host.catalog_registration
+243/270 Test #405: T03.host.catalog_registration .........................   Passed    0.11 sec
+        Start 406: T03.host.native_results
+244/270 Test #406: T03.host.native_results ...............................   Passed    0.09 sec
+        Start 407: T03.host.session_ownership
+245/270 Test #407: T03.host.session_ownership ............................   Passed    0.10 sec
+        Start 408: T03.host.delegation_revoke
+246/270 Test #408: T03.host.delegation_revoke ............................   Passed    0.06 sec
+        Start 409: T22.host.shutdown_deadline
+247/270 Test #409: T22.host.shutdown_deadline ............................   Passed    0.12 sec
+        Start 410: T19.host.logging_ownership
+248/270 Test #410: T19.host.logging_ownership ............................   Passed    0.07 sec
+        Start 411: T22.host.admission_race
+249/270 Test #411: T22.host.admission_race ...............................   Passed    0.10 sec
+        Start 412: T22.host.return_lifetime
+250/270 Test #412: T22.host.return_lifetime ..............................   Passed    0.06 sec
+        Start 413: T22.host.shutdown_order
+251/270 Test #413: T22.host.shutdown_order ...............................   Passed    0.04 sec
+        Start 414: T23.host.steady_allocation
+252/270 Test #414: T23.host.steady_allocation ............................   Passed    0.04 sec
+        Start 415: T23.host.owner_reclamation
+253/270 Test #415: T23.host.owner_reclamation ............................   Passed    0.04 sec
+        Start 416: T22.host.destructor_guard
+254/270 Test #416: T22.host.destructor_guard .............................   Passed    0.50 sec
+        Start 417: T23.host.allocation_controls
+255/270 Test #417: T23.host.allocation_controls ..........................   Passed    0.33 sec
+        Start 418: T03.host.configuration
+256/270 Test #418: T03.host.configuration ................................   Passed    0.61 sec
+        Start 419: T03.host.start_failures
+257/270 Test #419: T03.host.start_failures ...............................   Passed    0.39 sec
+        Start 420: T22.host.shutdown_errors
+258/270 Test #420: T22.host.shutdown_errors ..............................   Passed    0.31 sec
+        Start 421: T22.logging.memory.accept_reject_drop_accounting
+259/270 Test #421: T22.logging.memory.accept_reject_drop_accounting ......   Passed    0.26 sec
+        Start 422: T22.logging.memory.format_redaction
+260/270 Test #422: T22.logging.memory.format_redaction ...................   Passed    0.25 sec
+        Start 423: T22.logging.memory.error_isolation
+261/270 Test #423: T22.logging.memory.error_isolation ....................   Passed    0.26 sec
+        Start 424: T22.logging.memory.flush_accepted_range
+262/270 Test #424: T22.logging.memory.flush_accepted_range ...............   Passed    0.26 sec
+        Start 425: T22.logging.memory.shutdown_callback_lifetime
+263/270 Test #425: T22.logging.memory.shutdown_callback_lifetime .........   Passed    0.26 sec
+        Start 426: T22.logging.test.accept_reject_drop_accounting
+264/270 Test #426: T22.logging.test.accept_reject_drop_accounting ........   Passed    0.26 sec
+        Start 427: T22.logging.test.format_redaction
+265/270 Test #427: T22.logging.test.format_redaction .....................   Passed    0.25 sec
+        Start 428: T22.logging.test.error_isolation
+266/270 Test #428: T22.logging.test.error_isolation ......................   Passed    0.25 sec
+        Start 429: T22.logging.test.flush_accepted_range
+267/270 Test #429: T22.logging.test.flush_accepted_range .................   Passed    0.25 sec
+        Start 430: T22.logging.test.shutdown_callback_lifetime
+268/270 Test #430: T22.logging.test.shutdown_callback_lifetime ...........   Passed    0.25 sec
+        Start 431: T19.logging.memory_pages
+269/270 Test #431: T19.logging.memory_pages ..............................   Passed    0.26 sec
+        Start 432: T23.logging.fixed_write_allocation
+270/270 Test #432: T23.logging.fixed_write_allocation ....................   Passed    0.25 sec
+
+100% tests passed, 0 tests failed out of 270
+
+Label Time Summary:
+CompileContracts    =   4.58 sec*proc (2 tests)
+D0.02               =  19.43 sec*proc (4 tests)
+D0.06               =  97.15 sec*proc (54 tests)
+D0.06-a             =   0.32 sec*proc (3 tests)
+D1.01               =  74.94 sec*proc (27 tests)
+D1.02               = 160.03 sec*proc (38 tests)
+D1.03               =  42.55 sec*proc (25 tests)
+D1.04               =  47.57 sec*proc (35 tests)
+D1.05               =  38.28 sec*proc (32 tests)
+D1.06               = 160.58 sec*proc (28 tests)
+Tools               =   4.58 sec*proc (2 tests)
+
+Total Test time (real) = 1011.95 sec
