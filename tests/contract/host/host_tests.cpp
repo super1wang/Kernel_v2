@@ -105,13 +105,18 @@ struct ControlledFactory final : HostLogFactoryPort {
   std::shared_ptr<ControlledLog> log=std::make_shared<ControlledLog>();
   unsigned calls=0;
   int mode=0;
+  int limits_mismatch=0;
   Result<std::shared_ptr<LogPort>> create(HostIncarnation id,const LogLimits& limits) override {
     ++calls;
     if(mode==1)return make_unexpected(log_error(LogErrc::BackendFailure));
     if(mode==2)throw std::runtime_error("private factory sentinel");
     if(mode==3)return std::shared_ptr<LogPort>{};
     if(mode==4)return std::shared_ptr<LogPort>(std::shared_ptr<void>{},log.get());
-    auto made=observability::make_memory_logging(id,1,limits);CHECK(made);log->inner=made->writer;return log;
+    auto actual=limits;
+    if(limits_mismatch==1)actual.record_capacity=limits.record_capacity==1?2:1;
+    if(limits_mismatch==2)actual.full=limits.full==LogOverflow::DropOldest?LogOverflow::RejectNewest:LogOverflow::DropOldest;
+    if(limits_mismatch==3)actual.minimum_level=limits.minimum_level==LogLevel::Info?LogLevel::Error:LogLevel::Info;
+    auto made=observability::make_memory_logging(id,1,actual);CHECK(made);log->inner=made->writer;return log;
   }
 };
 inline observability::SafeLogger* business_log=nullptr;
@@ -246,6 +251,16 @@ void start_failures() {
   // 身份无效的实际后端仍应被成功关闭，不能永久保留为未排空。
   CHECK((*second)->snapshot({}).quiescent);
   auto closed=foreign->owner->snapshot();CHECK(closed&&closed->state==LogState::Closed);
+  for(int mismatch=1;mismatch<=3;++mismatch) {
+    auto factory=std::make_shared<ControlledFactory>();factory->limits_mismatch=mismatch;
+    factory->log->fail_close=mismatch==3;p.logging_factory=factory;
+    auto attempt=NativeHost::create(HostOptions{},policy_test::configuration(),p);CHECK(attempt);
+    auto started=(*attempt)->start();
+    const bool rejected=!started&&started.error().code()==host_error(HostErrc::LoggingUnavailable).code();
+    factory->log->fail_close=false;
+    auto stopped=(*attempt)->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(1));
+    CHECK(rejected&&stopped.quiescent&&factory->log->close_calls==(mismatch==3?2u:1u));
+  }
   for(int mode=1;mode<=7;++mode) {
     auto factory=std::make_shared<ControlledFactory>();factory->mode=mode;
     factory->log->fail_snapshot=mode==5||mode==7;factory->log->throw_snapshot=mode==6;

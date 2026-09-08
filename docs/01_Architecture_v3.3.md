@@ -776,6 +776,8 @@ JSON 模式 stdout 只有一份完整机器结果，诊断 stderr；follow/watch
 
 ### A17.6 `execution.list` 的分页与保留合同
 
+实施细化（B2 收口，2026-09-09）：固定 v1 payload 的 view 与 MAC 的可信 connection/delegation 附加上下文共同绑定完整授权视图，具体编码见 `docs/contracts/cursor-v1.md` 与 `docs/adr/ADR-b2-closure-boundaries.md`。生产校验不允许回退到缺少会话绑定的基础 codec profile；翻页只推进扫描位置，保留首次 issued/expires，不续命。此细化不增加服务端 cursor 对象或权限能力。
+
 请求字段：`owner`（缺省 self）、`phase_set`（`nonterminal|terminal|all`，缺省 nonterminal）、`page_size`、可选不透明 `cursor`。Nonterminal 包含 Queued、WaitingResources、Running、WaitingChild、Finalizing 和 Suspended；Terminal 按 A05.4 定义。仅返回有 ExecutionRef 的受管理执行，短 Native Invoke 不被包装为可列举任务。
 
 响应包含 `items`、可选 `next_cursor`、`consistency:"live_keyset"`、`host_incarnation` 和 `retention_scope`。每项只含 execution ref、操作身份、允许公开的 owner/parent、phase、观察版本及小型进度/事实摘要；不取出输入/结果大正文。终态只覆盖当前 Profile 的已保留结果，完整审计历史不是该方法承诺；过期记录遵守 A12 的 Intent 与 pins 政策。

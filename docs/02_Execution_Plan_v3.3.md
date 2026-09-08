@@ -19,6 +19,8 @@
 
 ### Code-First：默认先交付代码
 
+**执行前规划与 ADR（2026-09-09）：** 每次任务执行前必须有相应规划文档。相关小项复用并补充 `docs/plans/` 的当前批次计划，不逐项新增计划或审批链；历史缺失计划补录必须标明补录日期与原实现来源，不能写成事前批准。重大协议、权限/寿命、组件边界、责任分配变更必须输出 ADR，并同步本计划、架构及相关合同。当前导航：[B2 补录与收口](plans/B2.md)、[B3 执行前规划](plans/B3.md)。
+
 D1–D7 普通生产工作包以生产行为为主要交付。对已经 Passed 的前置只读取状态与所需公开合同，**不重新读取其 review/evidence，不重跑其测试**。相关规范明确后立即编码；若上游尚在同一 Development Batch 内，只要当前下游所需接口达到 Implementation-Ready，也允许继续下游开发。测试、审核和 Evidence 服务于代码，不得把完善验证设施变成生产实现的非必要前置。规划明确要求的 Conformance、测量和故障工具仍须交付，但只建设当前行为所需的最小范围。
 
 同包相关简单小项组成一个开发批次，连续实现、集中运行影响集、集中 review，不逐项建立“计划→SPEC→三配置→CODE→验收→提交”循环。新行为必须有对应验证；关键合同先补最小反例，简单实现允许代码与直接测试在同一步完成。批次内必要编译/自检可以即时运行，批次完成或出现失败时执行对应 S_changed，失败先修复，不累积未知问题。
@@ -1495,6 +1497,8 @@ D0.06至少构造：命令失败、无测试、预期测试被删除、过滤错
 **架构依据／测试族：** [A18](01_Architecture_v3.3.md#a18)、[A19](01_Architecture_v3.3.md#a19)、[A17](01_Architecture_v3.3.md#a17) ／ T04、T19、T20、T21
 
 **实施内容：** 协商并锁定支持的MCP/模型工具版本；从唯一Contract/Docs生成工具卡，按需发现；不支持的Schema能力显式拒绝/报告。 按已协商协议投影执行枚举和观察能力；私有notifications.event只在私有传输使用，不未经协商加入MCP方法或回调。
+
+**明确承接责任（B2 收口）：** 本包在暴露复杂 DynamicOnly 能力前补齐其服务端注册/执行适配及合同测试；它不生成弱化的 Native 等价入口。此前 B2 仅保证 SharedTypeContract 可执行，B3 CLI 不将 requires_dynamic_schema 注册失败的能力暴露为 eligible。责任决定见 [ADR-b2-closure-boundaries](adr/ADR-b2-closure-boundaries.md)。
 
 **交付产物：** packages/adapters/mcp/；docs/commands自动输出；adapter contract tests。
 

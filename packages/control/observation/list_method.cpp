@@ -29,6 +29,7 @@ struct ListMethod::State : detail::QueryLifetime {
   CursorContext identity;
   std::string id;
   std::optional<std::string> next;
+  std::optional<CursorPosition> resumed_position;
   State(CursorCodec c, CursorContext context)
       : codec(std::move(c)), identity(std::move(context)) {}
   CursorContext context(const policy::PageBindingData &page) const {
@@ -38,6 +39,8 @@ struct ListMethod::State : detail::QueryLifetime {
         wire_text(caller->view().description().principal.principal_id);
     result.owner = wire_text(page.owner.principal_id);
     result.view = page.permission_generation;
+    result.connection=wire_text(page.connection);
+    result.delegation=page.delegation_generation;
     result.phases = page.phases == contracts::PhaseSet::All ? "all"
                     : page.phases == contracts::PhaseSet::Terminal
                         ? "terminal"
@@ -57,6 +60,7 @@ struct ListMethod::State : detail::QueryLifetime {
       auto position = state.codec.read(token, state.context(page));
       if (!position)
         return foundation::make_unexpected(position.error());
+      state.resumed_position=*position;
       return contracts::KeysetPosition{page.host, position->upper,
                                        position->position};
     }
@@ -176,6 +180,7 @@ ListMethod::dispatch(const policy::VerifiedCaller &caller, std::string_view id,
   if (!request)
     return foundation::make_unexpected(request.error());
   std::optional<policy::PageBinding> continuation;
+  s->resumed_position.reset();
   if (request->cursor) {
     State::Resume verifier(*s, *request->cursor);
     auto restored =
@@ -196,8 +201,10 @@ ListMethod::dispatch(const policy::VerifiedCaller &caller, std::string_view id,
         (b.restore == policy::RestoreMode::Present) !=
             s->identity.store.has_value())
       return invalid<std::optional<data::Payload>>();
-    auto token =
-        s->codec.issue(s->context(b), b.upper_ordinal, b.before_ordinal);
+    auto token = s->resumed_position
+        ? s->codec.issue(s->context(b),CursorPosition{b.upper_ordinal,b.before_ordinal,
+                            s->resumed_position->issued,s->resumed_position->expires})
+        : s->codec.issue(s->context(b), b.upper_ordinal, b.before_ordinal);
     if (!token)
       return foundation::make_unexpected(token.error());
     s->next = std::move(*token);

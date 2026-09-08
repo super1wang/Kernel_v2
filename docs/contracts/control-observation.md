@@ -57,6 +57,10 @@ B2 wire 错误映射：观察方法使用 JSON-RPC error，`-32010 / NotAvailabl
 
 生产续页由 Control codec 先校验签名和当前上下文，再经 Runtime `PageContinuationPort` 恢复本次调用的短寿命 PageBinding。该绑定不分配 cursor 句柄、不缓存或 pin 执行；Runtime `list` 仍核对主体、权限/委托世代、来源与逐条可见性，排队后发送前再次仲裁。Control 不能用恢复位置绕过政策扫描。
 
+续页签发保留首次认证的 issued/expires，仅推进 position；生产 MAC 的完整授权视图绑定 connection/delegation/permission，见 cursor-v1。委托变化后须重新取得 VerifiedCaller，但新调用者也不能复用旧授权视图的 cursor。
+
+Subscription 的 source/Policy/transport.reserve 调用不持连接锁；事件编码上下文有界串行，忙时丢失提示记录 gap。关闭/退订不等待编码锁，外部 reserve 返回后重验 closed/active/额度，start_now 仅在可信非阻塞不可重入合同下与 close 短仲裁。ACK 与 event 的 frame_bytes 均含 12 字节 OCK1 头，ACK 超限在 queue_ack 前撤销 watch/lease/entry。
+
 顺序固定listing_ordinal降序，身份在当前host唯一递增不复用。第一页固定upper_ordinal；后续严格小于上一扫描position。新执行只出现在重开的列表；状态/权限每页重新判断，删除可消失，页间变化可能需重开列表才看到。consistency固定live_keyset，retention_scope固定managed_active_and_retained_terminal，不返回全局一致快照或精确总数。nonterminal包含Suspended/Finalizing等全部非Terminal阶段，短Invoke不列举。
 
 默认页50、最大200，每页默认候选扫描2000。空items仍可携带推进next_cursor；next_cursor仅表示候选未结束，不保证下一页非空。按owner/状态有界索引扫描的生产性能在D3验证；D0小模型用排序候选见证分页语义，不能宣称无限历史扫描性能通过。

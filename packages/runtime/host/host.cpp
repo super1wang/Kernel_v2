@@ -290,7 +290,9 @@ Result<void> NativeHost::start() {
     auto snapshot=s->logger->snapshot();
     if(!snapshot)return fail(snapshot.error());
     if(snapshot->accepted_through.host!=s->incarnation||snapshot->accepted_through.stream!=1||
-       snapshot->accepted_through.accepted_sequence||snapshot->evicted_through||snapshot->retained_count||snapshot->state!=LogState::Open)
+       snapshot->accepted_through.accepted_sequence||snapshot->evicted_through||snapshot->retained_count||snapshot->state!=LogState::Open||
+       snapshot->limits.record_capacity!=s->options.logging.record_capacity||snapshot->limits.full!=s->options.logging.full||
+       snapshot->limits.minimum_level!=s->options.logging.minimum_level)
       return fail(host_error(HostErrc::LoggingUnavailable));
     s->log(LogEvent::Configured);s->log(LogEvent::Starting);
     auto policy=policy::PolicyStore::create(s->options.policy,s->config,s->ports.authentication,s->ports.clock,s->ports.group_digest,s->source);

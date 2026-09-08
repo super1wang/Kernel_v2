@@ -7,6 +7,9 @@ struct CursorContext {
   std::optional<std::uint64_t> restore;
   std::uint64_t view = 0;
   std::string phases = "nonterminal";
+  // 生产 list 必填；仅基础 codec golden 允许无附加上下文。
+  std::optional<std::string> connection;
+  std::uint64_t delegation = 0;
   bool operator==(const CursorContext &) const = default;
 };
 struct CursorPosition {

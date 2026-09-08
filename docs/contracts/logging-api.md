@@ -1,6 +1,8 @@
 # D1.06 普通 Logging 与有界内存诊断 API
 
-状态：**现行 D1.06 实现合同，最终来源集中复核中**。这是既有 D1.06 设计输入的合并稿，不是实现、测试 Passed 或新增审批节点。依据架构 A15、A16、A22.2 与执行计划 D1.06；合并 design-consolidation-review 第 3/4 条及 footprint-process-hook-candidate §7。旧候选和审核记录保留。
+状态：**Current Contract / Implemented**。D1.06/B1 已 Passed；当前事实以 progress 为准，历史设计候选与审核原文保持不变。依据架构 A15、A16、A22.2 与执行计划 D1.06。生产声明为 [CoreContracts logging](../../packages/contracts/include/ock/contracts/logging.hpp) 和 [Runtime logging](../../packages/runtime/include/ock/runtime/logging.hpp)，随 Runtime 安装；本页不新增审批节点。
+
+Host 自定义 logging_factory 必须兑现传入 LogLimits 的 record_capacity、full、minimum_level；首次 snapshot 任一不符即 LoggingUnavailable，沿既有关闭/失败重试路径清理返回的 backend，不新增配置协商。
 
 ## 1. 范围和唯一声明
 

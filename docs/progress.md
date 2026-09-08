@@ -12,6 +12,13 @@
 - 本次恢复已完成：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[本次交付与自动验收](validation/D1.06-resume-delivery.md)。
 - 工具优化阶段已结束；禁止继续把 Fixture、Evidence、Install Consumer 性能优化或新流程文档设为 D1.06 前置。
 
+## B3 前影响收口（2026-09-09）
+
+- 用户提供收口建议已核对；本次修复不改写 B1/B2 历史 Passed。已实现 Subscription 锁外外部调用与 ACK 预算、cursor 原始期限/完整授权视图、Host Logging limits、一致的 Runtime-only 生产裁剪。
+- Debug 直接影响集 7/7 与 Runtime-only configure/build/install/真实 Native 消费专项 1/1 通过；首次 list 测试误用委托收缩前旧 VerifiedCaller 的失败已保留并纠正为新可信调用者检验 cursor 自身失效。
+- [B2 规划补录及本次执行前计划](plans/B2.md)、[B3 执行前计划](plans/B3.md)和[重大决定 ADR](adr/ADR-b2-closure-boundaries.md)已建立。今后执行前须已有批次规划，重大变更必须 ADR。
+- 冻结本次影响矩阵 Debug 11、Release 8、ASan 8；同一最终来源收口，尚未完成前不放行 B3。未重跑历史 Passed 矩阵，DynamicOnly 执行注册明确由 D7.04 承接。
+
 ## B2 交付
 
 - D2.01–D2.04 均已 Passed；正式 Debug 30/30、Release 28/28、ASan 29/29，同一实现来源，四包独立 SPEC/CODE 与自动验收，详见[交付及证据索引](validation/B2-delivery.md)。

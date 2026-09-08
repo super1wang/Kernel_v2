@@ -1,12 +1,12 @@
-# D1.05 Native Invocation 具体接口草案
+# D1.05 Native Invocation 现行接口合同
 
-状态：**PendingReview，修订 2**。本文件仅为待独立 AI 规格复核的设计，不是已实现接口，不标记 Runtime SDK 可用。唯一上位规范为 `docs/01_Architecture_v3.3.md` A04、A05、A21.5 与 `docs/02_Execution_Plan_v3.3.md` D1.05。D1.03、D1.04 已 Passed；其现有接口变更必须随本增量一起审核，不改写历史报告。
+状态：**Current Contract / Implemented**。D1.05 与 D1.06/B1 已 Passed，Runtime 已安装导出。生产类型及入口见 [runtime/native_types.hpp](../../packages/runtime/include/ock/runtime/native_types.hpp) 与 [runtime/host.hpp](../../packages/runtime/include/ock/runtime/host.hpp)；安装的 detail 头仅支持模板实现，不能绕过私有分派访问控制，不作为受支持公共 API。唯一上位规范为架构 A04/A05/A21.5 与执行计划 D1.05；历史 PendingReview/修订 2 是当时设计状态，原报告不改写。
 
 ## 1. 范围与入口
 
 实现内部 `packages/runtime/invocation/`，验证消费者 `examples/native_service/` 与 `tests/contract/native/`。普通 Read、PureCompute、candidate_read 的普通只读投影在无资源声明且其他准入通过时实际执行原注册函数。具有资源声明的真实操作允许 bind，但 invoke 在业务前固定拒绝 ResourceUnavailable；注册资源 owner 仅证明 slot 寿命，不能当作本次调用 lease。StateEdit、ExternalEffect、Lifecycle 在本包没有对应运行协调器时明确 `ProviderUnavailable`，不得调用业务后返回空成功。candidate_read 不进入 EditView，不运行 pair 的候选读取函数。
 
-不实现 Submit、Plan、持久接受、TaskId、ExecutionRef、任务表、DOM、线程池、Host 启停、公共 Runtime 安装接口、LoggingConformance 或 footprint 基线。线程不合法或要求异步/外部等待的调用拒绝，不偷偷阻塞或调度。D1.06 的 Host、内存日志共同合同与 NativeSubset 正式占用预算仍留在后续包。
+本 Invocation 路径不实现 Submit、Plan、持久接受、任务表、DOM 或线程池。线程不合法或要求异步/外部等待的调用拒绝，不偷偷阻塞或调度。Host 启停、公共 Runtime 安装接口、LoggingConformance 和 NativeSubset footprint 已由 D1.06 交付；它们不是当前尚待实现的 Invocation 前置。
 
 对已识别但未进入业务的失败返回 `Rejected`。业务进入后 Read 错误、异常、无效 R 归入有证明的 `Completed{FailedBeforeApply}`；成功是 `Completed{ReadCompleted<R>}`。本包只读能力不可能产生治理状态提交/设备发送，不能借此路径把已经发生的 Effect/Commit 事实变成普通错误。任何受审扩展的通用结果归一化仍必须保留已知事实及未知边界。
 
@@ -118,7 +118,7 @@ TargetProjection 是必需的非空函数指针；null 在 bind 返回 InvalidBi
 
 ## 4. Registry 私有桥及完整绑定
 
-Registry 保持对 CoreContracts 的依赖；Invocation 依赖 Registry 与 Policy。不得让 Registry 链接 Invocation 或形成环。typed thunk 的类型与模板定义固定放在 registry.hpp，由 Registrar 各注册模板生成并存入对应私有 Catalog 条目。registry.hpp 只前置声明 `invocation::NativeAccess`，Catalog 授予其 friend；具体类放在 `packages/runtime/invocation/private_bridge.hpp`，不安装为 SDK：
+Registry 与 Invocation/Policy 同属于 Runtime，保持内部单向职责与 CoreContracts 闭包。typed thunk 的类型与模板定义放在 registry.hpp，由 Registrar 注册模板生成并存入私有 Catalog 条目。registry.hpp 前置声明 `invocation::NativeAccess`，Catalog 授予其 friend；实际模板桥位于 `packages/runtime/include/ock/runtime/detail/private_bridge.hpp`，作为 detail 随 SDK 安装，访问控制不能由安装绕过：
 
 ```cpp
 namespace ock::runtime::invocation {
@@ -285,4 +285,4 @@ Engine::snapshot(output) 只复制当前保留的完整记录，按 sequence 升
 
 本修订已选择 registry.hpp 注册模板 thunk、private_bridge.hpp 私有 NativeAccess、Native 缓冲槽与 Policy 活跃计量双层、明确 Record/friend 构造关系、optional 拥有资源存储、九类 Outcome 无分配事实检查和固定环形诊断。上述都是明确的待审核设计，不再留实施者自行选择不同语义的未定接口。
 
-初稿、修订 2 和后续独立审查应绑定各自 SHA，旧报告不覆盖。当前仍 PendingReview，没有行为实现授权或 D1.05 Passed 结论。
+初稿、修订 2 与各次独立审查仍保留原 SHA 和当时状态，不覆盖。当前实现/Passed 状态见 progress；后续仅对实际变更与关联风险增量复核，不因旧候选文字重新冻结已通过接口。

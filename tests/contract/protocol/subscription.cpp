@@ -55,6 +55,7 @@ struct Transport final : control::ObservationTransport {
   };
   std::vector<std::vector<std::byte>> frames;
   bool fail_ack = false, slow = false, closed = false;
+  std::function<void()> on_reserve;
   void close() noexcept override { closed = true; }
   Result<void> queue_ack(std::span<const std::byte> bytes) override {
     if (fail_ack)
@@ -65,6 +66,7 @@ struct Transport final : control::ObservationTransport {
   }
   Result<std::unique_ptr<runtime::policy::TransmissionReservation>>
   reserve(std::size_t n) override {
+    if (on_reserve) { auto callback=std::move(on_reserve); callback(); }
     return std::unique_ptr<runtime::policy::TransmissionReservation>(
         std::make_unique<Reservation>(n));
   }
@@ -314,6 +316,43 @@ int main(int argc, char **argv) try {
   CHECK(events->leases == 0 && racing_transport->frames.empty() &&
         (*racing)->queued_bytes() == 0);
   events->before_return = {};
+  // 外部 reserve 等待另一线程完成关闭/退订；不能持连接锁跨过回调。
+  events->burst = false;
+  for (bool close_connection : {false, true}) {
+    auto callback_transport=std::make_shared<Transport>();
+    auto callback_connection=control::SubscriptionConnection::create(
+        env.session,env.caller,events,callback_transport,env.clock,env.source->source_id.host);
+    CHECK(callback_connection);
+    auto subscription=(*callback_connection)->subscribe("callback",request);CHECK(subscription);
+    callback_transport->on_reserve=[&]{
+      std::thread worker([&]{
+        if(close_connection)(*callback_connection)->close();
+        else CHECK((*callback_connection)->unsubscribe(*subscription)==true);
+      });worker.join();
+    };
+    events->emit(contracts::ObservationTopic::Phase);
+    CHECK(events->leases==0 && (*callback_connection)->queued_bytes()==0);
+    CHECK(callback_transport->frames.size()==1);
+    if(!close_connection)CHECK((*callback_connection)->pump()==runtime::policy::StartResult::NotStarted);
+    else CHECK(!(*callback_connection)->pump());
+    (*callback_connection)->close();
+  }
+  // 合法大 filter 的 ACK 也必须遵守含头的 1024 字节预算并撤销监听。
+  auto bounded_transport=std::make_shared<Transport>();
+  control::SubscriptionBudget bounded_budget;bounded_budget.frame_bytes=1024;
+  auto bounded=control::SubscriptionConnection::create(env.session,env.caller,events,bounded_transport,env.clock,env.source->source_id.host,bounded_budget);
+  CHECK(bounded);
+  auto large=request;
+  for(unsigned i=3;i<=20;++i){
+    auto input=env.source->rows[0].second.summary->value();input.execution={id<foundation::TaskId>(i)};
+    auto summary=contracts::ExecutionSummary::create(input);CHECK(summary);
+    auto access=env.source->rows[0].second;access.summary=*summary;
+    env.source->rows.push_back({i,access});large.filter.executions.push_back(input.execution);
+  }
+  CHECK(!(*bounded)->subscribe("budget",large));
+  CHECK(events->leases==0 && bounded_transport->frames.empty() && (*bounded)->queued_bytes()==0);
+  CHECK((*bounded)->subscribe("small",request)); // 失败没有占用条目，正常小 ACK 仍可用。
+  (*bounded)->close();CHECK(events->leases==0);
   std::cout << "Subscription ack ordering, loss sequence, revoke and cleanup "
                "passed\n";
 } catch (const std::exception &e) {

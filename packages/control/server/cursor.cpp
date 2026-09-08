@@ -28,6 +28,7 @@ std::optional<std::uint64_t> number(data::ValueView v) {
 }
 bool valid(const CursorContext &c) {
   return id(c.host) && id(c.caller) && id(c.owner) && c.view &&
+         (c.connection ? id(*c.connection) && c.delegation : c.delegation == 0) &&
          c.store.has_value() == c.restore.has_value() &&
          (!c.store || (id(*c.store) && *c.restore > 0)) &&
          (c.phases == "all" || c.phases == "terminal" ||
@@ -96,7 +97,7 @@ Result<std::string> canonical(const CursorContext &c, const CursorPosition &p) {
          ",\"upper\":" + count(p.upper) + ",\"view\":" + count(c.view) + "}";
 }
 Result<std::array<std::byte, 32>> mac(std::span<const std::byte, 32> secret,
-                                      std::span<const std::byte> bytes) {
+                                      std::span<const std::byte> bytes, const CursorContext &context) {
   BCRYPT_ALG_HANDLE algorithm{};
   if (BCryptOpenAlgorithmProvider(&algorithm, BCRYPT_SHA256_ALGORITHM, nullptr,
                                   BCRYPT_ALG_HANDLE_HMAC_FLAG) < 0)
@@ -104,6 +105,10 @@ Result<std::array<std::byte, 32>> mac(std::span<const std::byte, 32> secret,
   std::string input = "ock.execution.list/1";
   input += '\0';
   input.append(reinterpret_cast<const char *>(bytes.data()), bytes.size());
+  if (context.connection) {
+    input += '\0';input += "ock.cursor.authorization/1";input += '\0';
+    input += *context.connection;input += ':';input += std::to_string(context.delegation);
+  }
   std::array<std::byte, 32> output;
   auto status = BCryptHash(
       algorithm,
@@ -176,7 +181,7 @@ Result<std::string> CursorCodec::issue(const CursorContext &context,
   if (!payload)
     return payload;
   auto bytes = std::as_bytes(std::span(*payload));
-  auto signature = mac(state_->secret, bytes);
+  auto signature = mac(state_->secret, bytes, context);
   if (!signature)
     return foundation::make_unexpected(signature.error());
   auto token = "v1." + encode(bytes) + "." + encode(*signature);
@@ -196,7 +201,7 @@ Result<CursorPosition> CursorCodec::read(std::string_view token,
        signature = decode(token.substr(dot + 1));
   if (!payload || !signature || signature->size() != 32)
     return invalid<CursorPosition>();
-  auto expected = mac(state_->secret, *payload);
+  auto expected = mac(state_->secret, *payload, context);
   if (!expected)
     return foundation::make_unexpected(expected.error());
   unsigned difference = 0;
@@ -221,9 +226,12 @@ Result<CursorPosition> CursorCodec::read(std::string_view token,
   auto normalized = canonical(context, p);
   if (!normalized || *normalized != text)
     return invalid<CursorPosition>();
-  auto checked = issue(context, p);
-  if (!checked)
-    return foundation::make_unexpected(checked.error());
+  // 只校验位置/期限，不为了检查而重新签名和分配一个 token。
+  auto now=state_->now();
+  if(!now || !p.position || p.position>p.upper || p.issued>*now ||
+     p.expires<=p.issued || p.expires-p.issued>120)
+    return invalid<CursorPosition>();
+  if(*now>=p.expires)return invalid<CursorPosition>(true);
   return p;
 }
 } // namespace ock::control

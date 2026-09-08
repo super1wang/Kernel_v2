@@ -26,6 +26,8 @@ canonical profile只用于该固定字段payload：JSON对象键按ASCII字典�
 
 `mac = HMAC-SHA-256(host_secret, ASCII("ock.execution.list/1") || 0x00 || payload_bytes)`。前缀做用途分离；固定32字节mac，验证使用常量时间比较。先检查最大token长度、分段和base64url，再核对MAC，才解释字段。未知算法不能选择非认证fallback。
 
+**2026-09-09 生产会话绑定补充：** 上式保留为 D0 基础 codec/golden profile。生产 `ListMethod` 必须从当前 Policy PageBinding 取得 connection（32 位小写 hex）与 delegation generation（非零、无前导零十进制），将 `0x00 || ASCII("ock.cursor.authorization/1") || 0x00 || connection || ASCII(":") || delegation` 追加到上述 MAC 输入。payload 的 view 绑定 permission generation；三者共同构成有效授权视图。附加上下文不是客户端提供的凭据，不写进 payload，不做截断或算术合并。生产读取只按当前上下文验证，不能失败后退回基础 profile。固定 v1 payload、编码上限及无状态模型保持不变；决定与兼容边界见 [ADR](../adr/ADR-b2-closure-boundaries.md)。
+
 每个Host incarnation由加密随机源新建256位secret，仅宿主私有内存持有；不得写入cursor、日志、回执或持久恢复记录。Host重启/停止销毁旧secret，新incarnation重建，不接受旧token。明确安全重置secret会使现有cursor失效，不改变ExecutionRef业务身份。测试golden注入固定00..1f的key，只是公开已知测试向量，不能作为生产secret。
 
 ## 验证与失效

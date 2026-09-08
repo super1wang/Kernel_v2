@@ -46,6 +46,8 @@ struct SubscriptionConnection::State : std::enable_shared_from_this<State> {
     std::optional<policy::TimePoint> last_progress;
   };
   std::recursive_mutex mutex;
+  // 仅串行化事件编码上下文；close/unsubscribe 从不等待此锁。
+  std::mutex encoding;
   std::shared_ptr<policy::SessionAuthority> session;
   std::shared_ptr<const policy::VerifiedCaller> caller;
   std::shared_ptr<contracts::ObservationPort> source;
@@ -77,21 +79,23 @@ struct SubscriptionConnection::State : std::enable_shared_from_this<State> {
   };
   void enqueue(const std::shared_ptr<Entry> &entry,
                const contracts::ChangeHint &hint) {
-    std::lock_guard lock(mutex);
-    if (closed || !entry->active)
-      return;
+    std::unique_lock encode_lock(encoding,std::try_to_lock);
+    std::uint64_t before;
+    {
+      std::lock_guard lock(mutex);
+      if (closed || !entry->active) return;
+      if(!encode_lock.owns_lock()){entry->gap=true;return;}
+      current=entry;current_progress=false;before=entry->sequence;
+    }
     struct Restore {
       State &state;
-      std::shared_ptr<Entry> entry;
-      bool progress;
       ~Restore() {
-        state.current = std::move(entry);
-        state.current_progress = progress;
+        std::lock_guard lock(state.mutex);
+        state.current.reset();state.current_progress=false;
       }
-    } restore{*this, current, current_progress};
-    current = entry;
-    const auto before = entry->sequence;
+    } restore{*this};
     auto result = sender->enqueue(*entry->watch, hint);
+    std::lock_guard lock(mutex);
     if (!result && entry->sequence != before)
       entry->gap = true;
   }
@@ -102,7 +106,9 @@ struct SubscriptionConnection::State : std::enable_shared_from_this<State> {
     encode(const policy::ProjectionSnapshot &projection,
            std::size_t maximum) override {
       auto s = owner.lock();
-      if (!s || !s->current ||
+      if (!s) return fail<std::vector<std::byte>>();
+      std::lock_guard lock(s->mutex);
+      if (s->closed || !s->current || !s->current->active ||
           projection.kind() != policy::ProjectionKind::Hint)
         return fail<std::vector<std::byte>>();
       auto e = s->current;
@@ -228,18 +234,23 @@ struct SubscriptionConnection::State : std::enable_shared_from_this<State> {
     Result<std::unique_ptr<policy::TransmissionReservation>>
     reserve(std::size_t n) override {
       auto s = owner.lock();
-      if (!s || !s->current ||
-          s->current->pending >= s->budget.pending_per_subscription ||
-          n > s->budget.queued_bytes - s->bytes.load())
-        return fail<std::unique_ptr<policy::TransmissionReservation>>();
-      auto entry = s->current;
-      const auto progress = s->current_progress;
+      if (!s) return fail<std::unique_ptr<policy::TransmissionReservation>>();
+      std::shared_ptr<Entry> entry;bool progress;
+      {
+        std::lock_guard lock(s->mutex);
+        if(s->closed || !s->current || !s->current->active ||
+           s->current->pending>=s->budget.pending_per_subscription ||
+           n>s->budget.queued_bytes-s->bytes.load())
+          return fail<std::unique_ptr<policy::TransmissionReservation>>();
+        entry=s->current;progress=s->current_progress;
+      }
       auto inner = s->transport->reserve(n);
       if (!inner)
         return foundation::make_unexpected(inner.error());
       if (!*inner || (*inner)->capacity() < n)
         return fail<std::unique_ptr<policy::TransmissionReservation>>();
       // reserve 可重入；外部调用返回后重新核对仍有效的配额与订阅。
+      std::lock_guard lock(s->mutex);
       if (s->closed || !entry->active ||
           entry->pending >= s->budget.pending_per_subscription ||
           n > s->budget.queued_bytes - s->bytes.load())
@@ -253,7 +264,9 @@ struct SubscriptionConnection::State : std::enable_shared_from_this<State> {
               policy::TransmissionReservation &token) noexcept override {
       auto s = owner.lock();
       auto *reservation = dynamic_cast<Reservation *>(&token);
-      if (!s || !reservation || !reservation->entry->ack)
+      if (!s || !reservation) return policy::StartResult::NotStarted;
+      std::lock_guard lock(s->mutex);
+      if (s->closed || !reservation->entry->active || !reservation->entry->ack)
         return policy::StartResult::NotStarted;
       auto result = s->transport->start_now(frame, *reservation->inner);
       if (result == policy::StartResult::Started && reservation->progress)
@@ -317,21 +330,21 @@ SubscriptionConnection::subscribe(std::string_view request_id,
     return fail<UnsubscribeRequest>();
   auto s = state_;
   auto e = std::make_shared<State::Entry>();
+  auto watch=s->session->observations()->subscribe(*s->caller,request.filter);
+  if(!watch)return foundation::make_unexpected(watch.error());
+  e->watch=*watch;
+  e->token.subscription.bytes=e->watch->key().bytes;
+  e->token.stream.bytes=e->watch->key().bytes;
+  e->interval=(std::max)(request.interval,std::chrono::milliseconds(50));
+  e->receiver=std::make_shared<State::Receiver>(s,e);
+  bool admitted=false;
   {
     std::lock_guard lock(s->mutex);
-    if (s->closed || s->entries.size() >= s->budget.subscriptions)
-      return fail<UnsubscribeRequest>();
-    auto watch =
-        s->session->observations()->subscribe(*s->caller, request.filter);
-    if (!watch)
-      return foundation::make_unexpected(watch.error());
-    e->watch = *watch;
-    e->token.subscription.bytes = e->watch->key().bytes;
-    e->token.stream.bytes = e->watch->key().bytes;
-    e->interval = (std::max)(request.interval, std::chrono::milliseconds(50));
-    e->receiver = std::make_shared<State::Receiver>(s, e);
-    s->entries.push_back(e);
+    if(!s->closed && s->entries.size()<s->budget.subscriptions){
+      s->entries.push_back(e);admitted=true;
+    }
   }
+  if(!admitted){(void)s->sender->unsubscribe(*e->watch);return fail<UnsubscribeRequest>();}
   struct Rollback {
     SubscriptionConnection &connection;
     UnsubscribeRequest token;
@@ -412,7 +425,8 @@ SubscriptionConnection::subscribe(std::string_view request_id,
     (void)unsubscribe(e->token);
     return fail<UnsubscribeRequest>();
   }
-  auto frame = encode_frame(*value);
+  // frame_bytes 是含 12 字节 OCK1 头的有效额度，ACK/event 使用同一口径。
+  auto frame = encode_frame(*value,s->budget.frame_bytes-12);
   if (!frame) {
     (void)unsubscribe(e->token);
     return fail<UnsubscribeRequest>();
@@ -447,8 +461,8 @@ SubscriptionConnection::unsubscribe(const UnsubscribeRequest &token) {
     removed = *it;
     removed->active = false;
     s->entries.erase(it);
-    (void)s->sender->unsubscribe(*removed->watch);
   }
+  (void)s->sender->unsubscribe(*removed->watch);
   // 释放监听租约在序列锁之外，允许来源等待其他线程的回调退出。
   removed->lease.reset();
   return true;
@@ -476,8 +490,12 @@ Result<policy::StartResult> SubscriptionConnection::pump() {
         s->clock->now() - *s->slow_since >= s->budget.transport_timeout) {
       terminate = true;
       result = foundation::make_unexpected(error(ProtocolErrc::Closed));
-    } else {
+    }
+  }
+  if(!terminate){
       result = s->sender->start_next();
+      std::lock_guard lock(s->mutex);
+      if(s->closed)return foundation::make_unexpected(error(ProtocolErrc::Closed));
       if (result && *result == policy::StartResult::NotStarted && s->bytes) {
         if (!s->slow_since)
           s->slow_since = s->clock->now();
@@ -494,7 +512,6 @@ Result<policy::StartResult> SubscriptionConnection::pump() {
       } else if (*result == policy::StartResult::Unknown) {
         terminate = true;
       }
-    }
   }
   if (terminate)
     close();
@@ -509,13 +526,13 @@ void SubscriptionConnection::close() {
       return;
     s->closed = true;
     retired.swap(s->entries);
-    for (auto &e : retired) {
+    for (auto &e : retired)
       e->active = false;
-      (void)s->sender->unsubscribe(*e->watch);
-    }
   }
-  for (auto &e : retired)
+  for (auto &e : retired){
+    (void)s->sender->unsubscribe(*e->watch);
     e->lease.reset();
+  }
   s->transport->close();
 }
 std::size_t SubscriptionConnection::queued_bytes() const noexcept {

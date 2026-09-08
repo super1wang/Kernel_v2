@@ -154,11 +154,13 @@ NATIVE_RUNTIME_HEADERS = {
                  'detail/host','detail/invocation','detail/private_bridge')}
 
 
-def validate_manifest(manifest,actual_graph=None):
+def validate_manifest(manifest,actual_graph=None,build_components='B2Subset'):
     errors=[]
     def require(value,message):
         if not value:errors.append(message)
     targets=manifest['targets'];norm=normative_graph()
+    require(build_components in ('Runtime','B2Subset'),'未知生产组件选择')
+    selected={'Foundation','CoreContracts','Runtime'} if build_components=='Runtime' else set(norm)
     require(manifest['format']=='ock.sdk-api/1','公开清单格式不符')
     require(manifest['sdk_version']==({'B2Subset':'0.1.0-dev.3','NativeSubset':'0.1.0-dev.2'}.get(manifest['stage'],'0.1.0-dev.1')),'开发 SDK 版本必须独立于文档 v3.3')
     errors.extend(validate_implementation_stage(manifest))
@@ -184,7 +186,7 @@ def validate_manifest(manifest,actual_graph=None):
         if target['api_classification']=='stable':
             require(not any(targets[d]['api_classification']!='stable' for d in closure if d in targets),
                     f'{name} stable 依赖非 stable')
-        if actual_graph is not None:
+        if actual_graph is not None and name in selected:
             require(actual_graph.get(name,{}).get('kind')==target['kind'],f'{name} 实际 CMake 类型不符')
             require(actual_graph.get(name,{}).get('system_dependencies',[])==system,f'{name} 实际系统链接依赖不符')
             require(actual_graph.get(name,{}).get('dependencies')==target['dependencies'],f'{name} 实际 CMake 依赖不符')
@@ -194,7 +196,7 @@ def validate_manifest(manifest,actual_graph=None):
             require(actual_graph.get(name,{}).get('compile_options')==target['public_compile_options'],f'{name} 实际公开选项漂移')
             actual_definitions=actual_graph.get(name,{}).get('compile_definitions', [] if manifest['stage']!='CoreContracts' else None)
             require(actual_definitions==definitions and actual_definitions is not None,f'{name} 实际公开宏定义漂移')
-    if actual_graph is not None:require(set(actual_graph)==set(norm),'实际 CMake 目标集合漂移')
+    if actual_graph is not None:require(set(actual_graph)==selected,'实际 CMake 目标集合漂移')
     if 'Runtime' in targets:
         require(transitive_dependencies('Runtime',targets)=={'CoreContracts','Foundation'},'Runtime 必须保持最小闭包')
     if 'ControlClient' in targets:
@@ -236,8 +238,9 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--graph',type=Path)
     args=parser.parse_args()
     try:
-        graph=None if args.graph is None else json.loads(args.graph.read_text(encoding='utf-8'))['targets']
-        manifest=load_manifest();errors=validate_manifest(manifest,graph)
+        graph=None if args.graph is None else json.loads(args.graph.read_text(encoding='utf-8'))
+        manifest=load_manifest();errors=validate_manifest(manifest,None if graph is None else graph['targets'],
+            'B2Subset' if graph is None else graph.get('build_components','B2Subset'))
     except (OSError,ValueError,KeyError,TypeError) as exc:
         errors=[str(exc)]
     print(json.dumps({'check_id':'CHECK.D0.02.architecture','errors':errors,'scope':'合同目标/公开表面静态检查；无Runtime运行或授权实现'},ensure_ascii=False,indent=2))

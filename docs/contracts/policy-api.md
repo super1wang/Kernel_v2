@@ -1,12 +1,12 @@
-# D1.04 内存授权与许可API草案
+# D1.04 内存授权与许可现行 API 合同
 
-状态：**PendingReview**。本文件尚未获独立AI规格审核，不允许据此开始行为实现或声明Passed。只具体化架构v3.3 A06.1/A10/A17.4–A17.6和执行卡D1.04；不改变CoreContracts公开签名、RPC方法、身份编码或协议版本。
+状态：**Current Contract / Implemented**。D1.04 与 D1.06/B1 已 Passed；现行生产声明见 [runtime/policy.hpp](../../packages/runtime/include/ock/runtime/policy.hpp)，随 Runtime 安装。本文具体化架构 A06.1/A10/A17.4–A17.6 与 D1.04，当前状态见 progress，不改变历史报告。
 
-修订2：针对`docs/reviews/D1.04-api-initial.md`五组ChangesRequested补齐具体入口。初版字节保存在`evidence/bootstrap/D1.04/draft-initial`；本修订仍待独立增量审核。
+历史修订2：针对初版五组 ChangesRequested 补齐入口；初版字节及原审核保留，不是当前实现阻塞。
 
-修订3：按`evidence/bootstrap/D1.04/source-lifetime-review.md`补充固定源寿命及Store关闭仲裁；保留既有审核历史。本修订仍为PendingReview，不增加行为实现范围。
+历史修订3：补充固定源寿命及 Store 关闭仲裁，当时 PendingReview 原记录保留，不作为当前状态。
 
-内部命名空间拟为`ock::runtime::policy`，头为`packages/runtime/policy/policy.hpp`，内部库`ock_policy_internal`仅依赖`OCK::CoreContracts`闭包，不安装，不使SDK Runtime可用。D1.04不依赖Registry查找：操作政策来自组合根可信安装的精确政策目录，D1.05再连接已冻结Registry。认证/目标/观察元数据和传输适配器是显式装配端口，没有动态ServiceLocator。
+命名空间为 `ock::runtime::policy`；`packages/runtime/policy/policy.hpp` 是仓内转接头，公开声明位于 `packages/runtime/include/ock/runtime/policy.hpp`。`ock_policy_internal` 是生产 `ock_Runtime` 的历史测试别名；Runtime 仅依赖 CoreContracts/Foundation 与 Windows bcrypt。操作政策来自组合根可信安装的精确目录，Native Invocation 连接冻结 Registry；认证/目标/观察元数据和传输适配器显式装配，无动态 ServiceLocator。
 
 ## 1. 基础值、预算与错误
 

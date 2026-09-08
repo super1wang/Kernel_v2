@@ -147,6 +147,43 @@ int main(int argc, char **argv) try {
   CHECK(!(*method)->pump());
   CHECK(transport->frames.size() == before);
   CHECK(control::CursorCodec::cursor_handles() == 0);
+  {
+    policy_test::Env isolated;
+    isolated.source->retention_scope=name("managed_active_and_retained_terminal");
+    auto input=isolated.source->rows[0].second.summary->value();input.execution={id<foundation::TaskId>(3)};
+    auto third=contracts::ExecutionSummary::create(input);CHECK(third);
+    auto access=isolated.source->rows[0].second;access.summary=*third;
+    isolated.source->rows.insert(isolated.source->rows.begin(),{3,access});
+    auto time=std::make_shared<Clock>();
+    auto private_codec=control::CursorCodec::create(context.host,time);CHECK(private_codec);
+    auto output=std::make_shared<Transport>();
+    auto pages=control::ListMethod::create(isolated.session,isolated.caller,output,*private_codec,context);CHECK(pages);
+    auto dispatch=[&](std::string_view json){auto payload=data::Payload::parse(json);CHECK(payload);return (*pages)->dispatch(*isolated.caller,"page",payload->view());};
+    auto next_token=[&]{CHECK((*pages)->pump()==runtime::policy::StartResult::Started);control::FrameDecoder d;auto f=d.consume(output->frames.back());CHECK(f&&f->message);return std::string(*f->message->view().at("result").at("next_cursor").string());};
+    CHECK(dispatch(R"({"page_size":1})"));auto initial=next_token();
+    auto narrow=policy_test::rules();narrow.pop_back();
+    auto sibling=isolated.assembly.store->open({{std::byte{7}}},{narrow,isolated.auth->identity.deadline,false});CHECK(sibling);
+    auto sibling_caller=(*sibling)->verify({policy_test::principal(),{}, {}});CHECK(sibling_caller);
+    auto sibling_method=control::ListMethod::create(*sibling,*sibling_caller,std::make_shared<Transport>(),*private_codec,context);CHECK(sibling_method);
+    auto copied=data::Payload::parse(request(initial));CHECK(copied);
+    auto scans_before=isolated.source->scans;
+    CHECK(!(*sibling_method)->dispatch(**sibling_caller,"cross-session",copied->view()));
+    CHECK(isolated.source->scans==scans_before);
+    time->elapsed=110;CHECK(dispatch(request(initial)));auto second_cursor=next_token();
+    scans_before=isolated.source->scans;time->elapsed=121;
+    auto expired=dispatch(request(second_cursor));CHECK(!expired&&expired.error().code().value()==2);
+    CHECK(isolated.source->scans==scans_before);
+    CHECK(dispatch(R"({"page_size":1})"));auto before_restrict=next_token();
+    CHECK(isolated.session->restrict_delegation({narrow,isolated.auth->identity.deadline,false}));
+    // 委托变化本就撤销旧 VerifiedCaller；用新可信调用者验证 cursor 自身的视图绑定。
+    auto refreshed=isolated.session->verify({policy_test::principal(),{}, {}});CHECK(refreshed);
+    (*pages)->disconnect();isolated.caller=*refreshed;output=std::make_shared<Transport>();
+    pages=control::ListMethod::create(isolated.session,isolated.caller,output,*private_codec,context);CHECK(pages);
+    scans_before=isolated.source->scans;
+    CHECK(!dispatch(request(before_restrict)));CHECK(isolated.source->scans==scans_before);
+    CHECK(dispatch(R"({"page_size":1})")); // 当前委托仍允许读取，但旧视图不能复用。
+    (*pages)->disconnect();(*sibling_method)->disconnect();
+  }
   (*method)->disconnect();
   policy_test::Env closing_env;
   closing_env.source->retention_scope=name("managed_active_and_retained_terminal");

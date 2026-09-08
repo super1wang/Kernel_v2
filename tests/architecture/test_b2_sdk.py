@@ -5,6 +5,22 @@ from tools.architecture import check
 
 
 class B2SurfaceTests(unittest.TestCase):
+    def test_runtime_pruned_graph_requires_explicit_selection(self):
+        manifest=check.load_manifest()
+        graph={name:{'kind':t['kind'],'dependencies':t['dependencies'],
+                    'system_dependencies':t.get('system_dependencies',[]),
+                    'implementation':t['implementation'],
+                    'external_dependencies':t.get('external_dependencies',[]),
+                    'compile_features':t['public_compile_features'],
+                    'compile_options':t['public_compile_options'],'compile_definitions':[]}
+               for name,t in manifest['targets'].items() if name in ('Foundation','CoreContracts','Runtime')}
+        self.assertEqual(check.validate_manifest(manifest,graph,'Runtime'),[])
+        self.assertTrue(check.validate_manifest(manifest,graph))
+        missing=deepcopy(graph);missing.pop('Runtime')
+        self.assertTrue(check.validate_manifest(manifest,missing,'Runtime'))
+        extra=deepcopy(graph);extra['Data']=graph['Foundation']
+        self.assertTrue(check.validate_manifest(manifest,extra,'Runtime'))
+
     def test_production_components(self):
         manifest = check.load_manifest()
         self.assertEqual(manifest['stage'], 'B2Subset')
