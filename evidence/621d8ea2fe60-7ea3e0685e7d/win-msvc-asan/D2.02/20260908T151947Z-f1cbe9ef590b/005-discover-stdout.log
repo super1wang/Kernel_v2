@@ -1,0 +1,133 @@
+{
+  "backtraceGraph" : 
+  {
+    "commands" : 
+    [
+      "add_test"
+    ],
+    "files" : 
+    [
+      "J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt"
+    ],
+    "nodes" : 
+    [
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 64,
+        "parent" : 0
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 68,
+        "parent" : 2
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 97,
+        "parent" : 4
+      }
+    ]
+  },
+  "kind" : "ctestInfo",
+  "tests" : 
+  [
+    {
+      "backtrace" : 1,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/unit/data/Debug/binding_parity.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T04.binding.field_parity",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 20.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace" : 3,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/unit/data/Debug/schema_contract.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T23.binding.schema_concurrent",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace" : 5,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/unit/data/Debug/dynamic_native_contract.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T06.binding.native",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-asan/tests/unit/data"
+        }
+      ]
+    }
+  ],
+  "version" : 
+  {
+    "major" : 1,
+    "minor" : 0
+  }
+}

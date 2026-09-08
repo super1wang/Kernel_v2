@@ -1,0 +1,402 @@
+{
+  "format": "ock.evidence-summary/1",
+  "purpose": "navigation-only; full audit remains required",
+  "task_id": "D2.01",
+  "run_id": "20260908T150914Z-fab83b89916e",
+  "profile": "win-msvc-asan",
+  "report_claims": {
+    "automated_status": "Passed",
+    "package_status": "Passed"
+  },
+  "duration_seconds": 63.483956,
+  "counts": {
+    "expected": 14,
+    "discovered": 14,
+    "executed": 14,
+    "rounds": 1
+  },
+  "set_digests": {
+    "expected": "f077471fc0e1c41c61c1e75623077c7dfb009fda42c86fb7db17d3b53e412d21",
+    "discovered": "f077471fc0e1c41c61c1e75623077c7dfb009fda42c86fb7db17d3b53e412d21",
+    "executed": "f077471fc0e1c41c61c1e75623077c7dfb009fda42c86fb7db17d3b53e412d21"
+  },
+  "discovery": {
+    "missing": [],
+    "unexpected": []
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "executed": 14,
+      "failed": [],
+      "skipped": [],
+      "missing": [],
+      "unexpected": []
+    }
+  ],
+  "commands": [
+    {
+      "id": "cmake-version",
+      "role": "metadata",
+      "argv": [
+        "cmake",
+        "--version"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T15:09:14.944553+00:00",
+      "finished_at": "2026-09-08T15:09:15.076044+00:00",
+      "duration_seconds": 0.131491
+    },
+    {
+      "id": "ctest-version",
+      "role": "metadata",
+      "argv": [
+        "ctest",
+        "--version"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T15:09:15.093057+00:00",
+      "finished_at": "2026-09-08T15:09:15.201251+00:00",
+      "duration_seconds": 0.108194
+    },
+    {
+      "id": "configure",
+      "role": "configure",
+      "argv": [
+        "cmake",
+        "--preset",
+        "win-msvc-asan",
+        "-B",
+        "build/b2-sdk-asan",
+        "-DOCK_DEPENDENCY_COMPONENTS=Data",
+        "-DOCK_DEPENDENCIES_OFFLINE=ON",
+        "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+        "-DOCK_BUILD_B2_TESTS=ON",
+        "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-DOCK_ENABLE_ASAN=ON",
+        "-DOCK_BUILD_G0_TESTS=OFF",
+        "-DOCK_BUILD_EXECUTION_MODEL_TESTS=OFF",
+        "-DOCK_BUILD_FOUNDATION_TESTS=OFF",
+        "-DOCK_BUILD_CORE_CONTRACTS_TESTS=OFF",
+        "-DOCK_BUILD_REGISTRATION_TESTS=OFF",
+        "-DOCK_BUILD_AUTHORIZATION_TESTS=OFF",
+        "-DOCK_BUILD_NATIVE_TESTS=OFF",
+        "-DOCK_BUILD_HOST_TESTS=OFF",
+        "-DOCK_BUILD_LOGGING_TESTS=OFF",
+        "-DOCK_BUILD_NATIVE_SDK_TESTS=OFF",
+        "-DOCK_BUILD_FOOTPRINT_TESTS=OFF"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T15:09:15.221294+00:00",
+      "finished_at": "2026-09-08T15:09:21.084054+00:00",
+      "duration_seconds": 5.86276
+    },
+    {
+      "id": "build",
+      "role": "build",
+      "argv": [
+        "cmake",
+        "--build",
+        "build/b2-sdk-asan",
+        "--config",
+        "Debug",
+        "--parallel",
+        "4",
+        "--",
+        "/nr:false"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T15:09:21.104799+00:00",
+      "finished_at": "2026-09-08T15:10:15.094728+00:00",
+      "duration_seconds": 53.989929
+    },
+    {
+      "id": "discover",
+      "role": "discover",
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "J:\\Code\\Kernel_v2\\build\\b2-sdk-asan",
+        "-C",
+        "Debug",
+        "-R",
+        "^(T04\\.data\\.values|T04\\.data\\.duplicate|T04\\.data\\.invalid|T04\\.data\\.budgets|T04\\.data\\.freeze|T04\\.data\\.allocation_failures|T04\\.data\\.ownership|T04\\.data\\.builder_numbers|T04\\.data\\.encode|T04\\.data\\.concurrent|T04\\.data\\.buffer|T04\\.data\\.growth_cleanup|T04\\.data\\.parser_seeds|T12\\.data\\.view_escape)$",
+        "--show-only=json-v1"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T15:10:15.243417+00:00",
+      "finished_at": "2026-09-08T15:10:15.427248+00:00",
+      "duration_seconds": 0.183831
+    },
+    {
+      "id": "test-001",
+      "role": "test",
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "J:\\Code\\Kernel_v2\\build\\b2-sdk-asan",
+        "-C",
+        "Debug",
+        "-R",
+        "^(T04\\.data\\.values|T04\\.data\\.duplicate|T04\\.data\\.invalid|T04\\.data\\.budgets|T04\\.data\\.freeze|T04\\.data\\.allocation_failures|T04\\.data\\.ownership|T04\\.data\\.builder_numbers|T04\\.data\\.encode|T04\\.data\\.concurrent|T04\\.data\\.buffer|T04\\.data\\.growth_cleanup|T04\\.data\\.parser_seeds|T12\\.data\\.view_escape)$",
+        "--no-tests=error",
+        "--output-on-failure",
+        "--output-junit",
+        "J:\\Code\\Kernel_v2\\evidence\\0b416396639e-6d21c3429b4c\\win-msvc-asan\\D2.01\\20260908T150914Z-fab83b89916e\\round-001-junit.xml"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-08T15:10:15.447789+00:00",
+      "finished_at": "2026-09-08T15:10:18.392200+00:00",
+      "duration_seconds": 2.944411
+    }
+  ],
+  "command_costs": {
+    "scope": "top-level-only",
+    "total": 6,
+    "duration_seconds": 63.22061599999999,
+    "by_role": [
+      {
+        "role": "build",
+        "count": 1,
+        "duration_seconds": 53.989929
+      },
+      {
+        "role": "configure",
+        "count": 1,
+        "duration_seconds": 5.86276
+      },
+      {
+        "role": "discover",
+        "count": 1,
+        "duration_seconds": 0.183831
+      },
+      {
+        "role": "metadata",
+        "count": 2,
+        "duration_seconds": 0.23968499999999998
+      },
+      {
+        "role": "test",
+        "count": 1,
+        "duration_seconds": 2.944411
+      }
+    ],
+    "configure": {
+      "count": 1,
+      "duration_seconds": 5.86276
+    },
+    "build": {
+      "count": 1,
+      "duration_seconds": 53.989929
+    },
+    "install": {
+      "count": 0,
+      "duration_seconds": 0
+    },
+    "nested_command_count": null
+  },
+  "failure_signals": [],
+  "source_claims": {
+    "source": {
+      "commit": "0b416396639e4d86ad4cfa30d2617bb12a9e4925",
+      "dirty": true,
+      "root": "J:\\Code\\Kernel_v2",
+      "build_inputs_sha256": "6d21c3429b4c96ef4a330b4fdb49ce3b4c9163989e35756b79f1299d61cf6443",
+      "archive": "source-inputs.zip",
+      "archive_sha256": "0078af76ce7ddf3008c3c45e3db5b7f83e6bf446030292afa1c21d6d96bff8a3"
+    },
+    "manifest": {
+      "path": "tests/runs/d2.01-win-msvc-asan.json",
+      "sha256": "9b07cd0ec7da083dea7b4cbd6edc299433ba86885a5cf84c15bb6d0f5195d60d",
+      "snapshot": "manifest.json"
+    },
+    "requirements_manifest_sha256": "aa3057c97ff03e3c91f79ff67300dca0c7bdda3863aaeeb84dfd2b9ab06c5b21",
+    "collector": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\accept_gate.py",
+        "sha256": "a33a4efe90b080a64ca6579922eb0ec55816076a018faef1f358096203016d38"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\build_identity.py",
+        "sha256": "23620838037ab4dd49ad30bc7ff96cdb29abbd67036a87edcd8d76a8119dee86"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\common.py",
+        "sha256": "1026f8e9ce8a6ca79d019e15f7cd9f810180423e88aa58f9c4e5aa4d145e221b"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\gate.py",
+        "sha256": "8e1526662d21c341baf6ad35cf139b039e6df65dd0e0fb774c7f8d3e3856013f"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\import_bootstrap.py",
+        "sha256": "1e4260dc6356ab17749772457f27873fa1b2c5864290e38d1494e4aa0ee2b759"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\process.py",
+        "sha256": "1f49872091ab5ec967a5c900a48e714284290e29c4f2baffad7cb614933c3c94"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\review_policy.py",
+        "sha256": "35f3628a58d464d27978fbe9eaa58d2944f32eca766c31215e729f9048bbdd40"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\run.py",
+        "sha256": "fc2b3e5e50996db54cf276aa18db84854b9f58eb03a369dc9c3e5a23b88c1465"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\summary.py",
+        "sha256": "1a21ff50b78027f822e94649638c6d52a6dadd654440cf8109bb5ccf4f6b1161"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\validate.py",
+        "sha256": "bef0acaf56a5e21bf04e8bd176b00fe5e62852698b38259a88447bbc2cc107a3"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\schemas\\evidence-v1.schema.json",
+        "sha256": "eeeca84a12fa7e9f62234902aa77f2147fb174f65c8a7a748456fcc2c9ab2a32"
+      }
+    ]
+  },
+  "references": [
+    {
+      "path": "001-cmake-version-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "001-cmake-version-stdout.log",
+      "role": "command-raw",
+      "sha256": "02282b1eefbb0dd98bd4578caa8861cc2de062ebcbef435bace0359683bbfa57",
+      "size": 97
+    },
+    {
+      "path": "002-ctest-version-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "002-ctest-version-stdout.log",
+      "role": "command-raw",
+      "sha256": "a1f1a612ac841f12ccc139b534f734d054a3c12b13186dc706bc385b662fa1ac",
+      "size": 97
+    },
+    {
+      "path": "003-configure-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "003-configure-stdout.log",
+      "role": "command-raw",
+      "sha256": "d7bf83fb6bfc297df533a31dcd881c07e4281f7f089e22b4e50619eb7eaf7746",
+      "size": 1035
+    },
+    {
+      "path": "004-build-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "004-build-stdout.log",
+      "role": "command-raw",
+      "sha256": "5d721a8af26f16dfecd9b3deff28dfdb76c578873e131a44dc727ccd42145095",
+      "size": 4971
+    },
+    {
+      "path": "005-discover-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "005-discover-stdout.log",
+      "role": "command-raw",
+      "sha256": "055d2d647ec5fb89e94eae4168bd69a2809eff8d5954b48919c3b4cc98d18adb",
+      "size": 12292
+    },
+    {
+      "path": "006-test-001-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "006-test-001-stdout.log",
+      "role": "command-raw",
+      "sha256": "593f4fbdf16e94f065d57a9f70c538df76f05319cad24e42827f9419c6b7fcd5",
+      "size": 1716
+    },
+    {
+      "path": "build-artifacts.zip",
+      "role": "build-archive",
+      "sha256": "3c027f3dbc9c88482b397c8fdbe997ccaf55ef9db0dfa9fdd35db3f959849e46",
+      "size": 888431
+    },
+    {
+      "path": "discovered.json",
+      "role": "discovered",
+      "sha256": "823566770b06ac57260d7c7422e3bf7b79c6443c535b273753ef06d064eed4bd",
+      "size": 11686
+    },
+    {
+      "path": "expected.json",
+      "role": "expected",
+      "sha256": "aa3057c97ff03e3c91f79ff67300dca0c7bdda3863aaeeb84dfd2b9ab06c5b21",
+      "size": 2682
+    },
+    {
+      "path": "manifest.json",
+      "role": "manifest",
+      "sha256": "9b07cd0ec7da083dea7b4cbd6edc299433ba86885a5cf84c15bb6d0f5195d60d",
+      "size": 3552
+    },
+    {
+      "path": "report.json",
+      "role": "report",
+      "sha256": "c2ac9963f43eb892b68a44cf0032b6501082df4d422aa6ad83c404a04f02bff2",
+      "size": 101188
+    },
+    {
+      "path": "review-records.zip",
+      "role": "review-archive",
+      "sha256": "cc8d442f901a5bbae8c4572b156d86cc25319303861594b5b14fcaa175044f2f",
+      "size": 1685
+    },
+    {
+      "path": "round-001-junit.xml",
+      "role": "junit",
+      "sha256": "c85b654cfead1c6ded1fe3201fe2cd35ebcf33ab15346037ae7f239dfab1260a",
+      "size": 3738
+    },
+    {
+      "path": "runtime-artifacts.zip",
+      "role": "runtime_archive",
+      "sha256": "e6aab5f6b12c6de60db0d0fbba0e8fefcb1a792a06f03b61f9f00f996d68bbb0",
+      "size": 3093
+    },
+    {
+      "path": "source-inputs.json",
+      "role": "source-inputs",
+      "sha256": "5fc3491ee5f5fedaf1cdbc913857a530396030afce7240728717c03445796426",
+      "size": 69351
+    },
+    {
+      "path": "source-inputs.zip",
+      "role": "source-archive",
+      "sha256": "0078af76ce7ddf3008c3c45e3db5b7f83e6bf446030292afa1c21d6d96bff8a3",
+      "size": 1182318
+    }
+  ],
+  "content_sha256": "f4707054ec456eb1aaaff30b9d9c8a4d44ae63a6d52b1b5a8df542f515ca5935"
+}

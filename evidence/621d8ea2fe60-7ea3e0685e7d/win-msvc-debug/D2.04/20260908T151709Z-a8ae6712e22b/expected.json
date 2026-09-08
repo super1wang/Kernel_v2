@@ -1,0 +1,121 @@
+{
+  "format": "ock.expected/1",
+  "task_id": "D2.04",
+  "scope": "B2 包级 S_required；依据 v3.3-r2 和 B2-formal-scope 冻结，不累计历史包。",
+  "cases": [
+    {
+      "id": "T06.protocol.frames",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.protocol.router",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.protocol.outcome",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T19.protocol.observation_wire",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T19.protocol.subscription",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T19.protocol.get",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T20.protocol.cursor",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T20.protocol.list",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T24.b2.installed_consumer",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T24.b2.native_closure",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T24.sdk.version_header",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T01.architecture.dependency_dag",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug"
+      ]
+    },
+    {
+      "id": "T01.architecture.negative_guards",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug"
+      ]
+    }
+  ],
+  "checks": []
+}

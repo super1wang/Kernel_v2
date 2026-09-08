@@ -1,0 +1,158 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:/Code/Kernel_v2/build/b2-sdk-asan",
+      "--config",
+      "Debug",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\original"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:10:41.285478+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 67060,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:10:41.626505+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "a4e79fc8d417ce52f4ff374381534fe7af949a5284ecacc457c9d88cb73c39df",
+        "size": 7191
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\consumer-source",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\consumer",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\relocated",
+      "-DCMAKE_CXX_FLAGS=/fsanitize=address",
+      "-DCMAKE_CXX_FLAGS_DEBUG=/Ob0 /Od ",
+      "-DCMAKE_EXE_LINKER_FLAGS=/INCREMENTAL:NO"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:10:41.723767+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 31,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 23232,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:10:46.290496+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "67d4b180b19524be898a630217923518ccbe319fd12b5af7c8136f7bbd4e7315",
+        "size": 465
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\consumer",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:10:46.291501+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 347,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 55088,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:11:04.638662+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "15cd3bcda9644cf236367c0ed3337bcfd1c885fca5ac23a6ebaada45c2df457a",
+        "size": 7030
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\consumer\\Debug\\installed_b2.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:11:04.640812+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\consumer\\Debug\\installed_b2.exe",
+    "pid": 25656,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:11:04.991717+00:00",
+    "raw": [
+      {
+        "path": "3-stdout.log",
+        "sha256": "3e6c927e331b2e3745059fdf3d4137d3a6317a2fe3696c93f670d2fbbb5775de",
+        "size": 46
+      },
+      {
+        "path": "3-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

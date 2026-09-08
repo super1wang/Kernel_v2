@@ -1,0 +1,155 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:/Code/Kernel_v2/build/b2-sdk-release",
+      "--config",
+      "Release",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\b2-install-xgihdve8\\original"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:08:34.682698+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 65616,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:08:34.972271+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "01b06f9efb8006d94f947c069b72258ca551869c85b50b376a9e1eab5288a140",
+        "size": 7193
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\b2-install-xgihdve8\\consumer-source",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\b2-install-xgihdve8\\consumer",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\b2-install-xgihdve8\\relocated"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:08:35.053166+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 67460,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:08:39.790935+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "aeb66643ecc9be9d728494bc08d5fe84a811a431342e74c8707a2b3b9fb1a6f4",
+        "size": 465
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b2-install-xgihdve8\\consumer",
+      "--config",
+      "Release",
+      "--parallel",
+      "4"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:08:39.792639+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 346,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 57536,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:08:59.371527+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "efce243aae0c16841243059c9ffb25c5e56758cbb90d3e7ce0017f79513e3b42",
+        "size": 6928
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\b2-install-xgihdve8\\consumer\\Release\\installed_b2.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:08:59.377316+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\b2-install-xgihdve8\\consumer\\Release\\installed_b2.exe",
+    "pid": 65612,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:08:59.588813+00:00",
+    "raw": [
+      {
+        "path": "3-stdout.log",
+        "sha256": "3e6c927e331b2e3745059fdf3d4137d3a6317a2fe3696c93f670d2fbbb5775de",
+        "size": 46
+      },
+      {
+        "path": "3-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,155 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:/Code/Kernel_v2/build/b2-sdk-release",
+      "--config",
+      "Release",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\b2-install-xaccx75u\\original"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:18:47.128752+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 64224,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:18:47.367269+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "dbdbb638f87ce0f5444baeae82a41d44b1c17640f08102cbc138116000dc4ed8",
+        "size": 7193
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\b2-install-xaccx75u\\consumer-source",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\b2-install-xaccx75u\\consumer",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\b2-install-xaccx75u\\relocated"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:18:47.437274+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 67100,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:18:51.571590+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "44836c0456af8dacf5d0b980a50b3a22ad8d77c49e1b0c57306355998fb14acf",
+        "size": 465
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b2-install-xaccx75u\\consumer",
+      "--config",
+      "Release",
+      "--parallel",
+      "4"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:18:51.572596+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 346,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 66308,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:19:09.029043+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "ad3f2bca68d918f956b5ff2fdbeecf9381e7c9f4e5fc36f9369b4b792b8c123e",
+        "size": 6928
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\b2-install-xaccx75u\\consumer\\Release\\installed_b2.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:19:09.030595+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\b2-install-xaccx75u\\consumer\\Release\\installed_b2.exe",
+    "pid": 27796,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:19:09.265025+00:00",
+    "raw": [
+      {
+        "path": "3-stdout.log",
+        "sha256": "3e6c927e331b2e3745059fdf3d4137d3a6317a2fe3696c93f670d2fbbb5775de",
+        "size": 46
+      },
+      {
+        "path": "3-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

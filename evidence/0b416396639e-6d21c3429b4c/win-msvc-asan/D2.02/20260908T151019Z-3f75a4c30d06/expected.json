@@ -1,0 +1,35 @@
+{
+  "format": "ock.expected/1",
+  "task_id": "D2.02",
+  "scope": "B2 包级 S_required；依据 v3.3-r2 和 B2-formal-scope 冻结，不累计历史包。",
+  "cases": [
+    {
+      "id": "T04.binding.field_parity",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T23.binding.schema_concurrent",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.binding.native",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    }
+  ],
+  "checks": []
+}

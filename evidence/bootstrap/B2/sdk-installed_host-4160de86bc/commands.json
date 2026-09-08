@@ -1,0 +1,168 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:\\Code\\Kernel_v2\\build\\b2-sdk-debug",
+      "--config",
+      "Debug",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B2\\sdk-installed_host-4160de86bc\\original-prefix"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:17:38.921037+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 48200,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:17:39.268603+00:00",
+    "label": "install",
+    "raw": [
+      {
+        "path": "000-install-stdout.log",
+        "sha256": "155027d9a40359341481056734576a272d71ec6c60f56faa170db6d32761d454",
+        "size": 9633
+      },
+      {
+        "path": "000-install-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B2\\sdk-installed_host-4160de86bc\\consumer",
+      "-B",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B2\\sdk-installed_host-4160de86bc\\positive-build",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2\\cmake\\LockedMSVC.cmake",
+      "-DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
+      "-DCMAKE_MSVC_DEBUG_INFORMATION_FORMAT=Embedded",
+      "-DCMAKE_CXX_FLAGS=/DWIN32 /D_WINDOWS /EHsc",
+      "-DCMAKE_CXX_FLAGS_DEBUG=/Ob0 /Od /RTC1",
+      "-DCMAKE_CXX_FLAGS_RELEASE=/O2 /Ob2 /DNDEBUG",
+      "-DOCK_DIR=J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B2\\sdk-installed_host-4160de86bc\\relocated-prefix\\lib\\cmake\\OCK"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:17:39.352087+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 53424,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:17:43.724993+00:00",
+    "label": "configure-positive-build",
+    "raw": [
+      {
+        "path": "001-configure-positive-build-stdout.log",
+        "sha256": "6ad1a73503e064ee3b7712a73cc40476d212a395d055bbc3a88146179ae8843a",
+        "size": 497
+      },
+      {
+        "path": "001-configure-positive-build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B2\\sdk-installed_host-4160de86bc\\positive-build",
+      "--config",
+      "Debug",
+      "--target",
+      "ock_stateless_service",
+      "--parallel",
+      "2",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:17:43.726531+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 17,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 14888,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:17:48.110370+00:00",
+    "label": "build-positive-build",
+    "raw": [
+      {
+        "path": "002-build-positive-build-stdout.log",
+        "sha256": "cdaf7953e3c77ebceff5168d704b1cc4ab313770d7e1adbd535841aa5a5bd80a",
+        "size": 372
+      },
+      {
+        "path": "002-build-positive-build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B2\\sdk-installed_host-4160de86bc\\positive-build\\Debug\\ock_stateless_service.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-08T15:17:48.112313+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B2\\sdk-installed_host-4160de86bc\\positive-build\\Debug\\ock_stateless_service.exe",
+    "pid": 57320,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-08T15:17:48.350756+00:00",
+    "label": "run-consumer",
+    "raw": [
+      {
+        "path": "003-run-consumer-stdout.log",
+        "sha256": "c4b4b51aea53d4b34239c2bcf63157e9b2827e600bf3cceab62a1b620ce12f71",
+        "size": 135
+      },
+      {
+        "path": "003-run-consumer-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="11"
+	failures="1"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-U2F62TA"
+	time="31"
+	timestamp="2026-09-08T23:10:41"
+	>
+	<testcase name="T24.b2.installed_consumer" classname="T24.b2.installed_consumer" time="23.8198" status="run">
+		<properties>
+			<property name="cmake_labels" value="B2"/>
+		</properties>
+		<system-out>argv: ['cmake', '--install', 'J:/Code/Kernel_v2/build/b2-sdk-asan', '--config', 'Debug', '--prefix', 'J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\original'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\consumer-source', '-B', 'J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\consumer', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\relocated', '-DCMAKE_CXX_FLAGS=/fsanitize=address', '-DCMAKE_CXX_FLAGS_DEBUG=/Ob0 /Od ', '-DCMAKE_EXE_LINKER_FLAGS=/INCREMENTAL:NO'] exit_code: 0
+argv: ['cmake', '--build', 'J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\consumer', '--config', 'Debug', '--parallel', '4'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\b2-install-89knkdh7\\consumer\\Debug\\installed_b2.exe'] exit_code: 0
+B2 installed consumer and standalone public...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.b2.native_closure" classname="T24.b2.native_closure" time="0.724314" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="B2"/>
+		</properties>
+		<system-out>Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_native.py", line 236, in &lt;module&gt;
+    main()
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_native.py", line 130, in main
+    original.rename(detached)
+  File "pathlib.py", line 1175, in rename
+PermissionError: [WinError 5] 拒绝访问。: 'J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B2\\sdk-installed_host-ccf5d5df4b\\original-prefix' -&gt; 'J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B2\\sdk-installed_host-ccf5d5df4b\\unavailable-original-prefix'
+</system-out>
+	</testcase>
+	<testcase name="T24.sdk.version_header" classname="T24.sdk.version_header" time="0.152231" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>0.1.0-dev.3
+</system-out>
+	</testcase>
+	<testcase name="T06.protocol.frames" classname="T06.protocol.frames" time="0.211146" status="run">
+		<properties/>
+		<system-out>OCK1 partial reads, invalid headers and request directions passed
+</system-out>
+	</testcase>
+	<testcase name="T20.protocol.cursor" classname="T20.protocol.cursor" time="0.261269" status="run">
+		<properties/>
+		<system-out>Cursor golden, MAC tamper, bindings and monotonic expiration passed
+</system-out>
+	</testcase>
+	<testcase name="T06.protocol.router" classname="T06.protocol.router" time="0.199321" status="run">
+		<properties/>
+		<system-out>Router handshake, direction, schema and business result envelope passed
+</system-out>
+	</testcase>
+	<testcase name="T19.protocol.observation_wire" classname="T19.protocol.observation_wire" time="0.224635" status="run">
+		<properties/>
+		<system-out>Observation wire identity, filter, interval and list bounds passed
+</system-out>
+	</testcase>
+	<testcase name="T19.protocol.subscription" classname="T19.protocol.subscription" time="1.02527" status="run">
+		<properties/>
+		<system-out>Subscription ack ordering, loss sequence, revoke and cleanup passed
+</system-out>
+	</testcase>
+	<testcase name="T20.protocol.list" classname="T20.protocol.list" time="0.484488" status="run">
+		<properties/>
+		<system-out>List authorized frames, stateless continuation, tamper, filter, TTL and revoke passed
+</system-out>
+	</testcase>
+	<testcase name="T06.protocol.outcome" classname="T06.protocol.outcome" time="4.14034" status="run">
+		<properties/>
+		<system-out>schema compiled
+unknown validated
+unknown encoded
+unknown schema valid
+outcome variant 0
+outcome variant 1
+outcome variant 2
+outcome variant 3
+outcome variant 4
+outcome variant 5
+outcome variant 6
+outcome variant 7
+Outcome wire preserves unknown facts and result encoding failure
+</system-out>
+	</testcase>
+	<testcase name="T19.protocol.get" classname="T19.protocol.get" time="0.319891" status="run">
+		<properties/>
+		<system-out>Get mock summary, Unknown preservation and send-time revocation passed
+</system-out>
+	</testcase>
+</testsuite>

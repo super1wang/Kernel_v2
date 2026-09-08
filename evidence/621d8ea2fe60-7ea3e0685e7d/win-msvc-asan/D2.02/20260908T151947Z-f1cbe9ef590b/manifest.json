@@ -1,0 +1,101 @@
+{
+  "format": "ock.run-manifest/1",
+  "task_id": "D2.02",
+  "profile": "win-msvc-asan",
+  "configuration": "Debug",
+  "preset": "win-msvc-asan",
+  "asan": true,
+  "source_patterns": [
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    "dependencies.lock",
+    "THIRD_PARTY_NOTICES",
+    "cmake/**",
+    "packages/**",
+    "sdk/**",
+    "schemas/**",
+    "tests/**",
+    "tools/**",
+    "examples/**",
+    "docs/contracts/**",
+    "docs/toolchain.md",
+    "docs/01_Architecture_v3.3.md",
+    "docs/02_Execution_Plan_v3.3.md",
+    "docs/reviews/B2-formal-scope.md"
+  ],
+  "required_artifacts": [
+    "docs/reviews/B2-formal-scope.md"
+  ],
+  "expected_manifest": "tests/manifests/d2.02.expected.json",
+  "dependency_lock": "dependencies.lock",
+  "build_dir": "build/b2-sdk-asan",
+  "configure": [
+    "cmake",
+    "--preset",
+    "win-msvc-asan",
+    "-B",
+    "build/b2-sdk-asan",
+    "-DOCK_DEPENDENCY_COMPONENTS=Data",
+    "-DOCK_DEPENDENCIES_OFFLINE=ON",
+    "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+    "-DOCK_BUILD_B2_TESTS=ON",
+    "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+    "-DOCK_ENABLE_ASAN=ON",
+    "-DOCK_BUILD_G0_TESTS=OFF",
+    "-DOCK_BUILD_EXECUTION_MODEL_TESTS=OFF",
+    "-DOCK_BUILD_FOUNDATION_TESTS=OFF",
+    "-DOCK_BUILD_CORE_CONTRACTS_TESTS=OFF",
+    "-DOCK_BUILD_REGISTRATION_TESTS=OFF",
+    "-DOCK_BUILD_AUTHORIZATION_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_TESTS=OFF",
+    "-DOCK_BUILD_HOST_TESTS=OFF",
+    "-DOCK_BUILD_LOGGING_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_SDK_TESTS=OFF",
+    "-DOCK_BUILD_FOOTPRINT_TESTS=OFF"
+  ],
+  "build": [
+    "cmake",
+    "--build",
+    "build/b2-sdk-asan",
+    "--config",
+    "Debug",
+    "--parallel",
+    "4",
+    "--",
+    "/nr:false"
+  ],
+  "build_outputs": [
+    "build/b2-sdk-asan/CMakeCache.txt",
+    "build/b2-sdk-asan/ock-target-graph.json",
+    "build/b2-sdk-asan/toolchain-Debug.json",
+    "build/b2-sdk-asan/dependency-acquisition.json",
+    "build/b2-sdk-asan/CTestTestfile.cmake",
+    "build/b2-sdk-asan/CMakeFiles/CMakeConfigureLog.yaml",
+    "build/b2-sdk-asan/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake",
+    "build/b2-sdk-asan/tests/unit/data/CTestTestfile.cmake",
+    "build/b2-sdk-asan/tests/unit/data/Debug/binding_parity.exe",
+    "build/b2-sdk-asan/tests/unit/data/Debug/schema_contract.exe",
+    "build/b2-sdk-asan/tests/unit/data/Debug/dynamic_native_contract.exe",
+    "build/msvc-validation/e8697b7e3597a578/inputs.json",
+    "build/msvc-validation/e8697b7e3597a578/local-tools.props"
+  ],
+  "toolchain_artifact": "build/b2-sdk-asan/toolchain-Debug.json",
+  "test_regex": "^(T04\\.binding\\.field_parity|T23\\.binding\\.schema_concurrent|T06\\.binding\\.native)$",
+  "repeat": 1,
+  "timeout_seconds": 1800,
+  "checks": [],
+  "review_policy": {
+    "format": "ock.review-policy-binding/1",
+    "mode": "ai-self-review",
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+  },
+  "review_required": [
+    "spec",
+    "code"
+  ],
+  "review_records": [
+    "docs/reviews/D2.02-spec.json",
+    "docs/reviews/D2.02-code.json"
+  ]
+}

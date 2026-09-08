@@ -1,0 +1,2697 @@
+{
+  "evidence_format": "ock.evidence/1",
+  "task_id": "D2.03",
+  "run_id": "20260908T151703Z-b9e10f00b474",
+  "started_at": "2026-09-08T15:17:03.603751+00:00",
+  "source": {
+    "commit": "621d8ea2fe6091b7cb0f76fb7f76bae7793ffaca",
+    "dirty": true,
+    "root": "J:\\Code\\Kernel_v2",
+    "inputs": [
+      {
+        "path": "cmake/Dependencies.cmake",
+        "sha256": "39802a87f2820d316fb5dcc8240db96b77b80400dd06fff5f0e32873d13c2624",
+        "size": 6594
+      },
+      {
+        "path": "cmake/DependencyProbes.cmake",
+        "sha256": "ebcc48ac4d7b3f2cc171544672baae567a71c918e73f3ef5579cbc90ac7006ff",
+        "size": 3133
+      },
+      {
+        "path": "cmake/LockedMSVC.cmake",
+        "sha256": "ed0e029ec8e77653b2db779059b8b3483e600e8b27027c660ba01076ce94b3a3",
+        "size": 2519
+      },
+      {
+        "path": "cmake/msbuild-user/README.md",
+        "sha256": "185a7de1c71b550805f74d6b66324410066b271bd2d3497cc2ce52bf136e4615",
+        "size": 465
+      },
+      {
+        "path": "cmake/msvc-validation-tools.json",
+        "sha256": "e8697b7e3597a578de41e051b29e4c0893a5b3c7c5733669b9f4bc12b2f81a94",
+        "size": 12228
+      },
+      {
+        "path": "cmake/OCKConfig.cmake.in",
+        "sha256": "f02e1f13d1755de5477d79d4694b6a4da461837bc3e853adeea47242d4f533e4",
+        "size": 870
+      },
+      {
+        "path": "cmake/TargetDependencies.cmake",
+        "sha256": "3621bcfc5a6540c901c363234d53dd15dd753f13475de1eeafa4141fb3ee8b37",
+        "size": 9208
+      },
+      {
+        "path": "CMakeLists.txt",
+        "sha256": "76ff729fe31c1e4ae65a5c7d85a6c493254b562f711a00abfa88f6dbe2bc88fe",
+        "size": 10224
+      },
+      {
+        "path": "CMakePresets.json",
+        "sha256": "f58398635bf46904c23cf387a2b01a4bf9db69fb08037d30659cc48f1b1779f6",
+        "size": 2859
+      },
+      {
+        "path": "dependencies.lock",
+        "sha256": "ac03ac1d4cc82ea23403be553ed896b4f5540e9abf12f29311f4883f1711b822",
+        "size": 12593
+      },
+      {
+        "path": "docs/01_Architecture_v3.3.md",
+        "sha256": "6c1e2565fcb0a34247836901861ee2e2a6b184cac1f1aa835f18738e8d349542",
+        "size": 119588
+      },
+      {
+        "path": "docs/02_Execution_Plan_v3.3.md",
+        "sha256": "8d41da0be087d3c88aca3361a85ecd53383164fb43e2a14d0c08710baf331926",
+        "size": 143808
+      },
+      {
+        "path": "docs/contracts/catalog.md",
+        "sha256": "a8e7f0d8b3b250e5c6f9763e991396485c42e854a5cbcfb2e01b3a3bcc846a3e",
+        "size": 2277
+      },
+      {
+        "path": "docs/contracts/commit.md",
+        "sha256": "44a3a743889b3e9f8fb6513085c97583008c38c045de4554793698ba2da89714",
+        "size": 14434
+      },
+      {
+        "path": "docs/contracts/control-observation.md",
+        "sha256": "1d44f4bfb9b7ae53a5834930f6e35185d56ccde6ce03c4a5cb12db5e34ba199e",
+        "size": 11737
+      },
+      {
+        "path": "docs/contracts/core-contracts-api.md",
+        "sha256": "34fe36860dd33079f754eda209af9ab0d5093dfcda6ab10c81cbf52a25b53d3d",
+        "size": 57845
+      },
+      {
+        "path": "docs/contracts/cursor-v1.md",
+        "sha256": "c39b4356ccf74f29bcf67281c735424710a569f307b20c061ce9f5e134f0224a",
+        "size": 4402
+      },
+      {
+        "path": "docs/contracts/foundation.md",
+        "sha256": "333024870b90eacb9be98036e7ca7861e8bcb738530e5427b08d7fa4a9e26f9b",
+        "size": 7111
+      },
+      {
+        "path": "docs/contracts/intent.md",
+        "sha256": "41851df8b578373870d301528442901ec02dfaad2947976fb9e73e73589d90b1",
+        "size": 12862
+      },
+      {
+        "path": "docs/contracts/logging-api.md",
+        "sha256": "4ef30395a33c2c98add42ce578fd9b0664888cf5670dcfa2b7fc8671b9de63be",
+        "size": 27690
+      },
+      {
+        "path": "docs/contracts/native-allocation-coverage.md",
+        "sha256": "8132d519d83680dfa92c1c8e6d2682197aa9ba33ac26a478094dd62df304255a",
+        "size": 5704
+      },
+      {
+        "path": "docs/contracts/native-footprint-method.md",
+        "sha256": "6e55765b32714d5dad25f9717ad4701bc74157a65e6bcb2e31d11eb9b8adc023",
+        "size": 22877
+      },
+      {
+        "path": "docs/contracts/native-host-api.md",
+        "sha256": "fa5879a9625688816bccadebd14029e24590dbc8621c1dd90162ae5262dbd1ed",
+        "size": 20677
+      },
+      {
+        "path": "docs/contracts/native-invocation-api.md",
+        "sha256": "31757ff610fb162e639c714f85de9655706b7432632dc5599772cc7d0566d796",
+        "size": 29392
+      },
+      {
+        "path": "docs/contracts/native-invocation-transport.md",
+        "sha256": "bc32ee9a0d17a21edd703298ef58e06ecff23d69f5b7a18ecd96ca06201fb946",
+        "size": 1200
+      },
+      {
+        "path": "docs/contracts/native-sdk-surface.md",
+        "sha256": "06a215be332ba90d8ea7c6a1ac898085327f90918c7093ee65b350a2ca53e8b0",
+        "size": 16302
+      },
+      {
+        "path": "docs/contracts/native-test-scope.md",
+        "sha256": "b2cfc3f836708782b6bc61fdd79d53b3436310b36a8500d37f4eb8124397a0c3",
+        "size": 20424
+      },
+      {
+        "path": "docs/contracts/outcome.md",
+        "sha256": "c5bdc634ff03482746301d59efed9849f1e361d95e14f73f2be66ae99e532658",
+        "size": 17551
+      },
+      {
+        "path": "docs/contracts/plan.md",
+        "sha256": "3dd3a15b20a68433fde32f7542fa7fa239cf55c0a810c76fa08f5ce4e82ab2a2",
+        "size": 7728
+      },
+      {
+        "path": "docs/contracts/policy-api.md",
+        "sha256": "b7c73b6401cca3efb3c43f0e59ac8ce1cb5f597bb9710f0c5908faff5e054002",
+        "size": 49748
+      },
+      {
+        "path": "docs/contracts/registry-api.md",
+        "sha256": "ecdd0b6e24c1065fd19e5c27f8f786cc3a096bc1e6c62679314b0eced0893fa5",
+        "size": 14091
+      },
+      {
+        "path": "docs/reviews/automatic-acceptance-policy.json",
+        "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80",
+        "size": 1061
+      },
+      {
+        "path": "docs/reviews/B2-formal-scope.md",
+        "sha256": "81a743d873dbc59a3d29860a8edfe701236e7a2be35ba767985a019708aa0714",
+        "size": 2135
+      },
+      {
+        "path": "docs/toolchain.md",
+        "sha256": "8cef28d57e21bb2f189ed66277aa076a53bf14249795ec62debbb0693e9fa4ce",
+        "size": 15770
+      },
+      {
+        "path": "examples/native_service/CMakeLists.txt",
+        "sha256": "a4bd1a3e8c49ac1faedcc56a690aa59ffff1b5819e2781bef3c35a20c3577851",
+        "size": 414
+      },
+      {
+        "path": "examples/native_service/main.cpp",
+        "sha256": "81484abcd6b7e37255d6db336bc3bade05edc97e4f68dad47de3b8a83bdc0f91",
+        "size": 9844
+      },
+      {
+        "path": "examples/native_service/README.md",
+        "sha256": "094ab93f2d15f37eae1fc9c4a79bf3a25192201ce78ad61a6b03bef9feccff34",
+        "size": 919
+      },
+      {
+        "path": "examples/native_service/value.hpp",
+        "sha256": "57b6e450ed5f28aa30f29bf1965055480e3358ae33c6d325def25c4727b157f4",
+        "size": 587
+      },
+      {
+        "path": "examples/plans/compute-apply.plan.json",
+        "sha256": "6ad1eba9d3c637a91b813263b1fe905c281be03a4c5e41d1a879bdc671796d87",
+        "size": 907
+      },
+      {
+        "path": "examples/plans/settings-atomic.plan.json",
+        "sha256": "a9e6e50e91204b8f119ce1e1d615da0877b6e80a4f163804bfd45011d3fb57b4",
+        "size": 1553
+      },
+      {
+        "path": "examples/stateless_service/CMakeLists.txt",
+        "sha256": "f8c9389a08d93983bfc64d498d9bf78e589159a22c3a47b285af97e3e2ef2c2e",
+        "size": 745
+      },
+      {
+        "path": "examples/stateless_service/main.cpp",
+        "sha256": "3e3b6fc3c05f0284aee72af1e3687d1e63dfb9ea6d7f32433cb31640ff346f1b",
+        "size": 8349
+      },
+      {
+        "path": "examples/stateless_service/value.hpp",
+        "sha256": "57b6e450ed5f28aa30f29bf1965055480e3358ae33c6d325def25c4727b157f4",
+        "size": 587
+      },
+      {
+        "path": "packages/contracts/include/ock/contracts/context.hpp",
+        "sha256": "326bc830ed564a3489c67465f70ee07fb817a7880d706f990d4a95782e16f5b1",
+        "size": 14622
+      },
+      {
+        "path": "packages/contracts/include/ock/contracts/identity.hpp",
+        "sha256": "2c42e99c22301baeea4e1af5c45faee9c578e66b9f7f0d8c2eaf370bac54dbad",
+        "size": 6417
+      },
+      {
+        "path": "packages/contracts/include/ock/contracts/logging.hpp",
+        "sha256": "efbaf36bbb24fbbc4edbe55a576e24b27ffef9a3b8f25dd30fbe043713a3b7a7",
+        "size": 3339
+      },
+      {
+        "path": "packages/contracts/include/ock/contracts/observation.hpp",
+        "sha256": "4cdf03dd9575d2c540e7ab2945ded79b8f946f89c724118f264550fa9e46adfa",
+        "size": 12865
+      },
+      {
+        "path": "packages/contracts/include/ock/contracts/operation.hpp",
+        "sha256": "35a76e46db44d8bc8ee5c71103ae264869b125a318b2080d8d69b2ad26d6ae22",
+        "size": 14025
+      },
+      {
+        "path": "packages/contracts/include/ock/contracts/outcome.hpp",
+        "sha256": "371115831086ff1afb03cedac709f9c51bc8acf86f92c94886072c098f266dac",
+        "size": 30370
+      },
+      {
+        "path": "packages/contracts/include/ock/contracts/ports.hpp",
+        "sha256": "abc625e954638cc1a0c79b86f268150647f936180b99486629443041524390a6",
+        "size": 7429
+      },
+      {
+        "path": "packages/control/observation/get_method.cpp",
+        "sha256": "8204fde6b6be5a835d4d062906e664b548e8ad09b8b85515dde02ed4b99214a8",
+        "size": 7014
+      },
+      {
+        "path": "packages/control/observation/list_method.cpp",
+        "sha256": "1afa65b97a1fb245d641c1700ea8551a1ce974b4661bf016ab581419fa1c8f09",
+        "size": 9198
+      },
+      {
+        "path": "packages/control/observation/query_lifetime.hpp",
+        "sha256": "b72518b62b2cf2d921aa1bee8e1466748323324bf9ac467a884746e7a2798402",
+        "size": 2929
+      },
+      {
+        "path": "packages/control/observation/subscription.cpp",
+        "sha256": "8c1605cb5bace7c28c6173e98fa892d0a9b0f2e2063b8b77bc273b6633f91b56",
+        "size": 19726
+      },
+      {
+        "path": "packages/control/observation/subscription_methods.cpp",
+        "sha256": "cef88d8a651ac45dc89091cb0c81ee45fed603db7bdf926a29a3ff5037697566",
+        "size": 3138
+      },
+      {
+        "path": "packages/control/protocol/include/ock/control_protocol/observation_wire.hpp",
+        "sha256": "b857cf221cee48735170a0631f847ca183b4599a52782fe1765ade63d4d75cda",
+        "size": 1848
+      },
+      {
+        "path": "packages/control/protocol/include/ock/control_protocol/outcome_wire.hpp",
+        "sha256": "21e17c3191d8ca1046e011fc1e0797203531d6de9bd92410b1da0e0e835bc512",
+        "size": 6766
+      },
+      {
+        "path": "packages/control/protocol/include/ock/control_protocol/protocol.hpp",
+        "sha256": "51a04c3ba3c2e731d18f8d0a8e2f190795e44816cb3f305cfd82ff385b017639",
+        "size": 1482
+      },
+      {
+        "path": "packages/control/protocol/observation_wire.cpp",
+        "sha256": "b2252afd8fc5ae52fc5fa69fa99360b3a80060be468eca340532d3ac7b293a02",
+        "size": 6179
+      },
+      {
+        "path": "packages/control/protocol/outcome_wire.cpp",
+        "sha256": "1cd00577157ce101bcb1f52b84203b29fe9a0677bda5d346ebd83eedbff53193",
+        "size": 6591
+      },
+      {
+        "path": "packages/control/protocol/protocol.cpp",
+        "sha256": "ce3a02c34e023c18debfe34a0b33c14a878d6f3f38ceb77b2f9e88a67eb157a4",
+        "size": 3704
+      },
+      {
+        "path": "packages/control/server/catalog_methods.cpp",
+        "sha256": "d5a0ab41e739a76140eabfbf98e3fdb3caffa9b3988d3306719819e25c85d450",
+        "size": 5197
+      },
+      {
+        "path": "packages/control/server/cursor.cpp",
+        "sha256": "c788f861bf2d98eea2a0d6906af3dd48802892e173f6dd9b87a9605d80450f58",
+        "size": 9128
+      },
+      {
+        "path": "packages/control/server/include/ock/control/catalog_methods.hpp",
+        "sha256": "657c5882f0637402f72750c64a08465eac576f5822d631f03166c1ca410ae07b",
+        "size": 328
+      },
+      {
+        "path": "packages/control/server/include/ock/control/cursor.hpp",
+        "sha256": "07146f0f3863099dc516e72a4ffda46bac662246311d2672744fbe129c2f1a21",
+        "size": 1578
+      },
+      {
+        "path": "packages/control/server/include/ock/control/get_method.hpp",
+        "sha256": "a2e512152b5cba7064f1fa5d3c8cc2d238940eed89d0b1c4f7dc4fa60f754367",
+        "size": 973
+      },
+      {
+        "path": "packages/control/server/include/ock/control/invoke_method.hpp",
+        "sha256": "73114308999bad9c849ebb661c20c56a97e1f60c7a65887463a1e25e1abd7638",
+        "size": 4177
+      },
+      {
+        "path": "packages/control/server/include/ock/control/list_method.hpp",
+        "sha256": "b2a135af32dcab02a35c7c944585f1e2592730c8947e7b08714c5047f218ea21",
+        "size": 896
+      },
+      {
+        "path": "packages/control/server/include/ock/control/router.hpp",
+        "sha256": "783b38126e347f1fd0d4a5b146b599aeff95a2f8517098b2531bc86e73e40698",
+        "size": 2280
+      },
+      {
+        "path": "packages/control/server/include/ock/control/subscription.hpp",
+        "sha256": "0a68c99cf38901b4bc5dd3d94a49d7ab73f75957cc719fab034666b84c0e87e0",
+        "size": 1662
+      },
+      {
+        "path": "packages/control/server/include/ock/control/subscription_methods.hpp",
+        "sha256": "e469758ec2504c512e2fb81fe1d54ecfd3ab8b1113933b0af98aecaeeb515da6",
+        "size": 431
+      },
+      {
+        "path": "packages/control/server/invoke_method.cpp",
+        "sha256": "8221544f3fa8058c459f11de6d0950075a83a60debd58d749ad291e39409c502",
+        "size": 3472
+      },
+      {
+        "path": "packages/control/server/router.cpp",
+        "sha256": "62174b959608595efe509f292bd0367dc2782f5b750c6cb4e662b2127e23c297",
+        "size": 11335
+      },
+      {
+        "path": "packages/dynamic/binding/schema.cpp",
+        "sha256": "b01dbb0ac10a513751de9953b4b27a0565c4aeda9d580b5f55fa26108d4e58e4",
+        "size": 10391
+      },
+      {
+        "path": "packages/dynamic/catalog/catalog.cpp",
+        "sha256": "5324f34559af82922dbffa0569740c208a7b428e01cdb721b203016c168e8b34",
+        "size": 12771
+      },
+      {
+        "path": "packages/dynamic/data/backend.hpp",
+        "sha256": "49f02cacfccdfa229e236a56b0b9b64e5be72dbf92231cd05a4f71b3cd6076d3",
+        "size": 5836
+      },
+      {
+        "path": "packages/dynamic/data/include/ock/data/payload.hpp",
+        "sha256": "daef756c2c6c6a8e188b6b36c905a7f87bbdecb521867bf8b608be2acbf205d8",
+        "size": 4364
+      },
+      {
+        "path": "packages/dynamic/data/payload.cpp",
+        "sha256": "a1f2d1512abb7891f5e70fdbe742c0781bf6feb69bb336f24c87c2f57581b823",
+        "size": 16090
+      },
+      {
+        "path": "packages/dynamic/include/ock/dynamic/binding/bound_operation.hpp",
+        "sha256": "ef99d2596cb644ccc5288660e4b42c79b70ed43ae9b9416960be58a2543f5e0c",
+        "size": 1907
+      },
+      {
+        "path": "packages/dynamic/include/ock/dynamic/binding/record.hpp",
+        "sha256": "ba372cd6a187ced27a4f70e1ac3c5eef9168d589b4024a521ef9ab4894debe67",
+        "size": 11606
+      },
+      {
+        "path": "packages/dynamic/include/ock/dynamic/binding/registered_record.hpp",
+        "sha256": "b92cb77353a366bbf26ddeb53f46b2c144f50d28acfec1777d2a8e590ca08396",
+        "size": 1847
+      },
+      {
+        "path": "packages/dynamic/include/ock/dynamic/binding/schema.hpp",
+        "sha256": "e1549acaf023844729dee6ccb3a7adcaf6477fada398abf0b6edd792cbd137db",
+        "size": 986
+      },
+      {
+        "path": "packages/dynamic/include/ock/dynamic/binding/type_contract.hpp",
+        "sha256": "822307550244bfb4cfbae6e385bafe02d939245638dfdd44810b3225b532ba14",
+        "size": 478
+      },
+      {
+        "path": "packages/dynamic/include/ock/dynamic/catalog/catalog.hpp",
+        "sha256": "0dedfed5bb0a1a78cfaa94e6a5199cb86d7f28910b6310dba70fb56d4ac42d85",
+        "size": 2523
+      },
+      {
+        "path": "packages/foundation/include/ock/foundation/foundation.hpp",
+        "sha256": "1e3325f6077dd42d2f3ec8460d1eb4eeeca169c668975c41fb90556773940ae0",
+        "size": 12295
+      },
+      {
+        "path": "packages/foundation/include/ock/foundation/sdk_version.hpp",
+        "sha256": "fdcb78f505859c28554be6149ef8063d1e5b1b946f060a46868b308d943e474b",
+        "size": 544
+      },
+      {
+        "path": "packages/runtime/host/host.cpp",
+        "sha256": "ddc0996b9fc95dbe46c4c46654e119e9442844f973d18acbf70aa6de841ab74c",
+        "size": 22246
+      },
+      {
+        "path": "packages/runtime/include/ock/runtime/detail/host.hpp",
+        "sha256": "4c8ad948aa390d42e9284e749ed7d71e3d0df2ae6896d2062a243a514e50e7d6",
+        "size": 2996
+      },
+      {
+        "path": "packages/runtime/include/ock/runtime/detail/invocation.hpp",
+        "sha256": "4a70f0920a915ee46a51dbfa05598c30afed8fc7adc1d696f602edf08bfee54f",
+        "size": 11520
+      },
+      {
+        "path": "packages/runtime/include/ock/runtime/detail/private_bridge.hpp",
+        "sha256": "d0f6b6ac4a3721f4624ef4043a0cebda1c305ebc6ce3925a04687d5b141bda8c",
+        "size": 1258
+      },
+      {
+        "path": "packages/runtime/include/ock/runtime/host.hpp",
+        "sha256": "6c53eddaa6ad8a343c6d06b113374afe3795337aadaea853f3851d80dac9a279",
+        "size": 6497
+      },
+      {
+        "path": "packages/runtime/include/ock/runtime/logging.hpp",
+        "sha256": "fea2a70741172afe7f2d6f690176de02976ab1be03aac2fab011395877aa320c",
+        "size": 2290
+      },
+      {
+        "path": "packages/runtime/include/ock/runtime/native_types.hpp",
+        "sha256": "ef746141206e22f6eacb016ebf5f471c743a24520d63b099faa3b22eef610322",
+        "size": 1860
+      },
+      {
+        "path": "packages/runtime/include/ock/runtime/policy.hpp",
+        "sha256": "be356a2741531e737d98a158526b86199671d4f176b549504b3a3f66f0bc3285",
+        "size": 16054
+      },
+      {
+        "path": "packages/runtime/include/ock/runtime/registry.hpp",
+        "sha256": "ce475e3a09052c93f40a6e2c0a23c5a39870a62d0cfb8023583ab3668894cc05",
+        "size": 14938
+      },
+      {
+        "path": "packages/runtime/invocation/invocation.cpp",
+        "sha256": "9f5f2779b877d7e17ef93fae43312b4e3cc39600e2c3327bc02455e206e1f607",
+        "size": 11146
+      },
+      {
+        "path": "packages/runtime/invocation/invocation.hpp",
+        "sha256": "77f16f55a2224e8ac2c15425fe5cc90da35bf59fde0e6fa27edeb62c80abc6c6",
+        "size": 122
+      },
+      {
+        "path": "packages/runtime/invocation/private_bridge.hpp",
+        "sha256": "8cb06eb5a4bbd0c851be98830a1db06ba3bcba88a4950bc3cb2773a96586c8e3",
+        "size": 126
+      },
+      {
+        "path": "packages/runtime/invocation/validation.hpp",
+        "sha256": "51266d838473c5a9d2dde8f80b7fc77f07e59142319bcab1f7313569b66292cd",
+        "size": 221
+      },
+      {
+        "path": "packages/runtime/observability/logging.cpp",
+        "sha256": "a28ab62996a4360eb0907dff6cff65ead4b1ce5939b0f3ed7bd2bc3887c79067",
+        "size": 18779
+      },
+      {
+        "path": "packages/runtime/policy/policy.cpp",
+        "sha256": "82278eaea58b1463ff8585afec7db650c21cc6a4f293f41d371371b55d2d6012",
+        "size": 104066
+      },
+      {
+        "path": "packages/runtime/policy/policy.hpp",
+        "sha256": "a867c850a0d15896777431d67ae547c3a2fc087d6f8b1c5b029150f100752bf4",
+        "size": 111
+      },
+      {
+        "path": "packages/runtime/policy/validation.hpp",
+        "sha256": "817368290acf57cac174999cacb3c0ef3f12c34119f0aa1ccceb80081bcfad36",
+        "size": 252
+      },
+      {
+        "path": "packages/runtime/registry/registry.cpp",
+        "sha256": "6e4c9580964002a06e51926353e58bf9e5ad3a6d74ae71097c4ab22ed6745ff0",
+        "size": 22096
+      },
+      {
+        "path": "packages/runtime/registry/registry.hpp",
+        "sha256": "d7b14becf0811e70bf0580546363c6e863abfa0297b5c3ec5de9eb40001c62eb",
+        "size": 113
+      },
+      {
+        "path": "schemas/catalog/command-card.schema.json",
+        "sha256": "ca16d1829f656804c1990de01b5aa033e38fe06027a79191a5789cc8377b25de",
+        "size": 3658
+      },
+      {
+        "path": "schemas/evidence-summary-v1.schema.json",
+        "sha256": "edad35a21e5e60194c87d28f09e48502cfd4d6270155d7831df0d4a6ba1c5b44",
+        "size": 10716
+      },
+      {
+        "path": "schemas/evidence-v1.schema.json",
+        "sha256": "eeeca84a12fa7e9f62234902aa77f2147fb174f65c8a7a748456fcc2c9ab2a32",
+        "size": 16467
+      },
+      {
+        "path": "schemas/outcome-v1.schema.json",
+        "sha256": "999995002fa8fa245b9e2bb097617f587f422eec4e1d88927bda094db4b6a22f",
+        "size": 22641
+      },
+      {
+        "path": "schemas/plan-v1.schema.json",
+        "sha256": "3a07cf8a1a4de201f25756ce780c747c2c12659e1f62ad406725c90b812805f3",
+        "size": 18024
+      },
+      {
+        "path": "schemas/rpc-v1/common.schema.json",
+        "sha256": "27292f7f18010c155ce07864398a4e6d06930ccbcb973fcbf98910685bfdb2c0",
+        "size": 1943
+      },
+      {
+        "path": "schemas/rpc-v1/execution-get-summary.schema.json",
+        "sha256": "01bf64e0df46c15681a5c128b3b866e2267251862c010bca481a9679e1c77a58",
+        "size": 3030
+      },
+      {
+        "path": "schemas/rpc-v1/execution-list.schema.json",
+        "sha256": "53d3e3d7f316e17c70afe6fc4b9074162cb33f4582a1d274deecb38dcb6bb8aa",
+        "size": 5898
+      },
+      {
+        "path": "schemas/rpc-v1/notifications.schema.json",
+        "sha256": "f88e11256e03d9d667bf40d7bcb49eff8f8204c5259bc020222f7976f3be8644",
+        "size": 13148
+      },
+      {
+        "path": "schemas/rpc-v1/outcome.schema.json",
+        "sha256": "1f2da64c5cdbf4cdd01b6ed173022307f1f518792acb052f1e8637d4e3ee715d",
+        "size": 11380
+      },
+      {
+        "path": "sdk/sdk_api_manifest.json",
+        "sha256": "554782f955255127c16bb3de536b37fcd5280cd20435d75fb8d2d05e0b29d7c8",
+        "size": 26252
+      },
+      {
+        "path": "tests/architecture/test_architecture.py",
+        "sha256": "4b9a3b7e667861101fac7b2478913c6e39b0e98afefdb52653978690490586dd",
+        "size": 6617
+      },
+      {
+        "path": "tests/architecture/test_b2_sdk.py",
+        "sha256": "586f72a476af46d1571a63668f16c9d2d4e5d0bf5d88ae9ab9498fa583d696f1",
+        "size": 1617
+      },
+      {
+        "path": "tests/architecture/test_contracts_stage.py",
+        "sha256": "afbfb5be5f5245ab944a126ef5b74e99959ca275637ea4c39d51048f7ed5e5d8",
+        "size": 6420
+      },
+      {
+        "path": "tests/architecture/test_foundation_stage.py",
+        "sha256": "68a34c7238957f36da6c5de08110b269e534dd1e815f49578722bcddf1f110be",
+        "size": 1793
+      },
+      {
+        "path": "tests/architecture/test_msvc_isolation.py",
+        "sha256": "5705cd204a8e7d429aac74697aea2c1bfb6df73820077ce16c8fb684e6bbabf2",
+        "size": 6789
+      },
+      {
+        "path": "tests/architecture/test_native_sdk.py",
+        "sha256": "c25250cd26dca5a8f628b3e1541aecc58d2eaf179507b68733768f637505717c",
+        "size": 3908
+      },
+      {
+        "path": "tests/compile/contracts/CMakeLists.txt",
+        "sha256": "ff5f540b5ffbab5eb7417f3a2eebd5e8b27be1d218067e16a3af314fc9328644",
+        "size": 4002
+      },
+      {
+        "path": "tests/compile/contracts/contracts_tests.cpp",
+        "sha256": "dd797c52b68a58a1f861b31be161d45883cac497f8c29dc29c8331c911dfdef4",
+        "size": 29479
+      },
+      {
+        "path": "tests/compile/contracts/discover.py",
+        "sha256": "e5b94f92063d84f59fd3388ff81e5d5aa8b5a39a0da14d78aef2fe0c5b1e2098",
+        "size": 4275
+      },
+      {
+        "path": "tests/compile/contracts/fixture.py",
+        "sha256": "243b292a785087afbd941bfe0a693a56c848d484dd07a00c9b4cd801eb32b96f",
+        "size": 11036
+      },
+      {
+        "path": "tests/compile/contracts/test_support.hpp",
+        "sha256": "86e94e83c42d0121e787bc7dae6b2f02785570b5f8c3b38d033f620aad66363a",
+        "size": 8209
+      },
+      {
+        "path": "tests/compile/contracts/verify_children.py",
+        "sha256": "99efc3f582c9e3805444fb3676aa819dbcd1fc3e1dc8e9f8d56cbaf6520e58b5",
+        "size": 6250
+      },
+      {
+        "path": "tests/compile/sdk_metadata.cpp",
+        "sha256": "b51f3ab3c345b5516404f03faa768eefccbd55c66c2d9b3e388231e88943c02d",
+        "size": 274
+      },
+      {
+        "path": "tests/conformance/core_contracts/authority_factories.hpp",
+        "sha256": "2fd2cb3ebff00b9208b2119495d80d500d2f01decbeb20be5ab5c9f12c4f724e",
+        "size": 18208
+      },
+      {
+        "path": "tests/conformance/core_contracts/factories.hpp",
+        "sha256": "f89c124b0f436c856ebb32fcc2bd954feed2b46dc7d78ba1c6839cc601ce349c",
+        "size": 14568
+      },
+      {
+        "path": "tests/conformance/logging/cases.json",
+        "sha256": "c10c1cae79dcc1df12cd77d03ae23c28179226c1b835e714d7ce22c25407d1e4",
+        "size": 2945
+      },
+      {
+        "path": "tests/conformance/logging/CMakeLists.txt",
+        "sha256": "6b5e09d31364d8fa94a37b72223d0e9d44ca757e1e4f7a1104965928d9676420",
+        "size": 2699
+      },
+      {
+        "path": "tests/conformance/logging/develop.py",
+        "sha256": "294a4a1de6c15c38d5a799867ac5fad3eb0f0014317ab28cdaddbae27366c520",
+        "size": 7571
+      },
+      {
+        "path": "tests/conformance/logging/logging-tests.cmake.in",
+        "sha256": "35ae46df483d713b06fcbabbe05d9d99b4b47fa149542ca0f51c45c0e90e7f60",
+        "size": 1323
+      },
+      {
+        "path": "tests/conformance/logging/logging_tests.cpp",
+        "sha256": "9a0a1b8205586aba514f6a440aa69c689519eea41dde58a29872b410e8d082ee",
+        "size": 19726
+      },
+      {
+        "path": "tests/conformance/logging/qualification.py",
+        "sha256": "2273323e140a9f0502870cdd256e9ce4590c2d673d2e78aa9a2f9cf0619dabab",
+        "size": 2974
+      },
+      {
+        "path": "tests/conformance/logging/README.md",
+        "sha256": "e8a44faa10476ed56a23d6eb47e300e5d22f73f80b81a3777faf91fadac5e175",
+        "size": 2861
+      },
+      {
+        "path": "tests/conformance/logging/reference_backend.hpp",
+        "sha256": "680599c5b09d6d9dbe7d635168728f7a6439b22c23cd75a11ded9bb359d9797b",
+        "size": 10049
+      },
+      {
+        "path": "tests/conformance/logging/supplemental_cases.hpp",
+        "sha256": "724cc116f15e66eb42db7d7ab5386782e8a82a9ebce8c47e02d51a32939d7361",
+        "size": 9336
+      },
+      {
+        "path": "tests/conformance/logging/test_qualification.py",
+        "sha256": "2cf18f3d51534d8ff6bd1c738e87fce0f0b3daeb0d9ed219ac8de6bc164ef9a3",
+        "size": 2733
+      },
+      {
+        "path": "tests/conformance/logging/verify_contract.py",
+        "sha256": "b322a5e27dfef71905bf855eabbc818ad929ff11116d9ad35ea9c9588545e331",
+        "size": 4273
+      },
+      {
+        "path": "tests/conformance/README.md",
+        "sha256": "94468f6ac29bd1ddf96c9cd448dfc89779f0aec1af45596e46f7511b7f5b82a2",
+        "size": 950
+      },
+      {
+        "path": "tests/conformance/run.py",
+        "sha256": "bf3566cf11554314f61c707a383839e504044d74e867892e2b04ea71c29f2835",
+        "size": 1786
+      },
+      {
+        "path": "tests/conformance/support/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": "tests/conformance/support/fixtures.py",
+        "sha256": "5526a65ef59adffb4de6bf2b3e236e0020dddf149ac0e4de531fe084f3835b94",
+        "size": 1490
+      },
+      {
+        "path": "tests/conformance/support/harness.py",
+        "sha256": "12c04d0076da612db2ccffad6ce854011355853a5b5bf496288736d2489409e6",
+        "size": 5367
+      },
+      {
+        "path": "tests/conformance/support/identity.py",
+        "sha256": "cfb4812d2f0588b13ab661d00d9f1b3e7f7e665d83d7c050717bbdc419d7f42a",
+        "size": 1277
+      },
+      {
+        "path": "tests/conformance/support/manifest.json",
+        "sha256": "b84440c8ab8403ce557cfe68c7cf9000981e726caee8bd0c3a0f1d9b096a960d",
+        "size": 1025
+      },
+      {
+        "path": "tests/conformance/test_bootstrap.py",
+        "sha256": "3dea74fef79580f5090e3faa875055f661eae7ea53dc18213187753927aed752",
+        "size": 3830
+      },
+      {
+        "path": "tests/contract/authorization/action_cases.hpp",
+        "sha256": "6b7764d720644e10d33716177ca7419e40d729c847e15d2f718475c8ba61d4d6",
+        "size": 11809
+      },
+      {
+        "path": "tests/contract/authorization/authority_cases.hpp",
+        "sha256": "94b378ccea15926a3fff2daeba93725d7c07c4755e9c532f506d68a23082375f",
+        "size": 11085
+      },
+      {
+        "path": "tests/contract/authorization/CMakeLists.txt",
+        "sha256": "d517e8c91d22d4f7d687b61f2fa0cd138d380d99de16e65507ff9d3a2add3622",
+        "size": 2099
+      },
+      {
+        "path": "tests/contract/authorization/develop.py",
+        "sha256": "3132328ddfbf2598764f7c27f0ae40e6a23938ad973922d7e07669a507c67224",
+        "size": 5298
+      },
+      {
+        "path": "tests/contract/authorization/discover.py",
+        "sha256": "5a4a594fa6654cf7e3dbcd7670aa88c91d062d0b73c61b10bb3736734b7cb2f8",
+        "size": 1778
+      },
+      {
+        "path": "tests/contract/authorization/fixtures.hpp",
+        "sha256": "f64c418486da2e9279bbbace092721eae28ccb441ab1a7aae5cc57489661cb47",
+        "size": 9580
+      },
+      {
+        "path": "tests/contract/authorization/observation_cases.hpp",
+        "sha256": "c2129f58dc4ac0db63c365b213bb83c3d36caa1c4a133e092d53bef2ac0150a9",
+        "size": 7380
+      },
+      {
+        "path": "tests/contract/authorization/policy_tests.cpp",
+        "sha256": "bbf1679ebb252fedb4f4d90344803c3b4cb203869ff3282bea7c4b0830591a30",
+        "size": 32228
+      },
+      {
+        "path": "tests/contract/authorization/send_cases.hpp",
+        "sha256": "27dc8edbab6c0df5aceea69a6e14eaedea9b828b96c7789e562803efea679730",
+        "size": 11461
+      },
+      {
+        "path": "tests/contract/authorization/session_cases.hpp",
+        "sha256": "fa093665543df391c79f1879d618671846de72a43a7acce54f3d641edc95e528",
+        "size": 10858
+      },
+      {
+        "path": "tests/contract/authorization/verify_children.py",
+        "sha256": "0fa89d03aff10184e866ad563d081ea513e120addd02c5ac720be46625c0de3f",
+        "size": 11360
+      },
+      {
+        "path": "tests/contract/binding_parity/binding.cpp",
+        "sha256": "51333da225fb32cfdedc253aedcf18fecc698dc9a0aa7a03201afec742f588dd",
+        "size": 4280
+      },
+      {
+        "path": "tests/contract/binding_parity/native.cpp",
+        "sha256": "04124c940116c66ba8de0788bd6a09d7121444f667178129c181f793da0b1253",
+        "size": 8147
+      },
+      {
+        "path": "tests/contract/binding_parity/schema.cpp",
+        "sha256": "f9a536ddff99f79800020b91378e49d8d58a2b7dc9a869dbfffc90ef5e895164",
+        "size": 3481
+      },
+      {
+        "path": "tests/contract/catalog/catalog.cpp",
+        "sha256": "6ecd869652714357ec938609a814508028ff316529332e43bfca827d7ebcd8f5",
+        "size": 7429
+      },
+      {
+        "path": "tests/contract/host/CMakeLists.txt",
+        "sha256": "8497b78f25028edfeb86b5c7257f6556b3004bc3eaf3b04cb848e9bfef6734fd",
+        "size": 2342
+      },
+      {
+        "path": "tests/contract/host/fault_allocations.cpp",
+        "sha256": "289df71358ea3d8ecd12d23cf9bd5dcbb18aef3467d5053b5f00dd0d5e6f1016",
+        "size": 2989
+      },
+      {
+        "path": "tests/contract/host/fault_allocations.hpp",
+        "sha256": "0d853395860673fdd483f1a500b3b16484cba8464e013cb08db0df6f499c8d45",
+        "size": 630
+      },
+      {
+        "path": "tests/contract/host/fault_host_unit.cpp",
+        "sha256": "0704cff1078d5aacb4f4fcbb008a909b101fd0b2003281c4796a2a0bd739a264",
+        "size": 3943
+      },
+      {
+        "path": "tests/contract/host/fault_main.cpp",
+        "sha256": "78bed297889ce089ddeb54bdb7d53f532a21f1a16c28099395651c8ba3529789",
+        "size": 12956
+      },
+      {
+        "path": "tests/contract/host/fault_windows.md",
+        "sha256": "6fad67d3c0580548b3ee0c909ef4e4b251540f1fb2afc18f587aab33fa5f4f04",
+        "size": 6192
+      },
+      {
+        "path": "tests/contract/host/host_tests.cpp",
+        "sha256": "49b3d6001001c9625168b087b6ee53b59f33f4a52ec23ce806bd67158f40dd8d",
+        "size": 39335
+      },
+      {
+        "path": "tests/contract/host/test_wrapper.py",
+        "sha256": "3b24023db645c66e3c6f6061cf4084e50466f66b46e522934aeebcd072d9064b",
+        "size": 2608
+      },
+      {
+        "path": "tests/contract/host/verify_runtime.py",
+        "sha256": "d956d97abf1a791725027e7484637c127816373b64753423879f439547b5356d",
+        "size": 5857
+      },
+      {
+        "path": "tests/contract/native/allocation_cases.hpp",
+        "sha256": "ce92b0b29aad20668740fd65660a3b93e3df404379cc2973dfbd07ac55cef8b7",
+        "size": 12294
+      },
+      {
+        "path": "tests/contract/native/allocation_probe.cpp",
+        "sha256": "2635f4fa5cbb00d02718f7647b0904defe9ce2fa18438ce8cf7920adc9847cc1",
+        "size": 6656
+      },
+      {
+        "path": "tests/contract/native/allocation_probe.hpp",
+        "sha256": "69cada784e0d8646d0e1fc42577ef083ef4b20a269b71bc8bce5c8e314d872ac",
+        "size": 515
+      },
+      {
+        "path": "tests/contract/native/CMakeLists.txt",
+        "sha256": "3377bf459f01a4bbdabc3bc1c98e7c443a11a3d040568490dfd59c5ac354f1a4",
+        "size": 2610
+      },
+      {
+        "path": "tests/contract/native/develop.py",
+        "sha256": "00792050fde57eb27595c1bd279c7e901d13b62b0d04a3c5c747bb8cd4ee5210",
+        "size": 4682
+      },
+      {
+        "path": "tests/contract/native/discover.py",
+        "sha256": "2429d3956f4a4a4d32c5bd34d2eb2c5cd02de5c12d1de233a2dde0f27406122d",
+        "size": 2667
+      },
+      {
+        "path": "tests/contract/native/fixtures.hpp",
+        "sha256": "70ea4f5ea260ee4c73e75dbd93dc03bd707a01831231fdfc22e74eb17e31dda7",
+        "size": 3752
+      },
+      {
+        "path": "tests/contract/native/integrate.py",
+        "sha256": "250cdd915b47f74557823b914c320b69c10dd14a31550ac9f532b10df747dd65",
+        "size": 5170
+      },
+      {
+        "path": "tests/contract/native/lifetime_cases.hpp",
+        "sha256": "aa21c0d8148bd5a5c009bf8ecd6e8b8bd93a28fc900f6ac7748a596867fffa1b",
+        "size": 6991
+      },
+      {
+        "path": "tests/contract/native/native_tests.cpp",
+        "sha256": "151b5bcec1beda868e64efa112cbe7b5dd599fcf66dd55963b3d03a3a8cdceae",
+        "size": 4316
+      },
+      {
+        "path": "tests/contract/native/pipeline_cases.hpp",
+        "sha256": "53a2bce7f5febba10f13a467382cda7d142d7e89653352dd6b7b40f8e7287a90",
+        "size": 2793
+      },
+      {
+        "path": "tests/contract/native/policy_inline_cases.hpp",
+        "sha256": "a6ac7ede4f0e91d2e04958e1ea1f56430e083444a5715e2ce2766e5fc5170883",
+        "size": 11686
+      },
+      {
+        "path": "tests/contract/native/shape_cases.hpp",
+        "sha256": "32d31b67a2a84c50f47b2f5eb07f2fc2f706d25bf82ed89e4a504e1d1444a2a5",
+        "size": 9611
+      },
+      {
+        "path": "tests/contract/native/value_cases.hpp",
+        "sha256": "153f47af9950848b3d7d2ff45ea2702649fba5971700dc74287432c19ddede00",
+        "size": 10202
+      },
+      {
+        "path": "tests/contract/native/verify_children.py",
+        "sha256": "960f77c1110bdf2869f3bcb780de7c652f4f09e7d36811b66dcee5e08aa5a798",
+        "size": 13085
+      },
+      {
+        "path": "tests/contract/protocol/cursor.cpp",
+        "sha256": "1985b354dbe89470cf2eea0d5809e5e7d10c445a8177ce26be1116263200f3c0",
+        "size": 3247
+      },
+      {
+        "path": "tests/contract/protocol/frame.cpp",
+        "sha256": "0a43b3562563f2fd470cea2f7ccbd9114b966da536e9e5f3d24a6be9c534096b",
+        "size": 2703
+      },
+      {
+        "path": "tests/contract/protocol/get.cpp",
+        "sha256": "0a8bc266ccdd559a195d4b882dbee03dc1bc19665c38fb4d93c1693891ff9fb4",
+        "size": 5482
+      },
+      {
+        "path": "tests/contract/protocol/list.cpp",
+        "sha256": "c79787c107569dc2d658b1d7e6f0aa0800849f2f410d62f7df6712829c96bd9f",
+        "size": 7747
+      },
+      {
+        "path": "tests/contract/protocol/observation_wire.cpp",
+        "sha256": "94ddf72ad0a297babca3fae3ab6e35edc29b8fdd03b216fad06ea060a0a4fc85",
+        "size": 2985
+      },
+      {
+        "path": "tests/contract/protocol/outcome.cpp",
+        "sha256": "42c7b658287d5df085336ae71661ec5db1cbd03cc8625e0e16a104f3b18eb1af",
+        "size": 7131
+      },
+      {
+        "path": "tests/contract/protocol/router.cpp",
+        "sha256": "42cab7a9b21addc38deba1c67ce8aaf2712f60286601021cf59b5214aeaa2909",
+        "size": 3804
+      },
+      {
+        "path": "tests/contract/protocol/subscription.cpp",
+        "sha256": "c4d0f0e93915ec537e291047c09a8c95762a4b1ae9383ed53ba2def4b43d3933",
+        "size": 16214
+      },
+      {
+        "path": "tests/contract/registration/CMakeLists.txt",
+        "sha256": "62d8002e16d62c925f2ad6f53fec6df7cb1254b99538417544af7b891954e6ee",
+        "size": 2227
+      },
+      {
+        "path": "tests/contract/registration/develop.py",
+        "sha256": "3ef3f80410242e09a1af9824013fec60e805a9ec7a429d7f8e8ff09aff7af0ed",
+        "size": 1710
+      },
+      {
+        "path": "tests/contract/registration/discover.py",
+        "sha256": "fc3e09d58ea07896af8084fb1ab477de13a2cb389272f5d025d4630066f6031c",
+        "size": 1790
+      },
+      {
+        "path": "tests/contract/registration/fixtures.hpp",
+        "sha256": "c972132513f6c1ca506db1680313856ad8f5bb927e0dca838f805c2255ccfb71",
+        "size": 521
+      },
+      {
+        "path": "tests/contract/registration/registration_tests.cpp",
+        "sha256": "093f160e00be861e0dfc43b553deaee20946e7a77da81d565e3dbed84301f2c2",
+        "size": 27156
+      },
+      {
+        "path": "tests/contract/registration/verify_children.py",
+        "sha256": "267165f0a657866a4de968b624684ec2760fc66df582ac24d7939febaacc4ecf",
+        "size": 7706
+      },
+      {
+        "path": "tests/control/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": "tests/control/control_model.py",
+        "sha256": "e939c80f6c4062e44f77517583f0b52c2277187ad9daa06cb21b2eaf796980f0",
+        "size": 20059
+      },
+      {
+        "path": "tests/control/golden/cursor.json",
+        "sha256": "9d0ff462f7bfadea3e7eefb0e0fd6badb2676877dd4b3ec48ed55dfcfd04be52",
+        "size": 2333
+      },
+      {
+        "path": "tests/control/golden/messages.json",
+        "sha256": "cc3d609ab4b5df116a3363220aa34143104605419bf3d4331ffeeb5e8ce043ad",
+        "size": 12195
+      },
+      {
+        "path": "tests/control/test_control_contract.py",
+        "sha256": "3f25f80b262735c2b6b9db3b34217b651d203b0914f044a22417c4900d4cc714",
+        "size": 15866
+      },
+      {
+        "path": "tests/dependencies/CMakeLists.txt",
+        "sha256": "95f685da10532ffe586671d7aec3887535fefa1b40fe8ce0909c056c6228519e",
+        "size": 263
+      },
+      {
+        "path": "tests/dependencies/probes/asan.cpp",
+        "sha256": "eac36efa94ebcb708a1707fedf0effde61056456d36dadbad2ed1edc12a46b83",
+        "size": 220
+      },
+      {
+        "path": "tests/dependencies/probes/asio.cpp",
+        "sha256": "1ec2bacb24e1a59da520c824494d24f231c3c534a0d914fd0875b4524e241780",
+        "size": 1464
+      },
+      {
+        "path": "tests/dependencies/probes/benchmark.cpp",
+        "sha256": "da9815d772b1dbce8ac82c115ef1299420a3f3dafef4e61f0072d2c41fbc838e",
+        "size": 229
+      },
+      {
+        "path": "tests/dependencies/probes/catch2.cpp",
+        "sha256": "3221503ef5c90d5fde6359e9ec2d16393c06326e3fd77689b86d58b0c6c3b8f2",
+        "size": 186
+      },
+      {
+        "path": "tests/dependencies/probes/cli11.cpp",
+        "sha256": "f12f2aed3c253ff6e42c1e7ccdba37808260f0dba8e08f31a4f4822a4a36b3f5",
+        "size": 648
+      },
+      {
+        "path": "tests/dependencies/probes/expected.cpp",
+        "sha256": "4bebd34a12cffd2a1b2043a604a316fed02d5d05c54303d94eeea63c54d48f27",
+        "size": 803
+      },
+      {
+        "path": "tests/dependencies/probes/fmt.cpp",
+        "sha256": "df677a3706fbccabed791872bb398db9d0df26c72f5ae13716a227f8111b2282",
+        "size": 165
+      },
+      {
+        "path": "tests/dependencies/probes/immer.cpp",
+        "sha256": "68c59713e1dc3c04560ddce27fe7465c25b544ce98ab5dc77e87b24106c4edee",
+        "size": 560
+      },
+      {
+        "path": "tests/dependencies/probes/jsoncons.cpp",
+        "sha256": "8260fc6ae53879afbc12cfbb6462b0c851fccad1aa460696218398985e0694f6",
+        "size": 1044
+      },
+      {
+        "path": "tests/dependencies/probes/probe_common.hpp",
+        "sha256": "0dcee2fe2b7bd8820149d5679f915b8ad9f919342e7b129c92a5052470b09d1b",
+        "size": 193
+      },
+      {
+        "path": "tests/dependencies/probes/spdlog.cpp",
+        "sha256": "7341c322b554cc4a2e8f32a06c6b72af01531efdd2c3dca6c2d826f0197d849b",
+        "size": 484
+      },
+      {
+        "path": "tests/dependencies/probes/sqlite.cpp",
+        "sha256": "b367d5d9ed0d30152092f02a2ae427a9d7e345821ba0644f07c9150f27dd1f4e",
+        "size": 1856
+      },
+      {
+        "path": "tests/dependencies/probes/thread_pool.cpp",
+        "sha256": "ccae5bf8f4547a2e975f449cdeea4617e22ef8b0868170404b61bb854f54b14c",
+        "size": 550
+      },
+      {
+        "path": "tests/dependencies/probes/toml11.cpp",
+        "sha256": "2e760233e7566b06f49c05bb1553c3fe782ef3311722249e61c8bfdd1577db07",
+        "size": 529
+      },
+      {
+        "path": "tests/dependencies/probes/toolchain.cpp",
+        "sha256": "64c4d3b1e3512d5610bf3ce27bfe6eb91a86f39032aee72cc0bb4698a30ba179",
+        "size": 440
+      },
+      {
+        "path": "tests/dependencies/test_lock.py",
+        "sha256": "5e6697228b078333bb07393a7230cb5a9b053683f750dc60f9adc5cf2fd78db8",
+        "size": 5274
+      },
+      {
+        "path": "tests/install_consumer/b2/CMakeLists.txt",
+        "sha256": "4fe0dcecc70c747ab4502d5d03e07ecb97653b170ca94dac3284a13172ea8f0f",
+        "size": 686
+      },
+      {
+        "path": "tests/install_consumer/b2/main.cpp",
+        "sha256": "876c5568e76604f193e0dd090c84bc7018e315a8bfea5059cde5c4df9e12f669",
+        "size": 1639
+      },
+      {
+        "path": "tests/install_consumer/baseline/CMakeLists.txt",
+        "sha256": "cf694045975de4c7f0c4e09dd1b4b2cb7f35d7b57f01470fce3977e6f4962d8a",
+        "size": 848
+      },
+      {
+        "path": "tests/install_consumer/contracts.cpp",
+        "sha256": "832d05f521e64bdf429da44ead9ab853f9352c740270a1d382b40a7bb45a4a96",
+        "size": 3255
+      },
+      {
+        "path": "tests/install_consumer/frozen/README.md",
+        "sha256": "1e73ff44d95d5e02b2b14845d110516a66a1f24eaf69abb76c4c02f7f4184208",
+        "size": 756
+      },
+      {
+        "path": "tests/install_consumer/native_stage.py",
+        "sha256": "b6272ba040aeeeb83f04ad1ce0e438a4b847878b4e378f1c2fc5a9714eda8c38",
+        "size": 3963
+      },
+      {
+        "path": "tests/install_consumer/test_contracts_driver.py",
+        "sha256": "c49a185f35b9d2519ecd73795a983612c5205952179e2a132f89ba8105fae2a0",
+        "size": 1855
+      },
+      {
+        "path": "tests/install_consumer/test_native_wrappers.py",
+        "sha256": "2ec84a6d1567d330b8e1ceab260c880560170eae1598b8f675eb0a1199975431",
+        "size": 2235
+      },
+      {
+        "path": "tests/install_consumer/verify_b2.py",
+        "sha256": "ff23ee0c438b3cd566bb157f42b175900fe0e4bb16336b514d9c178abf6996a9",
+        "size": 3476
+      },
+      {
+        "path": "tests/install_consumer/verify_baseline.py",
+        "sha256": "1158a547aa3fb02d2d15b081cad484d216b3c65cf94abb835b36940c310f39be",
+        "size": 3171
+      },
+      {
+        "path": "tests/install_consumer/verify_contracts.py",
+        "sha256": "f2408dedff507acaac32d0132d20b56279250d6e380b7ef802d97baeeac0975b",
+        "size": 10021
+      },
+      {
+        "path": "tests/install_consumer/verify_foundation.py",
+        "sha256": "e289298c863d7187d262eba59c7ef058bf9d55c867755bf7bed6309683c585e2",
+        "size": 7478
+      },
+      {
+        "path": "tests/install_consumer/verify_native.py",
+        "sha256": "5e9f82bb42421eace8d1182a6fa8605861be5f2d516cc2e9378acb9b3fcc6346",
+        "size": 15640
+      },
+      {
+        "path": "tests/manifest.json",
+        "sha256": "65929367e046aa30681c4790df6f9276bbb4c10004fb3510d08dd05f193bfffd",
+        "size": 47722
+      },
+      {
+        "path": "tests/manifests/conformance.json",
+        "sha256": "910d7422dddfca29325e20f004f0bf29b410e369afd67be7ffb1e2e280dff509",
+        "size": 3058
+      },
+      {
+        "path": "tests/manifests/d0.01.formal.json",
+        "sha256": "f89e46c38c291ea8a38be843362a151ba9725e75534eb90b40751c9f8bdfbcc1",
+        "size": 261
+      },
+      {
+        "path": "tests/manifests/d0.02.expected.json",
+        "sha256": "e91102c66c772ea36f3551d72c77a157d240b1e91ad77f4175a35006310d4421",
+        "size": 1950
+      },
+      {
+        "path": "tests/manifests/d0.02.formal.json",
+        "sha256": "de75a4746a57710e927188a2dfaeceb9dd7639cb6da226738f6835d9cc1214a5",
+        "size": 435
+      },
+      {
+        "path": "tests/manifests/d0.03.expected.json",
+        "sha256": "b9ab434dbeeeda79a4a57010a80c65c0c0ac74ad7a255e13b67be476c0d2f892",
+        "size": 15863
+      },
+      {
+        "path": "tests/manifests/d0.03.formal.json",
+        "sha256": "d576f77a4c3615fe59c0b38ebf056bb4850ced7b71211c3d2acdbd0e94100e20",
+        "size": 15879
+      },
+      {
+        "path": "tests/manifests/d0.03.run.json",
+        "sha256": "a69db9f2272d3ccb88d1ed72cdc3617708174a7b564c4330dfc9b691a745e786",
+        "size": 1950
+      },
+      {
+        "path": "tests/manifests/d0.04.expected.json",
+        "sha256": "704e26d58216fcfa32255fc9f3115ca767816bc4d453db84848ab0a195aec2cd",
+        "size": 20220
+      },
+      {
+        "path": "tests/manifests/d0.04.formal.json",
+        "sha256": "a67522389c52e8e319a8c87caa2282b99282954859f48e5825621c874c1bd997",
+        "size": 20236
+      },
+      {
+        "path": "tests/manifests/d0.05.expected.json",
+        "sha256": "768eea11bd14eaeb21d6d19cf3499d553e1c8eadda96b5b29c1113a6b1d0acc4",
+        "size": 25134
+      },
+      {
+        "path": "tests/manifests/d0.05.formal.json",
+        "sha256": "2a9e8673ae414cd1f80a90386d99760fecaa069688fe1f8d26c76f442eaa213d",
+        "size": 25240
+      },
+      {
+        "path": "tests/manifests/d0.06.expected.json",
+        "sha256": "8d722002816a334931f8dd222f1c87d668e3d57c6e7b787d95f5a08b9e86de2d",
+        "size": 7609
+      },
+      {
+        "path": "tests/manifests/d1.01.expected.json",
+        "sha256": "4956ea4ac363954329090c1f1e4afac63e7753c4906fea925d605801b62d0448",
+        "size": 3538
+      },
+      {
+        "path": "tests/manifests/d1.02.expected.json",
+        "sha256": "f96b525f3f5031c3af23d0f68564f09a3881780763f922017b15d2ed45e46589",
+        "size": 18862
+      },
+      {
+        "path": "tests/manifests/d1.03.expected.json",
+        "sha256": "e5666284a1d2eb641bea318508cb7450c062673aba2f0a8b3e29f90085129964",
+        "size": 21221
+      },
+      {
+        "path": "tests/manifests/d1.04.expected.json",
+        "sha256": "a4d410e2f75610e61300559d3e73f0eb1bf6baacf24f74d070ed5a686195774f",
+        "size": 24295
+      },
+      {
+        "path": "tests/manifests/d1.05.expected.json",
+        "sha256": "37fee8ea9da96b3a553714f49426c85dd88181de96c8df313df57cbb0ba699a1",
+        "size": 26967
+      },
+      {
+        "path": "tests/manifests/d1.06-tools.expected.json",
+        "sha256": "fb6e6b27f9661ff6679e9381fc95b964cc4c64f6bf5b8837352e6577a5069784",
+        "size": 345
+      },
+      {
+        "path": "tests/manifests/d1.06.expected.json",
+        "sha256": "f0e86ee8fc821b142a6b9298756f135c0874dcf2f0ad508625a04af611d1187c",
+        "size": 49702
+      },
+      {
+        "path": "tests/manifests/d2.01.expected.json",
+        "sha256": "aa3057c97ff03e3c91f79ff67300dca0c7bdda3863aaeeb84dfd2b9ab06c5b21",
+        "size": 2682
+      },
+      {
+        "path": "tests/manifests/d2.02.expected.json",
+        "sha256": "7f863fd0ee723b62bc8548b0e40724fda2bc65573b42e572d994176de13c83df",
+        "size": 751
+      },
+      {
+        "path": "tests/manifests/d2.03.expected.json",
+        "sha256": "bfe337ed8f725823e3bc21db5506bbb0ff30bed301d736fa4ffcefc22adccd06",
+        "size": 376
+      },
+      {
+        "path": "tests/manifests/d2.04.expected.json",
+        "sha256": "834e1a680a277481da8ba88229c6f3f9b80c6532fa0fed6896cf2a2099712dba",
+        "size": 2499
+      },
+      {
+        "path": "tests/manifests/expected.json",
+        "sha256": "906cc2c8bd88f6326d233d1ffb0b439df34235c44c963691e313e77e4e43e4ef",
+        "size": 35561
+      },
+      {
+        "path": "tests/model/commit_model/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": "tests/model/commit_model/model.py",
+        "sha256": "736f824fa2308096ec72fa1b7f39fe393dd50c00ee1c62732c4550362c6cb07e",
+        "size": 26645
+      },
+      {
+        "path": "tests/model/commit_model/run.py",
+        "sha256": "ea4fc8423f5d961e4afe318212da813a5eecc0d08ad753c897316ac5da502777",
+        "size": 1794
+      },
+      {
+        "path": "tests/model/commit_model/test_commit_model.py",
+        "sha256": "7865fe190a22a67e8299b872400b20ff2c4d30b80245cbb93d37e4e3e4c30bba",
+        "size": 27363
+      },
+      {
+        "path": "tests/model/dedup_model/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": "tests/model/dedup_model/model.py",
+        "sha256": "7fa5fe5f187d30ddc744043574815dd1bae2589cdfdc8d34f3e9a82ad30dd905",
+        "size": 23450
+      },
+      {
+        "path": "tests/model/dedup_model/test_dedup_model.py",
+        "sha256": "96c908ad675d95b5f3abc78d9d863280b9ac06b05c40a774f2c8898e34f1877b",
+        "size": 22427
+      },
+      {
+        "path": "tests/model/execution_model/__init__.py",
+        "sha256": "02e4faa17f45403d6882e60ffd978607e1785948ce3756f3bdc8700f8c414705",
+        "size": 55
+      },
+      {
+        "path": "tests/model/execution_model/golden/outcomes.json",
+        "sha256": "279966c78a873538b5943848d5ada2f23e664706fdf5fce71308ee39d1e53c82",
+        "size": 34325
+      },
+      {
+        "path": "tests/model/execution_model/model.py",
+        "sha256": "42a7c44f7705d7b6eeb9bc9c14db6d1033648abe81a8ee8c4113cb3641c28848",
+        "size": 26735
+      },
+      {
+        "path": "tests/model/execution_model/test_execution_model.py",
+        "sha256": "bf898bf8048039d9e04777f3a77401780f44bad9368a6a9821e12f2303c9aeec",
+        "size": 29333
+      },
+      {
+        "path": "tests/model/requirements-validation.txt",
+        "sha256": "1caf741b79e65f26bad2d1f007b897ab2009c295fa39631771b350a02f6e4ef9",
+        "size": 133
+      },
+      {
+        "path": "tests/plan/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": "tests/plan/golden/nodes.json",
+        "sha256": "fcdf6d97ad133057fe941b3610237535aadd11d15e3d6f3b7e88da57ee283466",
+        "size": 15203
+      },
+      {
+        "path": "tests/plan/plan_model.py",
+        "sha256": "fdea7794b72549818fc758b346e8b521efac6045c33c412cc63488986048e124",
+        "size": 17168
+      },
+      {
+        "path": "tests/plan/run_cases.py",
+        "sha256": "b480ab6e6a58b06b2e3d25f085dc6c8acc77cd7356f87a1d48e81a7b432d14d8",
+        "size": 2377
+      },
+      {
+        "path": "tests/plan/test_plan_contract.py",
+        "sha256": "ab31f61ded55bd050a2bf1326be19fd6691990ca3f84e1e3cdb9aaf460351f6a",
+        "size": 13578
+      },
+      {
+        "path": "tests/requirements/test_traceability.py",
+        "sha256": "75443f2fc7d2bb94b33b770f4deb32992ae72151deee7f0fa07f798b94ed47f3",
+        "size": 5591
+      },
+      {
+        "path": "tests/runs/d0.01-win-msvc-debug.json",
+        "sha256": "f3c4e12a12e429472377e27e54038295cfd840ae1c21ff260a75d6a245e4cd69",
+        "size": 12406
+      },
+      {
+        "path": "tests/runs/d0.02-win-msvc-debug.json",
+        "sha256": "9ad9a9d909dfa441377223fba4701c4712ae77f970ae426d3833ae6ece653734",
+        "size": 12478
+      },
+      {
+        "path": "tests/runs/d0.02-win-msvc-release.json",
+        "sha256": "8a73226d5e0a140ff589dded667cbd6f6adc131d02aa8be3555329eae0b1f67f",
+        "size": 12562
+      },
+      {
+        "path": "tests/runs/d0.03-win-msvc-debug.json",
+        "sha256": "c8ca65993155f299cb7c7f0f44cc8afef955fd7fc50da62d6170741cf92770a0",
+        "size": 13975
+      },
+      {
+        "path": "tests/runs/d0.04-win-msvc-debug.json",
+        "sha256": "6e4bf6f6e82ffa440230c19dea9ac8cffe0bac694ae168be354ec2c48fa4a8c9",
+        "size": 14865
+      },
+      {
+        "path": "tests/runs/d0.05-win-msvc-debug.json",
+        "sha256": "60e558eb999e53379bbd785f7c826b39a111a8094d9153145edd57560132bde6",
+        "size": 15629
+      },
+      {
+        "path": "tests/runs/d0.06-win-msvc-asan.json",
+        "sha256": "85c4c42ca9b661f067cbe0c42c2f173b9f984116b51e1d655d76e0454a771858",
+        "size": 15070
+      },
+      {
+        "path": "tests/runs/d0.06-win-msvc-debug.json",
+        "sha256": "1ca6c3f39ebcfcb2b238ab7fa6bdbfc0c71ce2fafa9c998c58b9bf8f26924202",
+        "size": 15661
+      },
+      {
+        "path": "tests/runs/d0.06-win-msvc-release.json",
+        "sha256": "3fb461ac83b825eb91dc6b6feeec3ecccf77113d4a0b12d2ce51fd09ae617006",
+        "size": 15749
+      },
+      {
+        "path": "tests/runs/d1.01-win-msvc-asan.json",
+        "sha256": "771a552540c49c32f73ed87cb8d3629256ef09cf1f2087d81dbd31153109cb64",
+        "size": 13284
+      },
+      {
+        "path": "tests/runs/d1.01-win-msvc-debug.json",
+        "sha256": "1f31059dfa804f3a5711ca059b6dc8d8c6b68ec9f3631c3c86f8eddfbe7f3409",
+        "size": 13092
+      },
+      {
+        "path": "tests/runs/d1.01-win-msvc-release.json",
+        "sha256": "5b2d8c3dfabec52c963b9f4fd22af09d090bf522a2270133c1a1da2be7e5410b",
+        "size": 13160
+      },
+      {
+        "path": "tests/runs/d1.02-win-msvc-asan.json",
+        "sha256": "a4722b6687c4ebb8ed2ad208a5d24667bfa3b5c80866d1c5455c20253b737b8e",
+        "size": 27278
+      },
+      {
+        "path": "tests/runs/d1.02-win-msvc-debug.json",
+        "sha256": "1f651ad3114c73d9d9b018925f93f59aa0c2bbe35a48beb50078bfac32e99174",
+        "size": 27031
+      },
+      {
+        "path": "tests/runs/d1.02-win-msvc-release.json",
+        "sha256": "f664d1289d501af4ad64cfceff3d72b6a471a82129e6c27bb6e45f457e5d7b7f",
+        "size": 27161
+      },
+      {
+        "path": "tests/runs/d1.03-matrix.json",
+        "sha256": "7c6cd1b7dbed0f1f25969506e5d83e92245d7d449770f19f006e3702098efc9d",
+        "size": 303
+      },
+      {
+        "path": "tests/runs/d1.03-win-msvc-asan.json",
+        "sha256": "04316ee719e946044b898f56f08701ab4748d00ab9e1d12791b5f9698d839ba4",
+        "size": 33285
+      },
+      {
+        "path": "tests/runs/d1.03-win-msvc-debug.json",
+        "sha256": "7311db648f509b48e656c86e09ee3e222b4fe1a89b9ba71487635450ff6e3cf7",
+        "size": 33087
+      },
+      {
+        "path": "tests/runs/d1.03-win-msvc-release.json",
+        "sha256": "e05e3a6fde19ffe6f5d11446caeae174da55bd33df9aedf60ce6918f2e84507d",
+        "size": 33327
+      },
+      {
+        "path": "tests/runs/d1.04-matrix.json",
+        "sha256": "3c58c8bcc67999054374c06bd03e89a759759cd0b458df4210d4113b872cc506",
+        "size": 303
+      },
+      {
+        "path": "tests/runs/d1.04-win-msvc-asan.json",
+        "sha256": "381ddaf5b086a732f04859d828b41991de0018f75f4f0adbc45761925dcadf5f",
+        "size": 40334
+      },
+      {
+        "path": "tests/runs/d1.04-win-msvc-debug.json",
+        "sha256": "084f14e7d767a34b0323163fdf939ae3e331670da19aadbbcd0b0230e1c8a05a",
+        "size": 40193
+      },
+      {
+        "path": "tests/runs/d1.04-win-msvc-release.json",
+        "sha256": "13d16de429137c7ba7c75e6fef168494e25e35c82eef43ae1cfe915a98cba138",
+        "size": 40559
+      },
+      {
+        "path": "tests/runs/d1.05-matrix.json",
+        "sha256": "e8873b724523aa1f9ceedb719793160600d98160882f5d4aacdcea853aec5259",
+        "size": 303
+      },
+      {
+        "path": "tests/runs/d1.05-win-msvc-asan.json",
+        "sha256": "f3fd4980739cdaa0eaa861e5789aaff71a4e6d8bf70e903a578c4a2b025f7253",
+        "size": 44981
+      },
+      {
+        "path": "tests/runs/d1.05-win-msvc-debug.json",
+        "sha256": "a6ee90a82d005a679df21a25db725fa9fb13754bbfcaf41e937cb59ea79c27ca",
+        "size": 44876
+      },
+      {
+        "path": "tests/runs/d1.05-win-msvc-release.json",
+        "sha256": "062afb166752d501d5383ced165fd5b9774a3d256fa8edb567ec6ef5536ae94d",
+        "size": 45330
+      },
+      {
+        "path": "tests/runs/d1.06-matrix.json",
+        "sha256": "c915adc346ff5d8db106890e57ab6afb4d6da632fc2fc51dd8e460f8d32e079a",
+        "size": 303
+      },
+      {
+        "path": "tests/runs/d1.06-prerequisites.cmake",
+        "sha256": "6e3310ec95e755196a2b4ad199ef33eeba8600164bc962b8fed874ae7bcd19ab",
+        "size": 1018
+      },
+      {
+        "path": "tests/runs/d1.06-win-msvc-asan.json",
+        "sha256": "402368927d11e4c00ac67f5f49b8750417c7ca5296bb55b065084252e35430c4",
+        "size": 91380
+      },
+      {
+        "path": "tests/runs/d1.06-win-msvc-debug.json",
+        "sha256": "db720ad7bbfcd7144a325d42fa2ad94f9ea62eb23426d44359609cc52a56c722",
+        "size": 114037
+      },
+      {
+        "path": "tests/runs/d1.06-win-msvc-release.json",
+        "sha256": "8072c879a07b0053c183e040d7b660f405067e227bfa283b0f42ea14bff68bbe",
+        "size": 93302
+      },
+      {
+        "path": "tests/runs/d2.01-matrix.json",
+        "sha256": "d777983859d394b0255cf574e6d98260d4c7814e220a1ecd939a8d0d2992a178",
+        "size": 303
+      },
+      {
+        "path": "tests/runs/d2.01-win-msvc-asan.json",
+        "sha256": "9b07cd0ec7da083dea7b4cbd6edc299433ba86885a5cf84c15bb6d0f5195d60d",
+        "size": 3552
+      },
+      {
+        "path": "tests/runs/d2.01-win-msvc-debug.json",
+        "sha256": "265c1a83061ac087978b6e796a54e25f5ef764cee944165d5f99a0b085b0b65d",
+        "size": 3302
+      },
+      {
+        "path": "tests/runs/d2.01-win-msvc-release.json",
+        "sha256": "a67541b50abba226df7a02b7f349b9cc74b86f0acad16b4bddb23dfa929cb75c",
+        "size": 3348
+      },
+      {
+        "path": "tests/runs/d2.02-matrix.json",
+        "sha256": "ff542637a89f90b58003e0e0752d146e05cfd89dc51ed38e9016257f497bf862",
+        "size": 303
+      },
+      {
+        "path": "tests/runs/d2.02-win-msvc-asan.json",
+        "sha256": "b355b491deed831e2ffd94ceea39d7a8855ad059ff4ef3be54723c4126fe6b75",
+        "size": 3129
+      },
+      {
+        "path": "tests/runs/d2.02-win-msvc-debug.json",
+        "sha256": "6bf4f2bf10a2d15b334914ddd91a58441886160a339902c10ea2358f3f2150bf",
+        "size": 3149
+      },
+      {
+        "path": "tests/runs/d2.02-win-msvc-release.json",
+        "sha256": "e01915c1c5b9d094c624a9475ce1d9a5105e0d4b8a736896a1dbb458f25557b4",
+        "size": 3199
+      },
+      {
+        "path": "tests/runs/d2.03-matrix.json",
+        "sha256": "39d7ad2b48e75ca6d9b69f54e58a30db413a8e822569fe79ac7f6a38b102f155",
+        "size": 303
+      },
+      {
+        "path": "tests/runs/d2.03-win-msvc-asan.json",
+        "sha256": "02d7c7082b9facf121ed8371d8d06ef0a05b3f5aed0dd8b19a2782def6bdf575",
+        "size": 2930
+      },
+      {
+        "path": "tests/runs/d2.03-win-msvc-debug.json",
+        "sha256": "9d08a6237ea4c4140ef3f71fe73777626752435e330209ed9f6145d462dab625",
+        "size": 2948
+      },
+      {
+        "path": "tests/runs/d2.03-win-msvc-release.json",
+        "sha256": "048953503bfd2d2a4e7b12487ba9df7034744c38eea08cfc6883754e521b15cc",
+        "size": 2990
+      },
+      {
+        "path": "tests/runs/d2.04-matrix.json",
+        "sha256": "071f063ab6b95195670f4d7d7848dc4e79e7ef2a6c8cf25edd493021ef6351dd",
+        "size": 303
+      },
+      {
+        "path": "tests/runs/d2.04-win-msvc-asan.json",
+        "sha256": "dbd2cb9539df703d7c081900ce46f56552dd4da9302b50b035fa08e5b51a16d0",
+        "size": 4450
+      },
+      {
+        "path": "tests/runs/d2.04-win-msvc-debug.json",
+        "sha256": "e3619f9662c5adbcb89a6036d7515324052e81f46a4171ade00d9239c751f163",
+        "size": 4549
+      },
+      {
+        "path": "tests/runs/d2.04-win-msvc-release.json",
+        "sha256": "25bccd3674d1b568a5f3e0ddf08612b33683afb7b65e590211846044d2da8046",
+        "size": 4552
+      },
+      {
+        "path": "tests/runs/g0.json",
+        "sha256": "e153e524235f933d1f1360aaf2ae6d600bd8ae3517b0036b44ce2e79ecbe880a",
+        "size": 884
+      },
+      {
+        "path": "tests/runs/g1-native-matrix.json",
+        "sha256": "fa12fc2e28159343e13776cf34d278f714e87daf42c629a57a30ee8210fde476",
+        "size": 300
+      },
+      {
+        "path": "tests/tools/bootstrap/test_model_adapter.py",
+        "sha256": "4f4f1c331eb60318a01310b468fc6ddf713dc075d193ff1343f2fc1eed1e261b",
+        "size": 2079
+      },
+      {
+        "path": "tests/tools/compile/controls.py",
+        "sha256": "ec47bd123da871bac3e063f85dff8a4983ce5f4f80d6eb973fafe2007e9341f6",
+        "size": 5244
+      },
+      {
+        "path": "tests/tools/compile/measure.py",
+        "sha256": "bc14bfcc1d6e7ef5e27606b58343f7af1c4cc50670c14cd2efa0f3e41c811c48",
+        "size": 7945
+      },
+      {
+        "path": "tests/tools/compile/test_fixture.py",
+        "sha256": "69d5b8fd962ad3a7fba7e448d95fffa7a4062de04f19c24e88c76c5aebea57af",
+        "size": 7464
+      },
+      {
+        "path": "tests/tools/dev/test_current.py",
+        "sha256": "74dfa48192c0201a97b95a23d0950b82d252f07e539981f9173331bdebb9e944",
+        "size": 1830
+      },
+      {
+        "path": "tests/tools/dev/test_d106_scope.py",
+        "sha256": "ef6e4f887c6611796306890ed7dd8021f87b921f21612ac8dd4ccc2b1252aac7",
+        "size": 3248
+      },
+      {
+        "path": "tests/tools/dev/test_formal_scope.py",
+        "sha256": "afbd79678b0a71c49f8b09e70f6b2b7c8d3c6dd80fe8a542fb03c0f02a78d95b",
+        "size": 2039
+      },
+      {
+        "path": "tests/tools/dev/test_verify.py",
+        "sha256": "54604f624084beff285c1838e08c8f512e4bd7cef60348ad0de9b696a20b5bcb",
+        "size": 4092
+      },
+      {
+        "path": "tests/tools/evidence/test_gate_acceptance.py",
+        "sha256": "0f0ae77272e35d4e5915d8456f6b1edd3eb56314b540656db4bf19db57669486",
+        "size": 2235
+      },
+      {
+        "path": "tests/tools/evidence/test_process.py",
+        "sha256": "5fa651141303eb38960b2b92bda96debe4ccc714f7bf768fc4ba7015c7c3b44d",
+        "size": 3060
+      },
+      {
+        "path": "tests/tools/evidence/test_review_policy.py",
+        "sha256": "8b2808cfb233e9b0a58b9d47908ade708c84e3cf3e567db374df01078d11e8f3",
+        "size": 7136
+      },
+      {
+        "path": "tests/tools/evidence/test_review_policy_runner.py",
+        "sha256": "95830eafadf0a1ca69e1e00e68d79a026cc5aa22b949f19ca713db173d934f5c",
+        "size": 5389
+      },
+      {
+        "path": "tests/tools/evidence/test_runner.py",
+        "sha256": "7b7bb64c15b7d747c1240b81adeebe0aebaa52156a58ed9a2311b4477ac12843",
+        "size": 15074
+      },
+      {
+        "path": "tests/tools/evidence/test_summary.py",
+        "sha256": "b3ef55d6631a5442e9278eb7d12887c76e7bdf6e6ebf6449236ecb092cf89522",
+        "size": 11863
+      },
+      {
+        "path": "tests/tools/footprint/formal-tests.cmake.in",
+        "sha256": "38f230b5836afbc60368180814e1cd42eb2464fa4fb629b859eb9e6e92b74d1f",
+        "size": 1835
+      },
+      {
+        "path": "tests/tools/footprint/owner_consumer.py",
+        "sha256": "81caf72f0902bb8417292fb72d4dc9388891d54c008daff4c66e64a379826951",
+        "size": 2501
+      },
+      {
+        "path": "tests/tools/footprint/test_allocation_record.py",
+        "sha256": "f8b124592c8dd1c73c353910a8f9a20e958a94dcc5f8fafdf8bed88ab9fbde52",
+        "size": 3989
+      },
+      {
+        "path": "tests/tools/footprint/test_formal.py",
+        "sha256": "78bb74b727cda3fd7f7a4491413baf6b306dc4d18cd6d65e2c3ae3732b37ad4e",
+        "size": 2669
+      },
+      {
+        "path": "tests/tools/footprint/test_latency_identity.py",
+        "sha256": "463b958014c1a13eead12c5a8535def6efec7c7a2c5c482251364d326f86ccc0",
+        "size": 1806
+      },
+      {
+        "path": "tests/tools/footprint/test_observation.py",
+        "sha256": "79e0970390c25c11feadffed2549bbd96d659417f2c5a0a7b64a88bc344555b2",
+        "size": 7712
+      },
+      {
+        "path": "tests/tools/footprint/test_pair_record.py",
+        "sha256": "72ba5c17e8ab9e1c31c8acb4a990355207219629da1fb9c45ff522c4730b8c15",
+        "size": 1413
+      },
+      {
+        "path": "tests/tools/footprint/test_regressions.py",
+        "sha256": "d40af655605f80bc33acb6fe9897f4c29b4c076d01989488655f88706de27af5",
+        "size": 5223
+      },
+      {
+        "path": "tests/tools/footprint/test_sampling_v2.py",
+        "sha256": "93a25fd2eef1c5cbda2d7c2527fce07939ac40b783f5ad8e9d7420a6696c879e",
+        "size": 5009
+      },
+      {
+        "path": "tests/tools/footprint/test_thread_origin.py",
+        "sha256": "b04e7b276d0d9937f6735331e8874b684a4664b04bd95f0e68dddcf45fcee005",
+        "size": 1518
+      },
+      {
+        "path": "tests/unit/data/CMakeLists.txt",
+        "sha256": "3695a9276f9ec6bad0b649ee9d936993f1fb7b44f22cec37a93c15ff4ea4648f",
+        "size": 10957
+      },
+      {
+        "path": "tests/unit/data/escape.py",
+        "sha256": "081945e4d014bbde35fdb218627cc1236c246c482c8fb0ca58f8956b189199f2",
+        "size": 717
+      },
+      {
+        "path": "tests/unit/data/parser_seeds.cpp",
+        "sha256": "af5cd639f5bdc78f2616b41bed28deb6fca2e0236ae753665e982959dd5ddf7e",
+        "size": 1528
+      },
+      {
+        "path": "tests/unit/data/payload.cpp",
+        "sha256": "5cb4a0822c8944a395b6d8da68a8824ec398679c08004f0bcdf92c018bf2e275",
+        "size": 8049
+      },
+      {
+        "path": "tests/unit/data/seeds/accepted/depth.json",
+        "sha256": "f0244ae1938270f711155b0a26a4307cde7050495140dd858a88a1cfc378cf40",
+        "size": 129
+      },
+      {
+        "path": "tests/unit/data/seeds/accepted/object.json",
+        "sha256": "0df9de59ef25fd33b6fd78ef290140d2595789508d78a7fd71b87aa1f18bf1f3",
+        "size": 45
+      },
+      {
+        "path": "tests/unit/data/seeds/accepted/uint64.json",
+        "sha256": "2cdb26265b4dc65e3b44d694f121fd6de99b9e4b8ae7f08d84bfa9537635ae43",
+        "size": 20
+      },
+      {
+        "path": "tests/unit/data/seeds/accepted/unicode.json",
+        "sha256": "ad51eb8ea9c792f050d65dfc724f8ed5ac4a5dd5dfcbe33cba189b4037ef4f5c",
+        "size": 25
+      },
+      {
+        "path": "tests/unit/data/seeds/README.md",
+        "sha256": "3deb68b9062f537ee0e8965f305683969d9e946ec00d1db89ac7426020b11909",
+        "size": 456
+      },
+      {
+        "path": "tests/unit/data/seeds/rejected/depth.json",
+        "sha256": "2574b71c86249bc36bf15157b4883f41da049924b6ddd4477f68af56d73d76b2",
+        "size": 131
+      },
+      {
+        "path": "tests/unit/data/seeds/rejected/duplicate.json",
+        "sha256": "c95ba945b310a34906bbfc28ce1346b87741d5a2b3066d1d3ecfa0acbd86392c",
+        "size": 18
+      },
+      {
+        "path": "tests/unit/data/seeds/rejected/nonfinite.json",
+        "sha256": "780bf6aecd073e6691e50b33c48c2e4a796cea8936868cc4adb4beffee703b65",
+        "size": 6
+      },
+      {
+        "path": "tests/unit/data/seeds/rejected/surrogate.json",
+        "sha256": "8c0c59dd0d275aadcd462a5fe12eb352cbdfeaf961eae4f85a4660521df7d2f5",
+        "size": 8
+      },
+      {
+        "path": "tests/unit/data/seeds/rejected/trailing.json",
+        "sha256": "dd1cadb254629e9b14afb090f2976f34fdfaaf91cdaba9a57eae86b290ebd0ed",
+        "size": 6
+      },
+      {
+        "path": "tests/unit/data/seeds/rejected/truncated.json",
+        "sha256": "2adf3c3fd1f60c99fd3cd29995bd2b07e53bc21f726c3875845d12a715b46a73",
+        "size": 8
+      },
+      {
+        "path": "tests/unit/data/seeds/rejected/uint64-overflow.json",
+        "sha256": "8b292fc2d32f1fd491784610c61b90dc4632a6e4add19261eca4c3979e4ea6d2",
+        "size": 20
+      },
+      {
+        "path": "tests/unit/data/seeds/rejected/utf8.json",
+        "sha256": "bfc25cfd85c49686ec04294e6de47c5dd57651e75084d1c08d3d124cd1dd471d",
+        "size": 4
+      },
+      {
+        "path": "tests/unit/foundation/CMakeLists.txt",
+        "sha256": "b9e1b7f8b5c939b175335db597ed39bac199f94e509dbaada465b30ab71df222",
+        "size": 1772
+      },
+      {
+        "path": "tests/unit/foundation/discover.py",
+        "sha256": "c9fbe7f73e017fac6061f48339c28c126d9454f4a0bca6b640f362a70248d9c3",
+        "size": 2271
+      },
+      {
+        "path": "tests/unit/foundation/foundation_tests.cpp",
+        "sha256": "f103640fd05d488b97562dde33df7f04f3c32fb017e6cd8951adceac6ed1d9cc",
+        "size": 16919
+      },
+      {
+        "path": "tests/unit/foundation/verify_children.py",
+        "sha256": "449d706c09df1f456ce0cafae84303b85665019fe8b98d97a45d79dd3e92a064",
+        "size": 4852
+      },
+      {
+        "path": "THIRD_PARTY_NOTICES",
+        "sha256": "f5f90f5f1df786de8a95947092750940c50f89fe018f6445d825a884e4f5c9ba",
+        "size": 32317
+      },
+      {
+        "path": "tools/architecture/check.py",
+        "sha256": "49c1f20028156dc8b9843a143d8cdcd240cd983fab30d87a9289ea7762077dfe",
+        "size": 16860
+      },
+      {
+        "path": "tools/bootstrap/record.py",
+        "sha256": "fa04f506bae959da32c012b24387dda1af187bb6ee195e85d18501c2abb2c436",
+        "size": 5021
+      },
+      {
+        "path": "tools/bootstrap/run_package.py",
+        "sha256": "29095c12c61527330eb2ef3a91d057fd766b7ae879c395f322d96f8fbf5fd63a",
+        "size": 8223
+      },
+      {
+        "path": "tools/dependencies/check_probe_failure.py",
+        "sha256": "1081a14f9850cc498c8d81f0d2b9c51799614899c133ce224897cebdfc5579a7",
+        "size": 1537
+      },
+      {
+        "path": "tools/dependencies/prepare.py",
+        "sha256": "28a24c15687bdc604e39fead95ad8376e56804ec93287b3c8cbc20bb836c7660",
+        "size": 10158
+      },
+      {
+        "path": "tools/dependencies/python-lock.json",
+        "sha256": "b40716f5bce374d9f286fc27de43f1011b54e4c01b8a2ba32a89d8f7dc3ccacf",
+        "size": 5792
+      },
+      {
+        "path": "tools/dependencies/record.py",
+        "sha256": "20adf592c8d120f5292ac639605b57b81778f5c9c3847c4611f3cea3f8bf9f73",
+        "size": 3147
+      },
+      {
+        "path": "tools/dependencies/verify_python.py",
+        "sha256": "1f8c61cc9d9ddba192f90ef714eaa234910e1986a1adf71e37d32fb59f6997a5",
+        "size": 11415
+      },
+      {
+        "path": "tools/dev/current.py",
+        "sha256": "6d5e8e6ac633fca2126309a26a541c81c94d39945a35b89d3c0979dc3cc2d46a",
+        "size": 3831
+      },
+      {
+        "path": "tools/dev/README.md",
+        "sha256": "dec4a695bbf79dc792a7b33cc7a4d63f8390554411f054b8dd9069c7fa92af43",
+        "size": 3468
+      },
+      {
+        "path": "tools/dev/verify.py",
+        "sha256": "ba2f2efff882283edcdb625b257dfe28ae3e631dd63a67faa8a13ea313af783e",
+        "size": 14798
+      },
+      {
+        "path": "tools/development/msvc_isolation.py",
+        "sha256": "eb2fe6bb59efeb8d1c8279d4bb72719a4ff8bea3c83bb39a321a09f9b2dbf239",
+        "size": 5629
+      },
+      {
+        "path": "tools/evidence/accept_gate.py",
+        "sha256": "a33a4efe90b080a64ca6579922eb0ec55816076a018faef1f358096203016d38",
+        "size": 8165
+      },
+      {
+        "path": "tools/evidence/build_identity.py",
+        "sha256": "23620838037ab4dd49ad30bc7ff96cdb29abbd67036a87edcd8d76a8119dee86",
+        "size": 3373
+      },
+      {
+        "path": "tools/evidence/common.py",
+        "sha256": "1026f8e9ce8a6ca79d019e15f7cd9f810180423e88aa58f9c4e5aa4d145e221b",
+        "size": 4594
+      },
+      {
+        "path": "tools/evidence/gate.py",
+        "sha256": "8e1526662d21c341baf6ad35cf139b039e6df65dd0e0fb774c7f8d3e3856013f",
+        "size": 2864
+      },
+      {
+        "path": "tools/evidence/import_bootstrap.py",
+        "sha256": "1e4260dc6356ab17749772457f27873fa1b2c5864290e38d1494e4aa0ee2b759",
+        "size": 2298
+      },
+      {
+        "path": "tools/evidence/process.py",
+        "sha256": "1f49872091ab5ec967a5c900a48e714284290e29c4f2baffad7cb614933c3c94",
+        "size": 14925
+      },
+      {
+        "path": "tools/evidence/README.md",
+        "sha256": "bc6ab19e5908e8072ab7a99718175419735503974a68dcb3d030e1a59ec3c3f8",
+        "size": 7558
+      },
+      {
+        "path": "tools/evidence/review_policy.py",
+        "sha256": "35f3628a58d464d27978fbe9eaa58d2944f32eca766c31215e729f9048bbdd40",
+        "size": 5757
+      },
+      {
+        "path": "tools/evidence/run.py",
+        "sha256": "fc2b3e5e50996db54cf276aa18db84854b9f58eb03a369dc9c3e5a23b88c1465",
+        "size": 14588
+      },
+      {
+        "path": "tools/evidence/summary.py",
+        "sha256": "1a21ff50b78027f822e94649638c6d52a6dadd654440cf8109bb5ccf4f6b1161",
+        "size": 14270
+      },
+      {
+        "path": "tools/evidence/validate.py",
+        "sha256": "bef0acaf56a5e21bf04e8bd176b00fe5e62852698b38259a88447bbc2cc107a3",
+        "size": 18935
+      },
+      {
+        "path": "tools/footprint/allocation_develop.py",
+        "sha256": "7ca7ef31d9c8dca70c2407773b4a914c12c0d8d8ab70f6239513f4d4a0bd1282",
+        "size": 6559
+      },
+      {
+        "path": "tools/footprint/allocation_record.py",
+        "sha256": "120585333eb929743e7626cd19f5f6fa410fe6d56b87e02244a57a02e8ebfc5d",
+        "size": 4072
+      },
+      {
+        "path": "tools/footprint/analyze.py",
+        "sha256": "2707dec624a56abca7e9b44614950a9703e256d985e47c999b7c5018a3b3e0f7",
+        "size": 7503
+      },
+      {
+        "path": "tools/footprint/configuration-development.json",
+        "sha256": "4d735d553c4a2968ae0bc19aeb46ddca4bfc3590656fc3ee257b39bcc74429ea",
+        "size": 292
+      },
+      {
+        "path": "tools/footprint/consumer/allocation_trace.hpp",
+        "sha256": "7e8eeb5aec4acea0944e1dae70f564f0ca29c27cfd8cff044fbc7e925af9353f",
+        "size": 5406
+      },
+      {
+        "path": "tools/footprint/consumer/baseline_fixture.hpp",
+        "sha256": "08ca7126eb6cb6720185aa2e7f0629ccdc0e8c385e8d8ffa2a728c381757768b",
+        "size": 817
+      },
+      {
+        "path": "tools/footprint/consumer/channel.hpp",
+        "sha256": "30cea85d5563f603fe6935acb69481b73ffd74e9e2048c8d08c1f73a151fba08",
+        "size": 2916
+      },
+      {
+        "path": "tools/footprint/consumer/CMakeLists.txt",
+        "sha256": "1b406c7b4dad5176597216b8b05a2533231094f5f3ba3336811d0d445b25bc74",
+        "size": 3142
+      },
+      {
+        "path": "tools/footprint/consumer/native_fixture.hpp",
+        "sha256": "6977c302e283b68b5ca53b518df25eca170d42de05b2587b0a2b0963ed1e0389",
+        "size": 11133
+      },
+      {
+        "path": "tools/footprint/consumer/native_value.hpp",
+        "sha256": "57b6e450ed5f28aa30f29bf1965055480e3358ae33c6d325def25c4727b157f4",
+        "size": 587
+      },
+      {
+        "path": "tools/footprint/consumer/pair_main.cpp",
+        "sha256": "e17a23b63e04ba30a24fb657d51a88e8e03870ff9b51e236fc5bf96691f08a67",
+        "size": 2942
+      },
+      {
+        "path": "tools/footprint/consumer/thread_origin.hpp",
+        "sha256": "0b0ed7f5a48861b09b6a51dcfaf57d8c0c17d891b0f80ccb1af030e1051516e9",
+        "size": 5968
+      },
+      {
+        "path": "tools/footprint/controls/calibration.cpp",
+        "sha256": "edcac651533bbfac8cbb57387b4ebb0e225470f5c9d5aa7e307883fa67fd5e62",
+        "size": 2402
+      },
+      {
+        "path": "tools/footprint/controls/required.cpp",
+        "sha256": "9d96040f24c83abf05cfbc4b0e53979d67f63697a615fa18c8c9def6ee97bb94",
+        "size": 162
+      },
+      {
+        "path": "tools/footprint/diagnostic_develop.py",
+        "sha256": "87b2bb17b5f306182d05a753faa81b93611db2a2eaafceca51ae92c715a9ab1f",
+        "size": 6774
+      },
+      {
+        "path": "tools/footprint/formal.py",
+        "sha256": "40005e378764374a53350a3423a334e8ab75f414cd840eb911c659096544a882",
+        "size": 14674
+      },
+      {
+        "path": "tools/footprint/method_checks.py",
+        "sha256": "4fce3850b4adc4942ab8dd52ac2346eadbba9773f360c953ca4d9fb1fe7d124c",
+        "size": 2901
+      },
+      {
+        "path": "tools/footprint/owner_controls.py",
+        "sha256": "57dbcfb9256ca3343b188c1c31dcf7e1b4df72947fbac5e933d05f590d4d6496",
+        "size": 6091
+      },
+      {
+        "path": "tools/footprint/pair_develop.py",
+        "sha256": "026ea447fe6a19e38dfac2788e226e73edb04d90dd2adde0d93ee5685e04aeeb",
+        "size": 5722
+      },
+      {
+        "path": "tools/footprint/pair_record.py",
+        "sha256": "bff6d0d2e380d9e153d3ec824b6b2030657915b273388275cc203e3ce90a3088",
+        "size": 1178
+      },
+      {
+        "path": "tools/footprint/run.py",
+        "sha256": "079df9009805819ce65cca4e04db18bf3d4ffa84bd3d87c966c24663066e66e9",
+        "size": 10528
+      },
+      {
+        "path": "tools/footprint/sampling_develop.py",
+        "sha256": "16418e568255dddbe86a346c8fcdf890d859182766b52320b129500ffd8720bf",
+        "size": 4129
+      },
+      {
+        "path": "tools/footprint/thread_record.py",
+        "sha256": "e44eca12675e590fd185c9a6af30166276669ac1036ffb9dfb73793031bfb6c2",
+        "size": 1411
+      },
+      {
+        "path": "tools/footprint/windows_process.py",
+        "sha256": "76ceb88e93360a233baa921220fffaf7cf3626963e2214560b8a5f1501654124",
+        "size": 19313
+      },
+      {
+        "path": "tools/requirements/check.py",
+        "sha256": "d10d7d4a6f2551b6966ce2ea5be3cf5b20d94e4ce78476f037a4c76d72a48154",
+        "size": 14037
+      },
+      {
+        "path": "tools/testing/cross_outcomes.py",
+        "sha256": "1cd71766c11db4a1359595bc7a894dbe2d1f265a3d147842ddcc938b4f4add97",
+        "size": 1334
+      },
+      {
+        "path": "tools/testing/describe_environment.py",
+        "sha256": "8de1a2bd8b03529626b537bcc505f2d3041faf53fb6e0039d38fdc194127f854",
+        "size": 1928
+      },
+      {
+        "path": "tools/testing/g0_cases.py",
+        "sha256": "95bf9a476a411cc439cc8267ef0023b5ede6daaf3a0d2d9d6a5317bf805fd24a",
+        "size": 2846
+      },
+      {
+        "path": "tools/testing/model_cases.py",
+        "sha256": "57d247fe30203d784cee526bced765f368ab36c9d137fd3ee87492a2772d9b72",
+        "size": 2134
+      }
+    ],
+    "build_inputs_sha256": "7ea3e0685e7d0ad40c8f877e2233df02592f2839ea16eb9c088853d7fb88fda2",
+    "archive": "source-inputs.zip",
+    "archive_sha256": "88759424e1557c99339b5ef2e0864a728d8806083975b0fc7d0f65bcbdda7f09"
+  },
+  "manifest": {
+    "path": "tests/runs/d2.03-win-msvc-debug.json",
+    "sha256": "9d08a6237ea4c4140ef3f71fe73777626752435e330209ed9f6145d462dab625",
+    "snapshot": "manifest.json"
+  },
+  "requirements_manifest_sha256": "bfe337ed8f725823e3bc21db5506bbb0ff30bed301d736fa4ffcefc22adccd06",
+  "expected_snapshot": "expected.json",
+  "build": {
+    "profile": "win-msvc-debug",
+    "configuration": "Debug",
+    "preset": "win-msvc-debug",
+    "directory": "build/b2-sdk-debug",
+    "dependency_lock": "dependencies.lock",
+    "dependency_lock_sha256": "ac03ac1d4cc82ea23403be553ed896b4f5540e9abf12f29311f4883f1711b822",
+    "artifacts": [
+      {
+        "path": "build/b2-sdk-debug/CMakeCache.txt",
+        "sha256": "9dbea8ca0431d6334b629740368b0c9a2045528be1160a7c5a297c08068d54da",
+        "size": 18582
+      },
+      {
+        "path": "build/b2-sdk-debug/ock-target-graph.json",
+        "sha256": "68a3bf33c8a5a5ddf14a2f43adc38ebcfb4d3723aa259ebbeb22a013d15ca4a2",
+        "size": 6536
+      },
+      {
+        "path": "build/b2-sdk-debug/toolchain-Debug.json",
+        "sha256": "88165c2e5dd6a4dae62b5e3f0386a2714e79f4cb20f6e8f2945281f10d575ba9",
+        "size": 336
+      },
+      {
+        "path": "build/b2-sdk-debug/dependency-acquisition.json",
+        "sha256": "8fc4288b3df4e6c482420f0f6f2a1c74ea018b504ff70fe8f10d514fc32bcaa1",
+        "size": 1203
+      },
+      {
+        "path": "build/b2-sdk-debug/CTestTestfile.cmake",
+        "sha256": "9c895766b61bfe341c677e03248793e73811fb739043d835901690aea686abf9",
+        "size": 26750
+      },
+      {
+        "path": "build/b2-sdk-debug/CMakeFiles/CMakeConfigureLog.yaml",
+        "sha256": "c333bb994852ee70e6989e17b3af14020fe3cb670d42c8dabfa10123db2c31f7",
+        "size": 11568
+      },
+      {
+        "path": "build/b2-sdk-debug/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake",
+        "sha256": "855bb734a1bd165d6c4a14dbb071d624e36f6de0652bcbb85d1b6cff13ac9261",
+        "size": 6187
+      },
+      {
+        "path": "build/b2-sdk-debug/tests/unit/data/CTestTestfile.cmake",
+        "sha256": "61bd4eaf39c46efa57882926062cfb315f7e2bf1e79c037d84973930e3e7506e",
+        "size": 58055
+      },
+      {
+        "path": "build/b2-sdk-debug/tests/unit/data/Debug/catalog_contract.exe",
+        "sha256": "dc5645e0b854ad8c5702f01610dd82c61f4fb337cce8d9c70f93ee9484ff46d6",
+        "size": 4714496
+      },
+      {
+        "path": "build/msvc-validation/e8697b7e3597a578/inputs.json",
+        "sha256": "7c030ef5642566aab37d44a18715f3d3bda9603c479531e80a8e9d9f2859aab9",
+        "size": 20992
+      },
+      {
+        "path": "build/msvc-validation/e8697b7e3597a578/local-tools.props",
+        "sha256": "7ff902358de3b1c06c199abc2200bee74003f9dd37a56f9dad4017c27078d2ab",
+        "size": 667
+      }
+    ],
+    "test_executables": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\b2-sdk-debug\\tests\\unit\\data\\Debug\\catalog_contract.exe",
+        "sha256": "dc5645e0b854ad8c5702f01610dd82c61f4fb337cce8d9c70f93ee9484ff46d6"
+      }
+    ],
+    "archive": "build-artifacts.zip",
+    "archive_sha256": "d00741b50949940888c7322df26cc2ee85db45ed1e6a54dec4578c716f72d3e7",
+    "observed": {
+      "cache": {
+        "CMAKE_GENERATOR": "Visual Studio 17 2022",
+        "CMAKE_GENERATOR_PLATFORM": "x64",
+        "CMAKE_GENERATOR_TOOLSET": "v143,version=14.44.35207",
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release;MinSizeRel;RelWithDebInfo",
+        "CMAKE_HOME_DIRECTORY": "J:/Code/Kernel_v2"
+      },
+      "configuration": "Debug",
+      "toolchain": {
+        "compiler": "MSVC",
+        "compiler_version": "19.44.35216.0",
+        "generator": "Visual Studio 17 2022",
+        "toolset": "v143,version=14.44.35207",
+        "windows_sdk": "10.0.26100.0",
+        "cmake_version": "3.31.6-msvc6",
+        "cxx_standard": 20,
+        "configuration": "Debug",
+        "crt": "MultiThreadedDebugDLL",
+        "asan_requested": "OFF"
+      }
+    }
+  },
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.27749-SP0",
+    "public_subset": {
+      "PROCESSOR_ARCHITECTURE": "AMD64",
+      "NUMBER_OF_PROCESSORS": "16",
+      "LANG": "C.UTF-8"
+    }
+  },
+  "collector": [
+    {
+      "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\accept_gate.py",
+      "sha256": "a33a4efe90b080a64ca6579922eb0ec55816076a018faef1f358096203016d38"
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\build_identity.py",
+      "sha256": "23620838037ab4dd49ad30bc7ff96cdb29abbd67036a87edcd8d76a8119dee86"
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\common.py",
+      "sha256": "1026f8e9ce8a6ca79d019e15f7cd9f810180423e88aa58f9c4e5aa4d145e221b"
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\gate.py",
+      "sha256": "8e1526662d21c341baf6ad35cf139b039e6df65dd0e0fb774c7f8d3e3856013f"
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\import_bootstrap.py",
+      "sha256": "1e4260dc6356ab17749772457f27873fa1b2c5864290e38d1494e4aa0ee2b759"
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\process.py",
+      "sha256": "1f49872091ab5ec967a5c900a48e714284290e29c4f2baffad7cb614933c3c94"
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\review_policy.py",
+      "sha256": "35f3628a58d464d27978fbe9eaa58d2944f32eca766c31215e729f9048bbdd40"
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\run.py",
+      "sha256": "fc2b3e5e50996db54cf276aa18db84854b9f58eb03a369dc9c3e5a23b88c1465"
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\summary.py",
+      "sha256": "1a21ff50b78027f822e94649638c6d52a6dadd654440cf8109bb5ccf4f6b1161"
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\validate.py",
+      "sha256": "bef0acaf56a5e21bf04e8bd176b00fe5e62852698b38259a88447bbc2cc107a3"
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\schemas\\evidence-v1.schema.json",
+      "sha256": "eeeca84a12fa7e9f62234902aa77f2147fb174f65c8a7a748456fcc2c9ab2a32"
+    }
+  ],
+  "conformance": null,
+  "runtime_artifacts": [],
+  "commands": [
+    {
+      "argv": [
+        "cmake",
+        "--version"
+      ],
+      "cwd": "J:\\Code\\Kernel_v2",
+      "started_at": "2026-09-08T15:17:03.608768+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 2,
+        "terminated_owned_job": false
+      },
+      "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 43180,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-08T15:17:03.782489+00:00",
+      "id": "cmake-version",
+      "role": "metadata",
+      "raw": [
+        {
+          "path": "001-cmake-version-stdout.log",
+          "sha256": "02282b1eefbb0dd98bd4578caa8861cc2de062ebcbef435bace0359683bbfa57",
+          "size": 97,
+          "truncated": false,
+          "redacted": false
+        },
+        {
+          "path": "001-cmake-version-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false,
+          "redacted": false
+        }
+      ],
+      "executable_sha256": "b540efece9172930877dff0c9fedda7a69b0dd82446e0e8bba13372aac6c8ac8"
+    },
+    {
+      "argv": [
+        "ctest",
+        "--version"
+      ],
+      "cwd": "J:\\Code\\Kernel_v2",
+      "started_at": "2026-09-08T15:17:03.795413+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 2,
+        "terminated_owned_job": false
+      },
+      "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+      "pid": 67500,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-08T15:17:03.948131+00:00",
+      "id": "ctest-version",
+      "role": "metadata",
+      "raw": [
+        {
+          "path": "002-ctest-version-stdout.log",
+          "sha256": "a1f1a612ac841f12ccc139b534f734d054a3c12b13186dc706bc385b662fa1ac",
+          "size": 97,
+          "truncated": false,
+          "redacted": false
+        },
+        {
+          "path": "002-ctest-version-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false,
+          "redacted": false
+        }
+      ],
+      "executable_sha256": "1fe268c79c868a70e6d725ee8f1ad46ec8e21dc3915a74cff8d4d049bf79a0f0"
+    },
+    {
+      "argv": [
+        "cmake",
+        "--preset",
+        "win-msvc-debug",
+        "-B",
+        "build/b2-sdk-debug",
+        "-DOCK_DEPENDENCY_COMPONENTS=Data",
+        "-DOCK_DEPENDENCIES_OFFLINE=ON",
+        "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+        "-DOCK_BUILD_B2_TESTS=ON",
+        "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-DOCK_ENABLE_ASAN=OFF",
+        "-DOCK_BUILD_G0_TESTS=OFF",
+        "-DOCK_BUILD_EXECUTION_MODEL_TESTS=OFF",
+        "-DOCK_BUILD_FOUNDATION_TESTS=OFF",
+        "-DOCK_BUILD_CORE_CONTRACTS_TESTS=OFF",
+        "-DOCK_BUILD_REGISTRATION_TESTS=OFF",
+        "-DOCK_BUILD_AUTHORIZATION_TESTS=OFF",
+        "-DOCK_BUILD_NATIVE_TESTS=OFF",
+        "-DOCK_BUILD_HOST_TESTS=OFF",
+        "-DOCK_BUILD_LOGGING_TESTS=OFF",
+        "-DOCK_BUILD_NATIVE_SDK_TESTS=OFF",
+        "-DOCK_BUILD_FOOTPRINT_TESTS=OFF"
+      ],
+      "cwd": "J:\\Code\\Kernel_v2",
+      "started_at": "2026-09-08T15:17:03.962819+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 18,
+        "terminated_owned_job": false
+      },
+      "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 44336,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-08T15:17:06.340263+00:00",
+      "id": "configure",
+      "role": "configure",
+      "raw": [
+        {
+          "path": "003-configure-stdout.log",
+          "sha256": "074fc438ff1437508e2e7523d45aee2aaf9c702b47649e709b9c36a2380f016a",
+          "size": 551,
+          "truncated": false,
+          "redacted": false
+        },
+        {
+          "path": "003-configure-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false,
+          "redacted": false
+        }
+      ],
+      "executable_sha256": "b540efece9172930877dff0c9fedda7a69b0dd82446e0e8bba13372aac6c8ac8"
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "build/b2-sdk-debug",
+        "--config",
+        "Debug",
+        "--parallel",
+        "4",
+        "--",
+        "/nr:false"
+      ],
+      "cwd": "J:\\Code\\Kernel_v2",
+      "started_at": "2026-09-08T15:17:06.351311+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 9,
+        "terminated_owned_job": false
+      },
+      "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "pid": 51160,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-08T15:17:07.939295+00:00",
+      "id": "build",
+      "role": "build",
+      "raw": [
+        {
+          "path": "004-build-stdout.log",
+          "sha256": "60348b9d7c3a715b37a3cf1cae0b0a6d2b9f0690533e3b83ab199d8a4e712807",
+          "size": 2495,
+          "truncated": false,
+          "redacted": false
+        },
+        {
+          "path": "004-build-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false,
+          "redacted": false
+        }
+      ],
+      "executable_sha256": "b540efece9172930877dff0c9fedda7a69b0dd82446e0e8bba13372aac6c8ac8"
+    },
+    {
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "J:\\Code\\Kernel_v2\\build\\b2-sdk-debug",
+        "-C",
+        "Debug",
+        "-R",
+        "^(T05\\.catalog\\.visibility)$",
+        "--show-only=json-v1"
+      ],
+      "cwd": "J:\\Code\\Kernel_v2",
+      "started_at": "2026-09-08T15:17:08.095546+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 2,
+        "terminated_owned_job": false
+      },
+      "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+      "pid": 51368,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-08T15:17:08.222509+00:00",
+      "id": "discover",
+      "role": "discover",
+      "raw": [
+        {
+          "path": "005-discover-stdout.log",
+          "sha256": "10703aa33e2746938bdf35f5760f0757317caf5068c0f0b7aaf18721d5d5aa6c",
+          "size": 1191,
+          "truncated": false,
+          "redacted": false
+        },
+        {
+          "path": "005-discover-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false,
+          "redacted": false
+        }
+      ],
+      "executable_sha256": "1fe268c79c868a70e6d725ee8f1ad46ec8e21dc3915a74cff8d4d049bf79a0f0"
+    },
+    {
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "J:\\Code\\Kernel_v2\\build\\b2-sdk-debug",
+        "-C",
+        "Debug",
+        "-R",
+        "^(T05\\.catalog\\.visibility)$",
+        "--no-tests=error",
+        "--output-on-failure",
+        "--output-junit",
+        "J:\\Code\\Kernel_v2\\evidence\\621d8ea2fe60-7ea3e0685e7d\\win-msvc-debug\\D2.03\\20260908T151703Z-b9e10f00b474\\round-001-junit.xml"
+      ],
+      "cwd": "J:\\Code\\Kernel_v2",
+      "started_at": "2026-09-08T15:17:08.240913+00:00",
+      "exit_code": 0,
+      "status": "Exited",
+      "process_tree": {
+        "mechanism": "WindowsJobObject",
+        "assigned_before_resume": true,
+        "active_after": 0,
+        "total_processes": 3,
+        "terminated_owned_job": false
+      },
+      "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+      "pid": 52716,
+      "observed_exit_code": 0,
+      "finished_at": "2026-09-08T15:17:08.764106+00:00",
+      "id": "test-001",
+      "role": "test",
+      "raw": [
+        {
+          "path": "006-test-001-stdout.log",
+          "sha256": "21faba6bd32153a93ee6610c68cc4611d36249ce13a8f9fdc9db34f3da93e2ba",
+          "size": 315,
+          "truncated": false,
+          "redacted": false
+        },
+        {
+          "path": "006-test-001-stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0,
+          "truncated": false,
+          "redacted": false
+        }
+      ],
+      "executable_sha256": "1fe268c79c868a70e6d725ee8f1ad46ec8e21dc3915a74cff8d4d049bf79a0f0"
+    }
+  ],
+  "tests": {
+    "expected": [
+      "T05.catalog.visibility"
+    ],
+    "discovered": [
+      "T05.catalog.visibility"
+    ],
+    "rounds": [
+      {
+        "round": 1,
+        "command_id": "test-001",
+        "executed": [
+          {
+            "name": "T05.catalog.visibility",
+            "status": "Passed"
+          }
+        ],
+        "junit": {
+          "path": "round-001-junit.xml",
+          "sha256": "53980e9f68660035f60e8667ed223b12e0c5d7892f1bfb44f39e584ad5a3899f",
+          "size": 439
+        }
+      }
+    ]
+  },
+  "checks": [],
+  "review": {
+    "required": [
+      "spec",
+      "code"
+    ],
+    "records": [
+      {
+        "path": "docs/reviews/D2.03-spec.json",
+        "sha256": "583945fbb9695785c7bd86079fa9d81d6c08ac48b484ac9d1d18a1235ea8400f",
+        "record": {
+          "format": "ock.technical-review/1",
+          "task_id": "D2.03",
+          "review_kind": "spec",
+          "review_status": "Approved",
+          "reviewed_inputs_sha256": "7ea3e0685e7d0ad40c8f877e2233df02592f2839ea16eb9c088853d7fb88fda2",
+          "reviewed_at": "2026-09-08T15:15:20.679921+00:00",
+          "reviewer": "Codex 主集成 AI，分别执行规格与代码复核",
+          "actor_type": "AI",
+          "approval_text": "目录由真实定义、当前政策、共享字段 Schema 和冷 Docs 生成；search/describe、命令卡和帮助符合 D2.03。eligible 仅展示，不提供许可。",
+          "evidence": [
+            {
+              "path": "docs/reviews/B2-formal-scope.md",
+              "sha256": "81a743d873dbc59a3d29860a8edfe701236e7a2be35ba767985a019708aa0714"
+            }
+          ],
+          "limitations": [
+            "AI 复核不是人工批准；包 Passed 仍需独立正式矩阵及实际 Passed 前置。",
+            "仅覆盖 B2，未验证真实 Task、IPC、设备或产品模块。"
+          ]
+        }
+      },
+      {
+        "path": "docs/reviews/D2.03-code.json",
+        "sha256": "79ff05ce956673c6d3310cb1cc76474486ba4b43bbc34635b12b999866efb817",
+        "record": {
+          "format": "ock.technical-review/1",
+          "task_id": "D2.03",
+          "review_kind": "code",
+          "review_status": "Approved",
+          "reviewed_inputs_sha256": "7ea3e0685e7d0ad40c8f877e2233df02592f2839ea16eb9c088853d7fb88fda2",
+          "reviewed_at": "2026-09-08T15:15:20.680926+00:00",
+          "reviewer": "Codex 主集成 AI，分别执行规格与代码复核",
+          "actor_type": "AI",
+          "approval_text": "复核目录 entry 冷缓存和共享 Docs、Schema identity 匹配、权限过滤与有界分页；Router 查询错误隐藏无权/未知，命令卡元数据来自定义而非第二套参数说明。",
+          "evidence": [
+            {
+              "path": "docs/reviews/B2-formal-scope.md",
+              "sha256": "81a743d873dbc59a3d29860a8edfe701236e7a2be35ba767985a019708aa0714"
+            }
+          ],
+          "limitations": [
+            "AI 复核不是人工批准；包 Passed 仍需独立正式矩阵及实际 Passed 前置。",
+            "仅覆盖 B2，未验证真实 Task、IPC、设备或产品模块。"
+          ]
+        }
+      }
+    ],
+    "archive": {
+      "path": "review-records.zip",
+      "sha256": "e7186d3180270a90a3f22189742ce4336f1f55aca43ea0ab9ab93abb56f64a5f"
+    }
+  },
+  "collection_issues": [],
+  "errors": [],
+  "automated_status": "Passed",
+  "package_status": "Passed",
+  "finished_at": "2026-09-08T15:17:08.783468+00:00"
+}

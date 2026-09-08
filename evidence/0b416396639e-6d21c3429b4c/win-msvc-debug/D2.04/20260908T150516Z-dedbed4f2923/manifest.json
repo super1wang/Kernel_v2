@@ -1,0 +1,127 @@
+{
+  "format": "ock.run-manifest/1",
+  "task_id": "D2.04",
+  "profile": "win-msvc-debug",
+  "configuration": "Debug",
+  "preset": "win-msvc-debug",
+  "asan": false,
+  "source_patterns": [
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    "dependencies.lock",
+    "THIRD_PARTY_NOTICES",
+    "cmake/**",
+    "packages/**",
+    "sdk/**",
+    "schemas/**",
+    "tests/**",
+    "tools/**",
+    "examples/**",
+    "docs/contracts/**",
+    "docs/toolchain.md",
+    "docs/01_Architecture_v3.3.md",
+    "docs/02_Execution_Plan_v3.3.md",
+    "docs/reviews/B2-formal-scope.md"
+  ],
+  "required_artifacts": [
+    "docs/reviews/B2-formal-scope.md"
+  ],
+  "expected_manifest": "tests/manifests/d2.04.expected.json",
+  "dependency_lock": "dependencies.lock",
+  "build_dir": "build/b2-sdk-debug",
+  "configure": [
+    "cmake",
+    "--preset",
+    "win-msvc-debug",
+    "-B",
+    "build/b2-sdk-debug",
+    "-DOCK_DEPENDENCY_COMPONENTS=Data",
+    "-DOCK_DEPENDENCIES_OFFLINE=ON",
+    "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+    "-DOCK_BUILD_B2_TESTS=ON",
+    "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+    "-DOCK_ENABLE_ASAN=OFF",
+    "-DOCK_BUILD_G0_TESTS=OFF",
+    "-DOCK_BUILD_EXECUTION_MODEL_TESTS=OFF",
+    "-DOCK_BUILD_FOUNDATION_TESTS=OFF",
+    "-DOCK_BUILD_CORE_CONTRACTS_TESTS=OFF",
+    "-DOCK_BUILD_REGISTRATION_TESTS=OFF",
+    "-DOCK_BUILD_AUTHORIZATION_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_TESTS=OFF",
+    "-DOCK_BUILD_HOST_TESTS=OFF",
+    "-DOCK_BUILD_LOGGING_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_SDK_TESTS=OFF",
+    "-DOCK_BUILD_FOOTPRINT_TESTS=OFF"
+  ],
+  "build": [
+    "cmake",
+    "--build",
+    "build/b2-sdk-debug",
+    "--config",
+    "Debug",
+    "--parallel",
+    "4",
+    "--",
+    "/nr:false"
+  ],
+  "build_outputs": [
+    "build/b2-sdk-debug/CMakeCache.txt",
+    "build/b2-sdk-debug/ock-target-graph.json",
+    "build/b2-sdk-debug/toolchain-Debug.json",
+    "build/b2-sdk-debug/dependency-acquisition.json",
+    "build/b2-sdk-debug/CTestTestfile.cmake",
+    "build/b2-sdk-debug/CMakeFiles/CMakeConfigureLog.yaml",
+    "build/b2-sdk-debug/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake",
+    "build/b2-sdk-debug/tests/unit/data/CTestTestfile.cmake",
+    "build/b2-sdk-debug/tests/unit/data/Debug/protocol_contract.exe",
+    "build/b2-sdk-debug/tests/unit/data/Debug/router_contract.exe",
+    "build/b2-sdk-debug/tests/unit/data/Debug/outcome_wire_contract.exe",
+    "build/b2-sdk-debug/tests/unit/data/Debug/observation_wire_contract.exe",
+    "build/b2-sdk-debug/tests/unit/data/Debug/subscription_contract.exe",
+    "build/b2-sdk-debug/tests/unit/data/Debug/get_contract.exe",
+    "build/b2-sdk-debug/tests/unit/data/Debug/cursor_contract.exe",
+    "build/b2-sdk-debug/tests/unit/data/Debug/list_contract.exe",
+    "build/msvc-validation/e8697b7e3597a578/inputs.json",
+    "build/msvc-validation/e8697b7e3597a578/local-tools.props",
+    "build/b2-sdk-debug/Debug/ock_sdk_metadata_probe.exe"
+  ],
+  "toolchain_artifact": "build/b2-sdk-debug/toolchain-Debug.json",
+  "test_regex": "^(T06\\.protocol\\.frames|T06\\.protocol\\.router|T06\\.protocol\\.outcome|T19\\.protocol\\.observation_wire|T19\\.protocol\\.subscription|T19\\.protocol\\.get|T20\\.protocol\\.cursor|T20\\.protocol\\.list|T24\\.b2\\.installed_consumer|T24\\.b2\\.native_closure|T24\\.sdk\\.version_header|T01\\.architecture\\.dependency_dag|T01\\.architecture\\.negative_guards)$",
+  "repeat": 1,
+  "timeout_seconds": 1800,
+  "checks": [],
+  "review_policy": {
+    "format": "ock.review-policy-binding/1",
+    "mode": "ai-self-review",
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+  },
+  "review_required": [
+    "spec",
+    "code"
+  ],
+  "review_records": [
+    "docs/reviews/D2.04-spec.json",
+    "docs/reviews/D2.04-code.json"
+  ],
+  "runtime_artifact_patterns": [
+    "evidence/bootstrap/B2/sdk-install-*/*.json",
+    "evidence/bootstrap/B2/sdk-install-*/*.log",
+    "evidence/bootstrap/B2/sdk-installed_host-*/*.json",
+    "evidence/bootstrap/B2/sdk-installed_host-*/*.log",
+    "evidence/bootstrap/B2/sdk-installed_host-*/commands/*",
+    "evidence/bootstrap/B2/sdk-installed_host-*/actual-traces/**/*",
+    "build/b2-install-*/consumer-source/*",
+    "build/b2-install-*/consumer/Debug/*.exe"
+  ],
+  "required_runtime_artifacts": [
+    {
+      "pattern": "evidence/bootstrap/B2/sdk-install-*/result.json",
+      "minimum": 1
+    },
+    {
+      "pattern": "evidence/bootstrap/B2/sdk-installed_host-*/result.json",
+      "minimum": 1
+    }
+  ]
+}

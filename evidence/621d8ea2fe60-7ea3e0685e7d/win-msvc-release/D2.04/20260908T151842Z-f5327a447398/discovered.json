@@ -1,0 +1,428 @@
+{
+  "backtraceGraph": {
+    "commands": [
+      "add_test"
+    ],
+    "files": [
+      "J:/Code/Kernel_v2/CMakeLists.txt",
+      "J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt"
+    ],
+    "nodes": [
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 29,
+        "parent": 0
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 30,
+        "parent": 2
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 41,
+        "parent": 4
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 75,
+        "parent": 6
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 78,
+        "parent": 8
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 82,
+        "parent": 10
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 85,
+        "parent": 12
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 89,
+        "parent": 14
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 93,
+        "parent": 16
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 101,
+        "parent": 18
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 127,
+        "parent": 20
+      }
+    ]
+  },
+  "kind": "ctestInfo",
+  "tests": [
+    {
+      "backtrace": 1,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/install_consumer/verify_b2.py",
+        "--build",
+        "J:/Code/Kernel_v2/build/b2-sdk-release",
+        "--config",
+        "Release"
+      ],
+      "config": "Release",
+      "name": "T24.b2.installed_consumer",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B2"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace": 3,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/install_consumer/verify_native.py",
+        "--build",
+        "J:/Code/Kernel_v2/build/b2-sdk-release",
+        "--config",
+        "Release",
+        "--case",
+        "installed_host",
+        "--evidence-task",
+        "B2"
+      ],
+      "config": "Release",
+      "name": "T24.b2.native_closure",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B2"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace": 5,
+      "command": [
+        "J:/Code/Kernel_v2/build/b2-sdk-release/Release/ock_sdk_metadata_probe.exe"
+      ],
+      "config": "Release",
+      "name": "T24.sdk.version_header",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D0.02"
+          ]
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b2-sdk-release"
+        }
+      ]
+    },
+    {
+      "backtrace": 7,
+      "command": [
+        "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data/Release/protocol_contract.exe"
+      ],
+      "config": "Release",
+      "name": "T06.protocol.frames",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 20.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace": 9,
+      "command": [
+        "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data/Release/cursor_contract.exe",
+        "J:/Code/Kernel_v2/tests/control/golden/cursor.json"
+      ],
+      "config": "Release",
+      "name": "T20.protocol.cursor",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 20.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace": 11,
+      "command": [
+        "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data/Release/router_contract.exe"
+      ],
+      "config": "Release",
+      "name": "T06.protocol.router",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 20.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace": 13,
+      "command": [
+        "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data/Release/observation_wire_contract.exe"
+      ],
+      "config": "Release",
+      "name": "T19.protocol.observation_wire",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 20.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace": 15,
+      "command": [
+        "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data/Release/subscription_contract.exe",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/notifications.schema.json",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/common.schema.json"
+      ],
+      "config": "Release",
+      "name": "T19.protocol.subscription",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 20.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace": 17,
+      "command": [
+        "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data/Release/list_contract.exe",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/execution-list.schema.json",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/common.schema.json"
+      ],
+      "config": "Release",
+      "name": "T20.protocol.list",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 30.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace": 19,
+      "command": [
+        "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data/Release/outcome_wire_contract.exe",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/outcome.schema.json"
+      ],
+      "config": "Release",
+      "name": "T06.protocol.outcome",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 30.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace": 21,
+      "command": [
+        "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data/Release/get_contract.exe",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/execution-get-summary.schema.json"
+      ],
+      "config": "Release",
+      "name": "T19.protocol.get",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 30.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b2-sdk-release/tests/unit/data"
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 1,
+    "minor": 0
+  }
+}
