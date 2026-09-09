@@ -1,0 +1,47 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 223
+    Start 223: T03.native.host_combined_drain
+
+223: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\Debug\ock_native_tests.exe "T03.native.host_combined_drain"
+223: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/native
+223: Environment variables: 
+223:  MSBUILDDISABLENODEREUSE=1
+223: Environment variable modifications: 
+223:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+223: Test timeout computed to be: 60
+223: combined 0 begin
+223: combined 0 ready
+223: combined 0 session-open
+223: combined 0 bound
+223: combined 0 observer-installed
+223: combined 0 submitted
+1/1 Test #223: T03.native.host_combined_drain ...***Timeout  60.10 sec
+combined 0 begin
+combined 0 ready
+combined 0 session-open
+combined 0 bound
+combined 0 observer-installed
+combined 0 submitted
+
+
+0% tests passed, 1 tests failed out of 1
+
+Label Time Summary:
+B5       =  60.10 sec*proc (1 test)
+D3.07    =  60.10 sec*proc (1 test)
+
+Total Test time (real) =  60.45 sec
+
+The following tests FAILED:
+	223 - T03.native.host_combined_drain (Timeout)          B5 D3.07

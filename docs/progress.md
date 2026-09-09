@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 组合排空直接验证 Debug **1/1**、ASan **1/1**，各含 8 轮真实 CpuPool/资源等待/业务与 completion 异常/观察回调占用/Host stop；日志可信端口注入 Busy 后保持待清理，解除后最终 quiescent，模块停止不早于执行及观察排空（[命令与原文](../evidence/B5/combined-drain-verified-81fa606f14/commands.json)）。初轮 fixture 线程端口名称冲突导致准入拒绝，失败及超时原文保留；修正仅涉及验证消费者，没有声称修复生产内核死锁。日志项证明 Busy 隔离与收尾合同，不代表文件日志吞吐测量。完整 Embedded/AutomationHost 占用、SDK 阶段及 B5/G3 正式验收继续完成。
+
 - B5 真实慢流/撤权已接通：消费者实际停止读取管道，在未发队列非空时独立 CLI get/cancel 与可靠完成成功；恢复后收到 gap 并 get 终态，收紧现有会话 Subscribe 后首字节数不再增长、队列释放。修复正常终态淘汰提示导致连接误关闭的问题，且零字节丢弃不重置慢读期限；真实默认 30 s 慢观察超时关闭后控制连接仍可用。前一组真实 CLI/游标/中断/订阅开发验证 Debug **5/5**、ASan **5/5**（[原文索引](../evidence/B5/slow-observer-verified-9806e21101/commands.json)），随后最终计时修正影响集 Debug **3/3**、ASan **3/3**（[原文索引](../evidence/B5/slow-timeout-verified-576cd8ef1e/commands.json)）；不拼成单次 8 项或正式矩阵。样例终态缓存为 32，保持 1 MiB 输入/结果预算；最初满额拒绝与缓存淘汰断线失败原文保留。故障 callback/慢日志/资源冲突/Host stop 组合、完整 Embedded/AutomationHost 占用、SDK 阶段及 B5/G3 正式验收仍继续完成。
 
 - B5 Host 能力已按实际装配发布：默认后端不声明异步/观察，真实后端在 Host 成功 Ready 时发布两项能力；失败启动不发布，关闭后能力元数据不绕过阶段准入。Debug 生命周期直接集 **3/3**（[原文](../evidence/B5/host-capabilities-8cc8c1cbc9/1-stdout.log)）及公开表面检查通过；修改后的公开头再次完成 Embedded 真实构建/迁移安装与 40 次 typed 对比（[命令证据](../evidence/B5/embedded-install-e36595e538/commands.json)）。两项能力不代表 G3 Passed，SDK 阶段收口、完整压力及占用预算仍继续开发。

@@ -55,8 +55,10 @@ def main():
             'execution_source_observation', 'execution_service_control', 'host_execution_lifecycle', 'host_execution_resources',
             'host_structured_lifetime', 'host_structured_admission', 'host_async_completion', 'host_async_drain', 'host_async_deadline', 'host_required_record', 'host_required_record_drain', 'host_cached_result_sessions',
             'observation_journal', 'observation_lease_drain', 'host_observation_drain'} else 'D1.05'
+        if name.endswith('.host_combined_drain'):label='B5;D3.07'
+        timeout=60 if name.endswith('.host_combined_drain') else 600
         lines.append('set_tests_properties(' + quote(name) +
-                     f' PROPERTIES TIMEOUT 600 LABELS "{label}" '
+                     f' PROPERTIES TIMEOUT {timeout} LABELS "{label}" '
                      'ENVIRONMENT "MSBUILDDISABLENODEREUSE=1" '
                      'ENVIRONMENT_MODIFICATION ' +
                      quote('PATH=path_list_prepend:' + args.runtime_dir) + ')')
