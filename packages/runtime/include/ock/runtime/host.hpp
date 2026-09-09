@@ -145,6 +145,11 @@ struct ExecutionWaitReply {
   ExecutionWaitState state;
   policy::AuthorizedSummary observed;
 };
+// 单 owner 串行 poll；空值表示仍在等待。释放句柄不取消执行。
+class ExecutionWaitPort : public PortLifetime {
+public:
+  virtual Result<std::optional<ExecutionWaitReply>> poll() = 0;
+};
 template<ContractResult R> struct ExecutionResult {
   std::shared_ptr<const InvokeReply<R>> value;
   std::shared_ptr<const policy::ResponseAuthorization> response;
@@ -168,6 +173,11 @@ public:
   }
   virtual Result<ExecutionWaitReply> wait(const policy::VerifiedCaller&,
       std::shared_ptr<policy::SessionAuthority>, std::shared_ptr<invocation::TrustedThreadPort>,
+      ExecutionRef, TimePoint, std::stop_token) {
+    return make_unexpected(host_error(HostErrc::UnsupportedCapability));
+  }
+  virtual Result<std::unique_ptr<ExecutionWaitPort>> prepare_wait(
+      std::shared_ptr<const policy::VerifiedCaller>, std::shared_ptr<policy::SessionAuthority>,
       ExecutionRef, TimePoint, std::stop_token) {
     return make_unexpected(host_error(HostErrc::UnsupportedCapability));
   }
@@ -245,6 +255,9 @@ public:
   template<ContractResult R>
   Result<ExecutionResult<R>> result(const policy::VerifiedCaller&, ExecutionRef) const;
   Result<ExecutionWaitReply> wait(const policy::VerifiedCaller&, ExecutionRef,
+      TimePoint, std::stop_token = {}) const;
+  Result<std::unique_ptr<ExecutionWaitPort>> prepare_wait(
+      std::shared_ptr<const policy::VerifiedCaller>, ExecutionRef,
       TimePoint, std::stop_token = {}) const;
   Result<CancelDisposition> cancel(const policy::VerifiedCaller&, ExecutionRef) const;
   Result<void> close();

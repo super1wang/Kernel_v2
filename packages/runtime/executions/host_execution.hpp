@@ -61,6 +61,11 @@ public:
       std::shared_ptr<policy::SessionAuthority> session,contracts::ExecutionRef ref) override {
     return service_->cancel(caller,session,ref);
   }
+  contracts::Result<std::unique_ptr<host::ExecutionWaitPort>> prepare_wait(
+      std::shared_ptr<const policy::VerifiedCaller> caller,std::shared_ptr<policy::SessionAuthority> session,
+      contracts::ExecutionRef ref,host::TimePoint deadline,std::stop_token stop) override {
+    return PollingWait::create(table_,std::move(caller),std::move(session),ref,deadline,stop);
+  }
   bool in_execution_thread() const noexcept override {return service_->in_execution_thread();}
   void stop_accepting() override {service_->close();}
   contracts::Result<bool> finish_until(host::TimePoint deadline) override {return service_->shutdown_until(deadline);}
@@ -73,6 +78,51 @@ public:
   ExecutionService& service() const noexcept {return *service_;}
   const std::shared_ptr<ExecutionTable>& table() const noexcept {return table_;}
 private:
+  class PollingWait final : public host::ExecutionWaitPort {
+  public:
+    static contracts::Result<std::unique_ptr<host::ExecutionWaitPort>> create(
+        std::shared_ptr<ExecutionTable> table,std::shared_ptr<const policy::VerifiedCaller> caller,
+        std::shared_ptr<policy::SessionAuthority> session,contracts::ExecutionRef ref,
+        host::TimePoint deadline,std::stop_token stop) {
+      if(!session||!caller)return contracts::make_unexpected(host::host_error(host::HostErrc::InvalidSession));
+      auto allowed=session->observations()->get(*caller,ref,policy::AccessUse::Wait);
+      if(!allowed)return contracts::make_unexpected(allowed.error());
+      auto ticket=table->prepare_wait(ref);if(!ticket)return contracts::make_unexpected(ticket.error());
+      try {
+        return std::unique_ptr<host::ExecutionWaitPort>(new PollingWait(std::move(table),std::move(caller),
+            std::move(session),ref,std::min(deadline,allowed->response->deadline()),stop,std::move(*ticket)));
+      } catch(...) {return contracts::make_unexpected(host::host_error(host::HostErrc::BudgetExceeded));}
+    }
+    contracts::Result<std::optional<host::ExecutionWaitReply>> poll() override {
+      if(!ticket_)return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::Rejected));
+      auto allowed=session_->observations()->get(*caller_,ref_,policy::AccessUse::Wait);
+      if(!allowed){ticket_.reset();return contracts::make_unexpected(allowed.error());}
+      deadline_=std::min(deadline_,allowed->response->deadline());
+      auto ready=table_->poll_wait(*ticket_,deadline_,stop_);
+      if(!ready){ticket_.reset();return contracts::make_unexpected(ready.error());}
+      if(!*ready)return std::optional<host::ExecutionWaitReply>{};
+      allowed=session_->observations()->get(*caller_,ref_,policy::AccessUse::Wait);
+      ticket_.reset();
+      if(!allowed)return contracts::make_unexpected(allowed.error());
+      auto state=host::ExecutionWaitState::Terminal;
+      if(**ready==ExecutionTable::WaitState::Timeout)state=host::ExecutionWaitState::Timeout;
+      else if(**ready==ExecutionTable::WaitState::Cancelled)state=host::ExecutionWaitState::Cancelled;
+      return std::optional<host::ExecutionWaitReply>{host::ExecutionWaitReply{state,std::move(*allowed)}};
+    }
+  private:
+    PollingWait(std::shared_ptr<ExecutionTable> table,std::shared_ptr<const policy::VerifiedCaller> caller,
+        std::shared_ptr<policy::SessionAuthority> session,contracts::ExecutionRef ref,
+        host::TimePoint deadline,std::stop_token stop,std::unique_ptr<ExecutionTable::WaitTicket> ticket)
+        :table_(std::move(table)),caller_(std::move(caller)),session_(std::move(session)),ref_(ref),
+         deadline_(deadline),stop_(stop),ticket_(std::move(ticket)) {}
+    std::shared_ptr<ExecutionTable> table_;
+    std::shared_ptr<const policy::VerifiedCaller> caller_;
+    std::shared_ptr<policy::SessionAuthority> session_;
+    contracts::ExecutionRef ref_;
+    host::TimePoint deadline_;
+    std::stop_token stop_;
+    std::unique_ptr<ExecutionTable::WaitTicket> ticket_;
+  };
   HostedExecutions(std::shared_ptr<ExecutionTable> table,std::shared_ptr<contracts::ExecutorControlPort> executor)
       :table_(std::move(table)),source_(std::make_shared<ExecutionSource>(table_)),executor_(std::move(executor)) {}
   std::shared_ptr<ExecutionTable> table_;

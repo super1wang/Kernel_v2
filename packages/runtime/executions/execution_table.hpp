@@ -62,6 +62,43 @@ public:
     try {return std::shared_ptr<ExecutionTable>(new ExecutionTable(limits,host));}
     catch(...) {return failure();}
   }
+  class WaitTicket final {
+    friend class ExecutionTable;
+  public:
+    ~WaitTicket() {
+      if(!armed_)return;
+      entry_.reset();
+      std::lock_guard lock(ledger_->mutex);--ledger_->used.waiters;
+    }
+    WaitTicket(const WaitTicket&)=delete;
+    WaitTicket& operator=(const WaitTicket&)=delete;
+  private:
+    WaitTicket(std::shared_ptr<Ledger> ledger,std::shared_ptr<Entry> entry)
+        :ledger_(std::move(ledger)),entry_(std::move(entry)) {}
+    std::shared_ptr<Ledger> ledger_;
+    std::shared_ptr<Entry> entry_;
+    bool armed_=false;
+  };
+  contracts::Result<std::unique_ptr<WaitTicket>> prepare_wait(contracts::ExecutionRef ref) {
+    auto entry=find(ref);if(!entry)return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::Rejected));
+    try {
+      auto ticket=std::unique_ptr<WaitTicket>(new WaitTicket(ledger_,std::move(entry)));
+      {std::lock_guard lock(ledger_->mutex);
+        if(ledger_->used.waiters>=ledger_->limits.waiters)return failure();
+        ++ledger_->used.waiters;ticket->armed_=true;
+      }
+      return ticket;
+    } catch(...) {return failure();}
+  }
+  contracts::Result<std::optional<WaitState>> poll_wait(const WaitTicket& ticket,
+      std::chrono::steady_clock::time_point deadline,std::stop_token stop={}) const {
+    if(ticket.ledger_!=ledger_||!ticket.armed_)return failure();
+    std::lock_guard lock(mutex_);
+    if(ticket.entry_->summary_.phase==contracts::ExecutionPhase::Terminal)return WaitState::Terminal;
+    if(stop.stop_requested())return WaitState::Cancelled;
+    if(std::chrono::steady_clock::now()>=deadline)return WaitState::Timeout;
+    return std::optional<WaitState>{};
+  }
   // summary/identity 必须由可信适配器生成；此处仍验证格式与重复身份。
   // accepted=false 的内部条目不可观察；安装失败从未发布 Accepted。
   contracts::Result<std::shared_ptr<Entry>> prepare(contracts::SummaryInput summary,
@@ -179,13 +216,8 @@ public:
   // 仅供经过当前授权且允许阻塞的查询适配器使用；timeout/stop 不取消 Execution。
   contracts::Result<WaitState> wait_terminal(contracts::ExecutionRef ref,
       std::chrono::steady_clock::time_point deadline,std::stop_token stop={}) {
-    auto entry=find(ref);if(!entry)return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::Rejected));
-    {
-      std::lock_guard lock(ledger_->mutex);
-      if(ledger_->used.waiters>=ledger_->limits.waiters)return failure();
-      ++ledger_->used.waiters;
-    }
-    struct WaitReservation {std::shared_ptr<Ledger> ledger;~WaitReservation(){std::lock_guard lock(ledger->mutex);--ledger->used.waiters;}} reservation{ledger_};
+    auto reservation=prepare_wait(ref);if(!reservation)return contracts::make_unexpected(reservation.error());
+    const auto& entry=(*reservation)->entry_;
     // callback 与 wait 使用同一锁，关闭 predicate 检查和睡眠之间的 lost-wake 窗口。
     std::stop_callback cancelled(stop,[&]{std::lock_guard lock(mutex_);entry->changed_.notify_all();});
     std::unique_lock lock(mutex_);

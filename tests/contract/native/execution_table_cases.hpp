@@ -69,6 +69,7 @@ inline void execution_source_observation() {
   while(!table->usage().waiters&&std::chrono::steady_clock::now()<admitted_deadline)std::this_thread::yield();
   CHECK(table->usage().waiters==1);
   CHECK(!table->wait_terminal(one->execution(),std::chrono::steady_clock::now()));
+  CHECK(!table->prepare_wait(one->execution()));
   waiting_stop.request_stop();auto stopped=waiting.get();CHECK(stopped&&stopped->state==Table::WaitState::Cancelled);
   CHECK(table->usage().waiters==0&&source->find(one->execution())->summary->value().phase==ExecutionPhase::Queued);
   for(auto use:{policy::AccessUse::GetSummary,policy::AccessUse::Wait,policy::AccessUse::CancelExecution,policy::AccessUse::ReadResult})
@@ -77,12 +78,17 @@ inline void execution_source_observation() {
   CHECK(authorized_page->page.items.size()==1&&authorized_page->page.items[0].listing_ordinal==two->ordinal());
   CHECK(validate_list_page(request,authorized_page->page,{200,2000}));
   // 非终态含 Finalizing；终态索引转移后，Nonterminal 不再扫描该记录。
+  auto ticket=table->prepare_wait(one->execution());CHECK(ticket);
+  auto pending=table->poll_wait(**ticket,std::chrono::steady_clock::now()+std::chrono::seconds(2));CHECK(pending&&!*pending);
   PhaseConditions conditions{{RequiredRecordState::NotRequired,0,0},{},{},false,false};
   CHECK(table->transition(one,ExecutionPhase::Finalizing,conditions));
   ListRequest active{policy_test::principal(),PhaseSet::Nonterminal,{10,10},{}};
   auto active_page=source->scan({active});CHECK(active_page&&active_page->candidates.size()==3);
   CHECK(active_page->candidates.back().second.summary->value().phase==ExecutionPhase::Finalizing);
   CHECK(table->transition(one,ExecutionPhase::Terminal,conditions));
+  pending=table->poll_wait(**ticket,std::chrono::steady_clock::now()+std::chrono::seconds(2));
+  CHECK(pending&&*pending&&**pending==Table::WaitState::Terminal);
+  ticket->reset();CHECK(table->usage().waiters==0);
   active_page=source->scan({active});CHECK(active_page&&active_page->candidates.size()==2);
   auto revoked_wait=std::async(std::launch::async,[&]{return queries.wait(**caller,five->execution(),std::chrono::steady_clock::now()+std::chrono::seconds(5));});
   admitted_deadline=std::chrono::steady_clock::now()+std::chrono::seconds(2);

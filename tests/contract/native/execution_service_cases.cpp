@@ -69,7 +69,7 @@ void host_execution_lifecycle() {
       if(foreign)id.bytes[0]^=0x80;
       auto pool=ock::cpu_pool::Executor::create({2,2});CHECK(pool);
       std::shared_ptr<ExecutorControlPort> executor=std::move(*pool);
-      host::ExecutionOptions options;options.subjects={{policy_test::principal().principal_id}};
+      host::ExecutionOptions options;options.subjects={{policy_test::principal().principal_id}};options.limits.waiters=1;
       auto made=host::make_executions(id,executor,options);
       if(!made){CHECK(executor->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(2)));return make_unexpected(made.error());}
       owner=std::dynamic_pointer_cast<Hosted>(*made);CHECK(owner);return *made;
@@ -122,6 +122,11 @@ void host_execution_lifecycle() {
   host_threads->main_role=ThreadRole::Application;
   auto waited=session->wait(**caller,completed_ref,std::chrono::steady_clock::now()+std::chrono::seconds(2));
   CHECK(waited&&waited->state==host::ExecutionWaitState::Terminal);
+  host_threads->main_role=ThreadRole::Control;
+  auto polling=session->prepare_wait(*caller,completed_ref,std::chrono::steady_clock::now()+std::chrono::seconds(2));CHECK(polling);
+  auto polled=(*polling)->poll();CHECK(polled&&*polled&&(**polled).state==host::ExecutionWaitState::Terminal);
+  CHECK((**polled).observed.response);CHECK(!(*polling)->poll());
+  CHECK(factory->owner->table()->usage().waiters==0);
   auto value=session->result<int>(**caller,completed_ref);CHECK(value&&result(*value->value)==9);
   CHECK(!session->result<void>(**caller,completed_ref));
   auto terminal_cancel=session->cancel(**caller,completed_ref);CHECK(terminal_cancel&&*terminal_cancel==CancelDisposition::AlreadyTerminal);
@@ -133,6 +138,26 @@ void host_execution_lifecycle() {
   while(!service_entered.load()&&std::chrono::steady_clock::now()<deadline)std::this_thread::yield();
   CHECK(service_entered.load()&&service_host_reentrant.load());
   auto observed=context->authorization->observations()->get(**caller,ref,policy::AccessUse::GetSummary);CHECK(observed);
+  host_threads->main_role=ThreadRole::Control;
+  polling=session->prepare_wait(*caller,ref,std::chrono::steady_clock::now()+std::chrono::seconds(2));CHECK(polling);
+  polled=(*polling)->poll();CHECK(polled&&!*polled);
+  CHECK(factory->owner->table()->usage().waiters==1);
+  CHECK(!session->prepare_wait(*caller,ref,std::chrono::steady_clock::now()));
+  host_threads->main_role=ThreadRole::Application;
+  CHECK(!session->wait(**caller,ref,std::chrono::steady_clock::now()));
+  polling->reset();CHECK(factory->owner->table()->usage().waiters==0);
+  polling=session->prepare_wait(*caller,ref,std::chrono::steady_clock::now());CHECK(polling);
+  polled=(*polling)->poll();CHECK(polled&&*polled&&(**polled).state==host::ExecutionWaitState::Timeout);
+  std::stop_source polling_stop;
+  polling=session->prepare_wait(*caller,ref,std::chrono::steady_clock::now()+std::chrono::seconds(2),polling_stop.get_token());CHECK(polling);
+  polling_stop.request_stop();polled=(*polling)->poll();
+  CHECK(polled&&*polled&&(**polled).state==host::ExecutionWaitState::Cancelled);
+  CHECK(factory->owner->table()->usage().waiters==0);
+  auto observer_session=host->open({{std::byte{7}}},{policy_test::rules(),env.policy.auth->identity.deadline,false});CHECK(observer_session);
+  auto observer_caller=observer_session->verify({policy_test::principal(),{}, {}});CHECK(observer_caller);
+  polling=observer_session->prepare_wait(*observer_caller,ref,std::chrono::steady_clock::now()+std::chrono::seconds(2));CHECK(polling);
+  CHECK(observer_session->close());CHECK(!(*polling)->poll());
+  CHECK(factory->owner->table()->usage().waiters==0);
   host_threads->main_role=ThreadRole::Application;
   auto wait_timeout=session->wait(**caller,ref,std::chrono::steady_clock::now());
   CHECK(wait_timeout&&wait_timeout->state==host::ExecutionWaitState::Timeout);
@@ -156,6 +181,7 @@ void host_execution_lifecycle() {
   CHECK(!session->result<int>(**caller,completed_ref));
   CHECK(!session->cancel(**caller,completed_ref));
   CHECK(!session->wait(**caller,completed_ref,std::chrono::steady_clock::now()));
+  CHECK(!session->prepare_wait(*caller,completed_ref,std::chrono::steady_clock::now()));
   CHECK(result(*value->value)==9); // 已授权取得的结果 owner 在 Host 关闭后仍保活。
   service_host=nullptr;
   // 工厂已交付真实线程后发现源世代错误：失败路径也履行排空责任。
