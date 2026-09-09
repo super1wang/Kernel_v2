@@ -309,8 +309,8 @@ Result<void> NativeHost::start() {
       auto d=s->catalog->describe(static_cast<std::uint32_t>(i));
       if(!d)return fail(d.error());
       const auto& execution=(*d)->description().execution;
-      if((*d)->shape()!=Shape::Read||execution.requires_external_wait||(*d)->provider()||
-         ((!execution.inline_safe||execution.requires_async_dispatch)&&!s->ports.execution_factory))
+      if((*d)->shape()!=Shape::Read||(execution.requires_external_wait&&!(*d)->asynchronous_read())||(*d)->provider()||
+         ((!execution.inline_safe||execution.requires_async_dispatch||(*d)->asynchronous_read())&&!s->ports.execution_factory))
         return fail(host_error(HostErrc::UnsupportedCapability));
     }
     if(s->ports.logging_factory) {

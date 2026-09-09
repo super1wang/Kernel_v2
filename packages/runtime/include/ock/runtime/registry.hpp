@@ -1,6 +1,7 @@
 #pragma once
 // NativeSubset 唯一注册器声明。
 #include <functional>
+#include <utility>
 #include <ock/contracts/operation.hpp>
 namespace ock::runtime::invocation {
 class NativeAccess;
@@ -191,9 +192,33 @@ struct SubmissionStorage {
 };
 // 热条目没有冷描述指针。处理器及其真实类型见证只可被注册器保存。
 namespace detail {
+inline thread_local bool execution_callback_active=false;
+class ExecutionCallbackFrame final {
+public:
+  ExecutionCallbackFrame() noexcept:previous_(std::exchange(execution_callback_active,true)) {}
+  ~ExecutionCallbackFrame() {execution_callback_active=previous_;}
+  ExecutionCallbackFrame(const ExecutionCallbackFrame&)=delete;
+  ExecutionCallbackFrame& operator=(const ExecutionCallbackFrame&)=delete;
+private:
+  bool previous_;
+};
+// 私有 owning 适配，不暴露 Registry dispatch；实际 A/R 来自冻结签名。
+template<AsyncInput A,ContractResult R>
+  requires (std::same_as<R,void> || AsyncInput<R>)
+class AsyncSource : public PortLifetime {
+public:
+  virtual const A& input() const noexcept=0;
+  virtual WorkContext& work() noexcept=0;
+  virtual Result<void> complete(Result<R>) noexcept=0;
+};
+class AsyncDispatchPort : public PortLifetime {
+public:
+  virtual Result<void> start()=0;
+};
 struct HotEntry final {
   using NativeThunk = void (*)(const HotEntry &, const void *, WorkContext &,
                                void *);
+  using AsyncFactory=Result<std::shared_ptr<AsyncDispatchPort>> (*)(const HotEntry&,std::shared_ptr<PortLifetime>);
   Shape shape;
   std::shared_ptr<const void> handler;
   CppTypeToken handler_type;
@@ -206,7 +231,49 @@ struct HotEntry final {
   std::vector<ResourceRef> resources;
   std::shared_ptr<const void> submission_storage;
   CppTypeToken submission_storage_type = CppTypeToken::of<void>();
+  AsyncFactory async_factory=nullptr;
 };
+
+template<AsyncInput A,ContractResult R,class Reader>
+  requires (std::same_as<R,void> || AsyncInput<R>)
+Result<std::shared_ptr<AsyncDispatchPort>> read_async(const HotEntry& entry,std::shared_ptr<PortLifetime> source) {
+  using Function=Result<void> (*)(std::shared_ptr<AsyncReadCall<A,R,Reader>>);
+  class Call final : public AsyncReadCall<A,R,Reader> {
+  public:
+    Call(std::shared_ptr<AsyncSource<A,R>> source,std::shared_ptr<const Reader> reader)
+        :source_(std::move(source)),reader_(std::move(reader)) {}
+    ~Call() override {
+      ExecutionCallbackFrame frame;
+      reader_.reset();source_.reset();
+    }
+    const A& input() const noexcept override {return source_->input();}
+    WorkContext& work() noexcept override {return source_->work();}
+    const Reader& reader() const noexcept override {return *reader_;}
+    Result<void> complete(Result<R> result) noexcept override {return source_->complete(std::move(result));}
+  private:
+    std::shared_ptr<AsyncSource<A,R>> source_; // Reader 析构后才释放真实 callback owner。
+    std::shared_ptr<const Reader> reader_;
+  };
+  class Dispatch final : public AsyncDispatchPort {
+  public:
+    Dispatch(std::shared_ptr<const Function> function,std::shared_ptr<AsyncReadCall<A,R,Reader>> call)
+        :function_(std::move(function)),call_(std::move(call)) {}
+    Result<void> start() override {
+      ExecutionCallbackFrame frame;
+      if(!call_)return make_unexpected(error(ContractsErrc::DuplicateCompletion));
+      return (*function_)(std::move(call_));
+    }
+  private:
+    std::shared_ptr<const Function> function_;
+    std::shared_ptr<AsyncReadCall<A,R,Reader>> call_;
+  };
+  auto typed=std::dynamic_pointer_cast<AsyncSource<A,R>>(source);
+  if(!typed||entry.handler_type!=CppTypeToken::of<Function>()||entry.reader_type!=CppTypeToken::of<Reader>())
+    return make_unexpected(error(ContractsErrc::TypeMismatch));
+  auto call=std::make_shared<Call>(std::move(typed),std::static_pointer_cast<const Reader>(entry.reader_owner));
+  return std::shared_ptr<AsyncDispatchPort>(std::make_shared<Dispatch>(
+      std::static_pointer_cast<const Function>(entry.handler),std::move(call)));
+}
 
 template <ContractValue A, ContractResult R>
 void compute_native(const HotEntry &entry, const void *args, WorkContext &work,
@@ -285,7 +352,7 @@ class RegistrationBatch final {
   Result<void> insert(std::size_t, std::shared_ptr<const DefinitionSnapshot>,
                       const OperationOptions &, std::shared_ptr<const void>,
                       CppTypeToken, detail::HotEntry::NativeThunk,
-                      std::shared_ptr<const void>, CppTypeToken);
+                      std::shared_ptr<const void>, CppTypeToken,detail::HotEntry::AsyncFactory);
   Result<void> preflight(std::size_t, const DefinitionInput &,
                          const OperationOptions &);
   Result<std::shared_ptr<void>> service(std::size_t, const ServiceRef &,
@@ -315,7 +382,8 @@ class Registrar final {
                       const OperationOptions &o,
                       detail::HotEntry::NativeThunk native,
                       std::shared_ptr<const void> storage = {},
-                      CppTypeToken storage_type = CppTypeToken::of<void>()) {
+                      CppTypeToken storage_type = CppTypeToken::of<void>(),
+                      detail::HotEntry::AsyncFactory async_factory=nullptr) {
     try {
       if (batch_.state_ != RegistrationBatch::State::Validating ||
           batch_.failed_)
@@ -329,7 +397,7 @@ class Registrar final {
                            &batch_.modules_[module_].manifest.name);
       return batch_.insert(module_, d->snapshot(), o,
                            std::make_shared<const F>(fn),
-                           CppTypeToken::of<F>(), native, std::move(storage), storage_type);
+                           CppTypeToken::of<F>(), native, std::move(storage), storage_type,async_factory);
     } catch (...) {
       batch_.fail(RegistryErrc::CallbackException);
       throw;
@@ -339,6 +407,16 @@ class Registrar final {
 public:
   Registrar(const Registrar &) = delete;
   Registrar &operator=(const Registrar &) = delete;
+  template<AsyncInput A,ContractResult R,class Reader>
+    requires (std::same_as<R,void> || AsyncInput<R>)
+  Result<void> read_async(Result<void> (*f)(std::shared_ptr<AsyncReadCall<A,R,Reader>>),
+      const DefinitionInput& d,const OperationOptions& o,SubmissionStorage<A,R> storage) {
+    if(!storage.input_limit||!storage.reply_limit||!storage.input_bytes||!storage.reply_bytes)
+      return batch_.fail(RegistryErrc::InvalidDefinition);
+    return accept(f,[&]{return OperationDefinition<A,R>::template read_async<Reader>(f,d);},d,o,nullptr,
+        std::make_shared<const SubmissionStorage<A,R>>(storage),CppTypeToken::of<SubmissionStorage<A,R>>(),
+        &detail::read_async<A,R,Reader>);
+  }
   template <AsyncInput A, ContractResult R, class Reader>
     requires (std::same_as<R,void> || AsyncInput<R>)
   Result<void> read(Result<R> (*f)(const A&, WorkContext&, ReadServices<Reader>&),

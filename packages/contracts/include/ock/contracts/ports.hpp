@@ -4,6 +4,18 @@
 #include <ock/contracts/context.hpp>
 #include <ock/contracts/outcome.hpp>
 namespace ock::contracts {
+// Async Read 的拥有型入口。保存 shared_ptr 即保留输入、上下文、Reader 和
+// callback 访问寿命；complete 只提交候选，最后一个 owner 释放才完成收尾。
+// complete 可并发仲裁；其余可变上下文访问须由业务串行使用。
+template<AsyncInput A,ContractResult R,class Reader>
+  requires (std::same_as<R,void> || AsyncInput<R>)
+class AsyncReadCall : public PortLifetime {
+public:
+  virtual const A& input() const noexcept=0;
+  virtual WorkContext& work() noexcept=0;
+  virtual const Reader& reader() const noexcept=0;
+  virtual Result<void> complete(Result<R>) noexcept=0;
+};
 class CompletionPort : public PortLifetime {
 public:
   virtual Result<void> candidate_ready(Result<void>) noexcept = 0;

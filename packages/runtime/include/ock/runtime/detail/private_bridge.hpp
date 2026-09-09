@@ -12,6 +12,7 @@ struct NativeEntry final {
   std::vector<registry::ResourceRef> resources;
   std::shared_ptr<const void> submission_storage;
   contracts::CppTypeToken submission_storage_type = contracts::CppTypeToken::of<void>();
+  bool asynchronous_read=false;
 };
 class NativeEngine;
 template <contracts::ContractValue A, contracts::ContractResult R> class NativeBound;
@@ -25,5 +26,7 @@ class NativeAccess final {
       contracts::CppTypeToken, contracts::CppTypeToken) noexcept;
   static void dispatch(const registry::Catalog&, const NativeEntry&, const void*,
                         contracts::WorkContext&, void*);
+  static contracts::Result<std::shared_ptr<registry::detail::AsyncDispatchPort>> prepare_async(
+      const registry::Catalog&,const NativeEntry&,std::shared_ptr<contracts::PortLifetime>);
 };
 } // namespace ock::runtime::invocation

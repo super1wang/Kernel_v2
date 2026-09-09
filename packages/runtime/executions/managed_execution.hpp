@@ -21,6 +21,9 @@ public:
     void install(const std::shared_ptr<ManagedInvocation>&);
     contracts::ExecutionRef parent() const noexcept {return parent_->execution();}
     std::size_t depth() const noexcept {return parent_->depth_+1;}
+    contracts::Result<void> before_wait(std::span<const resources::Claim> claims) const {
+      return parent_->record_->before_child_wait(claims);
+    }
   private:
     ChildLink(std::shared_ptr<ManagedInvocation> parent,std::size_t slot,std::uint64_t generation)
         :parent_(std::move(parent)),slot_(slot),generation_(generation) {}
@@ -41,7 +44,7 @@ public:
     auto current=parent->caller->view().revalidate();
     if(!current)return contracts::make_unexpected(current.error());
     std::lock_guard lock(lifetime_mutex_);
-    if(!accept_children_||cancel_requested_||!next_child_generation_||depth_>=max_depth)return fail();
+    if(!accept_children_||!record_->accepts_children()||cancel_requested_||!next_child_generation_||depth_>=max_depth)return fail();
     for(std::size_t i=0;i<children_.size();++i)if(!children_[i].reserved) {
       auto link=std::shared_ptr<ChildLink>(new ChildLink(shared_from_this(),i,next_child_generation_));
       children_[i].reserved=true;children_[i].generation=next_child_generation_++;
@@ -62,6 +65,7 @@ public:
       auto material=record->material();
       auto claims=resolve(material->entry->resources);
       if(!claims)return contracts::make_unexpected(claims.error());
+      if(parent) {auto safe=parent->before_wait(*claims);if(!safe)return contracts::make_unexpected(safe.error());}
       if(!claims->empty()&&!resources)return fail();
       owner=std::shared_ptr<ManagedInvocation>(new ManagedInvocation(
           table,scheduler,record,std::move(wake),std::move(parent),children_limit));
@@ -75,6 +79,7 @@ public:
       if(!entry)return contracts::make_unexpected(entry.error());
       owner->entry_=*entry;
       std::weak_ptr<ManagedInvocation> weak=owner;
+      record->set_wake([weak]{if(auto current=weak.lock())current->signal();});
       owner->binding_=std::make_shared<ResourceWaitBinding>(scheduler,resources,std::move(*claims),
           [weak]{if(auto e=weak.lock())e->signal();});
       // 先装入父槽再 enqueue；父取消与安装共用父仲裁，不能漏掉早到取消。
@@ -171,8 +176,8 @@ private:
     pending_.store(true,std::memory_order_release);
     try {if(wake_)wake_();}catch(...){}
   }
-  static contracts::PhaseConditions conditions(std::uint64_t children=0) {
-    return {{contracts::RequiredRecordState::NotRequired,0,children},{},{},false,false};
+  static contracts::PhaseConditions conditions(std::uint64_t children=0,std::uint64_t local_work=0) {
+    return {{contracts::RequiredRecordState::NotRequired,local_work,children},{},{},false,false};
   }
   contracts::Result<void> run() {
     auto lease=binding_->start_lease();
@@ -182,31 +187,25 @@ private:
     {std::lock_guard lock(lifetime_mutex_);accept_children_=!cancel_requested_;}
     struct CloseChildren {
       ManagedInvocation& owner;
-      ~CloseChildren() {std::lock_guard lock(owner.lifetime_mutex_);owner.accept_children_=false;}
+      ~CloseChildren() {
+        if(!owner.record_->asynchronous()||owner.record_->settled()) {
+          std::lock_guard lock(owner.lifetime_mutex_);owner.accept_children_=false;
+        }
+      }
     } close{*this};
     const contracts::ResourceLease* raw=lease->get();
     const auto resources=raw?std::span<const contracts::ResourceLease* const>(&raw,1):
                             std::span<const contracts::ResourceLease* const>{};
-    if(!record_->run_once(binding_->stop_token(),resources,shared_from_this()))return fail();
-    // 同步访问栈退出后局部 lease 释放，Scheduler completed 才能发布 Terminal。
+    if(!record_->run_once(binding_->stop_token(),resources,shared_from_this(),std::move(*lease)))return fail();
+    // 同步栈退出或异步 owner 实际排空后才能归还 Lease；Scheduler body 完成不等于 Terminal。
     return {};
   }
   void completed(contracts::Result<void> status) {
     binding_->terminal();
     if(!record_->reply_pointer())record_->reject_before_start(status?contracts::error(contracts::ContractsErrc::Rejected):status.error());
-    std::optional<contracts::Error> fault;
-    if(!status)fault=contracts::Error{status.error().code()};
-    auto completion=record_->completion();
-    if(completion.fault)fault=completion.fault;
-    auto recorded=table_->complete_read(entry_,std::span(completion.facts).first(completion.count),completion.evidence,fault);
-    foundation::invariant(bool(recorded));
     {
       std::lock_guard lock(lifetime_mutex_);
-      accept_children_=false;completion_fault_=fault;
-      if(children_remaining_) {
-        auto waiting=table_->transition(entry_,contracts::ExecutionPhase::WaitingChild,conditions(children_remaining_),fault);
-        foundation::invariant(bool(waiting));
-      }
+      if(!status)completion_fault_=contracts::Error{status.error().code()};
       body_completed_=true;
     }
     finish_if_ready();
@@ -215,9 +214,32 @@ private:
     std::shared_ptr<ChildLink> parent;
     {
       std::lock_guard lock(lifetime_mutex_);
-      if(!body_completed_||children_remaining_||finished())return;
-      auto finalizing=table_->transition(entry_,contracts::ExecutionPhase::Finalizing,conditions(),completion_fault_);
-      foundation::invariant(bool(finalizing));
+      if(!body_completed_||!record_->reply_pointer()||finished())return;
+      accept_children_=false;
+      if(!completion_recorded_) {
+        auto completion=record_->completion();
+        if(completion.fault)completion_fault_=completion.fault;
+        auto recorded=table_->complete_read(entry_,std::span(completion.facts).first(completion.count),completion.evidence,completion_fault_);
+        foundation::invariant(bool(recorded));completion_recorded_=true;
+      }
+      if(!record_->settled()) {
+        if(!finalizing_) {
+          auto changed=table_->transition(entry_,contracts::ExecutionPhase::Finalizing,conditions(children_remaining_,1),completion_fault_);
+          foundation::invariant(bool(changed));finalizing_=true;
+        }
+        return;
+      }
+      if(children_remaining_) {
+        if(!finalizing_&&!waiting_child_) {
+          auto changed=table_->transition(entry_,contracts::ExecutionPhase::WaitingChild,conditions(children_remaining_),completion_fault_);
+          foundation::invariant(bool(changed));waiting_child_=true;
+        }
+        return;
+      }
+      if(!finalizing_) {
+        auto finalizing=table_->transition(entry_,contracts::ExecutionPhase::Finalizing,conditions(),completion_fault_);
+        foundation::invariant(bool(finalizing));finalizing_=true;
+      }
       auto terminal=table_->transition(entry_,contracts::ExecutionPhase::Terminal,conditions());
       foundation::invariant(bool(terminal));
       pending_.store(false,std::memory_order_release);
@@ -250,6 +272,7 @@ private:
   std::size_t children_remaining_=0;
   std::uint64_t next_child_generation_=1;
   bool accept_children_=false,cancel_requested_=false,body_completed_=false;
+  bool completion_recorded_=false,finalizing_=false,waiting_child_=false;
   std::optional<contracts::Error> completion_fault_;
   std::optional<std::stop_callback<OriginalStop>> original_stop_;
 };

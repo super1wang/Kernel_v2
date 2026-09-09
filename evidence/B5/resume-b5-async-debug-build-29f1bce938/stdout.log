@@ -1,0 +1,169 @@
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  executor.cpp
+  ock_Adapter_CpuPool.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\Debug\ock_Adapter_CpuPool.lib
+  host_execution.cpp
+  resource_wait_binding.cpp
+  host.cpp
+  invocation.cpp
+  policy.cpp
+  registry.cpp
+  scheduler.cpp
+  正在生成代码...
+  ock_Runtime.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\Debug\ock_Runtime.lib
+  main.cpp
+  ock_native_service.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\examples\native_service\Debug\ock_native_service.exe
+  execution_service_cases.cpp
+  native_tests.cpp
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280: “tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error> &tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error>::operator =(const tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error> &)”: 尝试引用已删除的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280:         with [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280:         [ [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280:             R=int [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280:         ] [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+  (编译源文件“../../../../../tests/contract/native/execution_service_cases.cpp”)
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1530,13):
+      参见“tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error>::operator =”的声明
+          with
+          [
+              R=int
+          ]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1530,13):
+      “tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error> &tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error>::operator =(const tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error> &)”: 由于 基类 调用已删除或不可访问的函数“tl::detail::expected_delete_assign_base<T,E,false,false> &tl::detail::expected_delete_assign_base<T,E,false,false>::operator =(const tl::detail::expected_delete_assign_base<T,E,false,false> &)”，因此已隐式删除函数
+          with
+          [
+              R=int
+          ]
+          and
+          [
+              T=ock::contracts::Outcome<int>,
+              E=ock::foundation::Error
+          ]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1175,3):
+      “tl::detail::expected_delete_assign_base<T,E,false,false> &tl::detail::expected_delete_assign_base<T,E,false,false>::operator =(const tl::detail::expected_delete_assign_base<T,E,false,false> &)”: 已隐式删除函数
+          with
+          [
+              T=ock::contracts::Outcome<int>,
+              E=ock::foundation::Error
+          ]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16):
+      模板实例化上下文(最早的实例化上下文)为
+          J:\Code\Kernel_v2\tests\contract\native\execution_service_cases.cpp(30,11):
+          查看对正在编译的 类 模板 实例化“ock::runtime::executions::detail::InvocationRecord<int,int>”的引用
+          J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(535,27):
+          在编译 类 模板 成员函数“tl::expected<void,ock::foundation::Error> ock::runtime::executions::detail::InvocationRecord<int,int>::complete_async(tl::expected<int,ock::foundation::Error>) noexcept”时
+              J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(362,7):
+              请参阅 "ock::runtime::executions::detail::InvocationRecord<int,int>::AsyncCall::complete" 中对 "ock::runtime::executions::detail::InvocationRecord<int,int>::complete_async" 的第一个引用
+  
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280: “tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error> &tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error>::operator =(const tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error> &)”: 尝试引用已删除的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280:         with [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280:         [ [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280:             R=int [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280:         ] [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+  (编译源文件“../../../../../tests/contract/native/native_tests.cpp”)
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1530,13):
+      参见“tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error>::operator =”的声明
+          with
+          [
+              R=int
+          ]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1530,13):
+      “tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error> &tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error>::operator =(const tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error> &)”: 由于 基类 调用已删除或不可访问的函数“tl::detail::expected_delete_assign_base<T,E,false,false> &tl::detail::expected_delete_assign_base<T,E,false,false>::operator =(const tl::detail::expected_delete_assign_base<T,E,false,false> &)”，因此已隐式删除函数
+          with
+          [
+              R=int
+          ]
+          and
+          [
+              T=ock::contracts::Outcome<int>,
+              E=ock::foundation::Error
+          ]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1175,3):
+      “tl::detail::expected_delete_assign_base<T,E,false,false> &tl::detail::expected_delete_assign_base<T,E,false,false>::operator =(const tl::detail::expected_delete_assign_base<T,E,false,false> &)”: 已隐式删除函数
+          with
+          [
+              T=ock::contracts::Outcome<int>,
+              E=ock::foundation::Error
+          ]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16):
+      模板实例化上下文(最早的实例化上下文)为
+          J:\Code\Kernel_v2\tests\contract\native\managed_cases.hpp(78,11):
+          查看对正在编译的 类 模板 实例化“ock::runtime::executions::detail::InvocationRecord<native_test::OwnedRecordInput,int>”的引用
+          J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(535,27):
+          在编译 类 模板 成员函数“tl::expected<void,ock::foundation::Error> ock::runtime::executions::detail::InvocationRecord<native_test::OwnedRecordInput,int>::complete_async(tl::expected<int,ock::foundation::Error>) noexcept”时
+              J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(362,7):
+              请参阅 "ock::runtime::executions::detail::InvocationRecord<native_test::OwnedRecordInput,int>::AsyncCall::complete" 中对 "ock::runtime::executions::detail::InvocationRecord<native_test::OwnedRecordInput,int>::complete_async" 的第一个引用
+  
+  structured_cases.cpp
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280: “tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error> &tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error>::operator =(const tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error> &)”: 尝试引用已删除的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280:         with [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280:         [ [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280:             R=int [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16): error C2280:         ] [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+  (编译源文件“../../../../../tests/contract/native/structured_cases.cpp”)
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1530,13):
+      参见“tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error>::operator =”的声明
+          with
+          [
+              R=int
+          ]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1530,13):
+      “tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error> &tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error>::operator =(const tl::expected<ock::contracts::Outcome<R>,ock::foundation::Error> &)”: 由于 基类 调用已删除或不可访问的函数“tl::detail::expected_delete_assign_base<T,E,false,false> &tl::detail::expected_delete_assign_base<T,E,false,false>::operator =(const tl::detail::expected_delete_assign_base<T,E,false,false> &)”，因此已隐式删除函数
+          with
+          [
+              R=int
+          ]
+          and
+          [
+              T=ock::contracts::Outcome<int>,
+              E=ock::foundation::Error
+          ]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1175,3):
+      “tl::detail::expected_delete_assign_base<T,E,false,false> &tl::detail::expected_delete_assign_base<T,E,false,false>::operator =(const tl::detail::expected_delete_assign_base<T,E,false,false> &)”: 已隐式删除函数
+          with
+          [
+              T=ock::contracts::Outcome<int>,
+              E=ock::foundation::Error
+          ]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(551,16):
+      模板实例化上下文(最早的实例化上下文)为
+          J:\Code\Kernel_v2\tests\contract\native\structured_cases.cpp(88,32):
+          查看对正在编译的 类 模板 实例化“tl::expected<ock::runtime::host::HostBound<int,int>,ock::foundation::Error>”的引用
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(1039,19):
+          查看对正在编译的 类 模板 实例化“tl::detail::conjunction<std::is_trivially_destructible<T>,std::is_trivially_move_constructible<T>,std::is_trivially_move_assignable<T>>”的引用
+          with
+          [
+              T=ock::runtime::host::HostBound<int,int>
+          ]
+          J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(242,32):
+          查看对正在编译的 类 模板 实例化“ock::runtime::host::HostBound<int,int>”的引用
+          J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\host.hpp(84,73):
+          在编译 类 模板 成员函数“ock::contracts::SubmitReply ock::runtime::host::HostBound<int,int>::submit(A,const ock::runtime::invocation::InvokeOptions &) const”时
+          with
+          [
+              A=int
+          ]
+              J:\Code\Kernel_v2\tests\contract\native\structured_cases.cpp(115,17):
+              请参阅 "native_test::host_structured_lifetime" 中对 "ock::runtime::host::HostBound<int,int>::submit" 的第一个引用
+          J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\host.hpp(89,58):
+          查看对正在编译的 类 模板 实例化“ock::runtime::executions::detail::InvocationRecord<A,R>”的引用
+          with
+          [
+              A=int,
+              R=int
+          ]
+          J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(535,27):
+          在编译 类 模板 成员函数“tl::expected<void,ock::foundation::Error> ock::runtime::executions::detail::InvocationRecord<A,R>::complete_async(tl::expected<int,ock::foundation::Error>) noexcept”时
+          with
+          [
+              A=int,
+              R=int
+          ]
+              J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(362,7):
+              请参阅 "ock::runtime::executions::detail::InvocationRecord<A,R>::AsyncCall::complete" 中对 "ock::runtime::executions::detail::InvocationRecord<A,R>::complete_async" 的第一个引用
+          with
+          [
+              A=int,
+              R=int
+          ]
+  
+  正在生成代码...

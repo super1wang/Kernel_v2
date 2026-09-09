@@ -1,0 +1,32 @@
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  executor.cpp
+  ock_Adapter_CpuPool.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\Debug\ock_Adapter_CpuPool.lib
+  host_execution.cpp
+  resource_wait_binding.cpp
+  host.cpp
+  invocation.cpp
+  policy.cpp
+  registry.cpp
+  resources.cpp
+  scheduler.cpp
+  正在生成代码...
+  ock_Runtime.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\Debug\ock_Runtime.lib
+  main.cpp
+  ock_native_service.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\examples\native_service\Debug\ock_native_service.exe
+  async_cases.cpp
+  execution_service_cases.cpp
+  native_tests.cpp
+  structured_cases.cpp
+  正在生成代码...
+  ock_native_tests.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\Debug\ock_native_tests.exe
+  {"actual_cases": ["T02.native.candidate_read_dispatch", "T02.native.exact_binding", "T02.native.invalid_input", "T02.native.private_dispatch", "T02.native.registered_compute", "T02.native.registered_read", "T02.native.validation_exception", "T03.native.cancel_and_budget", "T03.native.component_boundary", "T03.native.example_consumer", "T03.native.execution_service_control", "T03.native.execution_table_ownership", "T03.native.host_async_completion", "T03.native.host_async_drain", "T03.native.host_execution_lifecycle", "T03.native.host_execution_resources", "T03.native.host_structured_lifetime", "T03.native.managed_execution_path", "T03.native.managed_execution_resource_wait", "T03.native.managed_record", "T03.native.managed_record_ownership", "T03.native.managed_resources", "T03.native.no_self_wait", "T03.native.no_task_path", "T03.native.provider_unavailable", "T03.native.reentrant_and_concurrent", "T03.native.resource_lifetime", "T03.native.thread_modes", "T03.native.thread_origin", "T06.native.admission_order", "T06.native.authority_origin", "T06.native.business_failure", "T06.native.execution_source_observation", "T06.native.host_structured_admission", "T06.native.invalid_output", "T06.native.lifecycle_replacement", "T06.native.managed_admission", "T06.native.outcome_consistency", "T06.native.permission_intersection", "T06.native.policy_contract_alignment", "T06.native.revoke_and_regrant", "T06.native.session_and_deadline", "T06.native.target_binding", "T23.native.allocation_governance", "T23.native.allocation_other_costs", "T23.native.allocation_probe", "T23.native.allocation_steady"], "count": 47}
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  contracts_tests.cpp
+J:\Code\Kernel_v2\tests\compile\contracts\contracts_tests.cpp(673,5): warning C4297: “ThrowReceiver::candidate_ready”: 假定函数不引发异常，但确实发生了 [J:\Code\Kernel_v2\build\b4-debug\tests\compile\contracts\ock_contracts_tests.vcxproj]
+      J:\Code\Kernel_v2\tests\compile\contracts\contracts_tests.cpp(673,5):
+      在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+  
+  ock_contracts_tests.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\tests\compile\contracts\Debug\ock_contracts_tests.exe
+  {"actual_cases": ["T02.contracts.type_contract_constraints", "T02.contracts.typed_value_validation", "T02.contracts.read_shape", "T02.contracts.state_edit_shape", "T02.contracts.effect_shape", "T02.contracts.lifecycle_shape", "T02.contracts.context_capability_boundary", "T02.contracts.atomic_read_adapters", "T02.contracts.atomic_async_rejected", "T05.contracts.operation_exact_identity", "T05.contracts.typed_binding_fingerprint", "T05.contracts.binding_generation_before_access", "T05.contracts.binding_owner_lifetime", "T05.contracts.execution_identity_separation", "T06.contracts.outcome_closed_variants", "T06.contracts.known_facts_append_only", "T06.contracts.publication_proof_required", "T06.contracts.effect_report_preserves_fact", "T06.contracts.lifecycle_report_preserves_state", "T06.contracts.before_apply_and_composite_proofs", "T06.contracts.reply_phase_completion_separation", "T06.contracts.executor_inline_ownership", "T06.contracts.executor_reject_exception_cleanup", "T06.contracts.completion_once_and_drain", "T06.contracts.atomic_prepared_identity", "T06.contracts.record_evidence_boundary", "T19.contracts.summary_owned_snapshot", "T19.contracts.observation_host_version", "T19.contracts.observation_budgets", "T19.contracts.authorized_owner_filter", "T19.contracts.completion_independent_of_observation", "T19.contracts.live_keyset_progress", "T24.contracts.port_factory_contract_manifest"], "count": 33}

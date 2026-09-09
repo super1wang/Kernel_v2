@@ -53,7 +53,7 @@ def main():
             'managed_record_ownership', 'execution_table_ownership',
             'managed_execution_path', 'managed_execution_resource_wait',
             'execution_source_observation', 'execution_service_control', 'host_execution_lifecycle', 'host_execution_resources',
-            'host_structured_lifetime', 'host_structured_admission'} else 'D1.05'
+            'host_structured_lifetime', 'host_structured_admission', 'host_async_completion', 'host_async_drain'} else 'D1.05'
         lines.append('set_tests_properties(' + quote(name) +
                      f' PROPERTIES TIMEOUT 600 LABELS "{label}" '
                      'ENVIRONMENT "MSBUILDDISABLENODEREUSE=1" '

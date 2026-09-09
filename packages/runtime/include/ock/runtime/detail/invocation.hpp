@@ -5,6 +5,7 @@
 #include <ock/runtime/native_types.hpp>
 #include <ock/contracts/operation.hpp>
 #include <ock/runtime/policy.hpp>
+#include <ock/runtime/resources.hpp>
 #include <ock/runtime/detail/private_bridge.hpp>
 
 namespace ock::runtime::host {
@@ -153,7 +154,8 @@ private:
     requires (std::same_as<R2,void> || contracts::AsyncInput<R2>)
   friend class executions::detail::InvocationRecord;
   Result<void> prepare_submission(const A& args, const InvokeOptions& options,
-                                 std::optional<std::size_t> reserved={}) const {
+                                 std::optional<std::size_t> reserved={},
+                                 std::chrono::steady_clock::time_point* deadline=nullptr) const {
     auto state=state_;
     if (!state) return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
     auto slot=reserved ? reserved : state->acquire();
@@ -164,16 +166,35 @@ private:
       auto current=NativeAccess::check(*state->catalog,*state->entry,
                                       CppTypeToken::of<A>(),CppTypeToken::of<R>());
       if (!current) return current;
-      if (state->entry->shape!=Shape::Read || state->entry->execution.requires_external_wait)
+      if (state->entry->shape!=Shape::Read ||
+          (state->entry->execution.requires_external_wait&&!state->entry->asynchronous_read))
         return make_unexpected(invocation_error(InvocationErrc::ProviderUnavailable));
       auto admission=detail::validate_call(*state,*slot,projection_,args,options);
       if (!admission) return make_unexpected(admission.error());
+      if(deadline)*deadline=admission->deadline();
       return {};
     } catch (const std::bad_alloc&) {
       return make_unexpected(invocation_error(InvocationErrc::BudgetExceeded));
     } catch (...) {
       return make_unexpected(invocation_error(InvocationErrc::HandlerException));
     }
+  }
+  Result<std::shared_ptr<registry::detail::AsyncDispatchPort>> prepare_async(std::shared_ptr<PortLifetime> source) const {
+    return NativeAccess::prepare_async(*state_->catalog,*state_->entry,std::move(source));
+  }
+  Result<policy::InlineAdmission> admit_async(const A& args,const InvokeOptions& options,
+      std::size_t slot,std::span<const ResourceLease* const> resources) const {
+    auto state=state_;
+    auto current=NativeAccess::check(*state->catalog,*state->entry,CppTypeToken::of<A>(),CppTypeToken::of<R>());
+    if(!current)return make_unexpected(current.error());
+    if(!state->entry->asynchronous_read||state->entry->shape!=Shape::Read)
+      return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
+    if(state->entry->resources.empty()!=resources.empty()||
+       std::any_of(resources.begin(),resources.end(),[](auto p){return p==nullptr;}))
+      return make_unexpected(invocation_error(InvocationErrc::ResourceUnavailable));
+    auto thread=detail::check_managed_thread(*state);
+    if(!thread)return make_unexpected(thread.error());
+    return detail::validate_call(*state,slot,projection_,args,options);
   }
   InvokeReply<R> run(const A& args, const InvokeOptions& options, bool managed,
                     std::span<const ResourceLease* const> resources,
@@ -207,6 +228,8 @@ private:
       if (!current) return rejected(current.error());
       if (state->entry->shape != Shape::Read)
         return rejected(invocation_error(InvocationErrc::ProviderUnavailable));
+      if(state->entry->asynchronous_read)
+        return rejected(invocation_error(InvocationErrc::SubmitRequired));
       if (!managed && !state->entry->resources.empty())
         return rejected(invocation_error(InvocationErrc::ResourceUnavailable));
       if (managed && (state->entry->resources.empty()!=resources.empty() ||
@@ -299,7 +322,8 @@ class InvocationRecordBase {
 public:
   virtual ~InvocationRecordBase()=default;
   virtual bool run_once(std::stop_token,std::span<const contracts::ResourceLease* const>,
-                        std::shared_ptr<contracts::ExecutionScopePort> = {})=0;
+                        std::shared_ptr<contracts::ExecutionScopePort> = {},
+                        std::unique_ptr<contracts::ResourceLease> = {})=0;
   virtual bool reject_before_start(contracts::Error)=0;
   virtual const void* reply_pointer() const noexcept=0;
   virtual contracts::CppTypeToken result_type() const noexcept=0;
@@ -308,6 +332,11 @@ public:
   virtual std::size_t reserved_reply_bytes() const noexcept=0;
   virtual invocation::InvokeOptions options() const noexcept=0;
   virtual std::shared_ptr<const invocation::detail::BoundState> material() const noexcept=0;
+  virtual bool asynchronous() const noexcept=0;
+  virtual bool settled() const noexcept=0;
+  virtual bool accepts_children() const noexcept=0;
+  virtual void set_wake(std::function<void()>)=0;
+  virtual contracts::Result<void> before_child_wait(std::span<const resources::Claim>) const=0;
 };
 
 // 由可信 typed 注册适配器提供；必须计入可变缓冲区，不能仅返回 sizeof(T)。
@@ -323,6 +352,48 @@ class InvocationRecord final : public InvocationRecordBase, public std::enable_s
 public:
   using Policy=InvocationStoragePolicy<A,R>;
 private:
+  class AsyncCall final : public registry::detail::AsyncSource<A,R>,public std::enable_shared_from_this<AsyncCall> {
+  public:
+    explicit AsyncCall(std::weak_ptr<InvocationRecord> record):weak_(std::move(record)) {}
+    const A& input() const noexcept override {return *record_->input_;}
+    contracts::WorkContext& work() noexcept override {return *work_;}
+    contracts::Result<void> complete(contracts::Result<R> result) noexcept override {
+      auto self=this->shared_from_this();
+      registry::detail::ExecutionCallbackFrame frame;
+      return record_->complete_async(std::move(result));
+    }
+    void activate(policy::InlineAdmission admission,std::stop_token stop,
+        std::shared_ptr<contracts::ExecutionScopePort> scope,std::unique_ptr<contracts::ResourceLease> lease) {
+      record_=weak_.lock();foundation::invariant(bool(record_));
+      admission_.emplace(std::move(admission));lease_=std::move(lease);view_=lease_.get();
+      auto budget=foundation::CheckedCount<std::uint64_t>::create(0,record_->options_.work_limit);
+      foundation::invariant(bool(budget));
+      work_.emplace(record_->combined_.get_token(),admission_->deadline(),*budget,record_->bound_.state_->trace,
+          contracts::BorrowedResourceViews{view_?std::span<const contracts::ResourceLease* const>(&view_,1):
+                                              std::span<const contracts::ResourceLease* const>{}},std::move(scope));
+      original_.emplace(record_->options_.stop,Relay{record_->combined_});
+      managed_.emplace(stop,Relay{record_->combined_});active=true;
+    }
+    contracts::Result<void> before_child_wait(std::span<const resources::Claim> claims) const {
+      if(!lease_||claims.empty())return {};
+      auto lease=dynamic_cast<const resources::ResourceManager::Lease*>(lease_.get());
+      if(!lease)return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::InvalidAuthority));
+      return lease->before_child_wait(claims);
+    }
+    bool active=false;
+  private:
+    struct Relay {
+      std::stop_source source;
+      void operator()() noexcept {auto keep=source;keep.request_stop();}
+    };
+    std::weak_ptr<InvocationRecord> weak_;
+    std::shared_ptr<InvocationRecord> record_;
+    std::optional<policy::InlineAdmission> admission_;
+    std::unique_ptr<contracts::ResourceLease> lease_;
+    const contracts::ResourceLease* view_=nullptr;
+    std::optional<contracts::WorkContext> work_;
+    std::optional<std::stop_callback<Relay>> original_,managed_;
+  };
   friend class InvocationAccess;
   template<contracts::ContractValue A2,contracts::ContractResult R2> friend class host::HostBound;
   static contracts::Result<std::shared_ptr<InvocationRecord>> create_registered(
@@ -349,7 +420,7 @@ private:
       std::unique_ptr<invocation::detail::CallLease> reserved;
       try {reserved=std::make_unique<invocation::detail::CallLease>(state,*slot);}
       catch(...) {state->slots[*slot].occupied.store(false,std::memory_order_release);throw;}
-      auto prepared=record->bound_.prepare_submission(*record->input_,options,*slot);
+      auto prepared=record->bound_.prepare_submission(*record->input_,options,*slot,&record->options_.deadline);
       if(!prepared)return contracts::make_unexpected(prepared.error());
       record->call_=std::move(reserved);
       auto bytes=policy.input_bytes(*record->input_);
@@ -357,6 +428,18 @@ private:
       if(*bytes>policy.input_limit)
         return contracts::make_unexpected(invocation::invocation_error(invocation::InvocationErrc::BudgetExceeded));
       record->input_bytes_=*bytes;
+      if(state->entry->asynchronous_read) {
+        std::weak_ptr<InvocationRecord> weak=record;
+        auto source=std::shared_ptr<AsyncCall>(new AsyncCall(weak),[weak](AsyncCall* call) noexcept {
+          registry::detail::ExecutionCallbackFrame frame;
+          auto record=weak.lock();const bool active=call->active;
+          delete call; // 先实际销毁 context/stop callbacks/Lease/admission，再通知 Runtime。
+          if(active&&record)record->async_drained();
+        });
+        auto dispatch=record->bound_.prepare_async(source);
+        if(!dispatch)return contracts::make_unexpected(dispatch.error());
+        record->async_source_=source;record->async_dispatch_=std::move(*dispatch);
+      }
       return record;
     } catch(...) {
       return contracts::make_unexpected(invocation::invocation_error(invocation::InvocationErrc::BudgetExceeded));
@@ -364,9 +447,11 @@ private:
   }
 public:
   bool run_once(std::stop_token stop,std::span<const contracts::ResourceLease* const> resources={},
-                std::shared_ptr<contracts::ExecutionScopePort> execution={}) override {
+                std::shared_ptr<contracts::ExecutionScopePort> execution={},
+                std::unique_ptr<contracts::ResourceLease> lease={}) override {
     auto keep_alive=this->shared_from_this();
     if(claimed_.exchange(true,std::memory_order_acq_rel)) return false;
+    if(asynchronous())return start_async(stop,resources,std::move(execution),std::move(lease));
     const auto request=[&]{combined_.request_stop();};
     std::stop_callback original(options_.stop,request);
     std::stop_callback managed(stop,request);
@@ -380,6 +465,7 @@ public:
   bool reject_before_start(contracts::Error reason) {
     auto keep_alive=this->shared_from_this();
     if(claimed_.exchange(true,std::memory_order_acq_rel)) return false;
+    async_dispatch_.reset();
     store(contracts::Rejected{contracts::Error{reason.code()}});
     return true;
   }
@@ -394,6 +480,19 @@ public:
   std::shared_ptr<const invocation::detail::BoundState> material() const noexcept override {return bound_.state_;}
   invocation::InvokeOptions options() const noexcept override {return options_;}
   const void* reply_pointer() const noexcept override {return reply();}
+  bool asynchronous() const noexcept override {return bound_.state_->entry->asynchronous_read;}
+  bool settled() const noexcept override {return settled_.load(std::memory_order_acquire);}
+  bool accepts_children() const noexcept override {
+    return !completed_.load(std::memory_order_acquire)&&
+        (!asynchronous()||(!candidate_claimed_.load(std::memory_order_acquire)&&!async_source_.expired()));
+  }
+  void set_wake(std::function<void()> wake) override {wake_=std::move(wake);}
+  contracts::Result<void> before_child_wait(std::span<const resources::Claim> claims) const override {
+    if(!asynchronous())return {};
+    auto source=async_source_.lock();
+    if(!source)return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::InvalidPhase));
+    return source->before_child_wait(claims);
+  }
   contracts::CppTypeToken result_type() const noexcept override {return contracts::CppTypeToken::of<R>();}
   InvocationCompletion completion() const override {
     InvocationCompletion out;
@@ -416,10 +515,70 @@ public:
     return out;
   }
 private:
+  bool start_async(std::stop_token stop,std::span<const contracts::ResourceLease* const> resources,
+      std::shared_ptr<contracts::ExecutionScopePort> scope,std::unique_ptr<contracts::ResourceLease> lease) {
+    auto dispatch=std::move(async_dispatch_);auto source=async_source_.lock();
+    try {
+      auto admission=bound_.admit_async(*input_,options_,call_->slot,resources);
+      if(!admission||(!resources.empty()&&!lease)) {
+        store(contracts::Rejected{admission?invocation::invocation_error(invocation::InvocationErrc::ResourceUnavailable):admission.error()});
+        return true;
+      }
+      foundation::invariant(bool(source)&&bool(dispatch));
+      source->activate(std::move(*admission),stop,std::move(scope),std::move(lease));
+      auto started=dispatch->start();
+      if(!started)(void)complete_async(contracts::make_unexpected(started.error()));
+    } catch(const std::bad_alloc&) {
+      if(source&&source->active)(void)complete_async(contracts::make_unexpected(invocation::invocation_error(invocation::InvocationErrc::BudgetExceeded)));
+      else store(contracts::Rejected{invocation::invocation_error(invocation::InvocationErrc::BudgetExceeded)});
+    } catch(...) {
+      if(source&&source->active)(void)complete_async(contracts::make_unexpected(invocation::invocation_error(invocation::InvocationErrc::HandlerException)));
+      else store(contracts::Rejected{invocation::invocation_error(invocation::InvocationErrc::HandlerException)});
+    }
+    return true;
+  }
+  contracts::Result<void> complete_async(contracts::Result<R> result) noexcept {
+    registry::detail::ExecutionCallbackFrame frame;
+    if(candidate_claimed_.exchange(true,std::memory_order_acq_rel))
+      return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::DuplicateCompletion));
+    auto state=bound_.state_;
+    auto kind=invocation::InvocationRecordKind::ReadCompleted;
+    std::optional<foundation::ErrorCode> fault;
+    try {
+      auto outcome=[&] {
+        if(!result) {
+          fault=result.error().code();kind=invocation::InvocationRecordKind::FailedBeforeApply;
+          return invocation::detail::outcome_failure<R>(result.error(),state->empty_facts);
+        }
+        return invocation::detail::outcome_read<R>(std::move(result),state->empty_facts);
+      }();
+      if(!outcome) {
+        fault=outcome.error().code();kind=invocation::InvocationRecordKind::FailedBeforeApply;
+        auto failed=invocation::detail::outcome_failure<R>(outcome.error(),state->empty_facts);
+        foundation::invariant(bool(failed));
+        store(contracts::Completed<R>{std::move(*failed)},false);
+      } else store(contracts::Completed<R>{std::move(*outcome)},false);
+    } catch(const std::bad_alloc&) {
+      fault=invocation::invocation_error(invocation::InvocationErrc::BudgetExceeded).code();
+      kind=invocation::InvocationRecordKind::FailedBeforeApply;
+      store(contracts::Rejected{contracts::Error{*fault}},false);
+    } catch(...) {
+      fault=invocation::invocation_error(invocation::InvocationErrc::HandlerException).code();
+      kind=invocation::InvocationRecordKind::FailedBeforeApply;
+      store(contracts::Rejected{contracts::Error{*fault}},false);
+    }
+    state->observe(kind,fault);signal();return {};
+  }
+  void async_drained() noexcept {
+    if(!completed_.load(std::memory_order_acquire))
+      (void)complete_async(contracts::make_unexpected(invocation::invocation_error(invocation::InvocationErrc::InvalidOutput)));
+    input_.reset();call_.reset();settled_.store(true,std::memory_order_release);signal();
+  }
+  void signal() noexcept {try {if(wake_)wake_();}catch(...){}}
   InvocationRecord(invocation::NativeBound<A,R> bound,A args,
       invocation::InvokeOptions options,Policy policy)
       :bound_(std::move(bound)),input_(std::move(args)),options_(options),policy_(policy) {}
-  void store(contracts::InvokeReply<R> reply) {
+  void store(contracts::InvokeReply<R> reply,bool release=true) {
     // 测量失败或超额时保留固定错误回执；不让结果容量失败吞掉可靠完成。
     try {
       auto bytes=policy_.reply_bytes(reply);
@@ -430,8 +589,7 @@ private:
       reply=contracts::Rejected{invocation::invocation_error(invocation::InvocationErrc::BudgetExceeded)};
     }
     reply_.emplace(std::move(reply));
-    input_.reset(); // 参数析构与调用槽释放均先于可靠完成发布。
-    call_.reset();
+    if(release) {input_.reset();call_.reset();settled_.store(true,std::memory_order_release);}
     completed_.store(true,std::memory_order_release);
   }
   invocation::NativeBound<A,R> bound_;
@@ -442,6 +600,9 @@ private:
   std::optional<contracts::InvokeReply<R>> reply_;
   std::size_t input_bytes_=0,reply_bytes_=0;
   std::stop_source combined_; // stop-state 分配也在接受前完成。
-  std::atomic<bool> claimed_{false},completed_{false};
+  std::atomic<bool> claimed_{false},completed_{false},settled_{false},candidate_claimed_{false};
+  std::weak_ptr<AsyncCall> async_source_;
+  std::shared_ptr<registry::detail::AsyncDispatchPort> async_dispatch_;
+  std::function<void()> wake_;
 };
 }

@@ -67,6 +67,14 @@ void read_shape() {
   CHECK(*read_handler(2, w, s) == 9);
   CHECK(
       make_compute_definition(compute_handler, input(AtomicMode::PureCompute)));
+  CHECK(!d->snapshot()->asynchronous_read());
+  auto async=+[](std::shared_ptr<AsyncReadCall<int,int,Reader>> call)->Result<void> {return call->complete(7);};
+  auto definition=input();definition.execution.inline_safe=false;definition.execution.requires_external_wait=true;
+  auto asynchronous=OperationDefinition<int,int>::read_async(async,definition);
+  CHECK(asynchronous&&asynchronous->snapshot()->asynchronous_read());
+  definition.execution.inline_safe=true;CHECK(!OperationDefinition<int,int>::read_async(async,definition));
+  definition.execution.inline_safe=false;definition.atomic_mode=AtomicMode::PureCompute;
+  CHECK(!OperationDefinition<int,int>::read_async(async,definition));
 }
 void state_edit_shape() {
   auto d =

@@ -31,6 +31,7 @@ public:
     return result_contract_;
   }
   CppTypeToken context_type() const noexcept { return context_; }
+  bool asynchronous_read() const noexcept {return asynchronous_read_;}
   const std::optional<AtomicProviderKey> &provider() const noexcept {
     return provider_;
   }
@@ -48,11 +49,11 @@ private:
                      CppTypeToken context,
                      std::optional<AtomicProviderKey> provider = {},
                      std::optional<CppTypeToken> provider_type = {},
-                     std::optional<CppTypeToken> candidate_type = {})
+                     std::optional<CppTypeToken> candidate_type = {},bool asynchronous_read=false)
       : input_(input), shape_(shape), args_(a), result_(r),
         args_contract_(std::move(ac)), result_contract_(std::move(rc)),
         context_(context), provider_(provider), provider_type_(provider_type),
-        candidate_type_(candidate_type) {}
+        candidate_type_(candidate_type),asynchronous_read_(asynchronous_read) {}
   DefinitionInput input_;
   Shape shape_;
   CppTypeToken args_, result_;
@@ -60,6 +61,7 @@ private:
   CppTypeToken context_;
   std::optional<AtomicProviderKey> provider_;
   std::optional<CppTypeToken> provider_type_, candidate_type_;
+  bool asynchronous_read_;
 };
 template <class A, class R> class OperationDefinition final {
 public:
@@ -83,6 +85,15 @@ public:
     if (!fn || in.atomic_mode != AtomicMode::PureCompute)
       return make_unexpected(error(ContractsErrc::InvalidContract));
     return create(in, Shape::Read, CppTypeToken::of<void>());
+  }
+  template<class Reader>
+  static Result<OperationDefinition> read_async(
+      Result<void> (*fn)(std::shared_ptr<AsyncReadCall<A,R,Reader>>),const DefinitionInput& in)
+    requires (AsyncInput<A> && ContractResult<R> && (std::same_as<R,void> || AsyncInput<R>)) {
+    if(!fn||in.atomic_mode!=AtomicMode::Incompatible||in.execution.inline_safe||
+       !in.execution.requires_external_wait)
+      return make_unexpected(error(ContractsErrc::InvalidContract));
+    return create(in,Shape::Read,CppTypeToken::of<Reader>(),{},{},{},true);
   }
   template <class P>
   static Result<OperationDefinition>
@@ -142,7 +153,7 @@ private:
   create(const DefinitionInput &in, Shape shape, CppTypeToken context,
          std::optional<AtomicProviderKey> provider = {},
          std::optional<CppTypeToken> provider_type = {},
-         std::optional<CppTypeToken> candidate_type = {}) {
+         std::optional<CppTypeToken> candidate_type = {},bool asynchronous_read=false) {
     if (in.docs.size() > in.max_docs_bytes ||
         in.required_permissions.size() > 96 ||
         !foundation::detail::valid_utf8(in.docs))
@@ -155,7 +166,7 @@ private:
         std::shared_ptr<const DefinitionSnapshot>(new DefinitionSnapshot(
             in, shape, CppTypeToken::of<A>(), CppTypeToken::of<R>(),
             TypeContract<A>::identity(), TypeContract<R>::identity(), context,
-            provider, provider_type, candidate_type))};
+            provider, provider_type, candidate_type,asynchronous_read))};
   }
   std::shared_ptr<const DefinitionSnapshot> snapshot_;
 };

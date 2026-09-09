@@ -160,6 +160,7 @@ public:
   WorkContext(const WorkContext &) = delete;
   WorkContext &operator=(const WorkContext &) = delete;
   bool stop_requested() const noexcept { return stop_.stop_requested(); }
+  std::stop_token stop_token() const noexcept {return stop_;}
   std::chrono::steady_clock::time_point deadline() const noexcept {
     return deadline_;
   }

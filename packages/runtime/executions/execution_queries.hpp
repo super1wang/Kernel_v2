@@ -29,7 +29,7 @@ public:
       std::chrono::steady_clock::time_point deadline,std::stop_token stop={}) const {
     auto role=thread_->current();
     if(!role)return contracts::make_unexpected(role.error());
-    if(role->role!=invocation::ThreadRole::Application)
+    if(role->role!=invocation::ThreadRole::Application||registry::detail::execution_callback_active)
       return contracts::make_unexpected(invocation::invocation_error(invocation::InvocationErrc::ThreadRejected));
     auto allowed=session_->observations()->get(caller,ref,policy::AccessUse::Wait);
     if(!allowed)return contracts::make_unexpected(allowed.error());

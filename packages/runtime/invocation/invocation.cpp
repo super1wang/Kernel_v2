@@ -28,7 +28,7 @@ Result<NativeEntry> NativeAccess::inspect(const registry::Catalog& catalog,
     return make_unexpected(invocation_error(InvocationErrc::ContractMismatch));
   return NativeEntry{*handle,*definition,d.shape(),d.description().execution,
                      catalog.hot_[*slot].resources, catalog.hot_[*slot].submission_storage,
-                     catalog.hot_[*slot].submission_storage_type};
+                     catalog.hot_[*slot].submission_storage_type,d.asynchronous_read()};
 }
 Result<void> NativeAccess::check(const registry::Catalog& catalog, const NativeEntry& entry,
     CppTypeToken args, CppTypeToken result) noexcept {
@@ -38,9 +38,16 @@ Result<void> NativeAccess::check(const registry::Catalog& catalog, const NativeE
       !entry.definition || entry.definition->args_type()!=args ||
       entry.definition->result_type()!=result)
     return reject(InvocationErrc::InvalidBinding);
-  if (entry.shape==Shape::Read && !catalog.hot_[*slot].native)
+  if (entry.shape==Shape::Read && !catalog.hot_[*slot].native && !catalog.hot_[*slot].async_factory)
     return reject(InvocationErrc::InvalidBinding);
   return {};
+}
+Result<std::shared_ptr<registry::detail::AsyncDispatchPort>> NativeAccess::prepare_async(
+    const registry::Catalog& catalog,const NativeEntry& entry,std::shared_ptr<PortLifetime> source) {
+  auto slot=foundation::resolve_slot(entry.handle,catalog.identity(),catalog.generation(),catalog.size());
+  if(!slot||!entry.asynchronous_read||catalog.cold_[*slot].get()!=entry.definition.get()||!catalog.hot_[*slot].async_factory)
+    return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
+  return catalog.hot_[*slot].async_factory(catalog.hot_[*slot],std::move(source));
 }
 void NativeAccess::dispatch(const registry::Catalog& catalog, const NativeEntry& entry,
     const void* args, WorkContext& work, void* result) {
@@ -123,8 +130,7 @@ Result<void> check_managed_thread(const BoundState& state) noexcept {
   const auto& execution=state.entry->execution;
   if(thread->role!=ThreadRole::Worker || thread->affinity!=execution.thread_affinity)
     return reject(InvocationErrc::ThreadRejected);
-  // 此入口同步返回；真正的异步完成必须先接好同一执行记录的寿命协议。
-  if(execution.requires_external_wait)
+  if(execution.requires_external_wait&&!state.entry->asynchronous_read)
     return reject(InvocationErrc::ProviderUnavailable);
   return {};
 }

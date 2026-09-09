@@ -373,10 +373,11 @@ Result<void> RegistrationBatch::insert(
     std::size_t i, std::shared_ptr<const DefinitionSnapshot> s,
     const OperationOptions &o, std::shared_ptr<const void> handler,
     CppTypeToken ht, detail::HotEntry::NativeThunk native,
-    std::shared_ptr<const void> storage, CppTypeToken storage_type) {
+    std::shared_ptr<const void> storage, CppTypeToken storage_type,detail::HotEntry::AsyncFactory async_factory) {
   auto &m = modules_[i].manifest;
   auto &d = s->description();
   auto bad = [&](RegistryErrc c) { return fail(c, &m.name, &d.key); };
+  if(s->asynchronous_read()!=bool(async_factory))return bad(RegistryErrc::InvalidDefinition);
   // 工厂生成的真实类型身份也属于冻结文本；可信TypeContract的临时
   // 分配无法在调用前预测，但超预算的结果绝不能进入候选目录。
   std::size_t snapshot_text = texts_;
@@ -422,7 +423,7 @@ Result<void> RegistrationBatch::insert(
                      native,
                      {},
                      CppTypeToken::of<void>(),
-                     o.resources, std::move(storage), storage_type};
+                     o.resources, std::move(storage), storage_type,async_factory};
   if (read) {
     auto owner = service(i, *o.read_service, s->context_type());
     if (!owner)

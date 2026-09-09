@@ -29,6 +29,8 @@ CONTROLS = {
         "raw_handler": ('void rejected(NativeBound<Value,Value>& b) { (void)b.handler(); }', 'C2039'),
         "managed_create": ('auto rejected = &executions::detail::InvocationRecord<Value,Value>::create;', 'C2248'),
         "managed_registered_create": ('auto rejected = &executions::detail::InvocationRecord<Value,Value>::create_registered;', 'C2248'),
+        "async_prepare": ('void rejected(const registry::Catalog& c, const NativeEntry& e) { (void)NativeAccess::prepare_async(c,e,{}); }', 'C2248'),
+        "async_admit": ('auto rejected = &NativeBound<Value,Value>::admit_async;', 'C2248'),
     },
     "no_self_wait": {
         "positive": ('void accepted(NativeEngine& e, NativeBound<Value,Value>& b, const InvokeOptions& o) { (void)b.invoke(Value{1},o); (void)e.snapshot({}); }', ''),

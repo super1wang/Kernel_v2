@@ -6,7 +6,7 @@
 
 同一 Registry/Policy/Invocation 生产实现组成 NativeSubset。只执行无资源声明的同步 Read/Compute，保留完整参数、身份、目标、权限、线程、预算和 Outcome 检查。不创建 Task、Document、执行索引、恢复存储或第二个业务分派器。NativeSubset 不提供 submit、wait、RPC 或业务模块。
 
-B5 开发扩展：可信组合根可通过 `HostPorts::execution_factory` 显式装配执行后端。工厂只在 start 时调用，使用本 HostIncarnation 创建观察源；默认空工厂保持以上 NativeSubset 行为。Host 在验证观察源之前登记后端清理责任，失败也必须排空；关闭顺序为停止执行准入、等待已准入调用、结束执行、关闭 Policy、排空执行器、停止模块。超时保留后端及其依赖，`PendingKind::Executions` / `Executors` 分别报告未完成责任；所属执行线程关闭返回 Reentrant。工厂返回失败前的临时 owner 清理由工厂负责，所有后端回调必须遵守传入截止时间。已接通 `HostBound::submit` 与 `HostSession::wait/result/cancel`，当前仅覆盖拥有型同步 Read/Compute 在显式执行后端排队的路径。可信工厂可调用公开 `make_executions` 创建真实执行后端，Control/CLI、结构化父子和异步完成尚未闭合，capabilities 不宣称完整异步执行或观察能力。
+B5 开发扩展：可信组合根可通过 `HostPorts::execution_factory` 显式装配执行后端。工厂只在 start 时调用，使用本 HostIncarnation 创建观察源；默认空工厂保持以上 NativeSubset 行为。Host 在验证观察源之前登记后端清理责任，失败也必须排空；关闭顺序为停止执行准入、等待已准入调用、结束执行、关闭 Policy、排空执行器、停止模块。超时保留后端及其依赖，`PendingKind::Executions` / `Executors` 分别报告未完成责任；所属执行线程关闭返回 Reentrant。工厂返回失败前的临时 owner 清理由工厂负责，所有后端回调必须遵守传入截止时间。已接通 `HostBound::submit` 与 `HostSession::wait/result/cancel`，已覆盖拥有型同步 Read/Compute、结构化 child 与显式异步 Read 完成路径。可信工厂可调用公开 `make_executions` 创建真实执行后端，Control/CLI、必要记录器、完整预算与 G3 尚未闭合，capabilities 不宣称完整阶段验收。
 
 公开头 `ock/runtime/host.hpp` 的名字位于 `ock::runtime::host`。以下 `Name`、`Error`、`Result`、`OperationKey`、`ContractDigest`、`Shape`、`CallerDescription`、`InvokeReply` 及概念沿用 CoreContracts；`TimePoint` 为 `std::chrono::steady_clock::time_point`。公开 `ock/runtime/native_types.hpp` 保存 D1.05 的 ThreadRole、ThreadObservation、TrustedThreadPort、NativeBudget、InvokeOptions、TargetProjection、InvocationErrc/Record/Snapshot 唯一定义，仍在原 `ock::runtime::invocation` 命名空间。模板内部使用安装的 detail，不要求应用直接包含 detail。
 
@@ -17,13 +17,19 @@ B5 提交存储由可信 Registrar 的四参数 `read/compute` 重载声明 `reg
 
 `HostSession::cancel` 使用当前 CancelExecution 授权，返回 CoreContracts 的 `CancelDisposition`：Requested 表示取消赢得尚未开始的退役仲裁，AlreadyClaimed 表示 start 已赢且只登记协作意图，AlreadyTerminal 表示权威执行已结束。分类来自同一 Scheduler start/retire 仲裁，不根据先读摘要再操作猜测；三种结果均不改写既有执行事实，不保证物理投递已排空。原始 InvokeOptions.stop 在接受后由执行 owner 保持注册，可在排队或等待资源时直接退役，回调仅弱引用 owner；运行期取消不提前释放业务 Lease。
 
-`make_executions` 只依赖 CoreContracts 的 ExecutorControlPort，由可信组合根提供实际 executor。ExecutionOptions 冻结执行表/控制槽预算、主体调度和资源映射；ResourceRef 的目录 owner 只证明注册寿命，运行期 Lease 必须由后端唯一 ResourceManager 按冻结 claims 取得。未知键、重复 ResourceRef、超限或不合法 claims 在创建时拒绝；未映射的操作声明在接受前拒绝。无资源配置不创建 ResourceManager 或占位 slot。创建成功后 Host 排空执行及 executor，创建失败时工厂保留临时 executor 的排空责任。显式后端允许同步 Read/Compute 的非 inline 声明；仍拒绝需要外部异步完成的注册，短 Invoke 的资源和线程检查保持。
+`make_executions` 只依赖 CoreContracts 的 ExecutorControlPort，由可信组合根提供实际 executor。ExecutionOptions 冻结执行表/控制槽预算、主体调度和资源映射；ResourceRef 的目录 owner 只证明注册寿命，运行期 Lease 必须由后端唯一 ResourceManager 按冻结 claims 取得。未知键、重复 ResourceRef、超限或不合法 claims 在创建时拒绝；未映射的操作声明在接受前拒绝。无资源配置不创建 ResourceManager 或占位 slot。创建成功后 Host 排空执行及 executor，创建失败时工厂保留临时 executor 的排空责任。显式后端允许同步 Read/Compute 的非 inline 声明；异步 Read 必须使用下述拥有型注册重载；其他未支持 shape 仍拒绝，短 Invoke 的资源和线程检查保持。
 
-`HostBound::submit_child(work,args,options)` 复用同一提交链路。只有受管理调用的 WorkContext 带有真实 ExecutionScopePort；Runtime 核对真实 owner、同一服务/SessionAuthority/主体、当前父授权及未关闭的创建阶段。child 具有独立 ExecutionRef，Summary.parent 在接受前固定，沿用当前会话委托范围，期限收紧至父 WorkContext 的期限。伪造、跨服务、跨会话、父已返回/取消或超出有限 child/深度预算均拒绝；不从客户端 ExecutionRef 查找并授予父权限。
+`HostBound::submit_child(work,args,options)` 复用同一提交链路。只有受管理调用的 WorkContext 带有真实 ExecutionScopePort；Runtime 核对真实 owner、同一服务/SessionAuthority/主体、当前父授权及未关闭的创建阶段。child 具有独立 ExecutionRef，Summary.parent 在接受前固定，沿用当前会话委托范围，期限收紧至父 WorkContext 的期限。伪造、跨服务、跨会话、同步父已返回、异步父已提交 candidate、父已取消或超出有限 child/深度预算均拒绝；不从客户端 ExecutionRef 查找并授予父权限。
 
-同步父调用返回即释放本次运行期 Lease 和 worker 配额，有未结束 child 时进入 WaitingChild；child 终态以可靠 pending 唤醒同一控制循环，所有 child 收尾后父才能 Finalizing/Terminal。父取消默认传给 child；父 body 已完成但仍在 WaitingChild 时取消返回 AlreadyClaimed，不能把 Scheduler body 完成冒充父执行 Terminal。父槽弱持有 child，child 强持有父至自身终态并解除关联。`children_per_execution` 默认 64（允许 1..256）、`max_depth` 默认 32（允许 1..64，顶层为 1）；不支持 detached child 或任意接管。外部异步 I/O 完成仍未开放。
+同步父调用返回即释放本次运行期 Lease 和 worker 配额，有未结束 child 时进入 WaitingChild；child 终态以可靠 pending 唤醒同一控制循环，所有 child 收尾后父才能 Finalizing/Terminal。父取消默认传给 child；父 body 已完成但仍在 WaitingChild 时取消返回 AlreadyClaimed，不能把 Scheduler body 完成冒充父执行 Terminal。父槽弱持有 child，child 强持有父至自身终态并解除关联。`children_per_execution` 默认 64（允许 1..256）、`max_depth` 默认 32（允许 1..64，顶层为 1）；不支持 detached child 或任意接管。异步 Read 的特殊收尾规则见下。
 
 ## 模块与预算
+
+B5 异步 Read 的可信注册使用 `Registrar::read_async`，函数类型为 `Result<void> (*)(std::shared_ptr<AsyncReadCall<A,R,Reader>>)`，同样必须声明 SubmissionStorage。DefinitionSnapshot 的 `asynchronous_read()` 从实际签名生成，不能由客户端 DTO 写入；AtomicMode 必须为 Incompatible，inline_safe=false、requires_external_wait=true，注册 executor 须具备所声明能力。一个 Operation 只有一个 handler，Invoke 返回 SubmitRequired；Submit 沿原 Catalog/Policy 校验和同一 ExecutionRef 路径执行。
+
+AsyncReadCall 提供 `input()`、`work()`、`reader()`、`complete(Result<R>)`；WorkContext 的只读 `stop_token()` 可订阅协作取消，不能发出取消请求。保存 shared_ptr 即保留这些访问的 owner；只能并发调用 complete，其余可变 WorkContext 访问由业务串行使用。接受前分配回调 owner 和 typed adapter；开始前重验授权/线程/目标，Callback 期间保持 Policy admission、调用槽、拥有输入及 Resource Lease。有效期限在接受准备时收紧到当前 Policy admission，WorkContext 在开始时再次采用当前较早期限。
+
+complete 以原子 claim 接受第一个结果，重复返回 DuplicateCompletion；结果先到时可发布 Finalizing，但最后一个 callback owner 释放、输入/服务/context/Lease/admission 实际收尾后才允许 Terminal。遗漏 complete、启动失败/抛出均产生同一身份的失败事实；先到的完成不被迟到异常或取消覆盖。异步父创建 child 时复用 Lease::before_child_wait，含别名的冲突资源组合在 child 接受前拒绝，父槽回收；不释放仍供 callback 使用的 Lease。关闭与客户端丢通知不能跳过该排空责任。Runtime 标记异步完成、结果处理和 owner 析构回调的线程作用域；其中阻塞 wait 返回 ThreadRejected，Host 关闭返回 Reentrant，避免非 worker 回调等待自身排空。
 
 ```cpp
 struct ModuleContext {

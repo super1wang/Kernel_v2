@@ -155,6 +155,7 @@ public:
   }
   std::size_t active() const {std::lock_guard lock(state_->mutex);return state_->used;}
   bool in_execution_thread() const noexcept {
+    if(registry::detail::execution_callback_active)return true;
     {std::lock_guard lock(state_->mutex);if(std::this_thread::get_id()==state_->control_id)return true;}
     auto control=std::dynamic_pointer_cast<contracts::ExecutorControlPort>(state_->executor);
     return control&&control->in_worker();
