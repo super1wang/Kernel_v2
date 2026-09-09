@@ -1,5 +1,14 @@
 # 受管理执行验证消费者
 
+开发 SDK `0.1.0-dev.6 / B5Subset` 支持将本目录复制到仓库之外，使用迁移后的安装目录独立构建。`find_package(OCK)` 取得 Control、AdapterLocalIPC、CpuPool 以及 `OCK_SCHEMA_DIR` 指向的已安装 RPC Schema；消费者不读取生产源码目录。
+
+```powershell
+cmake -S . -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH=C:/sdk/ock
+cmake --build build --config Debug
+```
+
+安装 SDK 与消费者须使用一致的工具链、架构和配置。仅 Runtime/Embedded 的裁剪安装不提供这个 Control 消费者所需组件。此开发 SDK 的接口仍为 experimental，阶段更新不代表 B5/G3 已通过。
+
 Release 成本采样入口为 `tests/integration/cli/managed_cost.py <Release服务exe> <输出json>`。off/on/on/off 使用相同两个连接与每次 120 个 20 ms 任务，正常读取由客户端独立线程推进；另两次 slow 明确停止读取。服务进程 CPU、执行期与通知额外排空成本、PrivateUsage/WorkingSet、请求墙钟及 cursor 有效/MAC/超长路径分列。墙钟包含客户端 5 ms 轮询，CPU 存在系统计时粒度与波动，排空成本含诊断轮询；不将本样本用作稳定开销比例、硬时延或无 IPC Embedded 占用结论。
 
 本消费者仅验证内核的真实 Control/CLI 路径，不包含 GUI、CAD、CAM 或设备模块。`sample.compute` 通过同一个注册的 typed 实现执行；输入为 amount、delay_ms 和 text，结果为 amount+1、原文本和 stop_observed。delay_ms 最多 10000，处理期间协作观察 stop，不产生外部业务效果。

@@ -144,13 +144,13 @@ def main():
     build(positive)
     binary = positive/a.config/'ock_stateless_service.exe'
     report = json.loads(run('run-consumer', [str(binary)]))
-    if report != {'sdk':'0.1.0-dev.5','stage':'B4Subset','checks':dict.fromkeys(('read','compute','invalid_input','ready_gate','shutdown'),True)}:
+    if report != {'sdk':'0.1.0-dev.6','stage':'B5Subset','checks':dict.fromkeys(('read','compute','invalid_input','ready_gate','shutdown'),True)}:
         raise ValueError('real consumer checks mismatch')
     save_json(out/'actual-traces.json',verify_actual_traces(producer,positive,a.config,asan))
 
     if a.case == 'metadata':
         manifest = json.loads((prefix/'share/ock/sdk_api_manifest.json').read_text(encoding='utf-8'))
-        if manifest['sdk_version']!='0.1.0-dev.5' or manifest['stage']!='B4Subset' or manifest['targets']['Runtime']['kind']!='STATIC_LIBRARY':
+        if manifest['sdk_version']!='0.1.0-dev.6' or manifest['stage']!='B5Subset' or manifest['targets']['Runtime']['kind']!='STATIC_LIBRARY':
             raise ValueError('installed metadata mismatch')
         for component in ('State','Durable','Automation','Adapter::Logging','Observation'):
             candidate=out/('reject-'+component.replace('::','-'));candidate.mkdir()

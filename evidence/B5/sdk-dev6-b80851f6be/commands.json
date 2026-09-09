@@ -1,0 +1,121 @@
+[
+  {
+    "argv": [
+      "G:\\environment\\python3.13.3\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "tests.architecture.test_b2_sdk",
+      "tests.architecture.test_native_sdk",
+      "tests.architecture.test_b4_sdk",
+      "-v"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:24:26.603157+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "G:\\environment\\python3.13.3\\python.exe",
+    "pid": 31156,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:24:30.845912+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "d7ed7bf525b37f8effe376b4154fe87b789a4fde765cc29fce4040348977a01a",
+        "size": 2648
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\sdk-dev6-b80851f6be\\producer",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_DEPENDENCY_PROBES=OFF",
+      "-DOCK_BUILD_COMPONENTS=B5Subset",
+      "-DOCK_DEPENDENCY_COMPONENTS=CLI;CpuPool",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DPython3_EXECUTABLE=G:\\environment\\python3.13.3\\python.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:24:30.847320+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 38,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 47816,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:24:36.647907+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "c03140cb304c419b5c438742ecece3d529a31e00ba1cbcab0016e77e3a01995d",
+        "size": 1043
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e39c2e3265d3e9f92413b4ff2c0942d01df9c631a0f4c80048a7ddd2d76b10ab",
+        "size": 134
+      }
+    ]
+  },
+  {
+    "argv": [
+      "G:\\environment\\python3.13.3\\python.exe",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\tools\\architecture\\check.py",
+      "--graph",
+      "J:\\Code\\Kernel_v2\\build\\sdk-dev6-b80851f6be\\producer\\ock-target-graph.json"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:24:36.650696+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "G:\\environment\\python3.13.3\\python.exe",
+    "pid": 69312,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-09T22:24:36.953859+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "0ebf4ec73030a1065431f17856faefb334eb8f7ba57ae9ebd99fd59a689d18b6",
+        "size": 249
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

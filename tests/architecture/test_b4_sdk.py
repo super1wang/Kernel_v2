@@ -4,6 +4,12 @@ import unittest
 from tools.architecture import check
 
 class B4SurfaceTests(unittest.TestCase):
+    def test_b5_metadata_and_selection(self):
+        m,g=self.graph();self.assertEqual(m['sdk_version'],'0.1.0-dev.6')
+        self.assertEqual(m['stage'],'B5Subset')
+        self.assertEqual(m['targets']['Runtime']['implementation'],'B5Subset')
+        self.assertEqual(m['targets']['Control']['implementation'],'B5Subset')
+        self.assertEqual([],check.validate_manifest(m,g,'B5Subset'))
     def graph(self):
         manifest=check.load_manifest()
         graph={name:{'kind':t['kind'],'dependencies':t['dependencies'],'system_dependencies':t.get('system_dependencies',[]),'implementation':t['implementation'],'external_dependencies':t.get('external_dependencies',[]),'compile_features':t['public_compile_features'],'compile_options':t['public_compile_options'],'compile_definitions':[]} for name,t in manifest['targets'].items()}

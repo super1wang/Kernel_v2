@@ -33,7 +33,7 @@ add_library(ock_Runtime STATIC
   "${PROJECT_SOURCE_DIR}/packages/runtime/executions/host_execution.cpp"
   "${PROJECT_SOURCE_DIR}/packages/runtime/observability/logging.cpp")
 add_library(OCK::Runtime ALIAS ock_Runtime)
-set_target_properties(ock_Runtime PROPERTIES EXPORT_NAME Runtime OCK_IMPLEMENTATION_STAGE NativeSubset EXPORT_PROPERTIES OCK_IMPLEMENTATION_STAGE)
+set_target_properties(ock_Runtime PROPERTIES EXPORT_NAME Runtime OCK_IMPLEMENTATION_STAGE B5Subset EXPORT_PROPERTIES OCK_IMPLEMENTATION_STAGE)
 target_link_libraries(ock_Runtime PUBLIC OCK::CoreContracts PRIVATE bcrypt)
 target_compile_features(ock_Runtime PUBLIC cxx_std_20)
 target_compile_options(ock_Runtime PUBLIC "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
@@ -82,6 +82,7 @@ ock_production_target(Control packages/control/server/include
   packages/control/server/cursor.cpp packages/control/server/router.cpp packages/control/server/invoke_method.cpp packages/control/server/catalog_methods.cpp
   packages/control/observation/subscription.cpp packages/control/observation/subscription_methods.cpp packages/control/observation/list_method.cpp packages/control/observation/get_method.cpp
   packages/control/observation/observation_transport.cpp packages/control/observation/execution_method.cpp)
+set_target_properties(ock_Control PROPERTIES OCK_IMPLEMENTATION_STAGE B5Subset)
 target_link_libraries(ock_Control PUBLIC OCK::Runtime OCK::Dynamic OCK::ControlProtocol PRIVATE bcrypt)
 if(OCK_BUILD_B3)
   ock_production_target(ControlClient packages/control/client/include packages/control/client/client.cpp packages/control/client/intent.cpp packages/control/client/watch.cpp)

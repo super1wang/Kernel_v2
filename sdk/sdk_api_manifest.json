@@ -1,9 +1,9 @@
 {
   "format": "ock.sdk-api/1",
-  "task_id": "B4",
-  "sdk_version": "0.1.0-dev.5",
+  "task_id": "B5",
+  "sdk_version": "0.1.0-dev.6",
   "document_version": "3.3",
-  "stage": "B4Subset",
+  "stage": "B5Subset",
   "review_status": "Pending",
   "targets": {
     "Foundation": {
@@ -54,7 +54,7 @@
       ],
       "include_root": "packages/runtime/include",
       "namespace_prefix": "ock/runtime/",
-      "implementation": "NativeSubset",
+      "implementation": "B5Subset",
       "api_classification": "experimental",
       "public_compile_features": [
         "cxx_std_20"
@@ -255,7 +255,7 @@
       ],
       "include_root": "packages/control/server/include",
       "namespace_prefix": "ock/control/",
-      "implementation": "B2Subset",
+      "implementation": "B5Subset",
       "api_classification": "experimental",
       "public_compile_features": [
         "cxx_std_20"
@@ -459,7 +459,7 @@
       "target": "Foundation",
       "path": "packages/foundation/include/ock/foundation/sdk_version.hpp",
       "classification": "experimental",
-      "sha256": "defce91ad154e4acc63a1cd49631ba5f7b0154d12df966dadd12066985457c94"
+      "sha256": "9639b5f94f585eb3f21b5dd6b36ccf73e2a3d956e92669abf66fae9b6addf6a5"
     },
     {
       "target": "CoreContracts",

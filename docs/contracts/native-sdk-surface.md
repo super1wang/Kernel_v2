@@ -1,17 +1,16 @@
-# D1.06 NativeSubset SDK 表面合同
+# Native 与 B5 开发 SDK 表面合同
 
-B4 增量：当前开发 SDK 为 `0.1.0-dev.5 / B4Subset`；B1–B3 历史 Passed 保留，B4 正式状态以 progress 为准。Adapter::CpuPool 升为生产静态库，新增 ExecutorControl/CallbackWork、Scheduler、Resources 四个公开头；Runtime 目标自身仍保留 NativeSubset 最小闭包标记，新表面以同版 SDK 清单为准。BS 5.0.0 与 jsoncons/Asio/CLI11 均仅供私有实现编译，不导出其 target。下文最初设计来源保留为历史。
-
-
-状态：**Current Contract / Implemented**。依据 v3.3 A19、A20、A21.4–A21.6、A22 和 D1.06；Host/日志签名、所有权、错误与停止语义以对应现行合同为准，历史验收不改写。
+当前开发 SDK 为 `0.1.0-dev.6 / B5Subset`。B1–B4 历史 Passed 保留；B5/G3 状态以 progress 为准，SDK 阶段不是 Gate Passed。Runtime 与 Control 已实现 Submit、拥有结果、取消/父子/异步完成及真实观察协议，清单标记 B5Subset；其它目标保留其已实现来源。公开表面仍为 experimental，调用方必须重编译并核对组件与实际 Host capabilities。
 
 ## 当前生产选择与安装范围
 
-`OCK_BUILD_COMPONENTS=B4Subset` 为默认生产选择，依赖 acquisition 为 `CLI;CpuPool`，即已有 B3 组件加生产 CPU 池。`B3Subset` 保留 CLI 依赖和原组件选择，CpuPool 仍为 ContractBaseline 占位，安装清单不列其新头且 find_package 拒绝该组件。`Runtime` 要求 `OCK_DEPENDENCY_COMPONENTS=Foundation`，仅取得 expected；即使 BUILD_TESTING=OFF，也构建安装当前 Runtime 的 Scheduler/Resources 与 CoreContracts，不取得 thread_pool 或动态依赖。自由组合的 CpuPool 开关已移除，由 Profile 决定。
+默认 `OCK_BUILD_COMPONENTS=B5Subset`，依赖为 `CLI;CpuPool`；`B4Subset` 保留为同一组件组合的显式选择。`Embedded` 仅取得 `Foundation;CpuPool`（expected/thread_pool），只构建安装 Foundation/CoreContracts/Runtime/CpuPool；`Runtime` 仅取得 expected 并安装前三项，不装配执行器。`B3Subset` 保持 CLI 组件，其 CpuPool 仍是合同占位、find_package 拒绝消费。Profile 裁剪不改变 Runtime 默认空工厂的 Native 行为。
 
-同版 SDK 的版本/stage 为 `0.1.0-dev.5/B4Subset`；实际安装集合由 `OCK_INSTALLATION_PROFILE` 和安装清单的 `installation_profile/targets/headers` 表达。find_package 同时核对实际目标和 Profile。安装清单从唯一源清单投影，B3 的 CpuPool kind/implementation 使用其真实合同占位，不能误报静态生产库。具体决定见 [B4 ADR](../adr/ADR-b4-executor-resources.md)。薄客户端最小闭包及 Windows 系统链接要求保持原合同。
+版本与 stage 由公开版本头、CMake Config 和唯一 SDK 清单一致发布；`OCK_INSTALLATION_PROFILE` 与安装清单的 targets/headers 表达实际安装集合。实际前端组合附带 catalog/rpc-v1 schemas，`OCK_SCHEMA_DIR` 指向迁移后的安装目录；Embedded/Runtime 不安装动态 schemas。managed 消费者可通过独立 find_package 使用公开接口与安装 schemas，无需源码树中的内部头。
 
-新增表面均为 experimental，消费者须按 dev.5 重编译。Scheduler 仅保留窄 Executor 的弱引用，独立控制 owner 保留至排空；close 不等待已提交工作，其 captures 必须拥有异步寿命。内部 Ticket、完成摘要及资源 Phase 不替代 ExecutionRef、TaskOutcome、ActionPermit 或 B5 的 Submit/结构化寿命。资源 Lease/Waiter 通过 unique_ptr 转移所有权，单个 handle 的并发调用须由调用方同步；各 handle 之间的释放/取消由 ResourceManager 仲裁。
+B5 在同一 typed 分派上增加 owning Submit、wait/poll/result/cancel、父子/异步 Read 完成及有损观察；默认 Host 不因 SDK 阶段而自动取得异步能力，只有成功 Ready 的真实后端发布相应能力。BS、jsoncons、Asio、CLI11 均是实现依赖，不导出其内部 target。State/Storage/Restore 未实现部分不能因版本升级被声明可用。
+
+此次当前消费者的版本/stage 检查随 dev.6 更新，属于开发消费者适配，不称为未修改旧版本兼容证明。没有上一正式 stable SDK，清单仍保持 frozen_previous_release.exists=false；正式技术与机器验收另行绑定最终来源。
 
 ## 最初设计基线（历史）
 

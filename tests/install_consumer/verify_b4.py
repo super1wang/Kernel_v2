@@ -36,7 +36,7 @@ def main():
         data=p.read_text(encoding='utf-8').replace('\\','/').casefold()
         assert all(value not in data for value in (ROOT.as_posix().casefold(),original.as_posix().casefold(),'bs_thread_pool','ock_dep_thread_pool','jsoncons','ock_dep_asio'))
     manifest=json.loads((relocated/'share/ock/sdk_api_manifest.json').read_text(encoding='utf-8'))
-    assert manifest['installation_profile']=='B4Subset' and manifest['targets']['Adapter::CpuPool']['kind']=='STATIC_LIBRARY'
+    assert manifest['installation_profile'] in ('B4Subset','B5Subset') and manifest['targets']['Adapter::CpuPool']['kind']=='STATIC_LIBRARY'
     source=work/'consumer-source';shutil.copytree(ROOT/'tests/install_consumer/b4',source)
     new_headers=[('CoreContracts','ock/contracts/executor.hpp'),('Runtime','ock/runtime/scheduler.hpp'),('Runtime','ock/runtime/resources.hpp'),('Adapter::CpuPool','ock/adapters/cpu_pool/cpu_pool.hpp')]
     with (source/'CMakeLists.txt').open('a',encoding='utf-8') as cmake:
@@ -46,7 +46,7 @@ def main():
     command=['cmake','-S',str(source),'-B',str(work/'consumer'),'-G','Visual Studio 17 2022','-A','x64','-T','v143,version=14.44.35207','-DCMAKE_SYSTEM_VERSION=10.0.26100.0',f'-DCMAKE_TOOLCHAIN_FILE={ROOT}/cmake/LockedMSVC.cmake',f'-DCMAKE_PREFIX_PATH={relocated}']
     if cache.get('OCK_ENABLE_ASAN')=='ON':command+=['-DCMAKE_CXX_FLAGS=/fsanitize=address','-DCMAKE_CXX_FLAGS_DEBUG='+re.sub(r'/RTC[1su]','',cache['CMAKE_CXX_FLAGS_DEBUG']),'-DCMAKE_EXE_LINKER_FLAGS=/INCREMENTAL:NO']
     run(command);run(['cmake','--build',str(work/'consumer'),'--config',args.config,'--parallel','4','--','/nr:false'])
-    result=run([str(work/'consumer'/args.config/'installed_b4.exe')]);assert b'0.1.0-dev.5 B4Subset executor/scheduler/resources passed' in result.stdout
+    result=run([str(work/'consumer'/args.config/'installed_b4.exe')]);assert b'0.1.0-dev.6 B4Subset executor/scheduler/resources passed' in result.stdout
     maps=list((work/'consumer').rglob('installed_b4.map'));assert len(maps)==1
     text=maps[0].read_text(encoding='utf-8',errors='replace');assert 'ock_Adapter_CpuPool' in text and 'ock_Runtime' in text
     assert not any(name in text for name in ('ock_Data','ock_Dynamic','ock_Control'))
