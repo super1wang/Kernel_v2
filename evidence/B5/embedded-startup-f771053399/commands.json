@@ -1,0 +1,267 @@
+[
+  {
+    "argv": [
+      "G:\\environment\\python3.13.3\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "tests.tools.evidence.test_process",
+      "-v"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:34:59.634600+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 16,
+      "terminated_owned_job": false
+    },
+    "executable": "G:\\environment\\python3.13.3\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 5937613866116,
+      "qpc_frequency": 10000000
+    },
+    "pid": 39296,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:35:10.746781+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "cb77293b3e111bc16206eee042216e9f29ccdfe078daf0d56482fb0c417a6b24",
+        "size": 1138
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-6i9ghi32\\producer",
+      "--config",
+      "Release",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:35:10.751095+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 31,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 5937725066594,
+      "qpc_frequency": 10000000
+    },
+    "pid": 58604,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:36:06.862294+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "c3df38132f37034b547f9f9d501029d86b46c805913b74703dee1bd5f78cc23f",
+        "size": 721
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-6i9ghi32\\producer",
+      "--config",
+      "Release",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\embedded-startup-f771053399\\sdk-release"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:36:06.864942+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 5938286186455,
+      "qpc_frequency": 10000000
+    },
+    "pid": 39520,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:36:07.086117+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "2dd12132a76e06d79e3b2a836dc68feb818f8251cb9c1ad4478ae540bdac8752",
+        "size": 4955
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\tools\\footprint\\embedded_consumer",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\embedded-startup-f771053399\\consumer",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2\\cmake\\LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\embedded-startup-f771053399\\sdk-release"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:36:07.088910+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 5938288433660,
+      "qpc_frequency": 10000000
+    },
+    "pid": 20712,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:36:11.246525+00:00",
+    "raw": [
+      {
+        "path": "3-stdout.log",
+        "sha256": "9fa7b143e54d11cb48bca9f36e0cbd68849f8b7c927fed9c8da97c76f80b3031",
+        "size": 473
+      },
+      {
+        "path": "3-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\embedded-startup-f771053399\\consumer",
+      "--config",
+      "Release",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:36:11.249912+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 33,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 5938330035852,
+      "qpc_frequency": 10000000
+    },
+    "pid": 49092,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:36:17.780999+00:00",
+    "raw": [
+      {
+        "path": "4-stdout.log",
+        "sha256": "1edbe86e34688c3da07e9e07547794baf8618d52fbc01964e2b1e72f5f4d9e5b",
+        "size": 636
+      },
+      {
+        "path": "4-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "G:\\environment\\python3.13.3\\python.exe",
+      "-u",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\tools\\footprint\\embedded_startup.py",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\embedded-startup-f771053399\\consumer\\Release",
+      "--output",
+      "J:\\Code\\Kernel_v2\\evidence\\B5\\embedded-startup-f771053399\\samples"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:36:17.784252+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 26,
+      "terminated_owned_job": false
+    },
+    "executable": "G:\\environment\\python3.13.3\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 5938395376540,
+      "qpc_frequency": 10000000
+    },
+    "pid": 33060,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:36:19.448430+00:00",
+    "raw": [
+      {
+        "path": "5-stdout.log",
+        "sha256": "94f1c8ddd3bf7f8b81ba7ad1959805c602cbdf210f721ef33ca549e56915119d",
+        "size": 444
+      },
+      {
+        "path": "5-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

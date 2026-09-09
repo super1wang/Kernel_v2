@@ -72,6 +72,8 @@ def execute(argv, cwd, stdout_path, stderr_path, timeout, *, observation=None):
             'TotalPageFaultCount', 'TotalProcesses', 'ActiveProcesses', 'TotalTerminatedProcesses')]
 
     signatures = {
+        'QueryPerformanceCounter': ([ctypes.POINTER(ctypes.c_longlong)], w.BOOL),
+        'QueryPerformanceFrequency': ([ctypes.POINTER(ctypes.c_longlong)], w.BOOL),
         'CreateJobObjectW': ([ctypes.c_void_p, w.LPCWSTR], w.HANDLE),
         'SetInformationJobObject': ([w.HANDLE, ctypes.c_int, ctypes.c_void_p, w.DWORD], w.BOOL),
         'AssignProcessToJobObject': ([w.HANDLE, w.HANDLE], w.BOOL),
@@ -145,9 +147,14 @@ def execute(argv, cwd, stdout_path, stderr_path, timeout, *, observation=None):
             for handle in handles:
                 os.set_handle_inheritable(handle, True)
             line = ctypes.create_unicode_buffer(subprocess.list2cmdline(launch_arguments))
+            frequency = ctypes.c_longlong()
+            create_ticks = ctypes.c_longlong()
+            checked(k.QueryPerformanceFrequency(ctypes.byref(frequency)))
             if scope is not None:scope.pre_create()
+            checked(k.QueryPerformanceCounter(ctypes.byref(create_ticks)))
             checked(k.CreateProcessW(resolved, line, None, None, True, flags,
                                      None, str(cwd), si_pointer, ctypes.byref(pi)))
+            result['creation_clock'] = {'qpc_ticks': create_ticks.value, 'qpc_frequency': frequency.value}
             result['pid'] = pi.dwProcessId
             checked(k.AssignProcessToJobObject(job, pi.hProcess)); assigned = True
             result['process_tree']['assigned_before_resume'] = True

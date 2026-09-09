@@ -1,5 +1,6 @@
 #include "../consumer/channel.hpp"
 #include <cstdio>
+#include <optional>
 #ifdef OCK_FOOTPRINT_ALLOCATION
 #include "allocation.hpp"
 #endif
@@ -7,14 +8,14 @@
 #include "../../../examples/embedded_service/fixture.hpp"
 #endif
 struct Hooks {
-  footprint::Channel& channel;
+  footprint::Channel* channel;
 #ifdef OCK_FOOTPRINT_ALLOCATION
   embedded_allocation::Recorder recorder;
 #endif
-  std::uint64_t construction_begin=0,construction_ticks=0;
+  std::uint64_t construction_begin=0,construction_ticks=0,ready_ticks=0;
   void begin_construction(){construction_begin=footprint::ticks();}
-  void ready(){construction_ticks=footprint::ticks()-construction_begin;}
-  void stage(unsigned phase,unsigned owners,unsigned sentinels){channel.stage(phase,owners,sentinels);}
+  void ready(){ready_ticks=footprint::ticks();construction_ticks=ready_ticks-construction_begin;}
+  void stage(unsigned phase,unsigned owners,unsigned sentinels){if(channel)channel->stage(phase,owners,sentinels);}
   template<class F> void measure(const char* label,unsigned index,bool zero,F&& work){
 #ifdef OCK_FOOTPRINT_ALLOCATION
     recorder.measure(label,index,zero,std::forward<F>(work));
@@ -25,7 +26,10 @@ struct Hooks {
 };
 int main(int argc,char** argv) {
   try {
-    footprint::Channel channel(argc,argv);channel.stage(0,0,0);Hooks hooks{channel};
+    const bool startup=footprint::argument(argc,argv,"--startup",0)==1;
+    std::optional<footprint::Channel> channel;
+    if(!startup){channel.emplace(argc,argv);channel->stage(0,0,0);}
+    Hooks hooks{channel?&*channel:nullptr};
 #ifdef OCK_FOOTPRINT_ALLOCATION
     hooks.recorder.initialize();
 #endif
@@ -51,6 +55,8 @@ int main(int argc,char** argv) {
     std::printf(R"({"kind":"baseline","workers":0,"warmup":4,"local_calls":80,"released":true,"construction_ticks":%llu,"qpc_frequency":%llu})" "\n",
       static_cast<unsigned long long>(hooks.construction_ticks),static_cast<unsigned long long>(frequency.QuadPart));
 #endif
+    if(startup)std::printf(R"({"format":"ock.embedded-startup/1","ready_ticks":%llu,"qpc_frequency":%llu})" "\n",
+      static_cast<unsigned long long>(hooks.ready_ticks),static_cast<unsigned long long>(frequency.QuadPart));
 #ifdef OCK_FOOTPRINT_ALLOCATION
     return hooks.recorder.verified()?0:1;
 #else

@@ -9,6 +9,15 @@ from tools.evidence.process import execute
 from tools.evidence.common import save_json
 
 class ProcessTests(unittest.TestCase):
+    def test_T23_process_creation_clock_matches_child(self):
+        r=self.run_python("import ctypes;v=ctypes.c_longlong();f=ctypes.c_longlong();k=ctypes.windll.kernel32;assert k.QueryPerformanceCounter(ctypes.byref(v));assert k.QueryPerformanceFrequency(ctypes.byref(f));print(v.value,f.value)")
+        self.assertEqual(r['exit_code'],0)
+        ticks,frequency=map(int,(self.folder/'stdout.log').read_text().split())
+        clock=r['creation_clock']
+        self.assertEqual(frequency,clock['qpc_frequency'])
+        self.assertGreater(frequency,0)
+        self.assertGreaterEqual(ticks,clock['qpc_ticks'])
+        self.assertLess((ticks-clock['qpc_ticks'])/frequency,30)
     def setUp(self):
         fixture_root=ROOT/'build/evidence-fixtures'
         fixture_root.mkdir(parents=True,exist_ok=True)
