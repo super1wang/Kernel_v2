@@ -1,0 +1,707 @@
+{
+  "format": "ock.embedded-footprint-method/1",
+  "profile": "win-msvc-asan",
+  "configuration": "RelWithDebInfo",
+  "blocks": 6,
+  "architecture": "x64",
+  "asan": true,
+  "allocation": true,
+  "lto": false,
+  "cpu_workers": 2,
+  "logging": "default-memory-128",
+  "os": "Windows-11-10.0.27749-SP0",
+  "cpu": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel",
+  "logical_cpus": 16,
+  "python": "3.13.3",
+  "observation": "88bb3aed291cf2111744d453c287a66f883ec6ddec7d70db6b5113f0d4f9645f",
+  "sources": [
+    {
+      "path": "cmake/Dependencies.cmake",
+      "sha256": "39802a87f2820d316fb5dcc8240db96b77b80400dd06fff5f0e32873d13c2624"
+    },
+    {
+      "path": "cmake/DependencyProbes.cmake",
+      "sha256": "ebcc48ac4d7b3f2cc171544672baae567a71c918e73f3ef5579cbc90ac7006ff"
+    },
+    {
+      "path": "cmake/LockedMSVC.cmake",
+      "sha256": "ed0e029ec8e77653b2db779059b8b3483e600e8b27027c660ba01076ce94b3a3"
+    },
+    {
+      "path": "cmake/msbuild-user/README.md",
+      "sha256": "185a7de1c71b550805f74d6b66324410066b271bd2d3497cc2ce52bf136e4615"
+    },
+    {
+      "path": "cmake/msvc-validation-tools.json",
+      "sha256": "e8697b7e3597a578de41e051b29e4c0893a5b3c7c5733669b9f4bc12b2f81a94"
+    },
+    {
+      "path": "cmake/OCKConfig.cmake.in",
+      "sha256": "f6bc2a9381d99de8809c4b49a024105d31d69034b6087f626fbab4eea7bc937d"
+    },
+    {
+      "path": "cmake/SDKInstall.cmake",
+      "sha256": "13d1101bdabb8803c5aa98d0aa7fc5a9de837b67dd83f63846e29e3cdd7084c1"
+    },
+    {
+      "path": "cmake/TargetDependencies.cmake",
+      "sha256": "34b1a7b96b7f1e7b80a242dd6d44860301eac0e53c7ae45431685bb150fa01b5"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "sha256": "b6b1542af61f7e4acb9ba5e7269a1d942724b35722a7e9fab44f5cdb6061042c"
+    },
+    {
+      "path": "CMakePresets.json",
+      "sha256": "f58398635bf46904c23cf387a2b01a4bf9db69fb08037d30659cc48f1b1779f6"
+    },
+    {
+      "path": "dependencies.lock",
+      "sha256": "ac03ac1d4cc82ea23403be553ed896b4f5540e9abf12f29311f4883f1711b822"
+    },
+    {
+      "path": "docs/contracts/embedded-footprint-method.md",
+      "sha256": "e19bd3bf6e36f4efd386b76dfaebad4b3517913115bd1c48f982fafd6c852dc8"
+    },
+    {
+      "path": "examples/embedded_service/CMakeLists.txt",
+      "sha256": "2f0789db3fab28147f32a7c51db2b77213e7af5c553aaea8583fecb60139fb38"
+    },
+    {
+      "path": "examples/embedded_service/fixture.hpp",
+      "sha256": "339a7bc9d33cfa5aea41abcd3313a01ef0b2bb7bd2de0bb610ffcb9425319d2c"
+    },
+    {
+      "path": "examples/embedded_service/main.cpp",
+      "sha256": "e91561372d0dfb38edf0362b48a7ff24bfb4204f6ee585ce7e74a81d4a02b0d4"
+    },
+    {
+      "path": "examples/embedded_service/README.md",
+      "sha256": "53019844f3e6ff0e5a486f5b91266aaaeba64ed65261ff623ce7aa7fe320e21c"
+    },
+    {
+      "path": "packages/adapters/cpu_pool/executor.cpp",
+      "sha256": "a9f88a16fcf2e88e64d10587a938f4b04ded8ab1f9a34b93d70cc74b94ae0bb4"
+    },
+    {
+      "path": "packages/adapters/cpu_pool/include/ock/adapters/cpu_pool/cpu_pool.hpp",
+      "sha256": "0e345904dc6b1cf3ccedfe9406c123df2ebd933e68eacf984bb0b78c3d7cdad7"
+    },
+    {
+      "path": "packages/adapters/local_ipc/include/ock/local_ipc/pipe.hpp",
+      "sha256": "01c215e9a4e03a6c3e4e8a76ce57d04ce7bb4f0a45236796ab1a84c53b3b1645"
+    },
+    {
+      "path": "packages/adapters/local_ipc/native_security.cpp",
+      "sha256": "56b64cd6705a9cb6260771ab93102deb025a4a141833523d12a2e950af4f4bfb"
+    },
+    {
+      "path": "packages/adapters/local_ipc/native_security.hpp",
+      "sha256": "d7687000d8e221aaffcaac4abd81dcc82788c914cbf283ec271861269dcd68ef"
+    },
+    {
+      "path": "packages/adapters/local_ipc/pipe.cpp",
+      "sha256": "d756e4f72d225670046c8f9b3f4168188350bef73b14c7a5e6c6b745956f5b62"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/context.hpp",
+      "sha256": "63be9cd8d366127be9a859b7e90bab88cb3a7ec5d58dac0df6702cba9a228682"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/executor.hpp",
+      "sha256": "02e0d21f666d5df04d8849878650ec20433098c9be149d28f3d4c922f3ee5228"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/identity.hpp",
+      "sha256": "2c42e99c22301baeea4e1af5c45faee9c578e66b9f7f0d8c2eaf370bac54dbad"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/logging.hpp",
+      "sha256": "efbaf36bbb24fbbc4edbe55a576e24b27ffef9a3b8f25dd30fbe043713a3b7a7"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/observation.hpp",
+      "sha256": "4cdf03dd9575d2c540e7ab2945ded79b8f946f89c724118f264550fa9e46adfa"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/operation.hpp",
+      "sha256": "661eca4fa9fd1b5395e7bffc70e15a9ed3537f647c48f104813170f808e4810a"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/outcome.hpp",
+      "sha256": "105b3526f219df35dbb0947ac1b5277f6a37e1ceb8c91898067db8ec1b809eba"
+    },
+    {
+      "path": "packages/contracts/include/ock/contracts/ports.hpp",
+      "sha256": "3e1b21bb1ce2dcb419181672bead2be07a4885be5e36d73d802f0f8ef556d2f4"
+    },
+    {
+      "path": "packages/control/client/client.cpp",
+      "sha256": "9f6c67e15801923fbc8f29233e05a8221e09fe36384bdd153f574668a704e89e"
+    },
+    {
+      "path": "packages/control/client/include/ock/control_client/client.hpp",
+      "sha256": "5faf81f7b2d773d57d81a60394c983c7ca5cec83210c6fe991cdb68bb1577fa8"
+    },
+    {
+      "path": "packages/control/client/include/ock/control_client/intent.hpp",
+      "sha256": "5c5f6286d30d10f6aa6ee1ad5fbf1285f6f7e8d0ac1a3880309c775067ecec7c"
+    },
+    {
+      "path": "packages/control/client/include/ock/control_client/watch.hpp",
+      "sha256": "67284d409abc59c63a2bc54bf74f9c65e737de89e85b7f065e97f3f433ba292c"
+    },
+    {
+      "path": "packages/control/client/intent.cpp",
+      "sha256": "adfd0904005166cc2425f08763cc36510bd9136ee1444cd6a6f891f25538da67"
+    },
+    {
+      "path": "packages/control/client/watch.cpp",
+      "sha256": "ac4bcd38f4510668b3ffdabdb93fb4f8c921bc358aa3d87235daaa9cba75052b"
+    },
+    {
+      "path": "packages/control/observation/execution_method.cpp",
+      "sha256": "1ba86132784e747bb9ff7a1ccc4443f4e33eebc52096ffea76889ab767a976a4"
+    },
+    {
+      "path": "packages/control/observation/get_method.cpp",
+      "sha256": "0784ab7843efdd740c5143762013a4d7feba1cd6038d68d8e3e2357430d76395"
+    },
+    {
+      "path": "packages/control/observation/list_method.cpp",
+      "sha256": "5054605dc102e3ab7f8b17140821cef191e458a5b05a71519129a779066cf96f"
+    },
+    {
+      "path": "packages/control/observation/observation_transport.cpp",
+      "sha256": "a4602aa18d6e042a4fe2277ed7d2fcf230ebbaffbbb0f9ec64391b5f31f59d19"
+    },
+    {
+      "path": "packages/control/observation/query_lifetime.hpp",
+      "sha256": "b72518b62b2cf2d921aa1bee8e1466748323324bf9ac467a884746e7a2798402"
+    },
+    {
+      "path": "packages/control/observation/subscription.cpp",
+      "sha256": "540822a462817b8e520d6a0bf2d1a16f78683d1f4f7dbc08aba8b16176ce381c"
+    },
+    {
+      "path": "packages/control/observation/subscription_methods.cpp",
+      "sha256": "cef88d8a651ac45dc89091cb0c81ee45fed603db7bdf926a29a3ff5037697566"
+    },
+    {
+      "path": "packages/control/observation/summary_wire.hpp",
+      "sha256": "36137a269dc3fe8e63259c5223d1f21291e6375d4c73cfd8e6cd3435914df744"
+    },
+    {
+      "path": "packages/control/protocol/include/ock/control_protocol/observation_wire.hpp",
+      "sha256": "b857cf221cee48735170a0631f847ca183b4599a52782fe1765ade63d4d75cda"
+    },
+    {
+      "path": "packages/control/protocol/include/ock/control_protocol/outcome_wire.hpp",
+      "sha256": "eb454080bc03982ca922d89214ccb5f699ae465a3f8307ab8a92f3fd69cd44dc"
+    },
+    {
+      "path": "packages/control/protocol/include/ock/control_protocol/protocol.hpp",
+      "sha256": "51a04c3ba3c2e731d18f8d0a8e2f190795e44816cb3f305cfd82ff385b017639"
+    },
+    {
+      "path": "packages/control/protocol/include/ock/control_protocol/transport.hpp",
+      "sha256": "2f1f8a77ef03fd5f1d2982d8e84627ed19aaeb38ff915e2e8baacb0633a9ca3e"
+    },
+    {
+      "path": "packages/control/protocol/observation_wire.cpp",
+      "sha256": "b2252afd8fc5ae52fc5fa69fa99360b3a80060be468eca340532d3ac7b293a02"
+    },
+    {
+      "path": "packages/control/protocol/outcome_wire.cpp",
+      "sha256": "1cd00577157ce101bcb1f52b84203b29fe9a0677bda5d346ebd83eedbff53193"
+    },
+    {
+      "path": "packages/control/protocol/protocol.cpp",
+      "sha256": "ce3a02c34e023c18debfe34a0b33c14a878d6f3f38ceb77b2f9e88a67eb157a4"
+    },
+    {
+      "path": "packages/control/server/catalog_methods.cpp",
+      "sha256": "d5a0ab41e739a76140eabfbf98e3fdb3caffa9b3988d3306719819e25c85d450"
+    },
+    {
+      "path": "packages/control/server/cursor.cpp",
+      "sha256": "e9b7bb4deae4bc6bdfba17d7c643cacb6d26efeba5040e07703d88d10b495a2c"
+    },
+    {
+      "path": "packages/control/server/include/ock/control/catalog_methods.hpp",
+      "sha256": "657c5882f0637402f72750c64a08465eac576f5822d631f03166c1ca410ae07b"
+    },
+    {
+      "path": "packages/control/server/include/ock/control/cursor.hpp",
+      "sha256": "f75939e57f4193b97a15ce8f127156c7e2e9322910cc7911ecbbbe7998c1f6e2"
+    },
+    {
+      "path": "packages/control/server/include/ock/control/execution_method.hpp",
+      "sha256": "35b839de6aec518184593174b89a01db29f58dab016e9f6174a0e3264c262652"
+    },
+    {
+      "path": "packages/control/server/include/ock/control/get_method.hpp",
+      "sha256": "a2e512152b5cba7064f1fa5d3c8cc2d238940eed89d0b1c4f7dc4fa60f754367"
+    },
+    {
+      "path": "packages/control/server/include/ock/control/invoke_method.hpp",
+      "sha256": "ef7a17008fd1341a8d3a9cca71ba826a845a062db5a8538b4526ba516fb97ebf"
+    },
+    {
+      "path": "packages/control/server/include/ock/control/list_method.hpp",
+      "sha256": "a3428f8fefccc818a6381f56794abe574f805604b8d3cc9962cfe2dbb684d736"
+    },
+    {
+      "path": "packages/control/server/include/ock/control/observation_transport.hpp",
+      "sha256": "96061b1a794e6bb95c5d0380d7567273e5f9d547ffb001571c4e56a524901eb0"
+    },
+    {
+      "path": "packages/control/server/include/ock/control/router.hpp",
+      "sha256": "a2fe473b7320b94552b8582b62c3bd60100efb0d2bfd9bf0c52e606b44d82f62"
+    },
+    {
+      "path": "packages/control/server/include/ock/control/subscription.hpp",
+      "sha256": "5a5988388afa6d6c97f57b23b0215080f569fb44a3ca63bbe4ce6c7a8d3bddcd"
+    },
+    {
+      "path": "packages/control/server/include/ock/control/subscription_methods.hpp",
+      "sha256": "e469758ec2504c512e2fb81fe1d54ecfd3ab8b1113933b0af98aecaeeb515da6"
+    },
+    {
+      "path": "packages/control/server/invoke_method.cpp",
+      "sha256": "34d39fbdf44b4eba453a448c87ea36cc536a7f6b773170f6e88b5f3c4d931c57"
+    },
+    {
+      "path": "packages/control/server/router.cpp",
+      "sha256": "ff9d842bafb8e5dd45c108dd69ca5474a7dec73db37c6cac5282dd9aad10f814"
+    },
+    {
+      "path": "packages/dynamic/binding/schema.cpp",
+      "sha256": "b01dbb0ac10a513751de9953b4b27a0565c4aeda9d580b5f55fa26108d4e58e4"
+    },
+    {
+      "path": "packages/dynamic/catalog/catalog.cpp",
+      "sha256": "5324f34559af82922dbffa0569740c208a7b428e01cdb721b203016c168e8b34"
+    },
+    {
+      "path": "packages/dynamic/data/backend.hpp",
+      "sha256": "49f02cacfccdfa229e236a56b0b9b64e5be72dbf92231cd05a4f71b3cd6076d3"
+    },
+    {
+      "path": "packages/dynamic/data/include/ock/data/payload.hpp",
+      "sha256": "daef756c2c6c6a8e188b6b36c905a7f87bbdecb521867bf8b608be2acbf205d8"
+    },
+    {
+      "path": "packages/dynamic/data/payload.cpp",
+      "sha256": "a1f2d1512abb7891f5e70fdbe742c0781bf6feb69bb336f24c87c2f57581b823"
+    },
+    {
+      "path": "packages/dynamic/include/ock/dynamic/binding/bound_operation.hpp",
+      "sha256": "ebbb7ff7d0c1606719f486592bc5d26107fb0e35d39173911872f1e98d58b828"
+    },
+    {
+      "path": "packages/dynamic/include/ock/dynamic/binding/record.hpp",
+      "sha256": "ba372cd6a187ced27a4f70e1ac3c5eef9168d589b4024a521ef9ab4894debe67"
+    },
+    {
+      "path": "packages/dynamic/include/ock/dynamic/binding/registered_record.hpp",
+      "sha256": "9ac1ad6fed898df1bda23186eecfc4cbadd501719f576f098d6a327f2542f462"
+    },
+    {
+      "path": "packages/dynamic/include/ock/dynamic/binding/schema.hpp",
+      "sha256": "e1549acaf023844729dee6ccb3a7adcaf6477fada398abf0b6edd792cbd137db"
+    },
+    {
+      "path": "packages/dynamic/include/ock/dynamic/binding/type_contract.hpp",
+      "sha256": "822307550244bfb4cfbae6e385bafe02d939245638dfdd44810b3225b532ba14"
+    },
+    {
+      "path": "packages/dynamic/include/ock/dynamic/catalog/catalog.hpp",
+      "sha256": "0dedfed5bb0a1a78cfaa94e6a5199cb86d7f28910b6310dba70fb56d4ac42d85"
+    },
+    {
+      "path": "packages/foundation/include/ock/foundation/foundation.hpp",
+      "sha256": "1e3325f6077dd42d2f3ec8460d1eb4eeeca169c668975c41fb90556773940ae0"
+    },
+    {
+      "path": "packages/foundation/include/ock/foundation/sdk_version.hpp",
+      "sha256": "9639b5f94f585eb3f21b5dd6b36ccf73e2a3d956e92669abf66fae9b6addf6a5"
+    },
+    {
+      "path": "packages/runtime/executions/execution_identity.cpp",
+      "sha256": "7d379966260b6a12000990d1e65ffd8aecf9d6ef8adf5e87b7ba446112842ee9"
+    },
+    {
+      "path": "packages/runtime/executions/execution_observation.hpp",
+      "sha256": "9b260c311139439185a1450f3a88b07541a7de33ee0e7045b4bf657fec8dcfb9"
+    },
+    {
+      "path": "packages/runtime/executions/execution_queries.hpp",
+      "sha256": "4efc94748f45837f7887d4d0a9e4cee12d5903791124b219614054b210485cff"
+    },
+    {
+      "path": "packages/runtime/executions/execution_service.hpp",
+      "sha256": "2fbc4e7f080f164ae024defbb4378a1d8b0f09a4d7cc673cfcdeef0ca1c8bbc0"
+    },
+    {
+      "path": "packages/runtime/executions/execution_table.hpp",
+      "sha256": "f690b0fde0477d8581c35e8db6105f3b675901e3cf34f25566efd5c3ddf1b498"
+    },
+    {
+      "path": "packages/runtime/executions/host_execution.cpp",
+      "sha256": "3ebb8e8bcc1a2cf222b86043fbc9e72a3a17f4b6351c4c6e3e0346bacf15c863"
+    },
+    {
+      "path": "packages/runtime/executions/host_execution.hpp",
+      "sha256": "c1d5cb0eb4aa0440a5c3d0eb3b7877510175cd3b4ae2776884f4e5c8593d1d65"
+    },
+    {
+      "path": "packages/runtime/executions/invocation_access.hpp",
+      "sha256": "ad9651fb0fa3289ff8d4c8864896f0be63a48d2b7e8136284c032fd0b2e6c305"
+    },
+    {
+      "path": "packages/runtime/executions/invocation_record.hpp",
+      "sha256": "df6f7112eba514e471d63aa5ab1c8e36ce65b3ef488f5139e832139ffb21ba5e"
+    },
+    {
+      "path": "packages/runtime/executions/managed_control.hpp",
+      "sha256": "50dc1cf7c6efeda01125397f3e22522ba58665573aa5091342d06681fe4b8c5c"
+    },
+    {
+      "path": "packages/runtime/executions/managed_execution.hpp",
+      "sha256": "443992b5ce04135bb6a23404ab05d2345e05b4843f3535f70a1bd7e0aeee7c64"
+    },
+    {
+      "path": "packages/runtime/executions/required_completion.hpp",
+      "sha256": "d210cab041cff205c421d12ddac29dd6d4a6940741de666ae99ca8839d752340"
+    },
+    {
+      "path": "packages/runtime/executions/resource_wait_binding.cpp",
+      "sha256": "4f0bb5fb2c1aaa6052605bb0741a3be62012314fbb2a0db29302859cd0fbfb83"
+    },
+    {
+      "path": "packages/runtime/executions/resource_wait_binding.hpp",
+      "sha256": "6e5974dba6e6aada883b2d088fb6464b1229de7369c33443e455429cd76b2071"
+    },
+    {
+      "path": "packages/runtime/host/host.cpp",
+      "sha256": "dd10f7fdc1a446b6692f961c7bf89c2fedd4eb54f2c443219ccf0dffb34b7349"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/detail/host.hpp",
+      "sha256": "d4fda02152e3e9c3dee4ec61d7c698bc8dee28d4b1ed3391c99115f2eae541f2"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/detail/invocation.hpp",
+      "sha256": "1f80a9ccb71e7d4f8f0d0037552acbf3d9fca0ae2bf6e56ff425fffe56a98729"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/detail/private_bridge.hpp",
+      "sha256": "1162b82bb220cb20219de6f76e68ecd7ad3fd8770e1f1774d919c0af96e85bad"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/host.hpp",
+      "sha256": "022740eb91ee1b0f2ca7bc988f2a143f066ee35e73f807bba06b658fc20b17d3"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/logging.hpp",
+      "sha256": "fea2a70741172afe7f2d6f690176de02976ab1be03aac2fab011395877aa320c"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/native_types.hpp",
+      "sha256": "ef746141206e22f6eacb016ebf5f471c743a24520d63b099faa3b22eef610322"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/policy.hpp",
+      "sha256": "87900168f2ac084e0b65416320ced3e7f1270cb2f68aeeff82f51ec9a4da7e39"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/registry.hpp",
+      "sha256": "8840691318a8963cc2dcaedfafbc032819f4ec9c1c57e0da82df70e80c1787b8"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/resources.hpp",
+      "sha256": "5cddc6d731eca0d30029fe6585b18f1a2a018d815e49fafc5902a3994760516f"
+    },
+    {
+      "path": "packages/runtime/include/ock/runtime/scheduler.hpp",
+      "sha256": "96771b63158d6d6914bb2bddbc97c007ca217594659a7e097b67e8acf9ef0eb3"
+    },
+    {
+      "path": "packages/runtime/invocation/invocation.cpp",
+      "sha256": "efc567012207f2df8c4a895db7c452ba08fa52cab020542ead51b45b58f7d0ce"
+    },
+    {
+      "path": "packages/runtime/invocation/invocation.hpp",
+      "sha256": "77f16f55a2224e8ac2c15425fe5cc90da35bf59fde0e6fa27edeb62c80abc6c6"
+    },
+    {
+      "path": "packages/runtime/invocation/private_bridge.hpp",
+      "sha256": "8cb06eb5a4bbd0c851be98830a1db06ba3bcba88a4950bc3cb2773a96586c8e3"
+    },
+    {
+      "path": "packages/runtime/invocation/validation.hpp",
+      "sha256": "51266d838473c5a9d2dde8f80b7fc77f07e59142319bcab1f7313569b66292cd"
+    },
+    {
+      "path": "packages/runtime/observability/logging.cpp",
+      "sha256": "a28ab62996a4360eb0907dff6cff65ead4b1ce5939b0f3ed7bd2bc3887c79067"
+    },
+    {
+      "path": "packages/runtime/policy/policy.cpp",
+      "sha256": "38f5f301aa3cd5b3b3857cb8d1e02b4690668660940fe249313f039a6725b411"
+    },
+    {
+      "path": "packages/runtime/policy/policy.hpp",
+      "sha256": "a867c850a0d15896777431d67ae547c3a2fc087d6f8b1c5b029150f100752bf4"
+    },
+    {
+      "path": "packages/runtime/policy/validation.hpp",
+      "sha256": "817368290acf57cac174999cacb3c0ef3f12c34119f0aa1ccceb80081bcfad36"
+    },
+    {
+      "path": "packages/runtime/registry/registry.cpp",
+      "sha256": "49441e7d4c3b4bab578ffcda03b06a590c2eba852cf88769068edb25a3f3feea"
+    },
+    {
+      "path": "packages/runtime/registry/registry.hpp",
+      "sha256": "d7b14becf0811e70bf0580546363c6e863abfa0297b5c3ec5de9eb40001c62eb"
+    },
+    {
+      "path": "packages/runtime/resources/resources.cpp",
+      "sha256": "c200c4392613d8034afd58465cdbabb2f1cc716d87bda47d865255f47f812d23"
+    },
+    {
+      "path": "packages/runtime/scheduler/scheduler.cpp",
+      "sha256": "e30a139aa9930a2cd6197c379cb323543228fb3fb38126d2018f5c68acf85304"
+    },
+    {
+      "path": "sdk/sdk_api_manifest.json",
+      "sha256": "b9e1c77910daba1c757624c72c5af65aefd832a1b6d93985a58bfaf71487f3cb"
+    },
+    {
+      "path": "tests/contract/native/allocation_cases.hpp",
+      "sha256": "ce92b0b29aad20668740fd65660a3b93e3df404379cc2973dfbd07ac55cef8b7"
+    },
+    {
+      "path": "tests/contract/native/allocation_probe.cpp",
+      "sha256": "2635f4fa5cbb00d02718f7647b0904defe9ce2fa18438ce8cf7920adc9847cc1"
+    },
+    {
+      "path": "tests/contract/native/allocation_probe.hpp",
+      "sha256": "69cada784e0d8646d0e1fc42577ef083ef4b20a269b71bc8bce5c8e314d872ac"
+    },
+    {
+      "path": "tests/contract/native/async_cases.cpp",
+      "sha256": "19463a715c1908e19ac1d0634ce7e3a133d4b6615562d7ef28005de84cf141d2"
+    },
+    {
+      "path": "tests/contract/native/CMakeLists.txt",
+      "sha256": "5660ebd2a0554e76cdb8270a73ba59bf3778be701af3d4d4605e6d17375281b0"
+    },
+    {
+      "path": "tests/contract/native/combined_cases.cpp",
+      "sha256": "8e0d3e7f3ee4ac5439877010cae21d9c88e00f32fbef890ff0e38d0af318f2ee"
+    },
+    {
+      "path": "tests/contract/native/develop.py",
+      "sha256": "00792050fde57eb27595c1bd279c7e901d13b62b0d04a3c5c747bb8cd4ee5210"
+    },
+    {
+      "path": "tests/contract/native/discover.py",
+      "sha256": "3a9190cecfc896f6d1f06313cddf25c6cd08e328827a95cdf6b1e34474a41af4"
+    },
+    {
+      "path": "tests/contract/native/execution_service_cases.cpp",
+      "sha256": "2d95e73993a219d112c7a8c872c1b1d48a5efcdf81db914ca4d4ed6fa2be9e49"
+    },
+    {
+      "path": "tests/contract/native/execution_service_cases.hpp",
+      "sha256": "1670f3d6c90bc47f129ac3ed4b92b3b805db56d01a2f8ce967720bee8d4b8730"
+    },
+    {
+      "path": "tests/contract/native/execution_table_cases.hpp",
+      "sha256": "bfabd4ac922cf8c231426e59bb8d16acd78060fdb28d257bb4d67e0fd9376325"
+    },
+    {
+      "path": "tests/contract/native/fixtures.hpp",
+      "sha256": "70ea4f5ea260ee4c73e75dbd93dc03bd707a01831231fdfc22e74eb17e31dda7"
+    },
+    {
+      "path": "tests/contract/native/integrate.py",
+      "sha256": "250cdd915b47f74557823b914c320b69c10dd14a31550ac9f532b10df747dd65"
+    },
+    {
+      "path": "tests/contract/native/lifetime_cases.hpp",
+      "sha256": "aa21c0d8148bd5a5c009bf8ecd6e8b8bd93a28fc900f6ac7748a596867fffa1b"
+    },
+    {
+      "path": "tests/contract/native/managed_cases.hpp",
+      "sha256": "8e96e79a943f3bcc3696cbaf8b2866c35ca33f2960f853e0bc93ea0e0739e480"
+    },
+    {
+      "path": "tests/contract/native/native_tests.cpp",
+      "sha256": "7f5843f78bf79d7db005d0ab76c4f88985bc32268b12af89876f560e2d9af834"
+    },
+    {
+      "path": "tests/contract/native/observation_cases.cpp",
+      "sha256": "f18c9d60682cec91ff4a0d8f58cd1ac54c86800034a62eeaec479e46cf5e78f4"
+    },
+    {
+      "path": "tests/contract/native/pipeline_cases.hpp",
+      "sha256": "53a2bce7f5febba10f13a467382cda7d142d7e89653352dd6b7b40f8e7287a90"
+    },
+    {
+      "path": "tests/contract/native/policy_inline_cases.hpp",
+      "sha256": "a6ac7ede4f0e91d2e04958e1ea1f56430e083444a5715e2ce2766e5fc5170883"
+    },
+    {
+      "path": "tests/contract/native/session_cases.cpp",
+      "sha256": "e1ded7464ea6e1cea218f64c6e71ad902175cb1ad41d6baa2ce7d69df240882f"
+    },
+    {
+      "path": "tests/contract/native/shape_cases.hpp",
+      "sha256": "1e2bbf26c4efcd0b5b7c5163f5b1c76b3670a5cb1f8c272d242b7d7274bb7911"
+    },
+    {
+      "path": "tests/contract/native/structured_cases.cpp",
+      "sha256": "5dee44e44fba04c7edfe08a752235a0db534bcaf2024bc5988c9b56571479554"
+    },
+    {
+      "path": "tests/contract/native/value_cases.hpp",
+      "sha256": "153f47af9950848b3d7d2ff45ea2702649fba5971700dc74287432c19ddede00"
+    },
+    {
+      "path": "tests/contract/native/verify_children.py",
+      "sha256": "6a57d4f6bc8f4f3ed63ce4f093a219eef68229aa4be9759d3ce3e03c9066965b"
+    },
+    {
+      "path": "tools/evidence/common.py",
+      "sha256": "1026f8e9ce8a6ca79d019e15f7cd9f810180423e88aa58f9c4e5aa4d145e221b"
+    },
+    {
+      "path": "tools/evidence/process.py",
+      "sha256": "25f73b5fec06f85df18ab47e70f44c07f94b1531d55f24882298e97defbeea69"
+    },
+    {
+      "path": "tools/footprint/allocation_develop.py",
+      "sha256": "7ca7ef31d9c8dca70c2407773b4a914c12c0d8d8ab70f6239513f4d4a0bd1282"
+    },
+    {
+      "path": "tools/footprint/allocation_record.py",
+      "sha256": "120585333eb929743e7626cd19f5f6fa410fe6d56b87e02244a57a02e8ebfc5d"
+    },
+    {
+      "path": "tools/footprint/analyze.py",
+      "sha256": "2707dec624a56abca7e9b44614950a9703e256d985e47c999b7c5018a3b3e0f7"
+    },
+    {
+      "path": "tools/footprint/configuration-development.json",
+      "sha256": "4d735d553c4a2968ae0bc19aeb46ddca4bfc3590656fc3ee257b39bcc74429ea"
+    },
+    {
+      "path": "tools/footprint/consumer/allocation_trace.hpp",
+      "sha256": "7e8eeb5aec4acea0944e1dae70f564f0ca29c27cfd8cff044fbc7e925af9353f"
+    },
+    {
+      "path": "tools/footprint/consumer/baseline_fixture.hpp",
+      "sha256": "08ca7126eb6cb6720185aa2e7f0629ccdc0e8c385e8d8ffa2a728c381757768b"
+    },
+    {
+      "path": "tools/footprint/consumer/channel.hpp",
+      "sha256": "30cea85d5563f603fe6935acb69481b73ffd74e9e2048c8d08c1f73a151fba08"
+    },
+    {
+      "path": "tools/footprint/consumer/CMakeLists.txt",
+      "sha256": "1b406c7b4dad5176597216b8b05a2533231094f5f3ba3336811d0d445b25bc74"
+    },
+    {
+      "path": "tools/footprint/consumer/native_fixture.hpp",
+      "sha256": "6977c302e283b68b5ca53b518df25eca170d42de05b2587b0a2b0963ed1e0389"
+    },
+    {
+      "path": "tools/footprint/consumer/native_value.hpp",
+      "sha256": "57b6e450ed5f28aa30f29bf1965055480e3358ae33c6d325def25c4727b157f4"
+    },
+    {
+      "path": "tools/footprint/consumer/pair_main.cpp",
+      "sha256": "e17a23b63e04ba30a24fb657d51a88e8e03870ff9b51e236fc5bf96691f08a67"
+    },
+    {
+      "path": "tools/footprint/consumer/thread_origin.hpp",
+      "sha256": "0b0ed7f5a48861b09b6a51dcfaf57d8c0c17d891b0f80ccb1af030e1051516e9"
+    },
+    {
+      "path": "tools/footprint/controls/calibration.cpp",
+      "sha256": "edcac651533bbfac8cbb57387b4ebb0e225470f5c9d5aa7e307883fa67fd5e62"
+    },
+    {
+      "path": "tools/footprint/controls/required.cpp",
+      "sha256": "9d96040f24c83abf05cfbc4b0e53979d67f63697a615fa18c8c9def6ee97bb94"
+    },
+    {
+      "path": "tools/footprint/diagnostic_develop.py",
+      "sha256": "87b2bb17b5f306182d05a753faa81b93611db2a2eaafceca51ae92c715a9ab1f"
+    },
+    {
+      "path": "tools/footprint/embedded_consumer/allocation.hpp",
+      "sha256": "59a6a2d8043f65c7064e24d70363a30a5173dae37b9fe801a95e86137df569a2"
+    },
+    {
+      "path": "tools/footprint/embedded_consumer/CMakeLists.txt",
+      "sha256": "2e4599f4e13949717f78c59deaeea4ee3ead5db9d8483cdc516d7182f5b24a17"
+    },
+    {
+      "path": "tools/footprint/embedded_consumer/main.cpp",
+      "sha256": "211c16b7a648a33200e54ff8695844322f0caaea6b41fef9c50249d30356aec4"
+    },
+    {
+      "path": "tools/footprint/embedded_formal.py",
+      "sha256": "d2ab90c70d0242b0fff1fa0686d0d50da3419742e045d6c424f6026a04e2e89c"
+    },
+    {
+      "path": "tools/footprint/embedded_pilot.py",
+      "sha256": "9e67e5be3381a6d80d1ef5bed4a7b3d69fbcfb8b89d266d5d1a18bd7dc4be439"
+    },
+    {
+      "path": "tools/footprint/embedded_startup.py",
+      "sha256": "65fb4c4c3d51fb863c741223d82ba82ea40e8426a06966fd40bcc1c868bfcaa6"
+    },
+    {
+      "path": "tools/footprint/formal.py",
+      "sha256": "40005e378764374a53350a3423a334e8ab75f414cd840eb911c659096544a882"
+    },
+    {
+      "path": "tools/footprint/method_checks.py",
+      "sha256": "4fce3850b4adc4942ab8dd52ac2346eadbba9773f360c953ca4d9fb1fe7d124c"
+    },
+    {
+      "path": "tools/footprint/owner_controls.py",
+      "sha256": "57dbcfb9256ca3343b188c1c31dcf7e1b4df72947fbac5e933d05f590d4d6496"
+    },
+    {
+      "path": "tools/footprint/pair_develop.py",
+      "sha256": "026ea447fe6a19e38dfac2788e226e73edb04d90dd2adde0d93ee5685e04aeeb"
+    },
+    {
+      "path": "tools/footprint/pair_record.py",
+      "sha256": "bff6d0d2e380d9e153d3ec824b6b2030657915b273388275cc203e3ce90a3088"
+    },
+    {
+      "path": "tools/footprint/run.py",
+      "sha256": "079df9009805819ce65cca4e04db18bf3d4ffa84bd3d87c966c24663066e66e9"
+    },
+    {
+      "path": "tools/footprint/sampling_develop.py",
+      "sha256": "16418e568255dddbe86a346c8fcdf890d859182766b52320b129500ffd8720bf"
+    },
+    {
+      "path": "tools/footprint/thread_record.py",
+      "sha256": "e44eca12675e590fd185c9a6af30166276669ac1036ffb9dfb73793031bfb6c2"
+    },
+    {
+      "path": "tools/footprint/windows_process.py",
+      "sha256": "76ceb88e93360a233baa921220fffaf7cf3626963e2214560b8a5f1501654124"
+    }
+  ]
+}

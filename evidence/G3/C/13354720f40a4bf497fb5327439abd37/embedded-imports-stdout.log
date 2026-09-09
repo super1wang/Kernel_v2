@@ -1,0 +1,361 @@
+Microsoft (R) COFF/PE Dumper Version 14.44.35216.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file J:\Code\Kernel_v2\build\embedded-formal-13354720f40a4bf497fb5327439abd37\consumer\RelWithDebInfo\footprint_embedded.exe
+
+File Type: EXECUTABLE IMAGE
+
+  Section contains the following imports:
+
+    bcrypt.dll
+             1401E9550 Import Address Table
+             1402400B0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1F BCryptGenRandom
+
+    KERNEL32.dll
+             1401E9000 Import Address Table
+             14023FB60 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         466 PssQuerySnapshot
+                         465 PssFreeSnapshot
+                          9D CloseHandle
+                         481 QueryPerformanceCounter
+                         482 QueryPerformanceFrequency
+                         55C SetEvent
+                         625 WaitForSingleObject
+                         242 GetCurrentProcessId
+                         412 MapViewOfFile
+                         5FE UnmapViewOfFile
+                         246 GetCurrentThreadId
+                         4EA ReleaseSRWLockExclusive
+                         4EB ReleaseSRWLockShared
+                           0 AcquireSRWLockExclusive
+                           1 AcquireSRWLockShared
+                         5F2 TryAcquireSRWLockExclusive
+                         5F3 TryAcquireSRWLockShared
+                         5CA SleepConditionVariableSRW
+                         5C8 Sleep
+                         33D GetTickCount64
+                         62D WakeAllConditionVariable
+                         509 RtlCaptureContext
+                         511 RtlLookupFunctionEntry
+                         518 RtlVirtualUnwind
+                         3B0 IsDebuggerPresent
+                         5FB UnhandledExceptionFilter
+                         5B8 SetUnhandledExceptionFilter
+                         301 GetStartupInfoW
+                         3B8 IsProcessorFeaturePresent
+                         2A5 GetModuleHandleW
+                         241 GetCurrentProcess
+                         5D8 TerminateProcess
+                         31A GetSystemTimeAsFileTime
+                         39A InitializeSListHead
+                         264 GetEnvironmentVariableW
+                          E6 CreateFileW
+                         325 GetTempFileNameW
+                         329 GetTempPathW
+                         498 RaiseException
+                         28D GetLastError
+                         2E6 GetProcessId
+                         43F OpenProcess
+                         1D4 FreeLibrary
+                         2DD GetProcAddress
+                         3F6 LoadLibraryExW
+                         423 MultiByteToWideChar
+                         463 PssCaptureSnapshot
+
+    MSVCP140.dll
+             1401E9180 Import Address Table
+             14023FCE0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         5B3 _Thrd_hardware_concurrency
+                         555 _Cnd_wait
+                         28B ?_Xbad_alloc@std@@YAXXZ
+                         28E ?_Xlength_error@std@@YAXPEBD@Z
+                         552 _Cnd_signal
+                         54B _Cnd_broadcast
+                         273 ?_Syserror_map@std@@YAPEBDH@Z
+                         589 _Mtx_unlock
+                         588 _Mtx_trylock
+                         585 _Mtx_lock
+                         2B4 ?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+                         28C ?_Xbad_function_call@std@@YAXXZ
+                         368 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
+                         244 ?_Osfx@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAXXZ
+                         361 ?fill@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBADXZ
+                         487 ?rdbuf@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBAPEAV?$basic_streambuf@DU?$char_traits@D@std@@@2@XZ
+                         50A ?tie@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBAPEAV?$basic_ostream@DU?$char_traits@D@std@@@2@XZ
+                         4C5 ?setstate@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAXH_N@Z
+                         4E1 ?sputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAA_JPEBD_J@Z
+                         4DE ?sputc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHD@Z
+                         53D ?width@ios_base@std@@QEAA_J_J@Z
+                         53E ?width@ios_base@std@@QEBA_JXZ
+                         367 ?flags@ios_base@std@@QEBAHXZ
+                         3C5 ?good@ios_base@std@@QEBA_NXZ
+                         283 ?_W_Getmonths@_Locinfo@std@@QEBAPEBGXZ
+                         282 ?_W_Getdays@_Locinfo@std@@QEBAPEBGXZ
+                         1C8 ?_Getcvt@_Locinfo@std@@QEBA?AU_Cvtvec@@XZ
+                         275 ?_Throw_Cpp_error@std@@YAXH@Z
+                         54E _Cnd_do_broadcast_at_thread_exit
+                         5B4 _Thrd_id
+                         5B8 _Thrd_yield
+                         5B5 _Thrd_join
+                         591 _Query_perf_frequency
+                         590 _Query_perf_counter
+                         51F ?uncaught_exceptions@std@@YAHXZ
+                         28F ?_Xout_of_range@std@@YAXPEBD@Z
+
+    MSVCP140_ATOMIC_WAIT.dll
+             1401E92A8 Import Address Table
+             14023FE08 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           4 __std_atomic_notify_all_direct
+                           9 __std_atomic_wait_direct
+
+    clang_rt.asan_dynamic-x86_64.dll
+             1401E9560 Import Address Table
+             1402400C0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          3B __asan_load2
+                          BC __asan_store2
+                          7D __asan_report_store2
+                          70 __asan_report_load2
+                          CA __asan_unregister_globals
+                          5D __asan_register_globals
+                          33 __asan_get_shadow_memory_dynamic_address
+                          96 __asan_should_detect_stack_use_after_return
+                          52 __asan_on_error__dll
+                          11 __asan_default_suppressions__dll
+                          10 __asan_default_options__dll
+                         155 __sanitizer_cov_pcs_cleanup__dll
+                         156 __sanitizer_cov_pcs_init__dll
+                         14E __sanitizer_cov_bool_flag_init__dll
+                         14C __sanitizer_cov_8bit_counters_cleanup__dll
+                         14D __sanitizer_cov_8bit_counters_init__dll
+                         16D __sanitizer_cov_trace_switch__dll
+                         158 __sanitizer_cov_store16__dll
+                         15C __sanitizer_cov_store8__dll
+                         15B __sanitizer_cov_store4__dll
+                         15A __sanitizer_cov_store2__dll
+                         159 __sanitizer_cov_store1__dll
+                         150 __sanitizer_cov_load16__dll
+                         154 __sanitizer_cov_load8__dll
+                         153 __sanitizer_cov_load4__dll
+                         152 __sanitizer_cov_load2__dll
+                         151 __sanitizer_cov_load1__dll
+                         16C __sanitizer_cov_trace_pc_indir__dll
+                         16A __sanitizer_cov_trace_pc_guard_cleanup__dll
+                         16B __sanitizer_cov_trace_pc_guard_init__dll
+                         169 __sanitizer_cov_trace_pc_guard__dll
+                         168 __sanitizer_cov_trace_gep__dll
+                         167 __sanitizer_cov_trace_div8__dll
+                         166 __sanitizer_cov_trace_div4__dll
+                         165 __sanitizer_cov_trace_const_cmp8__dll
+                         164 __sanitizer_cov_trace_const_cmp4__dll
+                         163 __sanitizer_cov_trace_const_cmp2__dll
+                         162 __sanitizer_cov_trace_const_cmp1__dll
+                         160 __sanitizer_cov_trace_cmp8__dll
+                         15F __sanitizer_cov_trace_cmp4__dll
+                         15E __sanitizer_cov_trace_cmp2__dll
+                         15D __sanitizer_cov_trace_cmp1__dll
+                         161 __sanitizer_cov_trace_cmp__dll
+                         146 __sancov_default_options__dll
+                         17F __sanitizer_ignore_free_hook__dll
+                         184 __sanitizer_malloc_hook__dll
+                         172 __sanitizer_free_hook__dll
+                         1A4 __sanitizer_weak_hook_strstr__dll
+                         1A3 __sanitizer_weak_hook_strncmp__dll
+                         1A2 __sanitizer_weak_hook_strcmp__dll
+                         1A1 __sanitizer_weak_hook_memcmp__dll
+                         177 __sanitizer_get_dtls_size__dll
+                         18F __sanitizer_sandbox_on_notify__dll
+                         18E __sanitizer_report_error_summary__dll
+                         185 __sanitizer_on_print__dll
+                         18D __sanitizer_register_weak_function
+                         186 __sanitizer_override_function
+                         138 __asan_wrap_wcslen
+                         118 __asan_wrap_strlen
+                         10F __asan_wrap_memcmp
+                          C0 __asan_store8
+                          BE __asan_store4
+                          B9 __asan_store16
+                          B8 __asan_store1
+                          94 __asan_set_shadow_f8
+                          88 __asan_set_shadow_00
+                          81 __asan_report_store8
+                          7F __asan_report_store4
+                          7A __asan_report_store16
+                          79 __asan_report_store1
+                          74 __asan_report_load8
+                          72 __asan_report_load4
+                          6C __asan_report_load1
+                          48 __asan_memset
+                          47 __asan_memmove
+                          46 __asan_memcpy
+                          3F __asan_load8
+                          3D __asan_load4
+                          37 __asan_load1
+                         180 __sanitizer_install_malloc_and_free_hooks
+                         148 __sanitizer_annotate_contiguous_container
+                          2F __asan_get_report_description
+                          87 __asan_set_seh_filter
+                          86 __asan_set_error_report_callback
+
+    VCRUNTIME140.dll
+             1401E92C0 Import Address Table
+             14023FE20 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1B __current_exception
+                          3E memset
+                          3B memcmp
+                          3A memchr
+                          3C memcpy
+                          18 __RTDynamicCast
+                           1 _CxxThrowException
+                          24 __std_type_info_compare
+                          22 __std_exception_destroy
+                          21 __std_exception_copy
+                          1C __current_exception_context
+                          23 __std_terminate
+                          36 _purecall
+                           8 __C_specific_handler
+                          25 __std_type_info_destroy_list
+                          42 strstr
+                          46 wcsstr
+
+    VCRUNTIME140_1.dll
+             1401E9350 Import Address Table
+             14023FEB0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 __CxxFrameHandler4
+
+    api-ms-win-crt-runtime-l1-1-0.dll
+             1401E93E8 Import Address Table
+             14023FF48 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          33 _initialize_narrow_environment
+                          18 _configure_narrow_argv
+                          40 _seh_filter_exe
+                          3F _seh_filter_dll
+                          36 _initterm
+                          3A _invoke_watson
+                          42 _set_app_type
+                           0 _Exit
+                          22 _execute_onexit_table
+                          34 _initialize_onexit_table
+                          37 _initterm_e
+                          55 exit
+                          23 _exit
+                           4 __p___argc
+                          54 abort
+                           5 __p___argv
+                          15 _c_exit
+                          1E _crt_atexit
+                          3D _register_thread_local_exe_atexit_callback
+                          1D _crt_at_quick_exit
+                          28 _get_initial_narrow_environment
+                          3C _register_onexit_function
+                          67 terminate
+                          16 _cexit
+                          14 _beginthreadex
+
+    api-ms-win-crt-heap-l1-1-0.dll
+             1401E9378 Import Address Table
+             14023FED8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           1 _aligned_malloc
+                           0 _aligned_free
+                          19 malloc
+                          18 free
+                          11 _msize
+                           2 _aligned_msize
+                          17 calloc
+                          16 _set_new_mode
+                          1A realloc
+
+    api-ms-win-crt-convert-l1-1-0.dll
+             1401E9360 Import Address Table
+             14023FEC0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          64 strtoul
+                          65 strtoull
+
+    api-ms-win-crt-stdio-l1-1-0.dll
+             1401E94B8 Import Address Table
+             140240018 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          54 _set_fmode
+                          80 fputs
+                          93 puts
+                          92 putchar
+                           0 __acrt_iob_func
+                           1 __p__commode
+                           3 __stdio_common_vfprintf
+                          77 fflush
+                          13 __stdio_common_vswprintf_s
+
+    api-ms-win-crt-math-l1-1-0.dll
+             1401E93D8 Import Address Table
+             14023FF38 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           9 __setusermatherr
+
+    api-ms-win-crt-locale-l1-1-0.dll
+             1401E93C8 Import Address Table
+             14023FF28 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           8 _configthreadlocale
+
+    api-ms-win-crt-string-l1-1-0.dll
+             1401E9508 Import Address Table
+             140240068 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          A3 wcslen
+                          A6 wcsncmp
+                          9E wcscmp
+                          91 strnlen
+                          A9 wcsnlen
+                          A8 wcsncpy_s
+                          A1 wcscpy_s
+                          B0 wmemcpy_s
+
+  Summary
+
+        1000 .INTR
+        1000 .WEAK
+        E000 .data
+       14000 .pdata
+       59000 .rdata
+        2000 .reloc
+        1000 .rsrc
+      1E8000 .text
