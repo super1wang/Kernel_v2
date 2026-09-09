@@ -4,34 +4,34 @@
 
 ## 当前生产节点
 
-- 当前分支：`work/d0-kernel-baseline`；G2 历史被测实现 `e77c328`，G2 后 C1/C2 收口被测实现 `44246b8`；归档与推送状态以实时 Git 为准。
-- 已 Passed：G0–G2、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07。**这些 Passed 前置不重验**；本轮没有重跑 G1/B2 累计矩阵。
-- 当前 Development Batch：**B4 / D3.01–D3.03 InProgress**；[执行计划](plans/B4.md)已在编码前建立，按 Executor→Scheduler→Resources 连续推进。B3 及 G2 历史 Passed 保持不变。
+- 当前分支：`work/d0-kernel-baseline`；G2 历史被测实现 `e77c328`，G2 后 C1/C2 收口被测实现 `44246b8`；B4 被测实现 `0d71b4f`；归档与推送状态以实时 Git 为准。
+- 已 Passed：G0–G2、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07、D3.01–D3.03。**这些 Passed 前置不重验**；本轮没有重跑 G1/B2 累计矩阵。
+- 当前 Development Batch：**B4 / D3.01–D3.03 已完成并 Passed**；下一批 **B5 / D3.04–D3.07 NotStarted**。同来源正式 Debug 65/65、Release 63/63、ASan 65/65，三包依 DAG 自动验收无错误；见 [B4 交付](validation/B4-delivery.md)。
 - 当前门禁：**G2 Passed**；G3–G8 未开始。正式同来源 Debug 28/28、Release 26/26、ASan 26/26，三包和 G2 顺序自动验收均无错误，见 [B3 交付](validation/B3-delivery.md)。
 - Host、Logging、NativeSubset/独立安装消费者及 footprint 正式测量/预算已交付并完成本包验收。
 - B1 历史恢复结论保留：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[历史交付与自动验收](validation/D1.06-resume-delivery.md)。
 - 工具优化阶段已结束；禁止继续把 Fixture、Evidence、Install Consumer 性能优化或新流程文档设为 D1.06 前置。
 
-## B4 开发与正式收口准备（2026-09-09）
+## B4 交付（2026-09-09）
 
-- D3.01–D3.03 的生产 Executor、Scheduler、Resources 已实现，当前均 InProgress；上游直接验证已支持批次内连续开发，尚未用开发结果替代正式 Passed。
-- 已按用户两轮意见补齐 start claim/deadline、dependency attach/completion、inline 与 reservation、resource waiter 锁外通知边界；见 [B4 规划](plans/B4.md)和 [ADR](adr/ADR-b4-executor-resources.md)。
-- 开发期 SDK 集成影响集 59/59 Debug 通过（含新仲裁、迁移安装、Runtime-only 和 B3 投影）；随后三个后端满载拒绝、通知积压限额及清单复核的直接影响集 5/5 通过。此为开发证据，正式同来源三配置待执行。
-- 当前 SDK dev.5/B4Subset；CoreContracts 新增 executor.hpp，Runtime 新增 scheduler.hpp/resources.hpp，CpuPool 新头使用已登记安装前缀。真实 Task、ExecutionRef、协作取消、完整 Embedded 与 G3 仍属 B5。
+- D3.01、D3.02、D3.03 已依次 Passed；ExecutorConformance、公平 Scheduler 与资源 MultiClaim/Lease 已完成，三配置及独立验收均绑定已提交 `0d71b4f`，详见 [交付与原始证据](validation/B4-delivery.md)。
+- 两轮用户规划建议全部落实：Started=start claim、依赖发布/完成同锁仲裁、inline 单调完成、envelope reservation 与资源锁外去重唤醒。合规拒绝/异常释放 envelope；违约仍持有者保留物理额度至真实收尾。
+- 当前 SDK dev.5/B4Subset；新增四个公开头，生产 CpuPool 仅公开依赖 CoreContracts。迁移消费者、Runtime-only expected-only 实际构建/安装，以及 B3Subset 配置投影通过；B3 SDK 交付历史保持原证据。
+- 真实 Task/ExecutionRef、协作取消、完整父子寿命与 Embedded/G3 仍属未开始的 B5。未扩展其他产品模块，也未用 ASan 或编译结果代替物理设备准入。
 
 ## B3 post-gate closure（2026-09-09）
 
 - 已采纳并完成 C1 Watch 终态单调性与 C2 冻结动态契约材料复用；同 Host 100 次 Session 开闭只生成一次 Schema，Catalog fingerprint/card 稳定，关闭后旧绑定拒绝，当前会话权限仍独立检查。
 - 同一已提交 `44246b8` 来源，受影响集 Debug **15/15**、Release **13/13**、ASan **13/13**；自动验收 Passed，errors/review_errors 均为空。Debug Runtime-only 仅取得 expected，真实构建、安装及 Native 消费通过；见[建议取舍、实现与证据](validation/B3-post-gate-closure-delivery.md)。
 - `docs/AGENTS.md` 删除已按用户要求纳入实现提交。O1 验证去重、O2/O3 IPC 缓冲优化、Catalog 权限端口整理及独立 Service SID 暂缓；本次未改 Runtime/LocalIPC 生产代码，未改变历史 G1/G2 Passed 来源。
-- B4 尚未开始，后续仍从 D3.01 开始；真实 Task 观察与完整 Embedded footprint 由 D3.07 承接。G1 历史占用数字不代表本次二进制新测量。
+- 本段为 B3 收口时记录，B4 当前状态见文件顶部；真实 Task 观察与完整 Embedded footprint 由 D3.07 承接。G1 历史占用数字不代表本次二进制新测量。
 
 ## B3 / G2 交付（2026-09-09）
 
 - D2.05、D2.06、D2.07 和 G2 已依 DAG 顺序 Passed；同一 `e77c328` 来源的三份 E03 报告共享物理执行，各包技术结论独立，见[交付与原始证据索引](validation/B3-delivery.md)。
-- 当前 SDK 为 `0.1.0-dev.4 / B3Subset`；薄客户端和实际 CLI 不链接服务端 Runtime/Control/Dynamic，迁移安装、新增公开头、Runtime-only 裁剪及 Native 消费通过。
+- B3 交付时 SDK 为 `0.1.0-dev.4 / B3Subset`；薄客户端和实际 CLI 不链接服务端 Runtime/Control/Dynamic，迁移安装、新增公开头、Runtime-only 裁剪及 Native 消费通过。
 - 各配置 Native/Dynamic 各 20 个单次成本样本完整归档。此前 CTest 输出截断和 ASan 正控制条件错误的原始材料均保留，未拼接旧来源成功结果。
-- 真实 Task Provider 尚未接入，CLI list/watch 对 absent 能力拒绝；watch 脚本不代表真实任务验收，D3.07 承接整体任务观察。未扩展其他产品模块。下一批 B4 尚未开始。
+- 真实 Task Provider 尚未接入，CLI list/watch 对 absent 能力拒绝；watch 脚本不代表真实任务验收，D3.07 承接整体任务观察。未扩展其他产品模块。B4 当前状态见文件顶部。
 
 ## B3 前影响收口（2026-09-09）
 
@@ -113,9 +113,9 @@
 | D2.05 | 实现真实Named Pipe与认证会话 | D2.04、D0.06 | Passed | Critical | B3 |
 | D2.06 | 实现薄CLI、意图文件和原生/动态演示 | D2.03、D2.05、D1.06 | Passed | Standard | B3 |
 | D2.07 | 验收双入口与首次Shell闭环 | D2.06 | Passed | Standard | B3 |
-| D3.01 | Executor Conformance Kit与生产/测试后端 | D1.02、D0.06 | InProgress | Critical | B4 |
-| D3.02 | 实现公平Ready调度与依赖结构 | D3.01、D1.03 | InProgress | Critical | B4 |
-| D3.03 | 实现资源归一化、MultiClaim与租约 | D3.02、D1.04 | InProgress | Critical | B4 |
+| D3.01 | Executor Conformance Kit与生产/测试后端 | D1.02、D0.06 | Passed | Critical | B4 |
+| D3.02 | 实现公平Ready调度与依赖结构 | D3.01、D1.03 | Passed | Critical | B4 |
+| D3.03 | 实现资源归一化、MultiClaim与租约 | D3.02、D1.04 | Passed | Critical | B4 |
 | D3.04 | Submit、执行投影索引与拥有型输入 | D3.02、D3.03、D1.05 | NotStarted | Critical | B5 |
 | D3.05 | 实现取消、期限与permit竞争 | D3.04、D0.05 | NotStarted | Critical | B5 |
 | D3.06 | 实现父子寿命、Finalizing与失败收尾 | D3.04、D3.05 | NotStarted | Critical | B5 |

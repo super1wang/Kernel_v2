@@ -1,0 +1,121 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\b4-projection-v67yb3am",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_COMPONENTS=B3Subset",
+      "-DOCK_DEPENDENCY_COMPONENTS=CLI",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DPython3_EXECUTABLE=J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T06:07:04.652686+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 38,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 40036,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T06:07:09.614438+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "87a6641c9284502829d13df97b31405269e5a1cdad2ee2004a8b5575a0db5386",
+        "size": 1086
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e39c2e3265d3e9f92413b4ff2c0942d01df9c631a0f4c80048a7ddd2d76b10ab",
+        "size": 134
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\tools\\architecture\\check.py",
+      "--graph",
+      "J:\\Code\\Kernel_v2\\build\\b4-projection-v67yb3am\\ock-target-graph.json"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T06:07:09.616473+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "pid": 27040,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T06:07:09.977346+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "83927ec06e4069c417a9e6c8163075a59db12c23e078a40142d2316faddbd936",
+        "size": 152
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\b4-projection-v67yb3am\\invalid-b4",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_COMPONENTS=B4Subset",
+      "-DOCK_DEPENDENCY_COMPONENTS=Embedded",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DPython3_EXECUTABLE=J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T06:07:09.978857+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 56564,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-09T06:07:13.707702+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "21f5f767fb2b523cad0dd836f1d068064f400f97c7f3e71194fc032715b20d91",
+        "size": 830
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "a0e4cac4138f05a31a37553c8f2b8707d6eed857656e050402e987720f73fa40",
+        "size": 104
+      }
+    ]
+  }
+]

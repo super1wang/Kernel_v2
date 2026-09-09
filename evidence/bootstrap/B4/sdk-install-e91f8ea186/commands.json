@@ -1,0 +1,160 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:\\Code\\Kernel_v2\\build\\b4-asan",
+      "--config",
+      "Debug",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\b4-install-b6ioewab\\original"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T06:16:58.284323+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 34848,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T06:16:58.753464+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "b96b7c1af48df0fb36d02b2552249907fb33871a5dc24044dc4a8bf89109e68f",
+        "size": 9546
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\b4-install-b6ioewab\\consumer-source",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\b4-install-b6ioewab\\consumer",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\b4-install-b6ioewab\\relocated",
+      "-DCMAKE_CXX_FLAGS=/fsanitize=address",
+      "-DCMAKE_CXX_FLAGS_DEBUG=/Ob0 /Od ",
+      "-DCMAKE_EXE_LINKER_FLAGS=/INCREMENTAL:NO"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T06:16:58.876056+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 31,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 30216,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T06:17:03.199353+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "603794add59b68db8a2fc90c7604c74ba7c0e929fccf5128ac8b7b47e9441ec6",
+        "size": 465
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b4-install-b6ioewab\\consumer",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T06:17:03.201357+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 67,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 54176,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T06:17:10.260683+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "a98b9e6387b862009894a116656fca183a768b62e9d25acf1c588a08fb1cf520",
+        "size": 1366
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\b4-install-b6ioewab\\consumer\\Debug\\installed_b4.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T06:17:10.264194+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\b4-install-b6ioewab\\consumer\\Debug\\installed_b4.exe",
+    "pid": 63876,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T06:17:10.508033+00:00",
+    "raw": [
+      {
+        "path": "3-stdout.log",
+        "sha256": "d98bc04fe2955d43068c808c02a050c4430623698ba0c64cc43ea3288ea41405",
+        "size": 58
+      },
+      {
+        "path": "3-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,238 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\native-pruned-493l4vtw\\producer",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_COMPONENTS=Runtime",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DPython3_EXECUTABLE=J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T05:46:10.132149+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 38,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 58872,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T05:46:14.286471+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "5a14c42eef745bd1b2cfaf83734451023e5e5fc0b18bd449e79af8351357ff1f",
+        "size": 1095
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e39c2e3265d3e9f92413b4ff2c0942d01df9c631a0f4c80048a7ddd2d76b10ab",
+        "size": 134
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\tools\\architecture\\check.py",
+      "--graph",
+      "J:\\Code\\Kernel_v2\\build\\native-pruned-493l4vtw\\producer\\ock-target-graph.json"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T05:46:14.288485+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "pid": 30932,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T05:46:14.650463+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "83927ec06e4069c417a9e6c8163075a59db12c23e078a40142d2316faddbd936",
+        "size": 152
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\native-pruned-493l4vtw\\producer",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T05:46:14.651986+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 19,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 38596,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T05:46:29.325861+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "8f43847e8e53559fc7737f2dd273d744b8c00bcc7a06fe3ab8aac76f445d955f",
+        "size": 441
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:\\Code\\Kernel_v2\\build\\native-pruned-493l4vtw\\producer",
+      "--config",
+      "Debug",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\native-pruned-493l4vtw\\prefix"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T05:46:29.327990+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 33572,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T05:46:29.522552+00:00",
+    "raw": [
+      {
+        "path": "3-stdout.log",
+        "sha256": "b20804499b0bd47b793ade349b8f383e06d32a021c11cddc18e31ab83b0638fc",
+        "size": 3847
+      },
+      {
+        "path": "3-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\native-pruned-493l4vtw\\missing",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\native-pruned-493l4vtw\\missing-build",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\native-pruned-493l4vtw\\prefix"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T05:46:29.524573+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 5,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 70648,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-09T05:46:30.095084+00:00",
+    "raw": [
+      {
+        "path": "4-stdout.log",
+        "sha256": "8085925dee818ab993529ca12c5e8031a3dbcaa726a1197bf6c25e46de919446",
+        "size": 159
+      },
+      {
+        "path": "4-stderr.log",
+        "sha256": "1fcd3d94cba42e51f6f5072ac1da793812881e6331bda441c06682ed19cfa263",
+        "size": 346
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\tests\\install_consumer\\verify_native.py",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\native-pruned-493l4vtw\\producer",
+      "--config",
+      "Debug",
+      "--case",
+      "installed_host",
+      "--evidence-task",
+      "B2"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T05:46:30.097054+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 53,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "pid": 31908,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T05:46:38.436946+00:00",
+    "raw": [
+      {
+        "path": "5-stdout.log",
+        "sha256": "4a3847aec6e63470d91a94e92eb812aa1ea6c67409fc83158c134be68f421cdb",
+        "size": 139
+      },
+      {
+        "path": "5-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

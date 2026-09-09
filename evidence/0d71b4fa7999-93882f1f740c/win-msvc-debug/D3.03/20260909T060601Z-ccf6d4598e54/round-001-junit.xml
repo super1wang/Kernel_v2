@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="65"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-U2F62TA"
+	time="69"
+	timestamp="2026-09-09T14:06:16"
+	>
+	<testcase name="T24.b4.installed_consumer" classname="T24.b4.installed_consumer" time="11.7537" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4"/>
+		</properties>
+		<system-out>argv: ['cmake', '--install', 'J:\\Code\\Kernel_v2\\build\\b4-debug', '--config', 'Debug', '--prefix', 'J:\\Code\\Kernel_v2\\build\\b4-install-ln6uzzdd\\original'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\b4-install-ln6uzzdd\\consumer-source', '-B', 'J:\\Code\\Kernel_v2\\build\\b4-install-ln6uzzdd\\consumer', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\b4-install-ln6uzzdd\\relocated'] exit_code: 0
+argv: ['cmake', '--build', 'J:\\Code\\Kernel_v2\\build\\b4-install-ln6uzzdd\\consumer', '--config', 'Debug', '--parallel', '4', '--', '/nr:false'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\b4-install-ln6uzzdd\\consumer\\Debug\\installed_b4.exe'] exit_code: 0
+B4 installed consumer passed: J:\Code\Kernel_v2\evidence\bootstrap\B4\sdk-install-2e32c3d263
+</system-out>
+	</testcase>
+	<testcase name="T24.b4.runtime_pruning" classname="T24.b4.runtime_pruning" time="36.3938" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4"/>
+		</properties>
+		<system-out>argv: ['cmake', '--preset', 'win-msvc-debug', '-B', 'J:\\Code\\Kernel_v2\\build\\native-pruned-t014kxcp\\producer', '-DBUILD_TESTING=OFF', '-DOCK_BUILD_COMPONENTS=Runtime', '-DOCK_DEPENDENCY_COMPONENTS=Foundation', '-DOCK_DEPENDENCIES_OFFLINE=ON', '-DPython3_EXECUTABLE=J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe', '-X', 'utf8', 'J:\\Code\\Kernel_v2\\tools\\architecture\\check.py', '--graph', 'J:\\Code\\Kernel_v2\\build\\native-pruned-t014kxcp\\producer\\ock-target-graph.json'] exit_code: 0
+argv: ['cmake', '--build', 'J:\\Code\\Kernel_v2\\build\\native-pruned-t014kxcp\\producer', '--config', 'Debug', '--parallel', '4', '--', '/nr:false'] exit_code: 0
+argv: ['cmake', '--install', 'J:\\Code\\Kernel_v2\\build\\native-pruned-t014kxcp\\producer', '--config', 'Debug', '--prefix', 'J:\\Code\\Kernel_v2\\build\\native-pruned-t014kxcp\\prefix'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\native-pruned-t01...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.b4.b3_projection" classname="T24.b4.b3_projection" time="9.18497" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4"/>
+		</properties>
+		<system-out>argv: ['cmake', '--preset', 'win-msvc-debug', '-B', 'J:\\Code\\Kernel_v2\\build\\b4-projection-v67yb3am', '-DBUILD_TESTING=OFF', '-DOCK_BUILD_COMPONENTS=B3Subset', '-DOCK_DEPENDENCY_COMPONENTS=CLI', '-DOCK_DEPENDENCIES_OFFLINE=ON', '-DPython3_EXECUTABLE=J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe', '-X', 'utf8', 'J:\\Code\\Kernel_v2\\tools\\architecture\\check.py', '--graph', 'J:\\Code\\Kernel_v2\\build\\b4-projection-v67yb3am\\ock-target-graph.json'] exit_code: 0
+argv: ['cmake', '--preset', 'win-msvc-debug', '-B', 'J:\\Code\\Kernel_v2\\build\\b4-projection-v67yb3am\\invalid-b4', '-DBUILD_TESTING=OFF', '-DOCK_BUILD_COMPONENTS=B4Subset', '-DOCK_DEPENDENCY_COMPONENTS=Embedded', '-DOCK_DEPENDENCIES_OFFLINE=ON', '-DPython3_EXECUTABLE=J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe'] exit_code: 1
+B3 projection preserved: J:\Code\Kernel_v2\evidence\bootstrap\B4\b3-projection-e8b16cbdf9
+</system-out>
+	</testcase>
+	<testcase name="T01.b4.architecture_guards" classname="T01.b4.architecture_guards" time="6.69877" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4"/>
+		</properties>
+		<system-out>test_approved_architecture_matches_manifest (tests.architecture.test_architecture.ArchitectureTests.test_approved_architecture_matches_manifest) ... ok
+test_authorized_immutable_read_is_allowed (tests.architecture.test_architecture.ArchitectureTests.test_authorized_immutable_read_is_allowed) ... ok
+test_client_has_no_server_dependency (tests.architecture.test_architecture.ArchitectureTests.test_client_has_no_server_dependency) ... ok
+test_comment_markers_inside_strings_do_not_hide_includes (tests.architecture.test_architecture.ArchitectureTests.test_comment_markers_inside_strings_do_not_hide_includes) ... ok
+test_dot_include_prefix_is_rejected (tests.architecture.test_architecture.ArchitectureTests.test_dot_include_prefix_is_rejected) ... ok
+test_dsl_is_not_a_required_release_component (tests.architecture.test_architecture.ArchitectureTests.test_dsl_is_not_a_required_release_component) ... ok
+test_generic_state_rpc_is_rejected (tests.architecture.test_architecture.ArchitectureTests.test_generic_state_rpc_is_r...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.sdk.version_header" classname="T24.sdk.version_header" time="0.10866" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>0.1.0-dev.5
+</system-out>
+	</testcase>
+	<testcase name="T01.architecture.dependency_dag" classname="T01.architecture.dependency_dag" time="0.319207" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>{
+  "check_id": "CHECK.D0.02.architecture",
+  "errors": [],
+  "scope": "合同目标/公开表面静态检查；无Runtime运行或授权实现"
+}
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.conformance_manifest" classname="T12.executor.conformance_manifest" time="0.220581" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01"/>
+		</properties>
+		<system-out>compiled conformance binding: f220071fa4dd21b2b9f30fe4e1b1ee72e5a96eb38f38031ea29f4f0ea1d76e69
+ExecutorConformance v1: three identities, common mandatory cases and capability applicability verified
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.cpu_pool.ownership_transfer" classname="T12.executor.cpu_pool.ownership_transfer" time="0.0644435" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 cpu_pool ownership_transfer passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.cpu_pool.exactly_once" classname="T12.executor.cpu_pool.exactly_once" time="0.0630458" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 cpu_pool exactly_once passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.cpu_pool.rejection_cleanup" classname="T12.executor.cpu_pool.rejection_cleanup" time="0.060885" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 cpu_pool rejection_cleanup passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.cpu_pool.exception_boundary" classname="T12.executor.cpu_pool.exception_boundary" time="0.0613821" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 cpu_pool exception_boundary passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.cpu_pool.drain_shutdown" classname="T12.executor.cpu_pool.drain_shutdown" time="0.0643026" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 cpu_pool drain_shutdown passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.cpu_pool.worker_rejection" classname="T12.executor.cpu_pool.worker_rejection" time="0.067504" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 cpu_pool worker_rejection passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.cpu_pool.queue_full" classname="T12.executor.cpu_pool.queue_full" time="0.0844404" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 cpu_pool queue_full passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.controlled.ownership_transfer" classname="T12.executor.controlled.ownership_transfer" time="0.135899" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 controlled ownership_transfer passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.controlled.exactly_once" classname="T12.executor.controlled.exactly_once" time="0.0960458" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 controlled exactly_once passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.controlled.rejection_cleanup" classname="T12.executor.controlled.rejection_cleanup" time="0.0968708" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 controlled rejection_cleanup passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.controlled.exception_boundary" classname="T12.executor.controlled.exception_boundary" time="0.0425134" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 controlled exception_boundary passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.controlled.drain_shutdown" classname="T12.executor.controlled.drain_shutdown" time="0.0429791" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 controlled drain_shutdown passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.controlled.worker_rejection" classname="T12.executor.controlled.worker_rejection" time="0.0424785" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 controlled worker_rejection passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.controlled.queue_full" classname="T12.executor.controlled.queue_full" time="0.0405227" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 controlled queue_full passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.inline.ownership_transfer" classname="T12.executor.inline.ownership_transfer" time="0.0393861" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 inline ownership_transfer passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.inline.exactly_once" classname="T12.executor.inline.exactly_once" time="0.0444414" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 inline exactly_once passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.inline.rejection_cleanup" classname="T12.executor.inline.rejection_cleanup" time="0.0444219" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 inline rejection_cleanup passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.inline.exception_boundary" classname="T12.executor.inline.exception_boundary" time="0.0390372" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 inline exception_boundary passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.inline.drain_shutdown" classname="T12.executor.inline.drain_shutdown" time="0.0379777" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 inline drain_shutdown passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.inline.worker_rejection" classname="T12.executor.inline.worker_rejection" time="0.0376596" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 inline worker_rejection passed
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.inline.queue_full" classname="T12.executor.inline.queue_full" time="0.0407077" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01;ExecutorConformance"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 inline queue_full passed
+</system-out>
+	</testcase>
+	<testcase name="T22.executor.real_parallel" classname="T22.executor.real_parallel" time="0.0377196" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 supplemental real_parallel passed
+</system-out>
+	</testcase>
+	<testcase name="T22.executor.stop_timeout" classname="T22.executor.stop_timeout" time="0.0476507" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 supplemental stop_timeout passed
+</system-out>
+	</testcase>
+	<testcase name="T22.executor.inline_reentrancy" classname="T22.executor.inline_reentrancy" time="0.0397437" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 supplemental inline_reentrancy passed
+</system-out>
+	</testcase>
+	<testcase name="T22.executor.controlled_order" classname="T22.executor.controlled_order" time="0.0381031" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01"/>
+		</properties>
+		<system-out>ock.executor-conformance/1 supplemental controlled_order passed
+</system-out>
+	</testcase>
+	<testcase name="T22.executor.cpu_pool.worker_destruction" classname="T22.executor.cpu_pool.worker_destruction" time="0.275896" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01"/>
+		</properties>
+		<system-out>worker self-destruction rejected at boundary: cpu_pool J:\Code\Kernel_v2\evidence\bootstrap\B4\worker-fatal-cpu_pool-765a0af160
+</system-out>
+	</testcase>
+	<testcase name="T22.executor.controlled.worker_destruction" classname="T22.executor.controlled.worker_destruction" time="0.246697" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01"/>
+		</properties>
+		<system-out>worker self-destruction rejected at boundary: controlled J:\Code\Kernel_v2\evidence\bootstrap\B4\worker-fatal-controlled-de43681bee
+</system-out>
+	</testcase>
+	<testcase name="T22.executor.inline.worker_destruction" classname="T22.executor.inline.worker_destruction" time="0.217921" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01"/>
+		</properties>
+		<system-out>worker self-destruction rejected at boundary: inline J:\Code\Kernel_v2\evidence\bootstrap\B4\worker-fatal-inline-045b969065
+</system-out>
+	</testcase>
+	<testcase name="T12.executor.concurrent_duplicate" classname="T12.executor.concurrent_duplicate" time="0.187376" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.01"/>
+		</properties>
+		<system-out>one completion, seven concurrent duplicates rejected
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.fault_attempts" classname="T13.scheduler.fault_attempts" time="0.186095" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>fault_attempts passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.delivery_deadline" classname="T13.scheduler.delivery_deadline" time="0.0597983" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>delivery_deadline passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.inline_reentry" classname="T13.scheduler.inline_reentry" time="0.063149" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>inline_reentry passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.quota_control" classname="T13.scheduler.quota_control" time="0.0652086" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>quota_control passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.dependencies_deadline" classname="T13.scheduler.dependencies_deadline" time="0.066383" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>dependencies_deadline passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.dependency_failure" classname="T13.scheduler.dependency_failure" time="0.0620943" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>dependency_failure passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.fairness" classname="T13.scheduler.fairness" time="0.0663406" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>dispatch_order=122212221222122212221222122212221222122212221222122212221222122212221222122212221222122212221222122212221222122212221222
+fairness principal1=30 principal2=90 max_gap=3
+fairness passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.priority_bound" classname="T13.scheduler.priority_bound" time="0.0705545" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>priority0_dispatches=10 max_priority7_gap=8
+priority_bound passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.history_scale" classname="T13.scheduler.history_scale" time="0.156108" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>history=0 pump_count=1000 inspections=2000 nanoseconds=707300
+history=100 pump_count=1000 inspections=2000 nanoseconds=697100
+history=1000 pump_count=1000 inspections=2000 nanoseconds=707400
+history=10000 pump_count=1000 inspections=2000 nanoseconds=699200
+history_scale passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.close_and_callbacks" classname="T13.scheduler.close_and_callbacks" time="0.0864238" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>close_and_callbacks passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.executor_owner_lifetime" classname="T13.scheduler.executor_owner_lifetime" time="0.0892336" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>executor_owner_lifetime passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.started_deadline" classname="T13.scheduler.started_deadline" time="0.0363766" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>started_deadline passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.real_concurrent_completion" classname="T13.scheduler.real_concurrent_completion" time="0.0390294" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>real_concurrent_completion passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.start_deadline_race" classname="T13.scheduler.start_deadline_race" time="0.0545954" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>start_claim_won=1 expiration_won=99 exactly_one_completion=100
+start_deadline_race passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.dependency_attach_race" classname="T13.scheduler.dependency_attach_race" time="0.0989185" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>dependency_attach_race passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.dependency_invalid" classname="T13.scheduler.dependency_invalid" time="0.0388201" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>dependency_invalid passed
+</system-out>
+	</testcase>
+	<testcase name="T13.scheduler.completion_backpressure" classname="T13.scheduler.completion_backpressure" time="0.044909" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.02"/>
+		</properties>
+		<system-out>completion_backpressure passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.alias_read_write_same_slot" classname="T13.resources.alias_read_write_same_slot" time="0.152803" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>alias_read_write_same_slot passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.multi_claim_partial_failure_zero_occupancy" classname="T13.resources.multi_claim_partial_failure_zero_occupancy" time="0.0612809" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>multi_claim_partial_failure_zero_occupancy passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.aggregate_overflow" classname="T13.resources.aggregate_overflow" time="0.0611313" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>aggregate_overflow passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.exclusive_shared_units" classname="T13.resources.exclusive_shared_units" time="0.0632461" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>exclusive_shared_units passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.lease_only_own_release" classname="T13.resources.lease_only_own_release" time="0.0598239" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>lease_only_own_release passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.unknown_key_bounded" classname="T13.resources.unknown_key_bounded" time="0.0598586" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>unknown_key_bounded passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.waiter_release_race" classname="T13.resources.waiter_release_race" time="0.0842148" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>waiter_release_race passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.waiter_cancel" classname="T13.resources.waiter_cancel" time="0.09354" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>waiter_cancel passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.callback_outside_lock" classname="T13.resources.callback_outside_lock" time="0.0649534" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>callback_outside_lock passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.compute_commit_separation" classname="T13.resources.compute_commit_separation" time="0.0589828" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>compute_commit_separation passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.parent_wait_rejects_held_child_resources" classname="T13.resources.parent_wait_rejects_held_child_resources" time="0.0584238" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>parent_wait_rejects_held_child_resources passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.scheduler_resource_wakeup" classname="T13.resources.scheduler_resource_wakeup" time="0.0372072" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>scheduler_resource_wakeup passed
+</system-out>
+	</testcase>
+</testsuite>

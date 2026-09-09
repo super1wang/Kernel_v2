@@ -1,0 +1,154 @@
+{
+  "format": "ock.run-manifest/1",
+  "task_id": "D3.03",
+  "profile": "win-msvc-asan",
+  "configuration": "Debug",
+  "preset": "win-msvc-asan",
+  "asan": true,
+  "source_patterns": [
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    "dependencies.lock",
+    "THIRD_PARTY_NOTICES",
+    "cmake/**",
+    "packages/**",
+    "sdk/**",
+    "schemas/**",
+    "tests/**",
+    "tools/**",
+    "examples/**",
+    "docs/contracts/**",
+    "docs/toolchain.md",
+    "docs/01_Architecture_v3.3.md",
+    "docs/02_Execution_Plan_v3.3.md",
+    "AGENTS.md",
+    "docs/adr/README.md",
+    "apps/**",
+    "docs/plans/B4.md",
+    "docs/adr/ADR-b4-executor-resources.md",
+    "docs/reviews/B4-review.md"
+  ],
+  "required_artifacts": [
+    "docs/plans/B4.md",
+    "docs/adr/ADR-b4-executor-resources.md",
+    "docs/reviews/B4-review.md",
+    "docs/contracts/native-sdk-surface.md",
+    "tests/conformance/executor/conformance_manifest.json",
+    "tests/contract/resources/cases.json"
+  ],
+  "expected_manifest": "tests/manifests/b4.expected.json",
+  "dependency_lock": "dependencies.lock",
+  "build_dir": "build/b4-asan",
+  "configure": [
+    "cmake",
+    "--preset",
+    "win-msvc-asan",
+    "-B",
+    "build/b4-asan",
+    "-DOCK_DEPENDENCY_COMPONENTS=CLI;CpuPool",
+    "-DOCK_DEPENDENCIES_OFFLINE=ON",
+    "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+    "-DOCK_BUILD_B2_TESTS=OFF",
+    "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+    "-DOCK_ENABLE_ASAN=ON",
+    "-DOCK_BUILD_G0_TESTS=OFF",
+    "-DOCK_BUILD_EXECUTION_MODEL_TESTS=OFF",
+    "-DOCK_BUILD_FOUNDATION_TESTS=OFF",
+    "-DOCK_BUILD_CORE_CONTRACTS_TESTS=OFF",
+    "-DOCK_BUILD_REGISTRATION_TESTS=OFF",
+    "-DOCK_BUILD_AUTHORIZATION_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_TESTS=OFF",
+    "-DOCK_BUILD_HOST_TESTS=OFF",
+    "-DOCK_BUILD_LOGGING_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_SDK_TESTS=OFF",
+    "-DOCK_BUILD_FOOTPRINT_TESTS=OFF",
+    "-DOCK_BUILD_COMPONENTS=B4Subset",
+    "-DOCK_BUILD_B4_TESTS=ON"
+  ],
+  "build": [
+    "cmake",
+    "--build",
+    "build/b4-asan",
+    "--config",
+    "Debug",
+    "--parallel",
+    "4",
+    "--",
+    "/nr:false"
+  ],
+  "build_outputs": [
+    "build/b4-asan/CMakeCache.txt",
+    "build/b4-asan/ock-target-graph.json",
+    "build/b4-asan/toolchain-Debug.json",
+    "build/b4-asan/dependency-acquisition.json",
+    "build/b4-asan/CTestTestfile.cmake",
+    "build/b4-asan/CMakeFiles/CMakeConfigureLog.yaml",
+    "build/b4-asan/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake",
+    "build/b4-asan/sdk_api_manifest.json",
+    "build/b4-asan/Debug/ock_sdk_metadata_probe.exe",
+    "build/b4-asan/Debug/ock_Runtime.lib",
+    "build/b4-asan/Debug/ock_Adapter_CpuPool.lib",
+    "build/b4-asan/tests/conformance/executor/CTestTestfile.cmake",
+    "build/b4-asan/tests/contract/executor/CTestTestfile.cmake",
+    "build/b4-asan/tests/unit/scheduler/CTestTestfile.cmake",
+    "build/b4-asan/tests/contract/resources/CTestTestfile.cmake",
+    "build/b4-asan/tests/conformance/executor/Debug/ock_executor_contract.exe",
+    "build/b4-asan/tests/contract/executor/Debug/ock_executor_consumer.exe",
+    "build/b4-asan/tests/contract/executor/Debug/ock_executor_lifecycle.exe",
+    "build/b4-asan/tests/unit/scheduler/Debug/ock_scheduler_contract.exe",
+    "build/b4-asan/tests/contract/resources/Debug/ock_resources_contract.exe",
+    "build/b4-asan/Debug/ock_probe_asan.exe"
+  ],
+  "toolchain_artifact": "build/b4-asan/toolchain-Debug.json",
+  "test_regex": "^(T12\\.executor\\.cpu_pool\\.ownership_transfer|T12\\.executor\\.cpu_pool\\.exactly_once|T12\\.executor\\.cpu_pool\\.rejection_cleanup|T12\\.executor\\.cpu_pool\\.exception_boundary|T12\\.executor\\.cpu_pool\\.drain_shutdown|T12\\.executor\\.cpu_pool\\.worker_rejection|T12\\.executor\\.cpu_pool\\.queue_full|T12\\.executor\\.controlled\\.ownership_transfer|T12\\.executor\\.controlled\\.exactly_once|T12\\.executor\\.controlled\\.rejection_cleanup|T12\\.executor\\.controlled\\.exception_boundary|T12\\.executor\\.controlled\\.drain_shutdown|T12\\.executor\\.controlled\\.worker_rejection|T12\\.executor\\.controlled\\.queue_full|T12\\.executor\\.inline\\.ownership_transfer|T12\\.executor\\.inline\\.exactly_once|T12\\.executor\\.inline\\.rejection_cleanup|T12\\.executor\\.inline\\.exception_boundary|T12\\.executor\\.inline\\.drain_shutdown|T12\\.executor\\.inline\\.worker_rejection|T12\\.executor\\.inline\\.queue_full|T22\\.executor\\.real_parallel|T22\\.executor\\.stop_timeout|T22\\.executor\\.inline_reentrancy|T22\\.executor\\.controlled_order|T22\\.executor\\.cpu_pool\\.worker_destruction|T22\\.executor\\.controlled\\.worker_destruction|T22\\.executor\\.inline\\.worker_destruction|T12\\.executor\\.concurrent_duplicate|T12\\.executor\\.conformance_manifest|T13\\.scheduler\\.fault_attempts|T13\\.scheduler\\.delivery_deadline|T13\\.scheduler\\.inline_reentry|T13\\.scheduler\\.quota_control|T13\\.scheduler\\.dependencies_deadline|T13\\.scheduler\\.dependency_failure|T13\\.scheduler\\.fairness|T13\\.scheduler\\.priority_bound|T13\\.scheduler\\.history_scale|T13\\.scheduler\\.close_and_callbacks|T13\\.scheduler\\.executor_owner_lifetime|T13\\.scheduler\\.started_deadline|T13\\.scheduler\\.real_concurrent_completion|T13\\.scheduler\\.start_deadline_race|T13\\.scheduler\\.dependency_attach_race|T13\\.scheduler\\.dependency_invalid|T13\\.scheduler\\.completion_backpressure|T13\\.resources\\.alias_read_write_same_slot|T13\\.resources\\.multi_claim_partial_failure_zero_occupancy|T13\\.resources\\.aggregate_overflow|T13\\.resources\\.exclusive_shared_units|T13\\.resources\\.lease_only_own_release|T13\\.resources\\.unknown_key_bounded|T13\\.resources\\.waiter_release_race|T13\\.resources\\.waiter_cancel|T13\\.resources\\.callback_outside_lock|T13\\.resources\\.compute_commit_separation|T13\\.resources\\.parent_wait_rejects_held_child_resources|T13\\.resources\\.scheduler_resource_wakeup|T24\\.b4\\.installed_consumer|T01\\.b4\\.architecture_guards|T01\\.architecture\\.dependency_dag|T24\\.sdk\\.version_header|T23\\.dependencies\\.asan_healthy|T23\\.dependencies\\.asan_detects_heap_overflow)$",
+  "repeat": 1,
+  "timeout_seconds": 1800,
+  "checks": [],
+  "review_policy": {
+    "format": "ock.review-policy-binding/1",
+    "mode": "ai-self-review",
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+  },
+  "review_required": [
+    "spec",
+    "code"
+  ],
+  "review_records": [
+    "docs/reviews/B4-spec.json",
+    "docs/reviews/B4-code.json"
+  ],
+  "runtime_artifact_patterns": [
+    "evidence/bootstrap/B4/sdk-install-*/*",
+    "evidence/bootstrap/B4/worker-fatal-*/*",
+    "build/b4-install-*/consumer-source/*",
+    "build/b4-install-*/consumer/Debug/installed_b4.exe",
+    "build/b4-asan/dependency-probe-work/fault-*/*"
+  ],
+  "required_runtime_artifacts": [
+    {
+      "pattern": "evidence/bootstrap/B4/sdk-install-*/result.json",
+      "minimum": 1
+    },
+    {
+      "pattern": "evidence/bootstrap/B4/sdk-install-*/installed-b4.map",
+      "minimum": 1
+    },
+    {
+      "pattern": "evidence/bootstrap/B4/worker-fatal-cpu_pool-*/process.json",
+      "minimum": 1
+    },
+    {
+      "pattern": "evidence/bootstrap/B4/worker-fatal-controlled-*/process.json",
+      "minimum": 1
+    },
+    {
+      "pattern": "evidence/bootstrap/B4/worker-fatal-inline-*/process.json",
+      "minimum": 1
+    },
+    {
+      "pattern": "build/b4-asan/dependency-probe-work/fault-*/process.json",
+      "minimum": 1
+    }
+  ]
+}
