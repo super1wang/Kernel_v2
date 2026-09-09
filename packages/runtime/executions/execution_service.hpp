@@ -36,7 +36,7 @@ public:
       std::shared_ptr<ExecutionTable> table,std::shared_ptr<contracts::ExecutorPort> executor,
       std::shared_ptr<resources::ResourceManager> resources,std::vector<scheduler::Subject> subjects,
       scheduler::Options scheduling,Options options) {
-    if(!table||!executor||!resources||!options.active||!options.control_batch)return fail();
+    if(!table||!executor||!options.active||!options.control_batch)return fail();
     try {
       auto state=std::make_shared<State>();state->table=std::move(table);state->executor=executor;
       state->resources=std::move(resources);state->options=options;state->slots.resize(options.active);

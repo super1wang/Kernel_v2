@@ -1,6 +1,7 @@
 #pragma once
 #include <ock/contracts/observation.hpp>
 #include <ock/runtime/policy.hpp>
+#include <ock/runtime/host.hpp>
 #include <algorithm>
 #include <limits>
 #include <map>
@@ -11,13 +12,7 @@ namespace ock::runtime::executions::detail {
 // 内部拥有表。调用者身份与观察权限由 Runtime 适配器检查，不能直接安装为 SDK 入口。
 class ExecutionTable final {
 public:
-  struct Limits {
-    std::size_t records=4096, input_bytes=64*1024*1024, reply_bytes=64*1024*1024;
-    std::size_t terminal_records=10000, terminal_bytes=64*1024*1024;
-    std::uint32_t page_size=200,scan_limit=2000;
-    std::size_t targets_per_record=64;
-    std::size_t waiters=256;
-  };
+  using Limits=host::ExecutionLimits;
   struct Usage {std::size_t records=0,input_bytes=0,reply_bytes=0,waiters=0;};
   enum class WaitState {Terminal,Timeout,Cancelled};
   using ReplyAccess=const void* (*)(const void*) noexcept;

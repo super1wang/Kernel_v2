@@ -17,13 +17,14 @@ public:
       std::shared_ptr<resources::ResourceManager> resources,
       contracts::ExecutionRef identity,contracts::HostIncarnation host,
       std::shared_ptr<Record> record,const Resolver& resolve,std::function<void()> wake) {
-    if(!table||!scheduler||!resources||!record||!resolve)return fail();
+    if(!table||!scheduler||!record||!resolve)return fail();
     auto options=record->options();
     std::shared_ptr<ManagedInvocation> owner;
     try {
       auto material=record->material();
       auto claims=resolve(material->entry->resources);
       if(!claims)return contracts::make_unexpected(claims.error());
+      if(!claims->empty()&&!resources)return fail();
       owner=std::shared_ptr<ManagedInvocation>(new ManagedInvocation(table,scheduler,record,std::move(wake)));
       contracts::SummaryInput summary{identity,material->entry->definition->description().key,
           material->caller->view().description().principal,{},contracts::ExecutionPhase::Queued,

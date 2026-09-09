@@ -6,7 +6,7 @@
 
 同一 Registry/Policy/Invocation 生产实现组成 NativeSubset。只执行无资源声明的同步 Read/Compute，保留完整参数、身份、目标、权限、线程、预算和 Outcome 检查。不创建 Task、Document、执行索引、恢复存储或第二个业务分派器。NativeSubset 不提供 submit、wait、RPC 或业务模块。
 
-B5 开发扩展：可信组合根可通过 `HostPorts::execution_factory` 显式装配执行后端。工厂只在 start 时调用，使用本 HostIncarnation 创建观察源；默认空工厂保持以上 NativeSubset 行为。Host 在验证观察源之前登记后端清理责任，失败也必须排空；关闭顺序为停止执行准入、等待已准入调用、结束执行、关闭 Policy、排空执行器、停止模块。超时保留后端及其依赖，`PendingKind::Executions` / `Executors` 分别报告未完成责任；所属执行线程关闭返回 Reentrant。工厂返回失败前的临时 owner 清理由工厂负责，所有后端回调必须遵守传入截止时间。已接通 `HostBound::submit` 与 `HostSession::wait/result`，当前仅覆盖拥有型同步 Read/Compute 在显式执行后端排队的路径。具体执行工厂仍是 Runtime 内部装配，Control/CLI、结构化父子和异步完成尚未闭合，capabilities 不宣称完整异步执行或观察能力。
+B5 开发扩展：可信组合根可通过 `HostPorts::execution_factory` 显式装配执行后端。工厂只在 start 时调用，使用本 HostIncarnation 创建观察源；默认空工厂保持以上 NativeSubset 行为。Host 在验证观察源之前登记后端清理责任，失败也必须排空；关闭顺序为停止执行准入、等待已准入调用、结束执行、关闭 Policy、排空执行器、停止模块。超时保留后端及其依赖，`PendingKind::Executions` / `Executors` 分别报告未完成责任；所属执行线程关闭返回 Reentrant。工厂返回失败前的临时 owner 清理由工厂负责，所有后端回调必须遵守传入截止时间。已接通 `HostBound::submit` 与 `HostSession::wait/result/cancel`，当前仅覆盖拥有型同步 Read/Compute 在显式执行后端排队的路径。可信工厂可调用公开 `make_executions` 创建真实执行后端，Control/CLI、结构化父子和异步完成尚未闭合，capabilities 不宣称完整异步执行或观察能力。
 
 公开头 `ock/runtime/host.hpp` 的名字位于 `ock::runtime::host`。以下 `Name`、`Error`、`Result`、`OperationKey`、`ContractDigest`、`Shape`、`CallerDescription`、`InvokeReply` 及概念沿用 CoreContracts；`TimePoint` 为 `std::chrono::steady_clock::time_point`。公开 `ock/runtime/native_types.hpp` 保存 D1.05 的 ThreadRole、ThreadObservation、TrustedThreadPort、NativeBudget、InvokeOptions、TargetProjection、InvocationErrc/Record/Snapshot 唯一定义，仍在原 `ock::runtime::invocation` 命名空间。模板内部使用安装的 detail，不要求应用直接包含 detail。
 
@@ -16,6 +16,8 @@ B5 提交存储由可信 Registrar 的四参数 `read/compute` 重载声明 `reg
 `HostSession::result<R>` 在结果 pin 前后执行当前 ReadResult 授权，并核对真实 R 类型，返回拥有型 InvokeReply 与 ResponseAuthorization；传输适配仍需消费发送许可。`wait` 仅允许可信线程观测为 Application 的调用，在当前 Wait 授权期限与请求期限的较早者内等待，返回前重验授权。Timeout/Cancelled 只结束等待，不能声称执行已取消。Host 关闭后新的会话查询被拒绝，已取得的结果 owner 继续保活。
 
 `HostSession::cancel` 使用当前 CancelExecution 授权，返回 CoreContracts 的 `CancelDisposition`：Requested 表示取消赢得尚未开始的退役仲裁，AlreadyClaimed 表示 start 已赢且只登记协作意图，AlreadyTerminal 表示权威执行已结束。分类来自同一 Scheduler start/retire 仲裁，不根据先读摘要再操作猜测；三种结果均不改写既有执行事实，不保证物理投递已排空。原始 InvokeOptions.stop 在接受后由执行 owner 保持注册，可在排队或等待资源时直接退役，回调仅弱引用 owner；运行期取消不提前释放业务 Lease。
+
+`make_executions` 只依赖 CoreContracts 的 ExecutorControlPort，由可信组合根提供实际 executor。ExecutionOptions 冻结执行表/控制槽预算、主体调度和资源映射；ResourceRef 的目录 owner 只证明注册寿命，运行期 Lease 必须由后端唯一 ResourceManager 按冻结 claims 取得。未知键、重复 ResourceRef、超限或不合法 claims 在创建时拒绝；未映射的操作声明在接受前拒绝。无资源配置不创建 ResourceManager 或占位 slot。创建成功后 Host 排空执行及 executor，创建失败时工厂保留临时 executor 的排空责任。显式后端允许同步 Read/Compute 的非 inline 声明；仍拒绝需要外部异步完成的注册，短 Invoke 的资源和线程检查保持。
 
 ## 模块与预算
 
@@ -138,6 +140,27 @@ public:
   virtual Result<std::shared_ptr<contracts::LogPort>> create(
       HostIncarnation, const contracts::LogLimits&) = 0;
 };
+struct ExecutionLimits {
+  std::size_t records=4096, input_bytes=64*1024*1024, reply_bytes=64*1024*1024;
+  std::size_t terminal_records=10000, terminal_bytes=64*1024*1024;
+  std::uint32_t page_size=200,scan_limit=2000;
+  std::size_t targets_per_record=64;
+  std::size_t waiters=256;
+};
+struct ExecutionResource {
+  registry::ResourceRef ref;
+  std::vector<resources::Claim> claims;
+};
+struct ExecutionOptions {
+  ExecutionLimits limits;
+  std::size_t active=256,control_batch=64;
+  scheduler::Options scheduling;
+  std::vector<scheduler::Subject> subjects;
+  resources::Options resource_options;
+  std::vector<resources::Slot> slots;
+  std::vector<resources::Alias> aliases;
+  std::vector<ExecutionResource> resources;
+};
 enum class ExecutionWaitState : std::uint8_t { Terminal, Timeout, Cancelled };
 struct ExecutionWaitReply {
   ExecutionWaitState state;
@@ -175,6 +198,10 @@ public:
   virtual Result<bool> finish_until(TimePoint) = 0;
   virtual Result<bool> drain_executors_until(TimePoint) = 0;
 };
+// 可信工厂在 start 内调用。成功后 Host 持有并排空 executor；失败时调用方仍负责其排空。
+// 配置被独立冻结；客户端 Submit 无法替换资源映射或预算。
+Result<std::shared_ptr<HostExecutionPort>> make_executions(HostIncarnation,
+    std::shared_ptr<ExecutorControlPort>, const ExecutionOptions&);
 class HostExecutionFactoryPort : public PortLifetime {
 public:
   virtual Result<std::shared_ptr<HostExecutionPort>> create(HostIncarnation) = 0;

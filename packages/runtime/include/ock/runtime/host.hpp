@@ -7,6 +7,8 @@
 #include <ock/runtime/policy.hpp>
 #include <ock/runtime/native_types.hpp>
 #include <ock/runtime/logging.hpp>
+#include <ock/runtime/resources.hpp>
+#include <ock/runtime/scheduler.hpp>
 
 namespace ock::runtime::executions::detail { class InvocationRecordBase; }
 namespace ock::runtime::host {
@@ -115,6 +117,27 @@ public:
 };
 // 可信组合根提供执行后端；工厂返回前的失败清理由工厂负责。
 // Host 先关闭执行准入，再排空执行及物理投递，最后停止模块。
+struct ExecutionLimits {
+  std::size_t records=4096, input_bytes=64*1024*1024, reply_bytes=64*1024*1024;
+  std::size_t terminal_records=10000, terminal_bytes=64*1024*1024;
+  std::uint32_t page_size=200,scan_limit=2000;
+  std::size_t targets_per_record=64;
+  std::size_t waiters=256;
+};
+struct ExecutionResource {
+  registry::ResourceRef ref;
+  std::vector<resources::Claim> claims;
+};
+struct ExecutionOptions {
+  ExecutionLimits limits;
+  std::size_t active=256,control_batch=64;
+  scheduler::Options scheduling;
+  std::vector<scheduler::Subject> subjects;
+  resources::Options resource_options;
+  std::vector<resources::Slot> slots;
+  std::vector<resources::Alias> aliases;
+  std::vector<ExecutionResource> resources;
+};
 enum class ExecutionWaitState : std::uint8_t { Terminal, Timeout, Cancelled };
 struct ExecutionWaitReply {
   ExecutionWaitState state;
@@ -152,6 +175,10 @@ public:
   virtual Result<bool> finish_until(TimePoint) = 0;
   virtual Result<bool> drain_executors_until(TimePoint) = 0;
 };
+// 可信工厂在 start 内调用。成功后 Host 持有并排空 executor；失败时调用方仍负责其排空。
+// 配置被独立冻结；客户端 Submit 无法替换资源映射或预算。
+Result<std::shared_ptr<HostExecutionPort>> make_executions(HostIncarnation,
+    std::shared_ptr<ExecutorControlPort>, const ExecutionOptions&);
 class HostExecutionFactoryPort : public PortLifetime {
 public:
   virtual Result<std::shared_ptr<HostExecutionPort>> create(HostIncarnation) = 0;

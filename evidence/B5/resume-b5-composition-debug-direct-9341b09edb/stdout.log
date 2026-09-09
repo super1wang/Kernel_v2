@@ -1,0 +1,28 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+Test project J:/Code/Kernel_v2/build/b4-debug
+    Start  80: T13.resources.execution_binding
+1/8 Test  #80: T13.resources.execution_binding .................   Passed    0.13 sec
+    Start  81: T13.resources.execution_running_cancel
+2/8 Test  #81: T13.resources.execution_running_cancel ..........   Passed    0.05 sec
+    Start  82: T13.resources.execution_binding_interleavings
+3/8 Test  #82: T13.resources.execution_binding_interleavings ...   Passed    0.05 sec
+    Start 106: T03.native.execution_service_control
+4/8 Test #106: T03.native.execution_service_control ............   Passed    0.07 sec
+    Start 108: T03.native.host_execution_lifecycle
+5/8 Test #108: T03.native.host_execution_lifecycle .............   Passed    0.07 sec
+    Start 109: T03.native.host_execution_resources
+6/8 Test #109: T03.native.host_execution_resources .............***Failed    0.05 sec
+published
+
+
+83% tests passed, 1 tests failed out of 6
+
+Label Time Summary:
+B5       =   0.43 sec*proc (6 tests)
+D3.04    =   0.43 sec*proc (6 tests)
+D3.05    =   0.23 sec*proc (3 tests)
+
+Total Test time (real) =   0.45 sec
+
+The following tests FAILED:
+	109 - T03.native.host_execution_resources (Failed)      B5 D3.04

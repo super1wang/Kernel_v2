@@ -62,11 +62,10 @@ void host_execution_lifecycle() {
       if(foreign)id.bytes[0]^=0x80;
       auto pool=ock::cpu_pool::Executor::create({2,2});CHECK(pool);
       std::shared_ptr<ExecutorControlPort> executor=std::move(*pool);
-      auto resources=resources::ResourceManager::create({{"unused",1,false}});CHECK(resources);
-      std::shared_ptr<resources::ResourceManager> manager=std::move(*resources);
-      auto made=Hosted::create(id,executor,manager,{{policy_test::principal().principal_id}});
+      host::ExecutionOptions options;options.subjects={{policy_test::principal().principal_id}};
+      auto made=host::make_executions(id,executor,options);
       if(!made){CHECK(executor->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(2)));return make_unexpected(made.error());}
-      owner=*made;return std::shared_ptr<host::HostExecutionPort>(owner);
+      owner=std::dynamic_pointer_cast<Hosted>(*made);CHECK(owner);return *made;
     }
   };
   service_entered=false;service_release=false;service_host_reentrant=false;
@@ -158,6 +157,91 @@ void host_execution_lifecycle() {
   CHECK(!(*invalid)->start());CHECK(foreign->owner);
   CHECK((*invalid)->snapshot({}).quiescent);
   CHECK(foreign->owner->service().scheduler_snapshot().worker_delivery==0);
+}
+
+inline std::atomic<unsigned> hosted_resource_calls=0;
+inline Result<int> hosted_resource_handler(const int& value,WorkContext& context) {
+  CHECK(context.granted_resources().size()==1&&context.granted_resources()[0]);
+  ++hosted_resource_calls;
+  return service_handler(value,context);
+}
+void host_execution_resources() {
+  struct Factory final : host::HostExecutionFactoryPort {
+    host::ExecutionOptions options;
+    Result<std::shared_ptr<host::HostExecutionPort>> create(HostIncarnation id) override {
+      auto made_pool=ock::cpu_pool::Executor::create({2,2});CHECK(made_pool);
+      std::shared_ptr<ExecutorControlPort> pool=std::move(*made_pool);
+      auto made=host::make_executions(id,pool,options);
+      if(!made)CHECK(pool->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(2)));
+      return made;
+    }
+  };
+  struct Lifecycle final : host::ModuleLifecyclePort {
+    Result<void> start(const host::ModuleContext&) override {return {};}
+    host::ModuleStopResult stop() override {return {true,{}};}
+  };
+  struct HostThreads final : TrustedThreadPort {
+    std::thread::id application=std::this_thread::get_id();
+    Result<ThreadObservation> current() const noexcept override {
+      return ThreadObservation{std::this_thread::get_id()==application?ThreadRole::Application:ThreadRole::Worker,name("app"),true};
+    }
+  };
+  service_host=nullptr;service_entered=false;service_release=false;hosted_resource_calls=0;
+  std::optional<registry::ModuleInput> registration;
+  Env env(false,hosted_resource_handler,{},[&](registry::ModuleInput& module) {
+    module.manifest.resources.push_back(name("declared"));
+    module.manifest.required_resources.push_back({name("native"),name("declared")});
+    module.resources.push_back({name("declared"),std::make_shared<ResourceLease>()});
+    module.register_operations=[](registry::Registrar& registrar) {
+      DefinitionInput d{key(), {}, {false,false,false,name("test"),name("app")},
+          AtomicMode::PureCompute,{name("allow")},"host.resource"};
+      registry::OperationOptions o{{},{},{name("native"),name("test")},{{name("native"),name("declared")}},false};
+      registry::SubmissionStorage<int,int> storage{4,sizeof(InvokeReply<int>),
+          [](const int&)->Result<std::size_t>{return 4;},
+          [](const InvokeReply<int>&)->Result<std::size_t>{return sizeof(InvokeReply<int>);}};
+      CHECK(registrar.compute(hosted_resource_handler,d,o,storage));
+    };
+    registration=module;
+  });
+  auto factory=std::make_shared<Factory>();
+  factory->options.subjects={{policy_test::principal().principal_id}};
+  factory->options.slots={{"shared.slot",1,false}};
+  factory->options.resources={{{name("native"),name("declared")},{{"shared.slot",resources::Mode::Exclusive,1}}}};
+  host::HostPorts ports{env.policy.auth,env.policy.clock,env.policy.digest,std::make_shared<HostThreads>(),{},factory};
+  auto made=host::NativeHost::create({},policy_test::configuration(),ports);CHECK(made);auto& host=*made;
+  CHECK(host->add({*registration,std::make_shared<Lifecycle>()}));CHECK(host->start());
+  factory->options.resources.clear(); // 接受后的可信映射独立拥有，不再借用配置容器。
+  auto session=host->open({{std::byte{7}}},{policy_test::rules(),env.policy.auth->identity.deadline,false});CHECK(session);
+  auto caller=session->verify({policy_test::principal(),{}, {}});CHECK(caller);
+  auto bind=[&]{return session->bind<int,int>(key(),{},Shape::Read,*caller,
+      std::array{policy_test::target()},targets,name("host.resource"));};
+  auto first=bind(),second=bind();CHECK(first&&second);
+  CHECK(std::holds_alternative<Rejected>(first->invoke(1,env.options())));
+  auto one=first->submit(1,env.options());CHECK(std::holds_alternative<Accepted>(one));
+  auto one_ref=std::get<Accepted>(one).execution;
+  const auto deadline=std::chrono::steady_clock::now()+std::chrono::seconds(2);
+  while(!service_entered.load()&&std::chrono::steady_clock::now()<deadline)std::this_thread::yield();
+  CHECK(service_entered&&hosted_resource_calls==1);
+  auto two=second->submit(2,env.options());CHECK(std::holds_alternative<Accepted>(two));
+  auto two_ref=std::get<Accepted>(two).execution;
+  auto context=session->catalog_context();CHECK(context);
+  bool waiting=false;
+  while(std::chrono::steady_clock::now()<deadline) {
+    auto observed=context->authorization->observations()->get(**caller,two_ref,policy::AccessUse::GetSummary);CHECK(observed);
+    if(observed->summary->value().phase==ExecutionPhase::WaitingResources){waiting=true;break;}
+    std::this_thread::yield();
+  }
+  CHECK(waiting&&hosted_resource_calls==1);
+  auto cancelled=session->cancel(**caller,two_ref);CHECK(cancelled&&*cancelled==CancelDisposition::Requested);
+  auto timeout=host->shutdown_until(std::chrono::steady_clock::now());CHECK(!timeout.quiescent);
+  service_release=true;
+  CHECK(host->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(2)).quiescent);
+  CHECK(hosted_resource_calls==1);
+  factory->options.resources={{{name("native"),name("declared")},{{"missing.slot",resources::Mode::Exclusive,1}}}};
+  CHECK(!factory->create(host->incarnation())); // 启动前拒绝未知映射，工厂排空临时 pool。
+  factory->options.resources[0].claims[0].key="shared.slot";
+  factory->options.resources.push_back(factory->options.resources.front());
+  CHECK(!factory->create(host->incarnation())); // 同一声明不能有两份可漂移的 claims。
 }
 }
 #endif

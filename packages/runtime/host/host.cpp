@@ -267,7 +267,8 @@ Result<void> NativeHost::add(const HostModule& module) {
   try {
     if(!owned(module.lifecycle)) {auto e=host_error(HostErrc::InvalidOwner);s->first_error(e);return make_unexpected(e);}
     const auto& m=module.registration;
-    if(!m.providers.empty()||!m.resources.empty()||!m.manifest.required_providers.empty()||!m.manifest.required_resources.empty()) {
+    if(!m.providers.empty()||!m.manifest.required_providers.empty()||
+       ((!m.resources.empty()||!m.manifest.required_resources.empty())&&!s->ports.execution_factory)) {
       auto e=host_error(HostErrc::UnsupportedCapability);s->first_error(e);return make_unexpected(e);
     }
     auto result=s->batch->add(m);
@@ -301,7 +302,8 @@ Result<void> NativeHost::start() {
       auto d=s->catalog->describe(static_cast<std::uint32_t>(i));
       if(!d)return fail(d.error());
       const auto& execution=(*d)->description().execution;
-      if((*d)->shape()!=Shape::Read||!execution.inline_safe||execution.requires_async_dispatch||execution.requires_external_wait||(*d)->provider())
+      if((*d)->shape()!=Shape::Read||execution.requires_external_wait||(*d)->provider()||
+         ((!execution.inline_safe||execution.requires_async_dispatch)&&!s->ports.execution_factory))
         return fail(host_error(HostErrc::UnsupportedCapability));
     }
     if(s->ports.logging_factory) {

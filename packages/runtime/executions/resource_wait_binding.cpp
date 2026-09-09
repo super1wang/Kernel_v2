@@ -48,7 +48,8 @@ void ResourceWaitBinding::drive() {
   }
   foundation::Result<resources::ResourceManager::Acquisition> acquired;
   try {
-    if(!claims_.empty()) {
+    if(!claims_.empty()&&!resources_&&!acquire_)acquired=make_unexpected(resources::error(resources::Errc::InvalidInput));
+    else if(!claims_.empty()) {
       auto weak=weak_from_this();
       auto wake=[weak,attempt](std::uint64_t waiter){if(auto current=weak.lock())current->woke(attempt,waiter);};
       acquired=acquire_?acquire_(claims_,wake):resources_->acquire(claims_,resources::Phase::Compute,std::move(wake));
