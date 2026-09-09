@@ -91,7 +91,7 @@ int wmain(int argc,wchar_t **wide_argv) try {
   CLI::App app{"OCK local control client"}; app.require_subcommand(1);
   std::string instance="default",server_sid,operation,version="1.0.0",args,file,intent_file,digest,prefix,owner="self",phase="nonterminal",execution_ref;
   bool json=false,jsonl=false,stdin_input=false,cancel_on_interrupt=false;
-  int timeout=5000,page_size=50,execution_timeout=30000,wait_timeout=1000;
+  int timeout=5000,page_size=50,pages=1,execution_timeout=30000,wait_timeout=1000;
   app.add_option("--instance",instance,"Controlled local instance name");
   app.add_option("--server-sid",server_sid,"Expected OS server SID; defaults to current user");
   app.add_option("--timeout-ms",timeout)->check(CLI::Range(1,300000));
@@ -123,11 +123,14 @@ int wmain(int argc,wchar_t **wide_argv) try {
   auto list=execution->add_subcommand("list"); list->fallthrough();
   list->add_option("--owner",owner); list->add_option("--phase",phase)->check(CLI::IsMember({"nonterminal","terminal","all"}));
   list->add_option("--page-size",page_size)->check(CLI::Range(1,200));
+  list->add_option("--pages",pages,"Maximum pages on this connection; multiple pages require --jsonl")->check(CLI::Range(1,128));
+  list->add_flag("--jsonl",jsonl);
   auto watch=execution->add_subcommand("watch"); watch->fallthrough(); watch->add_option("execution_ref",execution_ref)->required();
   watch->add_flag("--jsonl",jsonl); watch->add_flag("--cancel-on-interrupt",cancel_on_interrupt);
   try { app.parse(argc,argv.data()); }
   catch(const CLI::CallForHelp &help) { return app.exit(help); }
   catch(const CLI::ParseError &parse) { std::cerr << parse.what() << '\n'; return failure(2,"Usage"); }
+  if(*list&&pages>1&&!jsonl)return failure(2,"MultiplePagesRequireJSONL");
   if(server_sid.empty()) { auto sid=local_ipc::current_user_sid(); if(!sid) return failed(sid.error()); server_sid=std::move(*sid); }
   local_ipc::PipeOptions options; options.instance=instance; options.expected_server_sid=server_sid;
   auto transport=cli::PipeExchange::open(options); if(!transport) return failed(transport.error());
@@ -146,9 +149,24 @@ int wmain(int argc,wchar_t **wide_argv) try {
     if(!params)return failed(params.error());return output(client->call(method,*params,interruption.get_token()));
   }
   if(*list) {
-    if(client->hello().observation_backend!="managed") return failure(3,"ExecutionProviderUnavailable");
-    auto params=data::Payload::parse("{\"owner\":"+quoted(owner)+",\"phase_set\":"+quoted(phase)+",\"page_size\":"+std::to_string(page_size)+"}");
-    return output(client->call("execution.list",*params,interruption.get_token()));
+    if(client->hello().observation_backend!="managed"||!client->supports("execution.list"))return failure(3,"ExecutionProviderUnavailable");
+    std::string cursor;
+    for(int page=0;page<pages;++page) {
+      auto continuation=cursor.empty()?std::string{}:",\"cursor\":"+quoted(cursor);
+      auto params=data::Payload::parse("{\"owner\":"+quoted(owner)+",\"phase_set\":"+quoted(phase)+",\"page_size\":"+std::to_string(page_size)+continuation+"}");
+      if(!params)return failed(params.error());
+      auto response=client->call("execution.list",*params,interruption.get_token());
+      if(!response)return failed(response.error());
+      if(control_client::exit_code(response->view())!=0)return output(std::move(response));
+      auto next=response->view().at("result").at("next_cursor");std::string following;
+      if(!next.missing()) {
+        auto token=next.string();if(!token||token->empty()||token->size()>2048||*token==cursor)return failure(6,"InvalidPageCursor");
+        following=*token;
+      }
+      auto code=output(std::move(response));if(jsonl)std::cout<<std::flush;
+      if(code||following.empty())return code;cursor=std::move(following);
+    }
+    return 0;
   }
   if(*watch) {
     if(client->hello().observation_backend!="managed" || !client->supports("notifications.subscribe") || !client->supports("execution.get"))
@@ -165,6 +183,7 @@ int wmain(int argc,wchar_t **wide_argv) try {
     auto initial=(*subscription)->snapshot(); if(!initial) return failed(initial.error());
     bool terminal=initial->view().at("result").at("phase").string()=="Terminal";
     if(output(std::move(initial))!=0) return failure(6,"InvalidSnapshot");
+    std::cout<<std::flush;
     while(!terminal && !interruption.stop_requested()) {
       auto next=(*subscription)->next(std::chrono::milliseconds(timeout),interruption.get_token());
       if(!next) {

@@ -30,8 +30,10 @@ $managedCli = '.\build\b4-debug\apps\ock\Debug\ock.exe'
 
 ## 列表开发增量
 
-`ock --instance <实例名> --json execution list --phase terminal --page-size 200` 查询同一真实执行表；`--phase nonterminal` 查询未终结执行。分页返回当前连接绑定的游标，现有 CLI 尚无游标续页参数。list 与 subscribe/event 使用当前 Policy 和发送前检查。
+`ock --instance <实例名> --json execution list --phase terminal --page-size 200` 查询同一真实执行表；`--phase nonterminal` 查询未终结执行。分页返回当前连接绑定的游标。`--pages 10 --jsonl` 在同一连接内最多连续读取 10 页；到末页提前结束，每页立即输出一行 JSON。`--pages` 范围为 1..128，默认单页；多页必须显式使用 JSONL。list 与 subscribe/event 使用当前 Policy 和发送前检查。
 
 观察源在执行线程只追加固定大小的身份/版本提示；各连接 I/O Tick 有限消费，不增加后台观察线程。环覆盖或摘要合并标记 gap，通知不保留输入/结果 owner，不能阻断可靠完成。watch 在 subscribe 后 get，并在 phase/fact/gap 提示后再次 get；不把通知当作完整跃迁史。
 
 Host Draining 拒绝新观察注册，已有观察可继续有限发送；最终关闭移除监听并等待在途回调及其 owner 释放，再报告 quiescent。可信组合根持有原始观察源，普通调用者仍只能通过既有 Policy/Control 查询与订阅。
+
+watch 首个快照立即输出。开发验证还覆盖：观察进程取得非终态快照后被关闭，执行继续；另一 watch 重连后准确确认终态，结果未观察到 stop。此用例不代替 Ctrl+C 或 `--cancel-on-interrupt` 验证。

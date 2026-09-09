@@ -2,6 +2,8 @@ import json
 import subprocess
 import sys
 import uuid
+import queue
+import threading
 
 service, cli = sys.argv[1:3]
 instance = 'managed-' + uuid.uuid4().hex
@@ -23,6 +25,13 @@ def finish(process, expected=0):
 
 def call(arguments, expected=0):
     return finish(spawn(arguments), expected)
+
+def first_line(process):
+    lines = queue.Queue(maxsize=1)
+    threading.Thread(target=lambda: lines.put(process.stdout.readline()), daemon=True).start()
+    line = lines.get(timeout=3)
+    print('CLI first snapshot', process.pid, line.rstrip(), flush=True)
+    return json.loads(line)
 
 def submit(amount, delay, text):
     response = call(['submit', 'sample.compute', '--args', json.dumps(
@@ -78,8 +87,23 @@ try:
     page = call(['execution', 'list', '--phase', 'terminal', '--page-size', '1'])['result']
     assert len(page['items']) == 1 and page['next_cursor'].startswith('v1.')
     assert call(['execution', 'list', '--phase', 'nonterminal'])['result']['items'] == []
+    pager = spawn(['execution', 'list', '--phase', 'terminal', '--page-size', '5', '--pages', '10', '--jsonl'])
+    output, error = pager.communicate(timeout=15)
+    assert pager.returncode == 0, (pager.pid, pager.returncode, output, error)
+    pages = [json.loads(line)['result'] for line in output.splitlines()]
+    assert len(pages) == 5 and 'next_cursor' not in pages[-1]
+    identities = [item['execution_ref']['execution_id'] for page in pages for item in page['items']]
+    assert len(identities) == 22 and len(set(identities)) == 22 and retained <= set(identities)
+    call(['execution', 'list', '--pages', '2'], 2)
     # 真实订阅在 10 s 无通知重读周期前收到完成提示并准确 get 终态。
-    watched = submit(21, 3000, 'native notification source')
+    watched = submit(21, 5000, 'native notification source')
+    abandoned = spawn(['execution', 'watch', watched, '--jsonl', '--timeout-ms', '10000'])
+    initial = first_line(abandoned)
+    assert initial['result']['phase'] != 'Terminal'
+    assert initial['result']['execution_ref']['execution_id'] == watched
+    abandoned.kill()  # 仅关闭本测试创建的观察客户端；不是 Ctrl+C/cancel 证明。
+    abandoned.communicate(timeout=3)
+    assert call(['execution', 'get', watched])['result']['phase'] != 'Terminal'
     watcher = spawn(['execution', 'watch', watched, '--jsonl', '--timeout-ms', '10000'])
     output, error = watcher.communicate(timeout=8)
     assert watcher.returncode == 0, (watcher.pid, watcher.returncode, output, error)
@@ -87,7 +111,7 @@ try:
     assert len(snapshots) >= 2 and snapshots[0]['result']['phase'] != 'Terminal'
     assert snapshots[-1]['result']['phase'] == 'Terminal'
     assert all(item['result']['execution_ref']['execution_id'] == watched for item in snapshots)
-    assert result(watched)['amount'] == 22
+    assert result(watched) == {'amount': 22, 'text': 'native notification source', 'stop_observed': False}
     call(['execution', 'get', 'f' * 32], 3)
     assert server.poll() is None
     print('Managed multi-process submit/get/wait/cancel/result/list/watch and session recycling passed', flush=True)

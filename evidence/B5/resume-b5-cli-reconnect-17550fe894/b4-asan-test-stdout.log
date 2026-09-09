@@ -1,0 +1,117 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-asan
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-asan/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-asan/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-asan/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-asan/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-asan
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 98
+    Start 98: T20.cli.managed_roundtrip
+
+98: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed.py" "J:/Code/Kernel_v2/build/b4-asan/examples/managed_service/RelWithDebInfo/ock_managed_service.exe" "J:/Code/Kernel_v2/build/b4-asan/apps/ock/RelWithDebInfo/ock.exe"
+98: Working Directory: J:/Code/Kernel_v2/build/b4-asan/tests/integration/cli
+98: Environment variable modifications: 
+98:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+98: Test timeout computed to be: 90
+98: CLI 49856 ['submit', 'sample.compute']
+98: CLI 53400 ['execution', 'get']
+98: CLI 53552 ['execution', 'wait']
+98: CLI 5612 ['execution', 'wait']
+98: CLI 55668 ['result', 'read']
+98: CLI 38444 ['execution', 'get']
+98: CLI 37896 ['submit', 'sample.compute']
+98: CLI 65660 ['execution', 'get']
+98: CLI 28728 ['execution', 'wait']
+98: CLI 25800 ['execution', 'cancel']
+98: CLI 57424 ['result', 'read']
+98: CLI 48000 ['execution', 'cancel']
+98: CLI 3256 ['submit', 'sample.compute']
+98: CLI 44268 ['execution', 'wait']
+98: CLI 69168 ['result', 'read']
+98: CLI 51124 ['submit', 'sample.compute']
+98: CLI 53596 ['execution', 'wait']
+98: CLI 41076 ['result', 'read']
+98: CLI 66464 ['submit', 'sample.compute']
+98: CLI 68372 ['execution', 'wait']
+98: CLI 28176 ['result', 'read']
+98: CLI 31132 ['submit', 'sample.compute']
+98: CLI 33816 ['execution', 'wait']
+98: CLI 47796 ['result', 'read']
+98: CLI 46748 ['submit', 'sample.compute']
+98: CLI 30076 ['execution', 'wait']
+98: CLI 42068 ['result', 'read']
+98: CLI 36832 ['submit', 'sample.compute']
+98: CLI 11156 ['execution', 'wait']
+98: CLI 35928 ['result', 'read']
+98: CLI 35672 ['submit', 'sample.compute']
+98: CLI 30356 ['execution', 'wait']
+98: CLI 58844 ['result', 'read']
+98: CLI 68276 ['submit', 'sample.compute']
+98: CLI 60244 ['execution', 'wait']
+98: CLI 33104 ['result', 'read']
+98: CLI 34288 ['submit', 'sample.compute']
+98: CLI 69948 ['execution', 'wait']
+98: CLI 26900 ['result', 'read']
+98: CLI 67968 ['submit', 'sample.compute']
+98: CLI 49500 ['execution', 'wait']
+98: CLI 48824 ['result', 'read']
+98: CLI 38484 ['submit', 'sample.compute']
+98: CLI 33720 ['execution', 'wait']
+98: CLI 55812 ['result', 'read']
+98: CLI 59552 ['submit', 'sample.compute']
+98: CLI 60852 ['execution', 'wait']
+98: CLI 67672 ['result', 'read']
+98: CLI 42392 ['submit', 'sample.compute']
+98: CLI 40428 ['execution', 'wait']
+98: CLI 47640 ['result', 'read']
+98: CLI 49340 ['submit', 'sample.compute']
+98: CLI 63000 ['execution', 'wait']
+98: CLI 25516 ['result', 'read']
+98: CLI 38616 ['submit', 'sample.compute']
+98: CLI 57352 ['execution', 'wait']
+98: CLI 25448 ['result', 'read']
+98: CLI 67992 ['submit', 'sample.compute']
+98: CLI 16736 ['execution', 'wait']
+98: CLI 68312 ['result', 'read']
+98: CLI 54612 ['submit', 'sample.compute']
+98: CLI 58580 ['execution', 'wait']
+98: CLI 3540 ['result', 'read']
+98: CLI 46852 ['submit', 'sample.compute']
+98: CLI 27852 ['execution', 'wait']
+98: CLI 62380 ['result', 'read']
+98: CLI 43164 ['submit', 'sample.compute']
+98: CLI 33780 ['execution', 'wait']
+98: CLI 27084 ['result', 'read']
+98: CLI 51544 ['submit', 'sample.compute']
+98: CLI 59048 ['execution', 'wait']
+98: CLI 59484 ['result', 'read']
+98: CLI 44804 ['execution', 'list']
+98: CLI 60804 ['execution', 'list']
+98: CLI 38936 ['execution', 'list']
+98: CLI 31984 ['execution', 'list']
+98: CLI 68420 ['execution', 'list']
+98: CLI 35196 ['submit', 'sample.compute']
+98: CLI 63748 ['execution', 'watch']
+98: CLI first snapshot 63748 {"id":"3","jsonrpc":"2.0","result":{"evidence":"Volatile","execution_ref":{"execution_id":"84f4c5b9752cb4082fcb37f32b2d6725"},"fact_summaries":[],"full_result_available":false,"host_incarnation":"c0f1d84c254eb4d3202ef643730126e2","observation_version":"3","phase":"Running","progress":{"completed":"0","scope":"ReadOnly","total":"0"},"projection":"summary","record_state":"NotRequired","writes_blocked":false}}
+98: CLI 51380 ['execution', 'get']
+98: CLI 16272 ['execution', 'watch']
+98: CLI 31484 ['result', 'read']
+98: CLI 34628 ['execution', 'get']
+98: Managed multi-process submit/get/wait/cancel/result/list/watch and session recycling passed
+1/1 Test #98: T20.cli.managed_roundtrip ........   Passed   36.34 sec
+
+The following tests passed:
+	T20.cli.managed_roundtrip
+
+100% tests passed, 0 tests failed out of 1
+
+Label Time Summary:
+B5       =  36.34 sec*proc (1 test)
+D3.07    =  36.34 sec*proc (1 test)
+
+Total Test time (real) =  36.37 sec
