@@ -1,0 +1,93 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b4-debug",
+      "--config",
+      "Debug",
+      "--target",
+      "cursor_contract",
+      "ock_managed_service",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T23:06:45.542855+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 37,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 5956672953268,
+      "qpc_frequency": 10000000
+    },
+    "pid": 25640,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T23:06:54.233337+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "4bbc545fb8d44beb1af053572bece757126bf36cd8277484c1927c6cbd4947a6",
+        "size": 1478
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "J:\\Code\\Kernel_v2\\build\\b4-debug",
+      "-C",
+      "Debug",
+      "-R",
+      "^(T20.protocol.cursor|T20.cli.managed_wire)$",
+      "--output-on-failure",
+      "--stop-on-failure"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T23:06:54.236509+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 8,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "creation_clock": {
+      "qpc_ticks": 5956759911713,
+      "qpc_frequency": 10000000
+    },
+    "pid": 67416,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T23:08:57.695733+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "e1ebfd8f85f3e78b7419388dcf6039cabd58a2bcb52926be311bb1409b1510c9",
+        "size": 506
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

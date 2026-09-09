@@ -98,10 +98,6 @@ Result<std::string> canonical(const CursorContext &c, const CursorPosition &p) {
 }
 Result<std::array<std::byte, 32>> mac(std::span<const std::byte, 32> secret,
                                       std::span<const std::byte> bytes, const CursorContext &context) {
-  BCRYPT_ALG_HANDLE algorithm{};
-  if (BCryptOpenAlgorithmProvider(&algorithm, BCRYPT_SHA256_ALGORITHM, nullptr,
-                                  BCRYPT_ALG_HANDLE_HMAC_FLAG) < 0)
-    return invalid<std::array<std::byte, 32>>();
   std::string input = "ock.execution.list/1";
   input += '\0';
   input.append(reinterpret_cast<const char *>(bytes.data()), bytes.size());
@@ -109,6 +105,10 @@ Result<std::array<std::byte, 32>> mac(std::span<const std::byte, 32> secret,
     input += '\0';input += "ock.cursor.authorization/1";input += '\0';
     input += *context.connection;input += ':';input += std::to_string(context.delegation);
   }
+  BCRYPT_ALG_HANDLE algorithm{};
+  if (BCryptOpenAlgorithmProvider(&algorithm, BCRYPT_SHA256_ALGORITHM, nullptr,
+                                  BCRYPT_ALG_HANDLE_HMAC_FLAG) < 0)
+    return invalid<std::array<std::byte, 32>>();
   std::array<std::byte, 32> output;
   auto status = BCryptHash(
       algorithm,

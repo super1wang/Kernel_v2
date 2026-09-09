@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 最终 CODE 审查发现并修正 cursor 的异常路径句柄泄漏：认证输入的全部字符串分配移到 BCrypt provider 打开前，认证字节与公开合同不变。生产构建及 Debug 直接集 **2/2** 通过，其中真实 managed wire 保留完整 120 秒 TTL/续页过期验证（[原始命令](../evidence/B5/cursor-cleanup-8d3b01fee2/commands.json)）。源码顺序证明分配失败不再持有 provider；未声称运行过 OOM 故障注入。G3-C 三配置原来源报告保持不变，文件日志/完整 Trace 的独立消费者成本与最终 B5/G3 语义、SPEC/CODE、DAG 验收仍继续完成。
+
 - G3-C 已在来源 `cde99f2` 完成批准预算下的三份独立正式采样：Release 6 组占用 ABBA 与同一二进制 6 组无握手启动 ABBA 通过（[报告](../evidence/G3/C/cb67dc769b5746b9b07ef558dd630ee7/report.json)）；Debug、ASan 各 6 组分配诊断 ABBA 通过（[Debug](../evidence/G3/C/86685a7b20dd4702b3f2ec352ff57fa4/report.json)、[ASan](../evidence/G3/C/13354720f40a4bf497fb5327439abd37/report.json)），两配置分别覆盖 480 个完整 Embedded Invoke 零新增分配窗口。Release Private 峰值 1687552 字节、实际分发增量 1341304 字节；构造到 Ready 最大 1.0519 ms、创建到 Ready 最大 46.8851 ms，成对增量与绝对值均在预先批准上限内。每次 Ready 新增 3 个线程 ID 均在 shutdown 后消失，结构性瞬时上界与阶段采样分列；原始 EXE、模块/安装库存、编译 tlog 和命令齐备。**这些是 G3-C 来源报告，不是 B5/G3 放行**；最终代码审查发现的 cursor 异常句柄清理、其它明确适用观测模式、同来源 S_required/S_gate 与 SPEC/CODE/DAG 验收仍继续完成。
 
 - G3-C 完整 Embedded 的有限预算已在正式运行前完成独立 AI 审查（[决定](reviews/B5-embedded-budget-decision.md)、[口径](contracts/embedded-footprint-method.md)）：Release 无计数与 Debug/ASan 分配诊断分开，保留 NativeSubset 原字段/原值，另加 Embedded 分区；固定 6 组 ABBA，内核线程上界 3 与受限 Invoke 零分配不放宽。正式入口绑定源/环境/依赖/安装/实际编译参数、阶段线程集合、回收曲线和原始命令。真实分配样本与损坏反例直接集 **3/3**（[原文](../evidence/B5/embedded-formal-validation-f5358f746e/commands.json)），首次负探针名称匹配错误的失败已保留并纠正。**预算 Approved 不是测量 Passed，更不是 B5/G3 Passed**；正式采样、B5 SPEC/CODE 与 G3 总验收继续完成。
