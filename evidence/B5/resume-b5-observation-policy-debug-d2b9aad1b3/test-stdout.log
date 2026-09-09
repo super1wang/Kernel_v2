@@ -1,0 +1,174 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 96
+    Start  96: T20.cli.managed_roundtrip
+
+96: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe" "J:/Code/Kernel_v2/build/b4-debug/apps/ock/Debug/ock.exe"
+96: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+96: Environment variable modifications: 
+96:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+96: Test timeout computed to be: 90
+96: CLI 27472 ['submit', 'sample.compute']
+96: CLI 61952 ['execution', 'get']
+96: CLI 49412 ['execution', 'wait']
+96: CLI 28556 ['execution', 'wait']
+96: CLI 42444 ['result', 'read']
+96: CLI 56720 ['execution', 'get']
+96: CLI 29820 ['submit', 'sample.compute']
+96: CLI 61288 ['execution', 'get']
+96: CLI 54304 ['execution', 'wait']
+96: CLI 49724 ['execution', 'cancel']
+96: CLI 59332 ['result', 'read']
+96: CLI 3200 ['execution', 'cancel']
+96: CLI 25664 ['submit', 'sample.compute']
+96: CLI 56884 ['execution', 'wait']
+96: CLI 51420 ['result', 'read']
+96: CLI 10880 ['submit', 'sample.compute']
+96: CLI 46924 ['execution', 'wait']
+96: CLI 48900 ['result', 'read']
+96: CLI 30952 ['submit', 'sample.compute']
+96: CLI 62832 ['execution', 'wait']
+96: CLI 39060 ['result', 'read']
+96: CLI 7824 ['submit', 'sample.compute']
+96: CLI 25128 ['execution', 'wait']
+96: CLI 36296 ['result', 'read']
+96: CLI 66460 ['submit', 'sample.compute']
+96: CLI 62100 ['execution', 'wait']
+96: CLI 44292 ['result', 'read']
+96: CLI 32400 ['submit', 'sample.compute']
+96: CLI 13400 ['execution', 'wait']
+96: CLI 48032 ['result', 'read']
+96: CLI 47604 ['submit', 'sample.compute']
+96: CLI 61208 ['execution', 'wait']
+96: CLI 47912 ['result', 'read']
+96: CLI 45600 ['submit', 'sample.compute']
+96: CLI 69120 ['execution', 'wait']
+96: CLI 48612 ['result', 'read']
+96: CLI 53260 ['submit', 'sample.compute']
+96: CLI 58296 ['execution', 'wait']
+96: CLI 61692 ['result', 'read']
+96: CLI 50632 ['submit', 'sample.compute']
+96: CLI 70344 ['execution', 'wait']
+96: CLI 56500 ['result', 'read']
+96: CLI 44752 ['submit', 'sample.compute']
+96: CLI 50412 ['execution', 'wait']
+96: CLI 50964 ['result', 'read']
+96: CLI 40212 ['submit', 'sample.compute']
+96: CLI 44236 ['execution', 'wait']
+96: CLI 54516 ['result', 'read']
+96: CLI 67308 ['submit', 'sample.compute']
+96: CLI 69924 ['execution', 'wait']
+96: CLI 56772 ['result', 'read']
+96: CLI 35180 ['submit', 'sample.compute']
+96: CLI 61836 ['execution', 'wait']
+96: CLI 69396 ['result', 'read']
+96: CLI 55516 ['submit', 'sample.compute']
+96: CLI 43884 ['execution', 'wait']
+96: CLI 56800 ['result', 'read']
+96: CLI 54960 ['submit', 'sample.compute']
+96: CLI 29128 ['execution', 'wait']
+96: CLI 58308 ['result', 'read']
+96: CLI 60448 ['submit', 'sample.compute']
+96: CLI 32356 ['execution', 'wait']
+96: CLI 41204 ['result', 'read']
+96: CLI 50296 ['submit', 'sample.compute']
+96: CLI 43588 ['execution', 'wait']
+96: CLI 45100 ['result', 'read']
+96: CLI 33724 ['submit', 'sample.compute']
+96: CLI 34052 ['execution', 'wait']
+96: CLI 52996 ['result', 'read']
+96: CLI 4244 ['submit', 'sample.compute']
+96: CLI 48676 ['execution', 'wait']
+96: CLI 14900 ['result', 'read']
+96: CLI 54408 ['execution', 'list']
+96: CLI 53800 ['execution', 'list']
+96: CLI 27060 ['execution', 'list']
+96: CLI 4996 ['submit', 'sample.compute']
+96: CLI 46016 ['execution', 'watch']
+96: CLI 49512 ['result', 'read']
+96: CLI 57060 ['execution', 'get']
+96: Managed multi-process submit/get/wait/cancel/result/list/watch and session recycling passed
+1/6 Test  #96: T20.cli.managed_roundtrip .................   Passed   18.83 sec
+test 177
+    Start 177: T03.native.execution_table_ownership
+
+177: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\Debug\ock_native_tests.exe "T03.native.execution_table_ownership"
+177: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/native
+177: Environment variables: 
+177:  MSBUILDDISABLENODEREUSE=1
+177: Environment variable modifications: 
+177:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+177: Test timeout computed to be: 600
+2/6 Test #177: T03.native.execution_table_ownership ......   Passed    0.08 sec
+test 184
+    Start 184: T03.native.host_observation_drain
+
+184: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\Debug\ock_native_tests.exe "T03.native.host_observation_drain"
+184: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/native
+184: Environment variables: 
+184:  MSBUILDDISABLENODEREUSE=1
+184: Environment variable modifications: 
+184:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+184: Test timeout computed to be: 600
+3/6 Test #184: T03.native.host_observation_drain .........   Passed    0.30 sec
+test 195
+    Start 195: T03.native.observation_lease_drain
+
+195: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\Debug\ock_native_tests.exe "T03.native.observation_lease_drain"
+195: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/native
+195: Environment variables: 
+195:  MSBUILDDISABLENODEREUSE=1
+195: Environment variable modifications: 
+195:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+195: Test timeout computed to be: 600
+4/6 Test #195: T03.native.observation_lease_drain ........   Passed    0.08 sec
+test 204
+    Start 204: T06.native.execution_source_observation
+
+204: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\Debug\ock_native_tests.exe "T06.native.execution_source_observation"
+204: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/native
+204: Environment variables: 
+204:  MSBUILDDISABLENODEREUSE=1
+204: Environment variable modifications: 
+204:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+204: Test timeout computed to be: 600
+5/6 Test #204: T06.native.execution_source_observation ...   Passed    0.09 sec
+test 209
+    Start 209: T06.native.observation_journal
+
+209: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\Debug\ock_native_tests.exe "T06.native.observation_journal"
+209: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/native
+209: Environment variables: 
+209:  MSBUILDDISABLENODEREUSE=1
+209: Environment variable modifications: 
+209:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+209: Test timeout computed to be: 600
+6/6 Test #209: T06.native.observation_journal ............   Passed    0.05 sec
+
+The following tests passed:
+	T20.cli.managed_roundtrip
+	T03.native.execution_table_ownership
+	T03.native.host_observation_drain
+	T03.native.observation_lease_drain
+	T06.native.execution_source_observation
+	T06.native.observation_journal
+
+100% tests passed, 0 tests failed out of 6
+
+Label Time Summary:
+B5       =  18.99 sec*proc (3 tests)
+D1.05    =   0.43 sec*proc (3 tests)
+D3.04    =   0.16 sec*proc (2 tests)
+D3.07    =  18.83 sec*proc (1 test)
+
+Total Test time (real) =  19.45 sec

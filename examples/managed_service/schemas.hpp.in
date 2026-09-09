@@ -3,6 +3,7 @@
 namespace managed {
 inline ock::binding::SchemaResources observation_schemas() {
   return {{"urn:ock:rpc:execution-list:1", R"ock(@LIST_SCHEMA@)ock"},
-          {"urn:ock:rpc:common:1", R"ock(@COMMON_SCHEMA@)ock"}};
+          {"urn:ock:rpc:common:1", R"ock(@COMMON_SCHEMA@)ock"},
+          {"urn:ock:rpc:notifications:1", R"ock(@NOTIFICATIONS_SCHEMA@)ock"}};
 }
 }

@@ -16,6 +16,12 @@ public:
   struct Usage {std::size_t records=0,input_bytes=0,reply_bytes=0,waiters=0;};
   enum class WaitState {Terminal,Timeout,Cancelled};
   using ReplyAccess=const void* (*)(const void*) noexcept;
+  struct Notice {
+    contracts::ExecutionRef execution;
+    contracts::ObservationTopic topic=contracts::ObservationTopic::Phase;
+    std::uint64_t version=0;
+  };
+  struct NoticeRead {std::optional<Notice> notice;bool gap=false,exhausted=false;};
 private:
   struct Ledger {std::mutex mutex;Usage used;Limits limits;};
   struct Reservation {
@@ -58,7 +64,8 @@ public:
   static contracts::Result<std::shared_ptr<ExecutionTable>> create(Limits limits,contracts::HostIncarnation host) {
     if(!limits.records||!limits.input_bytes||!limits.reply_bytes||
        !limits.terminal_records||!limits.terminal_bytes||host.empty()||
-       !limits.page_size||limits.page_size>200||!limits.scan_limit||!limits.targets_per_record||!limits.waiters)return failure();
+       !limits.page_size||limits.page_size>200||!limits.scan_limit||!limits.targets_per_record||!limits.waiters||
+       !limits.notice_entries||!limits.observation_leases)return failure();
     try {return std::shared_ptr<ExecutionTable>(new ExecutionTable(limits,host));}
     catch(...) {return failure();}
   }
@@ -139,6 +146,7 @@ public:
     if(entry->summary_.phase==contracts::ExecutionPhase::Terminal) {
       ++terminal_count_;terminal_bytes_+=entry->reservation_->reply;
     }
+    append_notice(*entry,contracts::ObservationTopic::Phase);
     return {};
   }
   // enqueue 拒绝/接受前中止：只摘除未接受条目。销毁永远在表锁外。
@@ -182,6 +190,7 @@ public:
       ++terminal_count_;terminal_bytes_+=entry->reservation_->reply;
     }
     if(fault&&!conditions.record_failure)entry->summary_.fault=contracts::Error{fault->code()};
+    append_notice(*entry,contracts::ObservationTopic::Phase);
     if(phase==contracts::ExecutionPhase::Terminal)entry->changed_.notify_all();
     return {};
   }
@@ -193,7 +202,8 @@ public:
     auto valid=validate_record_state(entry->summary_,state,failure);if(!valid)return valid;
     if(entry->summary_.record_state==state)return {};
     auto version=entry->summary_.version.next();if(!version)return contracts::make_unexpected(version.error());
-    apply_record_state(entry->summary_,state,failure);entry->summary_.version=*version;return {};
+    apply_record_state(entry->summary_,state,failure);entry->summary_.version=*version;
+    append_notice(*entry,contracts::ObservationTopic::Phase);return {};
   }
   template<contracts::ContractResult R>
   contracts::Result<std::shared_ptr<const contracts::InvokeReply<R>>> result(contracts::ExecutionRef ref) const {
@@ -228,6 +238,16 @@ public:
   Usage usage() const {std::lock_guard lock(ledger_->mutex);return ledger_->used;}
   void close_admission() {std::lock_guard lock(mutex_);closed_=true;}
   contracts::HostIncarnation host() const noexcept {return host_;}
+  // 游标仅在可信源内部使用；不向客户端暴露全局变化计数。
+  std::uint64_t notice_cursor() const {std::lock_guard lock(mutex_);return notice_sequence_;}
+  NoticeRead next_notice(std::uint64_t& cursor) const {
+    std::lock_guard lock(mutex_);NoticeRead result;
+    result.exhausted=notice_exhausted_;if(result.exhausted||cursor>=notice_sequence_)return result;
+    auto retained=std::min<std::uint64_t>(notice_sequence_,notices_.size());
+    auto before_oldest=notice_sequence_-retained;
+    if(cursor<before_oldest){cursor=before_oldest;result.gap=true;}
+    result.notice=notices_[cursor%notices_.size()];++cursor;return result;
+  }
   contracts::Result<policy::ExecutionAccessInput> access_find(contracts::ExecutionRef ref) const {
     try {
       std::lock_guard lock(mutex_);auto i=by_id_.find(ref.execution_id);
@@ -282,6 +302,7 @@ public:
     entry->summary_.evidence=evidence;
     if(fault)entry->summary_.fault=contracts::Error{fault->code()};
     entry->summary_.version=*version;
+    append_notice(*entry,facts.empty()?contracts::ObservationTopic::Phase:contracts::ObservationTopic::Fact);
     return {};
   }
   // 普通缓存回收不摘除被外部 owner 持有的记录；每轮扫描有显式上限。
@@ -306,6 +327,13 @@ public:
     return removed;
   }
 private:
+  // 表锁内固定材料写入；观察拥塞/序号耗尽不影响可靠完成。
+  void append_notice(const Entry& entry,contracts::ObservationTopic topic) noexcept {
+    if(!entry.accepted_||notice_exhausted_)return;
+    if(notice_sequence_==(std::numeric_limits<std::uint64_t>::max)()) {notice_exhausted_=true;return;}
+    notices_[notice_sequence_%notices_.size()]={entry.execution(),topic,entry.summary_.version.value()};
+    ++notice_sequence_;
+  }
   static contracts::Result<void> validate_record_state(const contracts::SummaryInput& previous,
       contracts::RequiredRecordState next,const std::optional<contracts::RecordFailure>& failure) {
     using State=contracts::RequiredRecordState;
@@ -337,7 +365,7 @@ private:
     auto i=index.lower_bound({owner,before});if(i==index.begin())return {};
     --i;return i->first.first==owner?i->second:nullptr;
   }
-  explicit ExecutionTable(Limits limits,contracts::HostIncarnation host):ledger_(std::make_shared<Ledger>()),host_(host) {ledger_->limits=limits;}
+  explicit ExecutionTable(Limits limits,contracts::HostIncarnation host):ledger_(std::make_shared<Ledger>()),host_(host),notices_(limits.notice_entries) {ledger_->limits=limits;}
   bool contains(const std::shared_ptr<Entry>& entry) const {
     if(!entry)return false;auto i=by_id_.find(entry->execution().execution_id);
     return i!=by_id_.end()&&i->second==entry;
@@ -348,6 +376,9 @@ private:
   std::map<foundation::TaskId,std::shared_ptr<Entry>> by_id_;
   std::map<std::uint64_t,std::shared_ptr<Entry>> ordered_;
   OwnerIndex active_owners_,terminal_owners_;
+  std::vector<Notice> notices_;
+  std::uint64_t notice_sequence_=0;
+  bool notice_exhausted_=false;
   std::uint64_t next_=0,trim_after_=0;
   std::size_t terminal_count_=0,terminal_bytes_=0;
   bool closed_=false;

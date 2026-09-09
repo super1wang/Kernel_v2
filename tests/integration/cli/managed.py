@@ -78,9 +78,19 @@ try:
     page = call(['execution', 'list', '--phase', 'terminal', '--page-size', '1'])['result']
     assert len(page['items']) == 1 and page['next_cursor'].startswith('v1.')
     assert call(['execution', 'list', '--phase', 'nonterminal'])['result']['items'] == []
+    # 真实订阅在 10 s 无通知重读周期前收到完成提示并准确 get 终态。
+    watched = submit(21, 3000, 'native notification source')
+    watcher = spawn(['execution', 'watch', watched, '--jsonl', '--timeout-ms', '10000'])
+    output, error = watcher.communicate(timeout=8)
+    assert watcher.returncode == 0, (watcher.pid, watcher.returncode, output, error)
+    snapshots = [json.loads(line) for line in output.splitlines()]
+    assert len(snapshots) >= 2 and snapshots[0]['result']['phase'] != 'Terminal'
+    assert snapshots[-1]['result']['phase'] == 'Terminal'
+    assert all(item['result']['execution_ref']['execution_id'] == watched for item in snapshots)
+    assert result(watched)['amount'] == 22
     call(['execution', 'get', 'f' * 32], 3)
     assert server.poll() is None
-    print('Managed multi-process submit/get/wait/cancel/result/list and session recycling passed', flush=True)
+    print('Managed multi-process submit/get/wait/cancel/result/list/watch and session recycling passed', flush=True)
 finally:
     for process in children:
         if process.poll() is None:

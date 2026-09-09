@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 真实有损观察源已接入受管理执行：表内预分配变更环只写身份/版本提示，I/O 有限 pump 经同一 Policy/Subscription 发出事件；覆盖或合并标记 gap，不保留输入/结果 pins。原始 lease 的在途回调仍占额度；Draining 拒绝新注册，最终关闭排空后才允许 Host quiescent。实际 CLI watch 已完成 subscribe→get→变化提示→get 终态闭环。直接影响集 Debug **9/9**（[原始输出](../evidence/B5/resume-b5-observation-verified-0c3f938d48/b4-debug-test-stdout.log)）、ASan / RelWithDebInfo **9/9**（[原始输出](../evidence/B5/resume-b5-observation-verified-0c3f938d48/b4-asan-test-stdout.log)）；验证环覆盖、生产状态更新零新增 C++/ASan 分配、退订在途配额、回调重入关闭拒绝及 Host 排空，公开头/实际依赖检查无错误。首轮样例订阅配额高于 Control 既定上限，被正确拒绝；修正样例配置后的验证通过，失败原文保留。真实断线重连/慢流/撤权/游标组合、完整预算、安装/Profile、Embedded footprint 与 B5/G3 正式验收仍待完成。
+
 - B5 managed 消费者已接入真实 `execution.list`，复用同一会话的只读 Policy 授权、游标及发送前检查；执行表保留范围标识已对齐冻结协议。Debug 列表/订阅/真实 CLI 影响集 **3/3**（[原始输出](../evidence/B5/resume-b5-list-final-debug-3d5b59cfce/test-stdout.log)），另跑 Native 执行表/观察源 **2/2**（[原始输出](../evidence/B5/resume-b5-list-impact-5d420a590f/b4-debug-test-stdout.log)）；ASan / RelWithDebInfo 同次五项 **5/5**（[原始输出](../evidence/B5/resume-b5-list-impact-5d420a590f/b4-asan-test-stdout.log)）。覆盖真实 CLI 的 22 条终态列表、单页游标生成、空非终态列表及现有授权合同；公开头与实际依赖静态检查无错误。初轮参数拒绝与构建目标/测试变量错误原文保留。CLI 续页、订阅观察源、完整预算、安装/Profile、footprint 与 B5/G3 正式验收继续开发，不构成 Passed。
 
 - 当前分支：`work/d0-kernel-baseline`；G2 历史被测实现 `e77c328`，G2 后 C1/C2 收口被测实现 `44246b8`；B4 被测实现 `0d71b4f`，B5 前置收口被测实现 `7a22d0e`；归档与推送状态以实时 Git 为准。

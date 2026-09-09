@@ -1,5 +1,6 @@
 #pragma once
 #include "execution_service.hpp"
+#include "execution_observation.hpp"
 #include <ock/runtime/host.hpp>
 
 namespace ock::runtime::executions::detail {
@@ -15,6 +16,8 @@ public:
     try {
       auto table=ExecutionTable::create(limits,host);if(!table)return contracts::make_unexpected(table.error());
       auto owner=std::shared_ptr<HostedExecutions>(new HostedExecutions(*table,executor));
+      auto events=ExecutionObservation::create(*table,limits.observation_leases);
+      if(!events)return contracts::make_unexpected(events.error());owner->events_=std::move(*events);
       owner->resolve_=std::move(resolve);
       if(!owner->resolve_)owner->resolve_=[](std::span<const registry::ResourceRef> refs)
           -> contracts::Result<std::vector<resources::Claim>> {
@@ -27,6 +30,7 @@ public:
     } catch(...) {return contracts::make_unexpected(host::host_error(host::HostErrc::BudgetExceeded));}
   }
   std::shared_ptr<policy::ExecutionAccessSourcePort> observations() const override {return source_;}
+  std::shared_ptr<host::ExecutionObservationPort> observation_events() const override {return events_;}
   contracts::SubmitReply submit(std::shared_ptr<InvocationRecordBase> record) override {
     return service_->submit(std::move(record),resolve_);
   }
@@ -67,8 +71,14 @@ public:
     return PollingWait::create(table_,std::move(caller),std::move(session),ref,deadline,stop);
   }
   bool in_execution_thread() const noexcept override {return service_->in_execution_thread();}
-  void stop_accepting() override {service_->close();}
-  contracts::Result<bool> finish_until(host::TimePoint deadline) override {return service_->shutdown_until(deadline);}
+  void stop_accepting() override {events_->stop_accepting();service_->close();}
+  contracts::Result<bool> finish_until(host::TimePoint deadline) override {
+    if(in_execution_thread())return contracts::make_unexpected(host::host_error(host::HostErrc::InvalidOwner));
+    auto service=service_->shutdown_until(deadline);if(!service)return contracts::make_unexpected(service.error());
+    if(!*service)return false;
+    auto events=events_->finish_until(deadline);if(!events)return contracts::make_unexpected(events.error());
+    return *service&&*events;
+  }
   contracts::Result<bool> drain_executors_until(host::TimePoint deadline) override {
     auto result=executor_->shutdown_until(deadline);
     if(result)return true;
@@ -127,6 +137,7 @@ private:
       :table_(std::move(table)),source_(std::make_shared<ExecutionSource>(table_)),executor_(std::move(executor)) {}
   std::shared_ptr<ExecutionTable> table_;
   std::shared_ptr<ExecutionSource> source_;
+  std::shared_ptr<ExecutionObservation> events_;
   std::shared_ptr<contracts::ExecutorControlPort> executor_;
   std::unique_ptr<ExecutionService> service_;
   ManagedInvocation::Resolver resolve_;

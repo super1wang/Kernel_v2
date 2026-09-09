@@ -17,16 +17,21 @@ $managedCli = '.\build\b4-debug\apps\ock\Debug\ock.exe'
 & $managedCli --instance managed-demo execution wait <execution-id> --wait-timeout-ms 5000 --timeout-ms 7000 --json
 & $managedCli --instance managed-demo result read <execution-id> --json
 & $managedCli --instance managed-demo execution cancel <execution-id> --json
+& $managedCli --instance managed-demo execution watch <execution-id> --jsonl
 ```
 
 将 `<execution-id>` 替换为 Accepted 回执中的真实身份。wait 超时只结束等待；cancel 回执不等于执行已终止，继续通过 get/wait 确认。输入 `stop` 或关闭服务 stdin，服务先关闭连接，再由 Host 取消并排空执行。
 
 认证依据由 OS 验证的管道 SID。连接关闭释放会话 wrapper，不显式关闭执行所持的 SessionAuthority；调用方显式授权关闭与 Host 关闭仍保留原撤权规则。Control 响应按当前发送授权进入独立 Control 队列，由同一连接 I/O 线程的可选 10 ms Tick 有限推进；默认 LocalIPC 客户端未启用 Tick。
 
-样例配置固定 2 个 CPU workers、8 个 active 执行、128 条记录、16 个 waiters、输入/结果/终态分别 1 MiB 额度，最多 8 个连接和 16 个 Policy 会话。Runtime 自身沿用单控制线程；AutomationHost 的管道 I/O 线程成本需另行计量。此配置不是 G3 的正式 footprint 或线程峰值验收。
+样例配置固定 2 个 CPU workers、8 个 active 执行、128 条记录、16 个 waiters、输入/结果/终态分别 1 MiB 额度，最多 8 个连接和 16 个 Policy 会话。观察变更环为 1024 条，原始观察 lease 最多 64 个；Policy 每会话 8、每主体 32、全局 64 个订阅，Control 每订阅最多 128 条待发提示。Runtime 自身沿用单控制线程；AutomationHost 的管道 I/O 线程成本需另行计量。此配置不是 G3 的正式 footprint 或线程峰值验收。
 
-已接线的方法为 capabilities.search/describe、operation.submit、execution.get/wait/cancel/list 和 result.read；subscribe/watch 在真实观察源接入后再发布。`T20.cli.managed_roundtrip` 使用实际 CLI 子进程验证跨连接结果、并发等待/取消、真实列表和会话回收。独立安装、完整观察组合及 G3 仍需后续验收。
+已接线的方法为 capabilities.search/describe、operation.submit、execution.get/wait/cancel/list、result.read 和 notifications.subscribe/unsubscribe；真实执行变化经 notifications.event 发送给 watch。`T20.cli.managed_roundtrip` 使用实际 CLI 子进程验证跨连接结果、并发等待/取消、真实列表、watch 终态确认和会话回收。独立安装、完整观察组合及 G3 仍需后续验收。
 
 ## 列表开发增量
 
-`ock --instance <实例名> --json execution list --phase terminal --page-size 200` 查询同一真实执行表；`--phase nonterminal` 查询未终结执行。分页返回当前连接绑定的游标，现有 CLI 尚无游标续页参数。list 使用当前 Policy 和发送前检查；subscribe/watch 仍未接线。
+`ock --instance <实例名> --json execution list --phase terminal --page-size 200` 查询同一真实执行表；`--phase nonterminal` 查询未终结执行。分页返回当前连接绑定的游标，现有 CLI 尚无游标续页参数。list 与 subscribe/event 使用当前 Policy 和发送前检查。
+
+观察源在执行线程只追加固定大小的身份/版本提示；各连接 I/O Tick 有限消费，不增加后台观察线程。环覆盖或摘要合并标记 gap，通知不保留输入/结果 owner，不能阻断可靠完成。watch 在 subscribe 后 get，并在 phase/fact/gap 提示后再次 get；不把通知当作完整跃迁史。
+
+Host Draining 拒绝新观察注册，已有观察可继续有限发送；最终关闭移除监听并等待在途回调及其 owner 释放，再报告 quiescent。可信组合根持有原始观察源，普通调用者仍只能通过既有 Policy/Control 查询与订阅。

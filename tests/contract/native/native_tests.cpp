@@ -9,6 +9,7 @@
 #include "execution_table_cases.hpp"
 #include "execution_service_cases.hpp"
 using namespace native_test;
+namespace native_test {void observation_journal();void observation_lease_drain();void host_observation_drain();}
 void registered_compute() { Env e;auto b=e.bind();CHECK(b);entered=0;CHECK(result(b->invoke(2,e.options()))==4);CHECK(result(b->invoke(5,e.options()))==7);CHECK(entered==2); }
 void registered_read() { Env e(true);auto b=e.bind();CHECK(b);e.reader.reset();CHECK(result(b->invoke(3,e.options()))==10); }
 void invalid_input() { Env e;auto b=e.bind();CHECK(b);entered=0;CHECK(std::holds_alternative<Rejected>(b->invoke(-1,e.options())));CHECK(entered==0);CHECK(result(b->invoke(0,e.options()))==2); value_invalid_input(); }
@@ -28,6 +29,8 @@ int main(int argc,char**argv) {
     {"T03.native.managed_record_ownership",managed_record_ownership},
     {"T03.native.execution_table_ownership",execution_table_ownership},
     {"T06.native.execution_source_observation",execution_source_observation},
+    {"T06.native.observation_journal",observation_journal},
+    {"T03.native.observation_lease_drain",observation_lease_drain},
 #ifdef OCK_NATIVE_EXECUTION_SERVICE_TESTS
     {"T03.native.execution_service_control",execution_service_control},
     {"T03.native.host_execution_lifecycle",host_execution_lifecycle},
@@ -40,6 +43,7 @@ int main(int argc,char**argv) {
     {"T03.native.host_required_record",host_required_record},
     {"T03.native.host_required_record_drain",host_required_record_drain},
     {"T03.native.host_cached_result_sessions",host_cached_result_sessions},
+    {"T03.native.host_observation_drain",host_observation_drain},
 #endif
     {"T03.native.managed_execution_path",managed_execution_path},
     {"T03.native.managed_execution_resource_wait",managed_execution_resource_wait},

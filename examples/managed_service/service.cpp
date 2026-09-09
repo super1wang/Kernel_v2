@@ -1,6 +1,7 @@
 #include "service.hpp"
 #include "schemas.hpp"
 #include <ock/adapters/cpu_pool/cpu_pool.hpp>
+#include <ock/control/subscription_methods.hpp>
 #include <iostream>
 #include <mutex>
 #include <thread>
@@ -10,7 +11,7 @@ using namespace runtime;
 std::vector<policy::ScopeRule> rules() {
   std::vector<policy::ScopeRule> result;
   for(auto use:{policy::AccessUse::Invoke,policy::AccessUse::Catalog,policy::AccessUse::GetSummary,
-      policy::AccessUse::Wait,policy::AccessUse::CancelExecution,policy::AccessUse::ReadResult,policy::AccessUse::ListSummary})
+      policy::AccessUse::Wait,policy::AccessUse::CancelExecution,policy::AccessUse::ReadResult,policy::AccessUse::ListSummary,policy::AccessUse::Subscribe})
     result.push_back({use,policy::OperationSelector{operation(),{}},{name("sample.use")},{target()},{principal()},
         {policy::SummaryField::Identity,policy::SummaryField::Owner,policy::SummaryField::Parent,
          policy::SummaryField::Phase,policy::SummaryField::Progress,policy::SummaryField::Facts}});
@@ -20,7 +21,7 @@ struct Lifetime final:contracts::PortLifetime {};
 policy::PolicyConfiguration configuration() {
   auto allow=rules();std::vector<policy::UsePolicyInput> views;
   for(auto use:{policy::AccessUse::Catalog,policy::AccessUse::GetSummary,policy::AccessUse::Wait,
-      policy::AccessUse::CancelExecution,policy::AccessUse::ReadResult,policy::AccessUse::ListSummary})views.push_back({use,{name("sample.use")},allow});
+      policy::AccessUse::CancelExecution,policy::AccessUse::ReadResult,policy::AccessUse::ListSummary,policy::AccessUse::Subscribe})views.push_back({use,{name("sample.use")},allow});
   return {{{principal(),allow}},{{{operation(),{}},{name("sample.use")},allow,false}},std::move(views),{{target(),1,allow,std::make_shared<Lifetime>()}}};
 }
 struct Clock final:policy::ClockPort {policy::TimePoint now()const noexcept override{return std::chrono::steady_clock::now();}};
@@ -63,6 +64,7 @@ struct Threads final:invocation::TrustedThreadPort {
 };
 struct Factory final:host::HostExecutionFactoryPort {
   std::shared_ptr<Threads> threads;
+  std::weak_ptr<host::ExecutionObservationPort> events;
   explicit Factory(std::shared_ptr<Threads> value):threads(std::move(value)){}
   Result<std::shared_ptr<host::HostExecutionPort>> create(contracts::HostIncarnation id)override {
     auto made=cpu_pool::Executor::create({2,8});if(!made)return foundation::make_unexpected(made.error());
@@ -70,8 +72,10 @@ struct Factory final:host::HostExecutionFactoryPort {
     host::ExecutionOptions options;options.active=8;options.subjects={{principal().principal_id,1,2}};
     options.limits.records=128;options.limits.terminal_records=128;options.limits.input_bytes=1024*1024;
     options.limits.reply_bytes=1024*1024;options.limits.terminal_bytes=1024*1024;options.limits.waiters=16;
+    options.limits.observation_leases=64;
     auto backend=host::make_executions(id,pool,options);
     if(!backend)(void)pool->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(5));
+    else events=(*backend)->observation_events();
     return backend;
   }
 };
@@ -106,6 +110,7 @@ struct Service::State {
   std::shared_ptr<Authentication> auth=std::make_shared<Authentication>();
   std::shared_ptr<Clock> clock=std::make_shared<Clock>();
   std::shared_ptr<Threads> threads=std::make_shared<Threads>();
+  std::shared_ptr<Factory> factory=std::make_shared<Factory>(threads);
   std::mutex mutex;
   std::vector<std::shared_ptr<local_ipc::Connection>> connections;
   struct Context {
@@ -113,7 +118,8 @@ struct Service::State {
     std::optional<control::Router> router;
     std::vector<std::shared_ptr<control::ExecutionMethod>> queries;
     std::shared_ptr<control::ListMethod> list;
-    void close(){if(router)router->close();queries.clear();list.reset();router.reset();session.reset();}
+    std::shared_ptr<control::SubscriptionConnection> subscriptions;
+    void close(){if(router)router->close();queries.clear();list.reset();subscriptions.reset();router.reset();session.reset();}
     ~Context(){close();}
   };
   Result<host::HostSession> open(const std::string& sid) {
@@ -129,7 +135,7 @@ struct Service::State {
     auto binding=control::InvocationBinding::bind<Input,Output>(*context->session,*registered,operation(),{},contracts::Shape::Read,*caller,
         std::array{target()},targets,name("managed.rpc"));if(!binding)return foundation::make_unexpected(binding.error());
     auto submit=control::InvokeMethod::create_submit({*binding},clock);if(!submit)return foundation::make_unexpected(submit.error());methods->push_back(*submit);
-    auto transport=control::ProtocolObservationTransport::create(std::move(connection),control::FramePriority::Control);
+    auto transport=control::ProtocolObservationTransport::create(connection,control::FramePriority::Control);
     if(!transport)return foundation::make_unexpected(transport.error());
     std::vector<control::ExecutionResultBinding> results{control::ExecutionResultBinding::create<Output>(operation(),registered->output())};
     for(auto kind:{control::ExecutionMethod::Kind::Get,control::ExecutionMethod::Kind::Wait,control::ExecutionMethod::Kind::Cancel,control::ExecutionMethod::Kind::Result}) {
@@ -145,7 +151,16 @@ struct Service::State {
         R"({"$schema":"https://json-schema.org/draft/2020-12/schema","$ref":"urn:ock:rpc:execution-list:1#/$defs/request/properties/params"})",observation_schemas());
     if(!list_schema)return foundation::make_unexpected(list_schema.error());
     context->list=*list;methods->push_back({"execution.list",std::move(*list_schema),*list});
-    control::Hello hello{"sample.managed",incarnation,incarnation,{}, {},"managed"};
+    auto events=factory->events.lock();if(!events)return foundation::make_unexpected(host::host_error(host::HostErrc::UnsupportedCapability));
+    auto notifications=control::ProtocolObservationTransport::create(std::move(connection));
+    if(!notifications)return foundation::make_unexpected(notifications.error());
+    auto subscriptions=control::SubscriptionConnection::create(source->authorization,*caller,events,*notifications,clock,host->incarnation());
+    if(!subscriptions)return foundation::make_unexpected(subscriptions.error());
+    context->subscriptions=std::move(*subscriptions);
+    auto observed=control::subscription_methods(context->subscriptions,*caller,observation_schemas());
+    if(!observed)return foundation::make_unexpected(observed.error());
+    for(auto& method:*observed)methods->push_back(std::move(method));
+    control::Hello hello{"sample.managed",incarnation,incarnation,{}, {},"managed",65536};
     auto router=control::Router::create(std::move(hello),*caller,std::move(*methods));if(!router)return foundation::make_unexpected(router.error());
     context->router.emplace(std::move(*router));return context;
   }
@@ -153,7 +168,8 @@ struct Service::State {
 Result<std::unique_ptr<Service>> Service::create(std::string sid) {
   auto state=std::make_shared<State>();state->auth->allowed_sid=std::move(sid);
   host::HostOptions options;options.policy.sessions=16;options.policy.inline_bindings=32;options.policy.frame_bytes=65536;
-  auto host=host::NativeHost::create(options,configuration(),{state->auth,state->clock,std::make_shared<Digest>(),state->threads,{},std::make_shared<Factory>(state->threads)});
+  options.policy.watches_per_session=8;options.policy.watches_per_principal=32;options.policy.active_watches=64;
+  auto host=host::NativeHost::create(options,configuration(),{state->auth,state->clock,std::make_shared<Digest>(),state->threads,{},state->factory});
   if(!host)return foundation::make_unexpected(host.error());state->host=std::move(*host);
   auto service=std::unique_ptr<Service>(new Service(state));
   registry::ModuleManifest manifest{name("managed"),version()};manifest.operations.push_back(operation());manifest.executors.push_back(name("cpu"));
@@ -201,8 +217,10 @@ Result<std::unique_ptr<local_ipc::Server>> Service::listen(std::string instance)
       if(response->close){(*context)->router->close();connection->close_after_flush();}
     },[context]{if(*context)(*context)->close();context->reset();},[state,weak,context] {
       if(!*context)return;Threads::Scope thread(*state->threads);
+      if(auto events=state->factory->events.lock();events&&!events->pump(64)){if(auto connection=weak.lock())connection->close();return;}
       for(const auto& query:(*context)->queries)if(!query->pump()){if(auto connection=weak.lock())connection->close();return;}
       if(!(*context)->list->pump()){if(auto connection=weak.lock())connection->close();return;}
+      if(!(*context)->subscriptions->pump()){if(auto connection=weak.lock())connection->close();return;}
     });
   });
 }

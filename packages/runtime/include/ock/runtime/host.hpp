@@ -123,6 +123,7 @@ struct ExecutionLimits {
   std::uint32_t page_size=200,scan_limit=2000;
   std::size_t targets_per_record=64;
   std::size_t waiters=256;
+  std::size_t notice_entries=1024,observation_leases=256;
 };
 struct ExecutionResource {
   registry::ResourceRef ref;
@@ -158,6 +159,12 @@ struct ErasedExecutionResult {
   std::shared_ptr<const void> value;
   std::shared_ptr<const policy::ResponseAuthorization> response;
 };
+// 可信组合根的原始变更源；必须经 Policy/Subscription 过滤及发送授权。
+// pump 在调用线程有限推进，不能从执行/必要完成回调调用。
+class ExecutionObservationPort : public ObservationPort {
+public:
+  virtual Result<std::size_t> pump(std::size_t budget) = 0;
+};
 class HostExecutionPort : public PortLifetime {
 public:
   virtual SubmitReply submit(std::shared_ptr<executions::detail::InvocationRecordBase>) {
@@ -186,6 +193,7 @@ public:
     return make_unexpected(host_error(HostErrc::UnsupportedCapability));
   }
   virtual std::shared_ptr<policy::ExecutionAccessSourcePort> observations() const = 0;
+  virtual std::shared_ptr<ExecutionObservationPort> observation_events() const {return {};}
   virtual bool in_execution_thread() const noexcept = 0;
   virtual void stop_accepting() = 0;
   virtual Result<bool> finish_until(TimePoint) = 0;
