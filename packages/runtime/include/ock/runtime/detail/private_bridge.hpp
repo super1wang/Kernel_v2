@@ -10,6 +10,8 @@ struct NativeEntry final {
   contracts::Shape shape;
   contracts::ExecutionRequirements execution;
   std::vector<registry::ResourceRef> resources;
+  std::shared_ptr<const void> submission_storage;
+  contracts::CppTypeToken submission_storage_type = contracts::CppTypeToken::of<void>();
 };
 class NativeEngine;
 template <contracts::ContractValue A, contracts::ContractResult R> class NativeBound;

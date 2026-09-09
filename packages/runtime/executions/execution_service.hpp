@@ -62,6 +62,13 @@ public:
   contracts::SubmitReply submit(const invocation::NativeBound<A,R>& bound,const A& args,
       invocation::InvokeOptions options,typename InvocationRecord<A,R>::Policy policy,
       const typename ManagedExecution<A,R>::Resolver& resolver) {
+    auto record=InvocationAccess::create_record(bound,args,options,policy);
+    if(!record)return contracts::Rejected{record.error()};
+    return submit(std::move(*record),resolver);
+  }
+  contracts::SubmitReply submit(std::shared_ptr<InvocationRecordBase> record,
+      const ManagedInvocation::Resolver& resolver) {
+    if(!record)return contracts::Rejected{contracts::error(contracts::ContractsErrc::Rejected)};
     auto s=state_;std::size_t slot=s->slots.size();
     {
       std::lock_guard lock(s->mutex);
@@ -77,11 +84,13 @@ public:
         state->wake->signal();
       }
     } reservation{s,slot};
+    std::shared_ptr<ManagedInvocation> accepted;
     try {
       auto identity=new_execution_identity();if(!identity)return contracts::Rejected{identity.error()};
-      auto execution=ManagedExecution<A,R>::create(s->table,s->scheduler,s->resources,*identity,s->table->host(),
-          bound,args,options,policy,resolver,[wake=s->wake]{wake->signal();});
+      auto execution=ManagedInvocation::create(s->table,s->scheduler,s->resources,*identity,s->table->host(),
+          std::move(record),resolver,[wake=s->wake]{wake->signal();});
       if(!execution)return contracts::Rejected{execution.error()};
+      accepted=*execution;
       bool closing;
       {
         std::lock_guard lock(s->mutex);s->slots[slot].execution=*execution;
@@ -90,7 +99,14 @@ public:
       if(closing)(*execution)->cancel();
       s->wake->signal();
       return (*execution)->accepted();
-    } catch(...) {return contracts::Rejected{contracts::error(contracts::ContractsErrc::BudgetExceeded)};}
+    } catch(...) {
+      // 接受后关闭/唤醒的异常不能把同一执行改报成无身份拒绝。
+      if(accepted) {
+        foundation::invariant(reservation.installed);
+        return accepted->accepted();
+      }
+      return contracts::Rejected{contracts::error(contracts::ContractsErrc::BudgetExceeded)};
+    }
   }
   // 授权仍在当前 Policy 中完成；true 表示提交取消意图，不声称已停止。
   contracts::Result<bool> cancel(const policy::VerifiedCaller& caller,const std::shared_ptr<policy::SessionAuthority>& session,

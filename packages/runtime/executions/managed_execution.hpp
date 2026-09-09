@@ -7,37 +7,33 @@
 namespace ock::runtime::executions::detail {
 // 真实 typed 调用的逐执行接线；控制 owner 须保留对象并消费 pending，wake 仅作唤醒。
 // 未安装为客户端能力；身份分配、当前观察授权及共享控制循环由上层 Runtime 服务提供。
-template<contracts::AsyncInput A,contracts::ContractResult R>
-  requires (std::same_as<R,void>||contracts::AsyncInput<R>)
-class ManagedExecution final : public ManagedControl,public std::enable_shared_from_this<ManagedExecution<A,R>> {
+class ManagedInvocation final : public ManagedControl,public std::enable_shared_from_this<ManagedInvocation> {
 public:
-  using Record=InvocationRecord<A,R>;
+  using Record=InvocationRecordBase;
   using Resolver=std::function<contracts::Result<std::vector<resources::Claim>>(
       std::span<const registry::ResourceRef>)>;
-  static contracts::Result<std::shared_ptr<ManagedExecution>> create(
+  static contracts::Result<std::shared_ptr<ManagedInvocation>> create(
       std::shared_ptr<ExecutionTable> table,std::shared_ptr<scheduler::Scheduler> scheduler,
       std::shared_ptr<resources::ResourceManager> resources,
       contracts::ExecutionRef identity,contracts::HostIncarnation host,
-      const invocation::NativeBound<A,R>& bound,A args,invocation::InvokeOptions options,
-      typename Record::Policy policy,const Resolver& resolve,std::function<void()> wake) {
-    if(!table||!scheduler||!resources||!resolve)return fail();
-    std::shared_ptr<ManagedExecution> owner;
+      std::shared_ptr<Record> record,const Resolver& resolve,std::function<void()> wake) {
+    if(!table||!scheduler||!resources||!record||!resolve)return fail();
+    auto options=record->options();
+    std::shared_ptr<ManagedInvocation> owner;
     try {
-      auto record=Record::create(bound,std::move(args),options,policy);
-      if(!record)return contracts::make_unexpected(record.error());
-      auto material=(*record)->material();
+      auto material=record->material();
       auto claims=resolve(material->entry->resources);
       if(!claims)return contracts::make_unexpected(claims.error());
-      owner=std::shared_ptr<ManagedExecution>(new ManagedExecution(table,scheduler,*record,std::move(wake)));
+      owner=std::shared_ptr<ManagedInvocation>(new ManagedInvocation(table,scheduler,record,std::move(wake)));
       contracts::SummaryInput summary{identity,material->entry->definition->description().key,
           material->caller->view().description().principal,{},contracts::ExecutionPhase::Queued,
           host,*contracts::ObservationVersion::create(1),{}, {}};
-      auto entry=table->prepare(std::move(summary),*record,contracts::CppTypeToken::of<R>(),
-          (*record)->input_bytes(),(*record)->reserved_reply_bytes(),material->targets,
-          +[](const void* value) noexcept -> const void* {return static_cast<const Record*>(value)->reply();});
+      auto entry=table->prepare(std::move(summary),record,record->result_type(),
+          record->input_bytes(),record->reserved_reply_bytes(),material->targets,
+          +[](const void* value) noexcept -> const void* {return static_cast<const Record*>(value)->reply_pointer();});
       if(!entry)return contracts::make_unexpected(entry.error());
       owner->entry_=*entry;
-      std::weak_ptr<ManagedExecution> weak=owner;
+      std::weak_ptr<ManagedInvocation> weak=owner;
       owner->binding_=std::make_shared<ResourceWaitBinding>(scheduler,resources,std::move(*claims),
           [weak]{if(auto e=weak.lock())e->signal();});
       scheduler::Request request;
@@ -95,7 +91,7 @@ private:
   static foundation::Unexpected<contracts::Error> fail() {
     return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::BudgetExceeded));
   }
-  ManagedExecution(std::shared_ptr<ExecutionTable> table,std::shared_ptr<scheduler::Scheduler> scheduler,
+  ManagedInvocation(std::shared_ptr<ExecutionTable> table,std::shared_ptr<scheduler::Scheduler> scheduler,
       std::shared_ptr<Record> record,std::function<void()> wake)
       :table_(std::move(table)),scheduler_(std::move(scheduler)),record_(std::move(record)),wake_(std::move(wake)) {}
   void signal() noexcept {
@@ -119,26 +115,12 @@ private:
   }
   void completed(contracts::Result<void> status) {
     binding_->terminal();
-    if(!record_->reply())record_->reject_before_start(status?contracts::error(contracts::ContractsErrc::Rejected):status.error());
+    if(!record_->reply_pointer())record_->reject_before_start(status?contracts::error(contracts::ContractsErrc::Rejected):status.error());
     std::optional<contracts::Error> fault;
     if(!status)fault=contracts::Error{status.error().code()};
-    if(const auto* rejected=std::get_if<contracts::Rejected>(record_->reply()))fault=contracts::Error{rejected->reason.code()};
-    std::array<contracts::FactSummary,8> facts{};std::size_t count=0;
-    auto evidence=contracts::EvidenceState::Volatile;
-    if(const auto* completed=std::get_if<contracts::Completed<R>>(record_->reply())) {
-      const auto& outcome=completed->outcome;evidence=outcome.evidence();
-      for(const auto& fact:outcome.facts().values()) {
-        foundation::invariant(count<facts.size());facts[count++]=contracts::summarize_fact(fact);
-      }
-      std::visit([&](const auto& value) {
-        using V=std::decay_t<decltype(value)>;
-        if constexpr(std::same_as<V,contracts::ReadCompleted<R>>) {
-          if(!value.result)fault=contracts::Error{value.result.error().code()};
-        } else if constexpr(std::same_as<V,contracts::FailedBeforeApply>||std::same_as<V,contracts::CancelledBeforeApply>)
-          fault=contracts::Error{value.reason.code()};
-      },outcome.value());
-    }
-    auto recorded=table_->complete_read(entry_,std::span(facts).first(count),evidence,fault);
+    auto completion=record_->completion();
+    if(completion.fault)fault=completion.fault;
+    auto recorded=table_->complete_read(entry_,std::span(completion.facts).first(completion.count),completion.evidence,fault);
     foundation::invariant(bool(recorded));
     auto finalizing=table_->transition(entry_,contracts::ExecutionPhase::Finalizing,conditions(),fault);
     foundation::invariant(bool(finalizing));
@@ -159,5 +141,24 @@ private:
   std::atomic<bool> pending_{false};
   std::atomic<bool> resources_announced_{false};
   std::atomic<bool> finished_{false};
+};
+
+// 保留内部 typed 调试适配；Host 使用同一 erased owner，不生成第二条执行管线。
+template<contracts::AsyncInput A,contracts::ContractResult R>
+  requires (std::same_as<R,void> || contracts::AsyncInput<R>)
+struct ManagedExecution {
+  using Record=InvocationRecord<A,R>;
+  using Resolver=ManagedInvocation::Resolver;
+  static contracts::Result<std::shared_ptr<ManagedInvocation>> create(
+      std::shared_ptr<ExecutionTable> table,std::shared_ptr<scheduler::Scheduler> scheduler,
+      std::shared_ptr<resources::ResourceManager> resources,
+      contracts::ExecutionRef identity,contracts::HostIncarnation host,
+      const invocation::NativeBound<A,R>& bound,A args,invocation::InvokeOptions options,
+      typename Record::Policy policy,const Resolver& resolve,std::function<void()> wake) {
+    auto record=InvocationAccess::create_record(bound,std::move(args),options,policy);
+    if(!record)return contracts::make_unexpected(record.error());
+    return ManagedInvocation::create(std::move(table),std::move(scheduler),std::move(resources),
+        identity,host,std::move(*record),resolve,std::move(wake));
+  }
 };
 }

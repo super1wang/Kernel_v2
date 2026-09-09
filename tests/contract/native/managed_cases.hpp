@@ -23,28 +23,43 @@ inline void managed_record() {
   Record::Policy policy{sizeof(int),sizeof(InvokeReply<int>),
       [](const int&)->Result<std::size_t>{return sizeof(int);},
       [](const InvokeReply<int>&)->Result<std::size_t>{return sizeof(InvokeReply<int>);}};
-  Env e;auto bound=e.bind();CHECK(bound);entered=0;
-  auto first=Record::create(*bound,2,e.options(),policy);CHECK(first);
+  Env unregistered;auto old=unregistered.bind();CHECK(old);
+  CHECK(!ManagedAccess::registered_record(*old,2,unregistered.options()));
+  CHECK(result(old->invoke(2,unregistered.options()))==4);
+  Env e(false,compute,{},[policy](registry::ModuleInput& m) {
+    m.register_operations=[policy](registry::Registrar& r) {
+      CHECK(r.compute(compute,native_definition(),native_options(),policy));
+    };
+  });
+  auto bound=e.bind();CHECK(bound);entered=0;
+  auto registered=ManagedAccess::registered_record(*bound,2,e.options());CHECK(registered);
+  CHECK((*registered)->reject_before_start(invocation_error(InvocationErrc::Cancelled)));
+  // 冻结目录保存独立额度；调用方的后续变量变化不能改变该声明。
+  auto original_policy=policy;policy.input_limit=1;
+  auto immutable=ManagedAccess::registered_record(*bound,2,e.options());CHECK(immutable);
+  CHECK((*immutable)->reject_before_start(invocation_error(InvocationErrc::Cancelled)));
+  policy=original_policy;
+  auto first=ManagedAccess::create_record(*bound,2,e.options(),policy);CHECK(first);
   CHECK(!(*first)->reply());CHECK(entered==0);
   // 调用槽在接受前预留，第二次明确拒绝；开始时复用本槽，不再次 Busy。
-  CHECK(!Record::create(*bound,3,e.options(),policy));
+  CHECK(!ManagedAccess::create_record(*bound,3,e.options(),policy));
   CHECK(std::holds_alternative<Rejected>(bound->invoke(3,e.options())));
   e.threads->role=ThreadRole::Worker;
   CHECK((*first)->run_once({}));CHECK((*first)->reply());
   CHECK(result(*(*first)->reply())==4&&entered==1);
   CHECK(!(*first)->run_once({}));
   CHECK(!(*first)->reject_before_start(invocation_error(InvocationErrc::Cancelled)));
-  auto second=Record::create(*bound,3,e.options(),policy);CHECK(second);
+  auto second=ManagedAccess::create_record(*bound,3,e.options(),policy);CHECK(second);
   CHECK((*second)->reject_before_start(invocation_error(InvocationErrc::Cancelled)));
   CHECK(!(*second)->run_once({}));CHECK(entered==1);
   CHECK(std::holds_alternative<Rejected>(*(*second)->reply()));
-  policy.input_limit=1;CHECK(!Record::create(*bound,3,e.options(),policy));
+  policy.input_limit=1;CHECK(!ManagedAccess::create_record(*bound,3,e.options(),policy));
   policy.input_limit=sizeof(int);policy.reply_limit=1;
-  auto limited=Record::create(*bound,3,e.options(),policy);CHECK(limited);
+  auto limited=ManagedAccess::create_record(*bound,3,e.options(),policy);CHECK(limited);
   CHECK((*limited)->run_once({}));CHECK(std::holds_alternative<Rejected>(*(*limited)->reply()));
   CHECK(entered==2);
   std::stop_source original;auto options=e.options();options.stop=original.get_token();
-  auto cancelled=Record::create(*bound,3,options,policy);CHECK(cancelled);original.request_stop();
+  auto cancelled=ManagedAccess::create_record(*bound,3,options,policy);CHECK(cancelled);original.request_stop();
   CHECK((*cancelled)->run_once({}));CHECK(entered==2);
 }
 inline Result<int> owned_record_handler(const OwnedRecordInput& input,WorkContext&) {
@@ -63,16 +78,16 @@ inline void managed_record_ownership() {
   Record::Policy policy{1024,sizeof(InvokeReply<int>),
       [](const OwnedRecordInput& input)->Result<std::size_t>{return sizeof(input)+input.values->capacity()*sizeof(int);},
       [](const InvokeReply<int>&)->Result<std::size_t>{return sizeof(InvokeReply<int>);}};
-  CHECK(!Record::create(*bound,OwnedRecordInput{},e.options(),policy));
+  CHECK(!ManagedAccess::create_record(*bound,OwnedRecordInput{},e.options(),policy));
   auto input=std::make_shared<const std::vector<int>>(std::initializer_list<int>{1,2,3});
   std::weak_ptr<const std::vector<int>> weak=input;
-  auto record=Record::create(*bound,OwnedRecordInput{input},e.options(),policy);CHECK(record);
+  auto record=ManagedAccess::create_record(*bound,OwnedRecordInput{input},e.options(),policy);CHECK(record);
   input.reset();CHECK(!weak.expired());CHECK((*record)->input_bytes()>sizeof(OwnedRecordInput));
   e.threads->role=ThreadRole::Worker;e.threads->any_thread=true;
   std::thread worker([&]{CHECK((*record)->run_once({}));});worker.join();
   CHECK(weak.expired());CHECK(result(*(*record)->reply())==3);
   auto second=std::make_shared<const std::vector<int>>(8,1);weak=second;
-  auto cancelled=Record::create(*bound,OwnedRecordInput{second},e.options(),policy);CHECK(cancelled);
+  auto cancelled=ManagedAccess::create_record(*bound,OwnedRecordInput{second},e.options(),policy);CHECK(cancelled);
   second.reset();CHECK(!weak.expired());
   CHECK((*cancelled)->reject_before_start(invocation_error(InvocationErrc::Cancelled)));
   CHECK(weak.expired());

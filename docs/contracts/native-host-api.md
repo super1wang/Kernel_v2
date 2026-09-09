@@ -6,9 +6,14 @@
 
 同一 Registry/Policy/Invocation 生产实现组成 NativeSubset。只执行无资源声明的同步 Read/Compute，保留完整参数、身份、目标、权限、线程、预算和 Outcome 检查。不创建 Task、Document、执行索引、恢复存储或第二个业务分派器。NativeSubset 不提供 submit、wait、RPC 或业务模块。
 
-B5 开发扩展：可信组合根可通过 `HostPorts::execution_factory` 显式装配执行后端。工厂只在 start 时调用，使用本 HostIncarnation 创建观察源；默认空工厂保持以上 NativeSubset 行为。Host 在验证观察源之前登记后端清理责任，失败也必须排空；关闭顺序为停止执行准入、等待已准入调用、结束执行、关闭 Policy、排空执行器、停止模块。超时保留后端及其依赖，`PendingKind::Executions` / `Executors` 分别报告未完成责任；所属执行线程关闭返回 Reentrant。工厂返回失败前的临时 owner 清理由工厂负责，所有后端回调必须遵守传入截止时间。当前只落实宿主寿命装配，公开 HostBound Submit/会话 wait/result 尚未接通，capabilities 不宣称完整异步执行或观察能力。
+B5 开发扩展：可信组合根可通过 `HostPorts::execution_factory` 显式装配执行后端。工厂只在 start 时调用，使用本 HostIncarnation 创建观察源；默认空工厂保持以上 NativeSubset 行为。Host 在验证观察源之前登记后端清理责任，失败也必须排空；关闭顺序为停止执行准入、等待已准入调用、结束执行、关闭 Policy、排空执行器、停止模块。超时保留后端及其依赖，`PendingKind::Executions` / `Executors` 分别报告未完成责任；所属执行线程关闭返回 Reentrant。工厂返回失败前的临时 owner 清理由工厂负责，所有后端回调必须遵守传入截止时间。已接通 `HostBound::submit` 与 `HostSession::wait/result`，当前仅覆盖拥有型同步 Read/Compute 在显式执行后端排队的路径。具体执行工厂仍是 Runtime 内部装配，Control/CLI、结构化父子和异步完成尚未闭合，capabilities 不宣称完整异步执行或观察能力。
 
 公开头 `ock/runtime/host.hpp` 的名字位于 `ock::runtime::host`。以下 `Name`、`Error`、`Result`、`OperationKey`、`ContractDigest`、`Shape`、`CallerDescription`、`InvokeReply` 及概念沿用 CoreContracts；`TimePoint` 为 `std::chrono::steady_clock::time_point`。公开 `ock/runtime/native_types.hpp` 保存 D1.05 的 ThreadRole、ThreadObservation、TrustedThreadPort、NativeBudget、InvokeOptions、TargetProjection、InvocationErrc/Record/Snapshot 唯一定义，仍在原 `ock::runtime::invocation` 命名空间。模板内部使用安装的 detail，不要求应用直接包含 detail。
+
+
+B5 提交存储由可信 Registrar 的四参数 `read/compute` 重载声明 `registry::SubmissionStorage<A,R>`：包含 input_limit、reply_limit 及输入/InvokeReply 的完整字节计量函数。额度与函数由目录独立拥有并带真实 C++ 类型见证；未声明的三参数注册保持 Invoke，但 Submit 拒绝。A 必须为 AsyncInput，R 必须为 void 或 AsyncInput。客户端 Submit 只接收拥有参数与 InvokeOptions，不能替换存储政策、资源声明或资源解析器。typed 记录创建入口为 private，HostBound 与 Runtime 内部适配器具有创建权；执行服务通过同一记录的窄接口复用原 typed dispatch。
+
+`HostSession::result<R>` 在结果 pin 前后执行当前 ReadResult 授权，并核对真实 R 类型，返回拥有型 InvokeReply 与 ResponseAuthorization；传输适配仍需消费发送许可。`wait` 仅允许可信线程观测为 Application 的调用，在当前 Wait 授权期限与请求期限的较早者内等待，返回前重验授权。Timeout/Cancelled 只结束等待，不能声称执行已取消。Host 关闭后新的会话查询被拒绝，已取得的结果 owner 继续保活。
 
 ## 模块与预算
 
@@ -131,8 +136,33 @@ public:
   virtual Result<std::shared_ptr<contracts::LogPort>> create(
       HostIncarnation, const contracts::LogLimits&) = 0;
 };
+enum class ExecutionWaitState : std::uint8_t { Terminal, Timeout, Cancelled };
+struct ExecutionWaitReply {
+  ExecutionWaitState state;
+  policy::AuthorizedSummary observed;
+};
+template<ContractResult R> struct ExecutionResult {
+  std::shared_ptr<const InvokeReply<R>> value;
+  std::shared_ptr<const policy::ResponseAuthorization> response;
+};
+struct ErasedExecutionResult {
+  std::shared_ptr<const void> value;
+  std::shared_ptr<const policy::ResponseAuthorization> response;
+};
 class HostExecutionPort : public PortLifetime {
 public:
+  virtual SubmitReply submit(std::shared_ptr<executions::detail::InvocationRecordBase>) {
+    return Rejected{host_error(HostErrc::UnsupportedCapability)};
+  }
+  virtual Result<ErasedExecutionResult> result(const policy::VerifiedCaller&,
+      std::shared_ptr<policy::SessionAuthority>, ExecutionRef, CppTypeToken) {
+    return make_unexpected(host_error(HostErrc::UnsupportedCapability));
+  }
+  virtual Result<ExecutionWaitReply> wait(const policy::VerifiedCaller&,
+      std::shared_ptr<policy::SessionAuthority>, std::shared_ptr<invocation::TrustedThreadPort>,
+      ExecutionRef, TimePoint, std::stop_token) {
+    return make_unexpected(host_error(HostErrc::UnsupportedCapability));
+  }
   virtual std::shared_ptr<policy::ExecutionAccessSourcePort> observations() const = 0;
   virtual bool in_execution_thread() const noexcept = 0;
   virtual void stop_accepting() = 0;
@@ -200,6 +230,10 @@ public:
       std::shared_ptr<const policy::VerifiedCaller>,
       std::span<const foundation::ObjectId>, invocation::TargetProjection<A>, Name);
   Result<void> restrict_delegation(const policy::DelegationInput&);
+  template<ContractResult R>
+  Result<ExecutionResult<R>> result(const policy::VerifiedCaller&, ExecutionRef) const;
+  Result<ExecutionWaitReply> wait(const policy::VerifiedCaller&, ExecutionRef,
+      TimePoint, std::stop_token = {}) const;
   Result<void> close();
 };
 template<ContractValue A, ContractResult R> class HostBound final {
@@ -210,6 +244,8 @@ public:
   HostBound& operator=(const HostBound&) = delete;
   ~HostBound();
   InvokeReply<R> invoke(const A&, const invocation::InvokeOptions&) const;
+  SubmitReply submit(A, const invocation::InvokeOptions&) const
+    requires (AsyncInput<A> && (std::same_as<R,void> || AsyncInput<R>));
 };
 ```
 

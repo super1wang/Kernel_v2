@@ -27,7 +27,8 @@ Result<NativeEntry> NativeAccess::inspect(const registry::Catalog& catalog,
       d.shape()!=shape || d.args_type()!=args || d.result_type()!=result)
     return make_unexpected(invocation_error(InvocationErrc::ContractMismatch));
   return NativeEntry{*handle,*definition,d.shape(),d.description().execution,
-                     catalog.hot_[*slot].resources};
+                     catalog.hot_[*slot].resources, catalog.hot_[*slot].submission_storage,
+                     catalog.hot_[*slot].submission_storage_type};
 }
 Result<void> NativeAccess::check(const registry::Catalog& catalog, const NativeEntry& entry,
     CppTypeToken args, CppTypeToken result) noexcept {

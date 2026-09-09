@@ -2,6 +2,8 @@
 #include <ock/runtime/detail/invocation.hpp>
 
 namespace ock::runtime::host::detail {
+SubmitReply submit(const std::shared_ptr<HostControl>&,
+    std::shared_ptr<executions::detail::InvocationRecordBase>);
 struct AdmissionFrame {
   const HostControl* host = nullptr;
   AdmissionFrame* previous = nullptr;
@@ -31,6 +33,12 @@ template<class A,class R> struct HostedBinding {
 }
 
 namespace ock::runtime::host {
+template<ContractResult R>
+Result<ExecutionResult<R>> HostSession::result(const policy::VerifiedCaller& caller,ExecutionRef ref) const {
+  auto reply=result_erased(caller,ref,CppTypeToken::of<R>());
+  if(!reply)return make_unexpected(reply.error());
+  return ExecutionResult<R>{std::static_pointer_cast<const InvokeReply<R>>(reply->value),reply->response};
+}
 template<ContractValue A,ContractResult R>
 Result<HostBound<A,R>> HostSession::bind(const OperationKey& key,ContractDigest digest,Shape shape,
     std::shared_ptr<const policy::VerifiedCaller> caller,
@@ -68,5 +76,17 @@ InvokeReply<R> HostBound<A,R>::invoke(const A& args,const invocation::InvokeOpti
   detail::HostAdmission admission(state->host);
   if(!admission) return Rejected{admission.error()};
   return state->native.invoke(args,options);
+}
+template<ContractValue A,ContractResult R>
+SubmitReply HostBound<A,R>::submit(A args,const invocation::InvokeOptions& options) const
+    requires (AsyncInput<A> && (std::same_as<R,void> || AsyncInput<R>)) {
+  auto state=state_;
+  if(!state) return Rejected{invocation::invocation_error(invocation::InvocationErrc::InvalidBinding)};
+  detail::HostAdmission admission(state->host);
+  if(!admission) return Rejected{admission.error()};
+  auto record=executions::detail::InvocationRecord<A,R>::create_registered(
+      state->native,std::move(args),options);
+  if(!record)return Rejected{record.error()};
+  return detail::submit(state->host,std::move(*record));
 }
 }

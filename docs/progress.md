@@ -1,12 +1,12 @@
 # 内核实施进度
 
-更新：2026-09-09。唯一规范为 [架构 v3.3-r2](01_Architecture_v3.3.md) 与 [执行计划 v3.3-r2](02_Execution_Plan_v3.3.md)。恢复任务默认只读本文件顶部、当前 Development Batch 的相关规范/合同和 diff；历史 review/evidence 按需读取。
+更新：2026-09-10。唯一规范为 [架构 v3.3-r2](01_Architecture_v3.3.md) 与 [执行计划 v3.3-r2](02_Execution_Plan_v3.3.md)。恢复任务默认只读本文件顶部、当前 Development Batch 的相关规范/合同和 diff；历史 review/evidence 按需读取。
 
 ## 当前生产节点
 
 - 当前分支：`work/d0-kernel-baseline`；G2 历史被测实现 `e77c328`，G2 后 C1/C2 收口被测实现 `44246b8`；B4 被测实现 `0d71b4f`，B5 前置收口被测实现 `7a22d0e`；归档与推送状态以实时 Git 为准。
 - 已 Passed：G0–G2、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07、D3.01–D3.03。**这些 Passed 前置不重验**；本轮没有重跑 G1/B2 累计矩阵。
-- 当前 Development Batch：**B5 开发 InProgress**，按已审阅的 [B5 规划](plans/B5.md)持续推进至 G3。已实现 Scheduler 逐票据 retire/start 仲裁、正常失效投递诊断修复及依赖就绪锁外通知；Runtime 内部 ResourceWaitBinding 已具备有限控制步、双世代 wake、接受/依赖门控、取消退役和运行期 Lease 独占转移。Debug 依赖影响集 6/6、资源影响集 6/6、绑定屏障专项 3/3；真实 Submit/执行表与后续寿命接线继续开发，尚未包级验收。B5 前置收口 Passed 保留，见 [前置交付](validation/B5-preclosure-delivery.md)；B4 原同来源 65/63/65 事实保持，见 [B4 交付](validation/B4-delivery.md)。
+- 当前 Development Batch：**B5 开发 InProgress**，按已审阅的 [B5 规划](plans/B5.md)持续推进至 G3。已实现 Scheduler 逐票据 retire/start 仲裁、正常失效投递诊断修复及依赖就绪锁外通知；Runtime 内部 ResourceWaitBinding 已具备有限控制步、双世代 wake、接受/依赖门控、取消退役和运行期 Lease 独占转移。Debug 依赖影响集 6/6、资源影响集 6/6、绑定屏障专项 3/3；公开 Submit/观察已接线，取消控制、父子寿命及 G3 继续开发，尚未包级验收。B5 前置收口 Passed 保留，见 [前置交付](validation/B5-preclosure-delivery.md)；B4 原同来源 65/63/65 事实保持，见 [B4 交付](validation/B4-delivery.md)。
 - 当前门禁：**G2 Passed**；G3–G8 未开始。正式同来源 Debug 28/28、Release 26/26、ASan 26/26，三包和 G2 顺序自动验收均无错误，见 [B3 交付](validation/B3-delivery.md)。
 - B5 本次资源绑定直接影响集另经 ASan / RelWithDebInfo 9/9；包含早到/重复/迟到 wake、acquire 在途取消、运行期租约保持、析构重入及正常失效/Executor 违约区分。这是开发验证，尚未形成 B5 同来源正式矩阵或包级 Passed。
 - B5 受管理调用基础已接入同一 Native typed dispatch：注册目录保留可信资源声明，绑定持有 VerifiedCaller，Submit 准备与开始共用参数/目标/预算/当前授权校验；worker 入口借用运行期 Lease，短 Invoke 原线程和资源限制保持。Debug 影响集 12/12、ASan / RelWithDebInfo 生命周期影响集 6/6。当前仅支持同步 Read 的内部接线，外部异步完成仍明确拒绝；Execution 表、拥有输入/结果、父子寿命与 Host/CLI Submit 继续开发，未发布 Submit capability。
@@ -14,6 +14,7 @@
 - B5 真实观察源已接入现有 Policy：表绑定 Host 世代，owner/ordinal 分别索引非终态与终态，完成时复用预留节点；有界分页在未接受条目处仍前进，续页保持首次 upper。类型化结果 pin、有限等待者及当前授权查询已实现；等待超时/取消不取消执行，禁止 worker/control/domain/database 阻塞等待，返回前重验权限并限制等待不超过授权期限。新增接线影响集 Debug 4/4、ASan / RelWithDebInfo 4/4，覆盖真实 source 的 get/list 授权、撤权后拒绝结果/等待摘要、等待配额和结果类型检查。身份分配、共享控制循环、取消服务入口、Host/CLI、父子寿命和 G3 验收继续开发，未形成包级 Passed。
 - B5 已实现内部共享 ExecutionService：系统随机源生成完整 128 位身份，接受前预留有限控制槽，单控制线程以有限批次消费可靠唤醒并推进 Scheduler/资源/回收；当前策略授权后可提交取消意图。真实 CpuPool 固定 2 workers 的开发验证覆盖独立调用槽下的服务满额拒绝、运行期协作取消、关闭超时保活及后续排空。Debug 直接影响集 5/5、ASan / RelWithDebInfo 4/4；首次编译遇到 MSVC C1128，已将服务测试拆为独立源文件解决，失败原文保留。公开 Submit/Control/CLI、取消结果分类、父子寿命和完整 G3 占用/验收仍在开发；当前验证不代替 G3 线程峰值或正式 Profile 验收。
 - B5 Host 寿命已接入真实内部执行服务：可信可选工厂在 start 时用同一 Host 世代装配观察源，供 Host 会话的现有 Policy 查询；默认 NativeSubset 不启用线程。关闭先拒绝执行准入、提交取消意图，执行和物理执行器分别排空后才停止模块；超时报告两类待清理责任并保活，worker 内关闭拒绝，错误源世代的启动失败也履行排空。Debug 影响集 **11/11**（[原始输出](../evidence/B5/resume-b5-host-debug-final-direct-5e73dbdec4/stdout.log)）、ASan / RelWithDebInfo **2/2**（[原始输出](../evidence/B5/resume-b5-host-relwithdebinfo-final-direct-39c19520ca/stdout.log)），公开头/实际依赖静态检查无错误。原构建未启用 Host 测试目标、旧版 CMake 配置失败的原文均保留；已用锁定 VS CMake 修正。此步是宿主寿命装配，验证中的 Submit 仍调用内部 NativeBound 服务入口；公开 HostBound Submit、会话 wait/result、Control/CLI 和父子执行继续开发，未发布完整 async/observation capability，未形成 B5/G3 正式验收。
+- B5 公开拥有型调用已接到同一执行记录/服务：Registrar 保存可信 `SubmissionStorage<A,R>`，`HostBound::submit` 不接受客户端额度或资源解析器；`HostSession::wait/result<R>` 使用当前 Policy、有限等待与真实结果类型核对，返回结果 owner 及发送授权。实际 Host 注册/绑定/提交验证覆盖 worker 阻塞等待拒绝、等待超时/取消不取消执行、关闭后新查询拒绝及已有结果保活。最终 Debug **7/7**（[原始输出](../evidence/B5/resume-b5-public-final-debug-3ddb370738/test-stdout.log)）；ASan / RelWithDebInfo **7/7**（[原始输出](../evidence/B5/resume-b5-public-final-relwithdebinfo-bb8caac401/test-stdout.log)）。新增私有记录创建编译负例通过（[原始输出](../evidence/B5/resume-b5-public-submit-private-direct-d0f2742209/stdout.log)），公开头/实际依赖静态检查无错误。早期存储构建虽然编译退出为 0，但 MSBuild 后代未退出而被本次 Job 回收，原文保留，未记作完整构建通过；后续禁用节点复用后的构建均正常退出。具体工厂仍是内部装配；公开取消控制分类、资源组合、CLI、父子执行、异步完成及完整预算/G3 验收继续开发，不构成 B5/G3 Passed。
 - Host、Logging、NativeSubset/独立安装消费者及 footprint 正式测量/预算已交付并完成本包验收。
 - B1 历史恢复结论保留：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[历史交付与自动验收](validation/D1.06-resume-delivery.md)。
 - 工具优化阶段已结束；禁止继续把 Fixture、Evidence、Install Consumer 性能优化或新流程文档设为 D1.06 前置。

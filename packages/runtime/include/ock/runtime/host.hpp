@@ -8,6 +8,7 @@
 #include <ock/runtime/native_types.hpp>
 #include <ock/runtime/logging.hpp>
 
+namespace ock::runtime::executions::detail { class InvocationRecordBase; }
 namespace ock::runtime::host {
 using namespace contracts;
 using TimePoint = std::chrono::steady_clock::time_point;
@@ -114,8 +115,33 @@ public:
 };
 // 可信组合根提供执行后端；工厂返回前的失败清理由工厂负责。
 // Host 先关闭执行准入，再排空执行及物理投递，最后停止模块。
+enum class ExecutionWaitState : std::uint8_t { Terminal, Timeout, Cancelled };
+struct ExecutionWaitReply {
+  ExecutionWaitState state;
+  policy::AuthorizedSummary observed;
+};
+template<ContractResult R> struct ExecutionResult {
+  std::shared_ptr<const InvokeReply<R>> value;
+  std::shared_ptr<const policy::ResponseAuthorization> response;
+};
+struct ErasedExecutionResult {
+  std::shared_ptr<const void> value;
+  std::shared_ptr<const policy::ResponseAuthorization> response;
+};
 class HostExecutionPort : public PortLifetime {
 public:
+  virtual SubmitReply submit(std::shared_ptr<executions::detail::InvocationRecordBase>) {
+    return Rejected{host_error(HostErrc::UnsupportedCapability)};
+  }
+  virtual Result<ErasedExecutionResult> result(const policy::VerifiedCaller&,
+      std::shared_ptr<policy::SessionAuthority>, ExecutionRef, CppTypeToken) {
+    return make_unexpected(host_error(HostErrc::UnsupportedCapability));
+  }
+  virtual Result<ExecutionWaitReply> wait(const policy::VerifiedCaller&,
+      std::shared_ptr<policy::SessionAuthority>, std::shared_ptr<invocation::TrustedThreadPort>,
+      ExecutionRef, TimePoint, std::stop_token) {
+    return make_unexpected(host_error(HostErrc::UnsupportedCapability));
+  }
   virtual std::shared_ptr<policy::ExecutionAccessSourcePort> observations() const = 0;
   virtual bool in_execution_thread() const noexcept = 0;
   virtual void stop_accepting() = 0;
@@ -179,9 +205,15 @@ public:
       std::shared_ptr<const policy::VerifiedCaller>,
       std::span<const foundation::ObjectId>, invocation::TargetProjection<A>, Name);
   Result<void> restrict_delegation(const policy::DelegationInput&);
+  template<ContractResult R>
+  Result<ExecutionResult<R>> result(const policy::VerifiedCaller&, ExecutionRef) const;
+  Result<ExecutionWaitReply> wait(const policy::VerifiedCaller&, ExecutionRef,
+      TimePoint, std::stop_token = {}) const;
   Result<void> close();
 private:
   friend class NativeHost;
+  Result<ErasedExecutionResult> result_erased(const policy::VerifiedCaller&,
+      ExecutionRef, CppTypeToken) const;
   explicit HostSession(std::shared_ptr<detail::SessionState>) noexcept;
   std::shared_ptr<detail::SessionState> state_;
 };
@@ -193,6 +225,8 @@ public:
   HostBound& operator=(const HostBound&) = delete;
   ~HostBound();
   InvokeReply<R> invoke(const A&, const invocation::InvokeOptions&) const;
+  SubmitReply submit(A, const invocation::InvokeOptions&) const
+    requires (AsyncInput<A> && (std::same_as<R,void> || AsyncInput<R>));
 private:
   friend class HostSession;
   explicit HostBound(std::shared_ptr<detail::HostedBinding<A,R>>) noexcept;

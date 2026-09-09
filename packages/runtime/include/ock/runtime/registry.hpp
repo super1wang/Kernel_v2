@@ -180,6 +180,15 @@ struct OperationOptions {
   std::vector<ResourceRef> resources;
   bool requires_dynamic_schema = false;
 };
+// 由可信注册者声明拥有型提交的完整存储额度，包含动态缓冲区。
+// 客户端提交不能替换计量函数或上限；未声明者仅保留原 Invoke 能力。
+template <AsyncInput A, ContractResult R>
+  requires (std::same_as<R,void> || AsyncInput<R>)
+struct SubmissionStorage {
+  std::size_t input_limit, reply_limit;
+  Result<std::size_t> (*input_bytes)(const A&);
+  Result<std::size_t> (*reply_bytes)(const InvokeReply<R>&);
+};
 // 热条目没有冷描述指针。处理器及其真实类型见证只可被注册器保存。
 namespace detail {
 struct HotEntry final {
@@ -195,6 +204,8 @@ struct HotEntry final {
   CppTypeToken reader_type = CppTypeToken::of<void>();
   // 保留注册时的可信声明，受管理调用不得从客户端重建资源身份。
   std::vector<ResourceRef> resources;
+  std::shared_ptr<const void> submission_storage;
+  CppTypeToken submission_storage_type = CppTypeToken::of<void>();
 };
 
 template <ContractValue A, ContractResult R>
@@ -273,7 +284,8 @@ class RegistrationBatch final {
                     const OperationKey * = nullptr) noexcept;
   Result<void> insert(std::size_t, std::shared_ptr<const DefinitionSnapshot>,
                       const OperationOptions &, std::shared_ptr<const void>,
-                      CppTypeToken, detail::HotEntry::NativeThunk);
+                      CppTypeToken, detail::HotEntry::NativeThunk,
+                      std::shared_ptr<const void>, CppTypeToken);
   Result<void> preflight(std::size_t, const DefinitionInput &,
                          const OperationOptions &);
   Result<std::shared_ptr<void>> service(std::size_t, const ServiceRef &,
@@ -301,7 +313,9 @@ class Registrar final {
   template <class F, class Factory>
   Result<void> accept(F fn, Factory factory, const DefinitionInput &input,
                       const OperationOptions &o,
-                      detail::HotEntry::NativeThunk native) {
+                      detail::HotEntry::NativeThunk native,
+                      std::shared_ptr<const void> storage = {},
+                      CppTypeToken storage_type = CppTypeToken::of<void>()) {
     try {
       if (batch_.state_ != RegistrationBatch::State::Validating ||
           batch_.failed_)
@@ -315,7 +329,7 @@ class Registrar final {
                            &batch_.modules_[module_].manifest.name);
       return batch_.insert(module_, d->snapshot(), o,
                            std::make_shared<const F>(fn),
-                           CppTypeToken::of<F>(), native);
+                           CppTypeToken::of<F>(), native, std::move(storage), storage_type);
     } catch (...) {
       batch_.fail(RegistryErrc::CallbackException);
       throw;
@@ -325,6 +339,30 @@ class Registrar final {
 public:
   Registrar(const Registrar &) = delete;
   Registrar &operator=(const Registrar &) = delete;
+  template <AsyncInput A, ContractResult R, class Reader>
+    requires (std::same_as<R,void> || AsyncInput<R>)
+  Result<void> read(Result<R> (*f)(const A&, WorkContext&, ReadServices<Reader>&),
+                    const DefinitionInput& d, const OperationOptions& o,
+                    SubmissionStorage<A,R> storage) {
+    if (!storage.input_limit || !storage.reply_limit || !storage.input_bytes || !storage.reply_bytes)
+      return batch_.fail(RegistryErrc::InvalidDefinition);
+    return accept(f, [&] { return make_read_definition(f,d); }, d, o,
+                  &detail::read_native<A,R,Reader>,
+                  std::make_shared<const SubmissionStorage<A,R>>(storage),
+                  CppTypeToken::of<SubmissionStorage<A,R>>());
+  }
+  template <AsyncInput A, ContractResult R>
+    requires (std::same_as<R,void> || AsyncInput<R>)
+  Result<void> compute(Result<R> (*f)(const A&, WorkContext&),
+                       const DefinitionInput& d, const OperationOptions& o,
+                       SubmissionStorage<A,R> storage) {
+    if (!storage.input_limit || !storage.reply_limit || !storage.input_bytes || !storage.reply_bytes)
+      return batch_.fail(RegistryErrc::InvalidDefinition);
+    return accept(f, [&] { return make_compute_definition(f,d); }, d, o,
+                  &detail::compute_native<A,R>,
+                  std::make_shared<const SubmissionStorage<A,R>>(storage),
+                  CppTypeToken::of<SubmissionStorage<A,R>>());
+  }
   template <ContractValue A, ContractResult R, class Reader>
   Result<void> read(Result<R> (*f)(const A &, WorkContext &,
                                    ReadServices<Reader> &),

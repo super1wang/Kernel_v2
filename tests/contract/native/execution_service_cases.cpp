@@ -70,39 +70,84 @@ void host_execution_lifecycle() {
     }
   };
   service_entered=false;service_release=false;service_host_reentrant=false;
-  Env env(false,service_handler);env.threads->any_thread=true;env.threads->role=ThreadRole::Worker;
+  registry::SubmissionStorage<int,int> storage{4,sizeof(InvokeReply<int>),
+      [](const int&)->Result<std::size_t>{return 4;},
+      [](const InvokeReply<int>&)->Result<std::size_t>{return sizeof(InvokeReply<int>);}};
+  std::optional<registry::ModuleInput> registration;
+  Env env(false,service_handler,{},[&](registry::ModuleInput& module) {
+    module.register_operations=[storage](registry::Registrar& registrar) {
+      DefinitionInput d{key(), {}, {true,false,false,name("test"),name("app")},
+          AtomicMode::PureCompute,{name("allow")},"native"};
+      registry::OperationOptions o{{},{},{name("native"),name("test")},{},false};
+      CHECK(registrar.compute(service_handler,d,o,storage));
+    };
+    registration=module;
+  });
+  env.threads->any_thread=true;env.threads->role=ThreadRole::Worker;
+  struct Lifecycle final : host::ModuleLifecyclePort {
+    Result<void> start(const host::ModuleContext&) override {return {};}
+    host::ModuleStopResult stop() override {return {true,{}};}
+  };
+  struct HostThreads final : TrustedThreadPort {
+    std::thread::id application=std::this_thread::get_id();
+    ThreadRole main_role=ThreadRole::Worker;
+    Result<ThreadObservation> current() const noexcept override {
+      return ThreadObservation{std::this_thread::get_id()==application?main_role:ThreadRole::Worker,name("app"),true};
+    }
+  };
+  auto host_threads=std::make_shared<HostThreads>();
   auto factory=std::make_shared<Factory>();
-  host::HostPorts ports{env.policy.auth,env.policy.clock,env.policy.digest,env.threads,{},factory};
+  host::HostPorts ports{env.policy.auth,env.policy.clock,env.policy.digest,host_threads,{},factory};
   auto made=host::NativeHost::create({},policy_test::configuration(),ports);CHECK(made);
-  auto& host=*made;CHECK(!factory->owner);CHECK(host->start());CHECK(factory->owner);
+  auto& host=*made;CHECK(!factory->owner);
+  CHECK(host->add({*registration,std::make_shared<Lifecycle>()}));
+  CHECK(host->start());CHECK(factory->owner);
   CHECK(factory->owner->table()->host()==host->incarnation());
   auto session=host->open({{std::byte{7}}},{policy_test::rules(),env.policy.auth->identity.deadline,false});CHECK(session);
   auto caller=session->verify({policy_test::principal(),{}, {}});CHECK(caller);
   auto context=session->catalog_context();CHECK(context);
-  auto bound=env.bind();CHECK(bound);
-  executions::detail::InvocationRecord<int,int>::Policy storage{4,sizeof(InvokeReply<int>),
-      [](const int&)->Result<std::size_t>{return 4;},
-      [](const InvokeReply<int>&)->Result<std::size_t>{return sizeof(InvokeReply<int>);}};
-  auto resolver=[](std::span<const registry::ResourceRef> refs)->Result<std::vector<resources::Claim>> {CHECK(refs.empty());return std::vector<resources::Claim>{};};
+  auto bound=session->bind<int,int>(key(),{},Shape::Read,*caller,
+      std::array{policy_test::target()},targets,name("host.submit"));CHECK(bound);
+  // 公开绑定提交、等待和结果均使用同一 Host 会话及身份。
+  service_release=true;
+  auto completed=bound->submit(7,env.options());CHECK(std::holds_alternative<Accepted>(completed));
+  auto completed_ref=std::get<Accepted>(completed).execution;
+  CHECK(!session->wait(**caller,completed_ref,std::chrono::steady_clock::now()+std::chrono::seconds(2)));
+  host_threads->main_role=ThreadRole::Application;
+  auto waited=session->wait(**caller,completed_ref,std::chrono::steady_clock::now()+std::chrono::seconds(2));
+  CHECK(waited&&waited->state==host::ExecutionWaitState::Terminal);
+  auto value=session->result<int>(**caller,completed_ref);CHECK(value&&result(*value->value)==9);
+  CHECK(!session->result<void>(**caller,completed_ref));
+  service_entered=false;service_release=false;host_threads->main_role=ThreadRole::Worker;
   service_host=host.get();
-  auto reply=factory->owner->service().submit(*bound,4,env.options(),storage,resolver);
+  auto reply=bound->submit(4,env.options());
   CHECK(std::holds_alternative<Accepted>(reply));auto ref=std::get<Accepted>(reply).execution;
   const auto deadline=std::chrono::steady_clock::now()+std::chrono::seconds(2);
   while(!service_entered.load()&&std::chrono::steady_clock::now()<deadline)std::this_thread::yield();
   CHECK(service_entered.load()&&service_host_reentrant.load());
   auto observed=context->authorization->observations()->get(**caller,ref,policy::AccessUse::GetSummary);CHECK(observed);
+  host_threads->main_role=ThreadRole::Application;
+  auto wait_timeout=session->wait(**caller,ref,std::chrono::steady_clock::now());
+  CHECK(wait_timeout&&wait_timeout->state==host::ExecutionWaitState::Timeout);
+  std::stop_source stop_wait;stop_wait.request_stop();
+  auto wait_cancel=session->wait(**caller,ref,std::chrono::steady_clock::now()+std::chrono::seconds(2),stop_wait.get_token());
+  CHECK(wait_cancel&&wait_cancel->state==host::ExecutionWaitState::Cancelled);
+  CHECK(factory->owner->service().active()>=1); // 等待退出没有取消/终止正在运行的业务。
   std::array<host::PendingCleanup,8> pending;
   auto timeout=host->shutdown_until(std::chrono::steady_clock::now(),pending);
   CHECK(timeout.disposition==host::ShutdownDisposition::DeadlineExceeded&&!timeout.quiescent);
   CHECK(std::any_of(pending.begin(),pending.begin()+timeout.pending_written,[](const auto& p){return p.kind==host::PendingKind::Executions;}));
   CHECK(std::any_of(pending.begin(),pending.begin()+timeout.pending_written,[](const auto& p){return p.kind==host::PendingKind::Executors;}));
-  CHECK(factory->owner->service().active()==1);
+  CHECK(factory->owner->service().active()>=1);
   service_release=true;
   auto drained=host->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(2),pending);
   CHECK(drained.quiescent&&drained.pending_total==0);
   CHECK(factory->owner->service().scheduler_snapshot().worker_delivery==0);
   CHECK(factory->owner->table()->access_find(ref));
   CHECK(!context->authorization->observations()->get(**caller,ref,policy::AccessUse::GetSummary));
+  CHECK(!session->result<int>(**caller,completed_ref));
+  CHECK(!session->wait(**caller,completed_ref,std::chrono::steady_clock::now()));
+  CHECK(result(*value->value)==9); // 已授权取得的结果 owner 在 Host 关闭后仍保活。
   service_host=nullptr;
   // 工厂已交付真实线程后发现源世代错误：失败路径也履行排空责任。
   auto foreign=std::make_shared<Factory>();foreign->foreign=true;ports.execution_factory=foreign;

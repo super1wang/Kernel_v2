@@ -372,7 +372,8 @@ Result<void> RegistrationBatch::preflight(std::size_t i,
 Result<void> RegistrationBatch::insert(
     std::size_t i, std::shared_ptr<const DefinitionSnapshot> s,
     const OperationOptions &o, std::shared_ptr<const void> handler,
-    CppTypeToken ht, detail::HotEntry::NativeThunk native) {
+    CppTypeToken ht, detail::HotEntry::NativeThunk native,
+    std::shared_ptr<const void> storage, CppTypeToken storage_type) {
   auto &m = modules_[i].manifest;
   auto &d = s->description();
   auto bad = [&](RegistryErrc c) { return fail(c, &m.name, &d.key); };
@@ -421,7 +422,7 @@ Result<void> RegistrationBatch::insert(
                      native,
                      {},
                      CppTypeToken::of<void>(),
-                     o.resources};
+                     o.resources, std::move(storage), storage_type};
   if (read) {
     auto owner = service(i, *o.read_service, s->context_type());
     if (!owner)

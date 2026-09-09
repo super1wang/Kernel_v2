@@ -204,6 +204,13 @@ struct HostControl {
   }
 };
 
+SubmitReply submit(const std::shared_ptr<HostControl>& host,
+    std::shared_ptr<executions::detail::InvocationRecordBase> record) {
+  std::shared_ptr<HostExecutionPort> backend;
+  {std::lock_guard lock(host->mutex);backend=host->executions;}
+  if(!backend)return Rejected{host_error(HostErrc::UnsupportedCapability)};
+  return backend->submit(std::move(record));
+}
 HostAdmission::HostAdmission(std::shared_ptr<HostControl> host):owner_(std::move(host)) {
   std::lock_guard lock(owner_->mutex);
   if(owner_->phase!=HostPhase::Ready) {
@@ -435,6 +442,26 @@ Result<std::shared_ptr<const policy::VerifiedCaller>> HostSession::verify(const 
   auto s=state_;if(!s)return failure<std::shared_ptr<const policy::VerifiedCaller>>(HostErrc::InvalidSession);
   detail::HostAdmission admission(s->host);if(!admission)return make_unexpected(admission.error());
   return s->authority->verify(caller);
+}
+Result<ErasedExecutionResult> HostSession::result_erased(const policy::VerifiedCaller& caller,
+    ExecutionRef ref,CppTypeToken type) const {
+  auto s=state_;if(!s)return failure<ErasedExecutionResult>(HostErrc::InvalidSession);
+  detail::HostAdmission admission(s->host);
+  if(!admission)return make_unexpected(admission.error());
+  std::shared_ptr<HostExecutionPort> backend;
+  {std::lock_guard lock(s->host->mutex);backend=s->host->executions;}
+  if(!backend)return failure<ErasedExecutionResult>(HostErrc::UnsupportedCapability);
+  return backend->result(caller,s->authority,ref,type);
+}
+Result<ExecutionWaitReply> HostSession::wait(const policy::VerifiedCaller& caller,
+    ExecutionRef ref,TimePoint deadline,std::stop_token stop) const {
+  auto s=state_;if(!s)return failure<ExecutionWaitReply>(HostErrc::InvalidSession);
+  detail::HostAdmission admission(s->host);
+  if(!admission)return make_unexpected(admission.error());
+  std::shared_ptr<HostExecutionPort> backend;
+  {std::lock_guard lock(s->host->mutex);backend=s->host->executions;}
+  if(!backend)return failure<ExecutionWaitReply>(HostErrc::UnsupportedCapability);
+  return backend->wait(caller,s->authority,s->host->ports.threads,ref,deadline,stop);
 }
 Result<void> HostSession::restrict_delegation(const policy::DelegationInput& delegation) {
   auto s=state_;if(!s)return failure<void>(HostErrc::InvalidSession);

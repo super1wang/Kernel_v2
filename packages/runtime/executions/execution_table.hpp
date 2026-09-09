@@ -155,15 +155,21 @@ public:
   }
   template<contracts::ContractResult R>
   contracts::Result<std::shared_ptr<const contracts::InvokeReply<R>>> result(contracts::ExecutionRef ref) const {
+    auto reply=result_erased(ref,contracts::CppTypeToken::of<R>());
+    if(!reply)return contracts::make_unexpected(reply.error());
+    return std::static_pointer_cast<const contracts::InvokeReply<R>>(*reply);
+  }
+  contracts::Result<std::shared_ptr<const void>> result_erased(contracts::ExecutionRef ref,
+      contracts::CppTypeToken type) const {
     std::lock_guard lock(mutex_);auto i=by_id_.find(ref.execution_id);
     if(i==by_id_.end()||!i->second->accepted_||i->second->summary_.phase!=contracts::ExecutionPhase::Terminal||!i->second->reply_)
       return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::Rejected));
     const auto& entry=i->second;
-    if(entry->result_type_!=contracts::CppTypeToken::of<R>())
+    if(entry->result_type_!=type)
       return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::TypeMismatch));
-    auto reply=static_cast<const contracts::InvokeReply<R>*>(entry->reply_(entry->payload_.get()));
+    auto reply=entry->reply_(entry->payload_.get());
     if(!reply)return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::Rejected));
-    return std::shared_ptr<const contracts::InvokeReply<R>>(entry,reply);
+    return std::shared_ptr<const void>(entry,reply);
   }
   // 仅供经过当前授权且允许阻塞的查询适配器使用；timeout/stop 不取消 Execution。
   contracts::Result<WaitState> wait_terminal(contracts::ExecutionRef ref,

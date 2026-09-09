@@ -5,6 +5,18 @@
 namespace ock::runtime::executions::detail {
 class InvocationAccess final {
 public:
+  template<contracts::AsyncInput A,contracts::ContractResult R>
+    requires (std::same_as<R,void> || contracts::AsyncInput<R>)
+  static auto create_record(const invocation::NativeBound<A,R>& bound,A args,
+      invocation::InvokeOptions options,registry::SubmissionStorage<A,R> storage) {
+    return InvocationRecord<A,R>::create(bound,std::move(args),options,storage);
+  }
+  template<contracts::AsyncInput A,contracts::ContractResult R>
+    requires (std::same_as<R,void> || contracts::AsyncInput<R>)
+  static auto registered_record(const invocation::NativeBound<A,R>& bound,A args,
+      invocation::InvokeOptions options) {
+    return InvocationRecord<A,R>::create_registered(bound,std::move(args),options);
+  }
   template <contracts::AsyncInput A, contracts::ContractResult R>
     requires (std::same_as<R,void> || contracts::AsyncInput<R>)
   static contracts::Result<std::unique_ptr<invocation::detail::CallLease>> reserve(
