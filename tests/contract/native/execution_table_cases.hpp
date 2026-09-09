@@ -189,6 +189,38 @@ inline void managed_execution_path() {
   schedule->close();id.execution_id.bytes[0]=74;
   CHECK(!Managed::create(*table,schedule,resources,id,host,*bound,8,env.options(),policy,resolver,[]{}));
   CHECK(!(*table)->find(id));CHECK(entered==1);
+  // Scheduler 的同步 wake 在 enqueue 返回前关闭：早到完成只能积存，
+  // 表项仍不可见；成功发布后仍返回同一 Accepted，不能丢失失败事实。
+  for(bool reject_publication:{false,true}) {
+    auto early_table=Table::create({},host);CHECK(early_table);
+    std::shared_ptr<scheduler::Scheduler> early_schedule;
+    bool fired=false;
+    id.execution_id.bytes[0]=reject_publication?77:76;
+    auto early=scheduler::Scheduler::create(executor,
+        {{env.policy.caller->view().description().principal.principal_id}}, {},[&] {
+          if(std::exchange(fired,true))return;
+          CHECK(!(*early_table)->find(id));
+          early_schedule->close();
+          CHECK(!(*early_table)->find(id));
+          if(reject_publication)(*early_table)->close_admission();
+        });CHECK(early);early_schedule=std::move(*early);
+    auto value=Managed::create(*early_table,early_schedule,resources,id,host,
+        *bound,11,env.options(),policy,resolver,[]{});
+    CHECK(fired);CHECK(entered==1);
+    if(reject_publication) {
+      CHECK(!value);CHECK(!(*early_table)->find(id));
+      CHECK((*early_table)->usage().records==0);
+    } else {
+      CHECK(value);CHECK((*value)->accepted().execution==id);CHECK((*value)->finished());
+      auto visible=(*early_table)->summary((*value)->entry());CHECK(visible);
+      CHECK((*visible)->value().phase==ExecutionPhase::Terminal);
+      CHECK((*visible)->value().fault.has_value());
+      auto reply=(*early_table)->result<int>(id);
+      CHECK(reply&&std::holds_alternative<Rejected>(**reply));
+    }
+    CHECK(early_schedule->snapshot().active==0);
+    early_schedule.reset();
+  }
 }
 inline void execution_table_ownership() {
   using Table=executions::detail::ExecutionTable;
