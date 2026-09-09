@@ -193,7 +193,8 @@ struct HotEntry final {
   NativeThunk native = nullptr;
   std::shared_ptr<const void> reader_owner;
   CppTypeToken reader_type = CppTypeToken::of<void>();
-  std::size_t resource_count = 0;
+  // 保留注册时的可信声明，受管理调用不得从客户端重建资源身份。
+  std::vector<ResourceRef> resources;
 };
 
 template <ContractValue A, ContractResult R>

@@ -105,6 +105,9 @@ inline void outcome_consistency() {
 inline void aggregate_budget() {
   Env e;NativeBudget enormous;enormous.bindings=(std::numeric_limits<std::size_t>::max)()/16;
   CHECK(!NativeEngine::create(e.catalog,e.policy.session,e.threads,enormous));
+  NativeBudget resources;
+  resources.resources_per_binding=(std::numeric_limits<std::size_t>::max)();
+  CHECK(!NativeEngine::create(e.catalog,e.policy.session,e.threads,resources));
 }
 inline void native_invalidation() {
   Env e;auto b=e.bind();CHECK(b);CHECK(result(b->invoke(1,e.options()))==3);

@@ -27,7 +27,7 @@ Result<NativeEntry> NativeAccess::inspect(const registry::Catalog& catalog,
       d.shape()!=shape || d.args_type()!=args || d.result_type()!=result)
     return make_unexpected(invocation_error(InvocationErrc::ContractMismatch));
   return NativeEntry{*handle,*definition,d.shape(),d.description().execution,
-                     catalog.hot_[*slot].resource_count};
+                     catalog.hot_[*slot].resources};
 }
 Result<void> NativeAccess::check(const registry::Catalog& catalog, const NativeEntry& entry,
     CppTypeToken args, CppTypeToken result) noexcept {
@@ -116,6 +116,17 @@ Result<void> check_thread(const BoundState& state) noexcept {
     return reject(InvocationErrc::SubmitRequired);
   return {};
 }
+Result<void> check_managed_thread(const BoundState& state) noexcept {
+  auto thread=state.thread->current();
+  if(!thread) return make_unexpected(thread.error());
+  const auto& execution=state.entry->execution;
+  if(thread->role!=ThreadRole::Worker || thread->affinity!=execution.thread_affinity)
+    return reject(InvocationErrc::ThreadRejected);
+  // 此入口同步返回；真正的异步完成必须先接好同一执行记录的寿命协议。
+  if(execution.requires_external_wait)
+    return reject(InvocationErrc::ProviderUnavailable);
+  return {};
+}
 } // namespace detail
 
 Result<void> detail::validate_budget(NativeBudget budget) {
@@ -134,11 +145,13 @@ Result<void> detail::validate_budget(NativeBudget budget) {
   };
   const auto slots=foundation::checked_mul(budget.bindings,budget.concurrent_calls_per_binding);
   if(!slots || budget.targets_per_binding>max/sizeof(foundation::ObjectId) ||
+     budget.resources_per_binding>max/sizeof(registry::ResourceRef) ||
      !add(budget.observation_capacity,sizeof(std::optional<InvocationRecord>)) ||
      !add(budget.bindings,sizeof(detail::BoundState)) ||
      !add(*slots,sizeof(detail::CallSlot)) ||
      !add(*slots,budget.targets_per_binding*sizeof(foundation::ObjectId)) ||
-     !add(budget.bindings,budget.targets_per_binding*sizeof(foundation::ObjectId)))
+     !add(budget.bindings,budget.targets_per_binding*sizeof(foundation::ObjectId)) ||
+     !add(budget.bindings,budget.resources_per_binding*sizeof(registry::ResourceRef)))
     return make_unexpected(invocation_error(InvocationErrc::BudgetExceeded));
   return {};
 }
@@ -181,7 +194,7 @@ Result<std::shared_ptr<detail::BoundState>> NativeEngine::bind_erased(
     return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
   auto entry=NativeAccess::inspect(*state_->catalog,key,digest,shape,args,result);
   if(!entry) return make_unexpected(entry.error());
-  if(entry->resource_count>state_->budget.resources_per_binding)
+  if(entry->resources.size()>state_->budget.resources_per_binding)
     return make_unexpected(invocation_error(InvocationErrc::BudgetExceeded));
   auto bound=std::make_shared<detail::BoundState>(trace);
   bound->engine=state_;
@@ -193,6 +206,7 @@ Result<std::shared_ptr<detail::BoundState>> NativeEngine::bind_erased(
   bound->counted=true; // 自此异常/拒绝均由 BoundState 析构归还占用。
   bound->catalog=state_->catalog;
   bound->session=state_->session;
+  bound->caller=caller;
   bound->thread=state_->thread;
   bound->budget=state_->budget;
   bound->targets.assign(targets.begin(),targets.end());
@@ -203,7 +217,7 @@ Result<std::shared_ptr<detail::BoundState>> NativeEngine::bind_erased(
   auto facts=KnownFacts::create(std::span<const Fact>{},{0,0,0});
   if(!facts) return make_unexpected(facts.error());
   bound->empty_facts=std::move(*facts);
-  if(shape==Shape::Read && !bound->entry->resource_count) {
+  if(shape==Shape::Read) {
     auto resolver=state_->session->targets();
     if(!owned(resolver)) return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
     std::vector<std::shared_ptr<const TargetView>> originals;

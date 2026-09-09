@@ -9,6 +9,7 @@
 - 当前 Development Batch：**B5 开发 InProgress**，按已审阅的 [B5 规划](plans/B5.md)持续推进至 G3。已实现 Scheduler 逐票据 retire/start 仲裁、正常失效投递诊断修复及依赖就绪锁外通知；Runtime 内部 ResourceWaitBinding 已具备有限控制步、双世代 wake、接受/依赖门控、取消退役和运行期 Lease 独占转移。Debug 依赖影响集 6/6、资源影响集 6/6、绑定屏障专项 3/3；真实 Submit/执行表与后续寿命接线继续开发，尚未包级验收。B5 前置收口 Passed 保留，见 [前置交付](validation/B5-preclosure-delivery.md)；B4 原同来源 65/63/65 事实保持，见 [B4 交付](validation/B4-delivery.md)。
 - 当前门禁：**G2 Passed**；G3–G8 未开始。正式同来源 Debug 28/28、Release 26/26、ASan 26/26，三包和 G2 顺序自动验收均无错误，见 [B3 交付](validation/B3-delivery.md)。
 - B5 本次资源绑定直接影响集另经 ASan / RelWithDebInfo 9/9；包含早到/重复/迟到 wake、acquire 在途取消、运行期租约保持、析构重入及正常失效/Executor 违约区分。这是开发验证，尚未形成 B5 同来源正式矩阵或包级 Passed。
+- B5 受管理调用基础已接入同一 Native typed dispatch：注册目录保留可信资源声明，绑定持有 VerifiedCaller，Submit 准备与开始共用参数/目标/预算/当前授权校验；worker 入口借用运行期 Lease，短 Invoke 原线程和资源限制保持。Debug 影响集 12/12、ASan / RelWithDebInfo 生命周期影响集 6/6。当前仅支持同步 Read 的内部接线，外部异步完成仍明确拒绝；Execution 表、拥有输入/结果、父子寿命与 Host/CLI Submit 继续开发，未发布 Submit capability。
 - Host、Logging、NativeSubset/独立安装消费者及 footprint 正式测量/预算已交付并完成本包验收。
 - B1 历史恢复结论保留：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[历史交付与自动验收](validation/D1.06-resume-delivery.md)。
 - 工具优化阶段已结束；禁止继续把 Fixture、Evidence、Install Consumer 性能优化或新流程文档设为 D1.06 前置。

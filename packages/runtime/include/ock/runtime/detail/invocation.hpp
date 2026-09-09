@@ -1,10 +1,13 @@
 #pragma once
 // NativeSubset 模板实现；应用通过 host.hpp 使用。
+#include <algorithm>
 #include <atomic>
 #include <ock/runtime/native_types.hpp>
 #include <ock/contracts/operation.hpp>
 #include <ock/runtime/policy.hpp>
 #include <ock/runtime/detail/private_bridge.hpp>
+
+namespace ock::runtime::executions::detail { class InvocationAccess; }
 
 namespace ock::runtime::invocation {
 using namespace contracts;
@@ -30,6 +33,7 @@ struct BoundState {
   std::shared_ptr<EngineState> engine;
   std::shared_ptr<const registry::Catalog> catalog;
   std::shared_ptr<policy::SessionAuthority> session;
+  std::shared_ptr<const policy::VerifiedCaller> caller;
   std::shared_ptr<const policy::InlineAuthorization> authorization;
   std::shared_ptr<TrustedThreadPort> thread;
   std::optional<NativeEntry> entry;
@@ -59,6 +63,30 @@ struct FinalObservation {
 bool same_targets(std::span<const foundation::ObjectId>,
                   std::span<const foundation::ObjectId>) noexcept;
 Result<void> check_thread(const BoundState&) noexcept;
+Result<void> check_managed_thread(const BoundState&) noexcept;
+
+// Submit 准入与开始时复用参数、目标、预算及当前授权管线。
+template <ContractValue A>
+Result<policy::InlineAdmission> validate_call(const BoundState& state,
+    std::size_t slot, TargetProjection<A> projection, const A& args,
+    const InvokeOptions& options) {
+  auto valid = TypeContract<A>::validate(args);
+  if (!valid) return make_unexpected(valid.error());
+  auto& actual = state.slots[slot].targets;
+  auto count = projection(args, actual);
+  if (!count) return make_unexpected(count.error());
+  if (*count > actual.size() ||
+      !same_targets(state.targets, std::span(actual).first(*count)))
+    return make_unexpected(invocation_error(InvocationErrc::InvalidInput));
+  if (!options.work_limit || options.work_limit > state.budget.work_units)
+    return make_unexpected(invocation_error(InvocationErrc::BudgetExceeded));
+  if (options.stop.stop_requested())
+    return make_unexpected(invocation_error(InvocationErrc::Cancelled));
+  if (!state.authorization)
+    return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
+  return state.authorization->admit(*state.entry->definition,
+      std::span(actual).first(*count), options.stop, options.deadline);
+}
 template <class R> Result<Outcome<R>> outcome_read(
     Result<R> result, std::shared_ptr<const KnownFacts> facts) {
   class NoPublication final : public PublicationAuthorityPort {
@@ -109,6 +137,33 @@ public:
   ~NativeBound() = default;
 
   InvokeReply<R> invoke(const A& args, const InvokeOptions& options) const {
+    return run(args, options, false, {});
+  }
+private:
+  friend class executions::detail::InvocationAccess;
+  Result<void> prepare_submission(const A& args, const InvokeOptions& options) const {
+    auto state=state_;
+    if (!state) return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
+    auto slot=state->acquire();
+    if (!slot) return make_unexpected(invocation_error(InvocationErrc::Busy));
+    detail::CallLease lease(state,*slot);
+    try {
+      auto current=NativeAccess::check(*state->catalog,*state->entry,
+                                      CppTypeToken::of<A>(),CppTypeToken::of<R>());
+      if (!current) return current;
+      if (state->entry->shape!=Shape::Read || state->entry->execution.requires_external_wait)
+        return make_unexpected(invocation_error(InvocationErrc::ProviderUnavailable));
+      auto admission=detail::validate_call(*state,*slot,projection_,args,options);
+      if (!admission) return make_unexpected(admission.error());
+      return {};
+    } catch (const std::bad_alloc&) {
+      return make_unexpected(invocation_error(InvocationErrc::BudgetExceeded));
+    } catch (...) {
+      return make_unexpected(invocation_error(InvocationErrc::HandlerException));
+    }
+  }
+  InvokeReply<R> run(const A& args, const InvokeOptions& options, bool managed,
+                    std::span<const ResourceLease* const> resources) const {
     // 本次栈持有绑定，业务释放外部 Engine/Bound 后治理材料仍活到返回。
     auto state = state_;
     const auto projection = projection_;
@@ -137,30 +192,20 @@ public:
       if (!current) return rejected(current.error());
       if (state->entry->shape != Shape::Read)
         return rejected(invocation_error(InvocationErrc::ProviderUnavailable));
-      if (state->entry->resource_count)
+      if (!managed && !state->entry->resources.empty())
         return rejected(invocation_error(InvocationErrc::ResourceUnavailable));
-      auto thread = detail::check_thread(*state);
+      if (managed && (state->entry->resources.empty()!=resources.empty() ||
+          std::any_of(resources.begin(),resources.end(),[](auto p){return p==nullptr;})))
+        return rejected(invocation_error(InvocationErrc::ResourceUnavailable));
+      auto thread = managed ? detail::check_managed_thread(*state) : detail::check_thread(*state);
       if (!thread) return rejected(thread.error());
-      auto valid = TypeContract<A>::validate(args);
-      if (!valid) return rejected(valid.error());
-      auto& actual = state->slots[*slot].targets;
-      auto count = projection(args, actual);
-      if (!count) return rejected(count.error());
-      if (*count > actual.size() ||
-          !detail::same_targets(state->targets, std::span(actual).first(*count)))
-        return rejected(invocation_error(InvocationErrc::InvalidInput));
-      if (!options.work_limit || options.work_limit > state->budget.work_units)
-        return rejected(invocation_error(InvocationErrc::BudgetExceeded));
-      if (options.stop.stop_requested())
-        return rejected(invocation_error(InvocationErrc::Cancelled));
-      auto admitted = state->authorization->admit(*state->entry->definition,
-          std::span(actual).first(*count), options.stop, options.deadline);
+      auto admitted = detail::validate_call(*state,*slot,projection,args,options);
       if (!admitted) return rejected(admitted.error());
       admission.emplace(std::move(*admitted));
       auto budget = foundation::CheckedCount<std::uint64_t>::create(0, options.work_limit);
       if (!budget) return rejected(budget.error());
       WorkContext work(options.stop, admission->deadline(), *budget, state->trace,
-                       BorrowedResourceViews{std::span<const ResourceLease* const>{}});
+                       BorrowedResourceViews{resources});
       std::optional<Result<R>> result;
       entered = true;
       NativeAccess::dispatch(*state->catalog, *state->entry, &args, work, &result);

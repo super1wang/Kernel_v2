@@ -5,6 +5,7 @@
 #include "shape_cases.hpp"
 #include "allocation_cases.hpp"
 #include "lifetime_cases.hpp"
+#include "managed_cases.hpp"
 using namespace native_test;
 void registered_compute() { Env e;auto b=e.bind();CHECK(b);entered=0;CHECK(result(b->invoke(2,e.options()))==4);CHECK(result(b->invoke(5,e.options()))==7);CHECK(entered==2); }
 void registered_read() { Env e(true);auto b=e.bind();CHECK(b);e.reader.reset();CHECK(result(b->invoke(3,e.options()))==10); }
@@ -20,6 +21,7 @@ void example_consumer(){registered_compute();registered_read();provider_unavaila
 int main(int argc,char**argv) {
   if(argc==2&&std::string_view(argv[1])=="--throwing-transport-probe")return throwing_transport_probe();
   const std::map<std::string,void(*)()> cases{{"T02.native.registered_compute",registered_compute},{"T02.native.registered_read",registered_read},{"T02.native.invalid_input",invalid_input},{"T06.native.authority_origin",authority_origin},
+    {"T06.native.managed_admission",managed_admission},{"T03.native.managed_resources",managed_resources},
     {"T06.native.business_failure",business_failure},{"T03.native.no_task_path",no_task_path},
     {"T03.native.reentrant_and_concurrent",[]{reentrant_and_concurrent();multi_slot_isolation();replace_bound_in_validator();}},
     {"T02.native.exact_binding",exact_binding},{"T02.native.validation_exception",validation_exception},

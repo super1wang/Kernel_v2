@@ -48,8 +48,10 @@ def main():
                     argv += ['--' + key.replace('_', '-'), value]
         lines.append('add_test(' + quote(name) + ' ' +
                      ' '.join(map(quote, argv)) + ')')
+        label = 'B5;D3.04' if name.split('.')[-1] in {
+            'managed_admission', 'managed_resources'} else 'D1.05'
         lines.append('set_tests_properties(' + quote(name) +
-                     ' PROPERTIES TIMEOUT 600 LABELS "D1.05" '
+                     f' PROPERTIES TIMEOUT 600 LABELS "{label}" '
                      'ENVIRONMENT "MSBUILDDISABLENODEREUSE=1" '
                      'ENVIRONMENT_MODIFICATION ' +
                      quote('PATH=path_list_prepend:' + args.runtime_dir) + ')')

@@ -421,7 +421,7 @@ Result<void> RegistrationBatch::insert(
                      native,
                      {},
                      CppTypeToken::of<void>(),
-                     o.resources.size()};
+                     o.resources};
   if (read) {
     auto owner = service(i, *o.read_service, s->context_type());
     if (!owner)

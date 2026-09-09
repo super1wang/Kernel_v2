@@ -9,7 +9,7 @@ struct NativeEntry final {
   std::shared_ptr<const contracts::DefinitionSnapshot> definition;
   contracts::Shape shape;
   contracts::ExecutionRequirements execution;
-  std::size_t resource_count;
+  std::vector<registry::ResourceRef> resources;
 };
 class NativeEngine;
 template <contracts::ContractValue A, contracts::ContractResult R> class NativeBound;
