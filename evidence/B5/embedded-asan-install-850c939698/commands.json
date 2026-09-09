@@ -1,0 +1,200 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-asan",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\embedded-asan-install-850c939698\\producer",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_COMPONENTS=Embedded",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation;CpuPool",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DPython3_EXECUTABLE=G:\\environment\\python3.13.3\\python.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:05:07.053447+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 38,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 67308,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:05:11.581405+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "0966fe9529a1a9b1a4fa77bdf8f1c83b930c2ef7908177fb2ebf231c2f11f69b",
+        "size": 1114
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e39c2e3265d3e9f92413b4ff2c0942d01df9c631a0f4c80048a7ddd2d76b10ab",
+        "size": 134
+      }
+    ]
+  },
+  {
+    "argv": [
+      "G:\\environment\\python3.13.3\\python.exe",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\tools\\architecture\\check.py",
+      "--graph",
+      "J:\\Code\\Kernel_v2\\build\\embedded-asan-install-850c939698\\producer\\ock-target-graph.json"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:05:11.583268+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "G:\\environment\\python3.13.3\\python.exe",
+    "pid": 35020,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:05:11.885446+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "83927ec06e4069c417a9e6c8163075a59db12c23e078a40142d2316faddbd936",
+        "size": 152
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\embedded-asan-install-850c939698\\producer",
+      "--config",
+      "RelWithDebInfo",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:05:11.886668+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 31,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 66944,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:06:02.237513+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "c0a98c047885f9dca91fc5b195e7f7c9d8852be117b29aef58eaed64409de4aa",
+        "size": 749
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:\\Code\\Kernel_v2\\build\\embedded-asan-install-850c939698\\producer",
+      "--config",
+      "RelWithDebInfo",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\embedded-asan-install-850c939698\\prefix"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:06:02.239838+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 56384,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:06:02.433759+00:00",
+    "raw": [
+      {
+        "path": "3-stdout.log",
+        "sha256": "5e52594671a918fc5df6c1182b13984e8a46f2410b1cf02423a854738c01fed6",
+        "size": 4962
+      },
+      {
+        "path": "3-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "G:\\environment\\python3.13.3\\python.exe",
+      "-u",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\tools\\footprint\\embedded_pilot.py",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\embedded-asan-install-850c939698\\prefix",
+      "--config",
+      "RelWithDebInfo",
+      "--allocation",
+      "--asan"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:06:02.436301+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 73,
+      "terminated_owned_job": false
+    },
+    "executable": "G:\\environment\\python3.13.3\\python.exe",
+    "pid": 40872,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:06:38.054677+00:00",
+    "raw": [
+      {
+        "path": "4-stdout.log",
+        "sha256": "cbdfd9e2fe7f75e269d62a5ab9eb265880704efb0f74e998118ec3f8c2bf7555",
+        "size": 1917
+      },
+      {
+        "path": "4-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

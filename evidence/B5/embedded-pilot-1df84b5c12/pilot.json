@@ -1,0 +1,868 @@
+[
+  {
+    "kind": "baseline",
+    "run": "0-baseline",
+    "binary": {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-pilot-1df84b5c12\\Debug\\footprint_baseline.exe",
+      "bytes": 110080,
+      "sha256": "00fccc128b65fed2a90b2330def6f3f3824290928483780f4c4ff8c7dc00114c"
+    },
+    "modules": [
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\MSVCP140D.dll",
+        "bytes": 891832,
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\MSVCP140D_ATOMIC_WAIT.dll",
+        "bytes": 102328,
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140D.dll",
+        "bytes": 200120,
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140_1D.dll",
+        "bytes": 61368,
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\apphelp.dll",
+        "bytes": 649008,
+        "sha256": "2c84d7a6c78c2e5a07e30075ced4a6a6e37784415bf18d4b111b449513fab1e4"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\kernel.appcore.dll",
+        "bytes": 111848,
+        "sha256": "23bd89a2f8954b8daff526344ba70f306a81da641c316cbe9f6b5a7d2dd4298e"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+        "bytes": 2487776,
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\ucrtbased.dll",
+        "bytes": 2120104,
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+        "bytes": 731648,
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+        "bytes": 826712,
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+        "bytes": 3909184,
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\RPCRT4.dll",
+        "bytes": 1165536,
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\msvcrt.dll",
+        "bytes": 694488,
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\sechost.dll",
+        "bytes": 690352,
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\embedded-pilot-1df84b5c12\\Debug\\footprint_baseline.exe",
+        "bytes": 110080,
+        "sha256": "00fccc128b65fed2a90b2330def6f3f3824290928483780f4c4ff8c7dc00114c"
+      }
+    ],
+    "ready": {
+      "child_ticks": 5920077349792,
+      "observed_ticks": 5920077407590,
+      "sample_ticks": 5920077407778,
+      "internal_ticks": 4572148,
+      "create_to_ready_ticks": 13065036,
+      "parent_observed_ticks_delta": 13122834,
+      "notification_lag_ticks": 57798,
+      "peak_working_set_bytes": 5804032,
+      "peak_commit_bytes": 1085440
+    },
+    "construction_ms": 0.0002,
+    "private_bytes": {
+      "count": 590,
+      "min": 393216,
+      "median": 1056768,
+      "p95": 1056768,
+      "max": 1064960
+    },
+    "working_set_bytes": {
+      "count": 590,
+      "min": 1982464,
+      "median": 5787648,
+      "p95": 5787648,
+      "max": 5787648
+    },
+    "boundary_threads": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "boundaries": {
+      "assigned_suspended": {
+        "private_bytes": 393216,
+        "working_set_bytes": 1982464,
+        "peak_working_set_bytes": 1982464,
+        "peak_commit_bytes": 393216
+      },
+      "ProcessMainEntered": {
+        "private_bytes": 1036288,
+        "working_set_bytes": 5640192,
+        "peak_working_set_bytes": 5640192,
+        "peak_commit_bytes": 1081344
+      },
+      "HostConstructionBegin": {
+        "private_bytes": 1056768,
+        "working_set_bytes": 5787648,
+        "peak_working_set_bytes": 5804032,
+        "peak_commit_bytes": 1085440
+      },
+      "HostReady": {
+        "private_bytes": 1056768,
+        "working_set_bytes": 5787648,
+        "peak_working_set_bytes": 5804032,
+        "peak_commit_bytes": 1085440
+      },
+      "WarmupComplete": {
+        "private_bytes": 1056768,
+        "working_set_bytes": 5787648,
+        "peak_working_set_bytes": 5804032,
+        "peak_commit_bytes": 1085440
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": 1056768,
+        "working_set_bytes": 5787648,
+        "peak_working_set_bytes": 5804032,
+        "peak_commit_bytes": 1085440
+      },
+      "ShutdownBegin": {
+        "private_bytes": 1056768,
+        "working_set_bytes": 5787648,
+        "peak_working_set_bytes": 5804032,
+        "peak_commit_bytes": 1085440
+      },
+      "ShutdownComplete": {
+        "private_bytes": 1056768,
+        "working_set_bytes": 5787648,
+        "peak_working_set_bytes": 5804032,
+        "peak_commit_bytes": 1085440
+      },
+      "BoundReleased": {
+        "private_bytes": 1056768,
+        "working_set_bytes": 5787648,
+        "peak_working_set_bytes": 5804032,
+        "peak_commit_bytes": 1085440
+      },
+      "SessionReleased": {
+        "private_bytes": 1056768,
+        "working_set_bytes": 5787648,
+        "peak_working_set_bytes": 5804032,
+        "peak_commit_bytes": 1085440
+      },
+      "OwnersReleased": {
+        "private_bytes": 1056768,
+        "working_set_bytes": 5787648,
+        "peak_working_set_bytes": 5804032,
+        "peak_commit_bytes": 1085440
+      },
+      "ExitPermitted": {
+        "private_bytes": 1056768,
+        "working_set_bytes": 5787648,
+        "peak_working_set_bytes": 5804032,
+        "peak_commit_bytes": 1085440
+      }
+    },
+    "missed_intervals": 1121,
+    "consumer": {
+      "kind": "baseline",
+      "workers": 0,
+      "warmup": 4,
+      "local_calls": 80,
+      "released": true,
+      "construction_ticks": 2,
+      "qpc_frequency": 10000000
+    }
+  },
+  {
+    "kind": "embedded",
+    "run": "1-embedded",
+    "binary": {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-pilot-1df84b5c12\\Debug\\footprint_embedded.exe",
+      "bytes": 3938816,
+      "sha256": "75ff7d33f6d6044818c298d6f85efadc801f9cdbd97d6b615c3ef07db213b40e"
+    },
+    "modules": [
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\MSVCP140D.dll",
+        "bytes": 891832,
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\MSVCP140D_ATOMIC_WAIT.dll",
+        "bytes": 102328,
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140D.dll",
+        "bytes": 200120,
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140_1D.dll",
+        "bytes": 61368,
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\apphelp.dll",
+        "bytes": 649008,
+        "sha256": "2c84d7a6c78c2e5a07e30075ced4a6a6e37784415bf18d4b111b449513fab1e4"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\bcrypt.dll",
+        "bytes": 161456,
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\kernel.appcore.dll",
+        "bytes": 111848,
+        "sha256": "23bd89a2f8954b8daff526344ba70f306a81da641c316cbe9f6b5a7d2dd4298e"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+        "bytes": 2487776,
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\ucrtbased.dll",
+        "bytes": 2120104,
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+        "bytes": 731648,
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+        "bytes": 826712,
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+        "bytes": 3909184,
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\RPCRT4.dll",
+        "bytes": 1165536,
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\bcryptprimitives.dll",
+        "bytes": 628376,
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\msvcrt.dll",
+        "bytes": 694488,
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\sechost.dll",
+        "bytes": 690352,
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\embedded-pilot-1df84b5c12\\Debug\\footprint_embedded.exe",
+        "bytes": 3938816,
+        "sha256": "75ff7d33f6d6044818c298d6f85efadc801f9cdbd97d6b615c3ef07db213b40e"
+      }
+    ],
+    "ready": {
+      "child_ticks": 5920180862939,
+      "observed_ticks": 5920180894103,
+      "sample_ticks": 5920180894308,
+      "internal_ticks": 6228260,
+      "create_to_ready_ticks": 20309775,
+      "parent_observed_ticks_delta": 20340939,
+      "notification_lag_ticks": 31164,
+      "peak_working_set_bytes": 8744960,
+      "peak_commit_bytes": 1757184
+    },
+    "construction_ms": 3.719,
+    "private_bytes": {
+      "count": 596,
+      "min": 450560,
+      "median": 2015232,
+      "p95": 2056192,
+      "max": 2179072
+    },
+    "working_set_bytes": {
+      "count": 596,
+      "min": 1982464,
+      "median": 9367552,
+      "p95": 9465856,
+      "max": 9551872
+    },
+    "boundary_threads": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 7,
+      "WarmupComplete": 7,
+      "IdleSamplingBegin": 7,
+      "ShutdownBegin": 7,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "boundaries": {
+      "assigned_suspended": {
+        "private_bytes": 450560,
+        "working_set_bytes": 1982464,
+        "peak_working_set_bytes": 1982464,
+        "peak_commit_bytes": 450560
+      },
+      "ProcessMainEntered": {
+        "private_bytes": 1118208,
+        "working_set_bytes": 5894144,
+        "peak_working_set_bytes": 5894144,
+        "peak_commit_bytes": 1126400
+      },
+      "HostConstructionBegin": {
+        "private_bytes": 1146880,
+        "working_set_bytes": 6234112,
+        "peak_working_set_bytes": 6242304,
+        "peak_commit_bytes": 1183744
+      },
+      "HostReady": {
+        "private_bytes": 1757184,
+        "working_set_bytes": 8744960,
+        "peak_working_set_bytes": 8744960,
+        "peak_commit_bytes": 1757184
+      },
+      "WarmupComplete": {
+        "private_bytes": 1990656,
+        "working_set_bytes": 9175040,
+        "peak_working_set_bytes": 9175040,
+        "peak_commit_bytes": 1990656
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": 1990656,
+        "working_set_bytes": 9175040,
+        "peak_working_set_bytes": 9175040,
+        "peak_commit_bytes": 1990656
+      },
+      "ShutdownBegin": {
+        "private_bytes": 2179072,
+        "working_set_bytes": 9547776,
+        "peak_working_set_bytes": 9547776,
+        "peak_commit_bytes": 2187264
+      },
+      "ShutdownComplete": {
+        "private_bytes": 2056192,
+        "working_set_bytes": 9465856,
+        "peak_working_set_bytes": 9551872,
+        "peak_commit_bytes": 2187264
+      },
+      "BoundReleased": {
+        "private_bytes": 2056192,
+        "working_set_bytes": 9465856,
+        "peak_working_set_bytes": 9551872,
+        "peak_commit_bytes": 2187264
+      },
+      "SessionReleased": {
+        "private_bytes": 2056192,
+        "working_set_bytes": 9465856,
+        "peak_working_set_bytes": 9551872,
+        "peak_commit_bytes": 2187264
+      },
+      "OwnersReleased": {
+        "private_bytes": 1589248,
+        "working_set_bytes": 8982528,
+        "peak_working_set_bytes": 9551872,
+        "peak_commit_bytes": 2187264
+      },
+      "ExitPermitted": {
+        "private_bytes": 1589248,
+        "working_set_bytes": 8982528,
+        "peak_working_set_bytes": 9551872,
+        "peak_commit_bytes": 2187264
+      }
+    },
+    "missed_intervals": 986,
+    "consumer": {
+      "kind": "embedded",
+      "workers": 2,
+      "warmup": 4,
+      "invoke": 40,
+      "submit": 40,
+      "resource_child_cancel": true,
+      "default_memory_log": true,
+      "released": true,
+      "construction_ticks": 37190,
+      "qpc_frequency": 10000000
+    }
+  },
+  {
+    "kind": "embedded",
+    "run": "2-embedded",
+    "binary": {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-pilot-1df84b5c12\\Debug\\footprint_embedded.exe",
+      "bytes": 3938816,
+      "sha256": "75ff7d33f6d6044818c298d6f85efadc801f9cdbd97d6b615c3ef07db213b40e"
+    },
+    "modules": [
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\MSVCP140D.dll",
+        "bytes": 891832,
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\MSVCP140D_ATOMIC_WAIT.dll",
+        "bytes": 102328,
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140D.dll",
+        "bytes": 200120,
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140_1D.dll",
+        "bytes": 61368,
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\apphelp.dll",
+        "bytes": 649008,
+        "sha256": "2c84d7a6c78c2e5a07e30075ced4a6a6e37784415bf18d4b111b449513fab1e4"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\bcrypt.dll",
+        "bytes": 161456,
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\kernel.appcore.dll",
+        "bytes": 111848,
+        "sha256": "23bd89a2f8954b8daff526344ba70f306a81da641c316cbe9f6b5a7d2dd4298e"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+        "bytes": 2487776,
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\ucrtbased.dll",
+        "bytes": 2120104,
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+        "bytes": 731648,
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+        "bytes": 826712,
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+        "bytes": 3909184,
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\RPCRT4.dll",
+        "bytes": 1165536,
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\bcryptprimitives.dll",
+        "bytes": 628376,
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\msvcrt.dll",
+        "bytes": 694488,
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\sechost.dll",
+        "bytes": 690352,
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\embedded-pilot-1df84b5c12\\Debug\\footprint_embedded.exe",
+        "bytes": 3938816,
+        "sha256": "75ff7d33f6d6044818c298d6f85efadc801f9cdbd97d6b615c3ef07db213b40e"
+      }
+    ],
+    "ready": {
+      "child_ticks": 5920256141384,
+      "observed_ticks": 5920256150861,
+      "sample_ticks": 5920256151597,
+      "internal_ticks": 1948151,
+      "create_to_ready_ticks": 6904214,
+      "parent_observed_ticks_delta": 6913691,
+      "notification_lag_ticks": 9477,
+      "peak_working_set_bytes": 8720384,
+      "peak_commit_bytes": 1720320
+    },
+    "construction_ms": 3.0767,
+    "private_bytes": {
+      "count": 733,
+      "min": 450560,
+      "median": 1953792,
+      "p95": 2019328,
+      "max": 2138112
+    },
+    "working_set_bytes": {
+      "count": 733,
+      "min": 1982464,
+      "median": 9146368,
+      "p95": 9433088,
+      "max": 9515008
+    },
+    "boundary_threads": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 7,
+      "WarmupComplete": 7,
+      "IdleSamplingBegin": 7,
+      "ShutdownBegin": 7,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "boundaries": {
+      "assigned_suspended": {
+        "private_bytes": 450560,
+        "working_set_bytes": 1982464,
+        "peak_working_set_bytes": 1982464,
+        "peak_commit_bytes": 450560
+      },
+      "ProcessMainEntered": {
+        "private_bytes": 1097728,
+        "working_set_bytes": 5881856,
+        "peak_working_set_bytes": 5881856,
+        "peak_commit_bytes": 1134592
+      },
+      "HostConstructionBegin": {
+        "private_bytes": 1126400,
+        "working_set_bytes": 6221824,
+        "peak_working_set_bytes": 6225920,
+        "peak_commit_bytes": 1150976
+      },
+      "HostReady": {
+        "private_bytes": 1720320,
+        "working_set_bytes": 8720384,
+        "peak_working_set_bytes": 8720384,
+        "peak_commit_bytes": 1720320
+      },
+      "WarmupComplete": {
+        "private_bytes": 1953792,
+        "working_set_bytes": 9146368,
+        "peak_working_set_bytes": 9146368,
+        "peak_commit_bytes": 1953792
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": 1953792,
+        "working_set_bytes": 9146368,
+        "peak_working_set_bytes": 9146368,
+        "peak_commit_bytes": 1953792
+      },
+      "ShutdownBegin": {
+        "private_bytes": 2138112,
+        "working_set_bytes": 9510912,
+        "peak_working_set_bytes": 9510912,
+        "peak_commit_bytes": 2146304
+      },
+      "ShutdownComplete": {
+        "private_bytes": 2019328,
+        "working_set_bytes": 9433088,
+        "peak_working_set_bytes": 9515008,
+        "peak_commit_bytes": 2146304
+      },
+      "BoundReleased": {
+        "private_bytes": 2019328,
+        "working_set_bytes": 9433088,
+        "peak_working_set_bytes": 9515008,
+        "peak_commit_bytes": 2146304
+      },
+      "SessionReleased": {
+        "private_bytes": 2019328,
+        "working_set_bytes": 9433088,
+        "peak_working_set_bytes": 9515008,
+        "peak_commit_bytes": 2146304
+      },
+      "OwnersReleased": {
+        "private_bytes": 1499136,
+        "working_set_bytes": 8912896,
+        "peak_working_set_bytes": 9515008,
+        "peak_commit_bytes": 2146304
+      },
+      "ExitPermitted": {
+        "private_bytes": 1499136,
+        "working_set_bytes": 8912896,
+        "peak_working_set_bytes": 9515008,
+        "peak_commit_bytes": 2146304
+      }
+    },
+    "missed_intervals": 386,
+    "consumer": {
+      "kind": "embedded",
+      "workers": 2,
+      "warmup": 4,
+      "invoke": 40,
+      "submit": 40,
+      "resource_child_cancel": true,
+      "default_memory_log": true,
+      "released": true,
+      "construction_ticks": 30767,
+      "qpc_frequency": 10000000
+    }
+  },
+  {
+    "kind": "baseline",
+    "run": "3-baseline",
+    "binary": {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-pilot-1df84b5c12\\Debug\\footprint_baseline.exe",
+      "bytes": 110080,
+      "sha256": "00fccc128b65fed2a90b2330def6f3f3824290928483780f4c4ff8c7dc00114c"
+    },
+    "modules": [
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\MSVCP140D.dll",
+        "bytes": 891832,
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\MSVCP140D_ATOMIC_WAIT.dll",
+        "bytes": 102328,
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140D.dll",
+        "bytes": 200120,
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140_1D.dll",
+        "bytes": 61368,
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\apphelp.dll",
+        "bytes": 649008,
+        "sha256": "2c84d7a6c78c2e5a07e30075ced4a6a6e37784415bf18d4b111b449513fab1e4"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\kernel.appcore.dll",
+        "bytes": 111848,
+        "sha256": "23bd89a2f8954b8daff526344ba70f306a81da641c316cbe9f6b5a7d2dd4298e"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+        "bytes": 2487776,
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab"
+      },
+      {
+        "path": "C:\\WINDOWS\\SYSTEM32\\ucrtbased.dll",
+        "bytes": 2120104,
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+        "bytes": 731648,
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+        "bytes": 826712,
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+        "bytes": 3909184,
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\RPCRT4.dll",
+        "bytes": 1165536,
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\msvcrt.dll",
+        "bytes": 694488,
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d"
+      },
+      {
+        "path": "C:\\WINDOWS\\System32\\sechost.dll",
+        "bytes": 690352,
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\embedded-pilot-1df84b5c12\\Debug\\footprint_baseline.exe",
+        "bytes": 110080,
+        "sha256": "00fccc128b65fed2a90b2330def6f3f3824290928483780f4c4ff8c7dc00114c"
+      }
+    ],
+    "ready": {
+      "child_ticks": 5920317503646,
+      "observed_ticks": 5920317519357,
+      "sample_ticks": 5920317519501,
+      "internal_ticks": 2553774,
+      "create_to_ready_ticks": 7760552,
+      "parent_observed_ticks_delta": 7776263,
+      "notification_lag_ticks": 15711,
+      "peak_working_set_bytes": 5812224,
+      "peak_commit_bytes": 1093632
+    },
+    "construction_ms": 0.0002,
+    "private_bytes": {
+      "count": 725,
+      "min": 393216,
+      "median": 1052672,
+      "p95": 1052672,
+      "max": 1056768
+    },
+    "working_set_bytes": {
+      "count": 725,
+      "min": 1982464,
+      "median": 5791744,
+      "p95": 5791744,
+      "max": 5791744
+    },
+    "boundary_threads": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "boundaries": {
+      "assigned_suspended": {
+        "private_bytes": 393216,
+        "working_set_bytes": 1982464,
+        "peak_working_set_bytes": 1982464,
+        "peak_commit_bytes": 393216
+      },
+      "ProcessMainEntered": {
+        "private_bytes": 1028096,
+        "working_set_bytes": 5640192,
+        "peak_working_set_bytes": 5640192,
+        "peak_commit_bytes": 1036288
+      },
+      "HostConstructionBegin": {
+        "private_bytes": 1052672,
+        "working_set_bytes": 5791744,
+        "peak_working_set_bytes": 5812224,
+        "peak_commit_bytes": 1093632
+      },
+      "HostReady": {
+        "private_bytes": 1052672,
+        "working_set_bytes": 5791744,
+        "peak_working_set_bytes": 5812224,
+        "peak_commit_bytes": 1093632
+      },
+      "WarmupComplete": {
+        "private_bytes": 1052672,
+        "working_set_bytes": 5791744,
+        "peak_working_set_bytes": 5812224,
+        "peak_commit_bytes": 1093632
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": 1052672,
+        "working_set_bytes": 5791744,
+        "peak_working_set_bytes": 5812224,
+        "peak_commit_bytes": 1093632
+      },
+      "ShutdownBegin": {
+        "private_bytes": 1052672,
+        "working_set_bytes": 5791744,
+        "peak_working_set_bytes": 5812224,
+        "peak_commit_bytes": 1093632
+      },
+      "ShutdownComplete": {
+        "private_bytes": 1052672,
+        "working_set_bytes": 5791744,
+        "peak_working_set_bytes": 5812224,
+        "peak_commit_bytes": 1093632
+      },
+      "BoundReleased": {
+        "private_bytes": 1052672,
+        "working_set_bytes": 5791744,
+        "peak_working_set_bytes": 5812224,
+        "peak_commit_bytes": 1093632
+      },
+      "SessionReleased": {
+        "private_bytes": 1052672,
+        "working_set_bytes": 5791744,
+        "peak_working_set_bytes": 5812224,
+        "peak_commit_bytes": 1093632
+      },
+      "OwnersReleased": {
+        "private_bytes": 1052672,
+        "working_set_bytes": 5791744,
+        "peak_working_set_bytes": 5812224,
+        "peak_commit_bytes": 1093632
+      },
+      "ExitPermitted": {
+        "private_bytes": 1052672,
+        "working_set_bytes": 5791744,
+        "peak_working_set_bytes": 5812224,
+        "peak_commit_bytes": 1093632
+      }
+    },
+    "missed_intervals": 473,
+    "consumer": {
+      "kind": "baseline",
+      "workers": 0,
+      "warmup": 4,
+      "local_calls": 80,
+      "released": true,
+      "construction_ticks": 2,
+      "qpc_frequency": 10000000
+    }
+  }
+]

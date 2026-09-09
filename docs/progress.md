@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 完成独立 Embedded ASan 构建/安装及全线程分配诊断，依赖仍仅 expected/thread_pool，实际目标图检查无错误（[生产命令](../evidence/B5/embedded-asan-install-850c939698/commands.json)）。新版明确区分 DebugCRT / ASan，后台正探针与负探针均通过；Debug、ASan 各一组 ABBA 中，两次 Embedded 各 40 个完整 Invoke 窗口的 C++ 与进程 allocator 分配均为 **0**（[Debug 原文](../evidence/B5/embedded-pilot-1df84b5c12/1-embedded-stdout.log)、[ASan 原文](../evidence/B5/embedded-pilot-d8d809d523/1-embedded-stdout.log)）。Submit 和父子取消成本保持单列，无 ASan 错误，旧 Debug/Release 安装与原文未覆盖。此为诊断来源证据；AutomationHost 对照、有限预算及同来源 B5/G3 正式验收继续完成。
+
 - B5 Embedded Debug 分配诊断已完成一组 ABBA：两次 Embedded 各 40 个完整 Invoke 窗口的调用线程 C++ 与进程各线程 CRT 分配均为 **0**；12 类正探针、负探针和真实后台 malloc/free 正探针均通过。每次完整保留 85 个实际窗口，40 次 Submit/wait/result 与父子资源取消成本单列（[第一份原文](../evidence/B5/embedded-pilot-eb81805115/1-embedded-stdout.log)、[第二份原文](../evidence/B5/embedded-pilot-eb81805115/2-embedded-stdout.log)、[来源与配置](../evidence/B5/embedded-pilot-eb81805115/inputs.json)）。该覆盖为可执行程序 C++ 入口及接入的 Debug CRT，不包含私有 DLL/custom heap；ASan 全线程补充、AutomationHost、预算及正式 B5/G3 验收继续完成，未把诊断构建计入正式时延/占用结论。
 
 - B5 已增加不含阶段握手等待的 QPC 构造至 Ready 直接窗口，并完成 Debug、Release 各一组 ABBA pilot（[Debug 原文](../evidence/B5/embedded-pilot-d77caf1f8d/pilot.json)、[Release 原文](../evidence/B5/embedded-pilot-e2cb99d25c/pilot.json)）。两次实际 Embedded 直接样本分别为 Debug 3.6086 / 2.8452 ms、Release 1.1593 / 0.9791 ms；Release EXE 为 655360 字节、基准 15872 字节，模块与内存原文单列。Release 从真实 Embedded 生产配置构建并安装（[命令](../evidence/B5/embedded-release-install-60e8fa7555/commands.json)），两配置均保持 Ready 增加 3 个线程、shutdown 回到基准。这些是未批准预算的校准样本；occupancy 模式启动器 create→Ready 仍含阶段采样干扰，不作为正式纯启动时延，分配/AutomationHost/正式有限预算与 B5/G3 继续完成。

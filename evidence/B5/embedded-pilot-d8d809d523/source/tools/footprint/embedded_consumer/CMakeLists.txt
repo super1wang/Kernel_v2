@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 project(OCKEmbeddedFootprint LANGUAGES CXX)
-option(OCK_EMBEDDED_ALLOCATION "Debug CRT or ASan allocation diagnostic" OFF)
+option(OCK_EMBEDDED_ALLOCATION "Debug allocation diagnostic only" OFF)
 option(OCK_EMBEDDED_ASAN "Match installed ASan producer" OFF)
 if(OCK_EMBEDDED_ASAN)
   string(REGEX REPLACE "/RTC[1su]+" "" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
