@@ -53,6 +53,7 @@ struct HostControl {
   mutable std::mutex mutex;
   std::condition_variable changed;
   HostPhase phase=HostPhase::Configuring;
+  HostCapabilities capabilities;
   bool lifecycle=false,started=false,stopping=false,failed=false,policy_pending=false,logging_pending=false,log_closing=false;
   bool executions_pending=false,executors_pending=false;
   std::size_t active=0,started_count=0;
@@ -362,7 +363,12 @@ Result<void> NativeHost::start() {
       {std::lock_guard lock(s->mutex);s->pending_modules.push_back(index);++s->started_count;}
       s->log(LogEvent::ModuleStarted,index);
     }
-    s->set_phase(HostPhase::Ready);s->log(LogEvent::Ready);return {};
+    auto capabilities=s->executions?s->executions->capabilities():ExecutionCapabilities{};
+    {std::lock_guard lock(s->mutex);
+      s->capabilities.async_execution=capabilities.async_execution;
+      s->capabilities.execution_observation=capabilities.execution_observation;
+      s->phase=HostPhase::Ready;}
+    s->log(LogEvent::Ready);return {};
   } catch(const std::bad_alloc&) {return fail(host_error(HostErrc::BudgetExceeded));}
     catch(...) {return fail(host_error(HostErrc::CallbackException));}
 }
@@ -422,7 +428,9 @@ HostSnapshot NativeHost::snapshot(std::span<CleanupError> out) const noexcept {
   return {s->phase,quiet,s->active,s->started_count,s->pending_modules.size(),s->primary,s->cleanup_count,written,
           s->cleanup_count>s->errors.size()||written<s->errors.size(),s->cleanup_saturated};
 }
-HostCapabilities NativeHost::capabilities() const noexcept {return {};}
+HostCapabilities NativeHost::capabilities() const noexcept {
+  auto s=state_;std::lock_guard lock(s->mutex);return s->capabilities;
+}
 HostIncarnation NativeHost::incarnation() const noexcept {return state_->incarnation;}
 Result<observability::LogReadPage> NativeHost::copy_logs(LogPosition after,std::span<PublicLogRecord> out) {
   auto s=state_;std::shared_ptr<observability::MemoryDiagnostics> owner;

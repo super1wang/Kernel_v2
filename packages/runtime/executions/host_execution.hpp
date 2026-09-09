@@ -7,6 +7,7 @@ namespace ock::runtime::executions::detail {
 // Runtime 内部装配；只依赖 CoreContracts executor，不引入 CpuPool 反向依赖。
 class HostedExecutions final : public host::HostExecutionPort {
 public:
+  host::ExecutionCapabilities capabilities() const noexcept override {return {true,true};}
   static contracts::Result<std::shared_ptr<HostedExecutions>> create(
       contracts::HostIncarnation host,std::shared_ptr<contracts::ExecutorControlPort> executor,
       std::shared_ptr<resources::ResourceManager> resources,std::vector<scheduler::Subject> subjects,

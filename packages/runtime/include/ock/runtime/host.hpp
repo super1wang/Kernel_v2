@@ -165,8 +165,13 @@ class ExecutionObservationPort : public ObservationPort {
 public:
   virtual Result<std::size_t> pump(std::size_t budget) = 0;
 };
+struct ExecutionCapabilities {
+  bool async_execution=false;
+  bool execution_observation=false;
+};
 class HostExecutionPort : public PortLifetime {
 public:
+  virtual ExecutionCapabilities capabilities() const noexcept {return {};}
   virtual SubmitReply submit(std::shared_ptr<executions::detail::InvocationRecordBase>) {
     return Rejected{host_error(HostErrc::UnsupportedCapability)};
   }

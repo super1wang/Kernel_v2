@@ -1,0 +1,55 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 221
+    Start 221: T03.native.host_execution_lifecycle
+
+221: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\Debug\ock_native_tests.exe "T03.native.host_execution_lifecycle"
+221: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/native
+221: Environment variables: 
+221:  MSBUILDDISABLENODEREUSE=1
+221: Environment variable modifications: 
+221:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+221: Test timeout computed to be: 600
+1/3 Test #221: T03.native.host_execution_lifecycle ...   Passed    0.10 sec
+test 259
+    Start 259: T03.host.ready_gate
+
+259: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\host\Debug\ock_host_tests.exe "T03.host.ready_gate"
+259: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/host
+259: Environment variable modifications: 
+259:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+259: Test timeout computed to be: 90
+2/3 Test #259: T03.host.ready_gate ...................   Passed    0.27 sec
+test 263
+    Start 263: T03.host.catalog_registration
+
+263: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\host\Debug\ock_host_tests.exe "T03.host.catalog_registration"
+263: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/host
+263: Environment variable modifications: 
+263:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+263: Test timeout computed to be: 90
+3/3 Test #263: T03.host.catalog_registration .........   Passed    0.10 sec
+
+The following tests passed:
+	T03.native.host_execution_lifecycle
+	T03.host.ready_gate
+	T03.host.catalog_registration
+
+100% tests passed, 0 tests failed out of 3
+
+Label Time Summary:
+B5       =   0.10 sec*proc (1 test)
+D1.06    =   0.36 sec*proc (2 tests)
+D3.04    =   0.10 sec*proc (1 test)
+
+Total Test time (real) =   0.49 sec

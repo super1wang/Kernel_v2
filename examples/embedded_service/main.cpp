@@ -128,6 +128,8 @@ void run() {
     require(bool(registrar.compute(compute,definition,{{},{},{name("embedded"),name("cpu")},{},false},storage)),"registration");
   };
   require(bool(owner->add({std::move(module),lifecycle})),"Host add");require(bool(owner->start()),"Host start");
+  const auto capabilities=owner->capabilities();
+  require(capabilities.async_execution&&capabilities.execution_observation&&!capabilities.state&&!capabilities.storage,"assembled capabilities");
   auto session=owner->open({{std::byte{7}}},{rules(),std::chrono::steady_clock::now()+std::chrono::minutes(4),false});
   require(bool(session),"session");auto caller=session->verify({principal(),{},{}});require(bool(caller),"caller");
   auto binding=session->bind<Value,Value>(operation(),{},Shape::Read,*caller,std::array{target()},targets,name("embedded.call"));

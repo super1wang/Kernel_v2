@@ -106,8 +106,10 @@ void host_execution_lifecycle() {
   host::HostPorts ports{env.policy.auth,env.policy.clock,env.policy.digest,host_threads,{},factory};
   auto made=host::NativeHost::create({},policy_test::configuration(),ports);CHECK(made);
   auto& host=*made;CHECK(!factory->owner);
+  CHECK(!host->capabilities().async_execution&&!host->capabilities().execution_observation);
   CHECK(host->add({*registration,std::make_shared<Lifecycle>()}));
   CHECK(host->start());CHECK(factory->owner);
+  CHECK(host->capabilities().async_execution&&host->capabilities().execution_observation);
   CHECK(factory->owner->table()->host()==host->incarnation());
   auto session=host->open({{std::byte{7}}},{policy_test::rules(),env.policy.auth->identity.deadline,false});CHECK(session);
   auto caller=session->verify({policy_test::principal(),{}, {}});CHECK(caller);
@@ -175,6 +177,7 @@ void host_execution_lifecycle() {
   service_release=true;
   auto drained=host->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(2),pending);
   CHECK(drained.quiescent&&drained.pending_total==0);
+  CHECK(host->capabilities().async_execution&&host->capabilities().execution_observation);
   CHECK(factory->owner->service().scheduler_snapshot().worker_delivery==0);
   CHECK(factory->owner->table()->access_find(ref));
   CHECK(!context->authorization->observations()->get(**caller,ref,policy::AccessUse::GetSummary));
@@ -188,6 +191,7 @@ void host_execution_lifecycle() {
   auto foreign=std::make_shared<Factory>();foreign->foreign=true;ports.execution_factory=foreign;
   auto invalid=host::NativeHost::create({},policy_test::configuration(),ports);CHECK(invalid);
   CHECK(!(*invalid)->start());CHECK(foreign->owner);
+  CHECK(!(*invalid)->capabilities().async_execution&&!(*invalid)->capabilities().execution_observation);
   CHECK((*invalid)->snapshot({}).quiescent);
   CHECK(foreign->owner->service().scheduler_snapshot().worker_delivery==0);
 }

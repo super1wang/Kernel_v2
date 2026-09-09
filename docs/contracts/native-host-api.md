@@ -10,6 +10,8 @@ B5 开发扩展：可信组合根可通过 `HostPorts::execution_factory` 显式
 
 公开头 `ock/runtime/host.hpp` 的名字位于 `ock::runtime::host`。以下 `Name`、`Error`、`Result`、`OperationKey`、`ContractDigest`、`Shape`、`CallerDescription`、`InvokeReply` 及概念沿用 CoreContracts；`TimePoint` 为 `std::chrono::steady_clock::time_point`。公开 `ock/runtime/native_types.hpp` 保存 D1.05 的 ThreadRole、ThreadObservation、TrustedThreadPort、NativeBudget、InvokeOptions、TargetProjection、InvocationErrc/Record/Snapshot 唯一定义，仍在原 `ock::runtime::invocation` 命名空间。模板内部使用安装的 detail，不要求应用直接包含 detail。
 
+B5 `ExecutionCapabilities` 由可信后端声明，默认 async_execution/execution_observation 均为 false，真实 `make_executions` 后端两项均为 true。Host 在成功 Ready 时发布装配能力快照；启动失败不发布，capabilities 查询只读取快照，不调用外部端口。关闭后保留能力元数据，不能据此绕过阶段准入或当前授权；能力为 true 不代表 G3 正式验收已完成。NativeSubset 空工厂保持两项 false。
+
 
 B5 提交存储由可信 Registrar 的四参数 `read/compute` 重载声明 `registry::SubmissionStorage<A,R>`：包含 input_limit、reply_limit 及输入/InvokeReply 的完整字节计量函数。额度与函数由目录独立拥有并带真实 C++ 类型见证；未声明的三参数注册保持 Invoke，但 Submit 拒绝。A 必须为 AsyncInput，R 必须为 void 或 AsyncInput。客户端 Submit 只接收拥有参数与 InvokeOptions，不能替换存储政策、资源声明或资源解析器。typed 记录创建入口为 private，HostBound 与 Runtime 内部适配器具有创建权；执行服务通过同一记录的窄接口复用原 typed dispatch。
 

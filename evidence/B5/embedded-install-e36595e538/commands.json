@@ -1,0 +1,312 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\producer",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_COMPONENTS=Embedded",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation;CpuPool",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DPython3_EXECUTABLE=G:\\environment\\python3.13.3\\python.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:53:15.755221+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 38,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 40764,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:53:20.469433+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "090a6d5efff0f6ca903d6eac3b7073f4bd29e92ad9f9401e9384c4f14ee126c9",
+        "size": 1084
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e39c2e3265d3e9f92413b4ff2c0942d01df9c631a0f4c80048a7ddd2d76b10ab",
+        "size": 134
+      }
+    ]
+  },
+  {
+    "argv": [
+      "G:\\environment\\python3.13.3\\python.exe",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\tools\\architecture\\check.py",
+      "--graph",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\producer\\ock-target-graph.json"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:53:20.471221+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "G:\\environment\\python3.13.3\\python.exe",
+    "pid": 66648,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:53:20.805897+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "83927ec06e4069c417a9e6c8163075a59db12c23e078a40142d2316faddbd936",
+        "size": 152
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\producer",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:53:20.807233+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 31,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 32588,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:53:58.166201+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "d1cdb5113a76672c4d7ebd91aabd2470f5940eefcf868066d22d3140d610322b",
+        "size": 717
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\producer",
+      "--config",
+      "Debug",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\original"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:53:58.168123+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 49500,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:53:58.398736+00:00",
+    "raw": [
+      {
+        "path": "3-stdout.log",
+        "sha256": "16407ec434593cb1803b62a5427a58ade01d45cd0543e8ae103e159329255059",
+        "size": 4723
+      },
+      {
+        "path": "3-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\consumer-source",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\consumer",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\relocated"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:53:58.498866+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 28180,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:54:02.331938+00:00",
+    "raw": [
+      {
+        "path": "4-stdout.log",
+        "sha256": "c8ab393831c9cf6094c12ffb3480d9c13135ab81ee5c7394ac9cb4031c8d4bad",
+        "size": 471
+      },
+      {
+        "path": "4-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\consumer",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:54:02.337036+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 20,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 27572,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:54:07.203582+00:00",
+    "raw": [
+      {
+        "path": "5-stdout.log",
+        "sha256": "1f74fe15083107ab418845dd1b41973071096004a2827e53f608cb10fbd205c5",
+        "size": 436
+      },
+      {
+        "path": "5-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\consumer\\Debug\\ock_embedded_service.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:54:07.217331+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\consumer\\Debug\\ock_embedded_service.exe",
+    "pid": 39784,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:54:07.587192+00:00",
+    "raw": [
+      {
+        "path": "6-stdout.log",
+        "sha256": "1453bf6060f42cc7445d1318218455248ee64fd85733ba8daef22c12b8bc817f",
+        "size": 83
+      },
+      {
+        "path": "6-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\missing",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\missing-build",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\embedded-install-gr9pvnqf\\relocated"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:54:07.681939+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 5,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 19384,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-09T20:54:08.315419+00:00",
+    "raw": [
+      {
+        "path": "7-stdout.log",
+        "sha256": "8085925dee818ab993529ca12c5e8031a3dbcaa726a1197bf6c25e46de919446",
+        "size": 159
+      },
+      {
+        "path": "7-stderr.log",
+        "sha256": "43767cef799af67c6df9d6a79f2e3365e95b671e3ef90b1921a742ce48655211",
+        "size": 352
+      }
+    ]
+  }
+]
