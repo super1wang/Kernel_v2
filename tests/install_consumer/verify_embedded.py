@@ -45,7 +45,7 @@ def main():
          f'-DCMAKE_TOOLCHAIN_FILE={ROOT}/cmake/LockedMSVC.cmake',f'-DCMAKE_PREFIX_PATH={relocated}'])
     run(['cmake','--build',str(work/'consumer'),'--config','Debug','--parallel','4','--','/nr:false'])
     result=run([str(work/'consumer/Debug/ock_embedded_service.exe')])
-    assert b'40 Invoke/Submit parity cycles and quiescent shutdown passed' in result.stdout
+    assert b'40 Invoke/Submit parity cycles, resource/child/cancel, memory log and quiescent shutdown passed' in result.stdout
     maps=list((work/'consumer').rglob('ock_embedded_service.map'));assert len(maps)==1
     content=maps[0].read_text(encoding='utf-8',errors='replace')
     assert 'ock_Runtime' in content and 'ock_Adapter_CpuPool' in content
@@ -55,7 +55,7 @@ def main():
     (negative/'CMakeLists.txt').write_text('cmake_minimum_required(VERSION 3.25)\nproject(Missing LANGUAGES NONE)\nfind_package(OCK CONFIG REQUIRED COMPONENTS Data)\n',encoding='utf-8')
     rejected=run(['cmake','-S',str(negative),'-B',str(work/'missing-build'),'-DCMAKE_PREFIX_PATH='+str(relocated)],False)
     assert b'OCK component Data is not implemented' in rejected.stdout+rejected.stderr
-    (evidence/'result.json').write_text(json.dumps({'status':'Passed','scope':'Embedded Debug acquisition, relocated install and public typed parity',
+    (evidence/'result.json').write_text(json.dumps({'status':'Passed','scope':'Embedded Debug acquisition, relocated install, public typed parity and resource/child/cancel lifecycle',
         'producer':str(producer),'selected_dependencies':acquisition['selected'],'installed_components':sorted(expected)}),encoding='utf-8')
     print('Embedded installation passed:',evidence,flush=True)
 
