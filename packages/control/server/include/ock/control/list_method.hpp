@@ -6,7 +6,7 @@ namespace ock::control {
 class ListMethod final : public MethodPort {
 public:
   static Result<std::shared_ptr<ListMethod>>
-      create(std::shared_ptr<runtime::policy::SessionAuthority>,
+      create(std::shared_ptr<const runtime::policy::SessionAuthority>,
              std::shared_ptr<const runtime::policy::VerifiedCaller>,
              std::shared_ptr<ObservationTransport>, CursorCodec, CursorContext);
   Result<std::optional<data::Payload>>

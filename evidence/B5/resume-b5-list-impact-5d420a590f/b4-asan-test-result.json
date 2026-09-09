@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "ctest",
+    "--test-dir",
+    "build/b4-asan",
+    "-C",
+    "RelWithDebInfo",
+    "--output-on-failure",
+    "-V",
+    "-R",
+    "^(T20.cli.managed_roundtrip|T20.protocol.list|T19.protocol.subscription|T03.native.execution_table_ownership|T06.native.execution_source_observation)$"
+  ],
+  "cwd": "J:\\Code\\Kernel_v2",
+  "started_at": "2026-09-09T19:38:47.840416+00:00",
+  "exit_code": 0,
+  "status": "Exited",
+  "process_tree": {
+    "mechanism": "WindowsJobObject",
+    "assigned_before_resume": true,
+    "active_after": 0,
+    "total_processes": 84,
+    "terminated_owned_job": false
+  },
+  "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+  "pid": 30564,
+  "observed_exit_code": 0,
+  "finished_at": "2026-09-09T19:39:03.537045+00:00"
+}

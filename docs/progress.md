@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 managed 消费者已接入真实 `execution.list`，复用同一会话的只读 Policy 授权、游标及发送前检查；执行表保留范围标识已对齐冻结协议。Debug 列表/订阅/真实 CLI 影响集 **3/3**（[原始输出](../evidence/B5/resume-b5-list-final-debug-3d5b59cfce/test-stdout.log)），另跑 Native 执行表/观察源 **2/2**（[原始输出](../evidence/B5/resume-b5-list-impact-5d420a590f/b4-debug-test-stdout.log)）；ASan / RelWithDebInfo 同次五项 **5/5**（[原始输出](../evidence/B5/resume-b5-list-impact-5d420a590f/b4-asan-test-stdout.log)）。覆盖真实 CLI 的 22 条终态列表、单页游标生成、空非终态列表及现有授权合同；公开头与实际依赖静态检查无错误。初轮参数拒绝与构建目标/测试变量错误原文保留。CLI 续页、订阅观察源、完整预算、安装/Profile、footprint 与 B5/G3 正式验收继续开发，不构成 Passed。
+
 - 当前分支：`work/d0-kernel-baseline`；G2 历史被测实现 `e77c328`，G2 后 C1/C2 收口被测实现 `44246b8`；B4 被测实现 `0d71b4f`，B5 前置收口被测实现 `7a22d0e`；归档与推送状态以实时 Git 为准。
 - 已 Passed：G0–G2、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07、D3.01–D3.03。**这些 Passed 前置不重验**；本轮没有重跑 G1/B2 累计矩阵。
 - 当前 Development Batch：**B5 开发 InProgress**，按已审阅的 [B5 规划](plans/B5.md)持续推进至 G3。已实现 Scheduler 逐票据 retire/start 仲裁、正常失效投递诊断修复及依赖就绪锁外通知；Runtime 内部 ResourceWaitBinding 已具备有限控制步、双世代 wake、接受/依赖门控、取消退役和运行期 Lease 独占转移。Debug 依赖影响集 6/6、资源影响集 6/6、绑定屏障专项 3/3；公开 Submit/观察/取消、结构化父子、owning 异步 Read、运行期期限与必要记录器已接线；Control/CLI、完整预算及安装/Profile/G3 继续开发，尚未包级验收。B5 前置收口 Passed 保留，见 [前置交付](validation/B5-preclosure-delivery.md)；B4 原同来源 65/63/65 事实保持，见 [B4 交付](validation/B4-delivery.md)。

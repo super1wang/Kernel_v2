@@ -48,7 +48,7 @@ struct SubscriptionConnection::State : std::enable_shared_from_this<State> {
   std::recursive_mutex mutex;
   // 仅串行化事件编码上下文；close/unsubscribe 从不等待此锁。
   std::mutex encoding;
-  std::shared_ptr<policy::SessionAuthority> session;
+  std::shared_ptr<const policy::SessionAuthority> session;
   std::shared_ptr<const policy::VerifiedCaller> caller;
   std::shared_ptr<contracts::ObservationPort> source;
   std::shared_ptr<ObservationTransport> transport;
@@ -276,7 +276,7 @@ struct SubscriptionConnection::State : std::enable_shared_from_this<State> {
   };
 };
 Result<std::unique_ptr<SubscriptionConnection>> SubscriptionConnection::create(
-    std::shared_ptr<policy::SessionAuthority> session,
+    std::shared_ptr<const policy::SessionAuthority> session,
     std::shared_ptr<const policy::VerifiedCaller> caller,
     std::shared_ptr<contracts::ObservationPort> source,
     std::shared_ptr<ObservationTransport> transport,

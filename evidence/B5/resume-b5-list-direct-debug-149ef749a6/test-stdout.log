@@ -1,0 +1,214 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 96
+    Start  96: T20.cli.managed_roundtrip
+
+96: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe" "J:/Code/Kernel_v2/build/b4-debug/apps/ock/Debug/ock.exe"
+96: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+96: Environment variable modifications: 
+96:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+96: Test timeout computed to be: 90
+96: CLI 69188 ['submit', 'sample.compute']
+96: CLI 66020 ['execution', 'get']
+96: CLI 57208 ['execution', 'wait']
+96: CLI 60804 ['execution', 'wait']
+96: CLI 22672 ['result', 'read']
+96: CLI 57372 ['execution', 'get']
+96: CLI 63000 ['submit', 'sample.compute']
+96: CLI 68828 ['execution', 'get']
+96: CLI 63228 ['execution', 'wait']
+96: CLI 44660 ['execution', 'cancel']
+96: CLI 64756 ['result', 'read']
+96: CLI 31096 ['execution', 'cancel']
+96: CLI 62328 ['submit', 'sample.compute']
+96: CLI 26528 ['execution', 'wait']
+96: CLI 45064 ['result', 'read']
+96: CLI 50272 ['submit', 'sample.compute']
+96: CLI 36036 ['execution', 'wait']
+96: CLI 30800 ['result', 'read']
+96: CLI 54424 ['submit', 'sample.compute']
+96: CLI 67624 ['execution', 'wait']
+96: CLI 67180 ['result', 'read']
+96: CLI 41580 ['submit', 'sample.compute']
+96: CLI 51712 ['execution', 'wait']
+96: CLI 68800 ['result', 'read']
+96: CLI 66872 ['submit', 'sample.compute']
+96: CLI 68972 ['execution', 'wait']
+96: CLI 66864 ['result', 'read']
+96: CLI 30708 ['submit', 'sample.compute']
+96: CLI 63756 ['execution', 'wait']
+96: CLI 45780 ['result', 'read']
+96: CLI 30912 ['submit', 'sample.compute']
+96: CLI 63576 ['execution', 'wait']
+96: CLI 34568 ['result', 'read']
+96: CLI 65232 ['submit', 'sample.compute']
+96: CLI 2904 ['execution', 'wait']
+96: CLI 17540 ['result', 'read']
+96: CLI 67796 ['submit', 'sample.compute']
+96: CLI 25228 ['execution', 'wait']
+96: CLI 32476 ['result', 'read']
+96: CLI 62496 ['submit', 'sample.compute']
+96: CLI 27584 ['execution', 'wait']
+96: CLI 42528 ['result', 'read']
+96: CLI 59408 ['submit', 'sample.compute']
+96: CLI 63424 ['execution', 'wait']
+96: CLI 25084 ['result', 'read']
+96: CLI 60176 ['submit', 'sample.compute']
+96: CLI 66516 ['execution', 'wait']
+96: CLI 25624 ['result', 'read']
+96: CLI 58032 ['submit', 'sample.compute']
+96: CLI 69108 ['execution', 'wait']
+96: CLI 61780 ['result', 'read']
+96: CLI 51664 ['submit', 'sample.compute']
+96: CLI 61012 ['execution', 'wait']
+96: CLI 932 ['result', 'read']
+96: CLI 58876 ['submit', 'sample.compute']
+96: CLI 16792 ['execution', 'wait']
+96: CLI 8024 ['result', 'read']
+96: CLI 17696 ['submit', 'sample.compute']
+96: CLI 48380 ['execution', 'wait']
+96: CLI 69280 ['result', 'read']
+96: CLI 38732 ['submit', 'sample.compute']
+96: CLI 61260 ['execution', 'wait']
+96: CLI 49132 ['result', 'read']
+96: CLI 31024 ['submit', 'sample.compute']
+96: CLI 50788 ['execution', 'wait']
+96: CLI 68816 ['result', 'read']
+96: CLI 21748 ['submit', 'sample.compute']
+96: CLI 66280 ['execution', 'wait']
+96: CLI 61448 ['result', 'read']
+96: CLI 43736 ['submit', 'sample.compute']
+96: CLI 45692 ['execution', 'wait']
+96: CLI 29728 ['result', 'read']
+96: CLI 63384 ['execution', 'list']
+96: Traceback (most recent call last):
+96:   File "J:\Code\Kernel_v2\tests\integration\cli\managed.py", line 72, in <module>
+96:     listed = call(['execution', 'list', '--phase', 'terminal', '--page-size', '200'])['result']
+96:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+96:   File "J:\Code\Kernel_v2\tests\integration\cli\managed.py", line 25, in call
+96:     return finish(spawn(arguments), expected)
+96:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+96:   File "J:\Code\Kernel_v2\tests\integration\cli\managed.py", line 21, in finish
+96:     assert process.returncode == expected, (process.pid, process.returncode, output, error)
+96:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+96: AssertionError: (63384, 2, '{"error":{"code":-32602,"message":"Invalid params"},"id":"2","jsonrpc":"2.0"}\n', '')
+1/2 Test  #96: T20.cli.managed_roundtrip ........***Failed    8.62 sec
+CLI 69188 ['submit', 'sample.compute']
+CLI 66020 ['execution', 'get']
+CLI 57208 ['execution', 'wait']
+CLI 60804 ['execution', 'wait']
+CLI 22672 ['result', 'read']
+CLI 57372 ['execution', 'get']
+CLI 63000 ['submit', 'sample.compute']
+CLI 68828 ['execution', 'get']
+CLI 63228 ['execution', 'wait']
+CLI 44660 ['execution', 'cancel']
+CLI 64756 ['result', 'read']
+CLI 31096 ['execution', 'cancel']
+CLI 62328 ['submit', 'sample.compute']
+CLI 26528 ['execution', 'wait']
+CLI 45064 ['result', 'read']
+CLI 50272 ['submit', 'sample.compute']
+CLI 36036 ['execution', 'wait']
+CLI 30800 ['result', 'read']
+CLI 54424 ['submit', 'sample.compute']
+CLI 67624 ['execution', 'wait']
+CLI 67180 ['result', 'read']
+CLI 41580 ['submit', 'sample.compute']
+CLI 51712 ['execution', 'wait']
+CLI 68800 ['result', 'read']
+CLI 66872 ['submit', 'sample.compute']
+CLI 68972 ['execution', 'wait']
+CLI 66864 ['result', 'read']
+CLI 30708 ['submit', 'sample.compute']
+CLI 63756 ['execution', 'wait']
+CLI 45780 ['result', 'read']
+CLI 30912 ['submit', 'sample.compute']
+CLI 63576 ['execution', 'wait']
+CLI 34568 ['result', 'read']
+CLI 65232 ['submit', 'sample.compute']
+CLI 2904 ['execution', 'wait']
+CLI 17540 ['result', 'read']
+CLI 67796 ['submit', 'sample.compute']
+CLI 25228 ['execution', 'wait']
+CLI 32476 ['result', 'read']
+CLI 62496 ['submit', 'sample.compute']
+CLI 27584 ['execution', 'wait']
+CLI 42528 ['result', 'read']
+CLI 59408 ['submit', 'sample.compute']
+CLI 63424 ['execution', 'wait']
+CLI 25084 ['result', 'read']
+CLI 60176 ['submit', 'sample.compute']
+CLI 66516 ['execution', 'wait']
+CLI 25624 ['result', 'read']
+CLI 58032 ['submit', 'sample.compute']
+CLI 69108 ['execution', 'wait']
+CLI 61780 ['result', 'read']
+CLI 51664 ['submit', 'sample.compute']
+CLI 61012 ['execution', 'wait']
+CLI 932 ['result', 'read']
+CLI 58876 ['submit', 'sample.compute']
+CLI 16792 ['execution', 'wait']
+CLI 8024 ['result', 'read']
+CLI 17696 ['submit', 'sample.compute']
+CLI 48380 ['execution', 'wait']
+CLI 69280 ['result', 'read']
+CLI 38732 ['submit', 'sample.compute']
+CLI 61260 ['execution', 'wait']
+CLI 49132 ['result', 'read']
+CLI 31024 ['submit', 'sample.compute']
+CLI 50788 ['execution', 'wait']
+CLI 68816 ['result', 'read']
+CLI 21748 ['submit', 'sample.compute']
+CLI 66280 ['execution', 'wait']
+CLI 61448 ['result', 'read']
+CLI 43736 ['submit', 'sample.compute']
+CLI 45692 ['execution', 'wait']
+CLI 29728 ['result', 'read']
+CLI 63384 ['execution', 'list']
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed.py", line 72, in <module>
+    listed = call(['execution', 'list', '--phase', 'terminal', '--page-size', '200'])['result']
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed.py", line 25, in call
+    return finish(spawn(arguments), expected)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed.py", line 21, in finish
+    assert process.returncode == expected, (process.pid, process.returncode, output, error)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (63384, 2, '{"error":{"code":-32602,"message":"Invalid params"},"id":"2","jsonrpc":"2.0"}\n', '')
+
+test 113
+    Start 113: T19.protocol.subscription
+
+113: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\Debug\subscription_contract.exe "J:/Code/Kernel_v2/schemas/rpc-v1/notifications.schema.json" "J:/Code/Kernel_v2/schemas/rpc-v1/common.schema.json"
+113: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/unit/data
+113: Environment variable modifications: 
+113:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+113: Test timeout computed to be: 20
+113: Subscription ack ordering, loss sequence, revoke and cleanup passed
+2/2 Test #113: T19.protocol.subscription ........   Passed    0.40 sec
+
+The following tests passed:
+	T19.protocol.subscription
+
+50% tests passed, 1 tests failed out of 2
+
+Label Time Summary:
+B5       =   8.62 sec*proc (1 test)
+D3.07    =   8.62 sec*proc (1 test)
+
+Total Test time (real) =   9.05 sec
+
+The following tests FAILED:
+	 96 - T20.cli.managed_roundtrip (Failed)                B5 D3.07

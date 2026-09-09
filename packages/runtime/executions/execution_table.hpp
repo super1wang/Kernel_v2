@@ -246,7 +246,7 @@ public:
        request.position->before_ordinal>request.position->upper_ordinal))
       return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::HostMismatch));
     try {
-      policy::AccessScanPage page{{},{},host_,*contracts::Name::parse("volatile.hot-cache")};
+      policy::AccessScanPage page{{},{},host_,*contracts::Name::parse("managed_active_and_retained_terminal")};
       page.candidates.reserve(std::min(request.budget.page_size,request.budget.scan_limit));
       std::lock_guard lock(mutex_);
       const auto upper=request.position?request.position->upper_ordinal:next_;

@@ -1,4 +1,5 @@
 #include "service.hpp"
+#include "schemas.hpp"
 #include <ock/adapters/cpu_pool/cpu_pool.hpp>
 #include <iostream>
 #include <mutex>
@@ -9,7 +10,7 @@ using namespace runtime;
 std::vector<policy::ScopeRule> rules() {
   std::vector<policy::ScopeRule> result;
   for(auto use:{policy::AccessUse::Invoke,policy::AccessUse::Catalog,policy::AccessUse::GetSummary,
-      policy::AccessUse::Wait,policy::AccessUse::CancelExecution,policy::AccessUse::ReadResult})
+      policy::AccessUse::Wait,policy::AccessUse::CancelExecution,policy::AccessUse::ReadResult,policy::AccessUse::ListSummary})
     result.push_back({use,policy::OperationSelector{operation(),{}},{name("sample.use")},{target()},{principal()},
         {policy::SummaryField::Identity,policy::SummaryField::Owner,policy::SummaryField::Parent,
          policy::SummaryField::Phase,policy::SummaryField::Progress,policy::SummaryField::Facts}});
@@ -19,10 +20,18 @@ struct Lifetime final:contracts::PortLifetime {};
 policy::PolicyConfiguration configuration() {
   auto allow=rules();std::vector<policy::UsePolicyInput> views;
   for(auto use:{policy::AccessUse::Catalog,policy::AccessUse::GetSummary,policy::AccessUse::Wait,
-      policy::AccessUse::CancelExecution,policy::AccessUse::ReadResult})views.push_back({use,{name("sample.use")},allow});
+      policy::AccessUse::CancelExecution,policy::AccessUse::ReadResult,policy::AccessUse::ListSummary})views.push_back({use,{name("sample.use")},allow});
   return {{{principal(),allow}},{{{operation(),{}},{name("sample.use")},allow,false}},std::move(views),{{target(),1,allow,std::make_shared<Lifetime>()}}};
 }
 struct Clock final:policy::ClockPort {policy::TimePoint now()const noexcept override{return std::chrono::steady_clock::now();}};
+struct PageClock final:control::CursorClock {
+  std::uint64_t utc_seconds()const noexcept override {
+    return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+  }
+  std::uint64_t monotonic_seconds()const noexcept override {
+    return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+  }
+};
 struct Authentication final:policy::TrustedAuthenticationPort {
   std::string allowed_sid;
   inline static thread_local const Authentication* verified=nullptr;
@@ -93,6 +102,7 @@ struct Service::State {
   std::unique_ptr<host::NativeHost> host;
   std::optional<control::RegisteredInvocation<Input,Output>> registered;
   std::shared_ptr<const catalog::Catalog> catalog;
+  std::optional<control::CursorCodec> cursor;
   std::shared_ptr<Authentication> auth=std::make_shared<Authentication>();
   std::shared_ptr<Clock> clock=std::make_shared<Clock>();
   std::shared_ptr<Threads> threads=std::make_shared<Threads>();
@@ -102,7 +112,8 @@ struct Service::State {
     std::shared_ptr<host::HostSession> session;
     std::optional<control::Router> router;
     std::vector<std::shared_ptr<control::ExecutionMethod>> queries;
-    void close(){if(router)router->close();queries.clear();router.reset();session.reset();}
+    std::shared_ptr<control::ListMethod> list;
+    void close(){if(router)router->close();queries.clear();list.reset();router.reset();session.reset();}
     ~Context(){close();}
   };
   Result<host::HostSession> open(const std::string& sid) {
@@ -126,7 +137,15 @@ struct Service::State {
       auto schema=control::ExecutionMethod::parameters(kind);if(!schema)return foundation::make_unexpected(schema.error());
       methods->push_back({std::string(control::ExecutionMethod::name(kind)),std::move(*schema),*method});context->queries.push_back(*method);
     }
-    auto incarnation=control::wire_text(host->incarnation());control::Hello hello{"sample.managed",incarnation,incarnation,{}, {},"managed"};
+    auto incarnation=control::wire_text(host->incarnation());
+    control::CursorContext page_context;page_context.host=incarnation;
+    auto list=control::ListMethod::create(source->authorization,*caller,*transport,*cursor,std::move(page_context));
+    if(!list)return foundation::make_unexpected(list.error());
+    auto list_schema=binding::CompiledSchema::compile(
+        R"({"$schema":"https://json-schema.org/draft/2020-12/schema","$ref":"urn:ock:rpc:execution-list:1#/$defs/request/properties/params"})",observation_schemas());
+    if(!list_schema)return foundation::make_unexpected(list_schema.error());
+    context->list=*list;methods->push_back({"execution.list",std::move(*list_schema),*list});
+    control::Hello hello{"sample.managed",incarnation,incarnation,{}, {},"managed"};
     auto router=control::Router::create(std::move(hello),*caller,std::move(*methods));if(!router)return foundation::make_unexpected(router.error());
     context->router.emplace(std::move(*router));return context;
   }
@@ -152,6 +171,8 @@ Result<std::unique_ptr<Service>> Service::create(std::string sid) {
   };
   auto added=state->host->add({std::move(module),std::make_shared<Lifecycle>()});if(!added)return foundation::make_unexpected(added.error());
   auto started=state->host->start();if(!started)return foundation::make_unexpected(started.error());
+  auto cursor=control::CursorCodec::create(control::wire_text(state->host->incarnation()),std::make_shared<PageClock>());
+  if(!cursor)return foundation::make_unexpected(cursor.error());state->cursor.emplace(std::move(*cursor));
   auto registered=control::RegisteredInvocation<Input,Output>::create();if(!registered)return foundation::make_unexpected(registered.error());state->registered.emplace(std::move(*registered));
   auto session=state->open(state->auth->allowed_sid);if(!session)return foundation::make_unexpected(session.error());
   auto source=session->catalog_context();if(!source)return foundation::make_unexpected(source.error());
@@ -181,6 +202,7 @@ Result<std::unique_ptr<local_ipc::Server>> Service::listen(std::string instance)
     },[context]{if(*context)(*context)->close();context->reset();},[state,weak,context] {
       if(!*context)return;Threads::Scope thread(*state->threads);
       for(const auto& query:(*context)->queries)if(!query->pump()){if(auto connection=weak.lock())connection->close();return;}
+      if(!(*context)->list->pump()){if(auto connection=weak.lock())connection->close();return;}
     });
   });
 }

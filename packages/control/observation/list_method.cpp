@@ -22,7 +22,7 @@ void ref(data::PayloadBuilder &b, std::string_view key, std::string_view field,
 }
 } // namespace
 struct ListMethod::State : detail::QueryLifetime {
-  std::shared_ptr<policy::SessionAuthority> session;
+  std::shared_ptr<const policy::SessionAuthority> session;
   std::shared_ptr<const policy::VerifiedCaller> caller;
   std::shared_ptr<ObservationTransport> transport;
   CursorCodec codec;
@@ -149,7 +149,7 @@ struct ListMethod::State : detail::QueryLifetime {
   };
 };
 Result<std::shared_ptr<ListMethod>>
-ListMethod::create(std::shared_ptr<policy::SessionAuthority> session,
+ListMethod::create(std::shared_ptr<const policy::SessionAuthority> session,
                    std::shared_ptr<const policy::VerifiedCaller> caller,
                    std::shared_ptr<ObservationTransport> transport,
                    CursorCodec codec, CursorContext context) {

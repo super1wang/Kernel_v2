@@ -434,7 +434,7 @@ public:
 class SendCoordinator final {
 public:
   static Result<std::unique_ptr<SendCoordinator>>
-      create(std::shared_ptr<SessionAuthority>,
+      create(std::shared_ptr<const SessionAuthority>,
              std::shared_ptr<TransmissionStartPort>,
              std::shared_ptr<ProjectionEncoderPort>);
   Result<void> enqueue(const WatchAuthorization &, const ChangeHint &);

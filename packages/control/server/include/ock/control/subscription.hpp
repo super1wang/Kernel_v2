@@ -17,7 +17,7 @@ struct SubscriptionBudget {
 class SubscriptionConnection {
 public:
   static Result<std::unique_ptr<SubscriptionConnection>>
-      create(std::shared_ptr<runtime::policy::SessionAuthority>,
+      create(std::shared_ptr<const runtime::policy::SessionAuthority>,
              std::shared_ptr<const runtime::policy::VerifiedCaller>,
              std::shared_ptr<contracts::ObservationPort>,
              std::shared_ptr<ObservationTransport>,

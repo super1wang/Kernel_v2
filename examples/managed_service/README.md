@@ -25,4 +25,8 @@ $managedCli = '.\build\b4-debug\apps\ock\Debug\ock.exe'
 
 样例配置固定 2 个 CPU workers、8 个 active 执行、128 条记录、16 个 waiters、输入/结果/终态分别 1 MiB 额度，最多 8 个连接和 16 个 Policy 会话。Runtime 自身沿用单控制线程；AutomationHost 的管道 I/O 线程成本需另行计量。此配置不是 G3 的正式 footprint 或线程峰值验收。
 
-已接线的方法为 capabilities.search/describe、operation.submit、execution.get/wait/cancel 和 result.read；list/subscribe/watch 在真实观察源接入后再发布。`T20.cli.managed_roundtrip` 使用实际 CLI 子进程验证跨连接结果、并发等待/取消和会话回收。独立安装、完整观察组合及 G3 仍需后续验收。
+已接线的方法为 capabilities.search/describe、operation.submit、execution.get/wait/cancel/list 和 result.read；subscribe/watch 在真实观察源接入后再发布。`T20.cli.managed_roundtrip` 使用实际 CLI 子进程验证跨连接结果、并发等待/取消、真实列表和会话回收。独立安装、完整观察组合及 G3 仍需后续验收。
+
+## 列表开发增量
+
+`ock --instance <实例名> --json execution list --phase terminal --page-size 200` 查询同一真实执行表；`--phase nonterminal` 查询未终结执行。分页返回当前连接绑定的游标，现有 CLI 尚无游标续页参数。list 使用当前 Policy 和发送前检查；subscribe/watch 仍未接线。

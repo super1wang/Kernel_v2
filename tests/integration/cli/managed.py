@@ -63,13 +63,24 @@ try:
     assert result(ref) == {'amount': 9, 'text': 'two active CLI processes', 'stop_observed': True}
     assert call(['execution', 'cancel', ref])['result']['disposition'] == 'AlreadyTerminal'
     # 超过服务的 16 个会话额度反复跨进程连接；缓存结果不占住原会话。
+    retained = set()
     for n in range(20):
         ref = submit(n, 0, 'retained result')
+        retained.add(ref)
         assert call(['execution', 'wait', ref, '--wait-timeout-ms', '1000'])['result']['wait_state'] == 'Terminal'
         assert result(ref)['amount'] == n + 1
+    listed = call(['execution', 'list', '--phase', 'terminal', '--page-size', '200'])['result']
+    assert listed['consistency'] == 'live_keyset'
+    assert listed['retention_scope'] == 'managed_active_and_retained_terminal'
+    assert retained <= {item['execution_ref']['execution_id'] for item in listed['items']}
+    assert len(listed['items']) == 22 and all(item['phase'] == 'Terminal' for item in listed['items'])
+    assert 'next_cursor' not in listed
+    page = call(['execution', 'list', '--phase', 'terminal', '--page-size', '1'])['result']
+    assert len(page['items']) == 1 and page['next_cursor'].startswith('v1.')
+    assert call(['execution', 'list', '--phase', 'nonterminal'])['result']['items'] == []
     call(['execution', 'get', 'f' * 32], 3)
     assert server.poll() is None
-    print('Managed multi-process submit/get/wait/cancel/result and session recycling passed', flush=True)
+    print('Managed multi-process submit/get/wait/cancel/result/list and session recycling passed', flush=True)
 finally:
     for process in children:
         if process.poll() is None:

@@ -49,6 +49,11 @@ int main(int argc, char **argv) try {
       R"({"$schema":"https://json-schema.org/draft/2020-12/schema","$ref":"urn:ock:rpc:execution-list:1#/$defs/response"})",
       resources);
   CHECK(schema);
+  auto canonical_parameters = binding::CompiledSchema::compile(
+      R"({"$schema":"https://json-schema.org/draft/2020-12/schema","$ref":"urn:ock:rpc:execution-list:1#/$defs/request/properties/params"})", resources);
+  CHECK(canonical_parameters);
+  auto sample_params = data::Payload::parse(R"({"owner":"self","phase_set":"terminal","page_size":200})");
+  CHECK(sample_params && canonical_parameters->validate(sample_params->view()));
   policy_test::Env env;
   env.source->retention_scope = name("managed_active_and_retained_terminal");
   auto clock = std::make_shared<Clock>();

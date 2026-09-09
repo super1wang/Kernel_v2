@@ -2080,7 +2080,7 @@ ObservationAuthorization::get(const VerifiedCaller &caller,
   }
 }
 Result<std::unique_ptr<SendCoordinator>>
-SendCoordinator::create(std::shared_ptr<SessionAuthority> authority,
+SendCoordinator::create(std::shared_ptr<const SessionAuthority> authority,
                         std::shared_ptr<TransmissionStartPort> sink,
                         std::shared_ptr<ProjectionEncoderPort> encoder) {
   try {

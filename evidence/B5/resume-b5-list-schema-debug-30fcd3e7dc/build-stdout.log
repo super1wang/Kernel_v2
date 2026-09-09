@@ -1,0 +1,72 @@
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  ock_Data.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\Debug\ock_Data.lib
+  ock_ControlProtocol.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\Debug\ock_ControlProtocol.lib
+  ock_Runtime.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\Debug\ock_Runtime.lib
+  ock_Dynamic.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\Debug\ock_Dynamic.lib
+  ock_Control.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\Debug\ock_Control.lib
+  list.cpp
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(83,8): error C2374: “request”: 重定义；多次初始化 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+      J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(55,8):
+      参见“request”的声明
+  
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(83,8): error C2086: “tl::expected<ock::data::Payload,ock::foundation::Error> request”: 重定义 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+      J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(55,8):
+      参见“request”的声明
+  
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(83,8): error C2371: “request”: 重定义；不同的基类型 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(91,3): error C2064: 项不会计算为接受 1 个参数的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(92,3): error C2064: 项不会计算为接受 2 个参数的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(106,43): error C2064: 项不会计算为接受 1 个参数的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(107,3): error C3536: “other_input”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(108,3): error C2660: “ock::control::ListMethod::dispatch”: 函数不接受 2 个参数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+      J:\Code\Kernel_v2\packages\control\server\include\ock\control\list_method.hpp(13,3):
+      参见“ock::control::ListMethod::dispatch”的声明
+      J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(108,3):
+      尝试匹配参数列表“(_Ty2, const char [13])”时
+          with
+          [
+              _Ty2=const ock::runtime::policy::VerifiedCaller
+          ]
+  
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(108,3): error C2088: 内置运算符“!”无法应用于类型为“_T”的操作数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(108,3): error C2088:         with [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(108,3): error C2088:         [ [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(108,3): error C2088:             _T=tl::expected<std::optional<ock::data::Payload>,ock::foundation::Error> [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(108,3): error C2088:         ] [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(111,3): error C2064: 项不会计算为接受 1 个参数的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(116,8): error C2374: “parameters”: 重定义；多次初始化 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+      J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(52,8):
+      参见“parameters”的声明
+  
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(116,8): error C2086: “tl::expected<ock::binding::CompiledSchema,ock::foundation::Error> parameters”: 重定义 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+      J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(52,8):
+      参见“parameters”的声明
+  
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(116,8): error C2371: “parameters”: 重定义；不同的基类型 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(131,28): error C2064: 项不会计算为接受 1 个参数的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(132,3): error C3536: “bad_rpc”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(134,3): error C3536: “bad_reply”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(136,3): error C3536: “bad_payload”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(145,3): error C2064: 项不会计算为接受 1 个参数的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(173,38): error C2064: 项不会计算为接受 1 个参数的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(173,56): error C3536: “copied”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(175,5): error C2660: “ock::control::ListMethod::dispatch”: 函数不接受 2 个参数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+      J:\Code\Kernel_v2\packages\control\server\include\ock\control\list_method.hpp(13,3):
+      参见“ock::control::ListMethod::dispatch”的声明
+      J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(175,5):
+      尝试匹配参数列表“(_Ty2, const char [14])”时
+          with
+          [
+              _Ty2=const ock::runtime::policy::VerifiedCaller
+          ]
+  
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(175,5): error C2088: 内置运算符“!”无法应用于类型为“_T”的操作数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(175,5): error C2088:         with [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(175,5): error C2088:         [ [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(175,5): error C2088:             _T=tl::expected<std::optional<ock::data::Payload>,ock::foundation::Error> [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(175,5): error C2088:         ] [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(177,23): error C2064: 项不会计算为接受 1 个参数的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(179,27): error C2064: 项不会计算为接受 1 个参数的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(179,51): error C3536: “expired”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\protocol\list.cpp(188,5): error C2064: 项不会计算为接受 1 个参数的函数 [J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\list_contract.vcxproj]
