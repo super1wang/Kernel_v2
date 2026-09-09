@@ -58,13 +58,15 @@ class Connection : public control::FrameSink {
 public:
   using Message = std::function<void(data::Payload)>;
   using Closed = std::function<void()>;
+  using Tick = std::function<void()>;
   ~Connection();
   Connection(const Connection &) = delete;
   Connection &operator=(const Connection &) = delete;
   // 服务端首个 Message 回调前返回 nullopt；只有非空结果才是已验证身份。
   std::optional<PeerIdentity> peer() const;
   // 每个连接的回调串行；回调不能阻塞等待同一连接。所有队列均有界。
-  void start(Message, Closed);
+  // 可选 Tick 每 10 ms 在同一 I/O 线程执行；必须有界且非阻塞，关闭后排空。
+  void start(Message, Closed, Tick = {});
   foundation::Result<void> send(std::span<const std::byte>, Queue = Queue::Control);
   foundation::Result<std::unique_ptr<FrameReservation>> reserve(std::span<const std::byte>, Queue);
   // 唯一同步首字节起点；不等待、不分配。返回 Started 前真实前缀已写入 OS 管道。

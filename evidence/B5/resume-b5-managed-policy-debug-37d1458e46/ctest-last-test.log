@@ -1,0 +1,97 @@
+Start testing: Sep 10 03:14 中国标准时间
+----------------------------------------------------------
+96/237 Testing: T20.cli.managed_roundtrip
+96/237 Test: T20.cli.managed_roundtrip
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe" "J:/Code/Kernel_v2/build/b4-debug/apps/ock/Debug/ock.exe"
+Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+"T20.cli.managed_roundtrip" start time: Sep 10 03:14 中国标准时间
+Output:
+----------------------------------------------------------
+CLI 56756 ['submit', 'sample.compute']
+CLI 58972 ['execution', 'get']
+CLI 52220 ['execution', 'wait']
+CLI 41356 ['execution', 'wait']
+CLI 33336 ['result', 'read']
+CLI 44440 ['execution', 'get']
+CLI 43800 ['submit', 'sample.compute']
+CLI 65172 ['execution', 'get']
+CLI 3004 ['execution', 'wait']
+CLI 27244 ['execution', 'cancel']
+CLI 35692 ['result', 'read']
+CLI 43392 ['execution', 'cancel']
+CLI 69784 ['submit', 'sample.compute']
+CLI 33960 ['execution', 'wait']
+CLI 64904 ['result', 'read']
+CLI 68240 ['submit', 'sample.compute']
+CLI 34052 ['execution', 'wait']
+CLI 9968 ['result', 'read']
+CLI 17292 ['submit', 'sample.compute']
+CLI 51344 ['execution', 'wait']
+CLI 44092 ['result', 'read']
+CLI 33560 ['submit', 'sample.compute']
+CLI 69636 ['execution', 'wait']
+CLI 4732 ['result', 'read']
+CLI 66372 ['submit', 'sample.compute']
+CLI 41464 ['execution', 'wait']
+CLI 40712 ['result', 'read']
+CLI 24244 ['submit', 'sample.compute']
+CLI 55628 ['execution', 'wait']
+CLI 69816 ['result', 'read']
+CLI 9148 ['submit', 'sample.compute']
+CLI 63936 ['execution', 'wait']
+CLI 45180 ['result', 'read']
+CLI 40736 ['submit', 'sample.compute']
+CLI 16660 ['execution', 'wait']
+CLI 33280 ['result', 'read']
+CLI 58492 ['submit', 'sample.compute']
+CLI 49140 ['execution', 'wait']
+CLI 57352 ['result', 'read']
+CLI 66088 ['submit', 'sample.compute']
+CLI 24852 ['execution', 'wait']
+CLI 46196 ['result', 'read']
+CLI 25088 ['submit', 'sample.compute']
+CLI 29568 ['execution', 'wait']
+CLI 29712 ['result', 'read']
+CLI 47124 ['submit', 'sample.compute']
+CLI 35856 ['execution', 'wait']
+CLI 63892 ['result', 'read']
+CLI 54484 ['submit', 'sample.compute']
+CLI 58948 ['execution', 'wait']
+CLI 60580 ['result', 'read']
+CLI 62444 ['submit', 'sample.compute']
+CLI 48952 ['execution', 'wait']
+CLI 58664 ['result', 'read']
+CLI 6076 ['submit', 'sample.compute']
+CLI 59284 ['execution', 'wait']
+CLI 64028 ['result', 'read']
+CLI 37480 ['submit', 'sample.compute']
+CLI 33948 ['execution', 'wait']
+CLI 67168 ['result', 'read']
+CLI 41364 ['submit', 'sample.compute']
+CLI 2576 ['execution', 'wait']
+CLI 70016 ['result', 'read']
+CLI 69292 ['submit', 'sample.compute']
+CLI 66588 ['execution', 'wait']
+CLI 29532 ['result', 'read']
+CLI 51488 ['submit', 'sample.compute']
+CLI 68700 ['execution', 'wait']
+CLI 54992 ['result', 'read']
+CLI 31776 ['submit', 'sample.compute']
+CLI 42904 ['execution', 'wait']
+CLI 37140 ['result', 'read']
+CLI 66768 ['execution', 'get']
+Managed multi-process submit/get/wait/cancel/result and session recycling passed
+<end of output>
+Test time =   7.75 sec
+----------------------------------------------------------
+Test Passed.
+"T20.cli.managed_roundtrip" end time: Sep 10 03:14 中国标准时间
+"T20.cli.managed_roundtrip" time elapsed: 00:00:07
+----------------------------------------------------------
+
+End testing: Sep 10 03:14 中国标准时间
+
+B5 =   7.75 sec*proc
+
+D3.07 =   7.75 sec*proc
+

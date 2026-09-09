@@ -37,6 +37,7 @@ struct Connection::State : std::enable_shared_from_this<Connection::State> {
   asio::windows::stream_handle pipe;
   asio::steady_timer timer;
   asio::steady_timer read_timer;
+  asio::steady_timer tick_timer;
   asio::windows::object_handle wake;
   NativeHandle prefix_event{CreateEventW(nullptr,TRUE,FALSE,nullptr)};
   OVERLAPPED prefix{};
@@ -55,8 +56,9 @@ struct Connection::State : std::enable_shared_from_this<Connection::State> {
   bool closed = false, started = false, write_active = false, write_wakeup = false, draining = false;
   Message message;
   Closed disconnected;
+  Tick tick;
   std::thread thread;
-  State(NativeHandle handle, PipeOptions o) : options(std::move(o)), pipe(io), timer(io), read_timer(io),
+  State(NativeHandle handle, PipeOptions o) : options(std::move(o)), pipe(io), timer(io), read_timer(io), tick_timer(io),
       wake(io,CreateEventW(nullptr,FALSE,FALSE,nullptr)),
       decoder([&] { data::Budget b; b.frame_bytes = options.frame_bytes - 12; return b; }()) {
     if(!prefix_event.get()) throw std::system_error(GetLastError(),std::system_category());
@@ -75,7 +77,7 @@ struct Connection::State : std::enable_shared_from_this<Connection::State> {
       notify = std::move(disconnected);
     }
     std::error_code ignored;
-    timer.cancel(ignored); read_timer.cancel(ignored); wake.cancel(ignored);
+    timer.cancel(ignored); read_timer.cancel(ignored); tick_timer.cancel(ignored); wake.cancel(ignored);
     pipe.cancel(ignored);
     if(prefix_pending) {
       DWORD transferred = 0;
@@ -86,6 +88,16 @@ struct Connection::State : std::enable_shared_from_this<Connection::State> {
     pipe.close(ignored);
     if(notify) { try { notify(); } catch(...) {} }
     message = {};
+    tick = {};
+  }
+  void pulse() {
+    {std::lock_guard lock(mutex);if(closed||quarantined||draining||!tick)return;}
+    tick_timer.expires_after(std::chrono::milliseconds(10));
+    tick_timer.async_wait([self=shared_from_this()](std::error_code ec) {
+      if(ec)return;
+      {std::lock_guard lock(self->mutex);if(self->closed||self->quarantined||self->draining)return;}
+      try {self->tick();self->pulse();} catch(...) {self->stop();}
+    });
   }
   void watch_wake() {
     { std::lock_guard lock(mutex); if(closed) return; }
@@ -184,15 +196,15 @@ struct Connection::State : std::enable_shared_from_this<Connection::State> {
 Connection::Connection(std::shared_ptr<State> state) : state_(std::move(state)) {}
 Connection::~Connection() { close(); }
 std::optional<PeerIdentity> Connection::peer() const { std::lock_guard lock(state_->mutex); return state_->identity; }
-void Connection::start(Message message, Closed closed) {
+void Connection::start(Message message, Closed closed, Tick tick) {
   auto s = state_;
   { std::lock_guard lock(s->mutex);
     if(s->started || s->closed) return;
-    s->started = true; s->message = std::move(message); s->disconnected = std::move(closed);
+    s->started = true; s->message = std::move(message); s->disconnected = std::move(closed);s->tick=std::move(tick);
   }
   try {
     s->thread = std::thread([s] {
-      try { s->arm_read(); s->watch_wake(); s->read(); s->write_next(); s->io.run(); }
+      try { s->arm_read(); s->watch_wake(); s->read(); s->write_next(); s->pulse(); s->io.run(); }
       catch(...) { s->stop(); }
       std::lock_guard lock(s->mutex); s->finished = true; s->drained.notify_all();
     });

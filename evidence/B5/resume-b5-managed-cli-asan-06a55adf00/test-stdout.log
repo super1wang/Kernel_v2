@@ -1,0 +1,135 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-asan
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-asan/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-asan/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-asan/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-asan/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-asan
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 93
+    Start 93: T20.ipc.two_process
+
+93: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/windows_ipc/two_process.py" "J:/Code/Kernel_v2/build/b4-asan/tests/integration/windows_ipc/RelWithDebInfo/ock_ipc_peer.exe"
+93: Working Directory: J:/Code/Kernel_v2/build/b4-asan/tests/integration/windows_ipc
+93: Environment variable modifications: 
+93:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+93: Test timeout computed to be: 45
+93: server client passed
+93: server partial-client passed
+93: first-byte-server partial-client passed
+93: server wrong-server passed
+93: deny-server client passed
+1/3 Test #93: T20.ipc.two_process ..............   Passed    0.94 sec
+test 94
+    Start 94: T19.ipc.authorization_start
+
+94: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/windows_ipc/observation.py" "J:/Code/Kernel_v2/build/b4-asan/tests/integration/windows_ipc/RelWithDebInfo/ock_ipc_observation_peer.exe"
+94: Working Directory: J:/Code/Kernel_v2/build/b4-asan/tests/integration/windows_ipc
+94: Environment variable modifications: 
+94:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+94: Test timeout computed to be: 45
+94: revoked actual received frame ordering passed
+94: started actual received frame ordering passed
+2/3 Test #94: T19.ipc.authorization_start ......   Passed    0.45 sec
+test 98
+    Start 98: T20.cli.managed_roundtrip
+
+98: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed.py" "J:/Code/Kernel_v2/build/b4-asan/examples/managed_service/RelWithDebInfo/ock_managed_service.exe" "J:/Code/Kernel_v2/build/b4-asan/apps/ock/RelWithDebInfo/ock.exe"
+98: Working Directory: J:/Code/Kernel_v2/build/b4-asan/tests/integration/cli
+98: Environment variable modifications: 
+98:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+98: Test timeout computed to be: 90
+98: CLI 50632 ['submit', 'sample.compute']
+98: CLI 40956 ['execution', 'get']
+98: CLI 68628 ['execution', 'wait']
+98: CLI 52680 ['execution', 'wait']
+98: CLI 59984 ['result', 'read']
+98: CLI 63124 ['execution', 'get']
+98: CLI 52776 ['submit', 'sample.compute']
+98: CLI 37380 ['execution', 'get']
+98: CLI 29296 ['execution', 'wait']
+98: CLI 36604 ['execution', 'cancel']
+98: CLI 46944 ['result', 'read']
+98: CLI 39336 ['execution', 'cancel']
+98: CLI 1636 ['submit', 'sample.compute']
+98: CLI 34284 ['execution', 'wait']
+98: CLI 50732 ['result', 'read']
+98: CLI 66020 ['submit', 'sample.compute']
+98: CLI 66356 ['execution', 'wait']
+98: CLI 59108 ['result', 'read']
+98: CLI 36464 ['submit', 'sample.compute']
+98: CLI 70216 ['execution', 'wait']
+98: CLI 48676 ['result', 'read']
+98: CLI 69972 ['submit', 'sample.compute']
+98: CLI 33696 ['execution', 'wait']
+98: CLI 55164 ['result', 'read']
+98: CLI 60828 ['submit', 'sample.compute']
+98: CLI 15656 ['execution', 'wait']
+98: CLI 48960 ['result', 'read']
+98: CLI 61980 ['submit', 'sample.compute']
+98: CLI 52156 ['execution', 'wait']
+98: CLI 28956 ['result', 'read']
+98: CLI 54200 ['submit', 'sample.compute']
+98: CLI 67212 ['execution', 'wait']
+98: CLI 45696 ['result', 'read']
+98: CLI 35956 ['submit', 'sample.compute']
+98: CLI 48912 ['execution', 'wait']
+98: CLI 41352 ['result', 'read']
+98: CLI 23772 ['submit', 'sample.compute']
+98: CLI 39136 ['execution', 'wait']
+98: CLI 62964 ['result', 'read']
+98: CLI 34920 ['submit', 'sample.compute']
+98: CLI 9548 ['execution', 'wait']
+98: CLI 42852 ['result', 'read']
+98: CLI 24628 ['submit', 'sample.compute']
+98: CLI 61068 ['execution', 'wait']
+98: CLI 61380 ['result', 'read']
+98: CLI 9688 ['submit', 'sample.compute']
+98: CLI 33416 ['execution', 'wait']
+98: CLI 9764 ['result', 'read']
+98: CLI 69388 ['submit', 'sample.compute']
+98: CLI 34216 ['execution', 'wait']
+98: CLI 64324 ['result', 'read']
+98: CLI 27816 ['submit', 'sample.compute']
+98: CLI 28304 ['execution', 'wait']
+98: CLI 51264 ['result', 'read']
+98: CLI 63120 ['submit', 'sample.compute']
+98: CLI 64316 ['execution', 'wait']
+98: CLI 30936 ['result', 'read']
+98: CLI 52220 ['submit', 'sample.compute']
+98: CLI 64904 ['execution', 'wait']
+98: CLI 40712 ['result', 'read']
+98: CLI 57352 ['submit', 'sample.compute']
+98: CLI 48952 ['execution', 'wait']
+98: CLI 68700 ['result', 'read']
+98: CLI 48860 ['submit', 'sample.compute']
+98: CLI 61744 ['execution', 'wait']
+98: CLI 23832 ['result', 'read']
+98: CLI 27460 ['submit', 'sample.compute']
+98: CLI 57820 ['execution', 'wait']
+98: CLI 38176 ['result', 'read']
+98: CLI 65648 ['submit', 'sample.compute']
+98: CLI 67640 ['execution', 'wait']
+98: CLI 29944 ['result', 'read']
+98: CLI 27020 ['execution', 'get']
+98: Managed multi-process submit/get/wait/cancel/result and session recycling passed
+3/3 Test #98: T20.cli.managed_roundtrip ........   Passed   10.68 sec
+
+The following tests passed:
+	T20.ipc.two_process
+	T19.ipc.authorization_start
+	T20.cli.managed_roundtrip
+
+100% tests passed, 0 tests failed out of 3
+
+Label Time Summary:
+B3       =   1.38 sec*proc (2 tests)
+B5       =  10.68 sec*proc (1 test)
+D2.05    =   1.38 sec*proc (2 tests)
+D3.07    =  10.68 sec*proc (1 test)
+
+Total Test time (real) =  12.09 sec

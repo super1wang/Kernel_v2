@@ -1,0 +1,35 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+Test project J:/Code/Kernel_v2/build/b4-debug
+    Start 91: T20.ipc.two_process
+1/3 Test #91: T20.ipc.two_process ..............   Passed    0.85 sec
+    Start 92: T19.ipc.authorization_start
+2/3 Test #92: T19.ipc.authorization_start ......   Passed    0.38 sec
+    Start 96: T20.cli.managed_roundtrip
+3/3 Test #96: T20.cli.managed_roundtrip ........***Failed    0.80 sec
+CLI 44436 ['submit', 'sample.compute']
+CLI 38756 ['execution', 'get']
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed.py", line 43, in <module>
+    current = call(['execution', 'get', ref])['result']
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed.py", line 25, in call
+    return finish(spawn(arguments), expected)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed.py", line 21, in finish
+    assert process.returncode == expected, (process.pid, process.returncode, output, error)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (38756, 3, '{"error":{"code":-32010,"message":"NotAvailable"},"id":"2","jsonrpc":"2.0"}\n', '')
+
+
+67% tests passed, 1 tests failed out of 3
+
+Label Time Summary:
+B3       =   1.23 sec*proc (2 tests)
+B5       =   0.80 sec*proc (1 test)
+D2.05    =   1.23 sec*proc (2 tests)
+D3.07    =   0.80 sec*proc (1 test)
+
+Total Test time (real) =   2.06 sec
+
+The following tests FAILED:
+	 96 - T20.cli.managed_roundtrip (Failed)                B5 D3.07

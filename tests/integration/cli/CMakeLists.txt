@@ -1,4 +1,8 @@
 add_test(NAME T20.cli.host_roundtrip COMMAND "${Python3_EXECUTABLE}" -X utf8 "${CMAKE_CURRENT_SOURCE_DIR}/smoke.py" "$<TARGET_FILE:ock_stateless_service>" "$<TARGET_FILE:ock>")
+if(TARGET ock_managed_service)
+  add_test(NAME T20.cli.managed_roundtrip COMMAND "${Python3_EXECUTABLE}" -X utf8 "${CMAKE_CURRENT_SOURCE_DIR}/managed.py" "$<TARGET_FILE:ock_managed_service>" "$<TARGET_FILE:ock>")
+  set_tests_properties(T20.cli.managed_roundtrip PROPERTIES TIMEOUT 90 LABELS "B5;D3.07")
+endif()
 set_tests_properties(T20.cli.host_roundtrip PROPERTIES TIMEOUT 90 LABELS "B3;D2.06")
 add_test(NAME T20.cli.interrupt COMMAND "${Python3_EXECUTABLE}" -X utf8 "${CMAKE_CURRENT_SOURCE_DIR}/interrupt.py" "$<TARGET_FILE:ock_stateless_service>" "$<TARGET_FILE:ock>" "$<TARGET_FILE:ock_ipc_peer>")
 set_tests_properties(T20.cli.interrupt PROPERTIES TIMEOUT 30 LABELS "B3;D2.06")
