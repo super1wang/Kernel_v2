@@ -141,12 +141,14 @@ public:
   }
 private:
   friend class executions::detail::InvocationAccess;
-  Result<void> prepare_submission(const A& args, const InvokeOptions& options) const {
+  Result<void> prepare_submission(const A& args, const InvokeOptions& options,
+                                 std::optional<std::size_t> reserved={}) const {
     auto state=state_;
     if (!state) return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
-    auto slot=state->acquire();
+    auto slot=reserved ? reserved : state->acquire();
     if (!slot) return make_unexpected(invocation_error(InvocationErrc::Busy));
-    detail::CallLease lease(state,*slot);
+    std::optional<detail::CallLease> lease;
+    if(!reserved) lease.emplace(state,*slot);
     try {
       auto current=NativeAccess::check(*state->catalog,*state->entry,
                                       CppTypeToken::of<A>(),CppTypeToken::of<R>());
@@ -163,7 +165,8 @@ private:
     }
   }
   InvokeReply<R> run(const A& args, const InvokeOptions& options, bool managed,
-                    std::span<const ResourceLease* const> resources) const {
+                    std::span<const ResourceLease* const> resources,
+                    std::optional<std::size_t> reserved={}) const {
     // 本次栈持有绑定，业务释放外部 Engine/Bound 后治理材料仍活到返回。
     auto state = state_;
     const auto projection = projection_;
@@ -182,9 +185,9 @@ private:
       observation.kind=InvocationRecordKind::FailedBeforeApply;observation.error=error.code();
       return Completed<R>{std::move(*outcome)};
     };
-    auto slot = state->acquire();
+    auto slot = reserved ? reserved : state->acquire();
     if (!slot) return rejected(invocation_error(InvocationErrc::Busy));
-    lease.emplace(state,*slot);
+    if(!reserved) lease.emplace(state,*slot);
     bool entered = false;
     try {
       auto current = NativeAccess::check(*state->catalog, *state->entry,

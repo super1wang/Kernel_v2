@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "ctest",
+    "--test-dir",
+    "build/b4-debug",
+    "-C",
+    "Debug",
+    "-R",
+    "^T(03|06|23)[.]native[.](managed_record|managed_record_ownership|managed_admission|managed_resources|reentrant_and_concurrent|allocation_steady)$",
+    "--output-on-failure",
+    "--stop-on-failure",
+    "--no-tests=error"
+  ],
+  "cwd": "J:\\Code\\Kernel_v2",
+  "started_at": "2026-09-09T14:12:28.011732+00:00",
+  "exit_code": 0,
+  "status": "Exited",
+  "process_tree": {
+    "mechanism": "WindowsJobObject",
+    "assigned_before_resume": true,
+    "active_after": 0,
+    "total_processes": 10,
+    "terminated_owned_job": false
+  },
+  "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+  "pid": 45040,
+  "observed_exit_code": 0,
+  "finished_at": "2026-09-09T14:12:28.897957+00:00"
+}
