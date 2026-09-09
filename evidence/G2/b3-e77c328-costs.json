@@ -1,0 +1,1113 @@
+{
+  "format": "ock.b3.cost-summary/1",
+  "source": "original E03 JUnit output; no remeasurement",
+  "profiles": [
+    {
+      "profile": "win-msvc-debug",
+      "junit": "evidence/e77c328e75af-3b176665ad4d/win-msvc-debug/D2.07/20260909T023339Z-88b314c47cb5/round-001-junit.xml",
+      "junit_sha256": "55f523e42c3221b49d26d3e962a3c24910eb50adca96a0d4e177fed9e90f22f6",
+      "raw": {
+        "format": "ock.b3.entry-costs/1",
+        "capture": "CTEST_FULL_OUTPUT",
+        "scope": "warm prebound Native versus Dynamic decode plus same HostBound; excludes setup, JSON parsing, wire encoding, IPC and CLI process startup",
+        "counter_valid": true,
+        "crt_available": true,
+        "asan_available": false,
+        "positive_control": {
+          "cpp_allocations": 1,
+          "crt_allocations": 1,
+          "asan_allocations": 0,
+          "allocated_bytes": 65
+        },
+        "samples": [
+          {
+            "entry": "Native",
+            "ns": 17300,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 16100,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15800,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15800,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15600,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15600,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15700,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15700,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15600,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15700,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15500,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15800,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15700,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15500,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15700,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15500,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15700,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15700,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15700,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 15700,
+            "cpp_allocations": 12,
+            "crt_allocations": 12,
+            "asan_allocations": 0,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 117400,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 112100,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 110200,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 118700,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 110200,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 108600,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 109000,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 109600,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 109300,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 109900,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 111600,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 110200,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 107900,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 107200,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 107400,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 107800,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 107500,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 107100,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 107800,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 112400,
+            "cpp_allocations": 208,
+            "crt_allocations": 208,
+            "asan_allocations": 0,
+            "allocated_bytes": 13952
+          }
+        ]
+      },
+      "statistics": [
+        {
+          "entry": "Native",
+          "samples": 20,
+          "min_ns": 15500,
+          "median_ns": 15700.0,
+          "max_ns": 17300,
+          "cpp_allocations": [
+            12
+          ],
+          "allocated_bytes": [
+            192
+          ]
+        },
+        {
+          "entry": "Dynamic",
+          "samples": 20,
+          "min_ns": 107100,
+          "median_ns": 109450.0,
+          "max_ns": 118700,
+          "cpp_allocations": [
+            208
+          ],
+          "allocated_bytes": [
+            13952
+          ]
+        }
+      ]
+    },
+    {
+      "profile": "win-msvc-release",
+      "junit": "evidence/e77c328e75af-3b176665ad4d/win-msvc-release/D2.07/20260909T023531Z-8389316f3edc/round-001-junit.xml",
+      "junit_sha256": "67774eed47e460dacd26e36b2318862e9053ae6a339781dcb629afc43e0af4cf",
+      "raw": {
+        "format": "ock.b3.entry-costs/1",
+        "capture": "CTEST_FULL_OUTPUT",
+        "scope": "warm prebound Native versus Dynamic decode plus same HostBound; excludes setup, JSON parsing, wire encoding, IPC and CLI process startup",
+        "counter_valid": true,
+        "crt_available": false,
+        "asan_available": false,
+        "positive_control": {
+          "cpp_allocations": 1,
+          "crt_allocations": 0,
+          "asan_allocations": 0,
+          "allocated_bytes": 65
+        },
+        "samples": [
+          {
+            "entry": "Native",
+            "ns": 700,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 700,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 700,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 700,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 700,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Native",
+            "ns": 600,
+            "cpp_allocations": 0,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 0
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 5900,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 5100,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4900,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 5000,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4800,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4800,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4800,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4700,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4700,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4900,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4700,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4700,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4600,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4700,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4700,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4700,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4700,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4800,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4600,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 4600,
+            "cpp_allocations": 63,
+            "crt_allocations": 0,
+            "asan_allocations": 0,
+            "allocated_bytes": 2976
+          }
+        ]
+      },
+      "statistics": [
+        {
+          "entry": "Native",
+          "samples": 20,
+          "min_ns": 600,
+          "median_ns": 600.0,
+          "max_ns": 700,
+          "cpp_allocations": [
+            0
+          ],
+          "allocated_bytes": [
+            0
+          ]
+        },
+        {
+          "entry": "Dynamic",
+          "samples": 20,
+          "min_ns": 4600,
+          "median_ns": 4700.0,
+          "max_ns": 5900,
+          "cpp_allocations": [
+            63
+          ],
+          "allocated_bytes": [
+            2976
+          ]
+        }
+      ]
+    },
+    {
+      "profile": "win-msvc-asan",
+      "junit": "evidence/e77c328e75af-3b176665ad4d/win-msvc-asan/D2.07/20260909T023155Z-347662961ca6/round-001-junit.xml",
+      "junit_sha256": "0fd5c2dee04c712dd744966a7766afc6a372ca35c9fbd09f9ca3dafe9c671204",
+      "raw": {
+        "format": "ock.b3.entry-costs/1",
+        "capture": "CTEST_FULL_OUTPUT",
+        "scope": "warm prebound Native versus Dynamic decode plus same HostBound; excludes setup, JSON parsing, wire encoding, IPC and CLI process startup",
+        "counter_valid": true,
+        "crt_available": false,
+        "asan_available": true,
+        "positive_control": {
+          "cpp_allocations": 1,
+          "crt_allocations": 0,
+          "asan_allocations": 1,
+          "allocated_bytes": 65
+        },
+        "samples": [
+          {
+            "entry": "Native",
+            "ns": 61200,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 52200,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 53400,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 50300,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 50000,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 52300,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 49500,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 48400,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 48900,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 48600,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 48400,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 48500,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 48300,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 48400,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 50500,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 48300,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 48300,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 48200,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 48000,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Native",
+            "ns": 50200,
+            "cpp_allocations": 12,
+            "crt_allocations": 0,
+            "asan_allocations": 12,
+            "allocated_bytes": 192
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 746300,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 683500,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 690100,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 654800,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 674200,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 680700,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 659300,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 682200,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 687600,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 665800,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 684800,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 756400,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 780500,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 699400,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 710700,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 677100,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 693600,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 653800,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 647400,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          },
+          {
+            "entry": "Dynamic",
+            "ns": 652900,
+            "cpp_allocations": 208,
+            "crt_allocations": 0,
+            "asan_allocations": 208,
+            "allocated_bytes": 13952
+          }
+        ]
+      },
+      "statistics": [
+        {
+          "entry": "Native",
+          "samples": 20,
+          "min_ns": 48000,
+          "median_ns": 48750.0,
+          "max_ns": 61200,
+          "cpp_allocations": [
+            12
+          ],
+          "allocated_bytes": [
+            192
+          ]
+        },
+        {
+          "entry": "Dynamic",
+          "samples": 20,
+          "min_ns": 647400,
+          "median_ns": 682850.0,
+          "max_ns": 780500,
+          "cpp_allocations": [
+            208
+          ],
+          "allocated_bytes": [
+            13952
+          ]
+        }
+      ]
+    }
+  ]
+}

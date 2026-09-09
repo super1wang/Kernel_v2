@@ -1,0 +1,24 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b2-sdk-debug
+Test project J:/Code/Kernel_v2/build/b2-sdk-debug
+    Start 15: T19.ipc.authorization_start
+1/1 Test #15: T19.ipc.authorization_start ......***Failed    0.11 sec
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\integration\windows_ipc\observation.py", line 36, in <module>
+    header = read_exact(pipe, 12)
+             ^^^^^^^^^^^^^^^^^^^^
+  File "J:\Code\Kernel_v2\tests\integration\windows_ipc\observation.py", line 22, in read_exact
+    assert chunk, "truncated frame"
+           ^^^^^
+AssertionError: truncated frame
+
+
+0% tests passed, 1 tests failed out of 1
+
+Label Time Summary:
+B3       =   0.11 sec*proc (1 test)
+D2.05    =   0.11 sec*proc (1 test)
+
+Total Test time (real) =   0.12 sec
+
+The following tests FAILED:
+	 15 - T19.ipc.authorization_start (Failed)              B3 D2.05

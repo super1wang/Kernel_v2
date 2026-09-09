@@ -1,0 +1,235 @@
+CMake is re-running because J:/Code/Kernel_v2/build/b2-sdk-debug/CMakeFiles/generate.stamp is out-of-date.
+  the file 'J:/Code/Kernel_v2/CMakeLists.txt'
+  is newer than 'J:/Code/Kernel_v2/build/b2-sdk-debug/CMakeFiles/generate.stamp.depend'
+  result='-1'
+-- Configuring done (6.6s)
+-- Generating done (0.8s)
+-- Build files have been written to: J:/Code/Kernel_v2/build/b2-sdk-debug
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  1>Checking Build System
+  ock_Data.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Data.lib
+  ock_ControlProtocol.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_ControlProtocol.lib
+  ock_Adapter_LocalIPC.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Adapter_LocalIPC.lib
+  host.cpp
+  ock_Runtime.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Runtime.lib
+  ock_Dynamic.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Dynamic.lib
+  invoke_method.cpp
+  ock_Control.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Control.lib
+  Building Custom Rule J:/Code/Kernel_v2/examples/stateless_service/CMakeLists.txt
+  main.cpp
+  service.cpp
+J:\Code\Kernel_v2\examples\stateless_service\service.hpp(10,89): error C2440: “=”: 无法从“std::byte”转换为“_Ty” [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.hpp(10,89): error C2440:         with [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.hpp(10,89): error C2440:         [ [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.hpp(10,89): error C2440:             _Ty=uint8_t [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.hpp(10,89): error C2440:         ] [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+  (编译源文件“../../../../examples/stateless_service/main.cpp”)
+      J:\Code\Kernel_v2\examples\stateless_service\service.hpp(10,89):
+      此转换需要显式强制转换(static_cast、C 样式强制转换或带圆括号函数样式强制转换)
+      J:\Code\Kernel_v2\examples\stateless_service\service.hpp(10,89):
+      模板实例化上下文(最早的实例化上下文)为
+          J:\Code\Kernel_v2\examples\stateless_service\service.hpp(11,54):
+          查看对正在编译的函数 模板 实例化“Id stateless::id<ock::contracts::PrincipalId>(unsigned int)”的引用
+          with
+          [
+              Id=ock::contracts::PrincipalId
+          ]
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(28,3): error C7568: 假定的函数模板“Result”后面缺少参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(41,3): error C7568: 假定的函数模板“Result”后面缺少参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(47,3): error C7568: 假定的函数模板“Result”后面缺少参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(52,3): error C7568: 假定的函数模板“Result”后面缺少参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(57,3): error C7568: 假定的函数模板“Result”后面缺少参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(60,1): error C7568: 假定的函数模板“Result”后面缺少参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(61,1): error C7568: 假定的函数模板“Result”后面缺少参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(79,3): error C7568: 假定的函数模板“Result”后面缺少参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(83,3): error C7568: 假定的函数模板“Result”后面缺少参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(85,37): error C2672: “tl::make_unexpected”: 未找到匹配的重载函数 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(201,42):
+      可能是“tl::unexpected<std::decay<_Ty>::type> tl::make_unexpected(E &&)”
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(86,79): error C2672: “std::move”: 未找到匹配的重载函数 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xutility(5172,9):
+      可能是“_FwdIt2 std::move(_ExPo &&,_FwdIt1,_FwdIt1,_FwdIt2) noexcept”
+          J:\Code\Kernel_v2\examples\stateless_service\service.cpp(86,79):
+          “_FwdIt2 std::move(_ExPo &&,_FwdIt1,_FwdIt1,_FwdIt2) noexcept”: 应输入 4 个参数，却提供了 1 个
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xutility(5160,21):
+      或    “_OutIt std::move(_InIt,_InIt,_OutIt)”
+          J:\Code\Kernel_v2\examples\stateless_service\service.cpp(86,79):
+          “_OutIt std::move(_InIt,_InIt,_OutIt)”: 应输入 3 个参数，却提供了 1 个
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\type_traits(1512,64):
+      或    “remove_reference<_Ty>::type &&std::move(_Ty &&) noexcept”
+          J:\Code\Kernel_v2\examples\stateless_service\service.cpp(86,79):
+          未能使函数模板“remove_reference<_Ty>::type &&std::move(_Ty &&) noexcept”专用化
+              J:\Code\Kernel_v2\examples\stateless_service\service.cpp(86,79):
+              用下列模板参数:
+                  J:\Code\Kernel_v2\examples\stateless_service\service.cpp(86,79):
+                  “_Ty=<error type> &”
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(86,66): error C2672: “std::optional<ock::runtime::host::HostSession>::emplace”: 未找到匹配的重载函数 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\optional(359,23):
+      可能是“_Ty &std::optional<_Ty>::emplace(std::initializer_list<U>,_Types ...) noexcept(<expr>)”
+          with
+          [
+              _Ty=ock::runtime::host::HostSession
+          ]
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\optional(351,23):
+      或    “_Ty &std::optional<_Ty>::emplace(_Types ...) noexcept(<expr>)”
+          with
+          [
+              _Ty=ock::runtime::host::HostSession
+          ]
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(97,48): error C2664: “tl::expected<ock::control::InvocationBinding,ock::foundation::Error> ock::control::InvocationBinding::bind<stateless::Value,stateless::Value>(ock::runtime::host::HostSession &,const ock::contracts::OperationKey &,ock::contracts::ContractDigest,ock::contracts::Shape,std::shared_ptr<const ock::runtime::policy::VerifiedCaller>,std::span<const ock::runtime::policy::ObjectId,18446744073709551615>,tl::expected<uint64_t,ock::foundation::Error> (__cdecl *)(const stateless::Value &,std::span<ock::foundation::ObjectId,18446744073709551615>) noexcept,ock::foundation::Name)”: 无法将参数 7 从“<error type> (__cdecl *)(const stateless::Value &,std::span<ock::foundation::ObjectId,18446744073709551615>) noexcept”转换为“tl::expected<uint64_t,ock::foundation::Error> (__cdecl *)(const stateless::Value &,std::span<ock::foundation::ObjectId,18446744073709551615>) noexcept” [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      J:\Code\Kernel_v2\examples\stateless_service\service.cpp(98,30):
+      在匹配目标类型的范围内没有具有该名称的函数
+      J:\Code\Kernel_v2\packages\control\server\include\ock\control\invoke_method.hpp(48,36):
+      参见“ock::control::InvocationBinding::bind”的声明
+      J:\Code\Kernel_v2\examples\stateless_service\service.cpp(97,48):
+      尝试匹配参数列表“(_Ty, ock::contracts::OperationKey, initializer list, ock::contracts::Shape, U, std::array<_First,1>, overloaded-function, ock::foundation::Name)”时
+          with
+          [
+              _Ty=ock::runtime::host::HostSession
+          ]
+          and
+          [
+              U=std::shared_ptr<const ock::runtime::policy::VerifiedCaller>
+          ]
+          and
+          [
+              _First=ock::foundation::ObjectId
+          ]
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(110,1): error C7568: 假定的函数模板“Result”后面缺少参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(110,43): error C2556: “<error type> stateless::Service::create(std::string)”: 重载函数与“tl::expected<std::unique_ptr<stateless::Service,std::default_delete<stateless::Service>>,ock::foundation::Error> stateless::Service::create(std::string)”只是在返回类型上不同 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      J:\Code\Kernel_v2\examples\stateless_service\service.hpp(30,55):
+      参见“stateless::Service::create”的声明
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(110,43): error C2371: “stateless::Service::create”: 重定义；不同的基类型 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      J:\Code\Kernel_v2\examples\stateless_service\service.hpp(30,55):
+      参见“stateless::Service::create”的声明
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(122,28): error C2672: “ock::runtime::registry::Registrar::compute”: 未找到匹配的重载函数 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\registry.hpp(335,16):
+      可能是“tl::expected<void,ock::foundation::Error> ock::runtime::registry::Registrar::compute(tl::expected<R,ock::foundation::Error> (__cdecl *)(const A &,ock::contracts::WorkContext &),const ock::contracts::DefinitionInput &,const ock::runtime::registry::OperationOptions &)”
+          J:\Code\Kernel_v2\examples\stateless_service\service.cpp(122,28):
+          “tl::expected<void,ock::foundation::Error> ock::runtime::registry::Registrar::compute(tl::expected<R,ock::foundation::Error> (__cdecl *)(const A &,ock::contracts::WorkContext &),const ock::contracts::DefinitionInput &,const ock::runtime::registry::OperationOptions &)”: 无法从“<error type> (const stateless::Value &,ock::contracts::WorkContext &)”推导出“tl::expected<R,ock::foundation::Error> (__cdecl *)(const A &,ock::contracts::WorkContext &)”的 模板 参数
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(123,9): error C3536: “added”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(135,1): error C7568: 假定的函数模板“Result”后面缺少参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(135,53): error C2556: “<error type> stateless::Service::listen(std::string)”: 重载函数与“tl::expected<std::unique_ptr<ock::local_ipc::Server,std::default_delete<ock::local_ipc::Server>>,ock::foundation::Error> stateless::Service::listen(std::string)”只是在返回类型上不同 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      J:\Code\Kernel_v2\examples\stateless_service\service.hpp(32,58):
+      参见“stateless::Service::listen”的声明
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(135,53): error C2371: “stateless::Service::listen”: 重定义；不同的基类型 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      J:\Code\Kernel_v2\examples\stateless_service\service.hpp(32,58):
+      参见“stateless::Service::listen”的声明
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(151,25): error C2672: “std::move”: 未找到匹配的重载函数 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xutility(5172,9):
+      可能是“_FwdIt2 std::move(_ExPo &&,_FwdIt1,_FwdIt1,_FwdIt2) noexcept”
+          J:\Code\Kernel_v2\examples\stateless_service\service.cpp(151,25):
+          “_FwdIt2 std::move(_ExPo &&,_FwdIt1,_FwdIt1,_FwdIt2) noexcept”: 应输入 4 个参数，却提供了 1 个
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\xutility(5160,21):
+      或    “_OutIt std::move(_InIt,_InIt,_OutIt)”
+          J:\Code\Kernel_v2\examples\stateless_service\service.cpp(151,25):
+          “_OutIt std::move(_InIt,_InIt,_OutIt)”: 应输入 3 个参数，却提供了 1 个
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\type_traits(1512,64):
+      或    “remove_reference<_Ty>::type &&std::move(_Ty &&) noexcept”
+          J:\Code\Kernel_v2\examples\stateless_service\service.cpp(151,25):
+          未能使函数模板“remove_reference<_Ty>::type &&std::move(_Ty &&) noexcept”专用化
+              J:\Code\Kernel_v2\examples\stateless_service\service.cpp(151,25):
+              用下列模板参数:
+                  J:\Code\Kernel_v2\examples\stateless_service\service.cpp(151,25):
+                  “_Ty=<error type> &”
+      J:\Code\Kernel_v2\examples\stateless_service\service.cpp(151,25):
+      模板实例化上下文(最早的实例化上下文)为
+          J:\Code\Kernel_v2\examples\stateless_service\service.cpp(161,3):
+          在编译 类 模板 成员函数“std::function<void (std::shared_ptr<ock::local_ipc::Connection>)>::function(_Fx &&)”时
+          J:\Code\Kernel_v2\examples\stateless_service\service.cpp(161,3):
+          处理“std::function<void (std::shared_ptr<ock::local_ipc::Connection>)>::function(_Fx &&)”的默认模板参数时
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\functional(1102,92):
+          查看对正在编译的 别名 模板 实例化“std::_Func_class<_Ret,std::shared_ptr<ock::local_ipc::Connection>>::_Enable_if_callable_t<stateless::Service::listen::<lambda_1>,std::function<void (std::shared_ptr<ock::local_ipc::Connection>)>>”的引用
+          with
+          [
+              _Ret=void
+          ]
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\functional(940,47):
+          查看指向正在编译的变量模板“const bool conjunction_v<std::negation<std::is_same<`stateless::Service::listen'::`2'::<lambda_1>,std::function<void __cdecl(std::shared_ptr<ock::local_ipc::Connection>)> > >,std::_Is_invocable_r<void,`stateless::Service::listen'::`2'::<lambda_1> &,std::shared_ptr<ock::local_ipc::Connection> > >”的引用
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\functional(940,47):
+          查看对正在编译的 类 模板 实例化“std::_Is_invocable_r<_Ret,stateless::Service::listen::<lambda_1> &,std::shared_ptr<ock::local_ipc::Connection>>”的引用
+          with
+          [
+              _Ret=void
+          ]
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\type_traits(1827,26):
+          查看对正在编译的 别名 模板 实例化“std::_Is_invocable_r_<_Rx,_Callable,std::shared_ptr<ock::local_ipc::Connection>>”的引用
+          with
+          [
+              _Rx=void,
+              _Callable=stateless::Service::listen::<lambda_1> &
+          ]
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\type_traits(1789,38):
+          查看对正在编译的 别名 模板 实例化“std::_Decltype_invoke_nonzero<_Callable,std::shared_ptr<ock::local_ipc::Connection>,>”的引用
+          with
+          [
+              _Callable=stateless::Service::listen::<lambda_1> &
+          ]
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\type_traits(1785,71):
+          在编译 类 模板 成员函数“unknown-type std::_Invoker_functor::_Call(_Callable &&,_Types ...) noexcept(<expr>)”时
+          E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\type_traits(1576,46):
+          查看对正在编译的函数 模板 实例化“auto stateless::Service::listen::<lambda_1>::operator ()<std::shared_ptr<ock::local_ipc::Connection>>(_T1) const”的引用
+          with
+          [
+              _T1=std::shared_ptr<ock::local_ipc::Connection>
+          ]
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(156,60): error C3861: “Result”: 找不到标识符 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(157,11): error C3536: “frame”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(157,38): error C2100: 无法取消引用类型为“<error type>”的操作数 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(138,29): error C2664: “tl::expected<std::unique_ptr<ock::local_ipc::Server,std::default_delete<ock::local_ipc::Server>>,ock::foundation::Error> ock::local_ipc::Server::listen(ock::local_ipc::PipeOptions,ock::local_ipc::Server::Accepted)”: 无法将参数 2 从“stateless::Service::listen::<lambda_1>”转换为“ock::local_ipc::Server::Accepted” [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      J:\Code\Kernel_v2\examples\stateless_service\service.cpp(161,3):
+      没有可用于执行该转换的用户定义的转换运算符，或者无法调用该运算符
+      J:\Code\Kernel_v2\packages\adapters\local_ipc\include\ock\local_ipc\pipe.hpp(84,54):
+      参见“ock::local_ipc::Server::listen”的声明
+      J:\Code\Kernel_v2\examples\stateless_service\service.cpp(138,29):
+      尝试匹配参数列表“(ock::local_ipc::PipeOptions, stateless::Service::listen::<lambda_1>)”时
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(169,1): error C7568: 假定的函数模板“Result”后面缺少参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(169,32): error C2556: “<error type> stateless::Service::native(const stateless::Value &)”: 重载函数与“tl::expected<ock::data::Payload,ock::foundation::Error> stateless::Service::native(const stateless::Value &)”只是在返回类型上不同 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      J:\Code\Kernel_v2\examples\stateless_service\service.hpp(33,37):
+      参见“stateless::Service::native”的声明
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(169,32): error C2371: “stateless::Service::native”: 重定义；不同的基类型 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      J:\Code\Kernel_v2\examples\stateless_service\service.hpp(33,37):
+      参见“stateless::Service::native”的声明
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(171,70): error C2672: “tl::make_unexpected”: 未找到匹配的重载函数 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(201,42):
+      可能是“tl::unexpected<std::decay<_Ty>::type> tl::make_unexpected(E &&)”
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(172,60): error C3536: “caller”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(172,87): error C2672: “tl::make_unexpected”: 未找到匹配的重载函数 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+      J:\Code\Kernel_v2\build\d0.06-a\cache\sources\expected-fe3b18aecb84\include\tl\expected.hpp(201,42):
+      可能是“tl::unexpected<std::decay<_Ty>::type> tl::make_unexpected(E &&)”
+  
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(174,36): error C3531: “Value”: 类型包含“auto”的符号必须具有初始值设定项 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(174,41): error C2143: 语法错误: 缺少“;”(在“>”的前面) [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(174,41): error C2059: 语法错误:“>” [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(174,55): error C2143: 语法错误: 缺少“;”(在“{”的前面) [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(174,57): error C2059: 语法错误:“,” [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(174,109): error C2059: 语法错误:“,” [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(174,139): error C2059: 语法错误:“)” [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(175,3): error C2059: 语法错误:“if” [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(176,16): error C2065: “bound”: 未声明的标识符 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(176,30): error C2065: “value”: 未声明的标识符 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(176,40): error C2065: “state_”: 未声明的标识符 [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(178,3): error C2059: 语法错误:“return” [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(178,68): error C2143: 语法错误: 缺少“;”(在“{”的前面) [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(178,68): error C2143: 语法错误: 缺少“)”(在“;”的前面) [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(178,68): error C2447: “{”: 缺少函数标题(是否是老式的形式表?) [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(178,99): error C2059: 语法错误:“)” [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(180,1): error C2059: 语法错误:“}” [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+J:\Code\Kernel_v2\examples\stateless_service\service.cpp(180,1): error C2143: 语法错误: 缺少“;”(在“}”的前面) [J:\Code\Kernel_v2\build\b2-sdk-debug\examples\stateless_service\ock_stateless_service.vcxproj]
+  正在生成代码...

@@ -1,0 +1,71 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b2-sdk-debug
+Test project J:/Code/Kernel_v2/build/b2-sdk-debug
+      Start  1: T24.b2.installed_consumer
+ 1/28 Test  #1: T24.b2.installed_consumer ..........   Passed   22.51 sec
+      Start  3: T24.b2.native_pruning
+ 2/28 Test  #3: T24.b2.native_pruning ..............   Passed   24.96 sec
+      Start  4: T24.sdk.version_header
+ 3/28 Test  #4: T24.sdk.version_header .............   Passed    0.07 sec
+      Start  5: T01.architecture.dependency_dag
+ 4/28 Test  #5: T01.architecture.dependency_dag ....   Passed    0.33 sec
+      Start  6: T01.architecture.negative_guards
+ 5/28 Test  #6: T01.architecture.negative_guards ...   Passed    8.56 sec
+      Start 14: T20.ipc.two_process
+ 6/28 Test #14: T20.ipc.two_process ................   Passed    0.48 sec
+      Start 15: T19.ipc.authorization_start
+ 7/28 Test #15: T19.ipc.authorization_start ........   Passed    0.28 sec
+      Start 16: T22.ipc.backpressure
+ 8/28 Test #16: T22.ipc.backpressure ...............   Passed    3.29 sec
+      Start 17: T20.ipc.remote_rejection
+ 9/28 Test #17: T20.ipc.remote_rejection ...........   Passed    0.24 sec
+      Start 18: T20.cli.host_roundtrip
+10/28 Test #18: T20.cli.host_roundtrip .............   Passed    0.79 sec
+      Start 19: T20.cli.interrupt
+11/28 Test #19: T20.cli.interrupt ..................   Passed    1.30 sec
+      Start 20: T20.ipc.router_security
+12/28 Test #20: T20.ipc.router_security ............   Passed    0.23 sec
+      Start 21: T20.client.protocol
+13/28 Test #21: T20.client.protocol ................   Passed    0.05 sec
+      Start 22: T20.client.watch
+14/28 Test #22: T20.client.watch ...................   Passed    0.06 sec
+      Start 23: T20.client.exit_codes
+15/28 Test #23: T20.client.exit_codes ..............   Passed    0.06 sec
+      Start 24: T23.b3.cost_samples
+16/28 Test #24: T23.b3.cost_samples ................   Passed    0.37 sec
+      Start 25: T02.b3.entry_parity
+17/28 Test #25: T02.b3.entry_parity ................   Passed    0.52 sec
+      Start 26: T20.cli.windows_shell
+18/28 Test #26: T20.cli.windows_shell ..............   Passed    1.08 sec
+      Start 28: T04.binding.field_parity
+19/28 Test #28: T04.binding.field_parity ...........   Passed    0.06 sec
+      Start 30: T05.catalog.visibility
+20/28 Test #30: T05.catalog.visibility .............   Passed    0.09 sec
+      Start 31: T06.protocol.frames
+21/28 Test #31: T06.protocol.frames ................   Passed    0.07 sec
+      Start 33: T06.protocol.router
+22/28 Test #33: T06.protocol.router ................   Passed    0.08 sec
+      Start 34: T19.protocol.observation_wire
+23/28 Test #34: T19.protocol.observation_wire ......   Passed    0.06 sec
+      Start 35: T19.protocol.subscription
+24/28 Test #35: T19.protocol.subscription ..........   Passed    0.20 sec
+      Start 37: T06.binding.native
+25/28 Test #37: T06.binding.native .................   Passed    0.08 sec
+      Start 38: T06.protocol.outcome
+26/28 Test #38: T06.protocol.outcome ...............   Passed    0.49 sec
+      Start 51: T19.protocol.get
+27/28 Test #51: T19.protocol.get ...................   Passed    0.08 sec
+      Start 57: T03.host.catalog_context
+28/28 Test #57: T03.host.catalog_context ...........   Passed    0.07 sec
+
+100% tests passed, 0 tests failed out of 28
+
+Label Time Summary:
+B2       =  47.47 sec*proc (2 tests)
+B3       =   8.76 sec*proc (13 tests)
+D0.02    =   8.96 sec*proc (3 tests)
+D1.06    =   0.07 sec*proc (1 test)
+D2.05    =   4.52 sec*proc (5 tests)
+D2.06    =   2.26 sec*proc (5 tests)
+D2.07    =   1.97 sec*proc (3 tests)
+
+Total Test time (real) =  66.48 sec

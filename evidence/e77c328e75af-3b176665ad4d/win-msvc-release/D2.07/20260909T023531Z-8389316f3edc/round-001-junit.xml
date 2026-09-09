@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="26"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-U2F62TA"
+	time="34"
+	timestamp="2026-09-09T10:35:39"
+	>
+	<testcase name="T24.b2.installed_consumer" classname="T24.b2.installed_consumer" time="25.2322" status="run">
+		<properties>
+			<property name="cmake_labels" value="B2"/>
+		</properties>
+		<system-out>argv: ['cmake', '--install', 'J:/Code/Kernel_v2/build/b2-sdk-release', '--config', 'Release', '--prefix', 'J:\\Code\\Kernel_v2\\build\\b2-install-a2uyhxh2\\original'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\b2-install-a2uyhxh2\\consumer-source', '-B', 'J:\\Code\\Kernel_v2\\build\\b2-install-a2uyhxh2\\consumer', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\b2-install-a2uyhxh2\\relocated'] exit_code: 0
+argv: ['cmake', '--build', 'J:\\Code\\Kernel_v2\\build\\b2-install-a2uyhxh2\\consumer', '--config', 'Release', '--parallel', '4'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\b2-install-a2uyhxh2\\consumer\\Release\\installed_b2.exe'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\b2-install-a2uyhxh2\\consumer\\Release\\installed_thin.exe'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\b2-instal...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.sdk.version_header" classname="T24.sdk.version_header" time="0.0585021" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>0.1.0-dev.4
+</system-out>
+	</testcase>
+	<testcase name="T01.architecture.dependency_dag" classname="T01.architecture.dependency_dag" time="0.296986" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>{
+  "check_id": "CHECK.D0.02.architecture",
+  "errors": [],
+  "scope": "合同目标/公开表面静态检查；无Runtime运行或授权实现"
+}
+</system-out>
+	</testcase>
+	<testcase name="T20.ipc.two_process" classname="T20.ipc.two_process" time="0.676253" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.05"/>
+		</properties>
+		<system-out>server client passed
+server partial-client passed
+first-byte-server partial-client passed
+server wrong-server passed
+deny-server client passed
+</system-out>
+	</testcase>
+	<testcase name="T19.ipc.authorization_start" classname="T19.ipc.authorization_start" time="0.239993" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.05"/>
+		</properties>
+		<system-out>revoked actual received frame ordering passed
+started actual received frame ordering passed
+</system-out>
+	</testcase>
+	<testcase name="T22.ipc.backpressure" classname="T22.ipc.backpressure" time="3.28859" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.05"/>
+		</properties>
+		<system-out>priority passed
+independent authenticated control latency 0.0
+slow passed
+unknown passed
+</system-out>
+	</testcase>
+	<testcase name="T20.ipc.remote_rejection" classname="T20.ipc.remote_rejection" time="0.251449" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.05"/>
+		</properties>
+		<system-out>SMB positive control succeeded; production remote denied; local peer succeeded
+</system-out>
+	</testcase>
+	<testcase name="T20.cli.host_roundtrip" classname="T20.cli.host_roundtrip" time="0.684069" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.06"/>
+		</properties>
+		<system-out>capabilities exit 0 passed
+capabilities exit 0 passed
+invoke exit 0 passed
+invoke exit 0 passed
+invoke exit 2 passed
+invoke exit 3 passed
+invoke exit 4 passed
+execution exit 3 passed
+execution exit 3 passed
+invoke exit 2 passed
+capabilities exit 0 passed
+</system-out>
+	</testcase>
+	<testcase name="T20.cli.interrupt" classname="T20.cli.interrupt" time="1.32237" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.06"/>
+		</properties>
+		<system-out>real CTRL_C_EVENT interrupts open stdin; Host remains usable; empty argv preserved
+real CTRL_C_EVENT interrupts pending reply; peer received only hello, no implicit cancel
+</system-out>
+	</testcase>
+	<testcase name="T20.ipc.router_security" classname="T20.ipc.router_security" time="0.230317" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.05"/>
+		</properties>
+		<system-out>role-in-hello rejected and connection closed
+role-in-envelope rejected and connection closed
+wrong-direction rejected and connection closed
+before-hello rejected and connection closed
+oversize-header rejected and connection closed
+</system-out>
+	</testcase>
+	<testcase name="T20.client.protocol" classname="T20.client.protocol" time="0.0894644" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T20.client.watch" classname="T20.client.watch" time="0.077167" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.06"/>
+		</properties>
+		<system-out>client subscribe/get/version/gap/close contract passed
+</system-out>
+	</testcase>
+	<testcase name="T20.client.exit_codes" classname="T20.client.exit_codes" time="0.0601022" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T23.b3.cost_samples" classname="T23.b3.cost_samples" time="0.0831983" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.07"/>
+		</properties>
+		<system-out>{"format":"ock.b3.entry-costs/1","capture":"CTEST_FULL_OUTPUT","scope":"warm prebound Native versus Dynamic decode plus same HostBound; excludes setup, JSON parsing, wire encoding, IPC and CLI process startup","counter_valid":true,"crt_available":false,"asan_available":false,"positive_control":{"cpp_allocations":1,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":65},"samples":[{"entry":"Native","ns":700,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":700,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":700,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":700,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":700,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Native","ns":600,"cpp_allocations":0,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":0},{"entry":"Dynamic","ns":5900,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":5100,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4900,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":5000,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4800,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4800,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4800,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4700,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4700,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4900,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4700,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4700,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4600,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4700,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4700,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4700,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4700,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4800,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4600,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976},{"entry":"Dynamic","ns":4600,"cpp_allocations":63,"crt_allocations":0,"asan_allocations":0,"allocated_bytes":2976}]}
+</system-out>
+	</testcase>
+	<testcase name="T02.b3.entry_parity" classname="T02.b3.entry_parity" time="0.555496" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.07"/>
+		</properties>
+		<system-out>Native / JSON / CLI exact reply parity 4 15 0
+Native / JSON / CLI exact reply parity -1 13 3
+Native / JSON / CLI exact reply parity 100 14 4
+Native / JSON / CLI exact reply parity 1 257 3
+</system-out>
+	</testcase>
+	<testcase name="T20.cli.windows_shell" classname="T20.cli.windows_shell" time="1.04744" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.07"/>
+		</properties>
+		<system-out>cmd-file UTF-8 and one machine result passed
+cmd-stdin UTF-8 and one machine result passed
+powershell-file UTF-8 and one machine result passed
+powershell-stdin UTF-8 and one machine result passed
+raw_shell_artifacts J:\Code\Kernel_v2\build\b2-sdk-release\tests\integration\cli\shell-runs\be6bb922232b4a73858b87667769c9a9
+</system-out>
+	</testcase>
+	<testcase name="T04.binding.field_parity" classname="T04.binding.field_parity" time="0.0535668" status="run">
+		<properties/>
+		<system-out>Native/Dynamic field parity passed
+</system-out>
+	</testcase>
+	<testcase name="T05.catalog.visibility" classname="T05.catalog.visibility" time="0.0702481" status="run">
+		<properties/>
+		<system-out>Catalog policy visibility and cold metadata passed
+</system-out>
+	</testcase>
+	<testcase name="T06.protocol.frames" classname="T06.protocol.frames" time="0.0644473" status="run">
+		<properties/>
+		<system-out>OCK1 partial reads, invalid headers and request directions passed
+</system-out>
+	</testcase>
+	<testcase name="T06.protocol.router" classname="T06.protocol.router" time="0.0596473" status="run">
+		<properties/>
+		<system-out>Router handshake, direction, schema and business result envelope passed
+</system-out>
+	</testcase>
+	<testcase name="T19.protocol.observation_wire" classname="T19.protocol.observation_wire" time="0.0660192" status="run">
+		<properties/>
+		<system-out>Observation wire identity, filter, interval and list bounds passed
+</system-out>
+	</testcase>
+	<testcase name="T19.protocol.subscription" classname="T19.protocol.subscription" time="0.0712052" status="run">
+		<properties/>
+		<system-out>Subscription ack ordering, loss sequence, revoke and cleanup passed
+</system-out>
+	</testcase>
+	<testcase name="T06.binding.native" classname="T06.binding.native" time="0.0673856" status="run">
+		<properties/>
+		<system-out>Dynamic and Native shared TypeContract and governed HostBound passed
+</system-out>
+	</testcase>
+	<testcase name="T06.protocol.outcome" classname="T06.protocol.outcome" time="0.0851832" status="run">
+		<properties/>
+		<system-out>schema compiled
+unknown validated
+unknown encoded
+unknown schema valid
+outcome variant 0
+outcome variant 1
+outcome variant 2
+outcome variant 3
+outcome variant 4
+outcome variant 5
+outcome variant 6
+outcome variant 7
+Outcome wire preserves unknown facts and result encoding failure
+</system-out>
+	</testcase>
+	<testcase name="T19.protocol.get" classname="T19.protocol.get" time="0.0662556" status="run">
+		<properties/>
+		<system-out>Get mock summary, Unknown preservation and send-time revocation passed
+</system-out>
+	</testcase>
+	<testcase name="T03.host.catalog_context" classname="T03.host.catalog_context" time="0.0533957" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.06"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+</testsuite>

@@ -1,0 +1,23 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b2-sdk-debug
+Test project J:/Code/Kernel_v2/build/b2-sdk-debug
+    Start 19: T20.cli.interrupt
+1/2 Test #19: T20.cli.interrupt ................***Failed    6.83 sec
+real CTRL_C_EVENT interrupts open stdin; Host remains usable; empty argv preserved
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\integration\cli\interrupt.py", line 52, in <module>
+    client.wait(timeout=5)
+  File "subprocess.py", line 1264, in wait
+  File "subprocess.py", line 1593, in _wait
+subprocess.TimeoutExpired: Command '['J:/Code/Kernel_v2/build/b2-sdk-debug/apps/ock/Debug/ock.exe', '--instance', 'wait-a329922dec1b4fc4b67550167a728aff', '--timeout-ms', '20000', 'capabilities', 'search']' timed out after 5 seconds
+
+
+0% tests passed, 1 tests failed out of 1
+
+Label Time Summary:
+B3       =   6.83 sec*proc (1 test)
+D2.06    =   6.83 sec*proc (1 test)
+
+Total Test time (real) =   6.83 sec
+
+The following tests FAILED:
+	 19 - T20.cli.interrupt (Failed)                        B3 D2.06

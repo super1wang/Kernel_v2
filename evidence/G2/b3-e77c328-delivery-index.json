@@ -1,0 +1,89 @@
+{
+  "format": "ock.b3.delivery-index/1",
+  "scope": "Kernel and planned stateless consumers only",
+  "reports": [
+    {
+      "profile": "win-msvc-debug",
+      "tests": 28,
+      "report": "evidence/e77c328e75af-3b176665ad4d/win-msvc-debug/D2.07/20260909T023339Z-88b314c47cb5/report.json",
+      "sha256": "8bbffd538c99890c02786b40a94197f1dd27f796fd4e83fe3e03b9a9882e9cc0",
+      "commit": "e77c328e75af19d27afa5a5b6e2720173d07e803",
+      "inputs_sha256": "3b176665ad4d3b50ae431c793dcc0be4f1b91557edb9ba82ffe95c22019914f8"
+    },
+    {
+      "profile": "win-msvc-release",
+      "tests": 26,
+      "report": "evidence/e77c328e75af-3b176665ad4d/win-msvc-release/D2.07/20260909T023531Z-8389316f3edc/report.json",
+      "sha256": "b5619eb4237846a63d7999b3eca6a1fd30596a3c0e4c851b11a2f4d19c8e1447",
+      "commit": "e77c328e75af19d27afa5a5b6e2720173d07e803",
+      "inputs_sha256": "3b176665ad4d3b50ae431c793dcc0be4f1b91557edb9ba82ffe95c22019914f8"
+    },
+    {
+      "profile": "win-msvc-asan",
+      "tests": 26,
+      "report": "evidence/e77c328e75af-3b176665ad4d/win-msvc-asan/D2.07/20260909T023155Z-347662961ca6/report.json",
+      "sha256": "03e5c8e448cc37cdf166c1cccfe9da83e7608ee3cf40456ff208e729fb3e6b11",
+      "commit": "e77c328e75af19d27afa5a5b6e2720173d07e803",
+      "inputs_sha256": "3b176665ad4d3b50ae431c793dcc0be4f1b91557edb9ba82ffe95c22019914f8"
+    }
+  ],
+  "logical_acceptance": [
+    {
+      "task": "D2.05",
+      "decision": "evidence/G2/b3-e77c328-d205-acceptance.json",
+      "sha256": "a2a950d4d5e2e0a78e3631ff47b14406eb02061b80ae717c4b1f414a33300918",
+      "created_at": "2026-09-09T02:37:21.799084+00:00",
+      "status": "Passed"
+    },
+    {
+      "task": "D2.06",
+      "decision": "evidence/G2/b3-e77c328-d206-acceptance.json",
+      "sha256": "1520fb411b41c5cc7488dcb20c536e289c0cde40ad410aa3d783e197adc56034",
+      "created_at": "2026-09-09T02:39:29.654667+00:00",
+      "status": "Passed"
+    },
+    {
+      "task": "D2.07",
+      "decision": "evidence/G2/b3-e77c328-d207-acceptance.json",
+      "sha256": "65a6852b55a4285ae9a537c8cb90d18abbdcc9950a241a9d7ca13aac1bf23aea",
+      "created_at": "2026-09-09T02:41:06.561896+00:00",
+      "status": "Passed"
+    },
+    {
+      "task": "G2",
+      "decision": "evidence/G2/b3-e77c328-g2-acceptance.json",
+      "sha256": "e796ee5ca06e600a8b1cb8c25e60d9f348dea70c4945557d3046a9cd11d8a360",
+      "created_at": "2026-09-09T02:43:00.013818+00:00",
+      "status": "Passed"
+    }
+  ],
+  "costs": "evidence/G2/b3-e77c328-costs.json",
+  "excluded_candidates": [
+    {
+      "report": "evidence/fe0893e61e63-cf06b9adfe9d/win-msvc-debug/D2.07/20260909T022048Z-d2ad5563c357/report.json",
+      "sha256": "7b45ad93115622778da558c73be6b30660b17557399c45a6ab11cf3c61620161",
+      "reason": "CTest truncated successful cost JSON; not used for final acceptance"
+    },
+    {
+      "report": "evidence/fe0893e61e63-cf06b9adfe9d/win-msvc-release/D2.07/20260909T022310Z-e8805409d9b0/report.json",
+      "sha256": "d758e24aa49fb2bfbca4a468e726e833674254a35be49a7663acaaa326998931",
+      "reason": "CTest truncated successful cost JSON; not used for final acceptance"
+    },
+    {
+      "report": "evidence/f0cd96a59082-52e627405f20/win-msvc-asan/D2.07/20260909T022824Z-d0f280bd977e/report.json",
+      "sha256": "6eecf230a375901f7d14e48aa7686a2cf8d12cb8bcec39980ef46dcff446778c",
+      "reason": "ASan cost consumer incorrectly required CRT and ASan positive simultaneously; whole candidate superseded"
+    },
+    {
+      "report": "evidence/f0cd96a59082-52e627405f20/win-msvc-debug/D2.07/20260909T022501Z-c76fbf167a3b/report.json",
+      "sha256": "cb68a0ba48b67e83db24ca69b3b27f3b8025519869588d42dbfabb47a8a2f24a",
+      "reason": "ASan cost consumer incorrectly required CRT and ASan positive simultaneously; whole candidate superseded"
+    },
+    {
+      "report": "evidence/f0cd96a59082-52e627405f20/win-msvc-release/D2.07/20260909T022713Z-4805e8106067/report.json",
+      "sha256": "0c7c107359d37bc7a1ef58d4e63c7e80fbf69535b6199504f21eff08a670953b",
+      "reason": "ASan cost consumer incorrectly required CRT and ASan positive simultaneously; whole candidate superseded"
+    }
+  ],
+  "retained_user_change": "docs/AGENTS.md deletion is not part of B3 commits"
+}

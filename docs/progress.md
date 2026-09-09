@@ -4,13 +4,20 @@
 
 ## 当前生产节点
 
-- 当前分支：`work/d0-kernel-baseline`；本轮被测实现检查点 `6662c4e`，归档与推送状态以实时 Git 为准。
-- 已 Passed：G0、G1、D0.01–D0.06、D1.01–D1.06。**这些 Passed 前置不重验**；D1.05 不重跑。
-- 当前 Development Batch：**B3 / D2.05–D2.07 InProgress**；真实 IPC、授权首字节、ControlClient/CLI 与同 Host 无状态消费者已开始实现，正在补 Shell/安全/背压与双入口验证。B2 / D2.01–D2.04 及 B3 前影响收口 Passed 保留。
-- 当前门禁：**G1 Passed**；G2–G8 未开始。
+- 当前分支：`work/d0-kernel-baseline`；本轮被测实现检查点 `e77c328`，归档与推送状态以实时 Git 为准。
+- 已 Passed：G0–G2、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07。**这些 Passed 前置不重验**；本轮没有重跑 G1/B2 累计矩阵。
+- 当前 Development Batch：**B3 / D2.05–D2.07 Passed**；真实 IPC、授权首字节、ControlClient/CLI、同 Host 无状态消费者和 Shell/双入口闭环已交付。下一批 **B4 / D3.01–D3.03 尚未开始**。
+- 当前门禁：**G2 Passed**；G3–G8 未开始。正式同来源 Debug 28/28、Release 26/26、ASan 26/26，三包和 G2 顺序自动验收均无错误，见 [B3 交付](validation/B3-delivery.md)。
 - Host、Logging、NativeSubset/独立安装消费者及 footprint 正式测量/预算已交付并完成本包验收。
-- 本次恢复已完成：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[本次交付与自动验收](validation/D1.06-resume-delivery.md)。
+- B1 历史恢复结论保留：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[历史交付与自动验收](validation/D1.06-resume-delivery.md)。
 - 工具优化阶段已结束；禁止继续把 Fixture、Evidence、Install Consumer 性能优化或新流程文档设为 D1.06 前置。
+
+## B3 / G2 交付（2026-09-09）
+
+- D2.05、D2.06、D2.07 和 G2 已依 DAG 顺序 Passed；同一 `e77c328` 来源的三份 E03 报告共享物理执行，各包技术结论独立，见[交付与原始证据索引](validation/B3-delivery.md)。
+- 当前 SDK 为 `0.1.0-dev.4 / B3Subset`；薄客户端和实际 CLI 不链接服务端 Runtime/Control/Dynamic，迁移安装、新增公开头、Runtime-only 裁剪及 Native 消费通过。
+- 各配置 Native/Dynamic 各 20 个单次成本样本完整归档。此前 CTest 输出截断和 ASan 正控制条件错误的原始材料均保留，未拼接旧来源成功结果。
+- 真实 Task Provider 尚未接入，CLI list/watch 对 absent 能力拒绝；watch 脚本不代表真实任务验收，D3.07 承接整体任务观察。未扩展其他产品模块。下一批 B4 尚未开始。
 
 ## B3 前影响收口（2026-09-09）
 
@@ -23,7 +30,7 @@
 
 - D2.01–D2.04 均已 Passed；正式 Debug 30/30、Release 28/28、ASan 29/29，同一实现来源，四包独立 SPEC/CODE 与自动验收，详见[交付及证据索引](validation/B2-delivery.md)。
 - 已完成 Data/Binding/Catalog/Control 及安装 SDK；SDK 为 0.1.0-dev.3 / B2Subset。get/list 关闭竞态、复杂 Schema 标记和 void Outcome 编码已收口。
-- 观察仍为 mock 帧级证明，get 只提供摘要；真实 IPC、Task、完整结果与 Plan 不在本批宣称完成。G2 未开始；后续路线为 B3 / D2.05–D2.07。
+- B2 交付时观察仅为 mock 帧级证明，get 只提供摘要；当时真实 IPC、Task、完整结果与 Plan 均未宣称完成。真实 IPC/CLI 与 G2 已由上方 B3 后续交付，真实 Task/完整结果/Plan 仍属后续包。
 - 开发过程及失败原文由 Git 历史和 evidence/bootstrap/B2 保留；不机械重跑 D0/D1 历史 Passed 集合。最终文档/证据归档提交及推送状态以实际 Git 为准。
 
 ## 当前执行硬规则
@@ -59,7 +66,7 @@
 |---|---|
 | G0 | Passed |
 | G1 | Passed |
-| G2 | NotStarted |
+| G2 | Passed |
 | G3 | NotStarted |
 | G4 | NotStarted |
 | G5 | NotStarted |
@@ -89,9 +96,9 @@
 | D2.02 | 实现TypeContract、Schema编译与Native等价绑定 | D2.01、D1.02、D1.05、D0.04 | Passed | Standard | B2 |
 | D2.03 | 实现能力目录、精确命令卡和帮助导出 | D2.02、D1.03、D1.04 | Passed | Standard | B2 |
 | D2.04 | Control方法、观察协议帧与结果映射 | D2.02、D1.04、D0.03、D0.04 | Passed | Critical | B2 |
-| D2.05 | 实现真实Named Pipe与认证会话 | D2.04、D0.06 | NotStarted | Critical | B3 |
-| D2.06 | 实现薄CLI、意图文件和原生/动态演示 | D2.03、D2.05、D1.06 | NotStarted | Standard | B3 |
-| D2.07 | 验收双入口与首次Shell闭环 | D2.06 | NotStarted | Standard | B3 |
+| D2.05 | 实现真实Named Pipe与认证会话 | D2.04、D0.06 | Passed | Critical | B3 |
+| D2.06 | 实现薄CLI、意图文件和原生/动态演示 | D2.03、D2.05、D1.06 | Passed | Standard | B3 |
+| D2.07 | 验收双入口与首次Shell闭环 | D2.06 | Passed | Standard | B3 |
 | D3.01 | Executor Conformance Kit与生产/测试后端 | D1.02、D0.06 | NotStarted | Critical | B4 |
 | D3.02 | 实现公平Ready调度与依赖结构 | D3.01、D1.03 | NotStarted | Critical | B4 |
 | D3.03 | 实现资源归一化、MultiClaim与租约 | D3.02、D1.04 | NotStarted | Critical | B4 |

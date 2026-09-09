@@ -1,0 +1,39 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b2-sdk-debug
+Test project J:/Code/Kernel_v2/build/b2-sdk-debug
+    Start 1: T24.b2.installed_consumer
+1/1 Test #1: T24.b2.installed_consumer ........***Failed    4.99 sec
+argv: ['cmake', '--install', 'J:/Code/Kernel_v2/build/b2-sdk-debug', '--config', 'Debug', '--prefix', 'J:\\Code\\Kernel_v2\\build\\b2-install-g4_nzabb\\original'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\b2-install-g4_nzabb\\consumer-source', '-B', 'J:\\Code\\Kernel_v2\\build\\b2-install-g4_nzabb\\consumer', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\b2-install-g4_nzabb\\relocated'] exit_code: 1
+-- The CXX compiler identification is MSVC 19.44.35216.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring incomplete, errors occurred!
+
+CMake Error at CMakeLists.txt:5 (message):
+  B2 SDK component metadata missing
+
+
+
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_b2.py", line 93, in <module>
+    if __name__ == '__main__': main()
+                               ^^^^^^
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_b2.py", line 77, in main
+    run(base)
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_baseline.py", line 29, in run
+    raise RuntimeError('unexpected command result')
+RuntimeError: unexpected command result
+
+
+0% tests passed, 1 tests failed out of 1
+
+Label Time Summary:
+B2    =   4.99 sec*proc (1 test)
+
+Total Test time (real) =   5.00 sec
+
+The following tests FAILED:
+	  1 - T24.b2.installed_consumer (Failed)                B2

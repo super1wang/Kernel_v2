@@ -1,0 +1,35 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b2-sdk-debug
+Test project J:/Code/Kernel_v2/build/b2-sdk-debug
+    Start 3: T24.b2.native_pruning
+1/1 Test #3: T24.b2.native_pruning ............***Failed    4.79 sec
+argv: ['cmake', '--preset', 'win-msvc-debug', '-B', 'J:\\Code\\Kernel_v2\\build\\native-pruned-sb19321a\\producer', '-DBUILD_TESTING=OFF', '-DOCK_BUILD_COMPONENTS=Runtime', '-DOCK_DEPENDENCY_COMPONENTS=Foundation', '-DOCK_DEPENDENCIES_OFFLINE=ON', '-DPython3_EXECUTABLE=J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe', '-X', 'utf8', 'J:\\Code\\Kernel_v2\\tools\\architecture\\check.py', '--graph', 'J:\\Code\\Kernel_v2\\build\\native-pruned-sb19321a\\producer\\ock-target-graph.json'] exit_code: 1
+{
+  "check_id": "CHECK.D0.02.architecture",
+  "errors": [
+    "公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\control\\client\\include\\ock\\control_client\\client.hpp"
+  ],
+  "scope": "合同目标/公开表面静态检查；无Runtime运行或授权实现"
+}
+
+
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_pruned.py", line 50, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_pruned.py", line 30, in main
+    run([sys.executable,'-X','utf8',str(ROOT/'tools/architecture/check.py'),'--graph',str(producer/'ock-target-graph.json')])
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_baseline.py", line 29, in run
+    raise RuntimeError('unexpected command result')
+RuntimeError: unexpected command result
+
+
+0% tests passed, 1 tests failed out of 1
+
+Label Time Summary:
+B2    =   4.79 sec*proc (1 test)
+
+Total Test time (real) =   4.80 sec
+
+The following tests FAILED:
+	  3 - T24.b2.native_pruning (Failed)                    B2

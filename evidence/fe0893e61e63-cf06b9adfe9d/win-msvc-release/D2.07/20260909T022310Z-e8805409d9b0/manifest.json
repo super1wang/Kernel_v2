@@ -1,0 +1,167 @@
+{
+  "format": "ock.run-manifest/1",
+  "task_id": "D2.07",
+  "profile": "win-msvc-release",
+  "configuration": "Release",
+  "preset": "win-msvc-release",
+  "asan": false,
+  "source_patterns": [
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    "dependencies.lock",
+    "THIRD_PARTY_NOTICES",
+    "cmake/**",
+    "packages/**",
+    "sdk/**",
+    "schemas/**",
+    "tests/**",
+    "tools/**",
+    "examples/**",
+    "docs/contracts/**",
+    "docs/toolchain.md",
+    "docs/01_Architecture_v3.3.md",
+    "docs/02_Execution_Plan_v3.3.md",
+    "AGENTS.md",
+    "docs/plans/B3.md",
+    "docs/adr/README.md",
+    "docs/adr/ADR-b2-closure-boundaries.md",
+    "apps/**",
+    "docs/adr/ADR-b3-pipe-start.md",
+    "docs/reviews/B3-review.md"
+  ],
+  "required_artifacts": [
+    "docs/plans/B3.md",
+    "docs/reviews/B3-review.md",
+    "docs/contracts/b3-ipc-client.md"
+  ],
+  "expected_manifest": "tests/manifests/b3.expected.json",
+  "dependency_lock": "dependencies.lock",
+  "build_dir": "build/b2-sdk-release",
+  "configure": [
+    "cmake",
+    "--preset",
+    "win-msvc-release",
+    "-B",
+    "build/b2-sdk-release",
+    "-DOCK_DEPENDENCY_COMPONENTS=CLI",
+    "-DOCK_DEPENDENCIES_OFFLINE=ON",
+    "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+    "-DOCK_BUILD_B2_TESTS=ON",
+    "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+    "-DOCK_ENABLE_ASAN=OFF",
+    "-DOCK_BUILD_G0_TESTS=OFF",
+    "-DOCK_BUILD_EXECUTION_MODEL_TESTS=OFF",
+    "-DOCK_BUILD_FOUNDATION_TESTS=OFF",
+    "-DOCK_BUILD_CORE_CONTRACTS_TESTS=OFF",
+    "-DOCK_BUILD_REGISTRATION_TESTS=OFF",
+    "-DOCK_BUILD_AUTHORIZATION_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_TESTS=OFF",
+    "-DOCK_BUILD_HOST_TESTS=ON",
+    "-DOCK_BUILD_LOGGING_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_SDK_TESTS=OFF",
+    "-DOCK_BUILD_FOOTPRINT_TESTS=OFF",
+    "-DOCK_BUILD_COMPONENTS=B3Subset"
+  ],
+  "build": [
+    "cmake",
+    "--build",
+    "build/b2-sdk-release",
+    "--config",
+    "Release",
+    "--parallel",
+    "4",
+    "--",
+    "/nr:false"
+  ],
+  "build_outputs": [
+    "build/b2-sdk-release/CMakeCache.txt",
+    "build/b2-sdk-release/ock-target-graph.json",
+    "build/b2-sdk-release/toolchain-Release.json",
+    "build/b2-sdk-release/dependency-acquisition.json",
+    "build/b2-sdk-release/CTestTestfile.cmake",
+    "build/b2-sdk-release/CMakeFiles/CMakeConfigureLog.yaml",
+    "build/b2-sdk-release/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake",
+    "build/b2-sdk-release/tests/unit/data/CTestTestfile.cmake",
+    "build/b2-sdk-release/tests/unit/data/Release/protocol_contract.exe",
+    "build/b2-sdk-release/tests/unit/data/Release/router_contract.exe",
+    "build/b2-sdk-release/tests/unit/data/Release/outcome_wire_contract.exe",
+    "build/b2-sdk-release/tests/unit/data/Release/observation_wire_contract.exe",
+    "build/b2-sdk-release/tests/unit/data/Release/subscription_contract.exe",
+    "build/b2-sdk-release/tests/unit/data/Release/get_contract.exe",
+    "build/b2-sdk-release/tests/unit/data/Release/cursor_contract.exe",
+    "build/b2-sdk-release/tests/unit/data/Release/list_contract.exe",
+    "build/msvc-validation/e8697b7e3597a578/inputs.json",
+    "build/msvc-validation/e8697b7e3597a578/local-tools.props",
+    "build/b2-sdk-release/Release/ock_sdk_metadata_probe.exe",
+    "build/b2-sdk-release/tests/contract/host/Release/ock_host_tests.exe",
+    "build/b2-sdk-release/tests/contract/host/Release/ock_host_fault_tests.exe",
+    "build/b2-sdk-release/tests/contract/host/CTestTestfile.cmake",
+    "build/b2-sdk-release/sdk_api_manifest.json",
+    "build/b2-sdk-release/tests/integration/windows_ipc/Release/ock_ipc_peer.exe",
+    "build/b2-sdk-release/tests/integration/windows_ipc/Release/ock_ipc_pressure_peer.exe",
+    "build/b2-sdk-release/tests/integration/windows_ipc/Release/ock_ipc_observation_peer.exe",
+    "build/b2-sdk-release/tests/integration/cli/Release/ock_client_contract.exe",
+    "build/b2-sdk-release/tests/integration/cli/Release/ock_b3_cost_samples.exe",
+    "build/b2-sdk-release/apps/ock/Release/ock.exe",
+    "build/b2-sdk-release/apps/ock/Release/ock.map",
+    "build/b2-sdk-release/examples/stateless_service/Release/ock_stateless_service.exe",
+    "build/b2-sdk-release/tests/integration/windows_ipc/CTestTestfile.cmake",
+    "build/b2-sdk-release/tests/integration/cli/CTestTestfile.cmake",
+    "build/b2-sdk-release/Release/ock_Adapter_LocalIPC.lib",
+    "build/b2-sdk-release/Release/ock_ControlClient.lib"
+  ],
+  "toolchain_artifact": "build/b2-sdk-release/toolchain-Release.json",
+  "test_regex": "^(T20\\.ipc\\.two_process|T19\\.ipc\\.authorization_start|T22\\.ipc\\.backpressure|T20\\.ipc\\.remote_rejection|T20\\.cli\\.host_roundtrip|T20\\.cli\\.interrupt|T20\\.ipc\\.router_security|T20\\.client\\.protocol|T20\\.client\\.watch|T20\\.client\\.exit_codes|T23\\.b3\\.cost_samples|T02\\.b3\\.entry_parity|T20\\.cli\\.windows_shell|T03\\.host\\.catalog_context|T04\\.binding\\.field_parity|T06\\.binding\\.native|T05\\.catalog\\.visibility|T06\\.protocol\\.frames|T06\\.protocol\\.router|T06\\.protocol\\.outcome|T19\\.protocol\\.observation_wire|T19\\.protocol\\.subscription|T19\\.protocol\\.get|T01\\.architecture\\.dependency_dag|T24\\.sdk\\.version_header|T24\\.b2\\.installed_consumer)$",
+  "repeat": 1,
+  "timeout_seconds": 1800,
+  "checks": [],
+  "review_policy": {
+    "format": "ock.review-policy-binding/1",
+    "mode": "ai-self-review",
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+  },
+  "review_required": [
+    "spec",
+    "code"
+  ],
+  "review_records": [
+    "docs/reviews/B3-spec.json",
+    "docs/reviews/B3-code.json"
+  ],
+  "runtime_artifact_patterns": [
+    "evidence/bootstrap/B2/sdk-install-*/*.json",
+    "evidence/bootstrap/B2/sdk-install-*/*.log",
+    "evidence/bootstrap/B2/sdk-installed_host-*/*.json",
+    "evidence/bootstrap/B2/sdk-installed_host-*/*.log",
+    "evidence/bootstrap/B2/sdk-installed_host-*/commands/*",
+    "evidence/bootstrap/B2/sdk-installed_host-*/actual-traces/**/*",
+    "build/b2-install-*/consumer-source/*",
+    "build/b2-install-*/consumer/Release/*.exe",
+    "build/b2-sdk-release/tests/contract/host/child-runs/**/*",
+    "evidence/bootstrap/B2/sdk-install-*/*.map",
+    "build/b2-sdk-release/tests/integration/cli/shell-runs/**/*"
+  ],
+  "required_runtime_artifacts": [
+    {
+      "pattern": "evidence/bootstrap/B2/sdk-install-*/result.json",
+      "minimum": 1
+    },
+    {
+      "pattern": "evidence/bootstrap/B2/sdk-install-*/installed-thin.map",
+      "minimum": 1
+    },
+    {
+      "pattern": "evidence/bootstrap/B2/sdk-install-*/ock-cli.map",
+      "minimum": 1
+    },
+    {
+      "pattern": "build/b2-sdk-release/tests/integration/cli/shell-runs/*/powershell-stdin.json",
+      "minimum": 1
+    },
+    {
+      "pattern": "build/b2-sdk-release/tests/integration/cli/shell-runs/*/cmd-stdin.json",
+      "minimum": 1
+    }
+  ]
+}

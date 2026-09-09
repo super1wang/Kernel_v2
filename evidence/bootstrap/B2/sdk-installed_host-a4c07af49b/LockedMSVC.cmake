@@ -1,0 +1,47 @@
+# 内核受控验证专用：在 project()/编译器识别之前隔离用户级构建注入。
+# 使用本文件位置，确保 try_compile 子工程定位一致。
+if(NOT CMAKE_GENERATOR MATCHES "^Visual Studio ")
+  message(FATAL_ERROR "LockedMSVC requires the reviewed Visual Studio generator")
+endif()
+# 与原安装逐文件SHA一致的验证副本，不复制常驻遥测上传器。
+# 本设置仅限显式选择该工具链的本地开发工程，不进入SDK导出。
+get_filename_component(_ock_workspace "${CMAKE_CURRENT_LIST_DIR}/.." ABSOLUTE)
+find_program(_ock_isolation_python NAMES python REQUIRED NO_CACHE)
+set(_ock_source_args "")
+if(DEFINED OCK_MSVC_SOURCE_BIN AND NOT OCK_MSVC_SOURCE_BIN STREQUAL "")
+  list(APPEND _ock_source_args --source "${OCK_MSVC_SOURCE_BIN}")
+endif()
+execute_process(COMMAND "${_ock_isolation_python}" -X utf8
+  "${_ock_workspace}/tools/development/msvc_isolation.py"
+  --lock "${CMAKE_CURRENT_LIST_DIR}/msvc-validation-tools.json" ${_ock_source_args}
+  RESULT_VARIABLE _ock_materialize_status OUTPUT_VARIABLE _ock_materialize_json
+  ERROR_VARIABLE _ock_materialize_error TIMEOUT 60)
+if(NOT _ock_materialize_status EQUAL 0)
+  message(FATAL_ERROR "Locked MSVC validation cache rejected: ${_ock_materialize_error}")
+endif()
+string(JSON _ock_tool_properties GET "${_ock_materialize_json}" properties)
+if(DEFINED CMAKE_MSVC_DEBUG_INFORMATION_FORMAT AND NOT CMAKE_MSVC_DEBUG_INFORMATION_FORMAT STREQUAL "Embedded")
+  message(FATAL_ERROR "LockedMSVC requires Embedded debug information (/Z7)")
+endif()
+set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT Embedded)
+set(_ock_isolated_globals "")
+foreach(_ock_global IN LISTS CMAKE_VS_GLOBALS)
+  string(TOLOWER "${_ock_global}" _ock_global_lower)
+  if(NOT _ock_global_lower MATCHES "^(vcpkgenabled|userrootdir|forceimportbeforecpptargets)=")
+    list(APPEND _ock_isolated_globals "${_ock_global}")
+  endif()
+endforeach()
+list(APPEND _ock_isolated_globals "VcpkgEnabled=false" "UserRootDir=${CMAKE_CURRENT_LIST_DIR}/msbuild-user/" "ForceImportBeforeCppTargets=${_ock_tool_properties}")
+set(CMAKE_VS_GLOBALS "${_ock_isolated_globals}")
+list(APPEND CMAKE_TRY_COMPILE_PLATFORM_VARIABLES CMAKE_VS_GLOBALS OCK_MSVC_SOURCE_BIN)
+list(REMOVE_DUPLICATES CMAKE_TRY_COMPILE_PLATFORM_VARIABLES)
+unset(_ock_isolated_globals)
+unset(_ock_global)
+unset(_ock_global_lower)
+unset(_ock_workspace)
+unset(_ock_isolation_python)
+unset(_ock_source_args)
+unset(_ock_materialize_status)
+unset(_ock_materialize_json)
+unset(_ock_materialize_error)
+unset(_ock_tool_properties)
