@@ -1,4 +1,8 @@
 #include "backends.hpp"
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#include <windows.h>
+#include <array>
 #include <future>
 #include <iostream>
 #include <thread>
@@ -14,17 +18,26 @@ int main(int argc,char **argv) try {
   check(argc==3);std::string backend=argv[1],test=argv[2];
   if(test=="real_parallel" || test=="stop_timeout") {
     auto pool=create("cpu_pool");std::promise<void> release;auto wait=release.get_future().share();
+    struct Threads {
+      std::array<HANDLE,2> values{};
+      ~Threads(){for(auto value:values)if(value)CloseHandle(value);}
+    } threads;
+    std::array<DWORD,2> worker_ids{};
     std::atomic<unsigned> entered=0;auto owner=std::make_shared<int>(7);std::weak_ptr<int> weak=owner;
-    for(unsigned i=0;i<2;++i)check(bool(pool->submit(work([&,owner]{++entered;wait.wait();return Result<void>{};}))));
+    for(unsigned i=0;i<2;++i)check(bool(pool->submit(work([&,owner,i]{worker_ids[i]=GetCurrentThreadId();++entered;wait.wait();return Result<void>{};}))));
     owner.reset();auto until=deadline();while(entered!=2 && std::chrono::steady_clock::now()<until)std::this_thread::yield();
     const bool parallel=entered==2;
+    if(parallel)for(unsigned i=0;i<2;++i)threads.values[i]=OpenThread(SYNCHRONIZE,FALSE,worker_ids[i]);
     if(test=="stop_timeout") {
+      auto concurrent_drain=std::async(std::launch::async,[&]{return pool->drain_until(deadline());});
       auto stopped=pool->shutdown_until(std::chrono::steady_clock::now()+std::chrono::milliseconds(5));
       bool failed=!stopped && stopped.error().code()==executor_error(ExecutorErrc::Timeout).code() && !weak.expired();
       bool rejected=!pool->submit(work([]{return Result<void>{};}));release.set_value();
-      check(failed && rejected);
+      check(bool(concurrent_drain.get())&&failed&&rejected);
     } else release.set_value();
     check(bool(pool->shutdown_until(deadline())) && parallel && weak.expired());
+    for(auto thread:threads.values)check(thread&&WaitForSingleObject(thread,0)==WAIT_OBJECT_0);
+    check(bool(pool->shutdown_until(deadline()))&&bool(pool->drain_until(deadline()))&&!pool->in_worker());
   } else if(test=="inline_reentrancy") {
     auto pool=create("inline");unsigned completed=0;
     check(bool(pool->submit(work([&]{check(bool(pool->submit(work([&]{++completed;return Result<void>{};}))));check(completed==1);++completed;return Result<void>{};}))));

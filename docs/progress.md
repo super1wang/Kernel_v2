@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 Embedded 首组实际占用 pilot 发现 CpuPool shutdown 仅 drain、空闲 workers 延迟到最后 owner 才退出；已修复为关闭成功前实际 join，并串行化并发 drain/shutdown。保留 Executor 的真实 Windows 线程句柄已验证退出，含超时/并发 drain/重复关闭及 Host 组合，Debug **10/10**、ASan **10/10**（[最终直接集](../evidence/B5/worker-shutdown-a5a121c3a9/commands.json)）。消费者复用 fixture 并标记真实 Ready、shutdown 与分层 owner 释放；修正前后两组 Debug ABBA pilot 原文均保留（[修正前](../evidence/B5/embedded-pilot-c4cd74851c/pilot.json)、[修正后](../evidence/B5/embedded-pilot-fb0550884a/pilot.json)）。两次 Embedded Ready 均为基准 4 + 内核 3 个线程，修正后 shutdown 即回到 4，不再等待 Bound/Session 释放；这是阶段采样及直接句柄证据，尚非连续线程峰值或正式有限预算。原生样例独立编译运行通过（[安装及命令](../evidence/B5/worker-shutdown-install-14904889e1/commands.json)），分配、Release 纯时延、AutomationHost 对照及 B5/G3 正式验收继续完成。
+
 - B5 Embedded 迁移安装消费者已实际运行同一独占资源上的父子执行：child WaitingResources、父 WaitingChild、父取消传播及双方结果正确；默认内存日志可读，原 40 次 Invoke/Submit 拥有输入对比和最终排空保持。全新 Debug 生产构建、仅 expected/thread_pool 依赖取得、迁移公开 SDK 消费、Data 拒绝及链接 map 检查通过（[原始命令](../evidence/B5/embedded-install-732aa26205/commands.json)）。这是完整执行组合的功能证据，线程/内存/Ready/分配预算及 B5/G3 正式验收仍继续完成。
 
 - B5 组合排空直接验证 Debug **1/1**、ASan **1/1**，各含 8 轮真实 CpuPool/资源等待/业务与 completion 异常/观察回调占用/Host stop；日志可信端口注入 Busy 后保持待清理，解除后最终 quiescent，模块停止不早于执行及观察排空（[命令与原文](../evidence/B5/combined-drain-verified-81fa606f14/commands.json)）。初轮 fixture 线程端口名称冲突导致准入拒绝，失败及超时原文保留；修正仅涉及验证消费者，没有声称修复生产内核死锁。日志项证明 Busy 隔离与收尾合同，不代表文件日志吞吐测量。完整 Embedded/AutomationHost 占用、SDK 阶段及 B5/G3 正式验收继续完成。

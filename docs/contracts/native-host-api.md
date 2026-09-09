@@ -21,6 +21,8 @@ B5 提交存储由可信 Registrar 的四参数 `read/compute` 重载声明 `reg
 
 `make_executions` 只依赖 CoreContracts 的 ExecutorControlPort，由可信组合根提供实际 executor。ExecutionOptions 冻结执行表/控制槽预算、主体调度和资源映射；ResourceRef 的目录 owner 只证明注册寿命，运行期 Lease 必须由后端唯一 ResourceManager 按冻结 claims 取得。未知键、重复 ResourceRef、超限或不合法 claims 在创建时拒绝；未映射的操作声明在接受前拒绝。无资源配置不创建 ResourceManager 或占位 slot。创建成功后 Host 排空执行及 executor，创建失败时工厂保留临时 executor 的排空责任。显式后端允许同步 Read/Compute 的非 inline 声明；异步 Read 必须使用下述拥有型注册重载；其他未支持 shape 仍拒绝，短 Invoke 的资源和线程检查保持。
 
+CpuPool 的 `drain_until` 只排空当前工作，保留可复用 workers；`shutdown_until` 封锁新提交，等待工作及 capture 析构后实际结束并 join workers，不能等外部 Executor owner 析构才释放线程。并发 drain/shutdown 使用独立有期限控制锁串行化池寿命；worker 调用先拒绝，不等待自身。关闭超时保留池，之后可再次关闭；成功关闭后重复 drain/shutdown 成功，新提交拒绝。旧 Host/Bound 的不可变 owner 保留不包含尚未终止的 CpuPool workers。
+
 `HostBound::submit_child(work,args,options)` 复用同一提交链路。只有受管理调用的 WorkContext 带有真实 ExecutionScopePort；Runtime 核对真实 owner、同一服务/SessionAuthority/主体、当前父授权及未关闭的创建阶段。child 具有独立 ExecutionRef，Summary.parent 在接受前固定，沿用当前会话委托范围，期限收紧至父 WorkContext 的期限。伪造、跨服务、跨会话、同步父已返回、异步父已提交 candidate、父已取消或超出有限 child/深度预算均拒绝；不从客户端 ExecutionRef 查找并授予父权限。
 
 同步父调用返回即释放本次运行期 Lease 和 worker 配额，有未结束 child 时进入 WaitingChild；child 终态以可靠 pending 唤醒同一控制循环，所有 child 收尾后父才能 Finalizing/Terminal。父取消默认传给 child；父 body 已完成但仍在 WaitingChild 时取消返回 AlreadyClaimed，不能把 Scheduler body 完成冒充父执行 Terminal。父槽弱持有 child，child 强持有父至自身终态并解除关联。`children_per_execution` 默认 64（允许 1..256）、`max_depth` 默认 32（允许 1..64，顶层为 1）；不支持 detached child 或任意接管。异步 Read 的特殊收尾规则见下。

@@ -1,0 +1,33 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-asan
+Test project J:/Code/Kernel_v2/build/b4-asan
+      Start  27: T12.executor.cpu_pool.ownership_transfer
+ 1/10 Test  #27: T12.executor.cpu_pool.ownership_transfer ...   Passed    0.14 sec
+      Start  28: T12.executor.cpu_pool.exactly_once
+ 2/10 Test  #28: T12.executor.cpu_pool.exactly_once .........   Passed    0.08 sec
+      Start  29: T12.executor.cpu_pool.rejection_cleanup
+ 3/10 Test  #29: T12.executor.cpu_pool.rejection_cleanup ....   Passed    0.05 sec
+      Start  30: T12.executor.cpu_pool.exception_boundary
+ 4/10 Test  #30: T12.executor.cpu_pool.exception_boundary ...   Passed    0.07 sec
+      Start  31: T12.executor.cpu_pool.drain_shutdown
+ 5/10 Test  #31: T12.executor.cpu_pool.drain_shutdown .......   Passed    0.06 sec
+      Start  32: T12.executor.cpu_pool.worker_rejection
+ 6/10 Test  #32: T12.executor.cpu_pool.worker_rejection .....   Passed    0.05 sec
+      Start  33: T12.executor.cpu_pool.queue_full
+ 7/10 Test  #33: T12.executor.cpu_pool.queue_full ...........   Passed    0.05 sec
+      Start  48: T22.executor.real_parallel
+ 8/10 Test  #48: T22.executor.real_parallel .................   Passed    0.05 sec
+      Start  49: T22.executor.stop_timeout
+ 9/10 Test  #49: T22.executor.stop_timeout ..................   Passed    0.06 sec
+      Start 226: T03.native.host_combined_drain
+10/10 Test #226: T03.native.host_combined_drain .............   Passed    1.33 sec
+
+100% tests passed, 0 tests failed out of 10
+
+Label Time Summary:
+B4                     =   0.62 sec*proc (9 tests)
+B5                     =   1.33 sec*proc (1 test)
+D3.01                  =   0.62 sec*proc (9 tests)
+D3.07                  =   1.33 sec*proc (1 test)
+ExecutorConformance    =   0.50 sec*proc (7 tests)
+
+Total Test time (real) =   2.03 sec
