@@ -91,10 +91,11 @@ bool valid_budget(const PolicyBudget &b) {
         b.active_responses, b.active_watches, b.members, b.watches_per_session,
         b.watches_per_principal, b.diagnostics, b.declarations, b.text_bytes,
         b.credential_bytes, b.queued_frames, b.queued_bytes, b.frame_bytes,
-        b.page_size, b.scan_limit, b.inline_bindings, b.active_inline_calls})
+        b.page_size, b.scan_limit, b.inline_bindings, b.active_inline_calls,b.send_coordinators})
     if (!n)
       return false;
   return b.identity_limit && b.generation_limit && b.page_size <= 200 &&
+         b.control_reserved_frames <= b.queued_frames && b.control_reserved_bytes <= b.queued_bytes &&
          b.frame_bytes <= b.queued_bytes && b.session_ttl.count() > 0 &&
          b.action_ttl.count() > 0 && b.page_ttl.count() > 0 &&
          b.queued_ttl.count() > 0;
@@ -899,7 +900,7 @@ PolicyStore::create(PolicyBudget b, const PolicyConfiguration &input,
     auto s = std::make_shared<Store>();
     s->budget = b;
     s->watch_counts.reserve(b.active_watches);
-    s->coordinators.reserve(b.sessions);
+    s->coordinators.reserve(b.send_coordinators);
     s->config = std::make_shared<const PolicyConfiguration>(input);
     s->used = usage;
     s->auth = std::move(auth);
@@ -2103,7 +2104,7 @@ SendCoordinator::create(std::shared_ptr<const SessionAuthority> authority,
       if (!check)
         return make_unexpected(check.error());
       if (s->hold.store->coordinators.size() >=
-          s->hold.store->coordinators.capacity())
+          s->hold.store->budget.send_coordinators)
         return failure<std::unique_ptr<SendCoordinator>>(
             PolicyErrc::BudgetExceeded);
       check = acquire(c->hold);
@@ -2627,8 +2628,10 @@ Result<void> SendCoordinator::enqueue(const WatchAuthorization &authorization,
       check = entry_current(*c->session, f->entries[0], AccessUse::Subscribe);
       if (!check)
         return check;
-      if (s->queued >= s->budget.queued_frames ||
-          f->transmission->bytes().size() > s->budget.queued_bytes - s->bytes)
+      const auto frame_limit=s->budget.queued_frames-s->budget.control_reserved_frames;
+      const auto byte_limit=s->budget.queued_bytes-s->budget.control_reserved_bytes;
+      if (s->queued >= frame_limit || s->bytes > byte_limit ||
+          f->transmission->bytes().size() > byte_limit - s->bytes)
         return deny(PolicyErrc::BudgetExceeded);
       check = acquire(f->hold);
       if (!check)
@@ -2675,7 +2678,8 @@ Result<StartResult> SendCoordinator::start_next() {
         return make_unexpected(check.error());
       if (c->queue.empty())
         return StartResult::NotStarted;
-      f = c->queue.front();
+      auto response=std::find_if(c->queue.begin(),c->queue.end(),[](const auto& frame){return bool(frame->response);});
+      f = response==c->queue.end()?c->queue.front():*response;
     }
     auto source = source_entries(c->session, f->entries);
     Result<StartResult> result = StartResult::NotStarted;
@@ -2725,7 +2729,7 @@ Result<StartResult> SendCoordinator::start_next() {
         s->bytes -= f->transmission->bytes().size();
         f->charged = false;
       }
-      c->queue.erase(c->queue.begin());
+      std::erase(c->queue,f);
       if (unknown)
         retired = drain(*s, c->session.get());
     }

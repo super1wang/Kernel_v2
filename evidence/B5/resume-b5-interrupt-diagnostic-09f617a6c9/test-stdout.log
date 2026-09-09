@@ -1,0 +1,55 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 98
+    Start 98: T20.cli.managed_interrupt
+
+98: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed_interrupt.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe" "J:/Code/Kernel_v2/build/b4-debug/apps/ock/Debug/ock.exe"
+98: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+98: Environment variable modifications: 
+98:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+98: Test timeout computed to be: 90
+98: CLI 54088 ['submit', 'sample.compute'] 0
+98: WATCH first snapshot 38540 {'id': '3', 'jsonrpc': '2.0', 'result': {'evidence': 'Volatile', 'execution_ref': {'execution_id': '6b88dd9ec27465829786554241ed0d00'}, 'fact_summaries': [], 'full_result_available': False, 'host_incarnation': '63084b280a544928c3df3018f9ca0cf9', 'observation_version': '3', 'phase': 'Running', 'progress': {'completed': '0', 'scope': 'ReadOnly', 'total': '0'}, 'projection': 'summary', 'record_state': 'NotRequired', 'writes_blocked': False}} cancel_on_interrupt False
+98: CLI 56516 ['execution', 'get'] 6
+98: Traceback (most recent call last):
+98:   File "J:\Code\Kernel_v2\tests\integration\cli\managed_interrupt.py", line 47, in <module>
+98:     running = call(['execution', 'get', ref])
+98:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+98:   File "J:\Code\Kernel_v2\tests\integration\cli\managed_interrupt.py", line 23, in call
+98:     assert process.returncode == 0, (process.pid, output, error)
+98:            ^^^^^^^^^^^^^^^^^^^^^^^
+98: AssertionError: (56516, b'{"error":{"kind":"TransportOrProtocolFailure","exit_code":6}}\n', b'ock.control.client:4\nTransportOrProtocolFailure\n')
+1/1 Test #98: T20.cli.managed_interrupt ........***Failed    0.86 sec
+CLI 54088 ['submit', 'sample.compute'] 0
+WATCH first snapshot 38540 {'id': '3', 'jsonrpc': '2.0', 'result': {'evidence': 'Volatile', 'execution_ref': {'execution_id': '6b88dd9ec27465829786554241ed0d00'}, 'fact_summaries': [], 'full_result_available': False, 'host_incarnation': '63084b280a544928c3df3018f9ca0cf9', 'observation_version': '3', 'phase': 'Running', 'progress': {'completed': '0', 'scope': 'ReadOnly', 'total': '0'}, 'projection': 'summary', 'record_state': 'NotRequired', 'writes_blocked': False}} cancel_on_interrupt False
+CLI 56516 ['execution', 'get'] 6
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed_interrupt.py", line 47, in <module>
+    running = call(['execution', 'get', ref])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed_interrupt.py", line 23, in call
+    assert process.returncode == 0, (process.pid, output, error)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (56516, b'{"error":{"kind":"TransportOrProtocolFailure","exit_code":6}}\n', b'ock.control.client:4\nTransportOrProtocolFailure\n')
+
+
+0% tests passed, 1 tests failed out of 1
+
+Label Time Summary:
+B5       =   0.86 sec*proc (1 test)
+D3.07    =   0.86 sec*proc (1 test)
+
+Total Test time (real) =   0.89 sec
+
+The following tests FAILED:
+	 98 - T20.cli.managed_interrupt (Failed)                B5 D3.07

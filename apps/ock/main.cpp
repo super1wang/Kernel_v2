@@ -37,6 +37,7 @@ int failed(const foundation::Error &error) {
   if(error.code() == control_client::error(ClientErrc::IntentConflict).code()) return failure(2,"IntentConflict");
   if(error.code() == control_client::error(ClientErrc::MissingCapability).code()) return failure(3,"MissingCapability");
   if(error.code() == control_client::error(ClientErrc::InvalidInput).code()) return failure(2,"InvalidInput");
+  std::cerr<<error.code().domain().name()<<':'<<error.code().value()<<'\n';
   return failure(6,"TransportOrProtocolFailure");
 }
 int output(Result<data::Payload> response) {

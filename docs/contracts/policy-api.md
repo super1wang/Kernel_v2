@@ -20,6 +20,8 @@ struct PolicyBudget {
   std::size_t watches_per_session=32, watches_per_principal=128, diagnostics=128;
   std::size_t declarations=32768, text_bytes=1048576;
   std::size_t credential_bytes=8192, queued_frames=1024, queued_bytes=1048576;
+  std::size_t control_reserved_frames=0, control_reserved_bytes=0;
+  std::size_t send_coordinators=128;
   std::size_t frame_bytes=16384, page_size=200, scan_limit=2000;
   std::uint64_t identity_limit=UINT64_MAX, generation_limit=UINT64_MAX;
   std::chrono::milliseconds session_ttl{3600000}, action_ttl{30000};
@@ -36,7 +38,9 @@ enum class PolicyErrc : std::uint32_t {
 
 使用独立`ock.policy` ErrorDomain，错误正文不包含credential、隐藏主体/对象、查询总数或订阅存在性。未知/无权目标对不受信请求统一为TargetUnavailable；跨连接/未知/旧世代退订统一`removed=false`。内部诊断可区分原因，但有界且不能随公共错误泄露。
 
-所有限制必须为正且有实现可表示上限；TTL checked转换/相加，不接受负数、无限期限或溢出。服务器确定有效deadline为认证、委托、请求上限和配置TTL的最小值，`now >= deadline`即过期。ClockPort使用steady_clock语义；测试钟不得导致公共Context的真实steady_clock检查被绕过。
+所有限制必须为正且有实现可表示上限；可选 `control_reserved_frames/bytes` 可为 0，且不得超过对应队列总限额；TTL checked转换/相加，不接受负数、无限期限或溢出。服务器确定有效deadline为认证、委托、请求上限和配置TTL的最小值，`now >= deadline`即过期。ClockPort使用steady_clock语义；测试钟不得导致公共Context的真实steady_clock检查被绕过。
+
+B5 完整观察装配允许同一会话拥有多个 SendCoordinator。协调器数量由独立有限的 `send_coordinators` 限制，每个协调器仍预留 `queued_frames` 个声明额度；会话数量不限制发送协调器数量。通知排入后必须仍留下配置的控制保留帧/字节，响应可使用总限额；混合队列优先选择响应，通知之间保持顺序。保留量不绕过当前授权、实际传输起点或全局队列总额度。
 
 identity_limit是每Store合计子身份发行的终身上限，generation_limit是该Store及其记录的单调世代上限；可信装配可降低，均为非零uint64，不允许运行中提高或重置。所有发行/递增使用同一checked饱和比较实现，达到上限永久拒绝该发行者/记录的下一次操作；测试设小上限真实触达该分支。全进程Store序号使用同一饱和发行原语、固定UINT64_MAX上限且无重置入口；子128位身份编码进程Store序号与Store内序号。关闭/重新创建Store不能复用前一Store身份，即使每Store上限很小也不会碰撞；不提供任意写generation的测试后门。
 

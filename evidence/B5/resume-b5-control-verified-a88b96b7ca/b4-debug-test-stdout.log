@@ -1,0 +1,298 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 96
+      Start  96: T20.cli.managed_roundtrip
+
+96: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe" "J:/Code/Kernel_v2/build/b4-debug/apps/ock/Debug/ock.exe"
+96: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+96: Environment variable modifications: 
+96:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+96: Test timeout computed to be: 90
+96: CLI 67820 ['submit', 'sample.compute']
+96: CLI 47560 ['execution', 'get']
+96: CLI 12440 ['execution', 'wait']
+96: CLI 38836 ['execution', 'wait']
+96: CLI 67996 ['result', 'read']
+96: CLI 56588 ['execution', 'get']
+96: CLI 39400 ['submit', 'sample.compute']
+96: CLI 62560 ['execution', 'get']
+96: CLI 34604 ['execution', 'wait']
+96: CLI 54428 ['execution', 'cancel']
+96: CLI 24792 ['result', 'read']
+96: CLI 66048 ['execution', 'cancel']
+96: CLI 59188 ['submit', 'sample.compute']
+96: CLI 57148 ['execution', 'wait']
+96: CLI 61416 ['result', 'read']
+96: CLI 61288 ['submit', 'sample.compute']
+96: CLI 49660 ['execution', 'wait']
+96: CLI 46204 ['result', 'read']
+96: CLI 62584 ['submit', 'sample.compute']
+96: CLI 69576 ['execution', 'wait']
+96: CLI 2732 ['result', 'read']
+96: CLI 38816 ['submit', 'sample.compute']
+96: CLI 22960 ['execution', 'wait']
+96: CLI 33252 ['result', 'read']
+96: CLI 32240 ['submit', 'sample.compute']
+96: CLI 68408 ['execution', 'wait']
+96: CLI 23692 ['result', 'read']
+96: CLI 68016 ['submit', 'sample.compute']
+96: CLI 51872 ['execution', 'wait']
+96: CLI 42032 ['result', 'read']
+96: CLI 58148 ['submit', 'sample.compute']
+96: CLI 25468 ['execution', 'wait']
+96: CLI 58604 ['result', 'read']
+96: CLI 53812 ['submit', 'sample.compute']
+96: CLI 38084 ['execution', 'wait']
+96: CLI 69972 ['result', 'read']
+96: CLI 13264 ['submit', 'sample.compute']
+96: CLI 41352 ['execution', 'wait']
+96: CLI 23836 ['result', 'read']
+96: CLI 47088 ['submit', 'sample.compute']
+96: CLI 63948 ['execution', 'wait']
+96: CLI 28548 ['result', 'read']
+96: CLI 49112 ['submit', 'sample.compute']
+96: CLI 66800 ['execution', 'wait']
+96: CLI 68388 ['result', 'read']
+96: CLI 47352 ['submit', 'sample.compute']
+96: CLI 29508 ['execution', 'wait']
+96: CLI 55648 ['result', 'read']
+96: CLI 57392 ['submit', 'sample.compute']
+96: CLI 17740 ['execution', 'wait']
+96: CLI 60352 ['result', 'read']
+96: CLI 53604 ['submit', 'sample.compute']
+96: CLI 44620 ['execution', 'wait']
+96: CLI 27040 ['result', 'read']
+96: CLI 66372 ['submit', 'sample.compute']
+96: CLI 30468 ['execution', 'wait']
+96: CLI 31024 ['result', 'read']
+96: CLI 29204 ['submit', 'sample.compute']
+96: CLI 33356 ['execution', 'wait']
+96: CLI 45180 ['result', 'read']
+96: CLI 23772 ['submit', 'sample.compute']
+96: CLI 24948 ['execution', 'wait']
+96: CLI 32580 ['result', 'read']
+96: CLI 46180 ['submit', 'sample.compute']
+96: CLI 49340 ['execution', 'wait']
+96: CLI 33672 ['result', 'read']
+96: CLI 24108 ['submit', 'sample.compute']
+96: CLI 61104 ['execution', 'wait']
+96: CLI 69756 ['result', 'read']
+96: CLI 45588 ['submit', 'sample.compute']
+96: CLI 66524 ['execution', 'wait']
+96: CLI 56892 ['result', 'read']
+96: CLI 9688 ['execution', 'list']
+96: CLI 25644 ['execution', 'list']
+96: CLI 12980 ['execution', 'list']
+96: CLI 58280 ['execution', 'list']
+96: CLI 65240 ['execution', 'list']
+96: CLI 70184 ['submit', 'sample.compute']
+96: CLI 54516 ['execution', 'watch']
+96: CLI first snapshot 54516 {"id":"3","jsonrpc":"2.0","result":{"evidence":"Volatile","execution_ref":{"execution_id":"fa98a19e23db1719ec919ebb0b192302"},"fact_summaries":[],"full_result_available":false,"host_incarnation":"20a97a8bb63418b1829c7fe751f8ec1b","observation_version":"3","phase":"Running","progress":{"completed":"0","scope":"ReadOnly","total":"0"},"projection":"summary","record_state":"NotRequired","writes_blocked":false}}
+96: CLI 27852 ['execution', 'get']
+96: CLI 65904 ['execution', 'watch']
+96: CLI 67240 ['result', 'read']
+96: CLI 36080 ['execution', 'get']
+96: Managed multi-process submit/get/wait/cancel/result/list/watch and session recycling passed
+ 1/13 Test  #96: T20.cli.managed_roundtrip ....................   Passed   20.32 sec
+test 97
+      Start  97: T20.cli.managed_wire
+
+97: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed_wire.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe"
+97: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+97: Environment variable modifications: 
+97:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+97: Test timeout computed to be: 180
+97: HOST 51132 managed-wire-9f9a125360a34bdfbc26a122f17f167f
+97: HOST 9392 managed-wire-976c12ab8df24552bd21c8903079e5cf
+97: cursor rejection MAC {'code': -32011, 'message': 'CursorInvalid'}
+97: cursor rejection connection {'code': -32011, 'message': 'CursorInvalid'}
+97: cursor rejection Host {'code': -32011, 'message': 'CursorInvalid'}
+97: cursor rejection phase {'code': -32011, 'message': 'CursorInvalid'}
+97: atomic filter rejection, 8-watch quota, cross-connection and repeated unsubscribe passed
+97: real subscribe ACK barrier, events, observation versions and reconnect generation passed
+97: eight live connections with real authorized query coordinators passed
+97: production TTL elapsed seconds 10.94
+97: production TTL elapsed seconds 20.95
+97: production TTL elapsed seconds 30.98
+97: production TTL elapsed seconds 40.0
+97: production TTL elapsed seconds 50.02
+97: production TTL elapsed seconds 60.02
+97: production TTL elapsed seconds 70.05
+97: production TTL elapsed seconds 80.06
+97: production TTL elapsed seconds 90.08
+97: production TTL elapsed seconds 100.11
+97: production TTL elapsed seconds 110.12
+97: production TTL elapsed seconds 120.14
+97: original and continued cursors expired on unchanged real clock; fresh list succeeds
+ 2/13 Test  #97: T20.cli.managed_wire .........................   Passed  122.55 sec
+test 98
+      Start  98: T20.cli.managed_interrupt
+
+98: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed_interrupt.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe" "J:/Code/Kernel_v2/build/b4-debug/apps/ock/Debug/ock.exe"
+98: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+98: Environment variable modifications: 
+98:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+98: Test timeout computed to be: 90
+98: CLI 33064 ['submit', 'sample.compute'] 0
+98: WATCH first snapshot 68672 {'id': '3', 'jsonrpc': '2.0', 'result': {'evidence': 'Volatile', 'execution_ref': {'execution_id': '00ba4a82f03b9af705efc58bab75ea02'}, 'fact_summaries': [], 'full_result_available': False, 'host_incarnation': '7e8a7f52ddc462eac7f2cbc731219b15', 'observation_version': '3', 'phase': 'Running', 'progress': {'completed': '0', 'scope': 'ReadOnly', 'total': '0'}, 'projection': 'summary', 'record_state': 'NotRequired', 'writes_blocked': False}} cancel_on_interrupt False
+98: CLI 56756 ['execution', 'get'] 0
+98: WATCH interrupted 68672 8 {"error":{"kind":"Interrupted","exit_code":8}}
+98:  Interrupted
+98: 
+98: CLI 45248 ['execution', 'wait'] 0
+98: CLI 63996 ['result', 'read'] 0
+98: CLI 54992 ['submit', 'sample.compute'] 0
+98: WATCH first snapshot 66100 {'id': '3', 'jsonrpc': '2.0', 'result': {'evidence': 'Volatile', 'execution_ref': {'execution_id': '58a614d23d4600e2975d6b38182eb83e'}, 'fact_summaries': [], 'full_result_available': False, 'host_incarnation': '7e8a7f52ddc462eac7f2cbc731219b15', 'observation_version': '3', 'phase': 'Running', 'progress': {'completed': '0', 'scope': 'ReadOnly', 'total': '0'}, 'projection': 'summary', 'record_state': 'NotRequired', 'writes_blocked': False}} cancel_on_interrupt True
+98: CLI 54196 ['execution', 'get'] 0
+98: WATCH interrupted 66100 8 {"id":"2","jsonrpc":"2.0","result":{"disposition":"AlreadyClaimed","execution_ref":{"execution_id":"58a614d23d4600e2975d6b38182eb83e"},"host_incarnation":"7e8a7f52ddc462eac7f2cbc731219b15"}}
+98: {"error":{"kind":"Interrupted","exit_code":8}}
+98:  Interrupted
+98: 
+98: CLI 65672 ['execution', 'wait'] 0
+98: CLI 58752 ['result', 'read'] 0
+98: real managed CTRL_C_EVENT: default preserves execution; explicit flag requests cooperative cancellation
+ 3/13 Test  #98: T20.cli.managed_interrupt ....................   Passed    7.40 sec
+test 115
+      Start 115: T19.protocol.subscription
+
+115: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\Debug\subscription_contract.exe "J:/Code/Kernel_v2/schemas/rpc-v1/notifications.schema.json" "J:/Code/Kernel_v2/schemas/rpc-v1/common.schema.json"
+115: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/unit/data
+115: Environment variable modifications: 
+115:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+115: Test timeout computed to be: 20
+115: Subscription ack ordering, loss sequence, revoke and cleanup passed
+ 4/13 Test #115: T19.protocol.subscription ....................   Passed    0.47 sec
+test 195
+      Start 195: T19.policy.subscription_connection_cleanup
+
+195: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T19.policy.subscription_connection_cleanup"
+195: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+195: Environment variables: 
+195:  MSBUILDDISABLENODEREUSE=1
+195: Environment variable modifications: 
+195:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+195: Test timeout computed to be: 600
+ 5/13 Test #195: T19.policy.subscription_connection_cleanup ...   Passed    0.07 sec
+test 197
+      Start 197: T20.policy.control_queue_reserve
+
+197: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T20.policy.control_queue_reserve"
+197: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+197: Environment variables: 
+197:  MSBUILDDISABLENODEREUSE=1
+197: Environment variable modifications: 
+197:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+197: Test timeout computed to be: 600
+ 6/13 Test #197: T20.policy.control_queue_reserve .............   Passed    0.08 sec
+test 198
+      Start 198: T20.policy.coordinator_budget
+
+198: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T20.policy.coordinator_budget"
+198: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+198: Environment variables: 
+198:  MSBUILDDISABLENODEREUSE=1
+198: Environment variable modifications: 
+198:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+198: Test timeout computed to be: 600
+ 7/13 Test #198: T20.policy.coordinator_budget ................   Passed    0.07 sec
+test 199
+      Start 199: T20.policy.failed_start_not_started
+
+199: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T20.policy.failed_start_not_started"
+199: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+199: Environment variables: 
+199:  MSBUILDDISABLENODEREUSE=1
+199: Environment variable modifications: 
+199:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+199: Test timeout computed to be: 600
+ 8/13 Test #199: T20.policy.failed_start_not_started ..........   Passed    0.06 sec
+test 201
+      Start 201: T20.policy.queued_revoke_drop
+
+201: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T20.policy.queued_revoke_drop"
+201: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+201: Environment variables: 
+201:  MSBUILDDISABLENODEREUSE=1
+201: Environment variable modifications: 
+201:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+201: Test timeout computed to be: 600
+ 9/13 Test #201: T20.policy.queued_revoke_drop ................   Passed    0.11 sec
+test 203
+      Start 203: T20.policy.unknown_start_no_retry
+
+203: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T20.policy.unknown_start_no_retry"
+203: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+203: Environment variables: 
+203:  MSBUILDDISABLENODEREUSE=1
+203: Environment variable modifications: 
+203:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+203: Test timeout computed to be: 600
+10/13 Test #203: T20.policy.unknown_start_no_retry ............   Passed    0.05 sec
+test 204
+      Start 204: T20.policy.unsubscribe_inflight
+
+204: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T20.policy.unsubscribe_inflight"
+204: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+204: Environment variables: 
+204:  MSBUILDDISABLENODEREUSE=1
+204: Environment variable modifications: 
+204:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+204: Test timeout computed to be: 600
+11/13 Test #204: T20.policy.unsubscribe_inflight ..............   Passed    0.05 sec
+test 223
+      Start 223: T03.native.host_observation_drain
+
+223: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\Debug\ock_native_tests.exe "T03.native.host_observation_drain"
+223: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/native
+223: Environment variables: 
+223:  MSBUILDDISABLENODEREUSE=1
+223: Environment variable modifications: 
+223:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+223: Test timeout computed to be: 600
+12/13 Test #223: T03.native.host_observation_drain ............   Passed    0.29 sec
+test 234
+      Start 234: T03.native.observation_lease_drain
+
+234: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\Debug\ock_native_tests.exe "T03.native.observation_lease_drain"
+234: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/native
+234: Environment variables: 
+234:  MSBUILDDISABLENODEREUSE=1
+234: Environment variable modifications: 
+234:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+234: Test timeout computed to be: 600
+13/13 Test #234: T03.native.observation_lease_drain ...........   Passed    0.08 sec
+
+The following tests passed:
+	T20.cli.managed_roundtrip
+	T20.cli.managed_wire
+	T20.cli.managed_interrupt
+	T19.protocol.subscription
+	T19.policy.subscription_connection_cleanup
+	T20.policy.control_queue_reserve
+	T20.policy.coordinator_budget
+	T20.policy.failed_start_not_started
+	T20.policy.queued_revoke_drop
+	T20.policy.unknown_start_no_retry
+	T20.policy.unsubscribe_inflight
+	T03.native.host_observation_drain
+	T03.native.observation_lease_drain
+
+100% tests passed, 0 tests failed out of 13
+
+Label Time Summary:
+B5       = 150.64 sec*proc (5 tests)
+D1.04    =   0.50 sec*proc (7 tests)
+D3.04    =   0.36 sec*proc (2 tests)
+D3.07    = 150.28 sec*proc (3 tests)
+
+Total Test time (real) = 151.64 sec

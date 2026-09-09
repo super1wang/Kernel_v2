@@ -1,0 +1,123 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 98
+    Start  98: T20.cli.managed_interrupt
+
+98: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed_interrupt.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe" "J:/Code/Kernel_v2/build/b4-debug/apps/ock/Debug/ock.exe"
+98: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+98: Environment variable modifications: 
+98:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+98: Test timeout computed to be: 90
+98: CLI 50260 ['submit', 'sample.compute'] 0
+98: WATCH first snapshot 46264 {'id': '3', 'jsonrpc': '2.0', 'result': {'evidence': 'Volatile', 'execution_ref': {'execution_id': 'b2707e9417a760180307194a24495e51'}, 'fact_summaries': [], 'full_result_available': False, 'host_incarnation': '9e454343efdf9f158b81cff0304ed7b5', 'observation_version': '3', 'phase': 'Running', 'progress': {'completed': '0', 'scope': 'ReadOnly', 'total': '0'}, 'projection': 'summary', 'record_state': 'NotRequired', 'writes_blocked': False}} cancel_on_interrupt False
+98: CLI 63732 ['execution', 'get'] 0
+98: WATCH interrupted 46264 8 {"error":{"kind":"Interrupted","exit_code":8}}
+98:  Interrupted
+98: 
+98: CLI 12440 ['execution', 'wait'] 0
+98: CLI 70592 ['result', 'read'] 0
+98: CLI 47024 ['submit', 'sample.compute'] 0
+98: WATCH first snapshot 61484 {'id': '3', 'jsonrpc': '2.0', 'result': {'evidence': 'Volatile', 'execution_ref': {'execution_id': 'ef2fd828a363e8d7c5e572c5694da5e0'}, 'fact_summaries': [], 'full_result_available': False, 'host_incarnation': '9e454343efdf9f158b81cff0304ed7b5', 'observation_version': '3', 'phase': 'Running', 'progress': {'completed': '0', 'scope': 'ReadOnly', 'total': '0'}, 'projection': 'summary', 'record_state': 'NotRequired', 'writes_blocked': False}} cancel_on_interrupt True
+98: CLI 44016 ['execution', 'get'] 0
+98: WATCH interrupted 61484 8 {"id":"2","jsonrpc":"2.0","result":{"disposition":"AlreadyClaimed","execution_ref":{"execution_id":"ef2fd828a363e8d7c5e572c5694da5e0"},"host_incarnation":"9e454343efdf9f158b81cff0304ed7b5"}}
+98: {"error":{"kind":"Interrupted","exit_code":8}}
+98:  Interrupted
+98: 
+98: CLI 49856 ['execution', 'wait'] 0
+98: CLI 51672 ['result', 'read'] 0
+98: real managed CTRL_C_EVENT: default preserves execution; explicit flag requests cooperative cancellation
+1/7 Test  #98: T20.cli.managed_interrupt ....................   Passed    8.03 sec
+test 195
+    Start 195: T19.policy.subscription_connection_cleanup
+
+195: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T19.policy.subscription_connection_cleanup"
+195: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+195: Environment variables: 
+195:  MSBUILDDISABLENODEREUSE=1
+195: Environment variable modifications: 
+195:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+195: Test timeout computed to be: 600
+2/7 Test #195: T19.policy.subscription_connection_cleanup ...   Passed    0.09 sec
+test 197
+    Start 197: T20.policy.control_queue_reserve
+
+197: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T20.policy.control_queue_reserve"
+197: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+197: Environment variables: 
+197:  MSBUILDDISABLENODEREUSE=1
+197: Environment variable modifications: 
+197:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+197: Test timeout computed to be: 600
+3/7 Test #197: T20.policy.control_queue_reserve .............   Passed    0.09 sec
+test 198
+    Start 198: T20.policy.coordinator_budget
+
+198: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T20.policy.coordinator_budget"
+198: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+198: Environment variables: 
+198:  MSBUILDDISABLENODEREUSE=1
+198: Environment variable modifications: 
+198:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+198: Test timeout computed to be: 600
+4/7 Test #198: T20.policy.coordinator_budget ................   Passed    0.07 sec
+test 199
+    Start 199: T20.policy.failed_start_not_started
+
+199: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T20.policy.failed_start_not_started"
+199: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+199: Environment variables: 
+199:  MSBUILDDISABLENODEREUSE=1
+199: Environment variable modifications: 
+199:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+199: Test timeout computed to be: 600
+5/7 Test #199: T20.policy.failed_start_not_started ..........   Passed    0.09 sec
+test 203
+    Start 203: T20.policy.unknown_start_no_retry
+
+203: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T20.policy.unknown_start_no_retry"
+203: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+203: Environment variables: 
+203:  MSBUILDDISABLENODEREUSE=1
+203: Environment variable modifications: 
+203:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+203: Test timeout computed to be: 600
+6/7 Test #203: T20.policy.unknown_start_no_retry ............   Passed    0.07 sec
+test 204
+    Start 204: T20.policy.unsubscribe_inflight
+
+204: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\contract\authorization\Debug\ock_policy_tests.exe "T20.policy.unsubscribe_inflight"
+204: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/contract/authorization
+204: Environment variables: 
+204:  MSBUILDDISABLENODEREUSE=1
+204: Environment variable modifications: 
+204:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+204: Test timeout computed to be: 600
+7/7 Test #204: T20.policy.unsubscribe_inflight ..............   Passed    0.08 sec
+
+The following tests passed:
+	T20.cli.managed_interrupt
+	T19.policy.subscription_connection_cleanup
+	T20.policy.control_queue_reserve
+	T20.policy.coordinator_budget
+	T20.policy.failed_start_not_started
+	T20.policy.unknown_start_no_retry
+	T20.policy.unsubscribe_inflight
+
+100% tests passed, 0 tests failed out of 7
+
+Label Time Summary:
+B5       =   8.03 sec*proc (1 test)
+D1.04    =   0.49 sec*proc (6 tests)
+D3.07    =   8.03 sec*proc (1 test)
+
+Total Test time (real) =   8.55 sec

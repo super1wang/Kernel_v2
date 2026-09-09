@@ -246,4 +246,28 @@ inline void subscription_connection_cleanup() {
   CHECK(sink_a->size == 0 && sink_a->starts == 0);
   CHECK(env.source->rows[0].second.summary->value().phase == ExecutionPhase::Running);
 }
+inline void coordinator_budget() {
+  PolicyBudget budget;budget.sessions=1;budget.send_coordinators=3;budget.queued_frames=2;
+  Env env(budget);auto sink=std::make_shared<Sink>();
+  auto first=sender(env.session,sink),second=sender(env.session,sink),third=sender(env.session,sink);
+  CHECK(!SendCoordinator::create(env.session,sink,std::make_shared<Encoder>()));
+  second.reset();auto replacement=sender(env.session,sink);CHECK(replacement);
+  CHECK(!SendCoordinator::create(env.session,sink,std::make_shared<Encoder>()));
+}
+inline void control_queue_reserve() {
+  for(bool byte_limited:{false,true}) {
+    PolicyBudget budget;budget.queued_frames=byte_limited?4:2;budget.queued_bytes=byte_limited?4:16;
+    budget.frame_bytes=2;budget.control_reserved_frames=1;budget.control_reserved_bytes=2;
+    Env env(budget);auto sink=std::make_shared<Sink>();auto send=sender(env.session,sink);auto observed=watch(env);
+    CHECK(send->enqueue(*observed,hint(env)));
+    CHECK(!send->enqueue(*observed,hint(env))); // 分别由帧/字节保留拒绝。
+    CHECK(send->enqueue_response(response(env)));
+    CHECK(send->start_next()==StartResult::Started);received(*sink,ProjectionKind::Summary);
+    CHECK(send->start_next()==StartResult::Started);
+    CHECK(sink->starts==2&&sink->size==4&&sink->data[3]==std::byte(static_cast<unsigned>(ProjectionKind::Hint)));
+    CHECK(send->start_next()==StartResult::NotStarted);
+    budget.control_reserved_frames=budget.queued_frames+1;
+    CHECK(!PolicyStore::create(budget,configuration(),env.auth,env.clock,env.digest,env.source));
+  }
+}
 } // namespace policy_test::send_cases

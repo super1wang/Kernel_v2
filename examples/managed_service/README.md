@@ -36,4 +36,8 @@ $managedCli = '.\build\b4-debug\apps\ock\Debug\ock.exe'
 
 Host Draining 拒绝新观察注册，已有观察可继续有限发送；最终关闭移除监听并等待在途回调及其 owner 释放，再报告 quiescent。可信组合根持有原始观察源，普通调用者仍只能通过既有 Policy/Control 查询与订阅。
 
-watch 首个快照立即输出。开发验证还覆盖：观察进程取得非终态快照后被关闭，执行继续；另一 watch 重连后准确确认终态，结果未观察到 stop。此用例不代替 Ctrl+C 或 `--cancel-on-interrupt` 验证。
+watch 首个快照立即输出。开发验证还覆盖：观察进程取得非终态快照后被关闭，执行继续；另一 watch 重连后准确确认终态，结果未观察到 stop。
+
+Policy 显式配置 48 个发送协调器，供最多 8 个连接分别装配六个端口；协调器数量与 16 个会话额度独立。排队总限额为 256 帧/1 MiB，其中 16 帧/64 KiB 保留给可靠控制响应，通知不能占用；同一协调器优先发送可靠响应，首字节前仍检查当前授权。
+
+`T20.cli.managed_interrupt` 向本测试创建的隐藏控制台发送真实 Ctrl+C：默认仅停止 watch，结果 `stop_observed=false`；显式 `--cancel-on-interrupt` 请求协作取消，结果 `stop_observed=true`，两种观察中断均返回退出码 8。`T20.cli.managed_wire` 验证八连接、订阅 ACK/配额/重连世代、游标绑定拒绝、分页 upper，以及不修改时钟或配置的真实 120 s 游标过期。慢流、实际撤权组合和 G3 正式验收仍需完成。

@@ -770,6 +770,8 @@ int main(int argc, char **argv) {
         {"T20.policy.unknown_start_no_retry",
          send_cases::unknown_start_no_retry},
         {"T20.policy.unsubscribe_inflight", send_cases::unsubscribe_inflight},
+        {"T20.policy.coordinator_budget", send_cases::coordinator_budget},
+        {"T20.policy.control_queue_reserve", send_cases::control_queue_reserve},
         {"T19.policy.subscription_connection_cleanup",
          send_cases::subscription_connection_cleanup},
         {"T07.policy.owner_scope", owner_scope},

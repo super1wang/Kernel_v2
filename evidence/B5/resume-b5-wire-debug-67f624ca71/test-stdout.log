@@ -1,0 +1,53 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 97
+    Start 97: T20.cli.managed_wire
+
+97: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed_wire.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe"
+97: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+97: Environment variable modifications: 
+97:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+97: Test timeout computed to be: 180
+97: HOST 67936 managed-wire-e908bbef3c46401d9c8ea6ec8902cffd
+97: HOST 12484 managed-wire-ec5ef5920e854b329580dd015f7a3f1d
+97: cursor rejection MAC {'code': -32011, 'message': 'CursorInvalid'}
+97: cursor rejection connection {'code': -32011, 'message': 'CursorInvalid'}
+97: cursor rejection Host {'code': -32011, 'message': 'CursorInvalid'}
+97: cursor rejection phase {'code': -32011, 'message': 'CursorInvalid'}
+97: atomic filter rejection, 8-watch quota, cross-connection and repeated unsubscribe passed
+97: real subscribe ACK barrier, events, observation versions and reconnect generation passed
+97: production TTL elapsed seconds 10.81
+97: production TTL elapsed seconds 20.83
+97: production TTL elapsed seconds 30.84
+97: production TTL elapsed seconds 40.88
+97: production TTL elapsed seconds 50.89
+97: production TTL elapsed seconds 60.91
+97: production TTL elapsed seconds 70.92
+97: production TTL elapsed seconds 80.95
+97: production TTL elapsed seconds 90.95
+97: production TTL elapsed seconds 100.97
+97: production TTL elapsed seconds 110.0
+97: production TTL elapsed seconds 120.03
+97: original and continued cursors expired on unchanged real clock; fresh list succeeds
+1/1 Test #97: T20.cli.managed_wire .............   Passed  122.62 sec
+
+The following tests passed:
+	T20.cli.managed_wire
+
+100% tests passed, 0 tests failed out of 1
+
+Label Time Summary:
+B5       = 122.62 sec*proc (1 test)
+D3.07    = 122.62 sec*proc (1 test)
+
+Total Test time (real) = 122.65 sec

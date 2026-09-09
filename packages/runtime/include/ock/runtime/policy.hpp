@@ -28,6 +28,8 @@ struct PolicyBudget {
               credential_bytes = 8192;
   std::size_t queued_frames = 1024, queued_bytes = 1048576, frame_bytes = 16384,
               page_size = 200, scan_limit = 2000;
+  std::size_t control_reserved_frames = 0, control_reserved_bytes = 0;
+  std::size_t send_coordinators = 128;
   std::uint64_t identity_limit = (std::numeric_limits<std::uint64_t>::max)(),
                 generation_limit = (std::numeric_limits<std::uint64_t>::max)();
   std::chrono::milliseconds session_ttl{3600000}, action_ttl{30000},

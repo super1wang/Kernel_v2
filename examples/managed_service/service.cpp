@@ -113,6 +113,11 @@ struct Service::State {
   std::shared_ptr<Factory> factory=std::make_shared<Factory>(threads);
   std::mutex mutex;
   std::vector<std::shared_ptr<local_ipc::Connection>> connections;
+  std::optional<foundation::ErrorCode> connection_error;
+  std::string_view error_stage;
+  void failed(std::string_view stage,foundation::ErrorCode code) {
+    std::lock_guard lock(mutex);connection_error=code;error_stage=stage;
+  }
   struct Context {
     std::shared_ptr<host::HostSession> session;
     std::optional<control::Router> router;
@@ -169,6 +174,8 @@ Result<std::unique_ptr<Service>> Service::create(std::string sid) {
   auto state=std::make_shared<State>();state->auth->allowed_sid=std::move(sid);
   host::HostOptions options;options.policy.sessions=16;options.policy.inline_bindings=32;options.policy.frame_bytes=65536;
   options.policy.watches_per_session=8;options.policy.watches_per_principal=32;options.policy.active_watches=64;
+  options.policy.queued_frames=256;options.policy.control_reserved_frames=16;options.policy.control_reserved_bytes=65536;
+  options.policy.send_coordinators=48;
   auto host=host::NativeHost::create(options,configuration(),{state->auth,state->clock,std::make_shared<Digest>(),state->threads,{},state->factory});
   if(!host)return foundation::make_unexpected(host.error());state->host=std::move(*host);
   auto service=std::unique_ptr<Service>(new Service(state));
@@ -207,9 +214,9 @@ Result<std::unique_ptr<local_ipc::Server>> Service::listen(std::string instance)
       auto connection=weak.lock();if(!connection)return;Threads::Scope thread(*state->threads);
       if(!*context) {
         auto peer=connection->peer();if(!peer){connection->close();return;}
-        auto composed=state->compose(*peer,connection);if(!composed){connection->close();return;}*context=std::move(*composed);
+        auto composed=state->compose(*peer,connection);if(!composed){state->failed("compose",composed.error().code());connection->close();return;}*context=std::move(*composed);
       }
-      auto response=(*context)->router->dispatch(payload.view());if(!response){connection->close();return;}
+      auto response=(*context)->router->dispatch(payload.view());if(!response){state->failed("dispatch",response.error().code());connection->close();return;}
       if(response->queued)return;
       if(response->json.empty()){connection->close();return;}
       auto value=data::Payload::parse(response->json);if(!value){connection->close();return;}
@@ -217,10 +224,13 @@ Result<std::unique_ptr<local_ipc::Server>> Service::listen(std::string instance)
       if(response->close){(*context)->router->close();connection->close_after_flush();}
     },[context]{if(*context)(*context)->close();context->reset();},[state,weak,context] {
       if(!*context)return;Threads::Scope thread(*state->threads);
-      if(auto events=state->factory->events.lock();events&&!events->pump(64)){if(auto connection=weak.lock())connection->close();return;}
-      for(const auto& query:(*context)->queries)if(!query->pump()){if(auto connection=weak.lock())connection->close();return;}
-      if(!(*context)->list->pump()){if(auto connection=weak.lock())connection->close();return;}
-      if(!(*context)->subscriptions->pump()){if(auto connection=weak.lock())connection->close();return;}
+      auto failed=[&](std::string_view stage,const auto& result){
+        if(result)return false;state->failed(stage,result.error().code());if(auto connection=weak.lock())connection->close();return true;
+      };
+      if(auto events=state->factory->events.lock();events&&failed("events",events->pump(64)))return;
+      for(const auto& query:(*context)->queries)if(failed("query",query->pump()))return;
+      if(failed("list",(*context)->list->pump()))return;
+      (void)failed("subscription",(*context)->subscriptions->pump());
     });
   });
 }
@@ -229,6 +239,9 @@ Result<void> Service::shutdown() {
   {std::lock_guard lock(state->mutex);connections.swap(state->connections);}
   for(const auto& connection:connections)connection->close();
   bool drained=true;for(const auto& connection:connections)drained=connection->wait_closed(std::chrono::seconds(5))&&drained;
+  std::optional<foundation::ErrorCode> error;std::string_view stage;
+  {std::lock_guard lock(state->mutex);error=std::exchange(state->connection_error,{});stage=state->error_stage;}
+  if(error)std::cerr<<"Connection failure "<<stage<<' '<<error->domain().name()<<':'<<error->value()<<'\n';
   if(state->host)drained=state->host->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(5)).quiescent&&drained;
   if(!drained)return foundation::make_unexpected(host::host_error(host::HostErrc::BudgetExceeded));return {};
 }
