@@ -1,0 +1,43 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+Test project J:/Code/Kernel_v2/build/b4-debug
+      Start  6: T01.architecture.dependency_dag
+ 1/16 Test  #6: T01.architecture.dependency_dag ............................   Passed    0.34 sec
+      Start 63: T13.resources.alias_read_write_same_slot
+ 2/16 Test #63: T13.resources.alias_read_write_same_slot ...................   Passed    0.11 sec
+      Start 64: T13.resources.multi_claim_partial_failure_zero_occupancy
+ 3/16 Test #64: T13.resources.multi_claim_partial_failure_zero_occupancy ...   Passed    0.03 sec
+      Start 65: T13.resources.aggregate_overflow
+ 4/16 Test #65: T13.resources.aggregate_overflow ...........................   Passed    0.03 sec
+      Start 66: T13.resources.exclusive_shared_units
+ 5/16 Test #66: T13.resources.exclusive_shared_units .......................   Passed    0.03 sec
+      Start 67: T13.resources.lease_only_own_release
+ 6/16 Test #67: T13.resources.lease_only_own_release .......................   Passed    0.03 sec
+      Start 68: T13.resources.unknown_key_bounded
+ 7/16 Test #68: T13.resources.unknown_key_bounded ..........................   Passed    0.03 sec
+      Start 69: T13.resources.waiter_release_race
+ 8/16 Test #69: T13.resources.waiter_release_race ..........................   Passed    0.05 sec
+      Start 70: T13.resources.waiter_cancel
+ 9/16 Test #70: T13.resources.waiter_cancel ................................   Passed    0.05 sec
+      Start 71: T13.resources.callback_outside_lock
+10/16 Test #71: T13.resources.callback_outside_lock ........................   Passed    0.03 sec
+      Start 72: T13.resources.compute_commit_separation
+11/16 Test #72: T13.resources.compute_commit_separation ....................   Passed    0.03 sec
+      Start 73: T13.resources.parent_wait_rejects_held_child_resources
+12/16 Test #73: T13.resources.parent_wait_rejects_held_child_resources .....   Passed    0.03 sec
+      Start 74: T13.resources.scheduler_resource_wakeup
+13/16 Test #74: T13.resources.scheduler_resource_wakeup ....................   Passed    0.04 sec
+      Start 75: T13.resources.lease_reentrant_destruction
+14/16 Test #75: T13.resources.lease_reentrant_destruction ..................   Passed    0.03 sec
+      Start 76: T13.resources.waiter_reentrant_destruction
+15/16 Test #76: T13.resources.waiter_reentrant_destruction .................   Passed    0.03 sec
+      Start 77: T13.resources.resource_key_boundaries
+16/16 Test #77: T13.resources.resource_key_boundaries ......................   Passed    0.03 sec
+
+100% tests passed, 0 tests failed out of 16
+
+Label Time Summary:
+B4       =   0.59 sec*proc (15 tests)
+D0.02    =   0.34 sec*proc (1 test)
+D3.03    =   0.59 sec*proc (15 tests)
+
+Total Test time (real) =   0.98 sec

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="18"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-U2F62TA"
+	time="2"
+	timestamp="2026-09-09T16:14:09"
+	>
+	<testcase name="T01.architecture.dependency_dag" classname="T01.architecture.dependency_dag" time="0.324105" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>{
+  "check_id": "CHECK.D0.02.architecture",
+  "errors": [],
+  "scope": "合同目标/公开表面静态检查；无Runtime运行或授权实现"
+}
+</system-out>
+	</testcase>
+	<testcase name="T23.dependencies.asan_healthy" classname="T23.dependencies.asan_healthy" time="0.133549" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T23.dependencies.asan_detects_heap_overflow" classname="T23.dependencies.asan_detects_heap_overflow" time="0.377111" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.06-a"/>
+		</properties>
+		<system-out>=================================================================
+==33160==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x008400f20300 at pc 0x7ff63c1111a3 bp 0x0080000ff800 sp 0x0080000ff808
+WRITE of size 4 at 0x008400f20300 thread T0
+    #0 0x7ff63c1111a2 in main J:\Code\Kernel_v2\tests\dependencies\probes\asan.cpp:5
+    #1 0x7ff63c114838 in invoke_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:78
+    #2 0x7ff63c114781 in __scrt_common_main_seh D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:288
+    #3 0x7ff63c11463d in __scrt_common_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:330
+    #4 0x7ff63c1148ad in mainCRTStartup D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_main.cpp:16
+    #5 0x7ffa3efb5766  (C:\WINDOWS\System32\KERNEL32.DLL+0x180035766)
+    #6 0x7ffa3f69491f  (C:\WINDOWS\SYSTEM32\ntdll.dll+0x1800f491f)
+
+0x008400f20300 is located 0 bytes after 16-byte region [0x008400f202f0,0x008400f20300)
+allocated by ...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.alias_read_write_same_slot" classname="T13.resources.alias_read_write_same_slot" time="0.169566" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>alias_read_write_same_slot passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.multi_claim_partial_failure_zero_occupancy" classname="T13.resources.multi_claim_partial_failure_zero_occupancy" time="0.0746913" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>multi_claim_partial_failure_zero_occupancy passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.aggregate_overflow" classname="T13.resources.aggregate_overflow" time="0.0769365" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>aggregate_overflow passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.exclusive_shared_units" classname="T13.resources.exclusive_shared_units" time="0.0891171" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>exclusive_shared_units passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.lease_only_own_release" classname="T13.resources.lease_only_own_release" time="0.0921407" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>lease_only_own_release passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.unknown_key_bounded" classname="T13.resources.unknown_key_bounded" time="0.0883619" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>unknown_key_bounded passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.waiter_release_race" classname="T13.resources.waiter_release_race" time="0.136516" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>waiter_release_race passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.waiter_cancel" classname="T13.resources.waiter_cancel" time="0.125618" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>waiter_cancel passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.callback_outside_lock" classname="T13.resources.callback_outside_lock" time="0.0694033" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>callback_outside_lock passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.compute_commit_separation" classname="T13.resources.compute_commit_separation" time="0.0711338" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>compute_commit_separation passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.parent_wait_rejects_held_child_resources" classname="T13.resources.parent_wait_rejects_held_child_resources" time="0.0725192" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>parent_wait_rejects_held_child_resources passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.scheduler_resource_wakeup" classname="T13.resources.scheduler_resource_wakeup" time="0.053924" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>scheduler_resource_wakeup passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.lease_reentrant_destruction" classname="T13.resources.lease_reentrant_destruction" time="0.0532426" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>lease_reentrant_destruction passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.waiter_reentrant_destruction" classname="T13.resources.waiter_reentrant_destruction" time="0.0560141" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>waiter_reentrant_destruction passed
+</system-out>
+	</testcase>
+	<testcase name="T13.resources.resource_key_boundaries" classname="T13.resources.resource_key_boundaries" time="0.0668483" status="run">
+		<properties>
+			<property name="cmake_labels" value="B4;D3.03"/>
+		</properties>
+		<system-out>resource_key_boundaries passed
+</system-out>
+	</testcase>
+</testsuite>

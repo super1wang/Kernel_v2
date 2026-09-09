@@ -4,13 +4,19 @@
 
 ## 当前生产节点
 
-- 当前分支：`work/d0-kernel-baseline`；G2 历史被测实现 `e77c328`，G2 后 C1/C2 收口被测实现 `44246b8`；B4 被测实现 `0d71b4f`；归档与推送状态以实时 Git 为准。
+- 当前分支：`work/d0-kernel-baseline`；G2 历史被测实现 `e77c328`，G2 后 C1/C2 收口被测实现 `44246b8`；B4 被测实现 `0d71b4f`，B5 前置收口被测实现 `7a22d0e`；归档与推送状态以实时 Git 为准。
 - 已 Passed：G0–G2、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07、D3.01–D3.03。**这些 Passed 前置不重验**；本轮没有重跑 G1/B2 累计矩阵。
-- 当前 Development Batch：**B4 / D3.01–D3.03 已完成并 Passed**；下一批 **B5 / D3.04–D3.07 NotStarted**。同来源正式 Debug 65/65、Release 63/63、ASan 65/65，三包依 DAG 自动验收无错误；见 [B4 交付](validation/B4-delivery.md)。
+- 当前 Development Batch：**B4 / D3.01–D3.03 已完成并 Passed；B5 前置收口 Passed，Ready for Development**。B5 / D3.04–D3.07 包状态仍 NotStarted，[执行前计划](plans/B5.md)已建立。前置影响集 Debug 16/16、Release 16/16、ASan 18/18；见 [B5 前置交付](validation/B5-preclosure-delivery.md)。B4 原同来源 65/63/65 事实保持，见 [B4 交付](validation/B4-delivery.md)。
 - 当前门禁：**G2 Passed**；G3–G8 未开始。正式同来源 Debug 28/28、Release 26/26、ASan 26/26，三包和 G2 顺序自动验收均无错误，见 [B3 交付](validation/B3-delivery.md)。
 - Host、Logging、NativeSubset/独立安装消费者及 footprint 正式测量/预算已交付并完成本包验收。
 - B1 历史恢复结论保留：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[历史交付与自动验收](validation/D1.06-resume-delivery.md)。
 - 工具优化阶段已结束；禁止继续把 Fixture、Evidence、Install Consumer 性能优化或新流程文档设为 D1.06 前置。
+
+## B5 前置收口（2026-09-09）
+
+- 已修复 Resource Lease/Waiter 锁外回调及 capture 析构重入时的 handle/State 寿命；ResourceKey 对齐 A21.1 的 1..96 ASCII 字节约束。
+- 已在 [B5 规划](plans/B5.md)冻结 Execution/Scheduler 稳定 ticket 先发布、ResourceWaitBinding 早到 wake 安装、cancel/deadline/terminal 和双 generation 仲裁、make_ready 失败释放协议；完整 binding 实现仍属后续 B5。
+- 同一已提交 `7a22d0e` 的正式影响集 Debug 16/16、Release 16/16、ASan 18/18，自动验收 Passed 且 errors/review_errors 为空；[交付与原始证据](validation/B5-preclosure-delivery.md)。未重跑无关历史 Passed，未新增 Runtime 反向依赖；G3 未开始。
 
 ## B4 交付（2026-09-09）
 

@@ -1,0 +1,745 @@
+{
+  "backtraceGraph" : 
+  {
+    "commands" : 
+    [
+      "add_test"
+    ],
+    "files" : 
+    [
+      "J:/Code/Kernel_v2/CMakeLists.txt",
+      "J:/Code/Kernel_v2/tests/contract/resources/CMakeLists.txt"
+    ],
+    "nodes" : 
+    [
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 109,
+        "parent" : 0
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 2
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 4
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 6
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 8
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 10
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 12
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 14
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 16
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 18
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 20
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 22
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 24
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 26
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 28
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 30
+      }
+    ]
+  },
+  "kind" : "ctestInfo",
+  "tests" : 
+  [
+    {
+      "backtrace" : 1,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tools/architecture/check.py",
+        "--graph",
+        "J:/Code/Kernel_v2/build/b4-release/ock-target-graph.json"
+      ],
+      "config" : "Release",
+      "name" : "T01.architecture.dependency_dag",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.02"
+          ]
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release"
+        }
+      ]
+    },
+    {
+      "backtrace" : 3,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "alias_read_write_same_slot"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.alias_read_write_same_slot",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 5,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "multi_claim_partial_failure_zero_occupancy"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.multi_claim_partial_failure_zero_occupancy",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 7,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "aggregate_overflow"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.aggregate_overflow",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 9,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "exclusive_shared_units"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.exclusive_shared_units",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 11,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "lease_only_own_release"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.lease_only_own_release",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 13,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "unknown_key_bounded"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.unknown_key_bounded",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 15,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "waiter_release_race"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.waiter_release_race",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 17,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "waiter_cancel"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.waiter_cancel",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 19,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "callback_outside_lock"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.callback_outside_lock",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 21,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "compute_commit_separation"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.compute_commit_separation",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 23,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "parent_wait_rejects_held_child_resources"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.parent_wait_rejects_held_child_resources",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 25,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "scheduler_resource_wakeup"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.scheduler_resource_wakeup",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 27,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "lease_reentrant_destruction"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.lease_reentrant_destruction",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 29,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "waiter_reentrant_destruction"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.waiter_reentrant_destruction",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace" : 31,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "resource_key_boundaries"
+      ],
+      "config" : "Release",
+      "name" : "T13.resources.resource_key_boundaries",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B4",
+            "D3.03"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    }
+  ],
+  "version" : 
+  {
+    "major" : 1,
+    "minor" : 0
+  }
+}
