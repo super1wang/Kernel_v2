@@ -30,6 +30,11 @@ public:
   contracts::SubmitReply submit(std::shared_ptr<InvocationRecordBase> record) override {
     return service_->submit(std::move(record),resolve_);
   }
+  contracts::SubmitReply submit_child(std::shared_ptr<InvocationRecordBase> record,
+      std::shared_ptr<contracts::ExecutionScopePort> scope) override {
+    if(!scope)return contracts::Rejected{contracts::error(contracts::ContractsErrc::InvalidAuthority)};
+    return service_->submit(std::move(record),resolve_,std::move(scope));
+  }
   contracts::Result<host::ErasedExecutionResult> result(const policy::VerifiedCaller& caller,
       std::shared_ptr<policy::SessionAuthority> session,contracts::ExecutionRef ref,
       contracts::CppTypeToken type) override {

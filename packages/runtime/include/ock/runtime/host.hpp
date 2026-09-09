@@ -131,6 +131,7 @@ struct ExecutionResource {
 struct ExecutionOptions {
   ExecutionLimits limits;
   std::size_t active=256,control_batch=64;
+  std::size_t children_per_execution=64,max_depth=32;
   scheduler::Options scheduling;
   std::vector<scheduler::Subject> subjects;
   resources::Options resource_options;
@@ -154,6 +155,10 @@ struct ErasedExecutionResult {
 class HostExecutionPort : public PortLifetime {
 public:
   virtual SubmitReply submit(std::shared_ptr<executions::detail::InvocationRecordBase>) {
+    return Rejected{host_error(HostErrc::UnsupportedCapability)};
+  }
+  virtual SubmitReply submit_child(std::shared_ptr<executions::detail::InvocationRecordBase>,
+      std::shared_ptr<ExecutionScopePort>) {
     return Rejected{host_error(HostErrc::UnsupportedCapability)};
   }
   virtual Result<ErasedExecutionResult> result(const policy::VerifiedCaller&,
@@ -258,6 +263,8 @@ public:
   ~HostBound();
   InvokeReply<R> invoke(const A&, const invocation::InvokeOptions&) const;
   SubmitReply submit(A, const invocation::InvokeOptions&) const
+    requires (AsyncInput<A> && (std::same_as<R,void> || AsyncInput<R>));
+  SubmitReply submit_child(const WorkContext&, A, const invocation::InvokeOptions&) const
     requires (AsyncInput<A> && (std::same_as<R,void> || AsyncInput<R>));
 private:
   friend class HostSession;

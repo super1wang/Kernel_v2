@@ -32,6 +32,8 @@ int main(int argc,char**argv) {
     {"T03.native.execution_service_control",execution_service_control},
     {"T03.native.host_execution_lifecycle",host_execution_lifecycle},
     {"T03.native.host_execution_resources",host_execution_resources},
+    {"T03.native.host_structured_lifetime",host_structured_lifetime},
+    {"T06.native.host_structured_admission",host_structured_admission},
 #endif
     {"T03.native.managed_execution_path",managed_execution_path},
     {"T03.native.managed_execution_resource_wait",managed_execution_resource_wait},

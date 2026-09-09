@@ -211,6 +211,13 @@ SubmitReply submit(const std::shared_ptr<HostControl>& host,
   if(!backend)return Rejected{host_error(HostErrc::UnsupportedCapability)};
   return backend->submit(std::move(record));
 }
+SubmitReply submit_child(const std::shared_ptr<HostControl>& host,
+    std::shared_ptr<executions::detail::InvocationRecordBase> record,std::shared_ptr<ExecutionScopePort> scope) {
+  std::shared_ptr<HostExecutionPort> backend;
+  {std::lock_guard lock(host->mutex);backend=host->executions;}
+  if(!backend)return Rejected{host_error(HostErrc::UnsupportedCapability)};
+  return backend->submit_child(std::move(record),std::move(scope));
+}
 HostAdmission::HostAdmission(std::shared_ptr<HostControl> host):owner_(std::move(host)) {
   std::lock_guard lock(owner_->mutex);
   if(owner_->phase!=HostPhase::Ready) {

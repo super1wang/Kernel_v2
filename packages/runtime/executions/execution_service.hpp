@@ -7,7 +7,7 @@ namespace ock::runtime::executions::detail {
 // 生命周期由 Host 控制 owner 管理，业务不得在所属 worker 销毁控制 owner。
 class ExecutionService final {
 public:
-  struct Options {std::size_t active=256,control_batch=64;};
+  struct Options {std::size_t active=256,control_batch=64,children_per_execution=64,max_depth=32;};
 private:
   struct Wake {
     std::mutex mutex;std::condition_variable changed;bool dirty=false;
@@ -36,7 +36,9 @@ public:
       std::shared_ptr<ExecutionTable> table,std::shared_ptr<contracts::ExecutorPort> executor,
       std::shared_ptr<resources::ResourceManager> resources,std::vector<scheduler::Subject> subjects,
       scheduler::Options scheduling,Options options) {
-    if(!table||!executor||!options.active||!options.control_batch)return fail();
+    if(!table||!executor||!options.active||!options.control_batch||
+       !options.children_per_execution||options.children_per_execution>256||
+       !options.max_depth||options.max_depth>64)return fail();
     try {
       auto state=std::make_shared<State>();state->table=std::move(table);state->executor=executor;
       state->resources=std::move(resources);state->options=options;state->slots.resize(options.active);
@@ -67,9 +69,19 @@ public:
     return submit(std::move(*record),resolver);
   }
   contracts::SubmitReply submit(std::shared_ptr<InvocationRecordBase> record,
-      const ManagedInvocation::Resolver& resolver) {
+      const ManagedInvocation::Resolver& resolver,std::shared_ptr<contracts::ExecutionScopePort> scope={}) {
     if(!record)return contracts::Rejected{contracts::error(contracts::ContractsErrc::Rejected)};
     auto s=state_;std::size_t slot=s->slots.size();
+    std::shared_ptr<ManagedInvocation::ChildLink> parent;
+    if(scope) {
+      auto owner=std::dynamic_pointer_cast<ManagedInvocation>(scope);
+      if(!owner)return contracts::Rejected{contracts::error(contracts::ContractsErrc::InvalidAuthority)};
+      try {
+        auto reserved=owner->reserve_child(s->table,*record,s->options.max_depth);
+        if(!reserved)return contracts::Rejected{reserved.error()};
+        parent=std::move(*reserved);
+      } catch(...) {return contracts::Rejected{contracts::error(contracts::ContractsErrc::BudgetExceeded)};}
+    }
     {
       std::lock_guard lock(s->mutex);
       if(s->closing||s->used==s->slots.size())return contracts::Rejected{contracts::error(contracts::ContractsErrc::BudgetExceeded)};
@@ -88,7 +100,7 @@ public:
     try {
       auto identity=new_execution_identity();if(!identity)return contracts::Rejected{identity.error()};
       auto execution=ManagedInvocation::create(s->table,s->scheduler,s->resources,*identity,s->table->host(),
-          std::move(record),resolver,[wake=s->wake]{wake->signal();});
+          std::move(record),resolver,[wake=s->wake]{wake->signal();},parent,s->options.children_per_execution);
       if(!execution)return contracts::Rejected{execution.error()};
       accepted=*execution;
       bool closing;

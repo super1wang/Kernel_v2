@@ -4,6 +4,8 @@
 namespace ock::runtime::host::detail {
 SubmitReply submit(const std::shared_ptr<HostControl>&,
     std::shared_ptr<executions::detail::InvocationRecordBase>);
+SubmitReply submit_child(const std::shared_ptr<HostControl>&,
+    std::shared_ptr<executions::detail::InvocationRecordBase>,std::shared_ptr<ExecutionScopePort>);
 struct AdmissionFrame {
   const HostControl* host = nullptr;
   AdmissionFrame* previous = nullptr;
@@ -88,5 +90,21 @@ SubmitReply HostBound<A,R>::submit(A args,const invocation::InvokeOptions& optio
       state->native,std::move(args),options);
   if(!record)return Rejected{record.error()};
   return detail::submit(state->host,std::move(*record));
+}
+template<ContractValue A,ContractResult R>
+SubmitReply HostBound<A,R>::submit_child(const WorkContext& work,A args,
+    const invocation::InvokeOptions& options) const
+    requires (AsyncInput<A> && (std::same_as<R,void> || AsyncInput<R>)) {
+  auto state=state_;
+  if(!state||!work.execution_scope())
+    return Rejected{invocation::invocation_error(invocation::InvocationErrc::InvalidBinding)};
+  detail::HostAdmission admission(state->host);
+  if(!admission)return Rejected{admission.error()};
+  auto child_options=options;
+  child_options.deadline=std::min(child_options.deadline,work.deadline());
+  auto record=executions::detail::InvocationRecord<A,R>::create_registered(
+      state->native,std::move(args),child_options);
+  if(!record)return Rejected{record.error()};
+  return detail::submit_child(state->host,std::move(*record),work.execution_scope());
 }
 }

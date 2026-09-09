@@ -177,7 +177,8 @@ private:
   }
   InvokeReply<R> run(const A& args, const InvokeOptions& options, bool managed,
                     std::span<const ResourceLease* const> resources,
-                    std::optional<std::size_t> reserved={}) const {
+                    std::optional<std::size_t> reserved={},
+                    std::shared_ptr<ExecutionScopePort> execution={}) const {
     // 本次栈持有绑定，业务释放外部 Engine/Bound 后治理材料仍活到返回。
     auto state = state_;
     const auto projection = projection_;
@@ -219,7 +220,7 @@ private:
       auto budget = foundation::CheckedCount<std::uint64_t>::create(0, options.work_limit);
       if (!budget) return rejected(budget.error());
       WorkContext work(options.stop, admission->deadline(), *budget, state->trace,
-                       BorrowedResourceViews{resources});
+                       BorrowedResourceViews{resources},std::move(execution));
       std::optional<Result<R>> result;
       entered = true;
       NativeAccess::dispatch(*state->catalog, *state->entry, &args, work, &result);
@@ -297,7 +298,8 @@ struct InvocationCompletion {
 class InvocationRecordBase {
 public:
   virtual ~InvocationRecordBase()=default;
-  virtual bool run_once(std::stop_token,std::span<const contracts::ResourceLease* const>)=0;
+  virtual bool run_once(std::stop_token,std::span<const contracts::ResourceLease* const>,
+                        std::shared_ptr<contracts::ExecutionScopePort> = {})=0;
   virtual bool reject_before_start(contracts::Error)=0;
   virtual const void* reply_pointer() const noexcept=0;
   virtual contracts::CppTypeToken result_type() const noexcept=0;
@@ -361,14 +363,15 @@ private:
     }
   }
 public:
-  bool run_once(std::stop_token stop,std::span<const contracts::ResourceLease* const> resources={}) {
+  bool run_once(std::stop_token stop,std::span<const contracts::ResourceLease* const> resources={},
+                std::shared_ptr<contracts::ExecutionScopePort> execution={}) override {
     auto keep_alive=this->shared_from_this();
     if(claimed_.exchange(true,std::memory_order_acq_rel)) return false;
     const auto request=[&]{combined_.request_stop();};
     std::stop_callback original(options_.stop,request);
     std::stop_callback managed(stop,request);
     auto options=options_;options.stop=combined_.get_token();
-    auto reply=bound_.run(*input_,options,true,resources,call_->slot);
+    auto reply=bound_.run(*input_,options,true,resources,call_->slot,std::move(execution));
     store(std::move(reply));
     return true;
   }

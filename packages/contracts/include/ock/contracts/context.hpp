@@ -126,6 +126,12 @@ struct BorrowedResourceViews {
   explicit BorrowedResourceViews(std::span<const ResourceLease *const> input)
       : values(input) {}
 };
+// 描述本次受管理调用的归属；接收端仍须核对真实 Runtime owner，
+// 自行实现本端口或复制 ExecutionRef 不授予创建 child 的权限。
+class ExecutionScopePort : public PortLifetime {
+public:
+  virtual ExecutionRef execution() const noexcept = 0;
+};
 class WorkContext final {
 public:
   WorkContext(std::stop_token stop,
@@ -144,9 +150,10 @@ public:
   WorkContext(std::stop_token stop,
               std::chrono::steady_clock::time_point deadline,
               foundation::CheckedCount<std::uint64_t> budget, Name trace,
-              BorrowedResourceViews resources)
+              BorrowedResourceViews resources,
+              std::shared_ptr<ExecutionScopePort> execution = {})
       : stop_(stop), deadline_(deadline), budget_(budget), trace_(trace),
-        resource_views_(resources.values) {
+        resource_views_(resources.values), execution_(std::move(execution)) {
     for (const auto *resource : resource_views_)
       foundation::invariant(resource != nullptr);
   }
@@ -161,6 +168,9 @@ public:
   std::span<const ResourceLease *const> granted_resources() const noexcept {
     return resource_views_;
   }
+  const std::shared_ptr<ExecutionScopePort>& execution_scope() const noexcept {
+    return execution_;
+  }
 
 private:
   std::stop_token stop_;
@@ -173,6 +183,7 @@ private:
   };
   std::optional<OwnedResources> owned_resources_;
   std::span<const ResourceLease *const> resource_views_;
+  std::shared_ptr<ExecutionScopePort> execution_;
 };
 template <class Reader> class ReadServices final {
 public:
