@@ -44,7 +44,8 @@ class InvocationBinding {
   struct Invoker {
     virtual ~Invoker()=default;
     virtual data::Payload run(const runtime::policy::VerifiedCaller &,data::ValueView,
-                              const runtime::invocation::InvokeOptions &)const=0;
+                              const runtime::invocation::InvokeOptions &,bool submit)const=0;
+    virtual bool can_submit() const noexcept=0;
   };
   template<class A,class R> struct Typed final:Invoker {
     binding::BoundOperation<A,R> bound;
@@ -54,7 +55,15 @@ class InvocationBinding {
           std::shared_ptr<const runtime::policy::VerifiedCaller> c)
         :bound(std::move(b)),output(std::move(o)),caller(std::move(c)){}
     data::Payload run(const runtime::policy::VerifiedCaller &c,data::ValueView args,
-                      const runtime::invocation::InvokeOptions &options)const override {
+                      const runtime::invocation::InvokeOptions &options,bool submit)const override {
+      if(submit) {
+        contracts::SubmitReply reply=contracts::Rejected{runtime::policy::policy_error(runtime::policy::PolicyErrc::InvalidAuthority)};
+        if constexpr(contracts::AsyncInput<A>&&(std::same_as<R,void>||contracts::AsyncInput<R>)) {
+          if(&c==caller.get())reply=bound.submit(args,options);
+        }
+        auto wire=encode_submit(reply);if(!wire)throw std::runtime_error("Cannot encode submission");
+        return std::move(*wire);
+      }
       contracts::InvokeReply<R> reply = &c==caller.get()
           ? bound.invoke(args,options)
           : contracts::InvokeReply<R>{contracts::Rejected{runtime::policy::policy_error(runtime::policy::PolicyErrc::InvalidAuthority)}};
@@ -62,6 +71,7 @@ class InvocationBinding {
       if(!wire)throw std::runtime_error("Cannot encode completed invocation");
       return std::move(*wire);
     }
+    bool can_submit() const noexcept override {return contracts::AsyncInput<A>&&(std::same_as<R,void>||contracts::AsyncInput<R>);}
   };
   runtime::policy::OperationSelector selector_;
   std::shared_ptr<const Invoker> invoker_;
@@ -87,15 +97,22 @@ public:
       std::shared_ptr<runtime::policy::ClockPort>,
       std::chrono::milliseconds timeout=std::chrono::milliseconds(1000),
       std::uint64_t work_limit=1024);
+  static Result<Method> create_submit(std::vector<InvocationBinding>,
+      std::shared_ptr<runtime::policy::ClockPort>,
+      std::chrono::milliseconds maximum_deadline=std::chrono::milliseconds(30000),
+      std::uint64_t work_limit=1024);
   Result<data::Payload> call(const runtime::policy::VerifiedCaller &,data::ValueView)override;
   void disconnect()noexcept override{stop_.request_stop();}
 private:
+  static Result<Method> create_impl(std::vector<InvocationBinding>,std::shared_ptr<runtime::policy::ClockPort>,
+      std::chrono::milliseconds,std::uint64_t,bool);
   InvokeMethod(std::vector<InvocationBinding> bindings,std::shared_ptr<runtime::policy::ClockPort> clock,
-      std::chrono::milliseconds timeout,std::uint64_t work):bindings_(std::move(bindings)),clock_(std::move(clock)),timeout_(timeout),work_(work){}
+      std::chrono::milliseconds timeout,std::uint64_t work,bool submit):bindings_(std::move(bindings)),clock_(std::move(clock)),timeout_(timeout),work_(work),submit_(submit){}
   std::vector<InvocationBinding> bindings_;
   std::shared_ptr<runtime::policy::ClockPort> clock_;
   std::chrono::milliseconds timeout_;
   std::uint64_t work_;
   std::stop_source stop_;
+  bool submit_=false;
 };
 } // namespace ock::control

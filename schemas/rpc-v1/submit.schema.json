@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ock:rpc:submit:1",
+  "$comment": "B5 SubmitReply；身份来自 Runtime，Accepted 不表示业务完成。",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "kind": {"const": "Accepted"},
+        "execution_ref": {
+          "type": "object",
+          "properties": {"execution_id": {"type": "string", "pattern": "^[0-9a-f]{32}$", "not": {"const": "00000000000000000000000000000000"}}},
+          "required": ["execution_id"], "additionalProperties": false
+        },
+        "acceptance_guarantee": {"enum": ["Volatile", "DurableAccepted"]}
+      },
+      "required": ["kind", "execution_ref", "acceptance_guarantee"], "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "kind": {"const": "Rejected"},
+        "reason": {
+          "type": "object",
+          "properties": {"domain": {"type": "string", "minLength": 1}, "code": {"type": "integer", "minimum": 0, "maximum": 4294967295}, "message": {"type": "string"}},
+          "required": ["domain", "code"], "additionalProperties": false
+        }
+      },
+      "required": ["kind", "reason"], "additionalProperties": false
+    }
+  ]
+}

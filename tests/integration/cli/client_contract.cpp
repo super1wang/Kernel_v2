@@ -46,7 +46,9 @@ int main(int argc,char **argv) try {
       auto p=data::Payload::parse("{\"result\":{\"kind\":\"Completed\",\"outcome\":{\"kind\":\""+kind+"\"}}}"); check(bool(p));
       check(control_client::exit_code(p->view())==expected);
     }
-    auto accepted=data::Payload::parse(R"({"result":{"kind":"Accepted"}})"); check(control_client::exit_code(accepted->view())==0);
+    auto accepted=data::Payload::parse(R"({"result":{"kind":"Accepted","execution_ref":{"execution_id":"11111111111111111111111111111111"},"acceptance_guarantee":"Volatile"}})"); check(control_client::exit_code(accepted->view())==0);
+    auto missing=data::Payload::parse(R"({"result":{"kind":"Accepted"}})");check(control_client::exit_code(missing->view())==6);
+    auto invalid=data::Payload::parse(R"({"result":{"kind":"Accepted","execution_ref":{"execution_id":"00000000000000000000000000000000"},"acceptance_guarantee":"Volatile"}})");check(control_client::exit_code(invalid->view())==6);
     auto denied=data::Payload::parse(R"({"result":{"kind":"Rejected"}})"); check(control_client::exit_code(denied->view())==3);
     return 0;
   }

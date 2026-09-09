@@ -91,7 +91,7 @@ int wmain(int argc,wchar_t **wide_argv) try {
   CLI::App app{"OCK local control client"}; app.require_subcommand(1);
   std::string instance="default",server_sid,operation,version="1.0.0",args,file,intent_file,digest,prefix,owner="self",phase="nonterminal",execution_ref;
   bool json=false,jsonl=false,stdin_input=false,cancel_on_interrupt=false;
-  int timeout=5000,page_size=50;
+  int timeout=5000,page_size=50,execution_timeout=30000;
   app.add_option("--instance",instance,"Controlled local instance name");
   app.add_option("--server-sid",server_sid,"Expected OS server SID; defaults to current user");
   app.add_option("--timeout-ms",timeout)->check(CLI::Range(1,300000));
@@ -106,6 +106,13 @@ int wmain(int argc,wchar_t **wide_argv) try {
   auto stdin_option=invoke->add_flag("--stdin",stdin_input);
   args_option->excludes(file_option)->excludes(stdin_option); file_option->excludes(stdin_option);
   invoke->add_option("--intent-file",intent_file);
+  auto submit=app.add_subcommand("submit");submit->fallthrough();submit->add_option("operation",operation)->required();
+  submit->add_option("--version",version);submit->add_option("--contract-digest",digest);
+  auto submit_args=submit->add_option("--args",args);auto submit_file=submit->add_option("--file",file);
+  auto submit_stdin=submit->add_flag("--stdin",stdin_input);
+  submit_args->excludes(submit_file)->excludes(submit_stdin);submit_file->excludes(submit_stdin);
+  submit->add_option("--intent-file",intent_file);
+  submit->add_option("--execution-timeout-ms",execution_timeout)->check(CLI::Range(1,30000));
   auto execution=app.add_subcommand("execution"); execution->fallthrough(); execution->require_subcommand(1);
   auto list=execution->add_subcommand("list"); list->fallthrough();
   list->add_option("--owner",owner); list->add_option("--phase",phase)->check(CLI::IsMember({"nonterminal","terminal","all"}));
@@ -165,6 +172,7 @@ int wmain(int argc,wchar_t **wide_argv) try {
     }
     return 0; // 观察成功完成；summary 不承诺完整业务 Outcome。
   }
+  if(*submit&&!client->supports("operation.submit"))return failure(3,"SubmitCapabilityUnavailable");
   auto bytes=input_bytes(file,stdin_input,args); if(!bytes) return failed(bytes.error());
   auto parameters=data::Payload::parse(*bytes); if(!parameters) return failure(2,"InvalidJSONOrUTF8");
   if(digest.empty()) {
@@ -176,11 +184,12 @@ int wmain(int argc,wchar_t **wide_argv) try {
     auto hash=card.at("contract_digest").string(); if(!hash) return failure(6,"InvalidCatalog"); digest=*hash;
   }
   auto encoded=parameters->encode(); if(!encoded) return failed(encoded.error());
-  auto request=data::Payload::parse("{\"operation\":{\"name\":"+quoted(operation)+",\"version\":"+quoted(version)+"},\"contract_digest\":"+quoted(digest)+",\"args\":"+*encoded+"}");
+  auto deadline=*submit?",\"execution_timeout_ms\":"+std::to_string(execution_timeout):std::string{};
+  auto request=data::Payload::parse("{\"operation\":{\"name\":"+quoted(operation)+",\"version\":"+quoted(version)+"},\"contract_digest\":"+quoted(digest)+",\"args\":"+*encoded+deadline+"}");
   if(!request) return failure(2,"InvalidRequest");
   if(!intent_file.empty()) {
     auto saved=control_client::ensure_intent(std::filesystem::u8path(intent_file),client->hello(),*request);
     if(!saved) return failed(saved.error());
   }
-  return output(client->call("operation.invoke",*request,interruption.get_token()));
+  return output(client->call(*submit?"operation.submit":"operation.invoke",*request,interruption.get_token()));
 } catch(const std::exception &e) { std::cerr << e.what() << '\n'; return failure(6,"ClientFailure"); }

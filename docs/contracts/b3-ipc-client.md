@@ -47,3 +47,11 @@ SDK experimental 源码适配：`BoundOperation::create(session, registered.argu
 独立安装消费者仍由同目录原 `main.cpp` 提供，Runtime-only 路径保持纯原生闭包。迁移安装验证同时检查新增头独立编译、薄客户端静态链接映射和已安装 CLI；私有依赖不泄漏。
 
 成本样本分别记录 20 次 Native 与 20 次 Dynamic 的单次纳秒数、分配次数和字节数。预热、Host 初始化、JSON 文本解析、IPC、CLI 启动不计入；Dynamic 包含结构解码、验证与同一 HostBound 调用。分配探针必须先通过正控制，不据此宣称产品吞吐量或硬实时性能。
+
+## B5 开发增量：拥有型 Submit
+
+`BoundOperation::submit` 仅接受拥有型 A/R，解码后走既有 HostBound::submit。`InvokeMethod::create_submit` 复用冻结 InvocationBinding，发布 `operation.submit`；参数保留 operation/name/version、contract_digest、args，另可指定 `execution_timeout_ms`（1–30000，且不能超过该服务配置上限）。它控制服务端工作期限，与客户端 `--timeout-ms` 的传输期限分离。连接断开只关闭 RPC 入口，不把其 stop token 传给已接受执行；会话授权寿命仍由宿主组合负责。
+
+回执按 [Submit schema](../../schemas/rpc-v1/submit.schema.json) 编码：Rejected 保留 reason；Accepted 必须含非空 execution_ref.execution_id 和 Volatile/DurableAccepted 的 acceptance_guarantee，不携带最终结果。CLI `submit` 复用 --args/--file/--stdin 与意图文件入口，提供 `--execution-timeout-ms`，检查宿主实际方法能力；客户端不能把缺少身份或保证级别的 Accepted 当作成功。
+
+此增量不把原 stateless_service 标成 managed provider。真实两进程 submit/get/wait/cancel/list/watch、当前授权发送及完整结果由 D3.07 后续接线验证；当前开发检查不能代替 G3。

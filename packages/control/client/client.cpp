@@ -88,7 +88,12 @@ int exit_code(data::ValueView response) noexcept {
   auto kind = result.at("kind").string();
   if(!kind) return 0; // capabilities/get/list 是查询对象，不是业务 Outcome。
   if(*kind == "Rejected") return 3;
-  if(*kind == "Accepted") return 0;
+  if(*kind == "Accepted") {
+    auto id=result.at("execution_ref").at("execution_id").string();
+    auto guarantee=result.at("acceptance_guarantee").string();
+    return id&&id->size()==32&&id->find_first_not_of("0123456789abcdef")==id->npos&&
+        id->find_first_not_of('0')!=id->npos&&(guarantee=="Volatile"||guarantee=="DurableAccepted")?0:6;
+  }
   if(*kind != "Completed") return 6;
   auto outcome = result.at("outcome").at("kind").string();
   if(!outcome) return 6;

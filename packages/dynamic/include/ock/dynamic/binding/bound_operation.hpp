@@ -32,6 +32,13 @@ public:
       return contracts::Rejected{args.error()};
     return bound_.invoke(*args, options);
   }
+  contracts::SubmitReply submit(data::ValueView input,
+      const runtime::invocation::InvokeOptions& options) const
+    requires (contracts::AsyncInput<A> && (std::same_as<R,void> || contracts::AsyncInput<R>)) {
+    auto args=arguments_.decode(input);
+    if(!args)return contracts::Rejected{args.error()};
+    return bound_.submit(std::move(*args),options);
+  }
   data::ValueView argument_schema() const & noexcept {
     return arguments_.schema();
   }

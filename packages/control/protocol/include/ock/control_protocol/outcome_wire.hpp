@@ -57,6 +57,20 @@ void result(data::PayloadBuilder &b, const Result<R> &r, Encoder &encode,
   }
 }
 } // namespace outcome_wire
+inline Result<data::Payload> encode_submit(const contracts::SubmitReply& reply,data::Budget budget={}) {
+  data::PayloadBuilder b(budget);(void)b.begin_object();
+  if(auto rejected=std::get_if<contracts::Rejected>(&reply)) {
+    outcome_wire::text(b,"kind","Rejected");outcome_wire::error(b,"reason",rejected->reason);
+  } else {
+    const auto& accepted=std::get<contracts::Accepted>(reply);
+    if(accepted.execution.execution_id.empty()||accepted.guarantee>contracts::AcceptanceGuarantee::DurableAccepted)
+      return foundation::make_unexpected(error(ProtocolErrc::InvalidRequest));
+    outcome_wire::text(b,"kind","Accepted");(void)b.key("execution_ref");(void)b.begin_object();
+    outcome_wire::identity(b,"execution_id",accepted.execution.execution_id);(void)b.end_object();
+    outcome_wire::text(b,"acceptance_guarantee",accepted.guarantee==contracts::AcceptanceGuarantee::Volatile?"Volatile":"DurableAccepted");
+  }
+  (void)b.end_object();return b.freeze();
+}
 template <class R, class Encoder>
 Result<data::Payload> encode_invoke(const contracts::InvokeReply<R> &reply,
                                     Encoder encode, data::Budget budget = {}) {

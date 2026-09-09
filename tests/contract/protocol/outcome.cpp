@@ -2,6 +2,7 @@
 #include <ock/control_protocol/outcome_wire.hpp>
 #include <ock/dynamic/binding/schema.hpp>
 #include <fstream>
+#include <filesystem>
 #include <crtdbg.h>
 #define NOMINMAX
 #include <Windows.h>
@@ -30,6 +31,15 @@ int main(int argc,char **argv)try{
   });
   CHECK(argc==2);std::ifstream file(argv[1]);std::string schema_text(std::istreambuf_iterator<char>(file),{});
   auto schema=binding::CompiledSchema::compile(schema_text);CHECK(schema);
+  std::ifstream submit_file(std::filesystem::path(argv[1]).parent_path()/"submit.schema.json");
+  std::string submit_text(std::istreambuf_iterator<char>(submit_file),{});
+  auto submit_schema=binding::CompiledSchema::compile(submit_text);CHECK(submit_schema);
+  auto accepted=control::encode_submit(Accepted{{id<foundation::TaskId>()},AcceptanceGuarantee::Volatile});
+  CHECK(accepted&&submit_schema->validate(accepted->view()));
+  auto rejected=control::encode_submit(Rejected{contracts::error(ContractsErrc::Rejected)});
+  CHECK(rejected&&submit_schema->validate(rejected->view()));
+  CHECK(!control::encode_submit(Accepted{{},AcceptanceGuarantee::Volatile}));
+  CHECK(!control::encode_submit(Accepted{{id<foundation::TaskId>()},static_cast<AcceptanceGuarantee>(99)}));
   std::cerr<<"schema compiled\n";
   Publication publication_port;
   OutcomeValidation validation{publication_port,{},fact_budget()};
