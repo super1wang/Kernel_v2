@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 已采集 Release AutomationHost 观察成本：off/on/on/off 各 120 个相同任务，另两次 slow 各 120 个；持续读取的 on 队列最终排空，slow 两次约 97 KiB 积压时 get/wait 均成功。Windows 进程 CPU、PrivateUsage/WorkingSet 与每次请求墙钟单列，通知额外排空约 3.7 s，CPU 波动较大，不据此声明稳定开销比例。两次 off 另各测有效 cursor/MAC 错误/超长输入 100 次，拒绝码符合合同（[最终样本](../evidence/B5/managed-cost-reader-c3be8ab991/samples.json)、[命令](../evidence/B5/managed-cost-reader-c3be8ab991/commands.json)）。首轮仅任务间读通知的不足及原文保留（[首轮](../evidence/B5/managed-cost-f6d3f55188/samples.json)）；客户端 5 ms 轮询与诊断查询成本明确保留。这是成本样本，不替代无 IPC Embedded、有限预算及正式 B5/G3 验收。
+
 - B5 完成独立 Embedded ASan 构建/安装及全线程分配诊断，依赖仍仅 expected/thread_pool，实际目标图检查无错误（[生产命令](../evidence/B5/embedded-asan-install-850c939698/commands.json)）。新版明确区分 DebugCRT / ASan，后台正探针与负探针均通过；Debug、ASan 各一组 ABBA 中，两次 Embedded 各 40 个完整 Invoke 窗口的 C++ 与进程 allocator 分配均为 **0**（[Debug 原文](../evidence/B5/embedded-pilot-1df84b5c12/1-embedded-stdout.log)、[ASan 原文](../evidence/B5/embedded-pilot-d8d809d523/1-embedded-stdout.log)）。Submit 和父子取消成本保持单列，无 ASan 错误，旧 Debug/Release 安装与原文未覆盖。此为诊断来源证据；AutomationHost 对照、有限预算及同来源 B5/G3 正式验收继续完成。
 
 - B5 Embedded Debug 分配诊断已完成一组 ABBA：两次 Embedded 各 40 个完整 Invoke 窗口的调用线程 C++ 与进程各线程 CRT 分配均为 **0**；12 类正探针、负探针和真实后台 malloc/free 正探针均通过。每次完整保留 85 个实际窗口，40 次 Submit/wait/result 与父子资源取消成本单列（[第一份原文](../evidence/B5/embedded-pilot-eb81805115/1-embedded-stdout.log)、[第二份原文](../evidence/B5/embedded-pilot-eb81805115/2-embedded-stdout.log)、[来源与配置](../evidence/B5/embedded-pilot-eb81805115/inputs.json)）。该覆盖为可执行程序 C++ 入口及接入的 Debug CRT，不包含私有 DLL/custom heap；ASan 全线程补充、AutomationHost、预算及正式 B5/G3 验收继续完成，未把诊断构建计入正式时延/占用结论。
