@@ -4,8 +4,16 @@
 #include <map>
 #include <mutex>
 #include <set>
+#include <utility>
 namespace ock::runtime::resources {
 using foundation::make_unexpected;
+namespace {
+bool valid_key(std::string_view key) noexcept {
+  if(key.empty() || key.size()>96)return false;
+  for(unsigned char c:key)if(c>127)return false;
+  return true;
+}
+}
 struct ResourceManager::State {
   struct Cell {Slot config;std::uint64_t used=0;bool exclusive=false;std::set<std::uint64_t> waiters;};
   struct Waiting {
@@ -28,6 +36,7 @@ struct ResourceManager::State {
     std::vector<Holding> normalized;
     try {
       for(auto &claim:claims) {
+        if(!valid_key(claim.key))return make_unexpected(error(Errc::InvalidInput));
         auto it=names.find(claim.key);if(it==names.end())return make_unexpected(error(Errc::UnknownKey));
         if(!claim.units || (claim.mode!=Mode::Shared && claim.mode!=Mode::Exclusive))return make_unexpected(error(Errc::InvalidInput));
         auto &cell=cells[it->second];
@@ -77,12 +86,12 @@ Result<std::unique_ptr<ResourceManager>> ResourceManager::create(std::vector<Slo
   try {
     auto s=std::make_shared<State>();s->options=options;
     for(auto &slot:slots) {
-      if(slot.key.empty() || slot.key.size()>256 || !slot.capacity || !s->names.emplace(slot.key,s->cells.size()).second)return make_unexpected(error(Errc::InvalidInput));
+      if(!valid_key(slot.key) || !slot.capacity || !s->names.emplace(slot.key,s->cells.size()).second)return make_unexpected(error(Errc::InvalidInput));
       s->cells.push_back(State::Cell{std::move(slot)});
     }
     for(auto &alias:aliases) {
       auto it=s->names.find(alias.target);
-      if(alias.key.empty() || alias.key.size()>256 || it==s->names.end() || !s->names.emplace(alias.key,it->second).second)return make_unexpected(error(Errc::InvalidInput));
+      if(!valid_key(alias.key) || !valid_key(alias.target) || it==s->names.end() || !s->names.emplace(alias.key,it->second).second)return make_unexpected(error(Errc::InvalidInput));
     }
     return std::unique_ptr<ResourceManager>(new ResourceManager(std::move(s)));
   }catch(...){return make_unexpected(error(Errc::Full));}
@@ -114,14 +123,25 @@ Result<ResourceManager::Acquisition> ResourceManager::acquire(std::span<const Cl
   }catch(...){lock.unlock();return make_unexpected(error(Errc::Full));}
 }
 ResourceManager::Lease::~Lease(){release();}
-void ResourceManager::Lease::release() noexcept {auto held=std::move(held_);held_.clear();if(!held.empty())state_->release(std::move(held));}
+void ResourceManager::Lease::release() noexcept {
+  auto state=state_;
+  auto held=std::move(held_);held_.clear();
+  // 锁外 wake 可销毁当前 handle/manager；此后仅使用局部保活状态。
+  if(!held.empty())state->release(std::move(held));
+}
 Result<void> ResourceManager::Lease::before_child_wait(std::span<const Claim> claims) const {
   std::lock_guard lock(state_->mutex);auto needed=state_->normalize(claims,Phase::Commit);if(!needed)return make_unexpected(needed.error());
   for(auto &a:held_)for(auto &b:*needed)if(a.slot==b.slot)return make_unexpected(error(Errc::UnsafeChildWait));
   return {};
 }
 ResourceManager::Waiter::~Waiter(){cancel();}
-void ResourceManager::Waiter::cancel() noexcept {if(generation_){*active_=false;state_->cancel(generation_);generation_=0;}}
+void ResourceManager::Waiter::cancel() noexcept {
+  auto generation=std::exchange(generation_,0);
+  if(!generation)return;
+  auto state=state_;auto active=active_;
+  // capture 析构可重入 cancel 并销毁当前 handle，先提交幂等状态。
+  *active=false;state->cancel(generation);
+}
 Snapshot ResourceManager::snapshot()const {std::lock_guard lock(state_->mutex);return {state_->cells.size(),state_->waiting.size(),state_->index_entries,state_->wakeups,state_->callback_errors};}
 std::uint64_t ResourceManager::used(std::string_view key)const {std::lock_guard lock(state_->mutex);auto it=state_->names.find(key);return it==state_->names.end()?0:state_->cells[it->second].used;}
 void ResourceManager::close() noexcept {

@@ -1,7 +1,7 @@
 add_executable(ock_resources_contract contract.cpp)
 target_link_libraries(ock_resources_contract PRIVATE OCK::Runtime OCK::Adapter::CpuPool)
 target_include_directories(ock_resources_contract PRIVATE "${PROJECT_SOURCE_DIR}")
-foreach(case alias_read_write_same_slot multi_claim_partial_failure_zero_occupancy aggregate_overflow exclusive_shared_units lease_only_own_release unknown_key_bounded waiter_release_race waiter_cancel callback_outside_lock compute_commit_separation parent_wait_rejects_held_child_resources scheduler_resource_wakeup)
+foreach(case alias_read_write_same_slot multi_claim_partial_failure_zero_occupancy aggregate_overflow exclusive_shared_units lease_only_own_release unknown_key_bounded waiter_release_race waiter_cancel callback_outside_lock compute_commit_separation parent_wait_rejects_held_child_resources scheduler_resource_wakeup lease_reentrant_destruction waiter_reentrant_destruction resource_key_boundaries)
   add_test(NAME T13.resources.${case} COMMAND ock_resources_contract ${case})
   set_tests_properties(T13.resources.${case} PROPERTIES TIMEOUT 30 LABELS "B4;D3.03")
 endforeach()
