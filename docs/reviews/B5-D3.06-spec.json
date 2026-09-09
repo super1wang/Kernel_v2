@@ -1,0 +1,45 @@
+{
+  "format": "ock.technical-review/1",
+  "task_id": "D3.06",
+  "review_kind": "spec",
+  "review_status": "Approved",
+  "reviewed_inputs_sha256": "b9cd62997c529a7917f56bbc0f3df17607700a909cecf1a0cbb145a2a8bcee5f",
+  "reviewed_at": "2026-09-09T23:26:57.503108+00:00",
+  "reviewer": "Codex AI，B5 集中 SPEC 技术复核",
+  "actor_type": "AI",
+  "approval_text": "批准 B5-review.md 中 D3.06 的独立 SPEC 技术结论及 requirement-map 对应范围。机器事实与正式前置 DAG 仍须独立满足，此记录不表示包/G3 已 Passed。",
+  "evidence": [
+    {
+      "path": "docs/reviews/B5-review.md",
+      "sha256": "84b04ee7259b226cf0e20449c7fa6fd29744825f39770f38fbb1647c5bcb137a"
+    },
+    {
+      "path": "tests/manifests/b5-requirement-map.json",
+      "sha256": "6a220843717c10f464a364b98676695f5e2fc81feae3d01dee85a998f3f9c09c"
+    },
+    {
+      "path": "evidence/B5/observed-embedded-c53de988af/prerequisite-audit.json",
+      "sha256": "42684291f9373b4f91c9fea3a68e8ce559b6df8e57e58493c6ea03680da54001"
+    },
+    {
+      "path": "evidence/B5/observed-embedded-c53de988af/result.json",
+      "sha256": "72eb702061f9163c718d2544dbe9add812650dfa0fb164b0628c4fcf102228dc"
+    },
+    {
+      "path": "evidence/G3/C/cb67dc769b5746b9b07ef558dd630ee7/report.json",
+      "sha256": "e860bbd211e4cb3ce44bc201902e8a5476e328a8b33c4d5b99cae1cfcf384889"
+    },
+    {
+      "path": "evidence/G3/C/86685a7b20dd4702b3f2ec352ff57fa4/report.json",
+      "sha256": "78b7af457a267ba66ca513379da3198f1f5646cf2501b4efa3b79c744064cdc4"
+    },
+    {
+      "path": "evidence/G3/C/13354720f40a4bf497fb5327439abd37/report.json",
+      "sha256": "2b02fafba7ec055ef3c90d3ec7a503442e92db2d8a8052c33dd9f5f6e00eb47e"
+    }
+  ],
+  "limitations": [
+    "仅内核与规划验证消费者；不声明 D4/D5 State/Effect/恢复、设备或持久套件。",
+    "默认 G3-C 保持原 cde99f2 来源，按已核对的实际未变编译依赖复用，不声明当前扩展的全目录 method digest 相同。"
+  ]
+}
