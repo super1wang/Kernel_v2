@@ -6,8 +6,9 @@
 
 - 当前分支：`work/d0-kernel-baseline`；G2 历史被测实现 `e77c328`，G2 后 C1/C2 收口被测实现 `44246b8`；B4 被测实现 `0d71b4f`，B5 前置收口被测实现 `7a22d0e`；归档与推送状态以实时 Git 为准。
 - 已 Passed：G0–G2、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07、D3.01–D3.03。**这些 Passed 前置不重验**；本轮没有重跑 G1/B2 累计矩阵。
-- 当前 Development Batch：**B4 / D3.01–D3.03 已完成并 Passed；B5 前置收口 Passed，Ready for Development**。B5 / D3.04–D3.07 包状态仍 NotStarted，[执行前计划](plans/B5.md)已建立。前置影响集 Debug 16/16、Release 16/16、ASan 18/18；见 [B5 前置交付](validation/B5-preclosure-delivery.md)。B4 原同来源 65/63/65 事实保持，见 [B4 交付](validation/B4-delivery.md)。
+- 当前 Development Batch：**B5 开发 InProgress**，按已审阅的 [B5 规划](plans/B5.md)持续推进至 G3。已实现 Scheduler 逐票据 retire/start 仲裁、正常失效投递诊断修复及依赖就绪锁外通知；Runtime 内部 ResourceWaitBinding 已具备有限控制步、双世代 wake、接受/依赖门控、取消退役和运行期 Lease 独占转移。Debug 依赖影响集 6/6、资源影响集 6/6、绑定屏障专项 3/3；真实 Submit/执行表与后续寿命接线继续开发，尚未包级验收。B5 前置收口 Passed 保留，见 [前置交付](validation/B5-preclosure-delivery.md)；B4 原同来源 65/63/65 事实保持，见 [B4 交付](validation/B4-delivery.md)。
 - 当前门禁：**G2 Passed**；G3–G8 未开始。正式同来源 Debug 28/28、Release 26/26、ASan 26/26，三包和 G2 顺序自动验收均无错误，见 [B3 交付](validation/B3-delivery.md)。
+- B5 本次资源绑定直接影响集另经 ASan / RelWithDebInfo 9/9；包含早到/重复/迟到 wake、acquire 在途取消、运行期租约保持、析构重入及正常失效/Executor 违约区分。这是开发验证，尚未形成 B5 同来源正式矩阵或包级 Passed。
 - Host、Logging、NativeSubset/独立安装消费者及 footprint 正式测量/预算已交付并完成本包验收。
 - B1 历史恢复结论保留：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[历史交付与自动验收](validation/D1.06-resume-delivery.md)。
 - 工具优化阶段已结束；禁止继续把 Fixture、Evidence、Install Consumer 性能优化或新流程文档设为 D1.06 前置。
@@ -122,8 +123,8 @@
 | D3.01 | Executor Conformance Kit与生产/测试后端 | D1.02、D0.06 | Passed | Critical | B4 |
 | D3.02 | 实现公平Ready调度与依赖结构 | D3.01、D1.03 | Passed | Critical | B4 |
 | D3.03 | 实现资源归一化、MultiClaim与租约 | D3.02、D1.04 | Passed | Critical | B4 |
-| D3.04 | Submit、执行投影索引与拥有型输入 | D3.02、D3.03、D1.05 | NotStarted | Critical | B5 |
-| D3.05 | 实现取消、期限与permit竞争 | D3.04、D0.05 | NotStarted | Critical | B5 |
+| D3.04 | Submit、执行投影索引与拥有型输入 | D3.02、D3.03、D1.05 | InProgress | Critical | B5 |
+| D3.05 | 实现取消、期限与permit竞争 | D3.04、D0.05 | InProgress | Critical | B5 |
 | D3.06 | 实现父子寿命、Finalizing与失败收尾 | D3.04、D3.05 | NotStarted | Critical | B5 |
 | D3.07 | 真实任务观察CLI、完整Embedded占用与停止门禁 | D3.06、D2.07 | NotStarted | Critical | B5 |
 | D4.01 | 实现轻量状态域与结构共享Snapshot | D1.02、D0.06、D3.03 | NotStarted | Standard | B6 |

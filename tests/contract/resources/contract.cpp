@@ -1,6 +1,8 @@
 #include <ock/runtime/resources.hpp>
 #include <ock/runtime/scheduler.hpp>
 #include "tests/conformance/executor/backends.hpp"
+#include "packages/runtime/executions/resource_wait_binding.hpp"
+#include <future>
 #include <barrier>
 #include <iostream>
 #include <limits>
@@ -12,7 +14,67 @@ auto manager(Options options={}){auto m=ResourceManager::create({{"a",4},{"b",2}
 auto acquire(ResourceManager&m,std::initializer_list<Claim> c,Phase p=Phase::Compute,std::function<void(std::uint64_t)> wake={}){return m.acquire(std::span(c.begin(),c.size()),p,std::move(wake));}
 int main(int argc,char**argv)try {
   check(argc==2);std::string test=argv[1];auto m=manager();
-  if(test=="alias_read_write_same_slot") {
+  if(test=="execution_binding_interleavings") {
+    using Binding=runtime::executions::detail::ResourceWaitBinding;
+    // 同一真实 ResourceManager；仅控制 acquire 返回与 binding 安装间的先后。
+    for(bool cancel_inflight:{false,true}) {
+      contracts::PrincipalId principal;principal.bytes[0]=1;
+      auto pool=std::make_shared<executor_test::TestExecutor>(false);auto made=runtime::scheduler::Scheduler::create(pool,{{principal}});check(bool(made));
+      std::shared_ptr<runtime::scheduler::Scheduler> scheduler=std::move(*made);std::shared_ptr<ResourceManager> resources=manager();
+      auto held=acquire(*resources,{{"a",Mode::Exclusive,1}});check(bool(held));
+      std::promise<void> acquired,release;auto barrier=acquired.get_future();auto go=release.get_future();
+      unsigned calls=0,runs=0,done=0;std::function<void(std::uint64_t)> old_wake;std::uint64_t old_generation=0;
+      auto binding=std::make_shared<Binding>(scheduler,resources,std::vector<Claim>{{"a"}},[]{},
+        [&](std::span<const Claim> claims,std::function<void(std::uint64_t)> wake) {
+          auto result=resources->acquire(claims,Phase::Compute,wake);++calls;
+          if(calls==1){check(bool(result)&&bool(result->waiter));old_wake=wake;old_generation=result->waiter->generation();held->lease.reset();wake(old_generation);acquired.set_value();go.wait();}
+          return result;
+        });
+      runtime::scheduler::Request request;request.principal=principal;request.resource_ready=false;request.dependencies_ready=[binding]{binding->dependencies_ready();};
+      request.work=[&]{auto lease=binding->start_lease();check(bool(lease));++runs;return Result<void>{};};request.completed=[&](auto result){check(bool(result)!=cancel_inflight);binding->terminal();++done;};
+      auto ticket=scheduler->enqueue(std::move(request));check(bool(ticket));binding->publish(*ticket);
+      std::thread driver([&]{binding->drive();});barrier.wait();if(cancel_inflight)binding->cancel();release.set_value();driver.join();
+      if(!cancel_inflight){check(binding->snapshot().pending&&calls==1);binding->drive();check(calls==2);old_wake(old_generation);binding->drive();check(calls==2);scheduler->pump();pool->run_one();}
+      check(done==1&&runs==(cancel_inflight?0u:1u)&&resources->used("a")==0&&resources->snapshot().waiters==0&&scheduler->snapshot().active==0);
+    }
+  } else if(test=="execution_binding") {
+    using Binding=runtime::executions::detail::ResourceWaitBinding;
+    contracts::PrincipalId principal;principal.bytes[0]=1;
+    auto pool=std::make_shared<executor_test::TestExecutor>(false);auto made=runtime::scheduler::Scheduler::create(pool,{{principal}});check(bool(made));
+    std::shared_ptr<runtime::scheduler::Scheduler> scheduler=std::move(*made);std::shared_ptr<ResourceManager> resources=std::move(m);
+    unsigned runs=0,done=0,failures=0,signals=0;
+    auto enqueue=[&](std::vector<Claim> claims,std::vector<runtime::scheduler::Ticket> dependencies={}) {
+      auto binding=std::make_shared<Binding>(scheduler,resources,std::move(claims),[&]{++signals;});
+      runtime::scheduler::Request request;request.principal=principal;request.resource_ready=false;request.dependencies=std::move(dependencies);
+      request.dependencies_ready=[binding]{binding->dependencies_ready();};
+      request.work=[binding,&runs]{auto lease=binding->start_lease();check(bool(lease));++runs;return Result<void>{};};
+      request.completed=[binding,&done,&failures](auto result){binding->terminal();++done;if(!result)++failures;};
+      auto ticket=scheduler->enqueue(std::move(request));check(bool(ticket));
+      check(scheduler->pump()==0);binding->drive();check(!binding->snapshot().accepted);
+      binding->publish(*ticket);return std::pair(binding,*ticket);
+    };
+    auto [parent,p]=enqueue({{"a",Mode::Exclusive,1}});auto [child,c]=enqueue({{"a",Mode::Exclusive,1}},{p});
+    child->drive();check(resources->used("a")==0&&!child->snapshot().pending);
+    parent->drive();check(resources->used("a")==1);check(scheduler->pump()==1);pool->run_one();check(runs==1&&child->snapshot().pending&&resources->used("a")==0);
+    child->drive();check(scheduler->pump()==1);pool->run_one();check(runs==2&&done==2&&resources->used("a")==0);
+    auto held=acquire(*resources,{{"a",Mode::Exclusive,1}});check(bool(held));auto [waiting,w]=enqueue({{"a"}});waiting->drive();check(resources->snapshot().waiters==1);
+    held->lease.reset();check(waiting->snapshot().pending);waiting->drive();check(resources->used("a")==1);waiting->cancel();check(resources->used("a")==0&&resources->snapshot().waiters==0&&failures==1);
+    auto [empty,e]=enqueue({});empty->drive();check(scheduler->pump()==1);pool->run_one();check(runs==3&&resources->snapshot().waiters==0);
+    auto [invalid,i]=enqueue({{"missing"}});invalid->drive();check(failures==2&&scheduler->snapshot().active==0);
+    auto never=acquire(*resources,{{"a",Mode::Exclusive,1}});check(bool(never));auto [closing,t]=enqueue({{"a"}});closing->drive();check(resources->snapshot().waiters==1);scheduler->close();check(resources->snapshot().waiters==0&&failures==3);never->lease.reset();check(resources->used("a")==0&&signals>0);
+  } else if(test=="execution_running_cancel") {
+    using Binding=runtime::executions::detail::ResourceWaitBinding;
+    contracts::PrincipalId principal;principal.bytes[0]=1;
+    auto pool=std::make_shared<executor_test::TestExecutor>(false);auto made=runtime::scheduler::Scheduler::create(pool,{{principal}});check(bool(made));
+    std::shared_ptr<runtime::scheduler::Scheduler> scheduler=std::move(*made);std::shared_ptr<ResourceManager> resources=std::move(m);
+    auto binding=std::make_shared<Binding>(scheduler,resources,std::vector<Claim>{{"a",Mode::Exclusive,1}},[]{});
+    std::promise<void> entered,release;auto started=entered.get_future();auto go=release.get_future();bool done=false;
+    runtime::scheduler::Request request;request.principal=principal;request.resource_ready=false;request.dependencies_ready=[binding]{binding->dependencies_ready();};
+    request.work=[&]{auto lease=binding->start_lease();check(bool(lease));entered.set_value();go.wait();check(binding->stop_token().stop_requested());return Result<void>{};};
+    request.completed=[&](auto result){check(bool(result));binding->terminal();done=true;};
+    auto ticket=scheduler->enqueue(std::move(request));check(bool(ticket));binding->publish(*ticket);binding->drive();check(scheduler->pump()==1);
+    std::thread worker([&]{pool->run_one();});started.wait();binding->cancel();bool retained=resources->used("a")==1&&scheduler->snapshot().inflight==1;release.set_value();worker.join();check(retained&&done&&resources->used("a")==0&&scheduler->snapshot().worker_delivery==0);
+  } else if(test=="alias_read_write_same_slot") {
     auto a=acquire(*m,{{"read-a",Mode::Shared,2}});check(bool(a));check(!acquire(*m,{{"write-a",Mode::Exclusive,1}}));a->lease.reset();check(bool(acquire(*m,{{"write-a",Mode::Exclusive,1}})));
   } else if(test=="multi_claim_partial_failure_zero_occupancy") {
     auto b=acquire(*m,{{"b",Mode::Exclusive,1}});check(bool(b));check(!acquire(*m,{{"a",Mode::Shared,2},{"b",Mode::Shared,1}}));check(m->used("a")==0 && m->used("b")==1);

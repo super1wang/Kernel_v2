@@ -4,7 +4,8 @@ namespace ock::runtime::scheduler {
 using foundation::Result;
 using Time = contracts::ExecutorTime;
 using Ticket = std::uint64_t; // Runtime 内部调度标识；不是 ExecutionRef。
-enum class Errc : std::uint32_t { InvalidInput=1, Full, Closed, UnknownTicket, DependencyFailed, ExpiredBeforeDispatch, ExecutorRejected, ExecutorViolation, WorkException };
+enum class Errc : std::uint32_t { InvalidInput=1, Full, Closed, UnknownTicket, DependencyFailed, ExpiredBeforeDispatch, ExecutorRejected, ExecutorViolation, WorkException, CancelledBeforeStart };
+enum class Retirement { Retired, AlreadyStarted, AlreadyTerminal };
 inline constexpr foundation::ErrorDomain domain{"ock.scheduler"};
 inline foundation::Error error(Errc code) noexcept {return foundation::Error{foundation::ErrorCode::make<domain>(static_cast<std::uint32_t>(code))};}
 struct Subject {
@@ -25,6 +26,9 @@ struct Request {
   contracts::CallbackWork::Function work;
   contracts::CallbackWork::Completion completed;
   std::function<void()> detach_waiter; // 锁外摘除 resource waiter；先于 completed。
+  // 依赖全部成功后至多一次锁外通知，可能早于 enqueue 返回。
+  // 仅表示依赖满足；接收者仍须仲裁接受发布、取消及资源准入。
+  std::function<void()> dependencies_ready;
 };
 struct Snapshot {
   std::size_t active=0, queued=0, inflight=0, history=0, controls=0, worker_delivery=0, dependency_edges=0;
@@ -37,6 +41,8 @@ public:
   ~Scheduler();
   Result<Ticket> enqueue(Request);
   Result<void> make_ready(Ticket);
+  // 与 start claim 共用仲裁；AlreadyStarted 时调用者只能协作取消，不能释放运行期资源。
+  Result<Retirement> retire(Ticket,foundation::Error reason=error(Errc::CancelledBeforeStart));
   Result<void> post_control(std::function<void()>);
   // 由拥有者的控制循环调用；只扫描活跃主体/到期期限，不扫描终态历史。
   std::size_t pump(Time now=std::chrono::steady_clock::now(),std::size_t limit=64);

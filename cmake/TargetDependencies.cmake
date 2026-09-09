@@ -28,6 +28,7 @@ add_library(ock_Runtime STATIC
   "${PROJECT_SOURCE_DIR}/packages/runtime/host/host.cpp"
   "${PROJECT_SOURCE_DIR}/packages/runtime/scheduler/scheduler.cpp"
   "${PROJECT_SOURCE_DIR}/packages/runtime/resources/resources.cpp"
+  "${PROJECT_SOURCE_DIR}/packages/runtime/executions/resource_wait_binding.cpp"
   "${PROJECT_SOURCE_DIR}/packages/runtime/observability/logging.cpp")
 add_library(OCK::Runtime ALIAS ock_Runtime)
 set_target_properties(ock_Runtime PROPERTIES EXPORT_NAME Runtime OCK_IMPLEMENTATION_STAGE NativeSubset EXPORT_PROPERTIES OCK_IMPLEMENTATION_STAGE)

@@ -21,7 +21,35 @@ struct Fault final : contracts::ExecutorPort {
 };
 int main(int argc,char**argv)try {
   check(argc==2);std::string test=argv[1];
-  if(test=="fault_attempts") {
+  if(test=="dependency_ready_callback") {
+    auto pool=std::make_shared<executor_test::TestExecutor>(false);auto made=Scheduler::create(pool,{{principal(1)}});check(bool(made));auto &s=**made;
+    unsigned parent_ready=0,child_ready=0,runs=0,failed=0;
+    auto p=request();p.resource_ready=false;p.dependencies_ready=[&]{++parent_ready;check(s.snapshot().active==1);};
+    auto parent=s.enqueue(std::move(p));check(bool(parent)&&parent_ready==1);
+    auto c=request();c.resource_ready=false;c.dependencies={*parent};c.dependencies_ready=[&]{++child_ready;};c.work=[&]{++runs;return Result<void>{};};
+    auto child=s.enqueue(std::move(c));check(bool(child)&&child_ready==0&&s.pump()==0);
+    check(bool(s.make_ready(*parent)));check(s.pump()==1);pool->run_one();check(child_ready==1&&runs==0&&s.pump()==0);
+    check(bool(s.make_ready(*child)));check(s.pump()==1);pool->run_one();check(child_ready==1&&runs==1);
+    auto broken=request();broken.resource_ready=false;auto before=s.enqueue(std::move(broken));check(bool(before));
+    auto dependent=request();dependent.dependencies={*before};dependent.dependencies_ready=[&]{++child_ready;};dependent.completed=[&](auto result){check(!result);++failed;};check(bool(s.enqueue(std::move(dependent))));
+    check(*s.retire(*before)==Retirement::Retired);check(failed==1&&child_ready==1&&s.snapshot().active==0);
+    // 依赖通知抛出时显式失败，不留下永远不能 ready 的 entry。
+    auto throwing=request();throwing.resource_ready=false;throwing.dependencies_ready=[]{throw 7;};throwing.completed=[&](auto result){check(!result);++failed;};
+    check(bool(s.enqueue(std::move(throwing))));check(failed==2&&s.snapshot().active==0&&s.snapshot().callback_errors==1);
+  } else if(test=="retire_start_arbitration") {
+    for(bool dispatched:{false,true}) {
+      auto f=std::make_shared<Fault>();f->mode="hold";auto made=Scheduler::create(f,{{principal(1)}});check(bool(made));auto &s=**made;
+      unsigned runs=0,done=0,detached=0;auto r=request();r.work=[&]{++runs;return Result<void>{};};r.detach_waiter=[&]{++detached;};r.completed=[&](auto v){check(!v);++done;};
+      auto ticket=s.enqueue(std::move(r));check(bool(ticket));if(dispatched)check(s.pump()==1);
+      auto retired=s.retire(*ticket);check(bool(retired)&&*retired==Retirement::Retired);check(done==1&&detached==1&&runs==0);
+      check(*s.retire(*ticket)==Retirement::AlreadyTerminal && !s.make_ready(*ticket));
+      if(dispatched){check(s.snapshot().worker_delivery==1);f->held->execute();check(s.snapshot().executor_violations==0);f->held->execute();check(s.snapshot().executor_violations==1);f->held.reset();}
+      check(s.snapshot().active==0&&s.snapshot().worker_delivery==0);
+    }
+    auto f=std::make_shared<Fault>();f->mode="hold";auto made=Scheduler::create(f,{{principal(1)}});check(bool(made));auto &s=**made;
+    std::promise<void> entered,release;auto go=release.get_future();auto ready=entered.get_future();unsigned done=0;auto r=request();r.work=[&]{entered.set_value();go.wait();return Result<void>{};};r.completed=[&](auto v){check(bool(v));++done;};
+    auto ticket=s.enqueue(std::move(r));check(bool(ticket));s.pump();std::thread worker([&]{f->held->execute();});ready.wait();auto retired=s.retire(*ticket);bool kept=bool(retired)&&*retired==Retirement::AlreadyStarted&&s.snapshot().inflight==1;release.set_value();worker.join();f->held.reset();check(kept&&done==1&&s.snapshot().worker_delivery==0);
+  } else if(test=="fault_attempts") {
     for(auto mode:{"reject","throw","inline_reject","inline_throw","duplicate"}) {
       auto f=std::make_shared<Fault>();f->mode=mode;auto made=Scheduler::create(f,{{principal(1)}});check(bool(made));auto &s=**made;
       unsigned runs=0,done=0;bool success=false;auto r=request();r.work=[&]{++runs;return Result<void>{};};r.completed=[&](auto v){++done;success=bool(v);};
@@ -34,7 +62,7 @@ int main(int argc,char**argv)try {
     unsigned runs=0,done=0,detached=0;auto r=request();auto expires=std::chrono::steady_clock::now()+std::chrono::hours(1);r.deadline=expires;r.work=[&]{++runs;return Result<void>{};};r.detach_waiter=[&]{++detached;};r.completed=[&](auto x){if(!x)++done;};
     check(bool(s.enqueue(std::move(r))));check(s.pump()==1 && s.next_deadline()==expires);s.pump(expires);
     check(done==1 && detached==1 && s.snapshot().inflight==0 && s.snapshot().worker_delivery==1);
-    check(bool(s.enqueue(request())));check(s.pump()==0);f->held->execute();f->held.reset();check(runs==0 && s.snapshot().worker_delivery==0);check(s.pump()==1);f->held->execute();f->held.reset();
+    check(bool(s.enqueue(request())));check(s.pump()==0);f->held->execute();f->held.reset();check(runs==0 && s.snapshot().worker_delivery==0 && s.snapshot().executor_violations==0);check(s.pump()==1);f->held->execute();f->held.reset();
   } else if(test=="start_deadline_race") {
     unsigned started=0,expired=0;
     for(unsigned round=0;round<100;++round) {

@@ -1,10 +1,11 @@
 add_executable(ock_scheduler_contract contract.cpp)
 target_link_libraries(ock_scheduler_contract PRIVATE OCK::Runtime OCK::Adapter::CpuPool)
 target_include_directories(ock_scheduler_contract PRIVATE "${PROJECT_SOURCE_DIR}")
-foreach(case fault_attempts delivery_deadline inline_reentry quota_control dependencies_deadline dependency_failure fairness priority_bound history_scale close_and_callbacks executor_owner_lifetime started_deadline real_concurrent_completion start_deadline_race dependency_attach_race dependency_invalid completion_backpressure)
+foreach(case fault_attempts delivery_deadline inline_reentry quota_control dependencies_deadline dependency_failure fairness priority_bound history_scale close_and_callbacks executor_owner_lifetime started_deadline real_concurrent_completion start_deadline_race dependency_attach_race dependency_invalid completion_backpressure retire_start_arbitration dependency_ready_callback)
   add_test(NAME T13.scheduler.${case} COMMAND ock_scheduler_contract ${case})
   set_tests_properties(T13.scheduler.${case} PROPERTIES TIMEOUT 30 LABELS "B4;D3.02")
 endforeach()
+set_tests_properties(T13.scheduler.retire_start_arbitration T13.scheduler.dependency_ready_callback PROPERTIES LABELS "B5;D3.04;D3.05")
 
 get_filename_component(_b4_runtime_dir "${CMAKE_CXX_COMPILER}" DIRECTORY)
 get_property(_b4_local_tests DIRECTORY PROPERTY TESTS)

@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "ctest",
+    "--test-dir",
+    "build/b4-debug",
+    "-C",
+    "Debug",
+    "--output-on-failure",
+    "--stop-on-failure",
+    "-R",
+    "T13.scheduler.(dependency_ready_callback|dependency_attach_race|dependency_failure|retire_start_arbitration|inline_reentry|close_and_callbacks)$"
+  ],
+  "cwd": "J:\\Code\\Kernel_v2",
+  "started_at": "2026-09-09T09:58:52.941582+00:00",
+  "exit_code": 0,
+  "status": "Exited",
+  "process_tree": {
+    "mechanism": "WindowsJobObject",
+    "assigned_before_resume": true,
+    "active_after": 0,
+    "total_processes": 8,
+    "terminated_owned_job": false
+  },
+  "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+  "pid": 41120,
+  "observed_exit_code": 0,
+  "finished_at": "2026-09-09T09:58:53.488124+00:00"
+}

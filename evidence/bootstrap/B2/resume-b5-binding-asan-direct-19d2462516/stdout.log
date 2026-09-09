@@ -1,0 +1,32 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-asan
+Test project J:/Code/Kernel_v2/build/b4-asan
+    Start 48: T13.scheduler.fault_attempts
+1/9 Test #48: T13.scheduler.fault_attempts ....................   Passed    0.13 sec
+    Start 49: T13.scheduler.delivery_deadline
+2/9 Test #49: T13.scheduler.delivery_deadline .................   Passed    0.07 sec
+    Start 65: T13.scheduler.retire_start_arbitration
+3/9 Test #65: T13.scheduler.retire_start_arbitration ..........   Passed    0.09 sec
+    Start 66: T13.scheduler.dependency_ready_callback
+4/9 Test #66: T13.scheduler.dependency_ready_callback .........   Passed    0.08 sec
+    Start 79: T13.resources.lease_reentrant_destruction
+5/9 Test #79: T13.resources.lease_reentrant_destruction .......   Passed    0.15 sec
+    Start 80: T13.resources.waiter_reentrant_destruction
+6/9 Test #80: T13.resources.waiter_reentrant_destruction ......   Passed    0.08 sec
+    Start 82: T13.resources.execution_binding
+7/9 Test #82: T13.resources.execution_binding .................   Passed    0.07 sec
+    Start 83: T13.resources.execution_running_cancel
+8/9 Test #83: T13.resources.execution_running_cancel ..........   Passed    0.08 sec
+    Start 84: T13.resources.execution_binding_interleavings
+9/9 Test #84: T13.resources.execution_binding_interleavings ...   Passed    0.08 sec
+
+100% tests passed, 0 tests failed out of 9
+
+Label Time Summary:
+B4       =   0.43 sec*proc (4 tests)
+B5       =   0.39 sec*proc (5 tests)
+D3.02    =   0.21 sec*proc (2 tests)
+D3.03    =   0.22 sec*proc (2 tests)
+D3.04    =   0.39 sec*proc (5 tests)
+D3.05    =   0.39 sec*proc (5 tests)
+
+Total Test time (real) =   0.84 sec

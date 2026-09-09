@@ -22,10 +22,12 @@ struct Scheduler::State {
     std::size_t subject,remaining=0;
     std::set<Ticket> children;
     std::uint64_t generation=1;
-    bool ownership_returned=false;
+    bool ownership_returned=false,executor_rejected=false;
     Submission submission=Submission::Waiting;
     bool linked=false,started=false,terminal=false,has_deadline=false;
     Entry *previous=nullptr,*next=nullptr,*completed_next=nullptr,*history_next=nullptr;
+    Entry *dependency_previous=nullptr,*dependency_next=nullptr;
+    bool dependency_linked=false;
     std::optional<Result<void>> outcome;
     std::multimap<Time,Ticket>::iterator deadline;
     Entry(Ticket i,Request r,std::size_t s):id(i),request(std::move(r)),subject(s){}
@@ -39,6 +41,7 @@ struct Scheduler::State {
   std::multimap<Time,Ticket> deadlines;
   std::deque<std::function<void()>> controls;
   Entry *completed_first=nullptr,*completed_last=nullptr,*history_first=nullptr,*history_last=nullptr;
+  Entry *dependency_first=nullptr,*dependency_last=nullptr;
   Ticket next_id=1;
   std::size_t queued=0,inflight=0,delivery=0,edges=0,subject_cursor=0;
   unsigned subject_credit=0;
@@ -57,9 +60,21 @@ struct Scheduler::State {
     e.previous=e.next=nullptr;e.linked=false;
   }
   void remove_deadline(Entry &e) noexcept {if(e.has_deadline){deadlines.erase(e.deadline);e.has_deadline=false;}}
+  void unlink_dependency(Entry &e) noexcept {
+    if(!e.dependency_linked)return;
+    if(e.dependency_previous)e.dependency_previous->dependency_next=e.dependency_next;else dependency_first=e.dependency_next;
+    if(e.dependency_next)e.dependency_next->dependency_previous=e.dependency_previous;else dependency_last=e.dependency_previous;
+    e.dependency_previous=e.dependency_next=nullptr;e.dependency_linked=false;
+  }
+  void dependencies_satisfied(Entry &e) noexcept {
+    if(e.remaining || e.terminal || e.dependency_linked || !e.request.dependencies_ready)return;
+    e.dependency_previous=dependency_last;e.dependency_next=nullptr;
+    if(dependency_last)dependency_last->dependency_next=&e;else dependency_first=&e;
+    dependency_last=&e;e.dependency_linked=true;
+  }
   void finish(Entry &e,Result<void> result) noexcept { // mutex held; notification queue also owns dependency propagation.
     if(e.terminal)return;
-    unlink(e);remove_deadline(e);
+    unlink(e);unlink_dependency(e);remove_deadline(e);
     ++e.generation;
     for(auto parent:e.request.dependencies) {auto it=active.find(parent);if(it!=active.end())edges-=it->second->children.erase(e.id);}
     if(e.submission==Submission::Waiting){--queued;--subjects[e.subject].queued;}
@@ -75,9 +90,14 @@ struct Scheduler::State {
       contracts::CallbackWork::Completion done;
       Request released_request;
       std::function<void()> detach;
+      std::function<void()> dependency;
       {
         std::lock_guard lock(mutex);
-        if(!completed_first){notifying=false;break;}
+        if(!completed_first && !dependency_first){notifying=false;break;}
+        if(!completed_first) {
+          e=active.at(dependency_first->id);unlink_dependency(*e);
+          dependency=std::move(e->request.dependencies_ready);
+        } else {
         auto *raw=completed_first;completed_first=raw->completed_next;if(!completed_first)completed_last=nullptr;
         changed=true;e=active.at(raw->id);
         while(!e->children.empty()) {
@@ -85,7 +105,7 @@ struct Scheduler::State {
           auto it=active.find(child);if(it==active.end() || it->second->terminal)continue;
           auto &c=*it->second;
           if(!*e->outcome)finish(c,make_unexpected(error(Errc::DependencyFailed)));
-          else{--c.remaining;link(c);}
+          else{--c.remaining;dependencies_satisfied(c);link(c);}
         }
         done=std::move(e->request.completed);
         detach=std::move(e->request.detach_waiter);
@@ -96,7 +116,9 @@ struct Scheduler::State {
           auto *old=history_first;history_first=old->history_next;if(!history_first)history_last=nullptr;
           history.erase(old->id);
         }
+        }
       }
+      try {if(dependency)dependency();}catch(...){std::lock_guard lock(mutex);++callback_errors;if(!e->started)finish(*e,make_unexpected(error(Errc::WorkException)));}
       try {if(detach)detach();}catch(...){std::lock_guard lock(mutex);++callback_errors;}
       try {if(done)done(*e->outcome);}catch(...){std::lock_guard lock(mutex);++callback_errors;}
       // callbacks/captures 析构与外部通知始终在锁外。
@@ -108,6 +130,7 @@ struct Scheduler::State {
     std::shared_ptr<State> owner;
     std::shared_ptr<Entry> entry;
     std::uint64_t generation;
+    bool invoked=false; // 同 owner mutex 保护，区分正常失效后的首次调用与重复调用。
     Work(std::shared_ptr<State> s,std::shared_ptr<Entry> e,std::uint64_t g):owner(std::move(s)),entry(std::move(e)),generation(g){}
     ~Work() override {
       {std::lock_guard lock(owner->mutex);--owner->delivery;entry->ownership_returned=true;
@@ -121,7 +144,9 @@ struct Scheduler::State {
       bool run=false;
       {
         std::lock_guard lock(s.mutex);
-        if(e.generation!=generation || e.started || e.terminal || e.submission==Submission::Rejected){++s.violations;return;}
+        if(invoked || e.executor_rejected || e.submission==Submission::Rejected){++s.violations;return;}
+        invoked=true;
+        if(e.generation!=generation || e.terminal)return;
         // 同一 mutex 内与 expiration 仲裁；仅本处成功 claim 才表示 Started。
         if(std::chrono::steady_clock::now()>=e.request.deadline)s.finish(e,make_unexpected(error(Errc::ExpiredBeforeDispatch)));
         else {e.started=true;s.remove_deadline(e);run=true;}
@@ -207,8 +232,8 @@ Result<Ticket> Scheduler::enqueue(Request request) {
     if(e) {for(auto id:e->request.dependencies){auto it=s->active.find(id);if(it!=s->active.end())s->edges-=it->second->children.erase(e->id);}s->active.erase(e->id);s->remove_deadline(*e);}
     lock.unlock();return make_unexpected(error(Errc::Full));
   }
-  ++s->next_id;++s->queued;++s->subjects[subject].queued;s->link(*e);
-  lock.unlock();s->signal();return e->id;
+  ++s->next_id;++s->queued;++s->subjects[subject].queued;s->dependencies_satisfied(*e);s->link(*e);
+  lock.unlock();s->notify();s->signal();return e->id;
 }
 Result<void> Scheduler::make_ready(Ticket id) {
   auto s=state_;
@@ -216,6 +241,21 @@ Result<void> Scheduler::make_ready(Ticket id) {
     if(it==s->active.end() || it->second->terminal || it->second->submission!=State::Submission::Waiting)return make_unexpected(error(Errc::UnknownTicket));
     it->second->request.resource_ready=true;s->link(*it->second);}
   s->signal();return {};
+}
+Result<Retirement> Scheduler::retire(Ticket id,foundation::Error reason) {
+  auto s=state_;Retirement result;
+  {
+    std::lock_guard lock(s->mutex);auto it=s->active.find(id);
+    if(it==s->active.end()) {
+      if(s->history.contains(id))return Retirement::AlreadyTerminal;
+      return make_unexpected(error(Errc::UnknownTicket));
+    }
+    auto &e=*it->second;
+    if(e.terminal)result=Retirement::AlreadyTerminal;
+    else if(e.started)result=Retirement::AlreadyStarted;
+    else{s->finish(e,make_unexpected(std::move(reason)));result=Retirement::Retired;}
+  }
+  s->notify();s->signal();return result;
 }
 Result<void> Scheduler::post_control(std::function<void()> command) {
   auto s=state_;
@@ -250,6 +290,7 @@ std::size_t Scheduler::pump(Time now,std::size_t limit) {
     if(!created){std::lock_guard lock(s->mutex);--s->delivery;e->ownership_returned=true;}
     {
       std::lock_guard lock(s->mutex);
+      if(!submitted)e->executor_rejected=true;
       if(!submitted && e->started)++s->violations;
       if(!e->terminal) {
         e->submission=submitted?State::Submission::Accepted:State::Submission::Rejected;

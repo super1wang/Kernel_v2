@@ -1,10 +1,12 @@
 add_executable(ock_resources_contract contract.cpp)
 target_link_libraries(ock_resources_contract PRIVATE OCK::Runtime OCK::Adapter::CpuPool)
 target_include_directories(ock_resources_contract PRIVATE "${PROJECT_SOURCE_DIR}")
-foreach(case alias_read_write_same_slot multi_claim_partial_failure_zero_occupancy aggregate_overflow exclusive_shared_units lease_only_own_release unknown_key_bounded waiter_release_race waiter_cancel callback_outside_lock compute_commit_separation parent_wait_rejects_held_child_resources scheduler_resource_wakeup lease_reentrant_destruction waiter_reentrant_destruction resource_key_boundaries)
+foreach(case alias_read_write_same_slot multi_claim_partial_failure_zero_occupancy aggregate_overflow exclusive_shared_units lease_only_own_release unknown_key_bounded waiter_release_race waiter_cancel callback_outside_lock compute_commit_separation parent_wait_rejects_held_child_resources scheduler_resource_wakeup lease_reentrant_destruction waiter_reentrant_destruction resource_key_boundaries execution_binding execution_running_cancel)
   add_test(NAME T13.resources.${case} COMMAND ock_resources_contract ${case})
   set_tests_properties(T13.resources.${case} PROPERTIES TIMEOUT 30 LABELS "B4;D3.03")
 endforeach()
+add_test(NAME T13.resources.execution_binding_interleavings COMMAND ock_resources_contract execution_binding_interleavings)
+set_tests_properties(T13.resources.execution_binding T13.resources.execution_running_cancel T13.resources.execution_binding_interleavings PROPERTIES TIMEOUT 30 LABELS "B5;D3.04;D3.05")
 
 get_filename_component(_b4_runtime_dir "${CMAKE_CXX_COMPILER}" DIRECTORY)
 get_property(_b4_local_tests DIRECTORY PROPERTY TESTS)
