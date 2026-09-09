@@ -32,7 +32,8 @@ public:
           material->caller->view().description().principal,{},contracts::ExecutionPhase::Queued,
           host,*contracts::ObservationVersion::create(1),{}, {}};
       auto entry=table->prepare(std::move(summary),*record,contracts::CppTypeToken::of<R>(),
-          (*record)->input_bytes(),(*record)->reserved_reply_bytes());
+          (*record)->input_bytes(),(*record)->reserved_reply_bytes(),material->targets,
+          +[](const void* value) noexcept -> const void* {return static_cast<const Record*>(value)->reply();});
       if(!entry)return contracts::make_unexpected(entry.error());
       owner->entry_=*entry;
       std::weak_ptr<ManagedExecution> weak=owner;

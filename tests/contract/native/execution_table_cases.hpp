@@ -2,7 +2,101 @@
 #include "fixtures.hpp"
 #include "packages/runtime/executions/execution_table.hpp"
 #include "packages/runtime/executions/managed_execution.hpp"
+#include "packages/runtime/executions/execution_queries.hpp"
+#include <future>
 namespace native_test {
+inline void execution_source_observation() {
+  using Table=executions::detail::ExecutionTable;
+  HostIncarnation host;host.bytes[0]=91;
+  Table::Limits limits;limits.waiters=1;
+  auto made=Table::create(limits,host);CHECK(made);auto table=*made;
+  auto source=std::make_shared<executions::detail::ExecutionSource>(table);
+  auto make=[&](unsigned n,PrincipalRef owner,bool publish,bool terminal) {
+    ExecutionRef ref;ref.execution_id.bytes[0]=static_cast<unsigned char>(n);
+    SummaryInput summary{ref,key(),owner,{},ExecutionPhase::Queued,host,*ObservationVersion::create(1),{}, {}};
+    auto payload=std::make_shared<InvokeReply<int>>(Rejected{error(ContractsErrc::Rejected)});
+    auto entry=table->prepare(std::move(summary),payload,CppTypeToken::of<int>(),4,sizeof(InvokeReply<int>),{policy_test::target()},
+        +[](const void* p) noexcept -> const void* {return p;});CHECK(entry);
+    if(publish)CHECK(table->publish(*entry));
+    if(terminal) {
+      PhaseConditions conditions{{RequiredRecordState::NotRequired,0,0},{},{},false,false};
+      CHECK(table->transition(*entry,ExecutionPhase::Finalizing,conditions));
+      CHECK(table->transition(*entry,ExecutionPhase::Terminal,conditions));
+    }
+    return *entry;
+  };
+  auto one=make(1,policy_test::principal(),true,false);
+  auto two=make(2,policy_test::principal(),true,true);
+  auto other=make(3,policy_test::principal(2),true,true);
+  auto hidden=make(4,policy_test::principal(),false,false);
+  auto five=make(5,policy_test::principal(),true,false);
+  CHECK(!source->find(hidden->execution()));
+  auto found=source->find(one->execution());CHECK(found&&found->actual_targets==std::vector{policy_test::target()});
+  ListRequest request{policy_test::principal(),PhaseSet::All,{1,1},{}};
+  auto first=source->scan({request});CHECK(first&&first->candidates.size()==1&&first->candidates[0].first==five->ordinal());
+  CHECK(first->next_scan);request.position=first->next_scan;
+  auto later=make(6,policy_test::principal(),true,false); // 不进入已取得的 upper。
+  auto second=source->scan({request});CHECK(second&&second->candidates.empty()&&second->next_scan);
+  CHECK(second->next_scan->before_ordinal<request.position->before_ordinal);
+  request.position=second->next_scan;
+  auto third=source->scan({request});CHECK(third&&third->candidates.size()==1&&third->candidates[0].first==two->ordinal());
+  request.position=third->next_scan;
+  auto fourth=source->scan({request});CHECK(fourth&&fourth->candidates.size()==1&&fourth->candidates[0].first==one->ordinal()&&!fourth->next_scan);
+  request={policy_test::principal(),PhaseSet::Terminal,{10,10},{}};
+  auto terminals=source->scan({request});CHECK(terminals&&terminals->candidates.size()==1);
+  CHECK(terminals->candidates[0].first==two->ordinal());
+  auto wrong=request;wrong.position=KeysetPosition{HostIncarnation{},10,9};CHECK(!source->scan({wrong}));
+  CHECK(table->abandon(hidden));
+  // 同一个真实 source 交给既有当前授权层，不以表中 owner 相等代替权限检查。
+  auto clock=std::make_shared<policy_test::Clock>();
+  auto auth=std::make_shared<policy_test::Auth>(clock->now()+std::chrono::hours(1));
+  auto assembly=policy::PolicyStore::create({},policy_test::configuration(),auth,clock,
+      std::make_shared<policy_test::Digest>(),source);CHECK(assembly);
+  auto session=assembly->store->open({{std::byte{7}}},{policy_test::rules(),auth->identity.deadline,false});CHECK(session);
+  auto caller=(*session)->verify({policy_test::principal(),{}, {}});CHECK(caller);
+  auto threads=std::make_shared<Threads>();threads->any_thread=true;
+  executions::detail::ExecutionQueries queries(table,*session,threads);
+  auto read=queries.result<int>(**caller,two->execution());CHECK(read&&read->value&&read->response);
+  CHECK(!queries.result<void>(**caller,two->execution()));
+  CHECK(!queries.result<int>(**caller,one->execution()));
+  auto timeout=queries.wait(**caller,one->execution(),std::chrono::steady_clock::now());
+  CHECK(timeout&&timeout->state==Table::WaitState::Timeout&&timeout->observed.summary->value().phase==ExecutionPhase::Queued);
+  threads->role=ThreadRole::Worker;CHECK(!queries.wait(**caller,one->execution(),std::chrono::steady_clock::now()));
+  threads->role=ThreadRole::Application;
+  std::stop_source waiting_stop;
+  auto waiting=std::async(std::launch::async,[&]{return queries.wait(**caller,one->execution(),std::chrono::steady_clock::now()+std::chrono::seconds(5),waiting_stop.get_token());});
+  auto admitted_deadline=std::chrono::steady_clock::now()+std::chrono::seconds(2);
+  while(!table->usage().waiters&&std::chrono::steady_clock::now()<admitted_deadline)std::this_thread::yield();
+  CHECK(table->usage().waiters==1);
+  CHECK(!table->wait_terminal(one->execution(),std::chrono::steady_clock::now()));
+  waiting_stop.request_stop();auto stopped=waiting.get();CHECK(stopped&&stopped->state==Table::WaitState::Cancelled);
+  CHECK(table->usage().waiters==0&&source->find(one->execution())->summary->value().phase==ExecutionPhase::Queued);
+  for(auto use:{policy::AccessUse::GetSummary,policy::AccessUse::Wait,policy::AccessUse::CancelExecution,policy::AccessUse::ReadResult})
+    CHECK((*session)->observations()->get(**caller,one->execution(),use));
+  auto authorized_page=(*session)->observations()->list(**caller,request,{});CHECK(authorized_page);
+  CHECK(authorized_page->page.items.size()==1&&authorized_page->page.items[0].listing_ordinal==two->ordinal());
+  CHECK(validate_list_page(request,authorized_page->page,{200,2000}));
+  // 非终态含 Finalizing；终态索引转移后，Nonterminal 不再扫描该记录。
+  PhaseConditions conditions{{RequiredRecordState::NotRequired,0,0},{},{},false,false};
+  CHECK(table->transition(one,ExecutionPhase::Finalizing,conditions));
+  ListRequest active{policy_test::principal(),PhaseSet::Nonterminal,{10,10},{}};
+  auto active_page=source->scan({active});CHECK(active_page&&active_page->candidates.size()==3);
+  CHECK(active_page->candidates.back().second.summary->value().phase==ExecutionPhase::Finalizing);
+  CHECK(table->transition(one,ExecutionPhase::Terminal,conditions));
+  active_page=source->scan({active});CHECK(active_page&&active_page->candidates.size()==2);
+  auto revoked_wait=std::async(std::launch::async,[&]{return queries.wait(**caller,five->execution(),std::chrono::steady_clock::now()+std::chrono::seconds(5));});
+  admitted_deadline=std::chrono::steady_clock::now()+std::chrono::seconds(2);
+  while(!table->usage().waiters&&std::chrono::steady_clock::now()<admitted_deadline)std::this_thread::yield();
+  CHECK(table->usage().waiters==1);
+  CHECK(assembly->administration->replace_principal_policy({policy_test::principal(),{}}));
+  CHECK(table->transition(five,ExecutionPhase::Finalizing,conditions));
+  CHECK(table->transition(five,ExecutionPhase::Terminal,conditions));
+  CHECK(!revoked_wait.get());CHECK(table->usage().waiters==0);
+  CHECK(!queries.result<int>(**caller,two->execution()));
+  CHECK(!(*session)->observations()->get(**caller,one->execution(),policy::AccessUse::GetSummary));
+  CHECK(!(*session)->observations()->list(**caller,request,{}));
+  CHECK(source->find(one->execution())); // 事实保留，访问仍拒绝。
+}
 struct ManagedInlineExecutor final : ExecutorPort {
   Result<void> submit(std::unique_ptr<ReadyWork> work) override {work->execute();return {};}
 };
@@ -23,14 +117,15 @@ inline void managed_execution_resource_wait() {
   std::shared_ptr<scheduler::Scheduler> schedule=std::move(*s);
   auto r=resources::ResourceManager::create({{"actual.slot",1,false}});CHECK(r);
   std::shared_ptr<resources::ResourceManager> manager=std::move(*r);
-  auto t=executions::detail::ExecutionTable::create({});CHECK(t);
+  HostIncarnation host;host.bytes[0]=82;
+  auto t=executions::detail::ExecutionTable::create({},host);CHECK(t);
   auto resolver=[](std::span<const registry::ResourceRef> refs)->Result<std::vector<resources::Claim>> {
     CHECK(refs.size()==1&&refs[0].name==name("declared"));
     return std::vector<resources::Claim>{{"actual.slot",resources::Mode::Exclusive,1}};
   };
   std::array claims{resources::Claim{"actual.slot",resources::Mode::Exclusive,1}};
   auto held=manager->acquire(claims,resources::Phase::Compute);CHECK(held&&held->lease);
-  ExecutionRef id;id.execution_id.bytes[0]=81;HostIncarnation host;host.bytes[0]=82;
+  ExecutionRef id;id.execution_id.bytes[0]=81;
   Managed::Record::Policy policy{4,sizeof(InvokeReply<int>),
       [](const int&)->Result<std::size_t>{return 4;},
       [](const InvokeReply<int>&)->Result<std::size_t>{return sizeof(InvokeReply<int>);}};
@@ -59,11 +154,12 @@ inline void managed_execution_path() {
   std::shared_ptr<scheduler::Scheduler> schedule=std::move(*scheduler_result);
   auto resources_result=resources::ResourceManager::create({{"test.slot",1,false}});CHECK(resources_result);
   std::shared_ptr<resources::ResourceManager> resources=std::move(*resources_result);
-  auto table=Table::create({});CHECK(table);
+  HostIncarnation host;host.bytes[0]=72;
+  auto table=Table::create({},host);CHECK(table);
   Managed::Record::Policy policy{4,sizeof(InvokeReply<int>),
       [](const int&)->Result<std::size_t>{return 4;},
       [](const InvokeReply<int>&)->Result<std::size_t>{return sizeof(InvokeReply<int>);}};
-  ExecutionRef id;id.execution_id.bytes[0]=71;HostIncarnation host;host.bytes[0]=72;
+  ExecutionRef id;id.execution_id.bytes[0]=71;
   auto resolver=[](std::span<const registry::ResourceRef> refs)->Result<std::vector<resources::Claim>> {
     CHECK(refs.empty());return std::vector<resources::Claim>{};
   };
@@ -75,6 +171,7 @@ inline void managed_execution_path() {
   CHECK((*summary)->value().phase==ExecutionPhase::Terminal);
   auto record=std::static_pointer_cast<const Managed::Record>((*execution)->entry()->payload());
   CHECK(record->reply()&&result(*record->reply())==7);
+  auto typed=(*table)->result<int>(id);CHECK(typed&&result(**typed)==7);
   (*execution)->cancel();CHECK(result(*record->reply())==7);
   id.execution_id.bytes[0]=73;
   auto cancelled=Managed::create(*table,schedule,resources,id,host,*bound,8,env.options(),policy,resolver,[]{});
@@ -87,10 +184,11 @@ inline void managed_execution_path() {
 }
 inline void execution_table_ownership() {
   using Table=executions::detail::ExecutionTable;
-  auto made=Table::create({3,12,48,1,48});CHECK(made);auto table=*made;
+  HostIncarnation host;host.bytes[0]=42;
+  auto made=Table::create({3,12,48,1,48},host);CHECK(made);auto table=*made;
   Env env;
   auto input=[&](unsigned char id) {
-    ExecutionRef ref;ref.execution_id.bytes[0]=id;HostIncarnation host;host.bytes[0]=42;
+    ExecutionRef ref;ref.execution_id.bytes[0]=id;
     return SummaryInput{ref,key(),env.policy.caller->view().description().principal,{},
         ExecutionPhase::Queued,host,*ObservationVersion::create(1),{}, {}};
   };

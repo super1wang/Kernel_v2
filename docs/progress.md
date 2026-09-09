@@ -11,6 +11,7 @@
 - B5 本次资源绑定直接影响集另经 ASan / RelWithDebInfo 9/9；包含早到/重复/迟到 wake、acquire 在途取消、运行期租约保持、析构重入及正常失效/Executor 违约区分。这是开发验证，尚未形成 B5 同来源正式矩阵或包级 Passed。
 - B5 受管理调用基础已接入同一 Native typed dispatch：注册目录保留可信资源声明，绑定持有 VerifiedCaller，Submit 准备与开始共用参数/目标/预算/当前授权校验；worker 入口借用运行期 Lease，短 Invoke 原线程和资源限制保持。Debug 影响集 12/12、ASan / RelWithDebInfo 生命周期影响集 6/6。当前仅支持同步 Read 的内部接线，外部异步完成仍明确拒绝；Execution 表、拥有输入/结果、父子寿命与 Host/CLI Submit 继续开发，未发布 Submit capability。
 - B5 新增 InvocationRecord、内部 ExecutionTable 与 ManagedExecution：拥有输入、接受前预留调用槽/固定结果槽/取消状态，按可信字节测量预留表项额度；接受发布后才允许资源准入和 typed 调用。已接通 Scheduler 排队/退役、资源等待/重试、运行期租约与同一身份终态摘要；结果 alias 保活表项，普通缓存淘汰不移除被 pin 的记录，索引摘除不提前归还拥有者额度。直接开发验证 Debug 5/5、ASan / RelWithDebInfo 5/5；首次测试因空资源配置被正确拒绝，原失败保留，修正 fixture 后重跑通过。身份分配服务、owner 观察索引、当前授权 get/wait/cancel、共享有限控制循环、完整分项预算和结构化父子寿命继续开发；尚未发布 Host/CLI Submit capability，不构成包级 Passed。
+- B5 真实观察源已接入现有 Policy：表绑定 Host 世代，owner/ordinal 分别索引非终态与终态，完成时复用预留节点；有界分页在未接受条目处仍前进，续页保持首次 upper。类型化结果 pin、有限等待者及当前授权查询已实现；等待超时/取消不取消执行，禁止 worker/control/domain/database 阻塞等待，返回前重验权限并限制等待不超过授权期限。新增接线影响集 Debug 4/4、ASan / RelWithDebInfo 4/4，覆盖真实 source 的 get/list 授权、撤权后拒绝结果/等待摘要、等待配额和结果类型检查。身份分配、共享控制循环、取消服务入口、Host/CLI、父子寿命和 G3 验收继续开发，未形成包级 Passed。
 - Host、Logging、NativeSubset/独立安装消费者及 footprint 正式测量/预算已交付并完成本包验收。
 - B1 历史恢复结论保留：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[历史交付与自动验收](validation/D1.06-resume-delivery.md)。
 - 工具优化阶段已结束；禁止继续把 Fixture、Evidence、Install Consumer 性能优化或新流程文档设为 D1.06 前置。

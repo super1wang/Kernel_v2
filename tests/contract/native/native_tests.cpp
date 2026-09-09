@@ -26,6 +26,7 @@ int main(int argc,char**argv) {
     {"T03.native.managed_record",managed_record},
     {"T03.native.managed_record_ownership",managed_record_ownership},
     {"T03.native.execution_table_ownership",execution_table_ownership},
+    {"T06.native.execution_source_observation",execution_source_observation},
     {"T03.native.managed_execution_path",managed_execution_path},
     {"T03.native.managed_execution_resource_wait",managed_execution_resource_wait},
     {"T06.native.business_failure",business_failure},{"T03.native.no_task_path",no_task_path},
