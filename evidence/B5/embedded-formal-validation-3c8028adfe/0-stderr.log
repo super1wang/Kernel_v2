@@ -1,0 +1,20 @@
+test_actual_allocator_sample (tests.tools.footprint.test_embedded_formal.EmbeddedFormalTests.test_actual_allocator_sample) ... ERROR
+test_budget_omission_excess_nonfinite_rejected (tests.tools.footprint.test_embedded_formal.EmbeddedFormalTests.test_budget_omission_excess_nonfinite_rejected) ... ok
+test_corrupted_actual_sample_rejected (tests.tools.footprint.test_embedded_formal.EmbeddedFormalTests.test_corrupted_actual_sample_rejected) ... ok
+
+======================================================================
+ERROR: test_actual_allocator_sample (tests.tools.footprint.test_embedded_formal.EmbeddedFormalTests.test_actual_allocator_sample)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\tools\footprint\test_embedded_formal.py", line 11, in test_actual_allocator_sample
+    allocations(self.sample(),'embedded','win-msvc-asan')
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Code\Kernel_v2\tools\footprint\embedded_formal.py", line 48, in allocations
+    if probes['verified'] is not True or [(r['window'],r['index'],r['success']) for r in probes['samples']]!=[('probe',i,True) for i in range(13)]:raise ValueError('allocation probes missing')
+                                                                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: allocation probes missing
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.004s
+
+FAILED (errors=1)

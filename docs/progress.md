@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- G3-C 完整 Embedded 的有限预算已在正式运行前完成独立 AI 审查（[决定](reviews/B5-embedded-budget-decision.md)、[口径](contracts/embedded-footprint-method.md)）：Release 无计数与 Debug/ASan 分配诊断分开，保留 NativeSubset 原字段/原值，另加 Embedded 分区；固定 6 组 ABBA，内核线程上界 3 与受限 Invoke 零分配不放宽。正式入口绑定源/环境/依赖/安装/实际编译参数、阶段线程集合、回收曲线和原始命令。真实分配样本与损坏反例直接集 **3/3**（[原文](../evidence/B5/embedded-formal-validation-f5358f746e/commands.json)），首次负探针名称匹配错误的失败已保留并纠正。**预算 Approved 不是测量 Passed，更不是 B5/G3 Passed**；正式采样、B5 SPEC/CODE 与 G3 总验收继续完成。
+
 - G3-C 已补真实无阶段握手的 Release 启动样本：同一完整 Embedded fixture 的 3 组 ABBA 中，6 次 Embedded 构造到 Ready 为 0.8274–0.9655 ms，创建到 Ready 为 45.0521–117.1785 ms；基准创建到 Ready 为 48.0704–100.7353 ms（[统计与口径](../evidence/B5/embedded-startup-f771053399/samples/summary.json)、[实际构建/安装命令](../evidence/B5/embedded-startup-f771053399/commands.json)）。QPC 包含创建后纳入独占 Job 与恢复线程的固定安全成本，没有 Ready 前采样 ACK；没有清空 OS 缓存，不声称强制冷启动。时钟跨真实子进程对照及启动器直接集 **8/8**；同一二进制的原占用握手 ABBA 四次也完整通过（[占用原文](../evidence/B5/embedded-startup-occupancy-a8f6809422/1-embedded-command.json)）。本次复用新版 dev.6 的独立 Embedded Release 生产构建，未把诊断构建用于时延。有限预算与同来源 B5/G3 正式验收仍继续完成。
 
 - B5 开发 SDK 已升级至 `0.1.0-dev.6 / B5Subset`，Runtime/Control 的实际导出目标、版本头、清单一致；默认 B5Subset，保留 B4Subset 组件选择。19 项 SDK 表面检查、版本编译探针 1/1 通过。真实生产构建/迁移安装后，仓库外 managed 消费者使用安装 RPC Schema 独立编译，真实 CLI 闭环通过（[安装与命令](../evidence/B5/sdk-dev6-0833db71b1/commands.json)）。新版 Embedded 独立构建/迁移安装仍仅 expected/thread_pool，40 次 typed 对比、资源父子取消、默认内存日志及排空通过（[原文](../evidence/B5/embedded-install-ede55e19a3/commands.json)）。首次目标阶段标签不一致的失败原文保留并已修正（[首轮](../evidence/B5/sdk-dev6-b80851f6be/commands.json)）；版本探针另见[直接集](../evidence/B5/sdk-metadata-f7af54b57d/commands.json)。这是 experimental SDK 打包交付，修改过的消费者不构成旧 SDK 不变兼容证明；有限 Embedded 预算、同来源正式 SPEC/CODE 和 B5/G3 验收继续完成。

@@ -357,5 +357,134 @@
         "distribution_increment_bytes": 3559424
       }
     }
-  ]
+  ],
+  "embedded": {
+    "format": "ock.embedded-footprint-budgets/1",
+    "actor_type": "AI",
+    "decision": "docs/reviews/B5-embedded-budget-decision.md",
+    "decision_sha256": "add929bdb9696677f1e8dadbf426cdd823c673fa4a33ec13f6d80b32a2fb6391",
+    "policy_sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80",
+    "native_fields_before_sha256": "3d16ed9ca9358b46dd955f2656790be5d934bf04dee817bc054852ce40f6d55c",
+    "configuration": {
+      "profile": "Embedded",
+      "cpu_workers": 2,
+      "memory_log_capacity": 128,
+      "blocks": 6,
+      "lto": false,
+      "invoke_windows": 40,
+      "owned_submits": 40
+    },
+    "calibration": [
+      {
+        "path": "evidence/B5/embedded-pilot-1df84b5c12/1-embedded-stdout.log",
+        "sha256": "ec81324afccbf512504bdde7447ab39e339c43360ec5a2717958167d5d0b7faa"
+      },
+      {
+        "path": "evidence/B5/embedded-pilot-d8d809d523/1-embedded-stdout.log",
+        "sha256": "2ab547821273f5ccae800adfceee6e5577558d71659eae32ff9f9d909648f93a"
+      },
+      {
+        "path": "evidence/B5/embedded-pilot-e2cb99d25c/pilot.json",
+        "sha256": "a8fcbc90257b960b30a0f6e6386dd08d0afb5f9e65e01513378f9c9392521c64"
+      },
+      {
+        "path": "evidence/B5/embedded-startup-f771053399/samples/summary.json",
+        "sha256": "621786b67f6f77611d1aa3b185ac021737b23a4fa1e4b568cd3db986bb734722"
+      }
+    ],
+    "budgets": {
+      "win-msvc-debug/allocation": {
+        "status": "Approved",
+        "method_digest": "0c91c7cd024b5d90e0a9836c078b65ed693b4db5e4a121c01ad9f76845afd7c3",
+        "approved_at": "2026-09-09T22:50:59.393272+00:00",
+        "pilot_run_ids": [
+          "evidence/B5/embedded-pilot-1df84b5c12/1-embedded-stdout.log",
+          "evidence/B5/embedded-pilot-d8d809d523/1-embedded-stdout.log",
+          "evidence/B5/embedded-pilot-e2cb99d25c/pilot.json",
+          "evidence/B5/embedded-startup-f771053399/samples/summary.json"
+        ],
+        "limits": {
+          "private_peak_absolute_max": 67108864,
+          "private_peak_paired_max": 16777216,
+          "ready_private_absolute_max": 67108864,
+          "ready_private_paired_max": 16777216,
+          "ready_peak_commit_absolute_max": 67108864,
+          "ready_peak_commit_paired_max": 16777216,
+          "working_set_peak_absolute_max": 134217728,
+          "working_set_peak_paired_max": 33554432,
+          "ready_peak_working_set_absolute_max": 134217728,
+          "ready_peak_working_set_paired_max": 33554432,
+          "distribution_increment_bytes": 16777216,
+          "ready_working_set_absolute_max": 134217728,
+          "ready_working_set_paired_max": 33554432
+        }
+      },
+      "win-msvc-release/occupancy": {
+        "status": "Approved",
+        "method_digest": "5f942d300bb4e7ff9d5dbbe55a553b71079e9518b131a4fa87dc1b57e09e5b92",
+        "approved_at": "2026-09-09T22:50:59.393272+00:00",
+        "pilot_run_ids": [
+          "evidence/B5/embedded-pilot-1df84b5c12/1-embedded-stdout.log",
+          "evidence/B5/embedded-pilot-d8d809d523/1-embedded-stdout.log",
+          "evidence/B5/embedded-pilot-e2cb99d25c/pilot.json",
+          "evidence/B5/embedded-startup-f771053399/samples/summary.json"
+        ],
+        "limits": {
+          "private_peak_absolute_max": 16777216,
+          "private_peak_paired_max": 4194304,
+          "ready_private_absolute_max": 16777216,
+          "ready_private_paired_max": 4194304,
+          "ready_peak_commit_absolute_max": 16777216,
+          "ready_peak_commit_paired_max": 4194304,
+          "working_set_peak_absolute_max": 67108864,
+          "working_set_peak_paired_max": 8388608,
+          "ready_peak_working_set_absolute_max": 67108864,
+          "ready_peak_working_set_paired_max": 8388608,
+          "distribution_increment_bytes": 4194304,
+          "ready_working_set_absolute_max": 67108864,
+          "ready_working_set_paired_max": 8388608
+        }
+      },
+      "win-msvc-asan/allocation": {
+        "status": "Approved",
+        "method_digest": "7bc31641878e5ab71eeb279735f429ea4d4a653b9669d350ecb25ad9d74a6c8c",
+        "approved_at": "2026-09-09T22:50:59.393272+00:00",
+        "pilot_run_ids": [
+          "evidence/B5/embedded-pilot-1df84b5c12/1-embedded-stdout.log",
+          "evidence/B5/embedded-pilot-d8d809d523/1-embedded-stdout.log",
+          "evidence/B5/embedded-pilot-e2cb99d25c/pilot.json",
+          "evidence/B5/embedded-startup-f771053399/samples/summary.json"
+        ],
+        "limits": {
+          "private_peak_absolute_max": 536870912,
+          "private_peak_paired_max": 134217728,
+          "ready_private_absolute_max": 536870912,
+          "ready_private_paired_max": 134217728,
+          "ready_peak_commit_absolute_max": 536870912,
+          "ready_peak_commit_paired_max": 134217728,
+          "working_set_peak_absolute_max": 536870912,
+          "working_set_peak_paired_max": 134217728,
+          "ready_peak_working_set_absolute_max": 536870912,
+          "ready_peak_working_set_paired_max": 134217728,
+          "distribution_increment_bytes": 33554432,
+          "ready_working_set_absolute_max": 536870912,
+          "ready_working_set_paired_max": 134217728
+        }
+      },
+      "win-msvc-release/startup": {
+        "status": "Approved",
+        "method_digest": "5f942d300bb4e7ff9d5dbbe55a553b71079e9518b131a4fa87dc1b57e09e5b92",
+        "approved_at": "2026-09-09T22:50:59.393272+00:00",
+        "pilot_run_ids": [
+          "evidence/B5/embedded-startup-f771053399/samples/summary.json"
+        ],
+        "limits": {
+          "construction_to_ready_ms_absolute_max": 250,
+          "construction_to_ready_ms_paired_max": 100,
+          "create_to_ready_ms_absolute_max": 1000,
+          "create_to_ready_ms_paired_max": 250
+        }
+      }
+    }
+  }
 }
