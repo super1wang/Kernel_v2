@@ -29,6 +29,7 @@ private:
     std::vector<Slot> slots;
     std::size_t used=0,cursor=0;
     bool closing=false,exited=false;
+    std::thread::id control_id;
   };
 public:
   static contracts::Result<std::unique_ptr<ExecutionService>> create(
@@ -45,6 +46,7 @@ public:
       state->scheduler=std::move(*schedule);
       auto service=std::unique_ptr<ExecutionService>(new ExecutionService(state));
       service->thread_=std::thread([state]{run(state);});
+      {std::lock_guard lock(state->mutex);state->control_id=service->thread_.get_id();}
       return service;
     } catch(...) {return fail();}
   }
@@ -116,14 +118,19 @@ public:
     s->scheduler->close();s->wake->signal();
   }
   contracts::Result<bool> shutdown_until(scheduler::Time deadline) {
-    if(std::this_thread::get_id()==thread_.get_id())return fail();
-    auto control=std::dynamic_pointer_cast<contracts::ExecutorControlPort>(state_->executor);
-    if(control&&control->in_worker())return fail();
+    if(in_execution_thread())return fail();
+    std::unique_lock shutdown(shutdown_mutex_,std::defer_lock);
+    if(!shutdown.try_lock_until(deadline))return false;
     close();std::unique_lock lock(state_->mutex);
     if(!state_->stopped.wait_until(lock,deadline,[&]{return state_->exited;}))return false;
     lock.unlock();if(thread_.joinable())thread_.join();return true;
   }
   std::size_t active() const {std::lock_guard lock(state_->mutex);return state_->used;}
+  bool in_execution_thread() const noexcept {
+    {std::lock_guard lock(state_->mutex);if(std::this_thread::get_id()==state_->control_id)return true;}
+    auto control=std::dynamic_pointer_cast<contracts::ExecutorControlPort>(state_->executor);
+    return control&&control->in_worker();
+  }
   scheduler::Snapshot scheduler_snapshot() const {return state_->scheduler->snapshot();}
 private:
   static foundation::Unexpected<contracts::Error> fail() {return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::BudgetExceeded));}
@@ -156,5 +163,6 @@ private:
   }
   std::shared_ptr<State> state_;
   std::thread thread_;
+  std::timed_mutex shutdown_mutex_;
 };
 }

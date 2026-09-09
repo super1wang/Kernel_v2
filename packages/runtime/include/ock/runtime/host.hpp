@@ -88,7 +88,7 @@ enum class ShutdownDisposition : std::uint8_t {
   Complete, CompleteWithErrors, DeadlineExceeded, NotQuiescent,
   Busy, Reentrant
 };
-enum class PendingKind : std::uint8_t { Admissions, PolicyStore, Module, Logging };
+enum class PendingKind : std::uint8_t { Admissions, PolicyStore, Module, Logging, Executions, Executors };
 struct PendingCleanup {
   PendingKind kind;
   std::optional<Name> module;
@@ -112,12 +112,27 @@ public:
   virtual Result<std::shared_ptr<contracts::LogPort>> create(
       HostIncarnation, const contracts::LogLimits&) = 0;
 };
+// 可信组合根提供执行后端；工厂返回前的失败清理由工厂负责。
+// Host 先关闭执行准入，再排空执行及物理投递，最后停止模块。
+class HostExecutionPort : public PortLifetime {
+public:
+  virtual std::shared_ptr<policy::ExecutionAccessSourcePort> observations() const = 0;
+  virtual bool in_execution_thread() const noexcept = 0;
+  virtual void stop_accepting() = 0;
+  virtual Result<bool> finish_until(TimePoint) = 0;
+  virtual Result<bool> drain_executors_until(TimePoint) = 0;
+};
+class HostExecutionFactoryPort : public PortLifetime {
+public:
+  virtual Result<std::shared_ptr<HostExecutionPort>> create(HostIncarnation) = 0;
+};
 struct HostPorts {
   std::shared_ptr<policy::TrustedAuthenticationPort> authentication;
   std::shared_ptr<policy::ClockPort> clock;
   std::shared_ptr<policy::TrustedGroupDigestPort> group_digest;
   std::shared_ptr<invocation::TrustedThreadPort> threads;
   std::shared_ptr<HostLogFactoryPort> logging_factory;
+  std::shared_ptr<HostExecutionFactoryPort> execution_factory;
 };
 class HostSession;
 template<ContractValue A, ContractResult R> class HostBound;

@@ -6,6 +6,8 @@
 
 同一 Registry/Policy/Invocation 生产实现组成 NativeSubset。只执行无资源声明的同步 Read/Compute，保留完整参数、身份、目标、权限、线程、预算和 Outcome 检查。不创建 Task、Document、执行索引、恢复存储或第二个业务分派器。NativeSubset 不提供 submit、wait、RPC 或业务模块。
 
+B5 开发扩展：可信组合根可通过 `HostPorts::execution_factory` 显式装配执行后端。工厂只在 start 时调用，使用本 HostIncarnation 创建观察源；默认空工厂保持以上 NativeSubset 行为。Host 在验证观察源之前登记后端清理责任，失败也必须排空；关闭顺序为停止执行准入、等待已准入调用、结束执行、关闭 Policy、排空执行器、停止模块。超时保留后端及其依赖，`PendingKind::Executions` / `Executors` 分别报告未完成责任；所属执行线程关闭返回 Reentrant。工厂返回失败前的临时 owner 清理由工厂负责，所有后端回调必须遵守传入截止时间。当前只落实宿主寿命装配，公开 HostBound Submit/会话 wait/result 尚未接通，capabilities 不宣称完整异步执行或观察能力。
+
 公开头 `ock/runtime/host.hpp` 的名字位于 `ock::runtime::host`。以下 `Name`、`Error`、`Result`、`OperationKey`、`ContractDigest`、`Shape`、`CallerDescription`、`InvokeReply` 及概念沿用 CoreContracts；`TimePoint` 为 `std::chrono::steady_clock::time_point`。公开 `ock/runtime/native_types.hpp` 保存 D1.05 的 ThreadRole、ThreadObservation、TrustedThreadPort、NativeBudget、InvokeOptions、TargetProjection、InvocationErrc/Record/Snapshot 唯一定义，仍在原 `ock::runtime::invocation` 命名空间。模板内部使用安装的 detail，不要求应用直接包含 detail。
 
 ## 模块与预算
@@ -96,7 +98,7 @@ enum class ShutdownDisposition : std::uint8_t {
   Complete, CompleteWithErrors, DeadlineExceeded, NotQuiescent,
   Busy, Reentrant
 };
-enum class PendingKind : std::uint8_t { Admissions, PolicyStore, Module, Logging };
+enum class PendingKind : std::uint8_t { Admissions, PolicyStore, Module, Logging, Executions, Executors };
 struct PendingCleanup {
   PendingKind kind;
   std::optional<Name> module;
@@ -129,12 +131,25 @@ public:
   virtual Result<std::shared_ptr<contracts::LogPort>> create(
       HostIncarnation, const contracts::LogLimits&) = 0;
 };
+class HostExecutionPort : public PortLifetime {
+public:
+  virtual std::shared_ptr<policy::ExecutionAccessSourcePort> observations() const = 0;
+  virtual bool in_execution_thread() const noexcept = 0;
+  virtual void stop_accepting() = 0;
+  virtual Result<bool> finish_until(TimePoint) = 0;
+  virtual Result<bool> drain_executors_until(TimePoint) = 0;
+};
+class HostExecutionFactoryPort : public PortLifetime {
+public:
+  virtual Result<std::shared_ptr<HostExecutionPort>> create(HostIncarnation) = 0;
+};
 struct HostPorts {
   std::shared_ptr<policy::TrustedAuthenticationPort> authentication;
   std::shared_ptr<policy::ClockPort> clock;
   std::shared_ptr<policy::TrustedGroupDigestPort> group_digest;
   std::shared_ptr<invocation::TrustedThreadPort> threads;
   std::shared_ptr<HostLogFactoryPort> logging_factory;
+  std::shared_ptr<HostExecutionFactoryPort> execution_factory;
 };
 ```
 

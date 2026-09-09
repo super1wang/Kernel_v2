@@ -54,6 +54,7 @@ struct HostControl {
   std::condition_variable changed;
   HostPhase phase=HostPhase::Configuring;
   bool lifecycle=false,started=false,stopping=false,failed=false,policy_pending=false,logging_pending=false,log_closing=false;
+  bool executions_pending=false,executors_pending=false;
   std::size_t active=0,started_count=0;
   std::optional<foundation::ErrorCode> primary;
   std::uint64_t cleanup_count=0;
@@ -64,14 +65,16 @@ struct HostControl {
   std::unique_ptr<registry::RegistrationBatch> batch;
   std::shared_ptr<const registry::Catalog> catalog;
   policy::PolicyAssembly policy;
-  std::shared_ptr<NoExecutions> source;
+  std::shared_ptr<policy::ExecutionAccessSourcePort> source;
+  std::shared_ptr<HostExecutionPort> executions;
   std::shared_ptr<LogPort> backend;
   std::shared_ptr<observability::MemoryDiagnostics> diagnostics;
   std::optional<observability::SafeLogger> logger;
 
   HostControl(HostOptions o,policy::PolicyConfiguration c,HostPorts p,HostIncarnation id)
       :options(o),config(std::move(c)),ports(std::move(p)),incarnation(id) {}
-  bool drained() const noexcept {return active==0&&pending_modules.empty()&&!policy_pending&&!logging_pending;}
+  bool drained() const noexcept {return active==0&&pending_modules.empty()&&!policy_pending&&!logging_pending&&
+      !executions_pending&&!executors_pending;}
   void first_error(const Error& e) {
     std::lock_guard lock(mutex);if(!primary)primary=e.code();failed=true;
   }
@@ -95,6 +98,8 @@ struct HostControl {
       if(written<output.size())output[written++]={kind,module,admissions};++total;
     };
     if(active)append(PendingKind::Admissions,{},active);
+    if(executions_pending)append(PendingKind::Executions,{});
+    if(executors_pending)append(PendingKind::Executors,{});
     if(policy_pending)append(PendingKind::PolicyStore,{});
     for(auto it=pending_modules.rbegin();it!=pending_modules.rend();++it)append(PendingKind::Module,modules[*it].name);
     if(logging_pending)append(PendingKind::Logging,{});
@@ -142,12 +147,31 @@ struct HostControl {
     auto incomplete=[&]{return report(ShutdownDisposition::NotQuiescent,expired(),output);};
     if(drained())return stopped();
     if(expired())return timeout();
+    if(executions_pending) {
+      set_phase(HostPhase::CancelOrFinish);
+      try {
+        executions->stop_accepting();
+        auto result=executions->finish_until(deadline);
+        if(!result){cleanup_error(HostPhase::CancelOrFinish,{},result.error());return incomplete();}
+        if(!*result)return expired()?timeout():incomplete();
+        {std::lock_guard lock(mutex);executions_pending=false;}
+      } catch(...) {cleanup_error(HostPhase::CancelOrFinish,{},host_error(HostErrc::CallbackException));return incomplete();}
+    }
     if(!startup_failure&&policy_pending) {
       set_phase(HostPhase::Finalize);
       if(!close_policy())return incomplete();
       if(drained())return stopped();if(expired())return timeout();
     }
-    set_phase(HostPhase::DrainExecutors); // NativeSubset没有待排队的executor。
+    set_phase(HostPhase::DrainExecutors);
+    if(executors_pending) {
+      if(expired())return timeout();
+      try {
+        auto result=executions->drain_executors_until(deadline);
+        if(!result){cleanup_error(HostPhase::DrainExecutors,{},result.error());return incomplete();}
+        if(!*result)return expired()?timeout():incomplete();
+        {std::lock_guard lock(mutex);executors_pending=false;}
+      } catch(...) {cleanup_error(HostPhase::DrainExecutors,{},host_error(HostErrc::CallbackException));return incomplete();}
+    }
     set_phase(HostPhase::StopModulesObservers);
     while(!pending_modules.empty()) {
       if(expired())return timeout();
@@ -202,7 +226,8 @@ Result<std::unique_ptr<NativeHost>> NativeHost::create(const HostOptions& option
   try {
     if(!budgets(options))return failure<std::unique_ptr<NativeHost>>(HostErrc::BudgetExceeded);
     if(!owned(ports.authentication)||!owned(ports.clock)||!owned(ports.group_digest)||!owned(ports.threads)||
-       (ports.logging_factory&&!owned(ports.logging_factory)))return failure<std::unique_ptr<NativeHost>>(HostErrc::InvalidOwner);
+       (ports.logging_factory&&!owned(ports.logging_factory))||
+       (ports.execution_factory&&!owned(ports.execution_factory)))return failure<std::unique_ptr<NativeHost>>(HostErrc::InvalidOwner);
     auto valid=policy::detail::validate_configuration(options.policy,config);
     if(!valid)return make_unexpected(valid.error());
     auto native_valid=invocation::detail::validate_budget(options.native);
@@ -295,6 +320,18 @@ Result<void> NativeHost::start() {
        snapshot->limits.minimum_level!=s->options.logging.minimum_level)
       return fail(host_error(HostErrc::LoggingUnavailable));
     s->log(LogEvent::Configured);s->log(LogEvent::Starting);
+    if(s->ports.execution_factory) {
+      auto made=s->ports.execution_factory->create(s->incarnation);
+      if(!made)return fail(made.error());
+      if(!owned(*made))return fail(host_error(HostErrc::InvalidOwner));
+      // 从取得 owner 开始登记清理责任，观察源验证失败也必须实际排空。
+      {std::lock_guard lock(s->mutex);s->executions=std::move(*made);
+        s->executions_pending=true;s->executors_pending=true;}
+      auto source=s->executions->observations();
+      if(!owned(source)||source->identity().host!=s->incarnation)
+        return fail(host_error(HostErrc::InvalidOwner));
+      s->source=std::move(source);
+    }
     auto policy=policy::PolicyStore::create(s->options.policy,s->config,s->ports.authentication,s->ports.clock,s->ports.group_digest,s->source);
     if(!policy)return fail(policy.error());
     s->policy=std::move(*policy);
@@ -330,6 +367,9 @@ Result<HostSession> NativeHost::open(const policy::AuthenticationAttempt& attemp
 ShutdownReport NativeHost::shutdown_until(TimePoint deadline,std::span<PendingCleanup> pending) {
   auto s=state_;
   if(entered(s.get()))return s->report(ShutdownDisposition::Reentrant,false,pending);
+  std::shared_ptr<HostExecutionPort> executions;
+  {std::lock_guard lock(s->mutex);executions=s->executions;}
+  if(executions&&executions->in_execution_thread())return s->report(ShutdownDisposition::Reentrant,false,pending);
   bool busy=false,stopped=false;
   {std::lock_guard lock(s->mutex);
     busy=s->lifecycle;
@@ -343,6 +383,11 @@ ShutdownReport NativeHost::shutdown_until(TimePoint deadline,std::span<PendingCl
   bool stop_event=false;
   {std::lock_guard lock(s->mutex);stop_event=s->phase==HostPhase::Ready;if(stop_event)s->phase=HostPhase::StopAccepting;}
   if(stop_event&&std::chrono::steady_clock::now()<deadline)s->log(LogEvent::StopAccepting);
+  if(executions) {
+    try {executions->stop_accepting();}
+    catch(...) {s->cleanup_error(HostPhase::StopAccepting,{},host_error(HostErrc::CallbackException));
+      return s->report(ShutdownDisposition::NotQuiescent,false,pending);}
+  }
   bool timed_out=false;
   {std::unique_lock lock(s->mutex);
     s->phase=HostPhase::CancelOrFinish;
