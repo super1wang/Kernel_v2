@@ -52,7 +52,7 @@ def main():
             'managed_admission', 'managed_resources', 'managed_record',
             'managed_record_ownership', 'execution_table_ownership',
             'managed_execution_path', 'managed_execution_resource_wait',
-            'execution_source_observation'} else 'D1.05'
+            'execution_source_observation', 'execution_service_control'} else 'D1.05'
         lines.append('set_tests_properties(' + quote(name) +
                      f' PROPERTIES TIMEOUT 600 LABELS "{label}" '
                      'ENVIRONMENT "MSBUILDDISABLENODEREUSE=1" '

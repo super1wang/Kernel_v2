@@ -183,6 +183,7 @@ public:
     return entry->summary_.phase==contracts::ExecutionPhase::Terminal?WaitState::Terminal:WaitState::Cancelled;
   }
   Usage usage() const {std::lock_guard lock(ledger_->mutex);return ledger_->used;}
+  void close_admission() {std::lock_guard lock(mutex_);closed_=true;}
   contracts::HostIncarnation host() const noexcept {return host_;}
   contracts::Result<policy::ExecutionAccessInput> access_find(contracts::ExecutionRef ref) const {
     try {

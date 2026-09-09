@@ -7,6 +7,7 @@
 #include "lifetime_cases.hpp"
 #include "managed_cases.hpp"
 #include "execution_table_cases.hpp"
+#include "execution_service_cases.hpp"
 using namespace native_test;
 void registered_compute() { Env e;auto b=e.bind();CHECK(b);entered=0;CHECK(result(b->invoke(2,e.options()))==4);CHECK(result(b->invoke(5,e.options()))==7);CHECK(entered==2); }
 void registered_read() { Env e(true);auto b=e.bind();CHECK(b);e.reader.reset();CHECK(result(b->invoke(3,e.options()))==10); }
@@ -27,6 +28,9 @@ int main(int argc,char**argv) {
     {"T03.native.managed_record_ownership",managed_record_ownership},
     {"T03.native.execution_table_ownership",execution_table_ownership},
     {"T06.native.execution_source_observation",execution_source_observation},
+#ifdef OCK_NATIVE_EXECUTION_SERVICE_TESTS
+    {"T03.native.execution_service_control",execution_service_control},
+#endif
     {"T03.native.managed_execution_path",managed_execution_path},
     {"T03.native.managed_execution_resource_wait",managed_execution_resource_wait},
     {"T06.native.business_failure",business_failure},{"T03.native.no_task_path",no_task_path},

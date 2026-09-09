@@ -2,13 +2,14 @@
 #include "execution_table.hpp"
 #include "invocation_record.hpp"
 #include "resource_wait_binding.hpp"
+#include "managed_control.hpp"
 
 namespace ock::runtime::executions::detail {
 // 真实 typed 调用的逐执行接线；控制 owner 须保留对象并消费 pending，wake 仅作唤醒。
 // 未安装为客户端能力；身份分配、当前观察授权及共享控制循环由上层 Runtime 服务提供。
 template<contracts::AsyncInput A,contracts::ContractResult R>
   requires (std::same_as<R,void>||contracts::AsyncInput<R>)
-class ManagedExecution final : public std::enable_shared_from_this<ManagedExecution<A,R>> {
+class ManagedExecution final : public ManagedControl,public std::enable_shared_from_this<ManagedExecution<A,R>> {
 public:
   using Record=InvocationRecord<A,R>;
   using Resolver=std::function<contracts::Result<std::vector<resources::Claim>>(
@@ -78,15 +79,17 @@ public:
     return {entry_->execution(),contracts::AcceptanceGuarantee::Volatile};
   }
   // 控制循环每次最多一次资源 acquire；pending 与可靠完成均不依赖 lossy 通知。
-  void drive() {
+  void drive() override {
     if(pending_.exchange(false,std::memory_order_acq_rel)) {
       if(!resources_announced_.exchange(true,std::memory_order_acq_rel))
         (void)table_->transition(entry_,contracts::ExecutionPhase::WaitingResources,conditions());
       binding_->drive();
     }
   }
-  bool pending() const noexcept {return pending_.load(std::memory_order_acquire);}
-  void cancel() {binding_->cancel();}
+  bool pending() const noexcept override {return pending_.load(std::memory_order_acquire);}
+  void cancel() override {binding_->cancel();}
+  bool finished() const noexcept override {return finished_.load(std::memory_order_acquire);}
+  contracts::ExecutionRef execution() const noexcept override {return entry_->execution();}
   const std::shared_ptr<ExecutionTable::Entry>& entry() const noexcept {return entry_;}
 private:
   static foundation::Unexpected<contracts::Error> fail() {
@@ -142,6 +145,8 @@ private:
     auto terminal=table_->transition(entry_,contracts::ExecutionPhase::Terminal,conditions());
     foundation::invariant(bool(terminal));
     pending_.store(false,std::memory_order_release);
+    finished_.store(true,std::memory_order_release);
+    try {if(wake_)wake_();}catch(...){}
   }
   std::shared_ptr<ExecutionTable> table_;
   std::shared_ptr<scheduler::Scheduler> scheduler_;
@@ -153,5 +158,6 @@ private:
   bool accepted_=false;
   std::atomic<bool> pending_{false};
   std::atomic<bool> resources_announced_{false};
+  std::atomic<bool> finished_{false};
 };
 }
