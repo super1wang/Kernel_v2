@@ -162,8 +162,9 @@ def validate_manifest(manifest,actual_graph=None,build_components='B3Subset'):
     def require(value,message):
         if not value:errors.append(message)
     targets=manifest['targets'];norm=normative_graph()
-    require(build_components in ('Runtime','B3Subset','B4Subset'),'未知生产组件选择')
-    selected={'Foundation','CoreContracts','Runtime'} if build_components=='Runtime' else set(norm)
+    require(build_components in ('Runtime','Embedded','B3Subset','B4Subset'),'未知生产组件选择')
+    selected={'Foundation','CoreContracts','Runtime'} if build_components in ('Runtime','Embedded') else set(norm)
+    if build_components=='Embedded':selected.add('Adapter::CpuPool')
     require(manifest['format']=='ock.sdk-api/1','公开清单格式不符')
     require(manifest['sdk_version']==({'B4Subset':'0.1.0-dev.5','B3Subset':'0.1.0-dev.4','B2Subset':'0.1.0-dev.3','NativeSubset':'0.1.0-dev.2'}.get(manifest['stage'],'0.1.0-dev.1')),'开发 SDK 版本必须独立于文档 v3.3')
     errors.extend(validate_implementation_stage(manifest))

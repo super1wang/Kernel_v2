@@ -1,0 +1,80 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-_ws6a5nl\\producer",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_COMPONENTS=Embedded",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation;CpuPool",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DPython3_EXECUTABLE=G:\\environment\\python3.13.3\\python.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:47:25.826621+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 38,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 4012,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:47:31.179530+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "5258adb33aca25cf0da76041c20145f7ee1b05eff5daa9ca5d8cb353cc8152c3",
+        "size": 1084
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e39c2e3265d3e9f92413b4ff2c0942d01df9c631a0f4c80048a7ddd2d76b10ab",
+        "size": 134
+      }
+    ]
+  },
+  {
+    "argv": [
+      "G:\\environment\\python3.13.3\\python.exe",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\tools\\architecture\\check.py",
+      "--graph",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-_ws6a5nl\\producer\\ock-target-graph.json"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:47:31.181208+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "G:\\environment\\python3.13.3\\python.exe",
+    "pid": 3204,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-09T20:47:31.461386+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "961d0f714ea46685af101207e5f15e0924d0498e748fa3f5602d11141c68587e",
+        "size": 4515
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

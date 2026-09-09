@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 新增显式 `Embedded` 生产组合，依赖限定 Foundation/CpuPool（实际仅 expected/thread_pool），安装只导出 Foundation/CoreContracts/Runtime/CpuPool。Debug 完成真实生产构建、迁移安装、公开 SDK 消费者独立编译与 40 次同实现 Invoke/Submit 结果对比、输入拥有性及最终排空；Data 安装请求正确拒绝，链接 map 无动态层（[命令及原文索引](../evidence/B5/embedded-install-9a94a01bca/commands.json)、[消费者输出](../evidence/B5/embedded-install-9a94a01bca/6-stdout.log)）。Profile 架构直接检查 6/6；最初环境 CMake 版本错误及检查器未识别新 Profile 的失败原文保留。当前仍为开发 SDK，能力元数据、完整执行组合及 G3-C footprint/正式验收继续完成。
+
 - B5 已修复第三 managed 连接被错误拒绝：发送协调器使用独立数量额度，样例八连接分别装配六个端口；Policy 队列为可靠响应保留帧/字节并优先发送，原发送前授权仲裁保留。当前影响集 Debug **13/13**（[原始输出](../evidence/B5/resume-b5-control-verified-a88b96b7ca/b4-debug-test-stdout.log)）、ASan / RelWithDebInfo **13/13**（[原始输出](../evidence/B5/resume-b5-control-verified-a88b96b7ca/b4-asan-test-stdout.log)）。真实 OCK1 验证八连接、订阅 ACK/配额/重连世代、游标绑定拒绝、稳定 upper 及真实生产 120 s TTL；真实 Ctrl+C 验证默认仅停观察、显式选项协作取消，两者退出码均为 8。公开头/实际依赖检查无错误；初轮连接失败及诊断原文保留。慢流/实际撤权组合、完整预算、Embedded/Profile/安装/footprint 与 B5/G3 正式验收仍未完成，不构成 Passed。
 
 - B5 CLI 已补同连接有限续页（`execution list --pages N --jsonl`）与 watch 首快照立即输出。真实进程验证 22 条记录分 5 页无重复，已收到非终态快照的 watch 断线后执行继续，新 watch 重连得到终态且结果 `stop_observed=false`；Debug **1/1**、ASan **1/1**（[Debug 原文](../evidence/B5/resume-b5-cli-reconnect-17550fe894/b4-debug-test-stdout.log)、[ASan 原文](../evidence/B5/resume-b5-cli-reconnect-17550fe894/b4-asan-test-stdout.log)）。该增量不重跑未修改的 Native/Policy 历史集；真实游标拒绝/TTL/慢流、订阅撤权、中断与 G3 其余条件继续开发。

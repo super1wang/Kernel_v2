@@ -24,6 +24,15 @@ class B4SurfaceTests(unittest.TestCase):
     def test_unknown_profile_rejected(self):
         m,g=self.graph();self.assertTrue(check.validate_manifest(m,g,'CpuPoolOnly'))
 
+    def test_embedded_has_only_runtime_and_cpu(self):
+        m,g=self.graph();selected={'Foundation','CoreContracts','Runtime','Adapter::CpuPool'}
+        embedded={name:value for name,value in g.items() if name in selected}
+        self.assertEqual([],check.validate_manifest(m,embedded,'Embedded'))
+        embedded['Data']=g['Data']
+        self.assertTrue(check.validate_manifest(m,embedded,'Embedded'))
+        del embedded['Data'];embedded['Adapter::CpuPool']['kind']='INTERFACE_LIBRARY'
+        self.assertTrue(check.validate_manifest(m,embedded,'Embedded'))
+
     def test_runtime_cannot_include_cpu(self):
         m=check.load_manifest()
         self.assertTrue(check.validate_include('Runtime','#include <ock/adapters/cpu_pool/cpu_pool.hpp>',m))

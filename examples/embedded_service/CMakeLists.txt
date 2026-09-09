@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.25)
+project(EmbeddedConsumer LANGUAGES CXX)
+find_package(OCK CONFIG REQUIRED COMPONENTS Runtime Adapter::CpuPool)
+add_executable(ock_embedded_service main.cpp)
+target_link_libraries(ock_embedded_service PRIVATE OCK::Runtime OCK::Adapter::CpuPool)
+target_link_options(ock_embedded_service PRIVATE /MAP)

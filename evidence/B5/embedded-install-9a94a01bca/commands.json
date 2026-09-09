@@ -1,0 +1,312 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\producer",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_COMPONENTS=Embedded",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation;CpuPool",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DPython3_EXECUTABLE=G:\\environment\\python3.13.3\\python.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:47:46.417726+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 38,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 17072,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:47:51.222018+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "ec716e939edd3dd707a525ceb6589df2e4900654b214223ec4b6f9b689a4d75b",
+        "size": 1084
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e39c2e3265d3e9f92413b4ff2c0942d01df9c631a0f4c80048a7ddd2d76b10ab",
+        "size": 134
+      }
+    ]
+  },
+  {
+    "argv": [
+      "G:\\environment\\python3.13.3\\python.exe",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\tools\\architecture\\check.py",
+      "--graph",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\producer\\ock-target-graph.json"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:47:51.223842+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "G:\\environment\\python3.13.3\\python.exe",
+    "pid": 28336,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:47:51.522280+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "83927ec06e4069c417a9e6c8163075a59db12c23e078a40142d2316faddbd936",
+        "size": 152
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\producer",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:47:51.523599+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 31,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 30564,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:48:31.294657+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "75c32098b30de1a7695011583bcc5e9c8c796eae0c8fb2bcb659172e5aba950b",
+        "size": 717
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\producer",
+      "--config",
+      "Debug",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\original"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:48:31.297031+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 53684,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:48:31.545548+00:00",
+    "raw": [
+      {
+        "path": "3-stdout.log",
+        "sha256": "88d090729e9d203fde646d7c835c637e24a05b77b0c0cf96a0866f12290e49aa",
+        "size": 4723
+      },
+      {
+        "path": "3-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\consumer-source",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\consumer",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\relocated"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:48:31.611843+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 43088,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:48:35.526979+00:00",
+    "raw": [
+      {
+        "path": "4-stdout.log",
+        "sha256": "c959cff6f0c92e97202670d0d0fae93e27e2c15224fe0ba59169acadea21cc58",
+        "size": 471
+      },
+      {
+        "path": "4-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\consumer",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:48:35.529999+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 20,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 56740,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:48:40.151621+00:00",
+    "raw": [
+      {
+        "path": "5-stdout.log",
+        "sha256": "ce9fdf49baa9a4d5ada9cfa40afeacb23e796d40619bdb3ec0e03781c21616d4",
+        "size": 436
+      },
+      {
+        "path": "5-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\consumer\\Debug\\ock_embedded_service.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:48:40.154729+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\consumer\\Debug\\ock_embedded_service.exe",
+    "pid": 52432,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T20:48:40.451732+00:00",
+    "raw": [
+      {
+        "path": "6-stdout.log",
+        "sha256": "1453bf6060f42cc7445d1318218455248ee64fd85733ba8daef22c12b8bc817f",
+        "size": 83
+      },
+      {
+        "path": "6-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\missing",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\missing-build",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\embedded-install-litzhbdy\\relocated"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:48:40.548967+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 5,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 3076,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-09T20:48:41.138760+00:00",
+    "raw": [
+      {
+        "path": "7-stdout.log",
+        "sha256": "8085925dee818ab993529ca12c5e8031a3dbcaa726a1197bf6c25e46de919446",
+        "size": 159
+      },
+      {
+        "path": "7-stderr.log",
+        "sha256": "a80fc572c6bad0f1e84d5030fe2143e188cf76ba09f8c0630983f2d4940d81d9",
+        "size": 352
+      }
+    ]
+  }
+]

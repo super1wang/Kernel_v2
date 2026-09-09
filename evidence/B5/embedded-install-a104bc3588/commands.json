@@ -1,0 +1,43 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\embedded-install-pjzkdt8m\\producer",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_COMPONENTS=Embedded",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation;CpuPool",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DPython3_EXECUTABLE=G:\\environment\\python3.13.3\\python.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T20:47:19.805495+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "D:\\CMake\\bin\\cmake.exe",
+    "pid": 43216,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-09T20:47:20.102022+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "99534af5a8f59c4cb7413eea39b5a650d93edc811857f00f350b5c158f7ed206",
+        "size": 167
+      }
+    ]
+  }
+]
