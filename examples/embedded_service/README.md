@@ -11,3 +11,5 @@
 `fixture.hpp` 是普通样例与占用消费者共用的实际执行流程。普通 `main.cpp` 使用空 hooks；占用消费者在真实作用域边界发出 Ready、shutdown、Bound/Session/最后 owner 释放标记。`tools/footprint/embedded_pilot.py --prefix <Embedded安装目录>` 只采集一组 ABBA pilot，不批准预算、不声称连续线程峰值或正式延迟。
 
 QPC `construction_ticks/qpc_frequency` 从构造阶段握手返回后开始，到 Host Ready 校验后、Ready 握手之前结束；两次采样之间没有启动器等待。原阶段 `internal_ticks` 保留为含握手的阶段间隔，不能代替直接窗口。`--config Release` 必须使用实际安装的 Release 库；默认仍为 Debug。
+
+`--allocation` 仅适用于 Debug 诊断：保留 12 类分配正探针与负探针，另用真实后台线程验证进程 CRT hook；全部 40 个 Invoke 窗口同时要求调用线程 C++ 与进程 CRT 分配为零。40 个 Submit/wait/result 和资源父子取消窗口单列实际计数及 C++ 保留字节，未承诺零分配。私有 DLL/custom heap 不在覆盖声明内；计数模式的体积、线程与时延不能替代正式无计数测量。

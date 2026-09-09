@@ -1,0 +1,88 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\evidence\\B5\\embedded-pilot-eb81805115\\source\\tools\\footprint\\embedded_consumer",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\embedded-pilot-eb81805115",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2\\cmake\\LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\worker-shutdown-install-14904889e1\\prefix",
+      "-DOCK_EMBEDDED_ALLOCATION=ON"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:00:14.154869+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 38744,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:00:18.166070+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "0e91c87291bdc1dfdfd6f1709df1b1c24dba6dba73b28373beed3d43f519a09f",
+        "size": 462
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\embedded-pilot-eb81805115",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T22:00:18.167455+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 33,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 55432,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T22:00:24.066063+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "0c8a3809d5f28518223d447496c9f754f699f8b0312e7404b68d68f11bc3ad0b",
+        "size": 843
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

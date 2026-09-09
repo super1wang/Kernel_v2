@@ -19,7 +19,9 @@ def save(path,value):path.write_text(json.dumps(value,ensure_ascii=False,indent=
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--prefix',required=True,type=Path)
-    parser.add_argument('--config',choices=('Debug','Release'),default='Debug');args=parser.parse_args()
+    parser.add_argument('--config',choices=('Debug','Release'),default='Debug')
+    parser.add_argument('--allocation',action='store_true');args=parser.parse_args()
+    if args.allocation and args.config!='Debug':parser.error('allocation diagnostic requires Debug')
     prefix=args.prefix.resolve()
     manifest=json.loads((prefix/'share/ock/sdk_api_manifest.json').read_text(encoding='utf-8'))
     assert manifest['installation_profile']=='Embedded'
@@ -27,6 +29,9 @@ def main():
     driver._work=out;driver._records=[]
     source_files=['tools/footprint/embedded_consumer/CMakeLists.txt','tools/footprint/embedded_consumer/main.cpp',
       'tools/footprint/consumer/channel.hpp','examples/embedded_service/fixture.hpp']
+    if args.allocation:
+        source_files+=['tools/footprint/embedded_consumer/allocation.hpp','tools/footprint/consumer/allocation_trace.hpp',
+          'tests/contract/native/allocation_probe.cpp','tests/contract/native/allocation_probe.hpp']
     for relative in source_files:
         destination=out/'source'/relative;destination.parent.mkdir(parents=True,exist_ok=True)
         shutil.copy2(ROOT/relative,destination)
@@ -34,14 +39,16 @@ def main():
       for p in sorted(prefix.rglob('*')) if p.is_file()]
     save(out/'inputs.json',{'prefix':str(prefix),'installed':installed,
       'sources':[{'path':p,'sha256':digest(ROOT/p)} for p in source_files],
-      'configuration':args.config,'scope':'pilot only; no approved Embedded budget'})
+      'configuration':args.config,'allocation':args.allocation,'scope':'pilot only; no approved Embedded budget'})
     build=ROOT/'build'/out.name
     driver.run(['cmake','-S',str(out/'source/tools/footprint/embedded_consumer'),'-B',str(build),
       '-G','Visual Studio 17 2022','-A','x64','-T','v143,version=14.44.35207',
       '-DCMAKE_SYSTEM_VERSION=10.0.26100.0','-DCMAKE_TOOLCHAIN_FILE='+str(ROOT/'cmake/LockedMSVC.cmake'),
-      '-DCMAKE_PREFIX_PATH='+str(prefix)])
+      '-DCMAKE_PREFIX_PATH='+str(prefix),'-DOCK_EMBEDDED_ALLOCATION='+('ON' if args.allocation else 'OFF')])
     driver.run(['cmake','--build',str(build),'--config',args.config,'--parallel','4','--','/nr:false'])
-    configuration=ObservationConfig(**json.loads((ROOT/'tools/footprint/configuration-development.json').read_text(encoding='utf-8')))
+    values=json.loads((ROOT/'tools/footprint/configuration-development.json').read_text(encoding='utf-8'))
+    if args.allocation:values['mode']='allocation'
+    configuration=ObservationConfig(**values)
     summaries=[]
     for index,kind in enumerate(('baseline','embedded','embedded','baseline')):
         binary=build/args.config/('footprint_'+kind+'.exe');label=f'{index}-{kind}'
@@ -49,6 +56,17 @@ def main():
         save(out/(label+'-command.json'),record);require_complete(record)
         output=(out/(label+'-stdout.log')).read_text(encoding='utf-8').splitlines()
         result=json.loads(output[-1]);assert result['kind']==kind and result['released'] is True
+        if args.allocation:
+            records=[json.loads(line) for line in output if line.startswith('{')]
+            probes=next(r for r in records if r.get('format')=='ock.footprint-allocation/1')
+            counts=next(r for r in records if r.get('format')=='ock.embedded-allocation/1')
+            assert probes['verified'] is True and len(probes['samples'])==13
+            assert counts['verified'] is True and counts['background_positive_crt']>0 and counts['negative_crt']==0
+            expected=85 if kind=='embedded' else 84
+            assert len(counts['samples'])==expected
+            zero=[r for r in counts['samples'] if r['zero_required']]
+            assert len(zero)==(40 if kind=='embedded' else 80)
+            assert all(r['cpp']==0 and r['process_crt']==0 for r in zero)
         if kind=='embedded':
             assert {k:v for k,v in result.items() if k not in ('construction_ticks','qpc_frequency')}=={'kind':'embedded','workers':2,'warmup':4,'invoke':40,'submit':40,
                 'resource_child_cancel':True,'default_memory_log':True,'released':True}
