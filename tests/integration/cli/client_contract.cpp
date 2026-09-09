@@ -50,6 +50,11 @@ int main(int argc,char **argv) try {
     auto missing=data::Payload::parse(R"({"result":{"kind":"Accepted"}})");check(control_client::exit_code(missing->view())==6);
     auto invalid=data::Payload::parse(R"({"result":{"kind":"Accepted","execution_ref":{"execution_id":"00000000000000000000000000000000"},"acceptance_guarantee":"Volatile"}})");check(control_client::exit_code(invalid->view())==6);
     auto denied=data::Payload::parse(R"({"result":{"kind":"Rejected"}})"); check(control_client::exit_code(denied->view())==3);
+    for(auto [state,expected]:std::vector<std::pair<std::string,int>>{{"Terminal",0},{"Timeout",5},{"Cancelled",8},{"unknown",6}}) {
+      auto p=data::Payload::parse("{\"result\":{\"wait_state\":\""+state+"\"}}");check(p&&control_client::exit_code(p->view())==expected);
+    }
+    auto full=data::Payload::parse(R"({"result":{"projection":"full","reply":{"kind":"Completed","outcome":{"kind":"FailedBeforeApply"}}}})");check(full&&control_client::exit_code(full->view())==4);
+    auto incomplete=data::Payload::parse(R"({"result":{"projection":"full"}})");check(incomplete&&control_client::exit_code(incomplete->view())==6);
     return 0;
   }
   auto script=std::make_shared<Script>();

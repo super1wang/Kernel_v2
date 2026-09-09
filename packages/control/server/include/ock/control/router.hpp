@@ -10,7 +10,8 @@ public:
                                      data::ValueView) {
     return foundation::make_unexpected(error(ProtocolErrc::InvalidRequest));
   }
-  // nullopt 仅表示完整响应已进入连接发送序列；Router 不得生成第二份响应。
+  // nullopt 表示响应责任已移交方法的有界 owner（已排队或延迟完成）；
+  // Router 不生成第二份响应。方法负责 pump、错误响应和断线排空。
   virtual Result<std::optional<data::Payload>>
   dispatch(const runtime::policy::VerifiedCaller &caller, std::string_view,
            data::ValueView params) {

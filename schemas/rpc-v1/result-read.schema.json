@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "execution_ref": {
+      "type": "object",
+      "properties": {
+        "execution_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{32}$"
+        }
+      },
+      "required": [
+        "execution_id"
+      ],
+      "additionalProperties": false
+    },
+    "host_incarnation": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{32}$"
+    },
+    "projection": {
+      "const": "full"
+    },
+    "reply": {
+      "$ref": "outcome.schema.json"
+    }
+  },
+  "required": [
+    "execution_ref",
+    "host_incarnation",
+    "projection",
+    "reply"
+  ],
+  "additionalProperties": false
+}

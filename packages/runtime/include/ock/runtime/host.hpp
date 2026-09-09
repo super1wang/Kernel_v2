@@ -240,6 +240,8 @@ public:
     std::shared_ptr<const policy::SessionAuthority> authorization;
   };
   Result<CatalogContext> catalog_context() const;
+  Result<std::unique_ptr<policy::SendCoordinator>> send_coordinator(
+      std::shared_ptr<policy::TransmissionStartPort>,std::shared_ptr<policy::ProjectionEncoderPort>) const;
   HostSession(HostSession&&) noexcept;
   HostSession& operator=(HostSession&&) noexcept;
   HostSession(const HostSession&) = delete;

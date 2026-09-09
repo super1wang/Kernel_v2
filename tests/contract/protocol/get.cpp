@@ -88,6 +88,18 @@ int main(int argc, char **argv) try {
             .at(std::size_t{0})
             .at("reference_kind")
             .string() == "Effect");
+  summary.phase=ExecutionPhase::Finalizing;summary.version=*ObservationVersion::create(2);
+  summary.progress.scope=ResultScope::Candidate;
+  summary.evidence=EvidenceState::RequiredRecordFailed;summary.record_state=RequiredRecordState::Failed;
+  summary.fault=contracts::error(ContractsErrc::Rejected);summary.writes_blocked=true;summary.repair=RepairKind::ManualReview;
+  updated=ExecutionSummary::create(summary);CHECK(updated);env.source->rows[0].second.summary=*updated;
+  CHECK(send(request(existing)));CHECK((*method)->pump()==runtime::policy::StartResult::Started);
+  control::FrameDecoder failed_decoder;auto failed_frame=failed_decoder.consume(transport->frames.back());CHECK(failed_frame&&failed_frame->message);
+  auto failed_summary=failed_frame->message->view().at("result");CHECK(schema->validate(failed_summary));
+  CHECK(failed_summary.at("phase").string()=="Finalizing"&&failed_summary.at("evidence").string()=="RequiredRecordFailed");
+  CHECK(failed_summary.at("record_state").string()=="Failed"&&failed_summary.at("writes_blocked").boolean()==true);
+  CHECK(failed_summary.at("repair").string()=="ManualReview"&&!failed_summary.at("fault").missing());
+  CHECK(failed_summary.at("progress").at("scope").string()=="Candidate");
   auto bad = send(request(std::string(32, '0')));
   CHECK(bad);
   auto bad_json = data::Payload::parse(bad->json);

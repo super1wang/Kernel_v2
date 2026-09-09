@@ -137,6 +137,13 @@
         }
       }
     },
+    "wait_state": {
+      "enum": [
+        "Terminal",
+        "Timeout",
+        "Cancelled"
+      ]
+    },
     "evidence": {
       "enum": [
         "Volatile",
@@ -192,7 +199,8 @@
     "phase",
     "observation_version",
     "progress",
-    "fact_summaries"
+    "fact_summaries",
+    "wait_state"
   ],
   "additionalProperties": false
 }

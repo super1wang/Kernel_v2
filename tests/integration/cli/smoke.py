@@ -37,6 +37,9 @@ try:
         call(["invoke", "sample.increment", "--args", '{"amount":-1,"text":"bad"}'], 3)
         call(["invoke", "sample.increment", "--args", '{"amount":100,"text":"bad output"}'], 4)
         call(["execution", "list"], 3)
+        for command in ("get", "wait", "cancel"):
+            call(["execution", command, "1" * 32], 3)
+        call(["result", "read", "1" * 32], 3)
         call(["submit", "sample.increment", "--args", json.dumps(args)], 3)
         call(["execution", "watch", "unused", "--jsonl"], 3)
         call(["invoke", "sample.increment", "--stdin"], 2, stdin="{broken")

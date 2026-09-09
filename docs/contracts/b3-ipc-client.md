@@ -55,3 +55,15 @@ SDK experimental 源码适配：`BoundOperation::create(session, registered.argu
 回执按 [Submit schema](../../schemas/rpc-v1/submit.schema.json) 编码：Rejected 保留 reason；Accepted 必须含非空 execution_ref.execution_id 和 Volatile/DurableAccepted 的 acceptance_guarantee，不携带最终结果。CLI `submit` 复用 --args/--file/--stdin 与意图文件入口，提供 `--execution-timeout-ms`，检查宿主实际方法能力；客户端不能把缺少身份或保证级别的 Accepted 当作成功。
 
 此增量不把原 stateless_service 标成 managed provider。真实两进程 submit/get/wait/cancel/list/watch、当前授权发送及完整结果由 D3.07 后续接线验证；当前开发检查不能代替 G3。
+
+## B5 开发增量：执行查询与延迟响应
+
+`ExecutionMethod` 的四个入口由可信组合使用同一 HostSession、VerifiedCaller 和冻结的返回类型编码器创建，统一接收 `execution_ref.execution_id`。`execution.get` 返回摘要，`full_result_available` 由当前 ReadResult 权限、终态和真实类型材料决定。摘要附带 evidence、record_state、writes_blocked 及存在时的 fault/repair，Finalizing 中的必要记录失败也可见。原摘要字段保持，新增状态字段对 v1 消费者是可选扩展。
+
+`execution.wait` 另接受 `wait_timeout_ms`（0–30000，不能超过服务上限，缺省使用该上限），通过有界 poll owner 等待。每方法/连接最多一个 pending wait，底层与 Native wait 共用 Runtime 等待配额；由组合的 I/O pump 推进，不在 Control 线程调用阻塞 wait。完成响应增加 Terminal/Timeout/Cancelled 的 wait_state。Router 的 queued 标志表示方法已接管响应责任，可包含受配额约束的延迟响应；连接不能把空 json 当作失败或额外发送第二份响应。断线销毁 pending owner，不取消服务端执行。
+
+`execution.cancel` 返回 Requested/AlreadyClaimed/AlreadyTerminal 的 disposition，不据此声明执行已终止。`result.read` 返回 projection=full、execution_ref、host_incarnation 和实际类型编码的 reply（沿用 InvokeReply/Outcome schema）。未终态、无匹配类型或无权材料都返回 NotAvailable；不会把缺失正文变为成功 null。本阶段提供有限内联结果，DataRef/结果快照分页仍按后续工作包实施，不借此宣称已实现。
+
+摘要、等待摘要、取消回执和完整结果都经过当前 Policy 的 SendCoordinator。完整序列化字节归有限发送队列持有，不让慢发送持续 pin typed 结果；首字节前撤权仍禁止发送。控制响应使用显式 Control 队列，通知保持 Notification 队列。延迟等待中的授权失败只发送通用 NotAvailable 错误。
+
+CLI 新增 `execution get/wait/cancel <execution-id>` 与 `result read <execution-id>`。wait 使用 `--wait-timeout-ms`（缺省 1000），全局 `--timeout-ms` 仍是传输超时；需要更长等待时显式设置两者。等待超时退出码 5、等待被中断退出码 8，完整结果按内部 reply 映射业务退出码；CLI 关闭默认不发执行取消。真实 managed 服务与双 CLI 正向闭环尚需后续装配验证。

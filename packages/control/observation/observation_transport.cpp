@@ -9,15 +9,15 @@ struct Reservation final : runtime::policy::TransmissionReservation {
   std::size_t capacity() const noexcept override { return buffer->capacity(); }
 };
 }
-Result<std::shared_ptr<ProtocolObservationTransport>> ProtocolObservationTransport::create(std::shared_ptr<FrameSink> sink) {
-  if(!sink) return foundation::make_unexpected(error(ProtocolErrc::InvalidRequest));
-  return std::shared_ptr<ProtocolObservationTransport>(new ProtocolObservationTransport(std::move(sink)));
+Result<std::shared_ptr<ProtocolObservationTransport>> ProtocolObservationTransport::create(std::shared_ptr<FrameSink> sink,FramePriority priority) {
+  if(!sink||(priority!=FramePriority::Control&&priority!=FramePriority::Notification)) return foundation::make_unexpected(error(ProtocolErrc::InvalidRequest));
+  return std::shared_ptr<ProtocolObservationTransport>(new ProtocolObservationTransport(std::move(sink),priority));
 }
 Result<void> ProtocolObservationTransport::queue_ack(std::span<const std::byte> bytes) {
   return sink_->queue_frame(bytes,FramePriority::Control);
 }
 Result<std::unique_ptr<runtime::policy::TransmissionReservation>> ProtocolObservationTransport::reserve(std::size_t size) {
-  auto buffer = sink_->reserve_frame(size,FramePriority::Notification);
+  auto buffer = sink_->reserve_frame(size,priority_);
   if(!buffer) return foundation::make_unexpected(buffer.error());
   return std::unique_ptr<runtime::policy::TransmissionReservation>(new Reservation(this,std::move(*buffer)));
 }

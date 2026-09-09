@@ -85,6 +85,16 @@ int exit_code(data::ValueView response) noexcept {
     return code && (*code == -32600 || *code == -32602) ? 2 : 3;
   }
   auto result = response.at("result");
+  auto wait=result.at("wait_state").string();
+  if(wait) {
+    if(*wait=="Timeout")return 5;
+    if(*wait=="Cancelled")return 8;
+    if(*wait!="Terminal")return 6;
+  }
+  if(result.at("projection").string()=="full") {
+    result=result.at("reply");
+    if(result.kind()!=data::Kind::Object||!result.at("kind").string())return 6;
+  }
   auto kind = result.at("kind").string();
   if(!kind) return 0; // capabilities/get/list 是查询对象，不是业务 Outcome。
   if(*kind == "Rejected") return 3;

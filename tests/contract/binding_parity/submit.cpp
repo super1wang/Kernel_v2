@@ -1,7 +1,10 @@
 #include "tests/contract/native/fixtures.hpp"
 #include <ock/control/invoke_method.hpp>
+#include <ock/control/execution_method.hpp>
 #include <ock/adapters/cpu_pool/cpu_pool.hpp>
 #include <iostream>
+#include <filesystem>
+#include <fstream>
 using namespace ock;
 struct Input {std::int64_t amount=0;std::string text;};
 struct Fields {
@@ -14,6 +17,26 @@ struct Fields {
 };
 namespace ock::contracts {template<>struct TypeContract<Input>:binding::TypeContract<Input,Fields>{};}
 namespace {
+struct Transport final:control::ObservationTransport {
+  struct Ticket final:runtime::policy::TransmissionReservation {
+    std::size_t bytes;explicit Ticket(std::size_t n):bytes(n){}std::size_t capacity()const noexcept override{return bytes;}
+  };
+  std::vector<data::Payload> sent;bool closed=false;
+  void record(std::span<const std::byte> bytes) {
+    control::FrameDecoder decoder;auto decoded=decoder.consume(bytes);CHECK(decoded&&decoded->message);sent.push_back(std::move(*decoded->message));
+  }
+  Result<void> queue_ack(std::span<const std::byte> bytes)override {
+    if(closed)return foundation::make_unexpected(control::error(control::ProtocolErrc::Closed));record(bytes);return {};
+  }
+  Result<std::unique_ptr<runtime::policy::TransmissionReservation>> reserve(std::size_t n)override {
+    return std::unique_ptr<runtime::policy::TransmissionReservation>(new Ticket(n));
+  }
+  runtime::policy::StartResult start_now(const runtime::policy::PreparedTransmission& value,runtime::policy::TransmissionReservation&)noexcept override {
+    if(closed)return runtime::policy::StartResult::NotStarted;
+    try{record(value.bytes());return runtime::policy::StartResult::Started;}catch(...){return runtime::policy::StartResult::Unknown;}
+  }
+  void close()noexcept override{closed=true;}
+};
 std::atomic<bool> entered=false,release=false,stopped=false;
 Result<Input> work(const Input& input,contracts::WorkContext& context) {
   entered=true;
@@ -67,7 +90,8 @@ int main()try{
     CHECK(registrar.compute(work,{key(),{},{false,false,false,name("test"),name("app")},AtomicMode::PureCompute,{name("allow")},"submit"},{{},{},{name("native"),name("test")},{},false},storage));
   };
   CHECK(host->add({module,std::make_shared<Lifecycle>()}));CHECK(host->start());
-  auto session=host->open({{std::byte{7}}},{policy_test::rules(),auth->identity.deadline,false});CHECK(session);
+  auto opened=host->open({{std::byte{7}}},{policy_test::rules(),auth->identity.deadline,false});CHECK(opened);
+  auto session=std::make_shared<host::HostSession>(std::move(*opened));
   auto caller=session->verify({policy_test::principal(),{},{}});CHECK(caller);
   auto registered=control::RegisteredInvocation<Input,Input>::create();CHECK(registered);
   auto binding=control::InvocationBinding::bind(*session,*registered,key(),{},Shape::Read,*caller,std::array{policy_test::target()},targets,name("submit.rpc"));CHECK(binding);
@@ -90,6 +114,31 @@ int main()try{
   auto identity=result.at("execution_ref").at("execution_id").string();CHECK(identity);
   auto execution=control::wire_id<foundation::TaskId>(result.at("execution_ref").at("execution_id"));CHECK(execution);ExecutionRef ref{*execution};
   request.clear();request.shrink_to_fit();until([]{return entered.load();});
+  using Query=control::ExecutionMethod;
+  std::vector<control::ExecutionResultBinding> results{control::ExecutionResultBinding::create<Input>(key(),registered->output())};
+  auto query_args=data::Payload::parse("{\"execution_ref\":{\"execution_id\":\""+std::string(*identity)+"\"}}");CHECK(query_args);
+  std::array<std::shared_ptr<Transport>,4> transports;
+  std::array<std::shared_ptr<Query>,4> queries;
+  for(unsigned i=0;i<4;++i){
+    transports[i]=std::make_shared<Transport>();auto kind=static_cast<Query::Kind>(i);
+    auto schema=Query::parameters(kind);CHECK(schema&&schema->validate(query_args->view()));
+    auto q=Query::create(kind,session,*caller,transports[i],results,clock,std::chrono::seconds(2));CHECK(q);queries[i]=*q;
+  }
+  std::vector<control::Method> query_methods;
+  for(unsigned i=0;i<4;++i){auto kind=static_cast<Query::Kind>(i);query_methods.push_back({std::string(Query::name(kind)),*Query::parameters(kind),queries[i]});}
+  auto query_router=control::Router::create({"submit.test",id,id,{}, {},"managed"},*caller,std::move(query_methods));CHECK(query_router);
+  auto query_send=[&](std::string_view method,std::string_view call_id,std::string_view parameters){
+    auto body=data::Payload::parse("{\"jsonrpc\":\"2.0\",\"id\":\""+std::string(call_id)+"\",\"method\":\""+std::string(method)+"\",\"params\":"+std::string(parameters)+"}");CHECK(body);return query_router->dispatch(body->view());
+  };
+  CHECK(query_send("host.hello","hello",R"({"api_version":"ock.control/1"})"));
+  auto query_text=query_args->encode();CHECK(query_text);
+  auto queued_get=query_send("execution.get","get",*query_text);CHECK(queued_get&&queued_get->queued&&queued_get->json.empty());CHECK(queries[0]->pump());
+  CHECK(transports[0]->sent.back().view().at("result").at("full_result_available").boolean()==false);
+  auto pending=queries[1]->dispatch(**caller,"wait",query_args->view());CHECK(pending&&!*pending);
+  CHECK(!queries[1]->dispatch(**caller,"second-wait",query_args->view()));CHECK(queries[1]->pump());CHECK(transports[1]->sent.empty());
+  CHECK(!queries[3]->dispatch(**caller,"early-result",query_args->view()));
+  auto unavailable=query_send("result.read","early-result",*query_text);CHECK(unavailable);
+  auto failure=data::Payload::parse(unavailable->json);CHECK(failure&&failure->view().at("error").at("message").string()=="NotAvailable");
   router->close();method->port->disconnect(); // 连接意图不能取消已经接受的工作。
   auto empty=data::Payload::parse("{}");CHECK(empty);
   auto closed=method->port->call(**caller,empty->view());CHECK(closed&&closed->view().at("kind").string()=="Rejected");
@@ -99,5 +148,48 @@ int main()try{
   auto value=session->result<Input>(**caller,ref);CHECK(value);
   const auto& output=std::get<ReadCompleted<Input>>(std::get<Completed<Input>>(*value->value).outcome.value());
   CHECK(output.result&&output.result->amount==5&&output.result->text==std::string(1024,'x'));
+  CHECK(queries[1]->pump());CHECK(transports[1]->sent.size()==1);
+  CHECK(transports[1]->sent.back().view().at("result").at("wait_state").string()=="Terminal");
+  CHECK(queries[0]->dispatch(**caller,"get-done",query_args->view()));CHECK(queries[0]->pump());
+  CHECK(transports[0]->sent.back().view().at("result").at("full_result_available").boolean()==true);
+  CHECK(queries[3]->dispatch(**caller,"result",query_args->view()));CHECK(queries[3]->pump());
+  auto full=transports[3]->sent.back().view().at("result");CHECK(full.at("projection").string()=="full");
+  CHECK(full.at("reply").at("kind").string()=="Completed");
+  CHECK(full.at("reply").at("outcome").at("result").at("amount").int64()==5);
+  CHECK(full.at("reply").at("outcome").at("result").at("text").string()==std::string(1024,'x'));
+  CHECK(queries[2]->dispatch(**caller,"cancel-terminal",query_args->view()));CHECK(queries[2]->pump());
+  CHECK(transports[2]->sent.back().view().at("result").at("disposition").string()=="AlreadyTerminal");
+  auto observer_open=host->open({{std::byte{7}}},{policy_test::rules(),auth->identity.deadline,false});CHECK(observer_open);
+  auto observer=std::make_shared<host::HostSession>(std::move(*observer_open));auto observer_caller=observer->verify({policy_test::principal(),{}, {}});CHECK(observer_caller);
+  auto protected_transport=std::make_shared<Transport>();
+  auto protected_result=Query::create(Query::Kind::Result,observer,*observer_caller,protected_transport,results,clock);CHECK(protected_result);
+  CHECK((*protected_result)->dispatch(**observer_caller,"revoked",query_args->view()));CHECK(observer->close());
+  (void)(*protected_result)->pump();CHECK(protected_transport->sent.empty());
+  entered=false;release=false;stopped=false;
+  auto native=session->bind<Input,Input>(key(),{},Shape::Read,*caller,std::array{policy_test::target()},targets,name("query.cancel"));CHECK(native);
+  auto second=native->submit(Input{8,"cancel"},{{},clock->now()+std::chrono::seconds(2),100});CHECK(std::holds_alternative<Accepted>(second));
+  auto second_ref=std::get<Accepted>(second).execution;until([]{return entered.load();});
+  auto second_args=data::Payload::parse("{\"execution_ref\":{\"execution_id\":\""+control::wire_text(second_ref.execution_id)+"\"}}");CHECK(second_args);
+  auto timeout_args=data::Payload::parse("{\"execution_ref\":{\"execution_id\":\""+control::wire_text(second_ref.execution_id)+"\"},\"wait_timeout_ms\":0}");CHECK(timeout_args);
+  CHECK(queries[1]->dispatch(**caller,"timeout",timeout_args->view()));CHECK(queries[1]->pump());
+  CHECK(transports[1]->sent.back().view().at("result").at("wait_state").string()=="Timeout");CHECK(!stopped);
+  auto disconnected_transport=std::make_shared<Transport>();
+  auto disconnected_wait=Query::create(Query::Kind::Wait,session,*caller,disconnected_transport,results,clock);CHECK(disconnected_wait);
+  CHECK((*disconnected_wait)->dispatch(**caller,"disconnect",second_args->view()));(*disconnected_wait)->disconnect();
+  CHECK(!(*disconnected_wait)->pump());CHECK(disconnected_transport->sent.empty());CHECK(!stopped);
+  CHECK(queries[2]->dispatch(**caller,"cancel-running",second_args->view()));CHECK(queries[2]->pump());
+  CHECK(transports[2]->sent.back().view().at("result").at("disposition").string()=="AlreadyClaimed");until([]{return stopped.load();});
+  release=true;auto cancelled_wait=session->wait(**caller,second_ref,clock->now()+std::chrono::seconds(2));CHECK(cancelled_wait&&cancelled_wait->state==host::ExecutionWaitState::Terminal);
+  auto cancelled_value=session->result<Input>(**caller,second_ref);CHECK(cancelled_value);
+  const auto& cancelled_output=std::get<ReadCompleted<Input>>(std::get<Completed<Input>>(*cancelled_value->value).outcome.value());
+  CHECK(cancelled_output.result&&cancelled_output.result->amount==9);
+  auto schemas=std::filesystem::path(__FILE__).parent_path().parent_path().parent_path().parent_path()/"schemas/rpc-v1";
+  auto schema_text=[&](std::string name){std::ifstream f(schemas/name,std::ios::binary);CHECK(f);std::string text(std::istreambuf_iterator<char>(f),{});std::erase(text,'\r');return text;};
+  for(auto [index,file]:std::vector<std::pair<unsigned,std::string>>{{0,"execution-get-summary.schema.json"},{1,"execution-wait.schema.json"},{2,"execution-cancel.schema.json"},{3,"result-read.schema.json"}}) {
+    auto text=schema_text(file);
+    if(index==3){const std::string marker="{\n      \"$ref\": \"outcome.schema.json\"\n    }";auto pos=text.find(marker);CHECK(pos!=text.npos);text.replace(pos,marker.size(),schema_text("outcome.schema.json"));}
+    auto schema=binding::CompiledSchema::compile(text);CHECK(schema);
+    for(const auto& sent:transports[index]->sent)CHECK(schema->validate(sent.view().at("result")));
+  }
   std::cout<<"Owned Control Submit retained input and survived RPC disconnect\n";
 }catch(const std::exception& error){std::cerr<<error.what()<<'\n';return 1;}

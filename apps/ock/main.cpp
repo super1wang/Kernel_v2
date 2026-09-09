@@ -91,7 +91,7 @@ int wmain(int argc,wchar_t **wide_argv) try {
   CLI::App app{"OCK local control client"}; app.require_subcommand(1);
   std::string instance="default",server_sid,operation,version="1.0.0",args,file,intent_file,digest,prefix,owner="self",phase="nonterminal",execution_ref;
   bool json=false,jsonl=false,stdin_input=false,cancel_on_interrupt=false;
-  int timeout=5000,page_size=50,execution_timeout=30000;
+  int timeout=5000,page_size=50,execution_timeout=30000,wait_timeout=1000;
   app.add_option("--instance",instance,"Controlled local instance name");
   app.add_option("--server-sid",server_sid,"Expected OS server SID; defaults to current user");
   app.add_option("--timeout-ms",timeout)->check(CLI::Range(1,300000));
@@ -114,6 +114,12 @@ int wmain(int argc,wchar_t **wide_argv) try {
   submit->add_option("--intent-file",intent_file);
   submit->add_option("--execution-timeout-ms",execution_timeout)->check(CLI::Range(1,30000));
   auto execution=app.add_subcommand("execution"); execution->fallthrough(); execution->require_subcommand(1);
+  auto get=execution->add_subcommand("get");get->fallthrough();get->add_option("execution_ref",execution_ref)->required();
+  auto wait=execution->add_subcommand("wait");wait->fallthrough();wait->add_option("execution_ref",execution_ref)->required();
+  wait->add_option("--wait-timeout-ms",wait_timeout,"Server wait duration; --timeout-ms controls transport")->check(CLI::Range(0,30000));
+  auto cancel=execution->add_subcommand("cancel");cancel->fallthrough();cancel->add_option("execution_ref",execution_ref)->required();
+  auto result=app.add_subcommand("result");result->fallthrough();result->require_subcommand(1);
+  auto read=result->add_subcommand("read");read->fallthrough();read->add_option("execution_ref",execution_ref)->required();
   auto list=execution->add_subcommand("list"); list->fallthrough();
   list->add_option("--owner",owner); list->add_option("--phase",phase)->check(CLI::IsMember({"nonterminal","terminal","all"}));
   list->add_option("--page-size",page_size)->check(CLI::Range(1,200));
@@ -130,6 +136,15 @@ int wmain(int argc,wchar_t **wide_argv) try {
   auto quoted=[](std::string_view text) { auto result=control_client::quote(text); if(!result) throw std::runtime_error("Invalid text"); return *result; };
   if(*search) return output(client->call("capabilities.search",*data::Payload::parse("{\"prefix\":"+quoted(prefix)+"}"),interruption.get_token()));
   if(*describe) return output(client->call("capabilities.describe",*data::Payload::parse("{\"name\":"+quoted(operation)+",\"version\":"+quoted(version)+"}"),interruption.get_token()));
+  if(*get||*wait||*cancel||*read) {
+    const auto method=*get?"execution.get":*wait?"execution.wait":*cancel?"execution.cancel":"result.read";
+    if(client->hello().observation_backend!="managed"||!client->supports(method))return failure(3,"ExecutionProviderUnavailable");
+    if(execution_ref.size()!=32||execution_ref.find_first_not_of("0123456789abcdef")!=execution_ref.npos||execution_ref.find_first_not_of('0')==execution_ref.npos)
+      return failure(2,"InvalidExecutionRef");
+    auto duration=*wait?",\"wait_timeout_ms\":"+std::to_string(wait_timeout):std::string{};
+    auto params=data::Payload::parse("{\"execution_ref\":{\"execution_id\":"+quoted(execution_ref)+"}"+duration+"}");
+    if(!params)return failed(params.error());return output(client->call(method,*params,interruption.get_token()));
+  }
   if(*list) {
     if(client->hello().observation_backend!="managed") return failure(3,"ExecutionProviderUnavailable");
     auto params=data::Payload::parse("{\"owner\":"+quoted(owner)+",\"phase_set\":"+quoted(phase)+",\"page_size\":"+std::to_string(page_size)+"}");

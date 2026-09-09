@@ -452,6 +452,12 @@ Result<std::shared_ptr<const policy::VerifiedCaller>> HostSession::verify(const 
   detail::HostAdmission admission(s->host);if(!admission)return make_unexpected(admission.error());
   return s->authority->verify(caller);
 }
+Result<std::unique_ptr<policy::SendCoordinator>> HostSession::send_coordinator(
+    std::shared_ptr<policy::TransmissionStartPort> sink,std::shared_ptr<policy::ProjectionEncoderPort> encoder) const {
+  auto s=state_;if(!s)return failure<std::unique_ptr<policy::SendCoordinator>>(HostErrc::InvalidSession);
+  detail::HostAdmission admission(s->host);if(!admission)return make_unexpected(admission.error());
+  return policy::SendCoordinator::create(s->authority,std::move(sink),std::move(encoder));
+}
 Result<ErasedExecutionResult> HostSession::result_erased(const policy::VerifiedCaller& caller,
     ExecutionRef ref,CppTypeToken type) const {
   auto s=state_;if(!s)return failure<ErasedExecutionResult>(HostErrc::InvalidSession);
