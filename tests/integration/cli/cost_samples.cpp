@@ -20,12 +20,20 @@ struct Meter final : stateless::Service::MeasurementPort {
 int main() try {
   allocation::initialize();
   allocation::start(); void *positive=::operator new(65); auto probe=allocation::stop(); ::operator delete(positive);
-  if(!probe.cpp || (allocation::crt_available() && !probe.crt) || (allocation::asan_available() && !probe.asan_allocations)) return 2;
+  const bool asan=allocation::asan_available();
+  // 与既有探针合同一致：ASan 接管 malloc 时 Debug CRT hook 不报告该分配。
+  const bool crt=allocation::crt_available() && !asan;
+  if(probe.cpp!=1 || probe.allocated_bytes<65 || (crt && !probe.crt) || (asan && probe.asan_allocations!=1)) {
+    std::cerr<<"allocation positive control failed: cpp="<<probe.cpp<<" crt="<<probe.crt<<" asan="<<probe.asan_allocations<<'\n';
+    return 2;
+  }
   auto sid=ock::local_ipc::current_user_sid(); if(!sid) return 3;
   auto service=stateless::Service::create(*sid); if(!service) return 3;
   Meter meter; auto measured=(*service)->measure(meter); if(!measured || meter.samples.size()!=40) return 4;
   std::cout << "{\"format\":\"ock.b3.entry-costs/1\",\"capture\":\"CTEST_FULL_OUTPUT\",\"scope\":\"warm prebound Native versus Dynamic decode plus same HostBound; excludes setup, JSON parsing, wire encoding, IPC and CLI process startup\",\"counter_valid\":true,\"crt_available\":"
-      <<(allocation::crt_available()?"true":"false")<<",\"asan_available\":"<<(allocation::asan_available()?"true":"false")<<",\"samples\":[";
+      <<(crt?"true":"false")<<",\"asan_available\":"<<(asan?"true":"false")
+      <<",\"positive_control\":{\"cpp_allocations\":"<<probe.cpp<<",\"crt_allocations\":"<<probe.crt
+      <<",\"asan_allocations\":"<<probe.asan_allocations<<",\"allocated_bytes\":"<<probe.allocated_bytes<<"},\"samples\":[";
   bool comma=false;
   for(auto &sample:meter.samples) {
     if(comma) std::cout<<','; comma=true;

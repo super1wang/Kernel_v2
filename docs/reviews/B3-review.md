@@ -34,4 +34,6 @@ CODE：已复核无状态消费者的同 HostBound 路径、OS 身份至 Host.op
 
 首轮来源 fe0893e 的 Debug/Release 用例虽全部通过，JUnit 成本 JSON 被 CTest 默认 1024 字节上限截断，因此不用于本次最终验收。成本样本输出增加 CTest 官方支持的 `CTEST_FULL_OUTPUT` 标记字段，保持完整合法 JSON，不改变测量窗口或计数器。新来源必须重新完成三配置，且核对每份归档 JSON 都有 Native/Dynamic 各 20 个样本；旧原始报告不覆盖、不补写成功样本。
 
+来源 f0cd96a 的 ASan 成本正控制发现测量消费者条件错误：既有 allocation_cases 合同明确 ASan 接管 malloc 时 CRT 通道为 0，消费者却同时要求 CRT 和 ASan 为正。仅修正 B3 测量消费者，要求 C++ 恰好一次、有效字节不少于请求、启用的 ASan 通道恰好一次或非 ASan Debug 的 CRT 通道为正，并把实际正控制计数写入 JSON。既有探针和生产代码不变；ASan 专项已验证，最终仍按新来源完整执行三配置，不能拼接 f0cd96a 的其他成功用例。
+
 遗留边界：同流开始字节无法撤回；Windows 调度不承诺硬实时；当前没有真实 Task/持久化去重/完整任务结果，真实任务观察由 D3.07 承接。以上是明确范围边界，不是豁免本批失败。
