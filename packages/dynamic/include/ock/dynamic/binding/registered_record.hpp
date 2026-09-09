@@ -35,6 +35,7 @@ public:
   }
   data::ValueView schema() const & noexcept { return schema_.view(); }
   data::ValueView schema() const && = delete;
+  data::SharedPayload shared_schema() const noexcept { return schema_; }
 
 private:
   RegisteredRecord(data::SharedPayload schema, CompiledSchema compiled)

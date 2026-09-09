@@ -10,6 +10,7 @@ struct Script final : control_client::ExchangePort,control_client::NotificationP
   std::deque<control_client::Notification> events;
   std::string host=std::string(32,'2'),execution=std::string(32,'1'),subscription=std::string(32,'3'),stream=std::string(32,'4');
   unsigned version=2;
+  std::string phase="Running";
   bool closed=false,bad_id=false;
   foundation::Result<data::Payload> exchange(const data::Payload &request,std::chrono::milliseconds,std::stop_token) override {
     auto method=*request.view().at("method").string(); methods.emplace_back(method);
@@ -22,7 +23,7 @@ struct Script final : control_client::ExchangePort,control_client::NotificationP
       result="{\"subscription_id\":\""+subscription+"\",\"stream_generation\":\""+stream+"\",\"host_incarnation\":\""+host+"\",\"first_sequence\":\"1\",\"replay_supported\":false}";
     } else if(method=="execution.get") {
       check(methods.size()>1 && methods[1]=="notifications.subscribe");
-      result="{\"host_incarnation\":\""+host+"\",\"execution_ref\":{\"execution_id\":\""+execution+"\"},\"observation_version\":\""+std::to_string(version)+"\",\"phase\":\"Running\"}";
+      result="{\"host_incarnation\":\""+host+"\",\"execution_ref\":{\"execution_id\":\""+execution+"\"},\"observation_version\":\""+std::to_string(version)+"\",\"phase\":\""+phase+"\"}";
     } else if(method=="notifications.unsubscribe") {
       check(bool(control::parse_unsubscribe(request.view().at("params")))); result="{\"removed\":true}";
     } else throw std::runtime_error("unexpected method");
@@ -64,6 +65,12 @@ int main(int argc,char **argv) try {
     check(script->methods.size()==before); return 0;
   }
   check(mode=="watch");
+  for(auto phase : {"", "UnknownPhase"}) {
+    auto invalid=std::make_shared<Script>(); invalid->phase=phase;
+    auto peer=control_client::Client::open(invalid); check(bool(peer));
+    auto rejected=control_client::Watch::open(*peer,*invalid,invalid->execution);
+    check(!rejected && invalid->closed && rejected.error().code()==control_client::error(control_client::ClientErrc::Protocol).code());
+  }
   auto client=control_client::Client::open(script); check(bool(client));
   script->enqueue(1,1); // subscribe→get 之间到达的旧版本必须丢弃。
   auto watch=control_client::Watch::open(*client,*script,script->execution); check(bool(watch));
@@ -74,7 +81,27 @@ int main(int argc,char **argv) try {
   auto gap=(*watch)->next(std::chrono::milliseconds(1)); check(gap && *gap && script->methods.back()=="execution.get");
   script->version=6; script->events.push_back({{},true});
   auto lost=(*watch)->next(std::chrono::milliseconds(1)); check(lost && *lost);
-  script->host=std::string(32,'5'); script->enqueue(5,7);
+  script->version=9;
+  check(bool((*watch)->next(std::chrono::milliseconds(1))));
+  script->phase="Terminal"; script->version=10;
+  check(bool((*watch)->next(std::chrono::milliseconds(1))));
+  auto terminal=(*watch)->snapshot(); check(terminal && terminal->view().at("result").at("phase").string()=="Terminal");
+  script->phase="Running"; script->version=11;
+  auto reopened=(*watch)->next(std::chrono::milliseconds(1));
+  check(!reopened && reopened.error().code()==control_client::error(control_client::ClientErrc::Protocol).code());
+  terminal=(*watch)->snapshot(); check(terminal && terminal->view().at("result").at("observation_version").string()=="10");
+  script->phase="Terminal";
+  check(bool((*watch)->next(std::chrono::milliseconds(1)))); // Terminal v11 is valid after rejected Running v11.
+  script->enqueue(5,9); auto stale=(*watch)->next(std::chrono::milliseconds(1)); check(stale && !*stale);
+  script->enqueue(6,99); auto hint=(*watch)->next(std::chrono::milliseconds(1)); check(hint && !*hint); // Hints cannot replace terminal truth or advance its version.
+  script->enqueue(7,9,true); auto terminal_gap=(*watch)->next(std::chrono::milliseconds(1)); check(terminal_gap && *terminal_gap);
+  terminal=(*watch)->snapshot(); check(terminal && terminal->view().at("result").at("phase").string()=="Terminal");
+  script->phase="UnknownPhase"; script->version=12; check(!(*watch)->next(std::chrono::milliseconds(1)));
+  script->phase="Terminal"; script->host=std::string(32,'5'); // Periodic resync must reject a different Host too.
+  check(!(*watch)->next(std::chrono::milliseconds(1)));
+  script->host=std::string(32,'2'); script->execution=std::string(32,'6');
+  check(!(*watch)->next(std::chrono::milliseconds(1)));
+  script->execution=std::string(32,'1'); script->host=std::string(32,'5'); script->enqueue(8,12);
   check(!(*watch)->next(std::chrono::milliseconds(1)));
   (*watch)->close(); check(script->closed && script->methods.back()=="notifications.unsubscribe");
   check(std::find(script->methods.begin(),script->methods.end(),"execution.cancel")==script->methods.end());

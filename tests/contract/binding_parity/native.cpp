@@ -2,16 +2,21 @@
 #include <crtdbg.h>
 #include <ock/dynamic/binding/bound_operation.hpp>
 #include <ock/control/invoke_method.hpp>
+#include <ock/dynamic/catalog/catalog.hpp>
 using namespace ock;
 struct Value {
   std::int64_t amount{};
+};
+struct CountedField : binding::Field<&Value::amount> {
+  inline static unsigned schemas=0;
+  void schema(data::PayloadBuilder &b) const { ++schemas; binding::Field<&::Value::amount>::schema(b); }
 };
 struct Fields {
   static contracts::TypeIdentity identity() {
     return {name("binding.value"), ver(), {}};
   }
   static auto fields() {
-    auto f = binding::field<&Value::amount>("amount");
+    CountedField f; f.name="amount";
     f.minimum = 0;
     f.maximum = 100;
     return std::tuple(f);
@@ -77,7 +82,7 @@ int main() try {
                                {true, false, false, name("test"), name("app")},
                                AtomicMode::PureCompute,
                                {name("allow")},
-                               "binding"};
+                               R"({"format":"ock.command-docs/1","purpose":"Increment","counterexamples":["Negative input"],"coordinates":"none","position_mode":"none","impact_scope":"result","id_sources":"catalog","cancellation":"before invoke","retry":{"natural_idempotence":"yes","framework_deduplication":"none","device_deduplication":"none"},"durability":"none","result_phases":"ReadCompleted","error_repair":"correct input"})"};
     registry::OperationOptions options{
         {}, {}, {name("native"), name("test")}, {}, false};
     CHECK(registrar.compute(compute, definition, options));
@@ -90,8 +95,15 @@ int main() try {
   auto caller = session->verify({policy_test::principal(), {}, {}});
   CHECK(caller);
   std::array selected{policy_test::target()};
+  auto registered=control::RegisteredInvocation<Value,Value>::create(); CHECK(registered);
+  CHECK(CountedField::schemas==1); // Args == Result must build a single schema, before any session binding.
+  auto context=session->catalog_context(); CHECK(context);
+  auto frozen=catalog::Catalog::create(context->definitions,{{Fields::identity(),registered->arguments().shared_schema()}}); CHECK(frozen);
+  auto page=frozen->search(*context->authorization,**caller,policy_test::target(),{}); CHECK(page && page->items.size()==1);
+  auto card=catalog::Catalog::command_card(page->items.front()); CHECK(card);
+  auto card_text=card->encode(); CHECK(card_text);
   auto dynamic = binding::BoundOperation<Value, Value>::create(
-      *session, key(), {}, Shape::Read, *caller, selected, targets,
+      *session, registered->arguments(), key(), {}, Shape::Read, *caller, selected, targets,
       name("binding.dynamic"));
   CHECK(dynamic);
   auto native =
@@ -132,7 +144,7 @@ int main() try {
   CHECK(std::get<FailedBeforeApply>(output_outcome.value()).reason.code()==
         std::get<FailedBeforeApply>(native_bad_outcome.value()).reason.code());
   CHECK(calls == 4);
-  auto entry=control::InvocationBinding::bind<Value,Value>(*session,key(),{},Shape::Read,*caller,selected,targets,name("binding.rpc"));CHECK(entry);
+  auto entry=control::InvocationBinding::bind<Value,Value>(*session,*registered,key(),{},Shape::Read,*caller,selected,targets,name("binding.rpc"));CHECK(entry);
   auto method=control::InvokeMethod::create({*entry},clock);CHECK(method);
   auto host_id=control::wire_text((*host)->incarnation());
   auto router=control::Router::create({"test.app",host_id,host_id},*caller,{*method});CHECK(router);
@@ -166,6 +178,26 @@ int main() try {
   CHECK(std::holds_alternative<Rejected>(
       dynamic->invoke(input->view(), options)));
   CHECK(calls == 6);
+  for(unsigned i=0;i<100;++i) {
+    auto fresh=(*host)->open({{std::byte{7}}},{policy_test::rules(),auth->identity.deadline,false}); CHECK(fresh);
+    auto who=fresh->verify({policy_test::principal(),{}, {}}); CHECK(who);
+    auto view=fresh->catalog_context(); CHECK(view && view->definitions==context->definitions);
+    auto entry=control::InvocationBinding::bind<Value,Value>(*fresh,*registered,key(),{},Shape::Read,*who,selected,targets,name("binding.reconnect")); CHECK(entry);
+    auto bound=binding::BoundOperation<Value,Value>::create(*fresh,registered->arguments(),key(),{},Shape::Read,*who,selected,targets,name("binding.reconnect")); CHECK(bound);
+    CHECK(result(bound->invoke(input->view(),options))==5);
+    auto current=frozen->search(*view->authorization,**who,policy_test::target(),{});
+    CHECK(current && current->fingerprint==page->fingerprint && current->items.size()==1 && current->items.front().eligible);
+    auto current_card=catalog::Catalog::command_card(current->items.front()); CHECK(current_card);
+    auto encoded=current_card->encode(); CHECK(encoded && *encoded==*card_text);
+    CHECK(fresh->close());
+    CHECK(std::holds_alternative<Rejected>(bound->invoke(input->view(),options)));
+    CHECK(CountedField::schemas==1);
+  }
+  // A new registration lifetime rebuilds its owned DOM; the closed sessions did not own it.
+  auto next_generation=control::RegisteredInvocation<Value,Value>::create(); CHECK(next_generation && CountedField::schemas==2);
+  auto void_output=control::RegisteredInvocation<Value,void>::create(); CHECK(void_output);
+  CHECK(void_output->output().encode(0)->view().kind()==data::Kind::Null);
+  std::cout << "100 sessions reused one registered schema/catalog; closed caller rejected\n";
   std::cout << "Dynamic and Native shared TypeContract and governed HostBound "
                "passed\n";
 } catch (const std::exception &e) {

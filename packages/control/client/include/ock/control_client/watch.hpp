@@ -28,5 +28,6 @@ private:
   std::optional<data::Payload> snapshot_;
   std::uint64_t version_ = 0,sequence_ = 0;
   bool closed_ = false;
+  bool terminal_seen_ = false;
 };
 }

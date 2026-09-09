@@ -11,20 +11,18 @@ class BoundOperation {
 public:
   static Result<BoundOperation>
   create(runtime::host::HostSession &session,
+         const Arguments &arguments,
          const contracts::OperationKey &key, contracts::ContractDigest digest,
          contracts::Shape shape,
          std::shared_ptr<const runtime::policy::VerifiedCaller> caller,
          std::span<const foundation::ObjectId> targets,
          runtime::invocation::TargetProjection<A> projection,
          foundation::Name trace) {
-    auto arguments = Arguments::create();
-    if (!arguments)
-      return foundation::make_unexpected(arguments.error());
     auto bound = session.template bind<A, R>(
         key, digest, shape, std::move(caller), targets, projection, trace);
     if (!bound)
       return foundation::make_unexpected(bound.error());
-    return BoundOperation(std::move(*arguments), std::move(*bound));
+    return BoundOperation(arguments, std::move(*bound));
   }
   contracts::InvokeReply<R>
   invoke(data::ValueView input,

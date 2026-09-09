@@ -34,9 +34,15 @@
 
 watch 预备算法要求 managed provider，先 subscribe 再 get；按世代、sequence、observation_version 处理提示，缺口、终态/事实提示及周期超时触发重新 get。关闭发送 unsubscribe 并关闭观察连接，默认无 cancel。当前样例真实 Provider 为 absent，CLI list/watch 明确拒绝；内存脚本仅证明客户端算法，真实任务观察留 D3.07。
 
+G2 后收口：完整快照 phase 必须属于既定七个阶段；同一 Watch 一旦接受 Terminal，后续完整快照只能继续 Terminal（允许版本增加），回退为非终态或更换 Host/ExecutionRef 均为 Protocol error，保留已接受快照。进度提示不修改已接受终态或推进其版本；gap/本地丢失/周期重同步仍用 get 确认，不能依赖提示重新打开执行。
+
 ## 验证消费者
 
 `examples/stateless_service/control_main.cpp` 启动同一 NativeHost，发布 `sample.increment`。CLI 与 Native 走相同 SharedTypeContract/HostBound；amount 为 0–100，输出 amount+1，100 触发输出验证失败。负数及超长 UTF-8 输入拒绝。样例不用第二 Registry/Host 或独立业务分派器。
+
+G2 后收口：Host 冻结后，服务组合层一次创建并强持有 `RegisteredInvocation<Value,Value>` 与 `Catalog`；Args/Result 同型复用一个 RegisteredRecord，Catalog 的 TypeSchema 使用同一 SharedPayload。临时装配 Session 随即关闭，Catalog 不持有其授权。连接仅创建 VerifiedCaller、该会话的权限视图、HostBound 和 Router；查询 visible/eligible 仍检查当前权限。当前 NativeHost 不支持就地换注册表，重建 Host 时必须重建此动态投影；不引入 Runtime→Dynamic 依赖或第二 Registry。
+
+SDK experimental 源码适配：`BoundOperation::create(session, registered.arguments(), ...)` 和 `InvocationBinding::bind(session, registered, ...)` 显式接收已注册材料，不保留隐式编译的旧重载。`RegisteredInvocation::create()` 属于组合层冻结期；会话绑定只复制强持有句柄，实例 generic Schema/typed/HostBound 验证均保留。本次不宣称旧 experimental 调用签名或 ABI 兼容，SDK stage 仍为 B3Subset。
 
 独立安装消费者仍由同目录原 `main.cpp` 提供，Runtime-only 路径保持纯原生闭包。迁移安装验证同时检查新增头独立编译、薄客户端静态链接映射和已安装 CLI；私有依赖不泄漏。
 

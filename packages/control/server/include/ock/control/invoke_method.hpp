@@ -15,6 +15,31 @@ template<class R> struct Output<R,true> {
   template<class T> Result<data::Payload> encode(const T &)const{return data::Payload::parse("null");}
 };
 }
+// 在 Host 冻结周期内强持有；不保存 caller、SessionAuthority 或业务 Handler。
+template<contracts::ContractValue A,contracts::ContractResult R>
+class RegisteredInvocation {
+public:
+  using Arguments=binding::RegisteredRecord<A,typename contracts::TypeContract<A>::FieldSpec>;
+  static Result<RegisteredInvocation> create() {
+    auto args=Arguments::create();
+    if(!args)return foundation::make_unexpected(args.error());
+    if constexpr(std::same_as<A,R>) {
+      return RegisteredInvocation(*args,invoke_detail::Output<R>{*args});
+    } else {
+      auto output=invoke_detail::Output<R>::create();
+      if(!output)return foundation::make_unexpected(output.error());
+      return RegisteredInvocation(std::move(*args),std::move(*output));
+    }
+  }
+  const Arguments &arguments()const & noexcept{return arguments_;}
+  const Arguments &arguments()const && = delete;
+  const invoke_detail::Output<R> &output()const & noexcept{return output_;}
+  const invoke_detail::Output<R> &output()const && = delete;
+private:
+  RegisteredInvocation(Arguments a,invoke_detail::Output<R> o):arguments_(std::move(a)),output_(std::move(o)){}
+  Arguments arguments_;
+  invoke_detail::Output<R> output_;
+};
 class InvocationBinding {
   struct Invoker {
     virtual ~Invoker()=default;
@@ -46,15 +71,14 @@ class InvocationBinding {
 public:
   template<contracts::ContractValue A,contracts::ContractResult R>
   static Result<InvocationBinding> bind(runtime::host::HostSession &session,
+      const RegisteredInvocation<A,R> &registered,
       const contracts::OperationKey &key,contracts::ContractDigest digest,contracts::Shape shape,
       std::shared_ptr<const runtime::policy::VerifiedCaller> caller,
       std::span<const foundation::ObjectId> targets,
       runtime::invocation::TargetProjection<A> projection,foundation::Name trace) {
-    auto output=invoke_detail::Output<R>::create();
-    if(!output)return foundation::make_unexpected(output.error());
-    auto bound=binding::BoundOperation<A,R>::create(session,key,digest,shape,caller,targets,projection,trace);
+    auto bound=binding::BoundOperation<A,R>::create(session,registered.arguments(),key,digest,shape,caller,targets,projection,trace);
     if(!bound)return foundation::make_unexpected(bound.error());
-    return InvocationBinding({key,digest},std::make_shared<Typed<A,R>>(std::move(*bound),std::move(*output),std::move(caller)));
+    return InvocationBinding({key,digest},std::make_shared<Typed<A,R>>(std::move(*bound),registered.output(),std::move(caller)));
   }
 };
 class InvokeMethod final:public MethodPort {

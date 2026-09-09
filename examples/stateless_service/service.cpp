@@ -66,6 +66,8 @@ Result<std::size_t> targets(const Value &,std::span<foundation::ObjectId> out) n
 }
 struct Service::State : std::enable_shared_from_this<Service::State> {
   std::unique_ptr<host::NativeHost> host;
+  std::optional<control::RegisteredInvocation<Value,Value>> registered;
+  std::shared_ptr<const catalog::Catalog> catalog;
   std::shared_ptr<Authentication> auth = std::make_shared<Authentication>();
   std::shared_ptr<Clock> clock = std::make_shared<Clock>();
   std::shared_ptr<Threads> threads = std::make_shared<Threads>();
@@ -90,13 +92,9 @@ struct Service::State : std::enable_shared_from_this<Service::State> {
     if(!caller) return foundation::make_unexpected(caller.error());
     auto source = context->session->catalog_context();
     if(!source) return foundation::make_unexpected(source.error());
-    auto schema = catalog::TypeSchema::generated<Value>();
-    if(!schema) return foundation::make_unexpected(schema.error());
-    auto catalog = catalog::Catalog::create(source->definitions,{*schema});
-    if(!catalog) return foundation::make_unexpected(catalog.error());
-    auto methods = control::catalog_methods(std::make_shared<catalog::Catalog>(std::move(*catalog)),source->authorization,target());
+    auto methods = control::catalog_methods(catalog,source->authorization,target());
     if(!methods) return foundation::make_unexpected(methods.error());
-    auto binding = control::InvocationBinding::bind<Value,Value>(*context->session,operation(),{},contracts::Shape::Read,*caller,
+    auto binding = control::InvocationBinding::bind<Value,Value>(*context->session,*registered,operation(),{},contracts::Shape::Read,*caller,
         std::array{target()},targets,name("sample.rpc"));
     if(!binding) return foundation::make_unexpected(binding.error());
     auto invoke = control::InvokeMethod::create({*binding},clock);
@@ -130,6 +128,20 @@ Result<std::unique_ptr<Service>> Service::create(std::string allowed_sid) {
   if(!added) return foundation::make_unexpected(added.error());
   auto started = state->host->start();
   if(!started) return foundation::make_unexpected(started.error());
+  // 冻结 Host 的动态投影只创建一次；临时装配会话关闭后不保留其权限。
+  auto registered=control::RegisteredInvocation<Value,Value>::create();
+  if(!registered) return foundation::make_unexpected(registered.error());
+  state->registered.emplace(std::move(*registered));
+  auto session=state->open(state->auth->allowed_sid);
+  if(!session) return foundation::make_unexpected(session.error());
+  auto source=session->catalog_context();
+  if(!source) return foundation::make_unexpected(source.error());
+  auto catalog=catalog::Catalog::create(source->definitions,
+      {{contracts::TypeContract<Value>::identity(),state->registered->arguments().shared_schema()}});
+  if(!catalog) return foundation::make_unexpected(catalog.error());
+  state->catalog=std::make_shared<const catalog::Catalog>(std::move(*catalog));
+  auto closed=session->close();
+  if(!closed) return foundation::make_unexpected(closed.error());
   return std::unique_ptr<Service>(new Service(std::move(state)));
 }
 Service::~Service() {
@@ -181,8 +193,7 @@ Result<data::Payload> Service::native(const Value &value) {
   auto bound = session->bind<Value,Value>(operation(),{},contracts::Shape::Read,*caller,std::array{target()},targets,name("sample.native"));
   if(!bound) return foundation::make_unexpected(bound.error());
   auto reply = bound->invoke(value,{{},state_->clock->now()+std::chrono::seconds(1),100});
-  auto record = binding::RegisteredRecord<Value,Fields>::create();
-  return control::encode_invoke<Value>(reply,[&](const Value &out) { return record->encode(out); });
+  return control::encode_invoke<Value>(reply,[&](const Value &out) { return state_->registered->output().encode(out); });
 }
 Result<void> Service::measure(MeasurementPort &meter) {
   auto sid=local_ipc::current_user_sid(); if(!sid) return foundation::make_unexpected(sid.error());
@@ -190,7 +201,7 @@ Result<void> Service::measure(MeasurementPort &meter) {
   auto caller=session->verify({principal(),{}, {}}); if(!caller) return foundation::make_unexpected(caller.error());
   Threads::Scope thread(*state_->threads);
   auto native=session->bind<Value,Value>(operation(),{},contracts::Shape::Read,*caller,std::array{target()},targets,name("sample.native.cost"));
-  auto dynamic=binding::BoundOperation<Value,Value>::create(*session,operation(),{},contracts::Shape::Read,*caller,std::array{target()},targets,name("sample.dynamic.cost"));
+  auto dynamic=binding::BoundOperation<Value,Value>::create(*session,state_->registered->arguments(),operation(),{},contracts::Shape::Read,*caller,std::array{target()},targets,name("sample.dynamic.cost"));
   if(!native) return foundation::make_unexpected(native.error());
   if(!dynamic) return foundation::make_unexpected(dynamic.error());
   auto input=data::Payload::parse(R"({"amount":4,"text":"small request"})");

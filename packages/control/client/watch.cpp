@@ -33,12 +33,18 @@ Result<data::Payload> Watch::refresh(std::stop_token stop) {
   if(!response) return foundation::make_unexpected(response.error());
   auto result=response->view().at("result");
   auto version=control::wire_count(result.at("observation_version"));
+  auto phase=result.at("phase").string();
+  if(!phase || (*phase!="Queued" && *phase!="WaitingResources" && *phase!="Running" &&
+      *phase!="WaitingChild" && *phase!="Finalizing" && *phase!="Suspended" && *phase!="Terminal") ||
+      (terminal_seen_ && *phase!="Terminal"))
+    return foundation::make_unexpected(error(ClientErrc::Protocol));
   if(!version || !*version || *version<version_ || result.at("host_incarnation").string()!=client_.hello().host_incarnation ||
       result.at("execution_ref").at("execution_id").string()!=execution_)
     return foundation::make_unexpected(error(ClientErrc::Protocol));
-  version_=*version;
   auto saved=response->clone(); if(!saved) return foundation::make_unexpected(saved.error());
   snapshot_.emplace(std::move(*saved));
+  version_=*version;
+  terminal_seen_=*phase=="Terminal";
   return response;
 }
 Result<data::Payload> Watch::snapshot() const {
@@ -72,6 +78,7 @@ Result<std::optional<data::Payload>> Watch::next(std::chrono::milliseconds timeo
   const bool missed=*gap || notification->local_gap || *sequence-sequence_!=1;
   sequence_=*sequence;
   if(missed || *topic!="execution.progress") return resync();
+  if(terminal_seen_) return std::optional<data::Payload>{};
   if(*version<=version_) return std::optional<data::Payload>{};
   version_=*version;
   return std::optional<data::Payload>(std::move(*notification->frame));
