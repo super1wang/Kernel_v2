@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 首轮正式 Debug 在已核对 Git 字节的 `c4b5c97` 上完成 **124/126**，两处旧绑定及 Evidence Schema 缺项使该轮整体 Failed，原文保留（[报告](../evidence/c4b5c974f8d1-257f5d1d66c1/win-msvc-debug/D3.07/20260909T233415Z-4005f95839c2/report.json)）。已修正安装探针的 B5 Runtime/客户端系统依赖预期与 Executor 三个变更源摘要；直接集 **2/2** 通过（[原文](../evidence/B5/final-bindings-retry-00f6b1b665/commands.json)）。新增 QPC 可选对象的严格 Schema 及真实/旧格式/损坏反例直接集 **3/3** 通过（[原文](../evidence/B5/final-bindings-e1fa5a786e/0-stdout.log)）；该次后续安装重试失败也保持原样。核心执行、资源/取消/父子/异步排空、全部真实 CLI 在首轮均通过，但不拼成最终验收。重新冻结同来源三配置与原 126 项 expected，B5/G3 仍待正式 Passed。
+
 - B5 已补额外观测成本：同一 Release 安装消费者的默认/操作 Trace/异步文件/慢文件固定对照共 **36 个进程全部完成并排空**（[结果](../evidence/B5/observed-embedded-c53de988af/result.json)、[原始样本](../evidence/B5/observed-embedded-c53de988af/samples.json)）。默认 Host 日志与治理均保留；新增线程为 3/3/4/4，文件 writer 在 shutdown 阶段实际 join。每次 Trace 170 条接受、固定 ring 淘汰 42 条，文件写出 136–152 条并保留 gap，不作为可靠记录。CPU 粒度不足以支持稳定开销比例，逐操作墙钟与真实文件已保存。三份标准 G3-C 报告的原始命令/预算/安装/二进制与方法输入已核对：仅未链接的 Control cursor 源改动，原编译依赖保持字节一致，故按原来源复用（[范围审计](../evidence/B5/observed-embedded-c53de988af/prerequisite-audit.json)）。最终 126 项共享语义/代表性回归 expected 与三配置清单已建立，SPEC/CODE 技术材料齐备，**正式矩阵及 B5/G3 DAG 放行尚待完成**。
 
 - B5 最终 CODE 审查发现并修正 cursor 的异常路径句柄泄漏：认证输入的全部字符串分配移到 BCrypt provider 打开前，认证字节与公开合同不变。生产构建及 Debug 直接集 **2/2** 通过，其中真实 managed wire 保留完整 120 秒 TTL/续页过期验证（[原始命令](../evidence/B5/cursor-cleanup-8d3b01fee2/commands.json)）。源码顺序证明分配失败不再持有 provider；未声称运行过 OOM 故障注入。G3-C 三配置原来源报告保持不变，文件日志/完整 Trace 的独立消费者成本与最终 B5/G3 语义、SPEC/CODE、DAG 验收仍继续完成。

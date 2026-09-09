@@ -1,4 +1,4 @@
-"""验证安装树迁移、公开版本头与未实现组件拒绝，仅声明已交付 NativeSubset。"""
+"""验证当前 SDK 安装迁移、版本/阶段元数据及未实现组件拒绝。"""
 import argparse
 from pathlib import Path
 import shutil

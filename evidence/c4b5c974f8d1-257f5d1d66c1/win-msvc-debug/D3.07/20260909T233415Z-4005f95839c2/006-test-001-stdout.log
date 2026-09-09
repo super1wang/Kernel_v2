@@ -1,0 +1,315 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+Test project J:/Code/Kernel_v2/build/b4-debug
+        Start   4: T01.b4.architecture_guards
+  1/126 Test   #4: T01.b4.architecture_guards .................................   Passed   10.48 sec
+        Start   8: T24.sdk.version_header
+  2/126 Test   #8: T24.sdk.version_header .....................................   Passed    0.07 sec
+        Start   9: T01.architecture.dependency_dag
+  3/126 Test   #9: T01.architecture.dependency_dag ............................   Passed    0.37 sec
+        Start  11: T24.sdk.install_and_missing_components
+  4/126 Test  #11: T24.sdk.install_and_missing_components .....................***Failed    6.10 sec
+argv: ['cmake', '--install', 'J:\\Code\\Kernel_v2\\build\\b4-debug', '--config', 'Debug', '--prefix', 'J:\\Code\\Kernel_v2\\build\\install-check-7g_hwrf1\\original'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\tests\\install_consumer\\baseline', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\install-check-7g_hwrf1\\relocated', '-B', 'J:\\Code\\Kernel_v2\\build\\install-check-7g_hwrf1\\consumer'] exit_code: 1
+-- The CXX compiler identification is MSVC 19.44.35216.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring incomplete, errors occurred!
+
+CMake Error at CMakeLists.txt:13 (message):
+  Missing NativeSubset target metadata
+
+
+
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_baseline.py", line 59, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_baseline.py", line 50, in main
+    run([*base,'-B',str(work/'consumer')])
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_baseline.py", line 29, in run
+    raise RuntimeError('unexpected command result')
+RuntimeError: unexpected command result
+
+        Start  22: T06.execution.executor_rejection
+  5/126 Test  #22: T06.execution.executor_rejection ...........................   Passed    0.50 sec
+        Start  23: T06.execution.duplicate_callback
+  6/126 Test  #23: T06.execution.duplicate_callback ...........................   Passed    0.28 sec
+        Start  25: T06.execution.suspended_owner
+  7/126 Test  #25: T06.execution.suspended_owner ..............................   Passed    0.24 sec
+        Start  26: T12.execution.required_record_failure
+  8/126 Test  #26: T12.execution.required_record_failure ......................   Passed    0.25 sec
+        Start  27: T12.execution.isolation_lifetime
+  9/126 Test  #27: T12.execution.isolation_lifetime ...........................   Passed    0.27 sec
+        Start  28: T06.execution.necessary_children
+ 10/126 Test  #28: T06.execution.necessary_children ...........................   Passed    0.25 sec
+        Start  30: T06.execution.cancel_keeps_facts
+ 11/126 Test  #30: T06.execution.cancel_keeps_facts ...........................   Passed    0.26 sec
+        Start  32: T12.execution.commit_publication_gate
+ 12/126 Test  #32: T12.execution.commit_publication_gate ......................   Passed    0.25 sec
+        Start  34: T20.execution.snapshot_consistency
+ 13/126 Test  #34: T20.execution.snapshot_consistency .........................   Passed    0.25 sec
+        Start  38: T20.observer.lost_terminal_notification
+ 14/126 Test  #38: T20.observer.lost_terminal_notification ....................   Passed    0.25 sec
+        Start  43: T06.execution.queued_cancel
+ 15/126 Test  #43: T06.execution.queued_cancel ................................   Passed    0.25 sec
+        Start  50: T06.execution.owner_acyclic
+ 16/126 Test  #50: T06.execution.owner_acyclic ................................   Passed    0.26 sec
+        Start  51: T06.execution.cancel_propagates_owned_children
+ 17/126 Test  #51: T06.execution.cancel_propagates_owned_children .............   Passed    0.25 sec
+        Start 118: T07.permit.cancel_claim_orders
+ 18/126 Test #118: T07.permit.cancel_claim_orders .............................   Passed    0.15 sec
+        Start 119: T07.permit.revoke_claim_orders
+ 19/126 Test #119: T07.permit.revoke_claim_orders .............................   Passed    0.12 sec
+        Start 120: T07.permit.binding_expiry_single_use
+ 20/126 Test #120: T07.permit.binding_expiry_single_use .......................   Passed    0.12 sec
+        Start 121: T07.permit.leases_do_not_authorize
+ 21/126 Test #121: T07.permit.leases_do_not_authorize .........................   Passed    0.12 sec
+        Start 136: T07.effect.cancel_revoke_send_orders
+ 22/126 Test #136: T07.effect.cancel_revoke_send_orders .......................   Passed    0.12 sec
+        Start 144: T07.effect.cancel_before_permit_records_no_apply
+ 23/126 Test #144: T07.effect.cancel_before_permit_records_no_apply ...........   Passed    0.14 sec
+        Start 236: T12.executor.conformance_manifest
+ 24/126 Test #236: T12.executor.conformance_manifest ..........................***Failed    0.16 sec
+compiled conformance binding: f220071fa4dd21b2b9f30fe4e1b1ee72e5a96eb38f38031ea29f4f0ea1d76e69
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\conformance\executor\verify_manifest.py", line 35, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "J:\Code\Kernel_v2\tests\conformance\executor\verify_manifest.py", line 29, in main
+    assert hashlib.sha256((ROOT/record['path']).read_bytes()).hexdigest()==record['sha256'],record['path']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: packages/contracts/include/ock/contracts/ports.hpp
+
+        Start 237: T12.executor.cpu_pool.ownership_transfer
+ 25/126 Test #237: T12.executor.cpu_pool.ownership_transfer ...................   Passed    0.09 sec
+        Start 238: T12.executor.cpu_pool.exactly_once
+ 26/126 Test #238: T12.executor.cpu_pool.exactly_once .........................   Passed    0.07 sec
+        Start 239: T12.executor.cpu_pool.rejection_cleanup
+ 27/126 Test #239: T12.executor.cpu_pool.rejection_cleanup ....................   Passed    0.07 sec
+        Start 240: T12.executor.cpu_pool.exception_boundary
+ 28/126 Test #240: T12.executor.cpu_pool.exception_boundary ...................   Passed    0.08 sec
+        Start 241: T12.executor.cpu_pool.drain_shutdown
+ 29/126 Test #241: T12.executor.cpu_pool.drain_shutdown .......................   Passed    0.08 sec
+        Start 242: T12.executor.cpu_pool.worker_rejection
+ 30/126 Test #242: T12.executor.cpu_pool.worker_rejection .....................   Passed    0.09 sec
+        Start 243: T12.executor.cpu_pool.queue_full
+ 31/126 Test #243: T12.executor.cpu_pool.queue_full ...........................   Passed    0.09 sec
+        Start 244: T12.executor.controlled.ownership_transfer
+ 32/126 Test #244: T12.executor.controlled.ownership_transfer .................   Passed    0.09 sec
+        Start 245: T12.executor.controlled.exactly_once
+ 33/126 Test #245: T12.executor.controlled.exactly_once .......................   Passed    0.07 sec
+        Start 246: T12.executor.controlled.rejection_cleanup
+ 34/126 Test #246: T12.executor.controlled.rejection_cleanup ..................   Passed    0.07 sec
+        Start 247: T12.executor.controlled.exception_boundary
+ 35/126 Test #247: T12.executor.controlled.exception_boundary .................   Passed    0.04 sec
+        Start 248: T12.executor.controlled.drain_shutdown
+ 36/126 Test #248: T12.executor.controlled.drain_shutdown .....................   Passed    0.05 sec
+        Start 249: T12.executor.controlled.worker_rejection
+ 37/126 Test #249: T12.executor.controlled.worker_rejection ...................   Passed    0.06 sec
+        Start 250: T12.executor.controlled.queue_full
+ 38/126 Test #250: T12.executor.controlled.queue_full .........................   Passed    0.05 sec
+        Start 251: T12.executor.inline.ownership_transfer
+ 39/126 Test #251: T12.executor.inline.ownership_transfer .....................   Passed    0.04 sec
+        Start 252: T12.executor.inline.exactly_once
+ 40/126 Test #252: T12.executor.inline.exactly_once ...........................   Passed    0.04 sec
+        Start 253: T12.executor.inline.rejection_cleanup
+ 41/126 Test #253: T12.executor.inline.rejection_cleanup ......................   Passed    0.04 sec
+        Start 254: T12.executor.inline.exception_boundary
+ 42/126 Test #254: T12.executor.inline.exception_boundary .....................   Passed    0.05 sec
+        Start 255: T12.executor.inline.drain_shutdown
+ 43/126 Test #255: T12.executor.inline.drain_shutdown .........................   Passed    0.05 sec
+        Start 256: T12.executor.inline.worker_rejection
+ 44/126 Test #256: T12.executor.inline.worker_rejection .......................   Passed    0.05 sec
+        Start 257: T12.executor.inline.queue_full
+ 45/126 Test #257: T12.executor.inline.queue_full .............................   Passed    0.05 sec
+        Start 258: T22.executor.real_parallel
+ 46/126 Test #258: T22.executor.real_parallel .................................   Passed    0.04 sec
+        Start 259: T22.executor.stop_timeout
+ 47/126 Test #259: T22.executor.stop_timeout ..................................   Passed    0.06 sec
+        Start 260: T22.executor.inline_reentrancy
+ 48/126 Test #260: T22.executor.inline_reentrancy .............................   Passed    0.04 sec
+        Start 261: T22.executor.controlled_order
+ 49/126 Test #261: T22.executor.controlled_order ..............................   Passed    0.04 sec
+        Start 262: T22.executor.cpu_pool.worker_destruction
+ 50/126 Test #262: T22.executor.cpu_pool.worker_destruction ...................   Passed    0.33 sec
+        Start 263: T22.executor.controlled.worker_destruction
+ 51/126 Test #263: T22.executor.controlled.worker_destruction .................   Passed    0.27 sec
+        Start 264: T22.executor.inline.worker_destruction
+ 52/126 Test #264: T22.executor.inline.worker_destruction .....................   Passed    0.24 sec
+        Start 265: T12.executor.concurrent_duplicate
+ 53/126 Test #265: T12.executor.concurrent_duplicate ..........................   Passed    0.13 sec
+        Start 269: T13.scheduler.quota_control
+ 54/126 Test #269: T13.scheduler.quota_control ................................   Passed    0.15 sec
+        Start 275: T13.scheduler.close_and_callbacks
+ 55/126 Test #275: T13.scheduler.close_and_callbacks ..........................   Passed    0.07 sec
+        Start 277: T13.scheduler.started_deadline
+ 56/126 Test #277: T13.scheduler.started_deadline .............................   Passed    0.08 sec
+        Start 278: T13.scheduler.real_concurrent_completion
+ 57/126 Test #278: T13.scheduler.real_concurrent_completion ...................   Passed    0.08 sec
+        Start 279: T13.scheduler.start_deadline_race
+ 58/126 Test #279: T13.scheduler.start_deadline_race ..........................   Passed    0.08 sec
+        Start 282: T13.scheduler.completion_backpressure
+ 59/126 Test #282: T13.scheduler.completion_backpressure ......................   Passed    0.07 sec
+        Start 285: T13.resources.alias_read_write_same_slot
+ 60/126 Test #285: T13.resources.alias_read_write_same_slot ...................   Passed    0.15 sec
+        Start 286: T13.resources.multi_claim_partial_failure_zero_occupancy
+ 61/126 Test #286: T13.resources.multi_claim_partial_failure_zero_occupancy ...   Passed    0.07 sec
+        Start 287: T13.resources.aggregate_overflow
+ 62/126 Test #287: T13.resources.aggregate_overflow ...........................   Passed    0.08 sec
+        Start 288: T13.resources.exclusive_shared_units
+ 63/126 Test #288: T13.resources.exclusive_shared_units .......................   Passed    0.10 sec
+        Start 289: T13.resources.lease_only_own_release
+ 64/126 Test #289: T13.resources.lease_only_own_release .......................   Passed    0.07 sec
+        Start 290: T13.resources.unknown_key_bounded
+ 65/126 Test #290: T13.resources.unknown_key_bounded ..........................   Passed    0.07 sec
+        Start 291: T13.resources.waiter_release_race
+ 66/126 Test #291: T13.resources.waiter_release_race ..........................   Passed    0.09 sec
+        Start 292: T13.resources.waiter_cancel
+ 67/126 Test #292: T13.resources.waiter_cancel ................................   Passed    0.13 sec
+        Start 293: T13.resources.callback_outside_lock
+ 68/126 Test #293: T13.resources.callback_outside_lock ........................   Passed    0.06 sec
+        Start 294: T13.resources.compute_commit_separation
+ 69/126 Test #294: T13.resources.compute_commit_separation ....................   Passed    0.05 sec
+        Start 295: T13.resources.parent_wait_rejects_held_child_resources
+ 70/126 Test #295: T13.resources.parent_wait_rejects_held_child_resources .....   Passed    0.06 sec
+        Start 296: T13.resources.scheduler_resource_wakeup
+ 71/126 Test #296: T13.resources.scheduler_resource_wakeup ....................   Passed    0.04 sec
+        Start 297: T13.resources.lease_reentrant_destruction
+ 72/126 Test #297: T13.resources.lease_reentrant_destruction ..................   Passed    0.04 sec
+        Start 298: T13.resources.waiter_reentrant_destruction
+ 73/126 Test #298: T13.resources.waiter_reentrant_destruction .................   Passed    0.04 sec
+        Start 299: T13.resources.resource_key_boundaries
+ 74/126 Test #299: T13.resources.resource_key_boundaries ......................   Passed    0.05 sec
+        Start 300: T13.resources.execution_binding
+ 75/126 Test #300: T13.resources.execution_binding ............................   Passed    0.04 sec
+        Start 301: T13.resources.execution_running_cancel
+ 76/126 Test #301: T13.resources.execution_running_cancel .....................   Passed    0.04 sec
+        Start 302: T13.resources.execution_binding_interleavings
+ 77/126 Test #302: T13.resources.execution_binding_interleavings ..............   Passed    0.04 sec
+        Start 303: T20.ipc.two_process
+ 78/126 Test #303: T20.ipc.two_process ........................................   Passed    0.76 sec
+        Start 304: T19.ipc.authorization_start
+ 79/126 Test #304: T19.ipc.authorization_start ................................   Passed    0.44 sec
+        Start 305: T22.ipc.backpressure
+ 80/126 Test #305: T22.ipc.backpressure .......................................   Passed    3.44 sec
+        Start 308: T20.cli.managed_roundtrip
+ 81/126 Test #308: T20.cli.managed_roundtrip ..................................   Passed   21.01 sec
+        Start 309: T20.cli.managed_wire
+ 82/126 Test #309: T20.cli.managed_wire .......................................   Passed  122.61 sec
+        Start 310: T20.cli.managed_interrupt
+ 83/126 Test #310: T20.cli.managed_interrupt ..................................   Passed    7.37 sec
+        Start 311: T20.cli.managed_slow
+ 84/126 Test #311: T20.cli.managed_slow .......................................   Passed   18.92 sec
+        Start 312: T20.cli.managed_slow_timeout
+ 85/126 Test #312: T20.cli.managed_slow_timeout ...............................   Passed   30.74 sec
+        Start 315: T20.client.protocol
+ 86/126 Test #315: T20.client.protocol ........................................   Passed    0.42 sec
+        Start 316: T20.client.watch
+ 87/126 Test #316: T20.client.watch ...........................................   Passed    0.08 sec
+        Start 317: T20.client.exit_codes
+ 88/126 Test #317: T20.client.exit_codes ......................................   Passed    0.06 sec
+        Start 325: T06.protocol.frames
+ 89/126 Test #325: T06.protocol.frames ........................................   Passed    0.18 sec
+        Start 326: T20.protocol.cursor
+ 90/126 Test #326: T20.protocol.cursor ........................................   Passed    0.06 sec
+        Start 327: T06.protocol.router
+ 91/126 Test #327: T06.protocol.router ........................................   Passed    0.32 sec
+        Start 328: T19.protocol.observation_wire
+ 92/126 Test #328: T19.protocol.observation_wire ..............................   Passed    0.16 sec
+        Start 329: T19.protocol.subscription
+ 93/126 Test #329: T19.protocol.subscription ..................................   Passed    0.50 sec
+        Start 330: T20.protocol.list
+ 94/126 Test #330: T20.protocol.list ..........................................   Passed    0.42 sec
+        Start 332: T03.binding.submit
+ 95/126 Test #332: T03.binding.submit .........................................   Passed    0.53 sec
+        Start 333: T06.protocol.outcome
+ 96/126 Test #333: T06.protocol.outcome .......................................   Passed    0.67 sec
+        Start 354: T03.native.cancel_and_budget
+ 97/126 Test #354: T03.native.cancel_and_budget ...............................   Passed    0.09 sec
+        Start 357: T03.native.execution_service_control
+ 98/126 Test #357: T03.native.execution_service_control .......................   Passed    0.29 sec
+        Start 358: T03.native.execution_table_ownership
+ 99/126 Test #358: T03.native.execution_table_ownership .......................   Passed    0.15 sec
+        Start 359: T03.native.host_async_completion
+100/126 Test #359: T03.native.host_async_completion ...........................   Passed    0.19 sec
+        Start 360: T03.native.host_async_deadline
+101/126 Test #360: T03.native.host_async_deadline .............................   Passed    0.29 sec
+        Start 361: T03.native.host_async_drain
+102/126 Test #361: T03.native.host_async_drain ................................   Passed    0.09 sec
+        Start 362: T03.native.host_cached_result_sessions
+103/126 Test #362: T03.native.host_cached_result_sessions .....................   Passed    0.11 sec
+        Start 363: T03.native.host_combined_drain
+104/126 Test #363: T03.native.host_combined_drain .............................   Passed    1.32 sec
+        Start 364: T03.native.host_execution_lifecycle
+105/126 Test #364: T03.native.host_execution_lifecycle ........................   Passed    0.09 sec
+        Start 365: T03.native.host_execution_resources
+106/126 Test #365: T03.native.host_execution_resources ........................   Passed    0.07 sec
+        Start 366: T03.native.host_observation_drain
+107/126 Test #366: T03.native.host_observation_drain ..........................   Passed    0.27 sec
+        Start 367: T03.native.host_required_record
+108/126 Test #367: T03.native.host_required_record ............................   Passed    0.21 sec
+        Start 368: T03.native.host_required_record_drain
+109/126 Test #368: T03.native.host_required_record_drain ......................   Passed    0.09 sec
+        Start 369: T03.native.host_structured_lifetime
+110/126 Test #369: T03.native.host_structured_lifetime ........................   Passed    0.06 sec
+        Start 370: T03.native.managed_execution_path
+111/126 Test #370: T03.native.managed_execution_path ..........................   Passed    0.03 sec
+        Start 371: T03.native.managed_execution_resource_wait
+112/126 Test #371: T03.native.managed_execution_resource_wait .................   Passed    0.04 sec
+        Start 372: T03.native.managed_record
+113/126 Test #372: T03.native.managed_record ..................................   Passed    0.06 sec
+        Start 373: T03.native.managed_record_ownership
+114/126 Test #373: T03.native.managed_record_ownership ........................   Passed    0.04 sec
+        Start 374: T03.native.managed_resources
+115/126 Test #374: T03.native.managed_resources ...............................   Passed    0.04 sec
+        Start 376: T03.native.no_task_path
+116/126 Test #376: T03.native.no_task_path ....................................   Passed    0.04 sec
+        Start 377: T03.native.observation_lease_drain
+117/126 Test #377: T03.native.observation_lease_drain .........................   Passed    0.04 sec
+        Start 379: T03.native.reentrant_and_concurrent
+118/126 Test #379: T03.native.reentrant_and_concurrent ........................   Passed    0.06 sec
+        Start 386: T06.native.execution_source_observation
+119/126 Test #386: T06.native.execution_source_observation ....................   Passed    0.04 sec
+        Start 387: T06.native.host_structured_admission
+120/126 Test #387: T06.native.host_structured_admission .......................   Passed    0.09 sec
+        Start 390: T06.native.managed_admission
+121/126 Test #390: T06.native.managed_admission ...............................   Passed    0.07 sec
+        Start 391: T06.native.observation_journal
+122/126 Test #391: T06.native.observation_journal .............................   Passed    0.06 sec
+        Start 392: T06.native.outcome_consistency
+123/126 Test #392: T06.native.outcome_consistency .............................   Passed    0.06 sec
+        Start 395: T06.native.revoke_and_regrant
+124/126 Test #395: T06.native.revoke_and_regrant ..............................   Passed    0.08 sec
+        Start 396: T06.native.session_and_deadline
+125/126 Test #396: T06.native.session_and_deadline ............................   Passed    0.07 sec
+        Start 397: T06.native.target_binding
+126/126 Test #397: T06.native.target_binding ..................................   Passed    0.06 sec
+
+98% tests passed, 2 tests failed out of 126
+
+Label Time Summary:
+B3                     =   5.21 sec*proc (6 tests)
+B4                     =  14.69 sec*proc (52 tests)
+B5                     = 205.06 sec*proc (32 tests)
+D0.02                  =   6.54 sec*proc (3 tests)
+D0.03                  =   3.56 sec*proc (13 tests)
+D0.05                  =   0.77 sec*proc (6 tests)
+D1.05                  =   0.46 sec*proc (7 tests)
+D2.05                  =   4.64 sec*proc (3 tests)
+D2.06                  =   0.56 sec*proc (3 tests)
+D3.01                  =   2.61 sec*proc (30 tests)
+D3.02                  =   0.52 sec*proc (6 tests)
+D3.03                  =   1.09 sec*proc (15 tests)
+D3.04                  =   2.56 sec*proc (25 tests)
+D3.05                  =   0.12 sec*proc (3 tests)
+D3.07                  = 202.50 sec*proc (7 tests)
+ExecutorConformance    =   1.31 sec*proc (21 tests)
+
+Total Test time (real) = 238.78 sec
+
+The following tests FAILED:
+	 11 - T24.sdk.install_and_missing_components (Failed)   D0.02
+	236 - T12.executor.conformance_manifest (Failed)        B4 D3.01

@@ -1,0 +1,134 @@
+[
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "tests.tools.evidence.test_creation_clock_schema",
+      "-v"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T23:43:23.900561+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 5978656528751,
+      "qpc_frequency": 10000000
+    },
+    "pid": 51672,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T23:43:24.379267+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "8af3460837b42c420d7dfc5d781460a4a653380479b0074599ec33b7abed0d26",
+        "size": 614
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b4-debug",
+      "--config",
+      "Debug",
+      "--target",
+      "ock_executor_contract",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T23:43:24.380785+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 28,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 5978661339563,
+      "qpc_frequency": 10000000
+    },
+    "pid": 31700,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T23:43:31.222933+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "e889863f1880f8c985a988de9fae07f01dcf7c5307ed2505ac5599e7233e0da1",
+        "size": 765
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "J:\\Code\\Kernel_v2\\build\\b4-debug",
+      "-C",
+      "Debug",
+      "-R",
+      "^(T12.executor.conformance_manifest|T24.sdk.install_and_missing_components)$",
+      "--output-on-failure",
+      "--stop-on-failure"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T23:43:31.223939+00:00",
+    "exit_code": 8,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 35,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "creation_clock": {
+      "qpc_ticks": 5978729770204,
+      "qpc_frequency": 10000000
+    },
+    "pid": 32804,
+    "observed_exit_code": 8,
+    "finished_at": "2026-09-09T23:43:36.676928+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "60c083d6d8dd5ae663d106fc734e20d13a8e98669b29183b5819fd4920748d6e",
+        "size": 2131
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "18e00877dc1071c85cd4f479d451bebeef8309022e46cf8c63b0bed5151984a4",
+        "size": 27
+      }
+    ]
+  }
+]

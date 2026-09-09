@@ -305,6 +305,23 @@
               "UnreapedChildren"
             ]
           },
+          "creation_clock": {
+            "type": "object",
+            "properties": {
+              "qpc_ticks": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9223372036854775807
+              },
+              "qpc_frequency": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9223372036854775807
+              }
+            },
+            "required": ["qpc_ticks", "qpc_frequency"],
+            "additionalProperties": false
+          },
           "process_tree": {
             "type": "object",
             "properties": {

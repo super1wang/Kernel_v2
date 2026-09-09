@@ -1,0 +1,41 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+Test project J:/Code/Kernel_v2/build/b4-debug
+    Start  11: T24.sdk.install_and_missing_components
+1/2 Test  #11: T24.sdk.install_and_missing_components ...***Failed    5.30 sec
+argv: ['cmake', '--install', 'J:\\Code\\Kernel_v2\\build\\b4-debug', '--config', 'Debug', '--prefix', 'J:\\Code\\Kernel_v2\\build\\install-check-c9xzvl31\\original'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\tests\\install_consumer\\baseline', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\install-check-c9xzvl31\\relocated', '-B', 'J:\\Code\\Kernel_v2\\build\\install-check-c9xzvl31\\consumer'] exit_code: 1
+-- The CXX compiler identification is MSVC 19.44.35216.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring incomplete, errors occurred!
+
+CMake Error at CMakeLists.txt:17 (message):
+  ControlClient export has server dependencies
+
+
+
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_baseline.py", line 59, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_baseline.py", line 50, in main
+    run([*base,'-B',str(work/'consumer')])
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_baseline.py", line 29, in run
+    raise RuntimeError('unexpected command result')
+RuntimeError: unexpected command result
+
+
+0% tests passed, 1 tests failed out of 1
+
+Label Time Summary:
+B4       =   0.00 sec*proc (0 test)
+D0.02    =   5.30 sec*proc (1 test)
+D3.01    =   0.00 sec*proc (0 test)
+
+Total Test time (real) =   5.33 sec
+
+The following tests FAILED:
+	 11 - T24.sdk.install_and_missing_components (Failed)   D0.02
