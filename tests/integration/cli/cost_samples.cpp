@@ -24,7 +24,7 @@ int main() try {
   auto sid=ock::local_ipc::current_user_sid(); if(!sid) return 3;
   auto service=stateless::Service::create(*sid); if(!service) return 3;
   Meter meter; auto measured=(*service)->measure(meter); if(!measured || meter.samples.size()!=40) return 4;
-  std::cout << "{\"format\":\"ock.b3.entry-costs/1\",\"scope\":\"warm prebound Native versus Dynamic decode plus same HostBound; excludes setup, JSON parsing, wire encoding, IPC and CLI process startup\",\"counter_valid\":true,\"crt_available\":"
+  std::cout << "{\"format\":\"ock.b3.entry-costs/1\",\"capture\":\"CTEST_FULL_OUTPUT\",\"scope\":\"warm prebound Native versus Dynamic decode plus same HostBound; excludes setup, JSON parsing, wire encoding, IPC and CLI process startup\",\"counter_valid\":true,\"crt_available\":"
       <<(allocation::crt_available()?"true":"false")<<",\"asan_available\":"<<(allocation::asan_available()?"true":"false")<<",\"samples\":[";
   bool comma=false;
   for(auto &sample:meter.samples) {
