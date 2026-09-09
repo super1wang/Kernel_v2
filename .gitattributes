@@ -1,10 +1,6 @@
-* text=auto eol=lf
-*.md text eol=lf
-*.json text eol=lf
-*.py text eol=lf
-*.cmake text eol=lf
-*.txt text eol=lf
-*.ps1 text eol=crlf
+# E03 fingerprints the bytes actually read by the compiler and collectors.
+# Preserve those bytes in Git; writers choose line endings explicitly.
+* -text whitespace=cr-at-eol
 
 # Preserve intentional Markdown hard breaks in the supplied normative documents.
 docs/01_Architecture_v3.3.md whitespace=-blank-at-eol

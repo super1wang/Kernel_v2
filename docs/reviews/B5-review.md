@@ -15,7 +15,7 @@
 
 ## SPEC：需求映射和边界
 
-1. `tests/manifests/b5.expected.json` 的 126 个用例在正式运行前由上述完成条件及源文件声明确定。`b5-requirement-map.json` 分列新增 Runtime/Protocol、真实 CLI、IPC、Scheduler、Resources、Executor、协作模型与 SDK/边界。三配置使用同一 expected，ASan 使用 RelWithDebInfo；不从本次 CTest discovered 反推或删减失败项。完整三个配置只在这次正式收口执行，不回放全历史 Gate。
+1. `tests/manifests/b5.expected.json` 的 126 个用例在正式运行前由上述完成条件及源文件声明确定。`b5-requirement-map.json` 分列新增 Runtime/Protocol、真实 CLI、IPC、Scheduler、Resources、Executor、协作模型与 SDK/边界。三配置使用同一 expected，ASan 使用 RelWithDebInfo；按 `toolchain.md` 使用已实测可加载原锁定校验包的 Python 3.11.9（系统 3.13 无兼容 rpds 扩展，不用于该模型矩阵）。不从本次 CTest discovered 反推或删减失败项。完整三个配置只在这次正式收口执行，不回放全历史 Gate。
 2. D3.04 的 `tests/contract/submit/`、`execution_observation/` 与 D3.06 的 `structured_lifetime/` 逻辑用例具体落于 `tests/contract/native/managed_cases.hpp`、`execution_table_cases.hpp`、`observation_cases.cpp`、`structured_cases.cpp`、`async_cases.cpp`、`session_cases.cpp` 和 `combined_cases.cpp`；对应 CTest ID 显式映射。复用真实 Host fixture，不为目录名称复制第二套测试或 Handler。
 3. D3.05 的取消/commit 竞争使用 `tests/model/commit_model/test_commit_model.py` 中六项现有 permit/发送先后模型，以及真正生产 ExecutionService/Resources 的线程测试。实现仅 Read/PureCompute 的执行接线，不宣称 State/Effect 的提交后端、持久接受或恢复。生产期限使用 steady clock；RPC TTL 通过捕获 UTC 基准与单调增量计算，时钟倒退拒绝，恢复能力未实现即不发布。
 4. D3.07 的任务版消费者在 `examples/managed_service/`，与 `stateless_service` 共存；后者仍用于短调用/无任务能力反例。任务版从真实安装 Schema 与 HostBound 解码、提交、查询同一执行，不将无状态示例改名冒充正向验证。
@@ -51,5 +51,7 @@ AutomationHost 开/关观察与慢消费者、cursor 有效/MAC 错误/超长成
 ## 放行条件
 
 本次 SPEC/CODE 技术审查未留未解决的生产代码缺陷。正式运行前绑定本材料、expected、方法/预算和当前源摘要；正式机器结果尚待生成时不宣称 Passed。机器失败必须保留并修复，再按真实影响范围判断是否需要新候选来源；不删用例、不拼接不同来源 Passed。
+
+首次候选提交字节检查发现 Git 的 LF 自动转换与 20 个既有工作区 CRLF 文件不同，故未启动正式矩阵。已将仓库属性改为保留实际字节，差异逐项核对仅为行尾后提交原工作区字节，源/预算/测量内容没有改变；`.gitattributes` 纳入最终输入。原 G3-C 的 `cde99f2` 是当时 Git HEAD 导航，其真实源以保存的 method/source SHA 为准，不声称当时 Git blob 与所有工作区字节一致。本批最终候选必须另通过全部输入的 Git blob 精确核对，才作为已提交事实验收。
 
 最终批次验收须逐包给出同一来源的独立 SPEC/CODE 结论与对应机器用例，按 D3.04→D3.05→D3.06→D3.07 的正式前置顺序提交事实，最后才给出 G3 总决定。`progress.md` 是当前状态入口，旧 B1/B2 等 Passed 与所有历史原文保持不变。
