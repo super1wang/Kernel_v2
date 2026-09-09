@@ -1,9 +1,9 @@
 {
   "format": "ock.sdk-api/1",
-  "task_id": "B2",
-  "sdk_version": "0.1.0-dev.4",
+  "task_id": "B4",
+  "sdk_version": "0.1.0-dev.5",
   "document_version": "3.3",
-  "stage": "B3Subset",
+  "stage": "B4Subset",
   "review_status": "Pending",
   "targets": {
     "Foundation": {
@@ -303,13 +303,13 @@
     },
     "Adapter::CpuPool": {
       "export": "OCK::Adapter::CpuPool",
-      "kind": "INTERFACE_LIBRARY",
+      "kind": "STATIC_LIBRARY",
       "dependencies": [
         "CoreContracts"
       ],
       "include_root": "packages/adapters/cpu_pool/include",
       "namespace_prefix": "ock/adapters/cpu_pool/",
-      "implementation": "ContractBaseline",
+      "implementation": "Implemented",
       "api_classification": "experimental",
       "public_compile_features": [
         "cxx_std_20"
@@ -459,7 +459,7 @@
       "target": "Foundation",
       "path": "packages/foundation/include/ock/foundation/sdk_version.hpp",
       "classification": "experimental",
-      "sha256": "01d90bde47eff3d554aef2fd0c14a0796f71b31d306b5d71f078ac5c3e751ffc"
+      "sha256": "defce91ad154e4acc63a1cd49631ba5f7b0154d12df966dadd12066985457c94"
     },
     {
       "target": "CoreContracts",
@@ -694,6 +694,30 @@
       "target": "Adapter::LocalIPC",
       "classification": "experimental",
       "sha256": "8955f533a6f6c99ea32bb12ca9596ba8ee2acd431d7179abd304f691ed3343dd"
+    },
+    {
+      "target": "CoreContracts",
+      "path": "packages/contracts/include/ock/contracts/executor.hpp",
+      "classification": "experimental",
+      "sha256": "02e0d21f666d5df04d8849878650ec20433098c9be149d28f3d4c922f3ee5228"
+    },
+    {
+      "target": "Runtime",
+      "path": "packages/runtime/include/ock/runtime/scheduler.hpp",
+      "classification": "experimental",
+      "sha256": "2452e9ff470f1a2fdf9aae4d2e44c028f382a4b59a9a04b4a41ecaa43335fa3a"
+    },
+    {
+      "target": "Runtime",
+      "path": "packages/runtime/include/ock/runtime/resources.hpp",
+      "classification": "experimental",
+      "sha256": "5cddc6d731eca0d30029fe6585b18f1a2a018d815e49fafc5902a3994760516f"
+    },
+    {
+      "target": "Adapter::CpuPool",
+      "path": "packages/adapters/cpu_pool/include/ock/adapters/cpu_pool/cpu_pool.hpp",
+      "classification": "experimental",
+      "sha256": "0e345904dc6b1cf3ccedfe9406c123df2ebd933e68eacf984bb0b78c3d7cdad7"
     }
   ],
   "candidate_headers": [
@@ -736,12 +760,6 @@
     {
       "target": "ControlClient",
       "path": "packages/control/client/include/ock/control_client/control_client.hpp",
-      "status": "Planned",
-      "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
-    },
-    {
-      "target": "Adapter::CpuPool",
-      "path": "packages/adapters/cpu_pool/include/ock/adapters/cpu_pool/cpu_pool.hpp",
       "status": "Planned",
       "policy": "实现前审查声明、所有权/线程约束及公开编译条件，不能因候选路径存在于此表就称为已安装头。"
     },

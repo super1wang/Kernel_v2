@@ -1,0 +1,208 @@
+{
+  "format": "ock.executor-conformance-manifest/1",
+  "port_contract_version": "ock.executor-port/1",
+  "backends": {
+    "cpu_pool": {
+      "identity": "ock.executor.cpu_pool/1",
+      "capabilities": {
+        "kind": "production",
+        "parallel": true,
+        "inline": false,
+        "controlled": false
+      },
+      "sources": [
+        {
+          "path": "packages/contracts/include/ock/contracts/ports.hpp",
+          "sha256": "abc625e954638cc1a0c79b86f268150647f936180b99486629443041524390a6"
+        },
+        {
+          "path": "packages/contracts/include/ock/contracts/executor.hpp",
+          "sha256": "02e0d21f666d5df04d8849878650ec20433098c9be149d28f3d4c922f3ee5228"
+        },
+        {
+          "path": "packages/adapters/cpu_pool/executor.cpp",
+          "sha256": "78cf05ececb8e5f87d68f64cd592cdcfd560d3427aed70580e7d81ff8d13738a"
+        },
+        {
+          "path": "packages/adapters/cpu_pool/include/ock/adapters/cpu_pool/cpu_pool.hpp",
+          "sha256": "0e345904dc6b1cf3ccedfe9406c123df2ebd933e68eacf984bb0b78c3d7cdad7"
+        }
+      ],
+      "common_required": {
+        "ownership_transfer": "T12.executor.cpu_pool.ownership_transfer",
+        "exactly_once": "T12.executor.cpu_pool.exactly_once",
+        "rejection_cleanup": "T12.executor.cpu_pool.rejection_cleanup",
+        "exception_boundary": "T12.executor.cpu_pool.exception_boundary",
+        "drain_shutdown": "T12.executor.cpu_pool.drain_shutdown",
+        "worker_rejection": "T12.executor.cpu_pool.worker_rejection",
+        "queue_full": "T12.executor.cpu_pool.queue_full"
+      },
+      "worker_destruction": "T22.executor.cpu_pool.worker_destruction",
+      "optional": {
+        "real_parallel": {
+          "status": "Required",
+          "test": "T22.executor.real_parallel"
+        },
+        "inline_reentrancy": {
+          "status": "NotApplicable",
+          "reason": "本后端不承诺 inline，公共合同不能强迫实际 inline。"
+        },
+        "controlled_order": {
+          "status": "NotApplicable",
+          "reason": "本后端不提供测试侧手动执行步骤。"
+        }
+      },
+      "dependency": {
+        "repository": "bshoshany/thread-pool",
+        "tag": "v5.0.0",
+        "commit": "aa3fbfbe80762fe3ac90e2bf05e153b92536277a",
+        "source_url": "https://codeload.github.com/bshoshany/thread-pool/tar.gz/aa3fbfbe80762fe3ac90e2bf05e153b92536277a",
+        "release_url": "https://github.com/bshoshany/thread-pool/releases/tag/v5.0.0",
+        "committed_at": "2024-12-20T02:02:25Z",
+        "archive_sha256": "89514aca234c373becd6311f10fd6cff2868d8e5575d33b1ce7642a40fa95239",
+        "archive_format": "tar.gz",
+        "tree_sha256": "1a28cc06c7085423385fb6d763005a5b684a978de4c2b7e798030d3643c31f39",
+        "version": "5.0.0",
+        "license": {
+          "path": "LICENSE.txt",
+          "sha256": "877daafacf05b94f7292b670304d1e746ab8e393f47c0693b10531e3660c2912",
+          "spdx": "MIT"
+        },
+        "cmake_options": {},
+        "compile_definitions": {}
+      },
+      "stop_timeout": "T22.executor.stop_timeout"
+    },
+    "controlled": {
+      "identity": "ock.executor.controlled/1",
+      "capabilities": {
+        "kind": "test",
+        "parallel": false,
+        "inline": false,
+        "controlled": true
+      },
+      "sources": [
+        {
+          "path": "packages/contracts/include/ock/contracts/ports.hpp",
+          "sha256": "abc625e954638cc1a0c79b86f268150647f936180b99486629443041524390a6"
+        },
+        {
+          "path": "packages/contracts/include/ock/contracts/executor.hpp",
+          "sha256": "02e0d21f666d5df04d8849878650ec20433098c9be149d28f3d4c922f3ee5228"
+        },
+        {
+          "path": "tests/conformance/executor/backends.hpp",
+          "sha256": "759521ceb6fd682b7194dbc8add401dd12a152f00806bfac73cf5179ffeff032"
+        }
+      ],
+      "common_required": {
+        "ownership_transfer": "T12.executor.controlled.ownership_transfer",
+        "exactly_once": "T12.executor.controlled.exactly_once",
+        "rejection_cleanup": "T12.executor.controlled.rejection_cleanup",
+        "exception_boundary": "T12.executor.controlled.exception_boundary",
+        "drain_shutdown": "T12.executor.controlled.drain_shutdown",
+        "worker_rejection": "T12.executor.controlled.worker_rejection",
+        "queue_full": "T12.executor.controlled.queue_full"
+      },
+      "worker_destruction": "T22.executor.controlled.worker_destruction",
+      "optional": {
+        "real_parallel": {
+          "status": "NotApplicable",
+          "reason": "本后端不提供内部并行线程池；真实池并发专项不适用。"
+        },
+        "inline_reentrancy": {
+          "status": "NotApplicable",
+          "reason": "本后端不承诺 inline，公共合同不能强迫实际 inline。"
+        },
+        "controlled_order": {
+          "status": "Required",
+          "test": "T22.executor.controlled_order"
+        }
+      }
+    },
+    "inline": {
+      "identity": "ock.executor.inline/1",
+      "capabilities": {
+        "kind": "test",
+        "parallel": false,
+        "inline": true,
+        "controlled": false
+      },
+      "sources": [
+        {
+          "path": "packages/contracts/include/ock/contracts/ports.hpp",
+          "sha256": "abc625e954638cc1a0c79b86f268150647f936180b99486629443041524390a6"
+        },
+        {
+          "path": "packages/contracts/include/ock/contracts/executor.hpp",
+          "sha256": "02e0d21f666d5df04d8849878650ec20433098c9be149d28f3d4c922f3ee5228"
+        },
+        {
+          "path": "tests/conformance/executor/backends.hpp",
+          "sha256": "759521ceb6fd682b7194dbc8add401dd12a152f00806bfac73cf5179ffeff032"
+        }
+      ],
+      "common_required": {
+        "ownership_transfer": "T12.executor.inline.ownership_transfer",
+        "exactly_once": "T12.executor.inline.exactly_once",
+        "rejection_cleanup": "T12.executor.inline.rejection_cleanup",
+        "exception_boundary": "T12.executor.inline.exception_boundary",
+        "drain_shutdown": "T12.executor.inline.drain_shutdown",
+        "worker_rejection": "T12.executor.inline.worker_rejection",
+        "queue_full": "T12.executor.inline.queue_full"
+      },
+      "worker_destruction": "T22.executor.inline.worker_destruction",
+      "optional": {
+        "real_parallel": {
+          "status": "NotApplicable",
+          "reason": "本后端不提供内部并行线程池；真实池并发专项不适用。"
+        },
+        "inline_reentrancy": {
+          "status": "Required",
+          "test": "T22.executor.inline_reentrancy"
+        },
+        "controlled_order": {
+          "status": "NotApplicable",
+          "reason": "本后端不提供测试侧手动执行步骤。"
+        }
+      }
+    }
+  },
+  "fixtures": [
+    {
+      "path": "tests/conformance/executor/cases.json",
+      "sha256": "6cc7976d1693a8307b7c9d06a713c2abfc6e5141a1e1349987a92412fc976a54"
+    },
+    {
+      "path": "tests/conformance/executor/contract.cpp",
+      "sha256": "88e73151c3c04b05e36f3de43e862b0e13374831373b4c6c0f9980edc73b8578"
+    },
+    {
+      "path": "tests/contract/executor/lifecycle.cpp",
+      "sha256": "dab3fa2a0b5449816267cb8be70fee675efbfff9dcadd9d184d439fce64810ff"
+    },
+    {
+      "path": "tests/contract/executor/consumer.cpp",
+      "sha256": "77019f23f535bb3925e208779160cd818c3e46304bf3bf2ad357c921f3baf9b6"
+    },
+    {
+      "path": "tests/contract/executor/verify_fatal.py",
+      "sha256": "a94cc6feadce4ba0acf9b6996fa7b64e0beebf212db527000198cf81124c4044"
+    },
+    {
+      "path": "tests/conformance/executor/CMakeLists.txt",
+      "sha256": "99b96e129b5d206029efc1babc623824dbe4d9193be8d0f98b760e1a34810305"
+    },
+    {
+      "path": "tests/conformance/executor/verify_manifest.py",
+      "sha256": "0a5808208d1ef49521822de315dae5c11faf24ea857f0bdeccfcfea2a7c0573f"
+    }
+  ],
+  "fault_backends_qualified": false,
+  "qualification_rule": "共同 Required 与后端适用专项由同来源原始运行证明；NotApplicable 不计 Passed，故障后端只验证消费者防御。",
+  "capability_meanings": {
+    "parallel": "后端提供内部并行 worker；不禁止多个调用线程并发进入 inline。",
+    "inline": "本工厂可在 submit 返回前执行工作。",
+    "controlled": "本工厂提供手动 run_one 的确定性步骤。"
+  }
+}

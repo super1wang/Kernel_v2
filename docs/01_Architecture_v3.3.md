@@ -478,6 +478,10 @@ Submit 必须先获取执行表、输入 owner、结果/最小回执和完成通
 
 CPU 后端只执行已就绪工作；逻辑排队和历史不推入第三方池。业务时间未知的 Read 也使用 Submit。异步 I/O shape 可以返回后继续完成，但必须由同一执行记录持有生命周期；不可引用调用栈。
 
+B4 端口寿命实施细化见 [Executor/资源 ADR](adr/ADR-b4-executor-resources.md)：可选 ExecutorControlPort 显式排空/关闭；所属 worker 非法等待/关闭拒绝，直接非法析构 fail-fast，超时不 detach 或释放在途 owner。Scheduler 内部 ticket 不替代 ExecutionRef，真实 Submit/Task 仍由 D3.04–D3.07 接入。
+
+B4 的 Started 以当前 attempt_generation 在 Scheduler 仲裁内取得 start claim 为唯一判据，与 deadline expiration 竞争；先过期的 envelope 不进入业务。依赖集合在 entry 发布时冻结，首版仅引用已发布 predecessor，attach/completion 同锁仲裁、adjacency 只 drain 一次。worker_delivery reservation 绑定 envelope 寿命；合规拒绝/异常已释放 envelope，违约仍持有时保留物理额度至真实收尾，详见上述 ADR。
+
 对外接受与底层Executor接受不是同一边界：顶层配额/参数失败可Rejected；一旦执行记录已对外形成Accepted，随后Executor拒绝只能形成该执行的FailedBeforeApply，不能抹掉已接受身份。内部调度先发布可由完成器引用的记录，再提交可能inline完成的回调；外层Accept回复与完成先后均须合法。
 
 ### A09.2 调度与资源

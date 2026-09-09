@@ -1,0 +1,48 @@
+{
+  "format": "ock.executor-conformance/1",
+  "common_required": [
+    "ownership_transfer",
+    "exactly_once",
+    "rejection_cleanup",
+    "exception_boundary",
+    "drain_shutdown",
+    "worker_rejection",
+    "queue_full"
+  ],
+  "backends": {
+    "cpu_pool": {
+      "kind": "production",
+      "parallel": true,
+      "inline": false,
+      "controlled": false
+    },
+    "controlled": {
+      "kind": "test",
+      "parallel": false,
+      "inline": false,
+      "controlled": true
+    },
+    "inline": {
+      "kind": "test",
+      "parallel": false,
+      "inline": true,
+      "controlled": false
+    }
+  },
+  "optional": {
+    "real_parallel": "parallel",
+    "inline_reentrancy": "inline",
+    "controlled_order": "controlled"
+  },
+  "consumer_defense": [
+    "reject_then_late_work",
+    "throw_then_late_work",
+    "duplicate_execute",
+    "inline_before_submit_returns"
+  ],
+  "lifecycle_faults": [
+    "stop_timeout_keeps_owners",
+    "worker_direct_destruction_is_fatal"
+  ],
+  "rule": "共同项不可 skip；可选不适用记 NotApplicable，不计 Passed；故障后端不属于合格工厂。"
+}

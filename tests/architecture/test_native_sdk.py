@@ -13,8 +13,8 @@ class NativeSurfaceTests(unittest.TestCase):
 
     def test_actual_native_surface(self):
         manifest = check.load_manifest()
-        self.assertEqual(manifest['stage'], 'B3Subset')
-        self.assertEqual(manifest['sdk_version'], '0.1.0-dev.4')
+        self.assertEqual(manifest['stage'], 'B4Subset')
+        self.assertEqual(manifest['sdk_version'], '0.1.0-dev.5')
         self.assertEqual(manifest['targets']['Runtime']['kind'], 'STATIC_LIBRARY')
         self.assertEqual(check.validate_manifest(manifest), [])
 
@@ -29,7 +29,7 @@ class NativeSurfaceTests(unittest.TestCase):
         manifest = deepcopy(check.load_manifest())
         manifest['headers'].append({'path':'packages/runtime/include/ock/runtime/extra.hpp',
             'target':'Runtime','classification':'experimental','sha256':'0'*64})
-        self.assertIn('Runtime安装头集合与受审八头不符',check.validate_manifest(manifest))
+        self.assertIn('Runtime安装头集合与受审阶段不符',check.validate_manifest(manifest))
         manifest = deepcopy(check.load_manifest())
         manifest['headers']=[h for h in manifest['headers'] if h['path'].endswith('/logging.hpp') is False]
         self.assertTrue(check.validate_contracts_surface(manifest))

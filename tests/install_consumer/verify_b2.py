@@ -41,7 +41,7 @@ def main():
     source = work/'consumer-source'
     shutil.copytree(ROOT/'tests/install_consumer/b2', source)
     manifest = json.loads((relocated/'share/ock/sdk_api_manifest.json').read_text(encoding='utf-8'))
-    if manifest['stage']=='B3Subset':
+    if manifest['stage'] in ('B3Subset','B4Subset'):
         (source/'thin.cpp').write_text('#include <ock/control_client/client.hpp>\n#include <ock/local_ipc/pipe.hpp>\n#include <iostream>\nint main(){auto sid=ock::local_ipc::current_user_sid();if(!sid)return 1;auto text=ock::control_client::quote(*sid);if(!text)return 2;std::cout<<*text;return 0;}\n',encoding='utf-8')
         with (source/'CMakeLists.txt').open('a',encoding='utf-8') as cmake:
             cmake.write('''
@@ -77,7 +77,7 @@ check_thin(OCK::Adapter::LocalIPC)
     run(base)
     run(['cmake','--build',str(work/'consumer'),'--config',args.config,'--parallel','4'])
     run([str(work/'consumer'/args.config/'installed_b2.exe')])
-    if manifest['stage']=='B3Subset':
+    if manifest['stage'] in ('B3Subset','B4Subset'):
         run([str(work/'consumer'/args.config/'installed_thin.exe')])
         maps=list((work/'consumer').rglob('installed_thin.map'))
         assert len(maps)==1,maps

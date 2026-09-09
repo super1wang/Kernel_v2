@@ -1,15 +1,17 @@
 # D1.06 NativeSubset SDK 表面合同
 
-B3 增量：当前开发 SDK 为 `0.1.0-dev.4 / B3Subset`；B1/B2 历史 Passed 保留，B3 是否正式放行以 progress 为准。Data、Dynamic、ControlProtocol、Control、ControlClient、Adapter::LocalIPC 是可安装静态库；Runtime 目标自身仍为 NativeSubset，最小链接闭包不变。jsoncons、Asio、CLI11 仅供私有实现编译，不导出其 target。下文原设计来源保留为历史，不是当前重新验收前置。
+B4 增量：当前开发 SDK 为 `0.1.0-dev.5 / B4Subset`；B1–B3 历史 Passed 保留，B4 正式状态以 progress 为准。Adapter::CpuPool 升为生产静态库，新增 ExecutorControl/CallbackWork、Scheduler、Resources 四个公开头；Runtime 目标自身仍保留 NativeSubset 最小闭包标记，新表面以同版 SDK 清单为准。BS 5.0.0 与 jsoncons/Asio/CLI11 均仅供私有实现编译，不导出其 target。下文最初设计来源保留为历史。
 
 
 状态：**Current Contract / Implemented**。依据 v3.3 A19、A20、A21.4–A21.6、A22 和 D1.06；Host/日志签名、所有权、错误与停止语义以对应现行合同为准，历史验收不改写。
 
 ## 当前生产选择与安装范围
 
-`OCK_BUILD_COMPONENTS=B3Subset` 为默认生产选择，依赖选择为 CLI；该选择同时构建真实管道、客户端和 CLI。`OCK_BUILD_COMPONENTS=Runtime` 要求 `OCK_DEPENDENCY_COMPONENTS=Foundation`，在 BUILD_TESTING=OFF 时也可 configure/build/install，不取得动态/IPC/CLI 依赖、不创建对应目标，只安装 Runtime/CoreContracts/Foundation 头与 Runtime 库、expected。选错依赖在取得前明确拒绝。旧 B2Subset 构建目录须显式重配为 B3Subset，不保留可组合的 B3 独立开关。
+`OCK_BUILD_COMPONENTS=B4Subset` 为默认生产选择，依赖 acquisition 为 `CLI;CpuPool`，即已有 B3 组件加生产 CPU 池。`B3Subset` 保留 CLI 依赖和原组件选择，CpuPool 仍为 ContractBaseline 占位，安装清单不列其新头且 find_package 拒绝该组件。`Runtime` 要求 `OCK_DEPENDENCY_COMPONENTS=Foundation`，仅取得 expected；即使 BUILD_TESTING=OFF，也构建安装当前 Runtime 的 Scheduler/Resources 与 CoreContracts，不取得 thread_pool 或动态依赖。自由组合的 CpuPool 开关已移除，由 Profile 决定。
 
-同版 SDK 的版本/stage 为 `0.1.0-dev.4/B3Subset`（仓库实现基线）；实际安装集合由 `OCK_INSTALLATION_PROFILE` 和安装清单的 `installation_profile/targets/headers` 表达，Runtime 选择不宣称 Data 可用。`find_package(OCK COMPONENTS ...)` 同时核对实际目标存在。安装清单由唯一源清单投影，不维护另一套参数或头列表。具体决定见 [B3 ADR](../adr/ADR-b3-pipe-start.md)。薄客户端只连接 ControlProtocol/Data/CoreContracts/Foundation 与 LocalIPC，不链接 Runtime/Control/Dynamic；Windows bcrypt、advapi32 保留真实静态链接要求。
+同版 SDK 的版本/stage 为 `0.1.0-dev.5/B4Subset`；实际安装集合由 `OCK_INSTALLATION_PROFILE` 和安装清单的 `installation_profile/targets/headers` 表达。find_package 同时核对实际目标和 Profile。安装清单从唯一源清单投影，B3 的 CpuPool kind/implementation 使用其真实合同占位，不能误报静态生产库。具体决定见 [B4 ADR](../adr/ADR-b4-executor-resources.md)。薄客户端最小闭包及 Windows 系统链接要求保持原合同。
+
+新增表面均为 experimental，消费者须按 dev.5 重编译。Scheduler 仅保留窄 Executor 的弱引用，独立控制 owner 保留至排空；close 不等待已提交工作，其 captures 必须拥有异步寿命。内部 Ticket、完成摘要及资源 Phase 不替代 ExecutionRef、TaskOutcome、ActionPermit 或 B5 的 Submit/结构化寿命。资源 Lease/Waiter 通过 unique_ptr 转移所有权，单个 handle 的并发调用须由调用方同步；各 handle 之间的释放/取消由 ResourceManager 仲裁。
 
 ## 最初设计基线（历史）
 

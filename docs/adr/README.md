@@ -12,5 +12,6 @@
 | [B2 收口：认证上下文、生产裁剪与 DynamicOnly 责任](ADR-b2-closure-boundaries.md) | A17/A19/A21、E00/E02 | D1.06、D2.04；D7.04 承接后续能力 | 设计已采纳；本次实现/验证以 plans/B2 与 progress 为准 |
 | [B3：OS 身份、真实首字节、单 Host 目录和 Volatile 意图](ADR-b3-pipe-start.md) | A17/A19、E00/E02 | D2.05–D2.07 | 实施中；已有真实 IPC 直接验证，正式批次审核未完成 |
 | canonical CBOR feasibility A/B/C 结论 | A12.4、D5.02-a | D5.02 | 尚未验证，禁止提前选结论 |
+| [B4：Executor 寿命与资源边界](ADR-b4-executor-resources.md) | A09/A21/A22、E06 | D3.01–D3.03 | 实施前决定；正式结果以 B4 计划及 progress 为准 |
 
 D0.01 已批准；D0.02 沿用既有架构决定形成具体 ADR，未更改唯一规范。正式决定必须同步合同、测试、资料和受影响包。

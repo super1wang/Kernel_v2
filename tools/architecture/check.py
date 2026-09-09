@@ -116,11 +116,12 @@ def validate_implementation_stage(manifest):
     stages={'ContractBaseline':set(),'Foundation':{'Foundation'},'CoreContracts':{'Foundation','CoreContracts'},'NativeSubset':{'Foundation','CoreContracts','Runtime'},'B2Subset':{'Foundation','CoreContracts','Runtime','Data','Dynamic','ControlProtocol','Control'}}
     stage=manifest.get('stage')
     stages['B3Subset']=stages['B2Subset']|{'ControlClient','Adapter::LocalIPC'}
+    stages['B4Subset']=stages['B3Subset']|{'Adapter::CpuPool'}
     if stage not in stages:return ['未知SDK实施阶段']
     errors=[]
     for name,target in manifest['targets'].items():
         implemented=name in stages[stage]
-        expected_stage = 'NativeSubset' if stage in ('NativeSubset','B2Subset','B3Subset') and name == 'Runtime' else ('B2Subset' if stage in ('B2Subset','B3Subset') and name in ('Data','Dynamic','ControlProtocol','Control') else ('B3Subset' if stage=='B3Subset' and name in ('ControlClient','Adapter::LocalIPC') else ('Implemented' if implemented else 'ContractBaseline')))
+        expected_stage = 'NativeSubset' if stage in ('NativeSubset','B2Subset','B3Subset','B4Subset') and name == 'Runtime' else ('B2Subset' if stage in ('B2Subset','B3Subset','B4Subset') and name in ('Data','Dynamic','ControlProtocol','Control') else ('B3Subset' if stage in ('B3Subset','B4Subset') and name in ('ControlClient','Adapter::LocalIPC') else ('Implemented' if implemented else 'ContractBaseline')))
         if target.get('implementation') != expected_stage:
             errors.append(name+' 实施状态与当前阶段不符')
         expected=['expected'] if implemented and name=='Foundation' else []
@@ -135,9 +136,10 @@ CORE_CONTRACTS_HEADERS = {
 
 def validate_contracts_surface(manifest):
     """D1.02受审六头集合；字节、存在性和实际包含关系由完整校验继续检查。"""
-    if manifest.get('stage') not in ('CoreContracts','NativeSubset','B2Subset','B3Subset'):
+    if manifest.get('stage') not in ('CoreContracts','NativeSubset','B2Subset','B3Subset','B4Subset'):
         return []
-    expected=CORE_CONTRACTS_HEADERS | ({'packages/contracts/include/ock/contracts/logging.hpp'} if manifest['stage'] in ('NativeSubset','B2Subset','B3Subset') else set())
+    expected=CORE_CONTRACTS_HEADERS | ({'packages/contracts/include/ock/contracts/logging.hpp'} if manifest['stage'] in ('NativeSubset','B2Subset','B3Subset','B4Subset') else set())
+    if manifest['stage']=='B4Subset':expected |= {'packages/contracts/include/ock/contracts/executor.hpp'}
     listed=[h['path'] for h in manifest['headers'] if h['target']=='CoreContracts']
     if set(listed) != expected or len(listed) != len(expected):
         return ['CoreContracts公开头集合与受审阶段不符']
@@ -160,23 +162,23 @@ def validate_manifest(manifest,actual_graph=None,build_components='B3Subset'):
     def require(value,message):
         if not value:errors.append(message)
     targets=manifest['targets'];norm=normative_graph()
-    require(build_components in ('Runtime','B3Subset'),'未知生产组件选择')
+    require(build_components in ('Runtime','B3Subset','B4Subset'),'未知生产组件选择')
     selected={'Foundation','CoreContracts','Runtime'} if build_components=='Runtime' else set(norm)
     require(manifest['format']=='ock.sdk-api/1','公开清单格式不符')
-    require(manifest['sdk_version']==({'B3Subset':'0.1.0-dev.4','B2Subset':'0.1.0-dev.3','NativeSubset':'0.1.0-dev.2'}.get(manifest['stage'],'0.1.0-dev.1')),'开发 SDK 版本必须独立于文档 v3.3')
+    require(manifest['sdk_version']==({'B4Subset':'0.1.0-dev.5','B3Subset':'0.1.0-dev.4','B2Subset':'0.1.0-dev.3','NativeSubset':'0.1.0-dev.2'}.get(manifest['stage'],'0.1.0-dev.1')),'开发 SDK 版本必须独立于文档 v3.3')
     errors.extend(validate_implementation_stage(manifest))
     errors.extend(validate_contracts_surface(manifest))
     require(set(targets)==set(norm),'产品 target 集合与 A02 不一致')
     for name,target in targets.items():
         require(target['dependencies']==norm.get(name),f'{name} 直接依赖与 A02 不一致')
-        expected_roots = ['packages/control/server','packages/control/observation'] if name=='Control' and manifest['stage'] in ('B2Subset','B3Subset') else []
+        expected_roots = ['packages/control/server','packages/control/observation'] if name=='Control' and manifest['stage'] in ('B2Subset','B3Subset','B4Subset') else []
         require(target.get('source_roots',[])==expected_roots,f'{name} 源码归属目录漂移')
         closure=transitive_dependencies(name,targets)
         require(name not in closure,f'{name} 依赖成环')
         require(set(target['dependencies'])<=targets.keys(),f'{name} 存在未知/测试目标依赖')
         require(target['export']=='OCK::'+name,f'{name} 导出名错误')
-        require(target['kind']==('STATIC_LIBRARY' if (name=='Runtime' and manifest['stage'] in ('NativeSubset','B2Subset','B3Subset')) or (manifest['stage'] in ('B2Subset','B3Subset') and name in ('Data','Dynamic','ControlProtocol','Control')) or (manifest['stage']=='B3Subset' and name in ('ControlClient','Adapter::LocalIPC')) else 'INTERFACE_LIBRARY'),f'{name} 实际 target 类型错误')
-        system = [{'name':'bcrypt','platform':'Windows','link_only':True}] if (name=='Runtime' and manifest['stage'] in ('NativeSubset','B2Subset','B3Subset')) or (manifest['stage'] in ('B2Subset','B3Subset') and name in ('Dynamic','Control')) or (manifest['stage']=='B3Subset' and name=='ControlClient') else ([{'name':'advapi32','platform':'Windows','link_only':True}] if manifest['stage']=='B3Subset' and name=='Adapter::LocalIPC' else [])
+        require(target['kind']==('STATIC_LIBRARY' if (name=='Runtime' and manifest['stage'] in ('NativeSubset','B2Subset','B3Subset','B4Subset')) or (manifest['stage'] in ('B2Subset','B3Subset','B4Subset') and name in ('Data','Dynamic','ControlProtocol','Control')) or (manifest['stage'] in ('B3Subset','B4Subset') and name in ('ControlClient','Adapter::LocalIPC')) or (manifest['stage']=='B4Subset' and name=='Adapter::CpuPool') else 'INTERFACE_LIBRARY'),f'{name} 实际 target 类型错误')
+        system = [{'name':'bcrypt','platform':'Windows','link_only':True}] if (name=='Runtime' and manifest['stage'] in ('NativeSubset','B2Subset','B3Subset','B4Subset')) or (manifest['stage'] in ('B2Subset','B3Subset','B4Subset') and name in ('Dynamic','Control')) or (manifest['stage'] in ('B3Subset','B4Subset') and name=='ControlClient') else ([{'name':'advapi32','platform':'Windows','link_only':True}] if manifest['stage'] in ('B3Subset','B4Subset') and name=='Adapter::LocalIPC' else [])
         require(target.get('system_dependencies',[])==system,f'{name} 系统链接依赖不符')
         require(target['public_compile_features']==['cxx_std_20'],f'{name} 公开编译条件漂移')
         expected_options=FOUNDATION_PUBLIC_OPTIONS if name=='Foundation' and manifest['targets']['Foundation']['implementation']=='Implemented' else ['$<$<CXX_COMPILER_ID:MSVC>:/utf-8>']
@@ -188,10 +190,11 @@ def validate_manifest(manifest,actual_graph=None,build_components='B3Subset'):
             require(not any(targets[d]['api_classification']!='stable' for d in closure if d in targets),
                     f'{name} stable 依赖非 stable')
         if actual_graph is not None and name in selected:
-            require(actual_graph.get(name,{}).get('kind')==target['kind'],f'{name} 实际 CMake 类型不符')
+            projected_cpu = manifest['stage']=='B4Subset' and build_components=='B3Subset' and name=='Adapter::CpuPool'
+            require(actual_graph.get(name,{}).get('kind')==('INTERFACE_LIBRARY' if projected_cpu else target['kind']),f'{name} 实际 CMake 类型不符')
             require(actual_graph.get(name,{}).get('system_dependencies',[])==system,f'{name} 实际系统链接依赖不符')
             require(actual_graph.get(name,{}).get('dependencies')==target['dependencies'],f'{name} 实际 CMake 依赖不符')
-            require(actual_graph.get(name,{}).get('implementation')==target['implementation'],f'{name} 实际目标能力声明不符')
+            require(actual_graph.get(name,{}).get('implementation')==('ContractBaseline' if projected_cpu else target['implementation']),f'{name} 实际目标能力声明不符')
             require(actual_graph.get(name,{}).get('external_dependencies',[])==target.get('external_dependencies',[]),f'{name} 实际第三方公开依赖不符')
             require(actual_graph.get(name,{}).get('compile_features')==target['public_compile_features'],f'{name} 实际公开编译要求漂移')
             require(actual_graph.get(name,{}).get('compile_options')==target['public_compile_options'],f'{name} 实际公开选项漂移')
@@ -205,11 +208,12 @@ def validate_manifest(manifest,actual_graph=None,build_components='B3Subset'):
     require(manifest['required_frontends']==['CLI','Plan','ClientSDK'],'首发必需前端不能扩展到 DSL/REPL')
     require(manifest['optional_frontends']==['DSL','REPL'],'DSL/REPL 必须保持可选')
     require(manifest['frozen_previous_release']['exists'] is False,'没有上一正式 SDK，不得伪造兼容结果')
-    require(manifest['planned_executables']=={'ock':{'dependencies':['ControlClient','Adapter::LocalIPC'],'external_dependencies':['CLI11'],'owner_task':'D2.06','implementation':('B3Subset' if manifest['stage']=='B3Subset' else 'Planned')}},'CLI 仅登记 D2.06 依赖，不能提前构建假 Host')
-    if manifest['stage'] in ('NativeSubset','B2Subset','B3Subset'):
+    require(manifest['planned_executables']=={'ock':{'dependencies':['ControlClient','Adapter::LocalIPC'],'external_dependencies':['CLI11'],'owner_task':'D2.06','implementation':('B3Subset' if manifest['stage'] in ('B3Subset','B4Subset') else 'Planned')}},'CLI 仅登记 D2.06 依赖，不能提前构建假 Host')
+    if manifest['stage'] in ('NativeSubset','B2Subset','B3Subset','B4Subset'):
         require(manifest.get('implementation_includes') == NATIVE_IMPLEMENTATION_INCLUDES, '模板实现包含边漂移')
         runtime_headers=[h['path'] for h in manifest['headers'] if h['target']=='Runtime']
-        require(set(runtime_headers)==NATIVE_RUNTIME_HEADERS and len(runtime_headers)==len(NATIVE_RUNTIME_HEADERS), 'Runtime安装头集合与受审八头不符')
+        expected_runtime=NATIVE_RUNTIME_HEADERS | ({'packages/runtime/include/ock/runtime/scheduler.hpp','packages/runtime/include/ock/runtime/resources.hpp'} if manifest['stage']=='B4Subset' else set())
+        require(set(runtime_headers)==expected_runtime and len(runtime_headers)==len(expected_runtime), 'Runtime安装头集合与受审阶段不符')
     listed=[]
     for header in manifest['headers']:
         path=ROOT/header['path'];listed.append(path.resolve())
