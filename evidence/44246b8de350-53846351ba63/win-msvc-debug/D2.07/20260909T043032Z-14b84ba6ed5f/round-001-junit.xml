@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="15"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-U2F62TA"
+	time="63"
+	timestamp="2026-09-09T12:30:52"
+	>
+	<testcase name="T24.b2.installed_consumer" classname="T24.b2.installed_consumer" time="24.0386" status="run">
+		<properties>
+			<property name="cmake_labels" value="B2"/>
+		</properties>
+		<system-out>argv: ['cmake', '--install', 'J:/Code/Kernel_v2/build/b2-sdk-debug', '--config', 'Debug', '--prefix', 'J:\\Code\\Kernel_v2\\build\\b2-install-8n_zike0\\original'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\b2-install-8n_zike0\\consumer-source', '-B', 'J:\\Code\\Kernel_v2\\build\\b2-install-8n_zike0\\consumer', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\b2-install-8n_zike0\\relocated'] exit_code: 0
+argv: ['cmake', '--build', 'J:\\Code\\Kernel_v2\\build\\b2-install-8n_zike0\\consumer', '--config', 'Debug', '--parallel', '4'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\b2-install-8n_zike0\\consumer\\Debug\\installed_b2.exe'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\b2-install-8n_zike0\\consumer\\Debug\\installed_thin.exe'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\b2-install-8n_zike0...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.b2.native_pruning" classname="T24.b2.native_pruning" time="25.2297" status="run">
+		<properties>
+			<property name="cmake_labels" value="B2"/>
+		</properties>
+		<system-out>argv: ['cmake', '--preset', 'win-msvc-debug', '-B', 'J:\\Code\\Kernel_v2\\build\\native-pruned-9cdmx6tl\\producer', '-DBUILD_TESTING=OFF', '-DOCK_BUILD_COMPONENTS=Runtime', '-DOCK_DEPENDENCY_COMPONENTS=Foundation', '-DOCK_DEPENDENCIES_OFFLINE=ON', '-DPython3_EXECUTABLE=J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe', '-X', 'utf8', 'J:\\Code\\Kernel_v2\\tools\\architecture\\check.py', '--graph', 'J:\\Code\\Kernel_v2\\build\\native-pruned-9cdmx6tl\\producer\\ock-target-graph.json'] exit_code: 0
+argv: ['cmake', '--build', 'J:\\Code\\Kernel_v2\\build\\native-pruned-9cdmx6tl\\producer', '--config', 'Debug', '--parallel', '4', '--', '/nr:false'] exit_code: 0
+argv: ['cmake', '--install', 'J:\\Code\\Kernel_v2\\build\\native-pruned-9cdmx6tl\\producer', '--config', 'Debug', '--prefix', 'J:\\Code\\Kernel_v2\\build\\native-pruned-9cdmx6tl\\prefix'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\native-pruned-9cd...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.sdk.version_header" classname="T24.sdk.version_header" time="0.0747831" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>0.1.0-dev.4
+</system-out>
+	</testcase>
+	<testcase name="T01.architecture.dependency_dag" classname="T01.architecture.dependency_dag" time="0.306572" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>{
+  "check_id": "CHECK.D0.02.architecture",
+  "errors": [],
+  "scope": "合同目标/公开表面静态检查；无Runtime运行或授权实现"
+}
+</system-out>
+	</testcase>
+	<testcase name="T01.architecture.negative_guards" classname="T01.architecture.negative_guards" time="8.62489" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>test_approved_architecture_matches_manifest (test_architecture.ArchitectureTests.test_approved_architecture_matches_manifest) ... ok
+test_authorized_immutable_read_is_allowed (test_architecture.ArchitectureTests.test_authorized_immutable_read_is_allowed) ... ok
+test_client_has_no_server_dependency (test_architecture.ArchitectureTests.test_client_has_no_server_dependency) ... ok
+test_comment_markers_inside_strings_do_not_hide_includes (test_architecture.ArchitectureTests.test_comment_markers_inside_strings_do_not_hide_includes) ... ok
+test_dot_include_prefix_is_rejected (test_architecture.ArchitectureTests.test_dot_include_prefix_is_rejected) ... ok
+test_dsl_is_not_a_required_release_component (test_architecture.ArchitectureTests.test_dsl_is_not_a_required_release_component) ... ok
+test_generic_state_rpc_is_rejected (test_architecture.ArchitectureTests.test_generic_state_rpc_is_rejected) ... ok
+test_include_comment_does_not_bypass_ownership (test_architecture.ArchitectureTests.test_include_comment_does_not_byp...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T20.cli.host_roundtrip" classname="T20.cli.host_roundtrip" time="1.43006" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.06"/>
+		</properties>
+		<system-out>capabilities exit 0 passed
+capabilities exit 0 passed
+invoke exit 0 passed
+invoke exit 0 passed
+invoke exit 2 passed
+invoke exit 3 passed
+invoke exit 4 passed
+execution exit 3 passed
+execution exit 3 passed
+invoke exit 2 passed
+capabilities exit 0 passed
+</system-out>
+	</testcase>
+	<testcase name="T20.ipc.router_security" classname="T20.ipc.router_security" time="0.253278" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.05"/>
+		</properties>
+		<system-out>role-in-hello rejected and connection closed
+role-in-envelope rejected and connection closed
+wrong-direction rejected and connection closed
+before-hello rejected and connection closed
+oversize-header rejected and connection closed
+</system-out>
+	</testcase>
+	<testcase name="T20.client.watch" classname="T20.client.watch" time="0.155056" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.06"/>
+		</properties>
+		<system-out>client subscribe/get/version/gap/close contract passed
+</system-out>
+	</testcase>
+	<testcase name="T23.b3.cost_samples" classname="T23.b3.cost_samples" time="0.34154" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.07"/>
+		</properties>
+		<system-out>{"format":"ock.b3.entry-costs/1","capture":"CTEST_FULL_OUTPUT","scope":"warm prebound Native versus Dynamic decode plus same HostBound; excludes setup, JSON parsing, wire encoding, IPC and CLI process startup","counter_valid":true,"crt_available":true,"asan_available":false,"positive_control":{"cpp_allocations":1,"crt_allocations":1,"asan_allocations":0,"allocated_bytes":65},"samples":[{"entry":"Native","ns":17700,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":16500,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":19700,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":16000,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":16000,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":15800,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":16000,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":16200,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":19100,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":16300,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":15700,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":15900,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":16000,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":15900,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":15800,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":15800,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":15700,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":18900,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":16200,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Native","ns":19200,"cpp_allocations":12,"crt_allocations":12,"asan_allocations":0,"allocated_bytes":192},{"entry":"Dynamic","ns":127900,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":113800,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":113000,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":111400,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":126900,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":111600,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":113200,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":114700,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":109800,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":109400,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":109700,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":108300,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":117100,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":109900,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":113600,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":110000,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":109000,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":114600,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":123200,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952},{"entry":"Dynamic","ns":119800,"cpp_allocations":208,"crt_allocations":208,"asan_allocations":0,"allocated_bytes":13952}]}
+</system-out>
+	</testcase>
+	<testcase name="T02.b3.entry_parity" classname="T02.b3.entry_parity" time="0.555904" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.07"/>
+		</properties>
+		<system-out>Native / JSON / CLI exact reply parity 4 15 0
+Native / JSON / CLI exact reply parity -1 13 3
+Native / JSON / CLI exact reply parity 100 14 4
+Native / JSON / CLI exact reply parity 1 257 3
+</system-out>
+	</testcase>
+	<testcase name="T20.cli.windows_shell" classname="T20.cli.windows_shell" time="1.19187" status="run">
+		<properties>
+			<property name="cmake_labels" value="B3;D2.07"/>
+		</properties>
+		<system-out>cmd-file UTF-8 and one machine result passed
+cmd-stdin UTF-8 and one machine result passed
+powershell-file UTF-8 and one machine result passed
+powershell-stdin UTF-8 and one machine result passed
+raw_shell_artifacts J:\Code\Kernel_v2\build\b2-sdk-debug\tests\integration\cli\shell-runs\c0f6ddb26ea34b788a61cbf6548e7d59
+</system-out>
+	</testcase>
+	<testcase name="T04.binding.field_parity" classname="T04.binding.field_parity" time="0.225505" status="run">
+		<properties/>
+		<system-out>Native/Dynamic field parity passed
+</system-out>
+	</testcase>
+	<testcase name="T23.binding.schema_concurrent" classname="T23.binding.schema_concurrent" time="0.279856" status="run">
+		<properties/>
+		<system-out>Compiled schema registration, reference and concurrent validation passed
+</system-out>
+	</testcase>
+	<testcase name="T05.catalog.visibility" classname="T05.catalog.visibility" time="0.446738" status="run">
+		<properties/>
+		<system-out>Catalog policy visibility and cold metadata passed
+</system-out>
+	</testcase>
+	<testcase name="T06.binding.native" classname="T06.binding.native" time="0.481033" status="run">
+		<properties/>
+		<system-out>100 sessions reused one registered schema/catalog; closed caller rejected
+Dynamic and Native shared TypeContract and governed HostBound passed
+</system-out>
+	</testcase>
+</testsuite>

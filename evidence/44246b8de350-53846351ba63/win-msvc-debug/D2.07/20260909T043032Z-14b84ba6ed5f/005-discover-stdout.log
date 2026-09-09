@@ -1,0 +1,697 @@
+{
+  "backtraceGraph" : 
+  {
+    "commands" : 
+    [
+      "add_test"
+    ],
+    "files" : 
+    [
+      "J:/Code/Kernel_v2/CMakeLists.txt",
+      "J:/Code/Kernel_v2/tests/integration/cli/CMakeLists.txt",
+      "J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt"
+    ],
+    "nodes" : 
+    [
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 62,
+        "parent" : 0
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 64,
+        "parent" : 2
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 76,
+        "parent" : 4
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 79,
+        "parent" : 6
+      },
+      {
+        "file" : 0
+      },
+      {
+        "command" : 0,
+        "file" : 0,
+        "line" : 80,
+        "parent" : 8
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 1,
+        "parent" : 10
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 5,
+        "parent" : 12
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 10,
+        "parent" : 14
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 16,
+        "parent" : 16
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 18,
+        "parent" : 18
+      },
+      {
+        "file" : 1
+      },
+      {
+        "command" : 0,
+        "file" : 1,
+        "line" : 19,
+        "parent" : 20
+      },
+      {
+        "file" : 2
+      },
+      {
+        "command" : 0,
+        "file" : 2,
+        "line" : 64,
+        "parent" : 22
+      },
+      {
+        "file" : 2
+      },
+      {
+        "command" : 0,
+        "file" : 2,
+        "line" : 68,
+        "parent" : 24
+      },
+      {
+        "file" : 2
+      },
+      {
+        "command" : 0,
+        "file" : 2,
+        "line" : 72,
+        "parent" : 26
+      },
+      {
+        "file" : 2
+      },
+      {
+        "command" : 0,
+        "file" : 2,
+        "line" : 97,
+        "parent" : 28
+      }
+    ]
+  },
+  "kind" : "ctestInfo",
+  "tests" : 
+  [
+    {
+      "backtrace" : 1,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/install_consumer/verify_b2.py",
+        "--build",
+        "J:/Code/Kernel_v2/build/b2-sdk-debug",
+        "--config",
+        "Debug"
+      ],
+      "config" : "Debug",
+      "name" : "T24.b2.installed_consumer",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B2"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 600.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace" : 3,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/install_consumer/verify_pruned.py",
+        "--config",
+        "Debug"
+      ],
+      "config" : "Debug",
+      "name" : "T24.b2.native_pruning",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B2"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 600.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2"
+        },
+        {
+          "name" : "CONFIGURATIONS",
+          "value" : "Debug"
+        }
+      ]
+    },
+    {
+      "backtrace" : 5,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/Debug/ock_sdk_metadata_probe.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T24.sdk.version_header",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.02"
+          ]
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-debug"
+        }
+      ]
+    },
+    {
+      "backtrace" : 7,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tools/architecture/check.py",
+        "--graph",
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/ock-target-graph.json"
+      ],
+      "config" : "Debug",
+      "name" : "T01.architecture.dependency_dag",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.02"
+          ]
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-debug"
+        }
+      ]
+    },
+    {
+      "backtrace" : 9,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "J:/Code/Kernel_v2/tests/architecture",
+        "-v"
+      ],
+      "config" : "Debug",
+      "name" : "T01.architecture.negative_guards",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT",
+          "value" : 
+          [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "D0.02"
+          ]
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace" : 11,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/integration/cli/smoke.py",
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/examples/stateless_service/Debug/ock_stateless_service.exe",
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/apps/ock/Debug/ock.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T20.cli.host_roundtrip",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B3",
+            "D2.06"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 90.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/integration/cli"
+        }
+      ]
+    },
+    {
+      "backtrace" : 13,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/integration/cli/security.py",
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/examples/stateless_service/Debug/ock_stateless_service.exe",
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/apps/ock/Debug/ock.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T20.ipc.router_security",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B3",
+            "D2.05"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/integration/cli"
+        }
+      ]
+    },
+    {
+      "backtrace" : 15,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/integration/cli/Debug/ock_client_contract.exe",
+        "watch"
+      ],
+      "config" : "Debug",
+      "name" : "T20.client.watch",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B3",
+            "D2.06"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 15.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/integration/cli"
+        }
+      ]
+    },
+    {
+      "backtrace" : 17,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/integration/cli/Debug/ock_b3_cost_samples.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T23.b3.cost_samples",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B3",
+            "D2.07"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/integration/cli"
+        }
+      ]
+    },
+    {
+      "backtrace" : 19,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/integration/cli/parity.py",
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/examples/stateless_service/Debug/ock_stateless_service.exe",
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/apps/ock/Debug/ock.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T02.b3.entry_parity",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B3",
+            "D2.07"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 120.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/integration/cli"
+        }
+      ]
+    },
+    {
+      "backtrace" : 21,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/integration/cli/shells.py",
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/examples/stateless_service/Debug/ock_stateless_service.exe",
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/apps/ock/Debug/ock.exe",
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/integration/cli/shell-runs"
+      ],
+      "config" : "Debug",
+      "name" : "T20.cli.windows_shell",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "LABELS",
+          "value" : 
+          [
+            "B3",
+            "D2.07"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 120.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/integration/cli"
+        }
+      ]
+    },
+    {
+      "backtrace" : 23,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/unit/data/Debug/binding_parity.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T04.binding.field_parity",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 20.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace" : 25,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/unit/data/Debug/schema_contract.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T23.binding.schema_concurrent",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace" : 27,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/unit/data/Debug/catalog_contract.exe",
+        "J:/Code/Kernel_v2/schemas/catalog/command-card.schema.json"
+      ],
+      "config" : "Debug",
+      "name" : "T05.catalog.visibility",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 20.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace" : 29,
+      "command" : 
+      [
+        "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/unit/data/Debug/dynamic_native_contract.exe"
+      ],
+      "config" : "Debug",
+      "name" : "T06.binding.native",
+      "properties" : 
+      [
+        {
+          "name" : "ENVIRONMENT_MODIFICATION",
+          "value" : 
+          [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name" : "TIMEOUT",
+          "value" : 30.0
+        },
+        {
+          "name" : "WORKING_DIRECTORY",
+          "value" : "J:/Code/Kernel_v2/build/b2-sdk-debug/tests/unit/data"
+        }
+      ]
+    }
+  ],
+  "version" : 
+  {
+    "major" : 1,
+    "minor" : 0
+  }
+}

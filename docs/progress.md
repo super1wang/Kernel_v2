@@ -4,13 +4,20 @@
 
 ## 当前生产节点
 
-- 当前分支：`work/d0-kernel-baseline`；本轮被测实现检查点 `e77c328`，归档与推送状态以实时 Git 为准。
+- 当前分支：`work/d0-kernel-baseline`；G2 历史被测实现 `e77c328`，G2 后 C1/C2 收口被测实现 `44246b8`；归档与推送状态以实时 Git 为准。
 - 已 Passed：G0–G2、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07。**这些 Passed 前置不重验**；本轮没有重跑 G1/B2 累计矩阵。
 - 当前 Development Batch：**B3 / D2.05–D2.07 Passed**；真实 IPC、授权首字节、ControlClient/CLI、同 Host 无状态消费者和 Shell/双入口闭环已交付。下一批 **B4 / D3.01–D3.03 尚未开始**。
 - 当前门禁：**G2 Passed**；G3–G8 未开始。正式同来源 Debug 28/28、Release 26/26、ASan 26/26，三包和 G2 顺序自动验收均无错误，见 [B3 交付](validation/B3-delivery.md)。
 - Host、Logging、NativeSubset/独立安装消费者及 footprint 正式测量/预算已交付并完成本包验收。
 - B1 历史恢复结论保留：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[历史交付与自动验收](validation/D1.06-resume-delivery.md)。
 - 工具优化阶段已结束；禁止继续把 Fixture、Evidence、Install Consumer 性能优化或新流程文档设为 D1.06 前置。
+
+## B3 post-gate closure（2026-09-09）
+
+- 已采纳并完成 C1 Watch 终态单调性与 C2 冻结动态契约材料复用；同 Host 100 次 Session 开闭只生成一次 Schema，Catalog fingerprint/card 稳定，关闭后旧绑定拒绝，当前会话权限仍独立检查。
+- 同一已提交 `44246b8` 来源，受影响集 Debug **15/15**、Release **13/13**、ASan **13/13**；自动验收 Passed，errors/review_errors 均为空。Debug Runtime-only 仅取得 expected，真实构建、安装及 Native 消费通过；见[建议取舍、实现与证据](validation/B3-post-gate-closure-delivery.md)。
+- `docs/AGENTS.md` 删除已按用户要求纳入实现提交。O1 验证去重、O2/O3 IPC 缓冲优化、Catalog 权限端口整理及独立 Service SID 暂缓；本次未改 Runtime/LocalIPC 生产代码，未改变历史 G1/G2 Passed 来源。
+- B4 尚未开始，后续仍从 D3.01 开始；真实 Task 观察与完整 Embedded footprint 由 D3.07 承接。G1 历史占用数字不代表本次二进制新测量。
 
 ## B3 / G2 交付（2026-09-09）
 

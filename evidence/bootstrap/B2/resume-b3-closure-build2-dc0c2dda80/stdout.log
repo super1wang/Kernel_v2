@@ -1,0 +1,58 @@
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  ock_Data.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Data.lib
+  ock_ControlProtocol.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_ControlProtocol.lib
+  ock_ControlClient.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_ControlClient.lib
+  client_contract.cpp
+  ock_client_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\tests\integration\cli\Debug\ock_client_contract.exe
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  ock_Runtime.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Runtime.lib
+  ock_Data.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Data.lib
+  ock_Dynamic.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Dynamic.lib
+  ock_ControlProtocol.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_ControlProtocol.lib
+  ock_Control.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Control.lib
+  native.cpp
+J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(12,75): error C2825: 'ock::binding::Field<&Value::amount>::Value': 当后面跟“::”时必须为类或命名空间 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(12,82): error C2510: “Value”:“::”的左边必须是类/结构/联合 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(12,82): error C2065: “amount”: 未声明的标识符 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(12,68): error C2993: “<error type>”: 不是非类型模板参数“Pointer”的有效类型 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(12,82): error C2975: “Pointer”:“ock::binding::Field”的模板参数无效，应为编译时常量表达式 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+      J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(67,16):
+      参见“Pointer”的声明
+  
+J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(68,62): error C2027: 使用了未定义类型“ock::binding::detail::Member<<error type>>” [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+  (编译源文件“../../../../../tests/contract/binding_parity/native.cpp”)
+      J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(30,27):
+      参见“ock::binding::detail::Member<<error type>>”的声明
+      J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(68,62):
+      模板实例化上下文(最早的实例化上下文)为
+          J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(12,91):
+          查看对正在编译的 类 模板 实例化“ock::binding::Field<0>”的引用
+  
+J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(68,62): error C2061: 语法错误: 标识符“value” [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+  (编译源文件“../../../../../tests/contract/binding_parity/native.cpp”)
+  
+J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(69,40): error C2065: “Member”: 未声明的标识符 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+  (编译源文件“../../../../../tests/contract/binding_parity/native.cpp”)
+  
+J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(69,34): error C2923: "ock::binding::detail::Value": "Member" 不是参数 "T" 的有效 模板 类型参数 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+  (编译源文件“../../../../../tests/contract/binding_parity/native.cpp”)
+      J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(69,40):
+      参见“Member”的声明
+  
+J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(69,49): error C2955: “ock::binding::detail::Value”: 使用 类 模板 需要 模板 参数列表 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+  (编译源文件“../../../../../tests/contract/binding_parity/native.cpp”)
+      J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(22,27):
+      参见“ock::binding::detail::Value”的声明
+  
+J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(70,25): error C2057: 应输入常量表达式 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+  (编译源文件“../../../../../tests/contract/binding_parity/native.cpp”)
+  
+J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(67,32): warning C4624: “ock::binding::Field<0>”: 已将析构函数隐式定义为“已删除” [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+  (编译源文件“../../../../../tests/contract/binding_parity/native.cpp”)
+  
+J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(12,91): error C2352: “ock::binding::Field<0>::schema”: 调用非静态成员函数需要一个对象 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+      J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\record.hpp(177,8):
+      参见“ock::binding::Field<0>::schema”的声明
+  

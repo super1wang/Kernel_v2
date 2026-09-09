@@ -1,0 +1,53 @@
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  ock_Data.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Data.lib
+  ock_ControlProtocol.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_ControlProtocol.lib
+  watch.cpp
+  ock_ControlClient.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_ControlClient.lib
+  client_contract.cpp
+  ock_client_contract.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\tests\integration\cli\Debug\ock_client_contract.exe
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  ock_Runtime.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Runtime.lib
+  ock_Data.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Data.lib
+  ock_ControlProtocol.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_ControlProtocol.lib
+  ock_Dynamic.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Dynamic.lib
+  invoke_method.cpp
+  ock_Control.vcxproj -> J:\Code\Kernel_v2\build\b2-sdk-debug\Debug\ock_Control.lib
+  native.cpp
+J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(93,57): error C2660: “ock::binding::BoundOperation<Value,Value>::create”: 函数不接受 8 个参数 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+      J:\Code\Kernel_v2\packages\dynamic\include\ock\dynamic\binding\bound_operation.hpp(13,3):
+      参见“ock::binding::BoundOperation<Value,Value>::create”的声明
+      J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(93,57):
+      尝试匹配参数列表“(U, ock::contracts::OperationKey, initializer list, ock::contracts::Shape, U, std::array<_First,1>, overloaded-function, ock::foundation::Name)”时
+          with
+          [
+              U=ock::runtime::host::HostSession
+          ]
+          and
+          [
+              U=std::shared_ptr<const ock::runtime::policy::VerifiedCaller>
+          ]
+          and
+          [
+              _First=ock::runtime::policy::ObjectId
+          ]
+  
+J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(135,42): error C2672: “ock::control::InvocationBinding::bind”: 未找到匹配的重载函数 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+      J:\Code\Kernel_v2\packages\control\server\include\ock\control\invoke_method.hpp(71,36):
+      可能是“tl::expected<ock::control::InvocationBinding,ock::foundation::Error> ock::control::InvocationBinding::bind(ock::runtime::host::HostSession &,const ock::control::RegisteredInvocation<A,R> &,const ock::contracts::OperationKey &,ock::contracts::ContractDigest,ock::contracts::Shape,std::shared_ptr<const ock::runtime::policy::VerifiedCaller>,std::span<const ock::runtime::policy::ObjectId,18446744073709551615>,tl::expected<uint64_t,ock::foundation::Error> (__cdecl *)(const A &,std::span<ock::foundation::ObjectId,18446744073709551615>) noexcept,ock::foundation::Name)”
+          J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(135,42):
+          “tl::expected<ock::control::InvocationBinding,ock::foundation::Error> ock::control::InvocationBinding::bind(ock::runtime::host::HostSession &,const ock::control::RegisteredInvocation<A,R> &,const ock::contracts::OperationKey &,ock::contracts::ContractDigest,ock::contracts::Shape,std::shared_ptr<const ock::runtime::policy::VerifiedCaller>,std::span<const ock::runtime::policy::ObjectId,18446744073709551615>,tl::expected<uint64_t,ock::foundation::Error> (__cdecl *)(const A &,std::span<ock::foundation::ObjectId,18446744073709551615>) noexcept,ock::foundation::Name)”: 应输入 9 个参数，却提供了 8 个
+  
+J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(135,136): error C3536: “entry”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(136,46): error C2100: 无法取消引用类型为“<error type>”的操作数 [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(136,38): error C2664: “tl::expected<ock::control::Method,ock::foundation::Error> ock::control::InvokeMethod::create(std::vector<ock::control::InvocationBinding,std::allocator<ock::control::InvocationBinding>>,std::shared_ptr<ock::runtime::policy::ClockPort>,std::chrono::milliseconds,uint64_t)”: 无法将参数 1 从“initializer list”转换为“std::vector<ock::control::InvocationBinding,std::allocator<ock::control::InvocationBinding>>” [J:\Code\Kernel_v2\build\b2-sdk-debug\tests\unit\data\dynamic_native_contract.vcxproj]
+      J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(136,45):
+      "std::vector<ock::control::InvocationBinding,std::allocator<ock::control::InvocationBinding>>" 的复制列表初始化不能使用显式构造函数
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\vector(678,5):
+      参见“std::vector<ock::control::InvocationBinding,std::allocator<ock::control::InvocationBinding>>::vector”的声明
+      J:\Code\Kernel_v2\packages\control\server\include\ock\control\invoke_method.hpp(84,25):
+      参见“ock::control::InvokeMethod::create”的声明
+      J:\Code\Kernel_v2\tests\contract\binding_parity\native.cpp(136,38):
+      尝试匹配参数列表“(initializer list, std::shared_ptr<policy_test::Clock>)”时
+  
