@@ -340,6 +340,19 @@ void native_results() {
     CHECK(e.executor->submissions==0);
   }
 }
+void catalog_context() {
+  EngineEnv e;
+  auto first=e.session->catalog_context();CHECK(first&&first->definitions&&first->authorization);
+  auto again=e.session->catalog_context();CHECK(again);
+  CHECK(first->definitions==again->definitions&&first->authorization==again->authorization);
+  CHECK(e.caller->view().revalidate());
+  auto moved=std::move(*e.session);CHECK(!e.session->catalog_context());
+  e.session.emplace(std::move(moved));
+  CHECK(e.session->close());
+  CHECK(!e.caller->view().revalidate());
+  CHECK(e.host->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(1)).quiescent);
+  CHECK(!e.session->catalog_context());
+}
 void session_ownership() {
   EngineEnv e;auto bound=e.bind();CHECK(bound);
   EngineEnv other;
@@ -628,6 +641,7 @@ int main(int argc,char** argv) {
     {"T22.host.pending_report",host_test::pending_report},
     {"T22.host.lifecycle_reentrancy",host_test::lifecycle_reentrancy},
     {"T03.host.catalog_registration",host_test::catalog_registration},
+    {"T03.host.catalog_context",host_test::catalog_context},
     {"T03.host.native_results",host_test::native_results},
     {"T03.host.session_ownership",host_test::session_ownership},
     {"T03.host.delegation_revoke",host_test::delegation_revoke},

@@ -168,6 +168,11 @@ public:
 };
 class HostSession final {
 public:
+  struct CatalogContext {
+    std::shared_ptr<const contracts::BindingPort> definitions;
+    std::shared_ptr<const policy::SessionAuthority> authorization;
+  };
+  Result<CatalogContext> catalog_context() const;
   HostSession(HostSession&&) noexcept;
   HostSession& operator=(HostSession&&) noexcept;
   HostSession(const HostSession&) = delete;

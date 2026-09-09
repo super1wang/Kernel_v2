@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 project(OCKInstalledB2Consumer LANGUAGES CXX)
 find_package(OCK CONFIG REQUIRED COMPONENTS Data Dynamic ControlProtocol Control Runtime)
-if(NOT OCK_IMPLEMENTATION_STAGE STREQUAL "B2Subset")
+if(NOT OCK_IMPLEMENTATION_STAGE STREQUAL "B3Subset")
   message(FATAL_ERROR "B2 SDK component metadata missing")
 endif()
 get_target_property(native_links OCK::Runtime INTERFACE_LINK_LIBRARIES)

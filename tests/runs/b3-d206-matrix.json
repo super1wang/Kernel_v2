@@ -1,0 +1,18 @@
+{
+  "format": "ock.gate-matrix/1",
+  "gate_id": "D2.06",
+  "required_runs": [
+    {
+      "task_id": "D2.07",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D2.07",
+      "profile": "win-msvc-release"
+    },
+    {
+      "task_id": "D2.07",
+      "profile": "win-msvc-asan"
+    }
+  ]
+}

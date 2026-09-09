@@ -6,7 +6,7 @@
 
 - 当前分支：`work/d0-kernel-baseline`；本轮被测实现检查点 `6662c4e`，归档与推送状态以实时 Git 为准。
 - 已 Passed：G0、G1、D0.01–D0.06、D1.01–D1.06。**这些 Passed 前置不重验**；D1.05 不重跑。
-- 当前 Development Batch：**B2 / D2.01–D2.04 Passed，B3 前影响收口 Passed**；B3 / D2.05–D2.07 已具备开发准入、生产实现未开始；B1 / D1.06 与 G1 已 Passed。
+- 当前 Development Batch：**B3 / D2.05–D2.07 InProgress**；真实 IPC、授权首字节、ControlClient/CLI 与同 Host 无状态消费者已开始实现，正在补 Shell/安全/背压与双入口验证。B2 / D2.01–D2.04 及 B3 前影响收口 Passed 保留。
 - 当前门禁：**G1 Passed**；G2–G8 未开始。
 - Host、Logging、NativeSubset/独立安装消费者及 footprint 正式测量/预算已交付并完成本包验收。
 - 本次恢复已完成：精确工具链校准、三配置编译、Debug 270/270、Release 192/192、ASan 193/193 及各 3 个 CHECK；七模式正式测量均 Passed。D1.06/G1 共用同三份报告，来源 `0452fad`，见[本次交付与自动验收](validation/D1.06-resume-delivery.md)。

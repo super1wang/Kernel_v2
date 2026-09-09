@@ -697,6 +697,8 @@ DeviceHost/WorkerHost 仅用于真实故障/信任边界，不给所有模块强
 
 本地默认 Win32 byte-mode Named Pipe：显式 DACL、仅本地客户端、受控实例名和服务端身份确认；Asio 处理异步字节流，创建与安全属性由 Win32 adapter 实现。默认 DACL 不是本产品安全策略。[E09]
 
+B3 实施接点见 `docs/adr/ADR-b3-pipe-start.md`：观察授权只在真实首字节完成时报告 Started，待完成则 Unknown/关闭，后续帧体沿 Asio 发送。目录装配通过 HostSession 的只读 `catalog_context()` 取得同一 Host 已发布 BindingPort 与该会话 const PolicyAuthority，不复制注册真相、不增加 Runtime 对 Dynamic 的依赖。
+
 私有帧 v1 固定 12 字节：4 字节 magic `OCK1`、2 字节大端 framing_version=1、2 字节 flags=0、4 字节大端 payload_length；首版只接受 flags=0，无压缩。检查 magic/version/长度后读取 UTF-8 JSON。报文为单条 JSON-RPC 2.0 对象；首版不接受顶层 RPC batch 数组。支持分片/部分读写，异常帧关闭连接并留下有界诊断。MCP 端使用其协议传输，不能套此私有帧。
 
 首条握手 `host.hello` 返回 application_id、instance_id、host_incarnation、StoreId/RestoreGeneration（有则）、API/Plan 版本、已装能力、当前预算和 dedup epoch 摘要。版本不兼容拒绝，不静默回退。请求 id 为字符串；有业务效果的方法禁止无响应 notification。进度 notification 仅依 A17.4 的订阅协议发出。握手同时返回实际启用的 `supported_methods`、`notification_protocol`（启用时为 `ock.notifications/1`）及观察预算；未实现/未装配的观察方法不宣称可用。文档 v3.3 不自动将 OCK1、ock.plan/1 或 SDK 版本改成 3.3。

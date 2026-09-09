@@ -4,13 +4,13 @@
 #define OCK_SDK_VERSION_MAJOR 0
 #define OCK_SDK_VERSION_MINOR 1
 #define OCK_SDK_VERSION_PATCH 0
-#define OCK_SDK_VERSION "0.1.0-dev.3"
+#define OCK_SDK_VERSION "0.1.0-dev.4"
 #define OCK_CONTRACT_BASELINE 0
 
 namespace ock::sdk {
 inline constexpr std::string_view version = OCK_SDK_VERSION;
 inline constexpr bool runtime_available = true;
-inline constexpr std::string_view implementation_stage = "B2Subset";
+inline constexpr std::string_view implementation_stage = "B3Subset";
 // 元数据不代替调用方所需组件与能力核验。
 consteval unsigned major_version() noexcept { return OCK_SDK_VERSION_MAJOR; }
 }

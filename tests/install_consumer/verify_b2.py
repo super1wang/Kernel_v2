@@ -36,11 +36,33 @@ def main():
     shutil.copytree(original, relocated)
     for p in relocated.rglob('*.cmake'):
         data = p.read_text(encoding='utf-8').replace('\\','/')
-        if ROOT.as_posix() in data or original.as_posix() in data or 'jsoncons' in data:
+        if ROOT.as_posix() in data or original.as_posix() in data or any(dep in data.lower() for dep in ('jsoncons','cli11','ock_dep_asio')):
             raise AssertionError('source/private dependency leaked into installed export')
     source = work/'consumer-source'
     shutil.copytree(ROOT/'tests/install_consumer/b2', source)
     manifest = json.loads((relocated/'share/ock/sdk_api_manifest.json').read_text(encoding='utf-8'))
+    if manifest['stage']=='B3Subset':
+        (source/'thin.cpp').write_text('#include <ock/control_client/client.hpp>\n#include <ock/local_ipc/pipe.hpp>\n#include <iostream>\nint main(){auto sid=ock::local_ipc::current_user_sid();if(!sid)return 1;auto text=ock::control_client::quote(*sid);if(!text)return 2;std::cout<<*text;return 0;}\n',encoding='utf-8')
+        with (source/'CMakeLists.txt').open('a',encoding='utf-8') as cmake:
+            cmake.write('''
+find_package(OCK CONFIG REQUIRED COMPONENTS ControlClient Adapter::LocalIPC)
+add_executable(installed_thin thin.cpp)
+target_link_libraries(installed_thin PRIVATE OCK::ControlClient OCK::Adapter::LocalIPC)
+target_link_options(installed_thin PRIVATE /MAP)
+function(check_thin target)
+  if(target MATCHES "^OCK::(Runtime|Control|Dynamic|Workspace)$")
+    message(FATAL_ERROR "Server target in thin client closure: ${target}")
+  endif()
+  get_target_property(links ${target} INTERFACE_LINK_LIBRARIES)
+  foreach(link IN LISTS links)
+    if(link MATCHES "^OCK::")
+      check_thin(${link})
+    endif()
+  endforeach()
+endfunction()
+check_thin(OCK::ControlClient)
+check_thin(OCK::Adapter::LocalIPC)
+''')
     with (source/'CMakeLists.txt').open('a', encoding='utf-8') as cmake:
         for index, header in enumerate(manifest['headers']):
             if header['classification'] != 'experimental': continue
@@ -55,6 +77,22 @@ def main():
     run(base)
     run(['cmake','--build',str(work/'consumer'),'--config',args.config,'--parallel','4'])
     run([str(work/'consumer'/args.config/'installed_b2.exe')])
+    if manifest['stage']=='B3Subset':
+        run([str(work/'consumer'/args.config/'installed_thin.exe')])
+        maps=list((work/'consumer').rglob('installed_thin.map'))
+        assert len(maps)==1,maps
+        link_map=maps[0].read_text(encoding='utf-8',errors='replace')
+        assert all(name in link_map for name in ('ock_ControlClient','ock_Adapter_LocalIPC'))
+        assert not any(name in link_map for name in ('ock_Runtime','ock_Control:','ock_Dynamic'))
+        shutil.copy2(maps[0],evidence/'installed-thin.map')
+        cli_maps=list((producer/'apps/ock').rglob('ock.map'))
+        cli_maps=[path for path in cli_maps if args.config in path.parts]
+        assert len(cli_maps)==1,cli_maps
+        cli_map=cli_maps[0].read_text(encoding='utf-8',errors='replace')
+        assert all(name in cli_map for name in ('ock_ControlClient','ock_Adapter_LocalIPC'))
+        assert not any(name in cli_map for name in ('ock_Runtime','ock_Control:','ock_Dynamic'))
+        shutil.copy2(cli_maps[0],evidence/'ock-cli.map')
+        run([str(relocated/'bin/ock.exe'),'--help'])
     (evidence/'result.json').write_text(json.dumps({'scope':'relocated B2 SDK and standalone public headers', 'passed':True, 'artifacts':str(work), 'sdk_version':manifest['sdk_version']}), encoding='utf-8')
     print('B2 installed consumer and standalone public headers passed:', work, 'evidence:', evidence)
 

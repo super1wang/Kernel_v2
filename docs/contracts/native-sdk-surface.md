@@ -1,15 +1,15 @@
 # D1.06 NativeSubset SDK 表面合同
 
-B2 增量：当前开发 SDK 为 `0.1.0-dev.3 / B2Subset`；B1/B2 历史交付均 Passed，最新收口状态见 progress。Data、Dynamic、ControlProtocol、Control 是可安装静态库；Runtime 目标自身仍为 NativeSubset，最小链接闭包不变。jsoncons 仅供 Data/Dynamic 私有实现编译，不安装其头、不导出其 target。下文原设计来源保留为历史，不是当前重新验收前置。
+B3 增量：当前开发 SDK 为 `0.1.0-dev.4 / B3Subset`；B1/B2 历史 Passed 保留，B3 是否正式放行以 progress 为准。Data、Dynamic、ControlProtocol、Control、ControlClient、Adapter::LocalIPC 是可安装静态库；Runtime 目标自身仍为 NativeSubset，最小链接闭包不变。jsoncons、Asio、CLI11 仅供私有实现编译，不导出其 target。下文原设计来源保留为历史，不是当前重新验收前置。
 
 
 状态：**Current Contract / Implemented**。依据 v3.3 A19、A20、A21.4–A21.6、A22 和 D1.06；Host/日志签名、所有权、错误与停止语义以对应现行合同为准，历史验收不改写。
 
 ## 当前生产选择与安装范围
 
-`OCK_BUILD_COMPONENTS=B2Subset` 为默认生产选择，依赖选择为 Data；`OCK_BUILD_COMPONENTS=Runtime` 要求 `OCK_DEPENDENCY_COMPONENTS=Foundation`，在 BUILD_TESTING=OFF 时也可 configure/build/install，不取得 jsoncons、不创建 Data/Dynamic/Control 目标，只安装 Runtime/CoreContracts/Foundation 头与 Runtime 库、expected。选错依赖在取得前明确拒绝。
+`OCK_BUILD_COMPONENTS=B3Subset` 为默认生产选择，依赖选择为 CLI；该选择同时构建真实管道、客户端和 CLI。`OCK_BUILD_COMPONENTS=Runtime` 要求 `OCK_DEPENDENCY_COMPONENTS=Foundation`，在 BUILD_TESTING=OFF 时也可 configure/build/install，不取得动态/IPC/CLI 依赖、不创建对应目标，只安装 Runtime/CoreContracts/Foundation 头与 Runtime 库、expected。选错依赖在取得前明确拒绝。旧 B2Subset 构建目录须显式重配为 B3Subset，不保留可组合的 B3 独立开关。
 
-同版 SDK 的版本/stage 继续为 `0.1.0-dev.3/B2Subset`（仓库实现基线）；实际安装集合由 `OCK_INSTALLATION_PROFILE` 和安装清单的 `installation_profile/targets/headers` 表达，Runtime 选择不宣称 Data 可用。`find_package(OCK COMPONENTS ...)` 同时核对实际目标存在。安装清单由唯一源清单投影，不维护另一套参数或头列表。具体决定见 [ADR](../adr/ADR-b2-closure-boundaries.md)。
+同版 SDK 的版本/stage 为 `0.1.0-dev.4/B3Subset`（仓库实现基线）；实际安装集合由 `OCK_INSTALLATION_PROFILE` 和安装清单的 `installation_profile/targets/headers` 表达，Runtime 选择不宣称 Data 可用。`find_package(OCK COMPONENTS ...)` 同时核对实际目标存在。安装清单由唯一源清单投影，不维护另一套参数或头列表。具体决定见 [B3 ADR](../adr/ADR-b3-pipe-start.md)。薄客户端只连接 ControlProtocol/Data/CoreContracts/Foundation 与 LocalIPC，不链接 Runtime/Control/Dynamic；Windows bcrypt、advapi32 保留真实静态链接要求。
 
 ## 最初设计基线（历史）
 

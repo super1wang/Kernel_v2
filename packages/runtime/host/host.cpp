@@ -379,6 +379,13 @@ HostSession::HostSession(std::shared_ptr<detail::SessionState> s) noexcept:state
 HostSession::HostSession(HostSession&&) noexcept=default;
 HostSession& HostSession::operator=(HostSession&&) noexcept=default;
 HostSession::~HostSession()=default;
+Result<HostSession::CatalogContext> HostSession::catalog_context() const {
+  auto s = state_;
+  if(!s) return make_unexpected(host_error(HostErrc::InvalidSession));
+  detail::HostAdmission admission(s->host);
+  if(!admission) return make_unexpected(admission.error());
+  return CatalogContext{s->host->catalog,s->authority};
+}
 Result<std::shared_ptr<const policy::VerifiedCaller>> HostSession::verify(const CallerDescription& caller) {
   auto s=state_;if(!s)return failure<std::shared_ptr<const policy::VerifiedCaller>>(HostErrc::InvalidSession);
   detail::HostAdmission admission(s->host);if(!admission)return make_unexpected(admission.error());

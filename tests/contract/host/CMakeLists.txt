@@ -12,7 +12,7 @@ target_compile_features(ock_host_fault_tests PRIVATE cxx_std_20)
 target_compile_options(ock_host_fault_tests PRIVATE /utf-8 /Zc:__cplusplus /permissive- /EHsc /Zc:nrvo-)
 target_link_options(ock_host_fault_tests PRIVATE /VERBOSE:LIB)
 foreach(_case T03.host.ready_gate T03.host.start_order
-    T22.host.pending_report T22.host.lifecycle_reentrancy T03.host.catalog_registration
+    T22.host.pending_report T22.host.lifecycle_reentrancy T03.host.catalog_registration T03.host.catalog_context
     T03.host.native_results T03.host.session_ownership T03.host.delegation_revoke
     T22.host.shutdown_deadline T19.host.logging_ownership
     T22.host.admission_race T22.host.return_lifetime T22.host.shutdown_order

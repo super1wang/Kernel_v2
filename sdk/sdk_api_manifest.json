@@ -1,9 +1,9 @@
 {
   "format": "ock.sdk-api/1",
   "task_id": "B2",
-  "sdk_version": "0.1.0-dev.3",
+  "sdk_version": "0.1.0-dev.4",
   "document_version": "3.3",
-  "stage": "B2Subset",
+  "stage": "B3Subset",
   "review_status": "Pending",
   "targets": {
     "Foundation": {
@@ -278,13 +278,13 @@
     },
     "ControlClient": {
       "export": "OCK::ControlClient",
-      "kind": "INTERFACE_LIBRARY",
+      "kind": "STATIC_LIBRARY",
       "dependencies": [
         "ControlProtocol"
       ],
       "include_root": "packages/control/client/include",
       "namespace_prefix": "ock/control_client/",
-      "implementation": "ContractBaseline",
+      "implementation": "B3Subset",
       "api_classification": "experimental",
       "public_compile_features": [
         "cxx_std_20"
@@ -292,7 +292,14 @@
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
       ],
-      "public_compile_definitions": []
+      "public_compile_definitions": [],
+      "system_dependencies": [
+        {
+          "name": "bcrypt",
+          "platform": "Windows",
+          "link_only": true
+        }
+      ]
     },
     "Adapter::CpuPool": {
       "export": "OCK::Adapter::CpuPool",
@@ -386,13 +393,13 @@
     },
     "Adapter::LocalIPC": {
       "export": "OCK::Adapter::LocalIPC",
-      "kind": "INTERFACE_LIBRARY",
+      "kind": "STATIC_LIBRARY",
       "dependencies": [
         "ControlProtocol"
       ],
       "include_root": "packages/adapters/local_ipc/include",
-      "namespace_prefix": "ock/adapters/local_ipc/",
-      "implementation": "ContractBaseline",
+      "namespace_prefix": "ock/local_ipc/",
+      "implementation": "B3Subset",
       "api_classification": "experimental",
       "public_compile_features": [
         "cxx_std_20"
@@ -400,7 +407,14 @@
       "public_compile_options": [
         "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
       ],
-      "public_compile_definitions": []
+      "public_compile_definitions": [],
+      "system_dependencies": [
+        {
+          "name": "advapi32",
+          "platform": "Windows",
+          "link_only": true
+        }
+      ]
     },
     "Adapter::MCP": {
       "export": "OCK::Adapter::MCP",
@@ -431,7 +445,7 @@
         "CLI11"
       ],
       "owner_task": "D2.06",
-      "implementation": "Planned"
+      "implementation": "B3Subset"
     }
   },
   "headers": [
@@ -445,7 +459,7 @@
       "target": "Foundation",
       "path": "packages/foundation/include/ock/foundation/sdk_version.hpp",
       "classification": "experimental",
-      "sha256": "fdcb78f505859c28554be6149ef8063d1e5b1b946f060a46868b308d943e474b"
+      "sha256": "01d90bde47eff3d554aef2fd0c14a0796f71b31d306b5d71f078ac5c3e751ffc"
     },
     {
       "target": "CoreContracts",
@@ -511,7 +525,7 @@
       "target": "Runtime",
       "path": "packages/runtime/include/ock/runtime/host.hpp",
       "classification": "experimental",
-      "sha256": "6c53eddaa6ad8a343c6d06b113374afe3795337aadaea853f3851d80dac9a279"
+      "sha256": "6fc453a7d3ff422f3fc5a5512c5bd5ac425351aaaa93de5c4177c911bd6d0aa8"
     },
     {
       "target": "Runtime",
@@ -644,6 +658,42 @@
       "path": "packages/control/server/include/ock/control/get_method.hpp",
       "classification": "experimental",
       "sha256": "a2e512152b5cba7064f1fa5d3c8cc2d238940eed89d0b1c4f7dc4fa60f754367"
+    },
+    {
+      "path": "packages/control/protocol/include/ock/control_protocol/transport.hpp",
+      "target": "ControlProtocol",
+      "classification": "experimental",
+      "sha256": "2f1f8a77ef03fd5f1d2982d8e84627ed19aaeb38ff915e2e8baacb0633a9ca3e"
+    },
+    {
+      "path": "packages/control/server/include/ock/control/observation_transport.hpp",
+      "target": "Control",
+      "classification": "experimental",
+      "sha256": "a0a82c91f51498f9e13c7f264f0768fb370ca1c6450843458db7aaa4b1fac9a1"
+    },
+    {
+      "path": "packages/control/client/include/ock/control_client/client.hpp",
+      "target": "ControlClient",
+      "classification": "experimental",
+      "sha256": "5faf81f7b2d773d57d81a60394c983c7ca5cec83210c6fe991cdb68bb1577fa8"
+    },
+    {
+      "path": "packages/control/client/include/ock/control_client/intent.hpp",
+      "target": "ControlClient",
+      "classification": "experimental",
+      "sha256": "5c5f6286d30d10f6aa6ee1ad5fbf1285f6f7e8d0ac1a3880309c775067ecec7c"
+    },
+    {
+      "path": "packages/control/client/include/ock/control_client/watch.hpp",
+      "target": "ControlClient",
+      "classification": "experimental",
+      "sha256": "23868aa7bd99aec3e5dda65755d7265cd867a43f7d2e091123128718328aa6db"
+    },
+    {
+      "path": "packages/adapters/local_ipc/include/ock/local_ipc/pipe.hpp",
+      "target": "Adapter::LocalIPC",
+      "classification": "experimental",
+      "sha256": "8955f533a6f6c99ea32bb12ca9596ba8ee2acd431d7179abd304f691ed3343dd"
     }
   ],
   "candidate_headers": [

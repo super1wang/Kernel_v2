@@ -23,7 +23,7 @@ class B2SurfaceTests(unittest.TestCase):
 
     def test_production_components(self):
         manifest = check.load_manifest()
-        self.assertEqual(manifest['stage'], 'B2Subset')
+        self.assertEqual(manifest['stage'], 'B3Subset')
         for name in ('Data', 'Dynamic', 'ControlProtocol', 'Control'):
             self.assertEqual(manifest['targets'][name]['kind'], 'STATIC_LIBRARY')
         self.assertEqual(check.validate_manifest(manifest), [])
