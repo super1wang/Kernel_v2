@@ -57,3 +57,5 @@ AutomationHost 开/关观察与慢消费者、cursor 有效/MAC 错误/超长成
 `c4b5c97` 首轮正式 Debug 的 124/126 及 Schema 校验失败保留原文。安装探针仍使用旧 Runtime 阶段和未实施 ControlClient 的链接预期，现按当前声明精确检查 Runtime=B5Subset、已实施客户端仅 ControlProtocol 加私有系统 bcrypt（合同占位分支仍只有 ControlProtocol），不允许任意服务端依赖。Executor 清单仅重绑已复核的 ports.hpp、CpuPool 真正 join 与对应线程句柄测试三个摘要，共同用例/能力/资格规则不变。Evidence Schema 增加可缺省的 creation_clock，两个正值有界整数、必需键和未知字段拒绝均明确；真实失败报告的格式及七种损坏变体作为直接回归，历史报告仍保持 Failed。最终矩阵保持 126 项，并将该格式回归作为显式 check，安装子命令和导出材料一并归档。
 
 最终批次验收须逐包给出同一来源的独立 SPEC/CODE 结论与对应机器用例，按 D3.04→D3.05→D3.06→D3.07 的正式前置顺序提交事实，最后才给出 G3 总决定。`progress.md` 是当前状态入口，旧 B1/B2 等 Passed 与所有历史原文保持不变。
+
+`38802f3` Debug 的 126 项和既定 Schema 检查全部成功，但独立 expected 遗漏该 check，整体报告仍保持 Failed。修正只将正式运行前已经在运行清单和本审查中确定的 `CHECK.evidence.creation_clock_schema` 同步到 expected；不改测试数量、行为或从 discovered 选择条件。最终来源重新绑定，三配置必须完整通过。
