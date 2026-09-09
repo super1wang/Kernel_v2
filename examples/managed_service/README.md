@@ -26,6 +26,8 @@ $managedCli = '.\build\b4-debug\apps\ock\Debug\ock.exe'
 
 样例配置固定 2 个 CPU workers、8 个 active 执行、128 条记录、16 个 waiters、输入/结果/终态分别 1 MiB 额度，最多 8 个连接和 16 个 Policy 会话。观察变更环为 1024 条，原始观察 lease 最多 64 个；Policy 每会话 8、每主体 32、全局 64 个订阅，Control 每订阅最多 128 条待发提示。Runtime 自身沿用单控制线程；AutomationHost 的管道 I/O 线程成本需另行计量。此配置不是 G3 的正式 footprint 或线程峰值验收。
 
+终态缓存上限为 32；每次输入/结果预留各最多 16 KiB，在既定 1 MiB 字节预算内给活动执行留出空间。缓存淘汰导致待发提示目标不可用时，Policy 零字节丢弃，订阅继续并在后续可发送提示中报告 gap。
+
 已接线的方法为 capabilities.search/describe、operation.submit、execution.get/wait/cancel/list、result.read 和 notifications.subscribe/unsubscribe；真实执行变化经 notifications.event 发送给 watch。`T20.cli.managed_roundtrip` 使用实际 CLI 子进程验证跨连接结果、并发等待/取消、真实列表、watch 终态确认和会话回收。独立安装、完整观察组合及 G3 仍需后续验收。
 
 ## 列表开发增量
@@ -40,4 +42,8 @@ watch 首个快照立即输出。开发验证还覆盖：观察进程取得非�
 
 Policy 显式配置 48 个发送协调器，供最多 8 个连接分别装配六个端口；协调器数量与 16 个会话额度独立。排队总限额为 256 帧/1 MiB，其中 16 帧/64 KiB 保留给可靠控制响应，通知不能占用；同一协调器优先发送可靠响应，首字节前仍检查当前授权。
 
-`T20.cli.managed_interrupt` 向本测试创建的隐藏控制台发送真实 Ctrl+C：默认仅停止 watch，结果 `stop_observed=false`；显式 `--cancel-on-interrupt` 请求协作取消，结果 `stop_observed=true`，两种观察中断均返回退出码 8。`T20.cli.managed_wire` 验证八连接、订阅 ACK/配额/重连世代、游标绑定拒绝、分页 upper，以及不修改时钟或配置的真实 120 s 游标过期。慢流、实际撤权组合和 G3 正式验收仍需完成。
+`T20.cli.managed_interrupt` 向本测试创建的隐藏控制台发送真实 Ctrl+C：默认仅停止 watch，结果 `stop_observed=false`；显式 `--cancel-on-interrupt` 请求协作取消，结果 `stop_observed=true`，两种观察中断均返回退出码 8。`T20.cli.managed_wire` 验证八连接、订阅 ACK/配额/重连世代、游标绑定拒绝、分页 upper，以及不修改时钟或配置的真实 120 s 游标过期。G3 正式验收仍需完成。
+
+`T20.cli.managed_slow` 停止读取实际观察管道，在确认未发队列非空时通过另一 CLI 连接 get/cancel，并核对可靠完成；恢复读取后验证 gap 与 get 终态。再次形成队列后，通过本进程 stdin 收紧现有会话 Subscribe 授权，确认真实首字节次数不再增加、队列归零。stdin 的 `observation-diagnostics` 仅返回最多八会话的排队字节与饱和计数；`restrict-observers` 只收缩现有会话权限，均不是公开 RPC 或权限提升入口。G3 压力组合与占用正式验收仍继续完成。
+
+`T20.cli.managed_slow_timeout` 在最多 32 个任务内确认真实管道积压且首字节数停止增长，保持控制连接活跃，验证未修改的默认 30 s 超时会清理慢观察连接和队列。丢弃不可用提示不能重置仍有积压的慢读计时。

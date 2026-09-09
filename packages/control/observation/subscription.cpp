@@ -496,6 +496,11 @@ Result<policy::StartResult> SubscriptionConnection::pump() {
       result = s->sender->start_next();
       std::lock_guard lock(s->mutex);
       if(s->closed)return foundation::make_unexpected(error(ProtocolErrc::Closed));
+      // 零字节丢弃不是发送进展；仍有积压时不能重置慢读截止时间。
+      if(!result&&result.error().code()==policy::policy_error(policy::PolicyErrc::TargetUnavailable).code()) {
+        for(auto& entry:s->entries)entry->gap=true;
+        result=policy::StartResult::NotStarted;
+      }
       if (result && *result == policy::StartResult::NotStarted && s->bytes) {
         if (!s->slow_since)
           s->slow_since = s->clock->now();

@@ -353,6 +353,31 @@ int main(int argc, char **argv) try {
   CHECK(events->leases==0 && bounded_transport->frames.empty() && (*bounded)->queued_bytes()==0);
   CHECK((*bounded)->subscribe("small",request)); // 失败没有占用条目，正常小 ACK 仍可用。
   (*bounded)->close();CHECK(events->leases==0);
+  // 排队提示对应的保留记录消失：零字节丢弃并记 gap，不关闭仍有效的连接。
+  auto evicted_transport=std::make_shared<Transport>();
+  auto evicted=control::SubscriptionConnection::create(env.session,env.caller,events,evicted_transport,env.clock,env.source->source_id.host);
+  CHECK(evicted);CHECK((*evicted)->subscribe("evicted",request));
+  events->emit(contracts::ObservationTopic::Phase);CHECK((*evicted)->queued_bytes()>0);
+  auto retained=std::move(env.source->rows);env.source->rows.clear();
+  CHECK((*evicted)->pump()==runtime::policy::StartResult::NotStarted);
+  CHECK(!evicted_transport->closed&&evicted_transport->frames.size()==1&&(*evicted)->queued_bytes()==0);
+  env.source->rows=std::move(retained);events->emit(contracts::ObservationTopic::Phase);
+  CHECK((*evicted)->pump()==runtime::policy::StartResult::Started);
+  control::FrameDecoder evicted_decoder;auto resumed=evicted_decoder.consume(evicted_transport->frames.back());
+  CHECK(resumed&&resumed->message&&resumed->message->view().at("params").at("gap").boolean());
+  (*evicted)->close();CHECK(events->leases==0);
+  // 淘汰丢弃仍为零字节；积压不能借丢弃不断重置慢读期限。
+  auto timed_transport=std::make_shared<Transport>();timed_transport->slow=true;
+  control::SubscriptionBudget timed_budget;timed_budget.transport_timeout=std::chrono::milliseconds(100);
+  auto timed=control::SubscriptionConnection::create(env.session,env.caller,events,timed_transport,env.clock,env.source->source_id.host,timed_budget);
+  CHECK(timed);CHECK((*timed)->subscribe("timed",request));
+  events->emit(contracts::ObservationTopic::Phase);events->emit(contracts::ObservationTopic::Phase);
+  CHECK((*timed)->pump()==runtime::policy::StartResult::NotStarted);
+  env.clock->elapsed+=99;retained=std::move(env.source->rows);env.source->rows.clear();
+  CHECK((*timed)->pump()==runtime::policy::StartResult::NotStarted);CHECK((*timed)->queued_bytes()>0);
+  env.clock->elapsed+=1;CHECK(!(*timed)->pump());
+  CHECK(timed_transport->closed&&events->leases==0&&(*timed)->queued_bytes()==0);
+  env.source->rows=std::move(retained);
   std::cout << "Subscription ack ordering, loss sequence, revoke and cleanup "
                "passed\n";
 } catch (const std::exception &e) {

@@ -51,6 +51,8 @@ sequence 在初步授权/过滤后、合并/丢弃前递增，不因隐藏全局
 
 慢读超过受控transport_timeout时关闭连接并清理。实际字节流已开始的大帧仍有队头阻塞，写调度优先控制应答并限制通知帧。可靠及时控制默认独立认证的观察与控制连接；不要求第二Host。D0显式模型close_slow表示期限已判定，不声称测过真实Named Pipe超时或公平调度。
 
+B5 真实缓存接线：发送前发现提示目标已不可用时，Policy 仍零字节丢弃该帧，Subscription 标记 gap 并继续有限 pump；单个终态正常淘汰不被提升为整条连接故障。此分支只处理 TargetUnavailable，不吞掉撤权、会话关闭、过期或未知发送结果；后续提示仍重新授权，不能根据旧快照继续发送。
+
 ## 列表与cursor
 
 B2 wire 错误映射：观察方法使用 JSON-RPC error，`-32010 / NotAvailable` 统一隐藏对象及无权对象，`-32011 / CursorInvalid`、`-32012 / CursorExpired` 区分续页校验失败，`-32013 / BudgetExceeded` 表示预算拒绝；结构/参数错误仍为 `-32600/-32602`。不把内部政策码直接暴露成可枚举对象存在性的差异。operation 方法的业务 Outcome 映射独立，不能套用观察错误抹去事实。

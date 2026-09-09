@@ -1,0 +1,57 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 99
+    Start 99: T20.cli.managed_slow
+
+99: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed_slow.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe" "J:/Code/Kernel_v2/build/b4-debug/apps/ock/Debug/ock.exe"
+99: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+99: Environment variable modifications: 
+99:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+99: Test timeout computed to be: 120
+99: HOST 16844 managed-wire-3006ad00c82f4c56974a374c20cf5b2b
+99: DIAGNOSTICS {'sessions': 1, 'queued_bytes': 0, 'started': 67}
+99: Connection failure subscription ock.policy:9
+99: 
+99: Traceback (most recent call last):
+99:   File "J:\Code\Kernel_v2\tests\integration\cli\managed_slow.py", line 41, in <module>
+99:     last,blocked=pressure()
+99:                  ^^^^^^^^^^
+99:   File "J:\Code\Kernel_v2\tests\integration\cli\managed_slow.py", line 38, in pressure
+99:     assert 0<state['queued_bytes']<=1024*1024,state
+99:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+99: AssertionError: {'sessions': 1, 'queued_bytes': 0, 'started': 67}
+1/1 Test #99: T20.cli.managed_slow .............***Failed    4.49 sec
+HOST 16844 managed-wire-3006ad00c82f4c56974a374c20cf5b2b
+DIAGNOSTICS {'sessions': 1, 'queued_bytes': 0, 'started': 67}
+Connection failure subscription ock.policy:9
+
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed_slow.py", line 41, in <module>
+    last,blocked=pressure()
+                 ^^^^^^^^^^
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed_slow.py", line 38, in pressure
+    assert 0<state['queued_bytes']<=1024*1024,state
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'sessions': 1, 'queued_bytes': 0, 'started': 67}
+
+
+0% tests passed, 1 tests failed out of 1
+
+Label Time Summary:
+B5       =   4.49 sec*proc (1 test)
+D3.07    =   4.49 sec*proc (1 test)
+
+Total Test time (real) =   4.51 sec
+
+The following tests FAILED:
+	 99 - T20.cli.managed_slow (Failed)                     B5 D3.07

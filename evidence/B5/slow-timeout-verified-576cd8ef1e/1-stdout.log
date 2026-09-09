@@ -1,0 +1,80 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 99
+    Start  99: T20.cli.managed_slow
+
+99: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed_slow.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe" "J:/Code/Kernel_v2/build/b4-debug/apps/ock/Debug/ock.exe"
+99: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+99: Environment variable modifications: 
+99:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+99: Test timeout computed to be: 120
+99: HOST 40940 managed-wire-1ed05c83ab0a48ecba35b57225fa9e2b
+99: DIAGNOSTICS {'sessions': 2, 'queued_bytes': 97591, 'started': 64}
+99: CLI ['execution', 'get'] 0
+99: CLI ['execution', 'cancel'] 0
+99: CLI ['result', 'read'] 0
+99: real slow observer did not block CLI get/cancel or reliable completion
+99: DIAGNOSTICS {'sessions': 2, 'queued_bytes': 66607, 'started': 64}
+99: DIAGNOSTICS {'sessions': 2, 'queued_bytes': 39240, 'started': 64}
+99: DIAGNOSTICS {'sessions': 2, 'queued_bytes': 0, 'started': 130}
+99: DIAGNOSTICS {'sessions': 2, 'queued_bytes': 0, 'started': 162}
+99: resumed real pipe delivered gap; authorized get confirmed terminal 162
+99: DIAGNOSTICS {'sessions': 2, 'queued_bytes': 98060, 'started': 223}
+99: DIAGNOSTICS {'restricted': 2, 'queued_bytes': 98060, 'started': 223}
+99: DIAGNOSTICS {'sessions': 1, 'queued_bytes': 0, 'started': 223}
+99: CLI ['execution', 'get'] 0
+99: revoke with queued real events: no later first byte, queue released, buffered bytes 24924
+99: Connection failure subscription ock.policy:8
+99: 
+1/3 Test  #99: T20.cli.managed_slow .............   Passed   19.53 sec
+test 100
+    Start 100: T20.cli.managed_slow_timeout
+
+100: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed_slow_timeout.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe"
+100: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+100: Environment variable modifications: 
+100:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+100: Test timeout computed to be: 60
+100: HOST 24480 managed-wire-1b69b1b16f43486eb3364bb2ae0b1ee1
+100: real slow queue established 13 {'sessions': 2, 'queued_bytes': 37954, 'started': 161}
+100: slow timeout seconds 5.08 {'sessions': 2, 'queued_bytes': 37954, 'started': 161}
+100: slow timeout seconds 10.14 {'sessions': 2, 'queued_bytes': 37954, 'started': 161}
+100: slow timeout seconds 15.22 {'sessions': 2, 'queued_bytes': 37954, 'started': 161}
+100: slow timeout seconds 20.3 {'sessions': 2, 'queued_bytes': 37954, 'started': 161}
+100: slow timeout seconds 25.36 {'sessions': 2, 'queued_bytes': 37954, 'started': 161}
+100: slow timeout seconds 27.38 {'sessions': 1, 'queued_bytes': 0, 'started': 161}
+100: real default 30 s slow connection timeout released queue; authenticated control remained usable
+2/3 Test #100: T20.cli.managed_slow_timeout .....   Passed   30.61 sec
+test 117
+    Start 117: T19.protocol.subscription
+
+117: Test command: J:\Code\Kernel_v2\build\b4-debug\tests\unit\data\Debug\subscription_contract.exe "J:/Code/Kernel_v2/schemas/rpc-v1/notifications.schema.json" "J:/Code/Kernel_v2/schemas/rpc-v1/common.schema.json"
+117: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/unit/data
+117: Environment variable modifications: 
+117:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+117: Test timeout computed to be: 20
+117: Subscription ack ordering, loss sequence, revoke and cleanup passed
+3/3 Test #117: T19.protocol.subscription ........   Passed    0.35 sec
+
+The following tests passed:
+	T20.cli.managed_slow
+	T20.cli.managed_slow_timeout
+	T19.protocol.subscription
+
+100% tests passed, 0 tests failed out of 3
+
+Label Time Summary:
+B5       =  50.13 sec*proc (2 tests)
+D3.07    =  50.13 sec*proc (2 tests)
+
+Total Test time (real) =  50.51 sec

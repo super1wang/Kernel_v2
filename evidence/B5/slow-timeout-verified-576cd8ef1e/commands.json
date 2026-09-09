@@ -1,0 +1,170 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/b4-debug",
+      "--config",
+      "Debug",
+      "--target",
+      "ock_managed_service",
+      "subscription_contract",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T21:13:29.737612+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 48,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 25384,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T21:13:41.158847+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "74be04ad7be5df3821fec8fed107878747985d442780c2dd097d8c3be78341ca",
+        "size": 1865
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/b4-debug",
+      "-C",
+      "Debug",
+      "-V",
+      "--output-on-failure",
+      "--stop-on-failure",
+      "-R",
+      "^(T20.cli.managed_slow|T20.cli.managed_slow_timeout|T19.protocol.subscription)$"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T21:13:41.161627+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 13,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 47792,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T21:14:31.791837+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "ce72c3aae9106afa6fe2c298582aaa0dfc12bd8edf2ce3c3e504700d0b815154",
+        "size": 4654
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/b4-asan",
+      "--config",
+      "RelWithDebInfo",
+      "--target",
+      "ock_managed_service",
+      "subscription_contract",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T21:14:31.793027+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 52,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 42144,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T21:14:45.124210+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "43fb2794b73cf1dece54b49a68c8750b9f38de6b54c266643f9091c1b39c2710",
+        "size": 1974
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/b4-asan",
+      "-C",
+      "RelWithDebInfo",
+      "-V",
+      "--output-on-failure",
+      "--stop-on-failure",
+      "-R",
+      "^(T20.cli.managed_slow|T20.cli.managed_slow_timeout|T19.protocol.subscription)$"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T21:14:45.126421+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 13,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 48860,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T21:15:36.417943+00:00",
+    "raw": [
+      {
+        "path": "3-stdout.log",
+        "sha256": "5a586baf8c8a94118b664555ec20196c90ae8b750fba6fa37b4945e9d83ee67a",
+        "size": 4702
+      },
+      {
+        "path": "3-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

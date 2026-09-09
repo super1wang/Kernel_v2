@@ -1,0 +1,57 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+UpdateCTestConfiguration  from :J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Parse Config file:J:/Code/Kernel_v2/build/b4-debug/DartConfiguration.tcl
+Test project J:/Code/Kernel_v2/build/b4-debug
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 99
+    Start 99: T20.cli.managed_slow
+
+99: Test command: J:\Code\Kernel_v2\build\runtime\python311\python.exe "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed_slow.py" "J:/Code/Kernel_v2/build/b4-debug/examples/managed_service/Debug/ock_managed_service.exe" "J:/Code/Kernel_v2/build/b4-debug/apps/ock/Debug/ock.exe"
+99: Working Directory: J:/Code/Kernel_v2/build/b4-debug/tests/integration/cli
+99: Environment variable modifications: 
+99:  PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin
+99: Test timeout computed to be: 120
+99: HOST 32476 managed-wire-976ef57b0ed84190a0a73a979f989e8f
+99: Traceback (most recent call last):
+99:   File "J:\Code\Kernel_v2\tests\integration\cli\managed_slow.py", line 41, in <module>
+99:     last,blocked=pressure()
+99:                  ^^^^^^^^^^
+99:   File "J:\Code\Kernel_v2\tests\integration\cli\managed_slow.py", line 36, in pressure
+99:     value=submit();wait(value)
+99:           ^^^^^^^^
+99:   File "J:\Code\Kernel_v2\tests\integration\cli\managed_slow.py", line 29, in submit
+99:     assert value['result']['kind']=='Accepted',value
+99:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+99: AssertionError: {'id': '131', 'jsonrpc': '2.0', 'result': {'kind': 'Rejected', 'reason': {'code': 12, 'domain': 'ock.contracts'}}}
+1/1 Test #99: T20.cli.managed_slow .............***Failed    2.93 sec
+HOST 32476 managed-wire-976ef57b0ed84190a0a73a979f989e8f
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed_slow.py", line 41, in <module>
+    last,blocked=pressure()
+                 ^^^^^^^^^^
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed_slow.py", line 36, in pressure
+    value=submit();wait(value)
+          ^^^^^^^^
+  File "J:\Code\Kernel_v2\tests\integration\cli\managed_slow.py", line 29, in submit
+    assert value['result']['kind']=='Accepted',value
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'id': '131', 'jsonrpc': '2.0', 'result': {'kind': 'Rejected', 'reason': {'code': 12, 'domain': 'ock.contracts'}}}
+
+
+0% tests passed, 1 tests failed out of 1
+
+Label Time Summary:
+B5       =   2.93 sec*proc (1 test)
+D3.07    =   2.93 sec*proc (1 test)
+
+Total Test time (real) =   2.95 sec
+
+The following tests FAILED:
+	 99 - T20.cli.managed_slow (Failed)                     B5 D3.07

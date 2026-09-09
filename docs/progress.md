@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 真实慢流/撤权已接通：消费者实际停止读取管道，在未发队列非空时独立 CLI get/cancel 与可靠完成成功；恢复后收到 gap 并 get 终态，收紧现有会话 Subscribe 后首字节数不再增长、队列释放。修复正常终态淘汰提示导致连接误关闭的问题，且零字节丢弃不重置慢读期限；真实默认 30 s 慢观察超时关闭后控制连接仍可用。前一组真实 CLI/游标/中断/订阅开发验证 Debug **5/5**、ASan **5/5**（[原文索引](../evidence/B5/slow-observer-verified-9806e21101/commands.json)），随后最终计时修正影响集 Debug **3/3**、ASan **3/3**（[原文索引](../evidence/B5/slow-timeout-verified-576cd8ef1e/commands.json)）；不拼成单次 8 项或正式矩阵。样例终态缓存为 32，保持 1 MiB 输入/结果预算；最初满额拒绝与缓存淘汰断线失败原文保留。故障 callback/慢日志/资源冲突/Host stop 组合、完整 Embedded/AutomationHost 占用、SDK 阶段及 B5/G3 正式验收仍继续完成。
+
 - B5 Host 能力已按实际装配发布：默认后端不声明异步/观察，真实后端在 Host 成功 Ready 时发布两项能力；失败启动不发布，关闭后能力元数据不绕过阶段准入。Debug 生命周期直接集 **3/3**（[原文](../evidence/B5/host-capabilities-8cc8c1cbc9/1-stdout.log)）及公开表面检查通过；修改后的公开头再次完成 Embedded 真实构建/迁移安装与 40 次 typed 对比（[命令证据](../evidence/B5/embedded-install-e36595e538/commands.json)）。两项能力不代表 G3 Passed，SDK 阶段收口、完整压力及占用预算仍继续开发。
 
 - B5 新增显式 `Embedded` 生产组合，依赖限定 Foundation/CpuPool（实际仅 expected/thread_pool），安装只导出 Foundation/CoreContracts/Runtime/CpuPool。Debug 完成真实生产构建、迁移安装、公开 SDK 消费者独立编译与 40 次同实现 Invoke/Submit 结果对比、输入拥有性及最终排空；Data 安装请求正确拒绝，链接 map 无动态层（[命令及原文索引](../evidence/B5/embedded-install-9a94a01bca/commands.json)、[消费者输出](../evidence/B5/embedded-install-9a94a01bca/6-stdout.log)）。Profile 架构直接检查 6/6；最初环境 CMake 版本错误及检查器未识别新 Profile 的失败原文保留。当前仍为开发 SDK，能力元数据、完整执行组合及 G3-C footprint/正式验收继续完成。

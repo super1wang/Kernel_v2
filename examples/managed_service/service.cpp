@@ -5,6 +5,7 @@
 #include <iostream>
 #include <mutex>
 #include <thread>
+#include <atomic>
 namespace managed {
 namespace {
 using namespace runtime;
@@ -70,7 +71,7 @@ struct Factory final:host::HostExecutionFactoryPort {
     auto made=cpu_pool::Executor::create({2,8});if(!made)return foundation::make_unexpected(made.error());
     std::shared_ptr<contracts::ExecutorControlPort> pool=std::move(*made);threads->executor=pool;
     host::ExecutionOptions options;options.active=8;options.subjects={{principal().principal_id,1,2}};
-    options.limits.records=128;options.limits.terminal_records=128;options.limits.input_bytes=1024*1024;
+    options.limits.records=128;options.limits.terminal_records=32;options.limits.input_bytes=1024*1024;
     options.limits.reply_bytes=1024*1024;options.limits.terminal_bytes=1024*1024;options.limits.waiters=16;
     options.limits.observation_leases=64;
     auto backend=host::make_executions(id,pool,options);
@@ -93,6 +94,27 @@ struct Lifecycle final:host::ModuleLifecyclePort {
   Result<void> start(const host::ModuleContext&)override{return {};}
   host::ModuleStopResult stop()override{return {true,{}};}
 };
+// 验证消费者只计量真实首字节；不改变传输额度或仲裁结果。
+struct ObservedSink final:control::FrameSink {
+  std::shared_ptr<local_ipc::Connection> connection;
+  std::shared_ptr<std::atomic<std::uint64_t>> started;
+  ObservedSink(std::shared_ptr<local_ipc::Connection> c,std::shared_ptr<std::atomic<std::uint64_t>> n)
+      :connection(std::move(c)),started(std::move(n)){}
+  Result<void> queue_frame(std::span<const std::byte> bytes,control::FramePriority priority)override {
+    return connection->queue_frame(bytes,priority);
+  }
+  Result<std::unique_ptr<control::FrameBufferReservation>> reserve_frame(std::size_t size,control::FramePriority priority)override {
+    return connection->reserve_frame(size,priority);
+  }
+  control::ByteStart start_frame(control::FrameBufferReservation& reservation,std::span<const std::byte> bytes)noexcept override {
+    auto result=connection->start_frame(reservation,bytes);
+    if(result==control::ByteStart::Started) {
+      auto value=started->load();while(value!=UINT64_MAX&&!started->compare_exchange_weak(value,value+1)){}
+    }
+    return result;
+  }
+  void close()noexcept override{connection->close();}
+};
 Result<Output> compute(const Input& input,contracts::WorkContext& context) {
   auto deadline=std::chrono::steady_clock::now()+std::chrono::milliseconds(input.delay_ms);
   while(std::chrono::steady_clock::now()<deadline&&!context.stop_requested())std::this_thread::sleep_for(std::chrono::milliseconds(1));
@@ -113,6 +135,9 @@ struct Service::State {
   std::shared_ptr<Factory> factory=std::make_shared<Factory>(threads);
   std::mutex mutex;
   std::vector<std::shared_ptr<local_ipc::Connection>> connections;
+  struct Observer {std::weak_ptr<host::HostSession> session;std::weak_ptr<control::SubscriptionConnection> subscription;};
+  std::vector<Observer> observers;
+  std::shared_ptr<std::atomic<std::uint64_t>> notification_started=std::make_shared<std::atomic<std::uint64_t>>(0);
   std::optional<foundation::ErrorCode> connection_error;
   std::string_view error_stage;
   void failed(std::string_view stage,foundation::ErrorCode code) {
@@ -157,7 +182,7 @@ struct Service::State {
     if(!list_schema)return foundation::make_unexpected(list_schema.error());
     context->list=*list;methods->push_back({"execution.list",std::move(*list_schema),*list});
     auto events=factory->events.lock();if(!events)return foundation::make_unexpected(host::host_error(host::HostErrc::UnsupportedCapability));
-    auto notifications=control::ProtocolObservationTransport::create(std::move(connection));
+    auto notifications=control::ProtocolObservationTransport::create(std::make_shared<ObservedSink>(std::move(connection),notification_started));
     if(!notifications)return foundation::make_unexpected(notifications.error());
     auto subscriptions=control::SubscriptionConnection::create(source->authorization,*caller,events,*notifications,clock,host->incarnation());
     if(!subscriptions)return foundation::make_unexpected(subscriptions.error());
@@ -167,7 +192,12 @@ struct Service::State {
     for(auto& method:*observed)methods->push_back(std::move(method));
     control::Hello hello{"sample.managed",incarnation,incarnation,{}, {},"managed",65536};
     auto router=control::Router::create(std::move(hello),*caller,std::move(*methods));if(!router)return foundation::make_unexpected(router.error());
-    context->router.emplace(std::move(*router));return context;
+    context->router.emplace(std::move(*router));
+    {std::lock_guard lock(mutex);
+      std::erase_if(observers,[](const auto& observer){return observer.session.expired();});
+      if(observers.size()>=8)return foundation::make_unexpected(host::host_error(host::HostErrc::BudgetExceeded));
+      observers.push_back({context->session,context->subscriptions});}
+    return context;
   }
 };
 Result<std::unique_ptr<Service>> Service::create(std::string sid) {
@@ -244,6 +274,25 @@ Result<void> Service::shutdown() {
   if(error)std::cerr<<"Connection failure "<<stage<<' '<<error->domain().name()<<':'<<error->value()<<'\n';
   if(state->host)drained=state->host->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(5)).quiescent&&drained;
   if(!drained)return foundation::make_unexpected(host::host_error(host::HostErrc::BudgetExceeded));return {};
+}
+Service::ObservationDiagnostics Service::observation_diagnostics()const {
+  auto state=state_;ObservationDiagnostics result;
+  std::vector<std::shared_ptr<control::SubscriptionConnection>> subscriptions;
+  {std::lock_guard lock(state->mutex);for(const auto& observer:state->observers)
+    if(auto subscription=observer.subscription.lock())subscriptions.push_back(std::move(subscription));}
+  for(const auto& subscription:subscriptions){++result.sessions;result.queued_bytes+=subscription->queued_bytes();}
+  result.started=state->notification_started->load();return result;
+}
+Result<std::size_t> Service::restrict_observers() {
+  auto state=state_;std::vector<std::shared_ptr<host::HostSession>> sessions;
+  {std::lock_guard lock(state->mutex);for(const auto& observer:state->observers)
+    if(auto session=observer.session.lock())sessions.push_back(std::move(session));}
+  auto scope=rules();std::erase_if(scope,[](const auto& rule){return rule.use==policy::AccessUse::Subscribe;});
+  for(const auto& session:sessions) {
+    auto restricted=session->restrict_delegation({scope,state->clock->now()+std::chrono::minutes(5),false});
+    if(!restricted)return foundation::make_unexpected(restricted.error());
+  }
+  return sessions.size();
 }
 Service::~Service(){(void)shutdown();}
 }

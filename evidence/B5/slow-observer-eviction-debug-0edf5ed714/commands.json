@@ -1,0 +1,86 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/b4-debug",
+      "--config",
+      "Debug",
+      "--target",
+      "ock_managed_service",
+      "subscription_contract",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T21:05:09.209945+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 35,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "pid": 56728,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T21:05:18.635107+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "90aa55c1cf81be8ca21fc85e1ccbe5a00909d7349a511f9f9f6a31b4be9c751d",
+        "size": 1429
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/b4-debug",
+      "-C",
+      "Debug",
+      "-V",
+      "--output-on-failure",
+      "--stop-on-failure",
+      "-R",
+      "^(T20.cli.managed_slow|T19.protocol.subscription)$"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-09T21:05:18.637343+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 10,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "pid": 68408,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-09T21:05:36.214015+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "739175eb41ea2b6fea510a19af88876a96066710569c1875b39b5954ba7e55b5",
+        "size": 19969
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  }
+]

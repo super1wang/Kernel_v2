@@ -43,6 +43,9 @@ public:
   ~Service();
   Result<std::unique_ptr<local_ipc::Server>> listen(std::string instance);
   Result<void> shutdown();
+  struct ObservationDiagnostics {std::size_t sessions=0,queued_bytes=0;std::uint64_t started=0;};
+  ObservationDiagnostics observation_diagnostics() const;
+  Result<std::size_t> restrict_observers();
 private:
   struct State;
   explicit Service(std::shared_ptr<State> state):state_(std::move(state)){}
