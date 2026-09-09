@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 已增加不含阶段握手等待的 QPC 构造至 Ready 直接窗口，并完成 Debug、Release 各一组 ABBA pilot（[Debug 原文](../evidence/B5/embedded-pilot-d77caf1f8d/pilot.json)、[Release 原文](../evidence/B5/embedded-pilot-e2cb99d25c/pilot.json)）。两次实际 Embedded 直接样本分别为 Debug 3.6086 / 2.8452 ms、Release 1.1593 / 0.9791 ms；Release EXE 为 655360 字节、基准 15872 字节，模块与内存原文单列。Release 从真实 Embedded 生产配置构建并安装（[命令](../evidence/B5/embedded-release-install-60e8fa7555/commands.json)），两配置均保持 Ready 增加 3 个线程、shutdown 回到基准。这些是未批准预算的校准样本；occupancy 模式启动器 create→Ready 仍含阶段采样干扰，不作为正式纯启动时延，分配/AutomationHost/正式有限预算与 B5/G3 继续完成。
+
 - B5 Embedded 首组实际占用 pilot 发现 CpuPool shutdown 仅 drain、空闲 workers 延迟到最后 owner 才退出；已修复为关闭成功前实际 join，并串行化并发 drain/shutdown。保留 Executor 的真实 Windows 线程句柄已验证退出，含超时/并发 drain/重复关闭及 Host 组合，Debug **10/10**、ASan **10/10**（[最终直接集](../evidence/B5/worker-shutdown-a5a121c3a9/commands.json)）。消费者复用 fixture 并标记真实 Ready、shutdown 与分层 owner 释放；修正前后两组 Debug ABBA pilot 原文均保留（[修正前](../evidence/B5/embedded-pilot-c4cd74851c/pilot.json)、[修正后](../evidence/B5/embedded-pilot-fb0550884a/pilot.json)）。两次 Embedded Ready 均为基准 4 + 内核 3 个线程，修正后 shutdown 即回到 4，不再等待 Bound/Session 释放；这是阶段采样及直接句柄证据，尚非连续线程峰值或正式有限预算。原生样例独立编译运行通过（[安装及命令](../evidence/B5/worker-shutdown-install-14904889e1/commands.json)），分配、Release 纯时延、AutomationHost 对照及 B5/G3 正式验收继续完成。
 
 - B5 Embedded 迁移安装消费者已实际运行同一独占资源上的父子执行：child WaitingResources、父 WaitingChild、父取消传播及双方结果正确；默认内存日志可读，原 40 次 Invoke/Submit 拥有输入对比和最终排空保持。全新 Debug 生产构建、仅 expected/thread_pool 依赖取得、迁移公开 SDK 消费、Data 拒绝及链接 map 检查通过（[原始命令](../evidence/B5/embedded-install-732aa26205/commands.json)）。这是完整执行组合的功能证据，线程/内存/Ready/分配预算及 B5/G3 正式验收仍继续完成。

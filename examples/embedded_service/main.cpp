@@ -1,5 +1,7 @@
 #include "fixture.hpp"
 struct Hooks {
+  void begin_construction(){}
+  void ready(){}
   void stage(unsigned,unsigned,unsigned){}
   template<class F> void measure(const char*,unsigned,bool,F&& work){work();}
 };

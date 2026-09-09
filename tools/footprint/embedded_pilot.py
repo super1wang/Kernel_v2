@@ -50,14 +50,17 @@ def main():
         output=(out/(label+'-stdout.log')).read_text(encoding='utf-8').splitlines()
         result=json.loads(output[-1]);assert result['kind']==kind and result['released'] is True
         if kind=='embedded':
-            assert result=={'kind':'embedded','workers':2,'warmup':4,'invoke':40,'submit':40,
+            assert {k:v for k,v in result.items() if k not in ('construction_ticks','qpc_frequency')}=={'kind':'embedded','workers':2,'warmup':4,'invoke':40,'submit':40,
                 'resource_child_cancel':True,'default_memory_log':True,'released':True}
+        assert type(result['construction_ticks']) is int and result['construction_ticks']>=0
+        assert type(result['qpc_frequency']) is int and result['qpc_frequency']>0
         obs=record['observation'];samples=obs['samples']
         phases={s['reason']:s for s in samples if s.get('thread_ids') is not None}
         paths=sorted({p for group in obs['modules'] for p in group['paths']})
         summary={'kind':kind,'run':label,'binary':{'path':str(binary),'bytes':binary.stat().st_size,'sha256':digest(binary)},
           'modules':[{'path':p,'bytes':Path(p).stat().st_size,'sha256':digest(Path(p))} for p in paths],
-          'ready':obs['ready'],'private_bytes':statistics([s['private_bytes'] for s in samples]),
+          'ready':obs['ready'],'construction_ms':result['construction_ticks']*1000/result['qpc_frequency'],
+          'private_bytes':statistics([s['private_bytes'] for s in samples]),
           'working_set_bytes':statistics([s['working_set_bytes'] for s in samples]),
           'boundary_threads':{k:len(v['thread_ids']) for k,v in phases.items()},
           'boundaries':{k:{f:v[f] for f in ('private_bytes','working_set_bytes','peak_working_set_bytes','peak_commit_bytes')} for k,v in phases.items()},
