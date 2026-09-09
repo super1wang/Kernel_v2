@@ -6,7 +6,7 @@
 
 namespace ock::runtime::executions::detail {
 // Host 与内部 typed 适配共用的逐执行 owner；控制循环消费可靠 pending，wake 仅作唤醒。
-class ManagedInvocation final : public ManagedControl, public contracts::ExecutionScopePort,
+class ManagedInvocation final : public ManagedControl, public registry::detail::InvocationScopePort,
                                 public std::enable_shared_from_this<ManagedInvocation> {
 public:
   using Record=InvocationRecordBase;
@@ -39,7 +39,7 @@ public:
     auto parent=record_->material(),child=record.material();
     if(table_!=table || parent->session!=child->session ||
        parent->caller->view().description().principal!=child->caller->view().description().principal ||
-       record.options().deadline>record_->options().deadline)
+       record.options().deadline>deadline())
       return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::InvalidAuthority));
     auto current=parent->caller->view().revalidate();
     if(!current)return contracts::make_unexpected(current.error());
@@ -161,6 +161,13 @@ public:
     return fail();
   }
   bool finished() const noexcept override {return finished_.load(std::memory_order_acquire);}
+  scheduler::Time deadline() const noexcept override {
+    return scheduler::Time{scheduler::Time::duration{deadline_.load(std::memory_order_acquire)}};
+  }
+  void admitted(scheduler::Time value) noexcept override {
+    auto next=value.time_since_epoch().count(),old=deadline_.load(std::memory_order_acquire);
+    while(next<old)if(deadline_.compare_exchange_weak(old,next,std::memory_order_acq_rel)) {signal();break;}
+  }
   contracts::ExecutionRef execution() const noexcept override {return entry_->execution();}
   const std::shared_ptr<ExecutionTable::Entry>& entry() const noexcept {return entry_;}
 private:
@@ -171,7 +178,8 @@ private:
       std::shared_ptr<Record> record,std::function<void()> wake,std::shared_ptr<ChildLink> parent,
       std::size_t children_limit)
       :table_(std::move(table)),scheduler_(std::move(scheduler)),record_(std::move(record)),wake_(std::move(wake)),
-       parent_(std::move(parent)),children_(children_limit),depth_(parent_?parent_->depth():1) {}
+       parent_(std::move(parent)),children_(children_limit),depth_(parent_?parent_->depth():1),
+       deadline_(record_->options().deadline.time_since_epoch().count()) {}
   void signal() noexcept {
     pending_.store(true,std::memory_order_release);
     try {if(wake_)wake_();}catch(...){}
@@ -269,6 +277,7 @@ private:
   std::shared_ptr<ChildLink> parent_;
   std::vector<ChildSlot> children_;
   const std::size_t depth_;
+  std::atomic<scheduler::Time::duration::rep> deadline_;
   std::size_t children_remaining_=0;
   std::uint64_t next_child_generation_=1;
   bool accept_children_=false,cancel_requested_=false,body_completed_=false;

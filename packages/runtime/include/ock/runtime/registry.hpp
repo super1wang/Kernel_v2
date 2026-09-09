@@ -192,6 +192,11 @@ struct SubmissionStorage {
 };
 // 热条目没有冷描述指针。处理器及其真实类型见证只可被注册器保存。
 namespace detail {
+// 仅受管理入口回传当前准入期限；公开 scope 不提供修改期限的权限。
+class InvocationScopePort : public ExecutionScopePort {
+public:
+  virtual void admitted(std::chrono::steady_clock::time_point) noexcept=0;
+};
 inline thread_local bool execution_callback_active=false;
 class ExecutionCallbackFrame final {
 public:

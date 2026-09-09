@@ -36,6 +36,7 @@ int main(int argc,char**argv) {
     {"T06.native.host_structured_admission",host_structured_admission},
     {"T03.native.host_async_completion",host_async_completion},
     {"T03.native.host_async_drain",host_async_drain},
+    {"T03.native.host_async_deadline",host_async_deadline},
 #endif
     {"T03.native.managed_execution_path",managed_execution_path},
     {"T03.native.managed_execution_resource_wait",managed_execution_resource_wait},

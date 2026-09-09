@@ -5,20 +5,24 @@
 #include <ock/adapters/cpu_pool/cpu_pool.hpp>
 namespace native_test {
 inline std::atomic<bool> service_entered=false,service_release=false;
+inline std::atomic<bool> service_stopped=false;
 inline host::NativeHost* service_host=nullptr;
 inline std::atomic<bool> service_host_reentrant=false;
-inline Result<int> service_handler(const int& value,WorkContext&) {
+inline Result<int> service_handler(const int& value,WorkContext& work) {
   if(service_host)service_host_reentrant=service_host->shutdown_until(std::chrono::steady_clock::now()).disposition==host::ShutdownDisposition::Reentrant;
   service_entered.store(true);
   const auto deadline=std::chrono::steady_clock::now()+std::chrono::seconds(5);
-  while(!service_release.load()&&std::chrono::steady_clock::now()<deadline)std::this_thread::yield();
+  while(!service_release.load()&&std::chrono::steady_clock::now()<deadline) {
+    if(work.stop_requested())service_stopped=true;
+    std::this_thread::yield();
+  }
   return value+2;
 }
 void execution_service_control() {
   using Service=executions::detail::ExecutionService;
   using Table=executions::detail::ExecutionTable;
   using Record=executions::detail::InvocationRecord<int,int>;
-  service_entered=false;service_release=false;
+  service_entered=false;service_release=false;service_stopped=false;
   Env env(false,service_handler);env.threads->any_thread=true;env.threads->role=ThreadRole::Worker;
   auto bound=env.bind();CHECK(bound);
   auto made_pool=ock::cpu_pool::Executor::create({2,2});CHECK(made_pool);
@@ -31,11 +35,14 @@ void execution_service_control() {
       [](const int&)->Result<std::size_t>{return 4;},
       [](const InvokeReply<int>&)->Result<std::size_t>{return sizeof(InvokeReply<int>);}};
   auto resolver=[](std::span<const registry::ResourceRef> refs)->Result<std::vector<resources::Claim>> {CHECK(refs.empty());return std::vector<resources::Claim>{};};
-  auto reply=(*service)->submit(*bound,4,env.options(),storage,resolver);CHECK(std::holds_alternative<Accepted>(reply));
+  auto options=env.options();options.deadline=std::chrono::steady_clock::now()+std::chrono::milliseconds(200);
+  auto reply=(*service)->submit(*bound,4,options,storage,resolver);CHECK(std::holds_alternative<Accepted>(reply));
   auto ref=std::get<Accepted>(reply).execution;CHECK(!ref.execution_id.empty());
   const auto start_deadline=std::chrono::steady_clock::now()+std::chrono::seconds(2);
   while(!service_entered.load()&&std::chrono::steady_clock::now()<start_deadline)std::this_thread::yield();
   CHECK(service_entered.load());CHECK((*service)->active()==1);
+  while(!service_stopped.load()&&std::chrono::steady_clock::now()<start_deadline)std::this_thread::yield();
+  CHECK(service_stopped.load());CHECK((*service)->active()==1);
   auto second_bound=env.bind();CHECK(second_bound); // 独立调用槽，明确验证服务容量拒绝。
   CHECK(std::holds_alternative<Rejected>((*service)->submit(*second_bound,5,env.options(),storage,resolver)));
   auto source=std::make_shared<executions::detail::ExecutionSource>(*table);

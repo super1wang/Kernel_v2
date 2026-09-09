@@ -2,6 +2,7 @@
 #include "managed_execution.hpp"
 #include "execution_queries.hpp"
 #include <thread>
+#include <map>
 namespace ock::runtime::executions::detail {
 // 显式启用的共享执行服务；NativeSubset 不创建此对象，因此不新增线程。
 // 生命周期由 Host 控制 owner 管理，业务不得在所属 worker 销毁控制 owner。
@@ -17,7 +18,11 @@ private:
       std::unique_lock lock(mutex);changed.wait_until(lock,deadline,[&]{return dirty;});
     }
   };
-  struct Slot {bool reserved=false;std::shared_ptr<ManagedControl> execution;};
+  using Deadlines=std::multimap<scheduler::Time,std::size_t>;
+  struct Slot {
+    bool reserved=false,expired=false;std::shared_ptr<ManagedControl> execution;
+    std::optional<Deadlines::iterator> timer;
+  };
   struct State {
     std::shared_ptr<ExecutionTable> table;
     std::shared_ptr<scheduler::Scheduler> scheduler;
@@ -27,6 +32,7 @@ private:
     Options options;
     std::mutex mutex;std::condition_variable stopped;
     std::vector<Slot> slots;
+    Deadlines deadlines;
     std::size_t used=0,cursor=0;
     bool closing=false,exited=false;
     std::thread::id control_id;
@@ -86,13 +92,18 @@ public:
       std::lock_guard lock(s->mutex);
       if(s->closing||s->used==s->slots.size())return contracts::Rejected{contracts::error(contracts::ContractsErrc::BudgetExceeded)};
       for(std::size_t i=0;i<s->slots.size();++i)if(!s->slots[i].reserved){slot=i;break;}
-      foundation::invariant(slot<s->slots.size());s->slots[slot].reserved=true;++s->used;
+      foundation::invariant(slot<s->slots.size());
+      try {s->slots[slot].timer=s->deadlines.emplace(record->options().deadline,slot);}
+      catch(...) {return contracts::Rejected{contracts::error(contracts::ContractsErrc::BudgetExceeded)};}
+      s->slots[slot].expired=false;s->slots[slot].reserved=true;++s->used;
     }
     struct Reservation {
       std::shared_ptr<State> state;std::size_t slot;bool installed=false;
       ~Reservation() {
         if(installed)return;
-        {std::lock_guard lock(state->mutex);state->slots[slot].reserved=false;--state->used;}
+        {std::lock_guard lock(state->mutex);auto& entry=state->slots[slot];
+          if(entry.timer)state->deadlines.erase(*entry.timer);
+          entry.timer.reset();entry.reserved=false;--state->used;}
         state->wake->signal();
       }
     } reservation{s,slot};
@@ -106,7 +117,7 @@ public:
       bool closing;
       {
         std::lock_guard lock(s->mutex);s->slots[slot].execution=*execution;
-        reservation.installed=true;closing=s->closing;
+        reservation.installed=true;closing=s->closing||s->slots[slot].expired;
       }
       if(closing)(*execution)->cancel();
       s->wake->signal();
@@ -172,13 +183,33 @@ private:
         std::shared_ptr<ManagedControl> entry;std::size_t slot;
         {std::lock_guard lock(s->mutex);slot=s->cursor;s->cursor=(s->cursor+1)%s->slots.size();entry=s->slots[slot].execution;}
         if(!entry)continue;
+        {
+          std::lock_guard lock(s->mutex);auto& current=s->slots[slot];
+          if(current.timer&&entry->deadline()<(*current.timer)->first) {
+            auto node=s->deadlines.extract(*current.timer);node.key()=entry->deadline();
+            current.timer=s->deadlines.insert(std::move(node));
+          }
+        }
         if(entry->pending())entry->drive();
         if(entry->finished()) {
           std::shared_ptr<ManagedControl> retired;
           {std::lock_guard lock(s->mutex);if(s->slots[slot].execution==entry) {
             retired=std::move(s->slots[slot].execution);s->slots[slot].reserved=false;--s->used;
+            if(s->slots[slot].timer)s->deadlines.erase(*s->slots[slot].timer);
+            s->slots[slot].timer.reset();
           }}
         }
+      }
+      for(std::size_t n=0;n<s->options.control_batch;++n) {
+        std::shared_ptr<ManagedControl> expired;
+        {
+          std::lock_guard lock(s->mutex);auto timer=s->deadlines.begin();
+          if(timer==s->deadlines.end()||timer->first>std::chrono::steady_clock::now())break;
+          auto& slot=s->slots[timer->second];slot.expired=true;slot.timer.reset();
+          expired=slot.execution;s->deadlines.erase(timer);
+        }
+        // stop 回调可以完成或释放 owning 输入；绝不在服务锁内调用。
+        if(expired)(void)expired->cancel();
       }
       s->scheduler->pump(std::chrono::steady_clock::now(),s->options.control_batch);
       s->table->trim(s->options.control_batch);
@@ -187,7 +218,9 @@ private:
         s->exited=true;s->stopped.notify_all();return;
       }}
       if(remaining)continue;
-      s->wake->wait(s->scheduler->next_deadline().value_or(scheduler::Time::max()));
+      auto deadline=s->scheduler->next_deadline().value_or(scheduler::Time::max());
+      {std::lock_guard lock(s->mutex);if(!s->deadlines.empty())deadline=std::min(deadline,s->deadlines.begin()->first);}
+      s->wake->wait(deadline);
     }
   }
   std::shared_ptr<State> state_;

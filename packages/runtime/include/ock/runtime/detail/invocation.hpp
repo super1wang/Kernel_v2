@@ -240,6 +240,8 @@ private:
       auto admitted = detail::validate_call(*state,*slot,projection,args,options);
       if (!admitted) return rejected(admitted.error());
       admission.emplace(std::move(*admitted));
+      if(auto scope=std::dynamic_pointer_cast<registry::detail::InvocationScopePort>(execution))
+        scope->admitted(admission->deadline());
       auto budget = foundation::CheckedCount<std::uint64_t>::create(0, options.work_limit);
       if (!budget) return rejected(budget.error());
       WorkContext work(options.stop, admission->deadline(), *budget, state->trace,
@@ -366,6 +368,8 @@ private:
         std::shared_ptr<contracts::ExecutionScopePort> scope,std::unique_ptr<contracts::ResourceLease> lease) {
       record_=weak_.lock();foundation::invariant(bool(record_));
       admission_.emplace(std::move(admission));lease_=std::move(lease);view_=lease_.get();
+      if(auto current=std::dynamic_pointer_cast<registry::detail::InvocationScopePort>(scope))
+        current->admitted(admission_->deadline());
       auto budget=foundation::CheckedCount<std::uint64_t>::create(0,record_->options_.work_limit);
       foundation::invariant(bool(budget));
       work_.emplace(record_->combined_.get_token(),admission_->deadline(),*budget,record_->bound_.state_->trace,

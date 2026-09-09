@@ -215,5 +215,21 @@ void host_async_drain() {
   CHECK(fixture.host->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(2)).quiescent);
   async_children={};
 }
+void host_async_deadline() {
+  release_async();AsyncHost fixture;auto bound=fixture.bind();CHECK(bound);
+  auto options=fixture.options();options.deadline=std::chrono::steady_clock::now()+std::chrono::milliseconds(200);
+  auto ref=accepted_ref(bound->submit(async_input('d'),options));
+  async_until([]{return bool(pending_async());});auto call=pending_async();
+  std::atomic<bool> stopped=false;
+  std::stop_callback callback(call->work().stop_token(),[&]{stopped=true;});
+  async_until([&]{return stopped.load();});CHECK(call->work().stop_requested());
+  CHECK(fixture.phase(ref)!=ExecutionPhase::Terminal);
+  CHECK(call->input().text==std::string(1024,'d'));CHECK(call->reader().read()==7);
+  CHECK(call->complete(7)); // 到期不能覆盖已经发生的读结果，owner 尚在仍不得早终态。
+  async_until([&]{return fixture.phase(ref)==ExecutionPhase::Finalizing;});
+  release_async();call.reset();auto done=fixture.wait(ref);
+  CHECK(done&&done->state==host::ExecutionWaitState::Terminal);
+  auto value=fixture.session->result<int>(*fixture.caller,ref);CHECK(value&&result(*value->value)==7);
+}
 }
 #endif
