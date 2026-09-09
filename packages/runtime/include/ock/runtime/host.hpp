@@ -138,6 +138,7 @@ struct ExecutionOptions {
   std::vector<resources::Slot> slots;
   std::vector<resources::Alias> aliases;
   std::vector<ExecutionResource> resources;
+  std::shared_ptr<RequiredRecordPort> required_record;
 };
 enum class ExecutionWaitState : std::uint8_t { Terminal, Timeout, Cancelled };
 struct ExecutionWaitReply {

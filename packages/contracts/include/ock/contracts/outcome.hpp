@@ -490,6 +490,31 @@ public:
   }
   EvidenceState evidence() const noexcept { return evidence_; }
   const OutcomeConditions &conditions() const noexcept { return conditions_; }
+  // 消费已有验证结果，只追加必要记录状态；不复制或重新验证业务 R。
+  Result<Outcome> with_required_record(RequiredRecordState next,
+                                      std::optional<RecordFailure> failure={}) && {
+    const auto previous=conditions_.finalization.record_state;
+    if(!((previous==RequiredRecordState::NotRequired&&next==RequiredRecordState::Pending)||
+         (previous==RequiredRecordState::Pending&&
+          (next==RequiredRecordState::Recorded||next==RequiredRecordState::Failed))))
+      return make_unexpected(error(ContractsErrc::InvalidPhase));
+    if((next==RequiredRecordState::Failed)!=failure.has_value())
+      return make_unexpected(error(ContractsErrc::InvalidFact));
+    if(failure) {
+      bool durable=false,effect=false;
+      for(const auto& fact:facts_->values()) {
+        if(auto commit=std::get_if<CommitFact>(&fact))durable|=commit->durability==CommitDurability::DurableCommitted;
+        effect|=std::holds_alternative<EffectFact>(fact)||std::holds_alternative<UnknownFact>(fact);
+      }
+      auto repair=durable?RepairKind::CommitLedger:effect?RepairKind::ReceiptReconcile:RepairKind::ManualReview;
+      if(!failure->writes_blocked||!failure->reason.code().value()||failure->repair!=repair)
+        return make_unexpected(error(ContractsErrc::InvalidFact));
+    }
+    auto conditions=conditions_;conditions.finalization.record_state=next;
+    conditions.record_failure=std::move(failure);
+    return Outcome{std::move(value_),std::move(facts_),
+        next==RequiredRecordState::Failed?EvidenceState::RequiredRecordFailed:evidence_,std::move(conditions)};
+  }
   Result<void> revalidate(const OutcomeValidation &v,
                           const OutcomeConditions &expected,
                           const KnownFacts &previous) const {

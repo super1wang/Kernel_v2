@@ -131,10 +131,10 @@ public:
     if(!contains(entry))return failure();
     auto valid=contracts::validate_phase_change(entry->summary_.phase,phase,conditions);
     if(!valid)return valid;
+    valid=validate_record_state(entry->summary_,conditions.finalization.record_state,conditions.record_failure);
+    if(!valid)return valid;
     auto version=entry->summary_.version.next();if(!version)return contracts::make_unexpected(version.error());
-    // 本窄路径尚不接收 required-record 失败；不能生成不一致的摘要。
-    if(conditions.record_failure||conditions.finalization.record_state!=contracts::RequiredRecordState::NotRequired)
-      return contracts::reject(contracts::ContractsErrc::InvalidFact);
+    apply_record_state(entry->summary_,conditions.finalization.record_state,conditions.record_failure);
     entry->summary_.phase=phase;entry->summary_.version=*version;
     if(phase==contracts::ExecutionPhase::Terminal) {
       // 接受前已预留同类 map node；终态发布只转移节点，不分配新的索引材料。
@@ -144,9 +144,19 @@ public:
     if(phase==contracts::ExecutionPhase::Terminal&&entry->accepted_) {
       ++terminal_count_;terminal_bytes_+=entry->reservation_->reply;
     }
-    if(fault)entry->summary_.fault=contracts::Error{fault->code()};
+    if(fault&&!conditions.record_failure)entry->summary_.fault=contracts::Error{fault->code()};
     if(phase==contracts::ExecutionPhase::Terminal)entry->changed_.notify_all();
     return {};
+  }
+  // 同一 Finalizing 内可以发布记录报告；报告不等于 callback 已排空。
+  contracts::Result<void> record_status(const std::shared_ptr<Entry>& entry,
+      contracts::RequiredRecordState state,const std::optional<contracts::RecordFailure>& failure) {
+    std::lock_guard lock(mutex_);
+    if(!contains(entry)||entry->summary_.phase==contracts::ExecutionPhase::Terminal)return this->failure();
+    auto valid=validate_record_state(entry->summary_,state,failure);if(!valid)return valid;
+    if(entry->summary_.record_state==state)return {};
+    auto version=entry->summary_.version.next();if(!version)return contracts::make_unexpected(version.error());
+    apply_record_state(entry->summary_,state,failure);entry->summary_.version=*version;return {};
   }
   template<contracts::ContractResult R>
   contracts::Result<std::shared_ptr<const contracts::InvokeReply<R>>> result(contracts::ExecutionRef ref) const {
@@ -264,6 +274,29 @@ public:
     return removed;
   }
 private:
+  static contracts::Result<void> validate_record_state(const contracts::SummaryInput& previous,
+      contracts::RequiredRecordState next,const std::optional<contracts::RecordFailure>& failure) {
+    using State=contracts::RequiredRecordState;
+    if(next>State::Failed||(next==State::Failed)!=failure.has_value()||
+       (failure&&(!failure->writes_blocked||!failure->reason.code().value()||failure->repair>contracts::RepairKind::ManualReview)))
+      return contracts::reject(contracts::ContractsErrc::InvalidFact);
+    if(previous.record_state==State::Pending&&next==State::NotRequired)
+      return contracts::reject(contracts::ContractsErrc::InvalidPhase);
+    if((previous.record_state==State::Recorded||previous.record_state==State::Failed)&&previous.record_state!=next)
+      return contracts::reject(contracts::ContractsErrc::InvalidPhase);
+    if(previous.record_state==State::Failed&&
+       (previous.fault->code()!=failure->reason.code()||previous.repair!=failure->repair))
+      return contracts::reject(contracts::ContractsErrc::InvalidFact);
+    return {};
+  }
+  static void apply_record_state(contracts::SummaryInput& summary,contracts::RequiredRecordState state,
+      const std::optional<contracts::RecordFailure>& failure) {
+    summary.record_state=state;
+    if(failure) {
+      summary.evidence=contracts::EvidenceState::RequiredRecordFailed;summary.writes_blocked=true;
+      summary.repair=failure->repair;summary.fault=contracts::Error{failure->reason.code()};
+    }
+  }
   static foundation::Unexpected<contracts::Error> failure() {return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::BudgetExceeded));}
   using OwnerKey=std::pair<contracts::PrincipalId,std::uint64_t>;
   using OwnerIndex=std::map<OwnerKey,std::shared_ptr<Entry>>;

@@ -43,7 +43,7 @@ Result<std::shared_ptr<HostExecutionPort>> make_executions(HostIncarnation id,
     };
     auto made=executions::detail::HostedExecutions::create(id,std::move(executor),std::move(manager),
         options.subjects,options.limits,options.scheduling,
-        {options.active,options.control_batch,options.children_per_execution,options.max_depth},std::move(resolve));
+        {options.active,options.control_batch,options.children_per_execution,options.max_depth,options.required_record},std::move(resolve));
     if(!made)return make_unexpected(made.error());
     return std::shared_ptr<HostExecutionPort>(std::move(*made));
   } catch(const std::bad_alloc&) {return make_unexpected(host_error(HostErrc::BudgetExceeded));}

@@ -339,6 +339,7 @@ public:
   virtual bool accepts_children() const noexcept=0;
   virtual void set_wake(std::function<void()>)=0;
   virtual contracts::Result<void> before_child_wait(std::span<const resources::Claim>) const=0;
+  virtual void finalize_required_record(contracts::RequiredRecordState,std::optional<contracts::RecordFailure>)=0;
 };
 
 // 由可信 typed 注册适配器提供；必须计入可变缓冲区，不能仅返回 sizeof(T)。
@@ -498,6 +499,19 @@ public:
     return source->before_child_wait(claims);
   }
   contracts::CppTypeToken result_type() const noexcept override {return contracts::CppTypeToken::of<R>();}
+  void finalize_required_record(contracts::RequiredRecordState state,std::optional<contracts::RecordFailure> failure) override {
+    registry::detail::ExecutionCallbackFrame frame;
+    foundation::invariant(settled()&&reply());
+    // 尚未发布 Terminal，没有外部结果引用；保留业务候选值，只追加记录事实。
+    // 接受后开始前的拒绝仍是原拒绝，不伪造 business_entered 的 Outcome。
+    // 必要记录状态归同一 ExecutionSummary，原始拒绝原因保持。
+    if(std::holds_alternative<contracts::Rejected>(*reply_))return;
+    auto pending=std::move(std::get<contracts::Completed<R>>(*reply_).outcome)
+        .with_required_record(contracts::RequiredRecordState::Pending);
+    foundation::invariant(bool(pending));
+    auto final=std::move(*pending).with_required_record(state,std::move(failure));
+    foundation::invariant(bool(final));reply_.emplace(contracts::Completed<R>{std::move(*final)});
+  }
   InvocationCompletion completion() const override {
     InvocationCompletion out;
     auto value=reply();if(!value)return out;

@@ -182,6 +182,8 @@ class RequiredRecordPort : public PortLifetime {
 public:
   virtual Result<std::unique_ptr<RecordReservation>>
   reserve(const RecordRequest &) = 0;
+  // 所有异步访问必须保留 receiver；completed 仅报告候选，最后 owner
+  // 释放才表示回调排空。返回失败或抛出不能撤销已报告的确定事实。
   virtual Result<void> record(std::unique_ptr<RecordReservation>,
                               std::shared_ptr<const RecordRequestSnapshot>,
                               std::shared_ptr<RecordReceiver>) = 0;

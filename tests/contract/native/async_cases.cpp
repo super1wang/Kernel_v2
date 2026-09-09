@@ -46,10 +46,12 @@ template<class Predicate> void async_until(Predicate predicate) {
 }
 struct AsyncHost {
   struct Factory final : host::HostExecutionFactoryPort {
+    std::shared_ptr<RequiredRecordPort> recorder;
     Result<std::shared_ptr<host::HostExecutionPort>> create(HostIncarnation id) override {
       auto made=ock::cpu_pool::Executor::create({2,2});CHECK(made);
       std::shared_ptr<ExecutorControlPort> pool=std::move(*made);
       host::ExecutionOptions options;options.children_per_execution=1;
+      options.required_record=recorder;
       options.subjects={{policy_test::principal().principal_id}};
       options.slots={{"shared.slot",1,false}};options.aliases={{"slot.alias","shared.slot"}};
       options.resources={{{name("native"),name("declared")},{{"slot.alias",resources::Mode::Exclusive,1}}}};
@@ -74,7 +76,7 @@ struct AsyncHost {
   std::unique_ptr<host::NativeHost> host;
   std::optional<host::HostSession> session;
   std::shared_ptr<const policy::VerifiedCaller> caller;
-  AsyncHost():env(true,compute,{},[&](registry::ModuleInput& module) {
+  explicit AsyncHost(std::shared_ptr<RequiredRecordPort> recorder={}):env(true,compute,{},[&](registry::ModuleInput& module) {
     module.services.clear();module.services.push_back(*registry::ServiceBinding::make(name("reader"),reader));
     module.manifest.required_services[0].type=CppTypeToken::of<AsyncReader>();
     module.manifest.resources.push_back(name("declared"));
@@ -93,7 +95,8 @@ struct AsyncHost {
     };
     registration=module;
   }) {
-    host::HostPorts ports{env.policy.auth,env.policy.clock,env.policy.digest,std::make_shared<Threads>(),{},std::make_shared<Factory>()};
+    auto factory=std::make_shared<Factory>();factory->recorder=std::move(recorder);
+    host::HostPorts ports{env.policy.auth,env.policy.clock,env.policy.digest,std::make_shared<Threads>(),{},factory};
     auto made=host::NativeHost::create({},policy_test::configuration(),ports);CHECK(made);host=std::move(*made);
     CHECK(host->add({*registration,std::make_shared<Lifecycle>()}));CHECK(host->start());
     auto opened=host->open({{std::byte{7}}},{policy_test::rules(),env.policy.auth->identity.deadline,false});CHECK(opened);
@@ -123,6 +126,45 @@ struct AsyncHost {
 };
 Own async_input(char mode) {return {std::string(1024,mode)};}
 ExecutionRef accepted_ref(const SubmitReply& reply) {CHECK(std::holds_alternative<Accepted>(reply));return std::get<Accepted>(reply).execution;}
+struct TestRecorder final : RequiredRecordPort {
+  char mode='s';std::atomic<unsigned> calls=0,reservations=0;
+  std::mutex mutex;std::shared_ptr<RecordReceiver> held;
+  std::shared_ptr<const RecordRequestSnapshot> request;
+  std::function<void()> hook;
+  Result<std::unique_ptr<RecordReservation>> reserve(const RecordRequest& r) override {
+    ++reservations;CHECK(r.capacity==256&&r.receipt.empty());
+    if(mode=='r')return make_unexpected(error(ContractsErrc::BudgetExceeded));
+    return std::unique_ptr<RecordReservation>(new RecordReservation);
+  }
+  Result<void> record(std::unique_ptr<RecordReservation> reservation,
+      std::shared_ptr<const RecordRequestSnapshot> r,std::shared_ptr<RecordReceiver> receiver) override {
+    CHECK(reservation&&r);++calls;if(hook)hook();
+    if(mode=='t')throw std::runtime_error("record failure");
+    if(mode=='m')return {};
+    if(mode=='h'||mode=='p') {std::lock_guard lock(mutex);held=receiver;request=r;}
+    if(mode=='p')return {};
+    RecordReport report{r->value().execution,{},{},RequiredRecordState::Recorded,{}};
+    if(mode=='f') {report.state=RequiredRecordState::Failed;report.failure=RecordFailure{error(ContractsErrc::Rejected),true,RepairKind::ManualReview};}
+    if(mode=='b')report.execution.execution_id={};
+    receiver->completed(report);
+    if(mode=='d') {report.state=RequiredRecordState::Failed;report.failure=RecordFailure{error(ContractsErrc::Rejected),true,RepairKind::ManualReview};receiver->completed(report);}
+    if(mode=='e')return make_unexpected(error(ContractsErrc::Rejected));
+    if(mode=='l')throw std::runtime_error("after record report");
+    return {};
+  }
+  void release() {
+    std::shared_ptr<RecordReceiver> old;std::shared_ptr<const RecordRequestSnapshot> snapshot;
+    {std::lock_guard lock(mutex);old=std::move(held);snapshot=std::move(request);}
+  }
+  bool holding() {std::lock_guard lock(mutex);return bool(held);}
+  void fail_held() {
+    std::shared_ptr<RecordReceiver> receiver;std::shared_ptr<const RecordRequestSnapshot> snapshot;
+    {std::lock_guard lock(mutex);receiver=held;snapshot=request;}
+    CHECK(receiver&&snapshot);
+    receiver->completed({snapshot->value().execution,{},{},RequiredRecordState::Failed,
+        RecordFailure{error(ContractsErrc::Rejected),true,RepairKind::ManualReview}});
+  }
+};
 }
 void host_async_completion() {
   release_async();async_entered=0;async_duplicate=false;AsyncHost fixture;
@@ -230,6 +272,68 @@ void host_async_deadline() {
   release_async();call.reset();auto done=fixture.wait(ref);
   CHECK(done&&done->state==host::ExecutionWaitState::Terminal);
   auto value=fixture.session->result<int>(*fixture.caller,ref);CHECK(value&&result(*value->value)==7);
+}
+void host_required_record() {
+  for(char mode:{'s','d','e','l','f','m','t','b'}) {
+    auto recorder=std::make_shared<TestRecorder>();recorder->mode=mode;AsyncHost fixture(recorder);
+    auto bound=fixture.bind();CHECK(bound);
+    auto ref=accepted_ref(bound->submit(async_input('i'),fixture.options()));
+    auto done=fixture.wait(ref);CHECK(done&&done->state==host::ExecutionWaitState::Terminal);
+    CHECK(recorder->calls==1&&recorder->reservations==1);
+    auto reply=fixture.session->result<int>(*fixture.caller,ref);CHECK(reply&&result(*reply->value)==7);
+    const auto& summary=done->observed.summary->value();
+    const auto& outcome=std::get<Completed<int>>(*reply->value).outcome;
+    bool failed=mode!='s'&&mode!='d'&&mode!='e'&&mode!='l';
+    CHECK(summary.record_state==(failed?RequiredRecordState::Failed:RequiredRecordState::Recorded));
+    CHECK(summary.evidence==outcome.evidence());CHECK(summary.writes_blocked==failed);
+    CHECK(outcome.conditions().finalization.record_state==summary.record_state);
+    if(failed) {
+      CHECK(summary.fault&&summary.repair==RepairKind::ManualReview);
+      CHECK(std::holds_alternative<Rejected>(bound->submit(async_input('i'),fixture.options())));
+      CHECK(recorder->calls==1); // 门控关闭后不再次运行业务或必要记录。
+    }
+  }
+  auto recorder=std::make_shared<TestRecorder>();recorder->mode='r';AsyncHost fixture(recorder);
+  auto bound=fixture.bind();CHECK(bound);auto before=async_entered.load();
+  CHECK(std::holds_alternative<Rejected>(bound->submit(async_input('i'),fixture.options())));
+  CHECK(async_entered==before&&recorder->calls==0);
+  auto queued_recorder=std::make_shared<TestRecorder>();AsyncHost queued(queued_recorder);
+  auto first=queued.bind(),second=queued.bind();CHECK(first&&second);
+  auto running=accepted_ref(first->submit(async_input('d'),queued.options()));
+  async_until([]{return bool(pending_async());});auto call=pending_async();
+  auto waiting=accepted_ref(second->submit(async_input('i'),queued.options()));
+  async_until([&]{return queued.phase(waiting)==ExecutionPhase::WaitingResources;});
+  CHECK(queued.session->cancel(*queued.caller,waiting));
+  auto done=queued.wait(waiting);CHECK(done&&done->state==host::ExecutionWaitState::Terminal);
+  CHECK(done->observed.summary->value().record_state==RequiredRecordState::Recorded);
+  auto rejected=queued.session->result<int>(*queued.caller,waiting);CHECK(rejected&&std::holds_alternative<Rejected>(*rejected->value));
+  CHECK(call->complete(7));release_async();call.reset();CHECK(queued.wait(running));
+}
+void host_required_record_drain() {
+  auto recorder=std::make_shared<TestRecorder>();recorder->mode='h';AsyncHost fixture(recorder);
+  recorder->hook=[&] {
+    CHECK(fixture.host->shutdown_until(std::chrono::steady_clock::now()).disposition==host::ShutdownDisposition::Reentrant);
+  };
+  auto bound=fixture.bind();CHECK(bound);
+  auto ref=accepted_ref(bound->submit(async_input('i'),fixture.options()));
+  async_until([&]{return recorder->holding()&&fixture.phase(ref)==ExecutionPhase::Finalizing;});
+  CHECK(!fixture.session->result<int>(*fixture.caller,ref));
+  CHECK(!fixture.host->shutdown_until(std::chrono::steady_clock::now()).quiescent);
+  recorder->release();
+  CHECK(fixture.host->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(2)).quiescent);
+  auto failed_recorder=std::make_shared<TestRecorder>();failed_recorder->mode='p';AsyncHost failed_fixture(failed_recorder);
+  auto failed_bound=failed_fixture.bind();CHECK(failed_bound);
+  auto failed_ref=accepted_ref(failed_bound->submit(async_input('i'),failed_fixture.options()));
+  async_until([&]{return failed_recorder->holding();});failed_recorder->fail_held();
+  auto context=failed_fixture.session->catalog_context();CHECK(context);
+  async_until([&] {
+    auto summary=context->authorization->observations()->get(*failed_fixture.caller,failed_ref,policy::AccessUse::GetSummary);
+    return summary&&summary->summary->value().record_state==RequiredRecordState::Failed;
+  });
+  CHECK(failed_fixture.phase(failed_ref)==ExecutionPhase::Finalizing);
+  CHECK(std::holds_alternative<Rejected>(failed_bound->submit(async_input('i'),failed_fixture.options())));
+  failed_recorder->release();auto done=failed_fixture.wait(failed_ref);CHECK(done&&done->state==host::ExecutionWaitState::Terminal);
+  auto value=failed_fixture.session->result<int>(*failed_fixture.caller,failed_ref);CHECK(value&&result(*value->value)==7);
 }
 }
 #endif

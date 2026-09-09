@@ -3,6 +3,7 @@
 #include "invocation_record.hpp"
 #include "resource_wait_binding.hpp"
 #include "managed_control.hpp"
+#include "required_completion.hpp"
 
 namespace ock::runtime::executions::detail {
 // Host 与内部 typed 适配共用的逐执行 owner；控制循环消费可靠 pending，wake 仅作唤醒。
@@ -57,7 +58,8 @@ public:
       std::shared_ptr<resources::ResourceManager> resources,
       contracts::ExecutionRef identity,contracts::HostIncarnation host,
       std::shared_ptr<Record> record,const Resolver& resolve,std::function<void()> wake,
-      std::shared_ptr<ChildLink> parent={},std::size_t children_limit=64) {
+      std::shared_ptr<ChildLink> parent={},std::size_t children_limit=64,
+      std::shared_ptr<contracts::RequiredRecordPort> recorder={}) {
     if(!table||!scheduler||!record||!resolve||!children_limit||children_limit>256)return fail();
     auto options=record->options();
     std::shared_ptr<ManagedInvocation> owner;
@@ -73,12 +75,19 @@ public:
           material->caller->view().description().principal,
           owner->parent_?std::optional(owner->parent_->parent()):std::nullopt,contracts::ExecutionPhase::Queued,
           host,*contracts::ObservationVersion::create(1),{}, {}};
+      if(recorder)summary.record_state=contracts::RequiredRecordState::Pending;
       auto entry=table->prepare(std::move(summary),record,record->result_type(),
           record->input_bytes(),record->reserved_reply_bytes(),material->targets,
           +[](const void* value) noexcept -> const void* {return static_cast<const Record*>(value)->reply_pointer();});
       if(!entry)return contracts::make_unexpected(entry.error());
       owner->entry_=*entry;
       std::weak_ptr<ManagedInvocation> weak=owner;
+      if(recorder) {
+        auto required=RequiredCompletion::create(identity,std::move(recorder),table,
+            [weak]{if(auto current=weak.lock())current->signal();});
+        if(!required){table->abandon(owner->entry_);return contracts::make_unexpected(required.error());}
+        owner->required_=std::move(*required);
+      }
       record->set_wake([weak]{if(auto current=weak.lock())current->signal();});
       owner->binding_=std::make_shared<ResourceWaitBinding>(scheduler,resources,std::move(*claims),
           [weak]{if(auto e=weak.lock())e->signal();});
@@ -129,7 +138,10 @@ public:
       bool completing;
       {std::lock_guard lock(lifetime_mutex_);completing=body_completed_;}
       // 锁外统一执行 continuation，不在 child 完成栈递归收尾父链。
-      if(completing) {finish_if_ready();return;}
+      if(completing) {
+        if(required_&&record_->reply_pointer())required_->start();
+        finish_if_ready();return;
+      }
       if(!resources_announced_.exchange(true,std::memory_order_acq_rel))
         (void)table_->transition(entry_,contracts::ExecutionPhase::WaitingResources,conditions());
       binding_->drive();
@@ -184,7 +196,11 @@ private:
     pending_.store(true,std::memory_order_release);
     try {if(wake_)wake_();}catch(...){}
   }
-  static contracts::PhaseConditions conditions(std::uint64_t children=0,std::uint64_t local_work=0) {
+  contracts::PhaseConditions conditions(std::uint64_t children=0,std::uint64_t local_work=0) const {
+    if(required_) {
+      auto state=required_->snapshot();
+      return {{state.state,local_work+(!state.drained),children},state.failure,{},false,false};
+    }
     return {{contracts::RequiredRecordState::NotRequired,local_work,children},{},{},false,false};
   }
   contracts::Result<void> run() {
@@ -216,13 +232,13 @@ private:
       if(!status)completion_fault_=contracts::Error{status.error().code()};
       body_completed_=true;
     }
-    finish_if_ready();
+    finish_if_ready();signal(); // 必要记录器只在控制循环中调用，完成栈不调用外部端口。
   }
   void finish_if_ready() {
     std::shared_ptr<ChildLink> parent;
     {
-      std::lock_guard lock(lifetime_mutex_);
-      if(!body_completed_||!record_->reply_pointer()||finished())return;
+      std::unique_lock lock(lifetime_mutex_);
+      if(required_applying_||!body_completed_||!record_->reply_pointer()||finished())return;
       accept_children_=false;
       if(!completion_recorded_) {
         auto completion=record_->completion();
@@ -230,7 +246,12 @@ private:
         auto recorded=table_->complete_read(entry_,std::span(completion.facts).first(completion.count),completion.evidence,completion_fault_);
         foundation::invariant(bool(recorded));completion_recorded_=true;
       }
-      if(!record_->settled()) {
+      const auto required=required_?std::optional(required_->snapshot()):std::nullopt;
+      if(required) {
+        auto published=table_->record_status(entry_,required->state,required->failure);
+        foundation::invariant(bool(published));
+      }
+      if(!record_->settled()||(required&&!required->drained)) {
         if(!finalizing_) {
           auto changed=table_->transition(entry_,contracts::ExecutionPhase::Finalizing,conditions(children_remaining_,1),completion_fault_);
           foundation::invariant(bool(changed));finalizing_=true;
@@ -243,6 +264,12 @@ private:
           foundation::invariant(bool(changed));waiting_child_=true;
         }
         return;
+      }
+      if(required&&!required_applied_) {
+        // 移动业务 R 可能调用用户代码；仲裁在锁内，实际值转移在锁外。
+        required_applying_=true;lock.unlock();
+        record_->finalize_required_record(required->state,required->failure);
+        lock.lock();required_applied_=true;required_applying_=false;
       }
       if(!finalizing_) {
         auto finalizing=table_->transition(entry_,contracts::ExecutionPhase::Finalizing,conditions(),completion_fault_);
@@ -283,6 +310,8 @@ private:
   bool accept_children_=false,cancel_requested_=false,body_completed_=false;
   bool completion_recorded_=false,finalizing_=false,waiting_child_=false;
   std::optional<contracts::Error> completion_fault_;
+  std::shared_ptr<RequiredCompletion> required_;
+  bool required_applied_=false,required_applying_=false;
   std::optional<std::stop_callback<OriginalStop>> original_stop_;
 };
 

@@ -475,6 +475,16 @@ void record_evidence_boundary() {
                                v));
   CHECK(!Outcome<int>::validate(ReadCompleted<int>{1, ResultScope::ReadOnly},
                                 facts(), EvidenceState::Volatile, c, v));
+  auto candidate=Outcome<int>::validate(ReadCompleted<int>{7,ResultScope::ReadOnly},facts(),EvidenceState::Volatile,conditions(),v);
+  CHECK(candidate);
+  CHECK(!std::move(*candidate).with_required_record(RequiredRecordState::Recorded));
+  auto pending=std::move(*candidate).with_required_record(RequiredRecordState::Pending);CHECK(pending);
+  auto bad=*c.record_failure;bad.writes_blocked=false;
+  CHECK(!std::move(*pending).with_required_record(RequiredRecordState::Failed,bad));
+  auto final=std::move(*pending).with_required_record(RequiredRecordState::Failed,c.record_failure);CHECK(final);
+  CHECK(*std::get<ReadCompleted<int>>(final->value()).result==7);
+  CHECK(final->revalidate(v,c,*facts()));
+  CHECK(!std::move(*final).with_required_record(RequiredRecordState::Pending));
 }
 void summary_owned_snapshot() {
   auto s = summary();

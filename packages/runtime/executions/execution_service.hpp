@@ -8,7 +8,10 @@ namespace ock::runtime::executions::detail {
 // 生命周期由 Host 控制 owner 管理，业务不得在所属 worker 销毁控制 owner。
 class ExecutionService final {
 public:
-  struct Options {std::size_t active=256,control_batch=64,children_per_execution=64,max_depth=32;};
+  struct Options {
+    std::size_t active=256,control_batch=64,children_per_execution=64,max_depth=32;
+    std::shared_ptr<contracts::RequiredRecordPort> required_record;
+  };
 private:
   struct Wake {
     std::mutex mutex;std::condition_variable changed;bool dirty=false;
@@ -111,7 +114,7 @@ public:
     try {
       auto identity=new_execution_identity();if(!identity)return contracts::Rejected{identity.error()};
       auto execution=ManagedInvocation::create(s->table,s->scheduler,s->resources,*identity,s->table->host(),
-          std::move(record),resolver,[wake=s->wake]{wake->signal();},parent,s->options.children_per_execution);
+          std::move(record),resolver,[wake=s->wake]{wake->signal();},parent,s->options.children_per_execution,s->options.required_record);
       if(!execution)return contracts::Rejected{execution.error()};
       accepted=*execution;
       bool closing;
