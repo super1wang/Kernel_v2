@@ -52,6 +52,10 @@ public:
     else if(waited->state==ExecutionTable::WaitState::Cancelled)state=host::ExecutionWaitState::Cancelled;
     return host::ExecutionWaitReply{state,std::move(waited->observed)};
   }
+  contracts::Result<contracts::CancelDisposition> cancel(const policy::VerifiedCaller& caller,
+      std::shared_ptr<policy::SessionAuthority> session,contracts::ExecutionRef ref) override {
+    return service_->cancel(caller,session,ref);
+  }
   bool in_execution_thread() const noexcept override {return service_->in_execution_thread();}
   void stop_accepting() override {service_->close();}
   contracts::Result<bool> finish_until(host::TimePoint deadline) override {return service_->shutdown_until(deadline);}

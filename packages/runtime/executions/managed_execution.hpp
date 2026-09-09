@@ -57,6 +57,7 @@ public:
       owner->accepted_=true;
       // 唯一接受线性化点在表内；直到此后才允许 ResourceManager/make_ready。
       owner->binding_->publish(*ticket);
+      owner->original_stop_.emplace(options.stop,OriginalStop{weak});
       return owner;
     } catch(...) {
       if(owner&&owner->accepted_) {
@@ -83,7 +84,21 @@ public:
     }
   }
   bool pending() const noexcept override {return pending_.load(std::memory_order_acquire);}
-  void cancel() override {binding_->cancel();}
+  contracts::Result<contracts::CancelDisposition> cancel() override {
+    if(finished())return contracts::CancelDisposition::AlreadyTerminal;
+    auto retired=binding_->cancel();
+    if(!retired) {
+      // Scheduler 的有限历史可能已淘汰；本执行的可靠完成事实仍归 owner。
+      if(finished())return contracts::CancelDisposition::AlreadyTerminal;
+      return contracts::make_unexpected(retired.error());
+    }
+    switch(*retired) {
+      case scheduler::Retirement::Retired:return contracts::CancelDisposition::Requested;
+      case scheduler::Retirement::AlreadyStarted:return contracts::CancelDisposition::AlreadyClaimed;
+      case scheduler::Retirement::AlreadyTerminal:return contracts::CancelDisposition::AlreadyTerminal;
+    }
+    return fail();
+  }
   bool finished() const noexcept override {return finished_.load(std::memory_order_acquire);}
   contracts::ExecutionRef execution() const noexcept override {return entry_->execution();}
   const std::shared_ptr<ExecutionTable::Entry>& entry() const noexcept {return entry_;}
@@ -130,6 +145,10 @@ private:
     finished_.store(true,std::memory_order_release);
     try {if(wake_)wake_();}catch(...){}
   }
+  struct OriginalStop {
+    std::weak_ptr<ManagedInvocation> owner;
+    void operator()() const noexcept {if(auto current=owner.lock())(void)current->cancel();}
+  };
   std::shared_ptr<ExecutionTable> table_;
   std::shared_ptr<scheduler::Scheduler> scheduler_;
   std::shared_ptr<Record> record_;
@@ -141,6 +160,7 @@ private:
   std::atomic<bool> pending_{false};
   std::atomic<bool> resources_announced_{false};
   std::atomic<bool> finished_{false};
+  std::optional<std::stop_callback<OriginalStop>> original_stop_;
 };
 
 // 保留内部 typed 调试适配；Host 使用同一 erased owner，不生成第二条执行管线。

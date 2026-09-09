@@ -73,7 +73,7 @@ int main(int argc,char**argv)try {
     request.work=[&]{auto lease=binding->start_lease();check(bool(lease));entered.set_value();go.wait();check(binding->stop_token().stop_requested());return Result<void>{};};
     request.completed=[&](auto result){check(bool(result));binding->terminal();done=true;};
     auto ticket=scheduler->enqueue(std::move(request));check(bool(ticket));binding->publish(*ticket);binding->drive();check(scheduler->pump()==1);
-    std::thread worker([&]{pool->run_one();});started.wait();binding->cancel();bool retained=resources->used("a")==1&&scheduler->snapshot().inflight==1;release.set_value();worker.join();check(retained&&done&&resources->used("a")==0&&scheduler->snapshot().worker_delivery==0);
+    std::thread worker([&]{pool->run_one();});started.wait();auto cancelled=binding->cancel();check(bool(cancelled)&&*cancelled==runtime::scheduler::Retirement::AlreadyStarted);bool retained=resources->used("a")==1&&scheduler->snapshot().inflight==1;release.set_value();worker.join();check(retained&&done&&resources->used("a")==0&&scheduler->snapshot().worker_delivery==0);
   } else if(test=="alias_read_write_same_slot") {
     auto a=acquire(*m,{{"read-a",Mode::Shared,2}});check(bool(a));check(!acquire(*m,{{"write-a",Mode::Exclusive,1}}));a->lease.reset();check(bool(acquire(*m,{{"write-a",Mode::Exclusive,1}})));
   } else if(test=="multi_claim_partial_failure_zero_occupancy") {

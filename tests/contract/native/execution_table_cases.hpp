@@ -139,8 +139,9 @@ inline void managed_execution_resource_wait() {
   // 资源等待期间取消必须移除 waiter，释放后的迟到 wake 不再调用业务。
   held=manager->acquire(claims,resources::Phase::Compute);CHECK(held&&held->lease);
   id.execution_id.bytes[0]=83;
-  auto cancelled=Managed::create(*t,schedule,manager,id,host,*bound,10,env.options(),policy,resolver,[]{});CHECK(cancelled);
-  (*cancelled)->drive();CHECK(manager->snapshot().waiters==1);(*cancelled)->cancel();
+  std::stop_source original;auto options=env.options();options.stop=original.get_token();
+  auto cancelled=Managed::create(*t,schedule,manager,id,host,*bound,10,options,policy,resolver,[]{});CHECK(cancelled);
+  (*cancelled)->drive();CHECK(manager->snapshot().waiters==1);original.request_stop();CHECK((*cancelled)->finished());
   CHECK(manager->snapshot().waiters==0);held->lease.reset();(*cancelled)->drive();schedule->pump();CHECK(entered==1);
   schedule->close();
 }
@@ -172,12 +173,19 @@ inline void managed_execution_path() {
   auto record=std::static_pointer_cast<const Managed::Record>((*execution)->entry()->payload());
   CHECK(record->reply()&&result(*record->reply())==7);
   auto typed=(*table)->result<int>(id);CHECK(typed&&result(**typed)==7);
-  (*execution)->cancel();CHECK(result(*record->reply())==7);
+  auto terminal_cancel=(*execution)->cancel();CHECK(terminal_cancel&&*terminal_cancel==CancelDisposition::AlreadyTerminal);CHECK(result(*record->reply())==7);
   id.execution_id.bytes[0]=73;
   auto cancelled=Managed::create(*table,schedule,resources,id,host,*bound,8,env.options(),policy,resolver,[]{});
-  CHECK(cancelled);(*cancelled)->cancel();(*cancelled)->drive();schedule->pump();CHECK(entered==1);
+  CHECK(cancelled);auto queued_cancel=(*cancelled)->cancel();CHECK(queued_cancel&&*queued_cancel==CancelDisposition::Requested);(*cancelled)->drive();schedule->pump();CHECK(entered==1);
   summary=(*table)->summary((*cancelled)->entry());CHECK(summary&&(*summary)->value().phase==ExecutionPhase::Terminal);
   CHECK((*summary)->value().fault.has_value());
+  // 原始 stop 在排队阶段直接赢得退役，不必等到 worker 首次进入。
+  std::stop_source original;auto options=env.options();options.stop=original.get_token();
+  id.execution_id.bytes[0]=75;
+  auto stopped=Managed::create(*table,schedule,resources,id,host,*bound,9,options,policy,resolver,[]{});CHECK(stopped);
+  CHECK(!(*stopped)->finished());original.request_stop();CHECK((*stopped)->finished());
+  (*stopped)->drive();schedule->pump();CHECK(entered==1);
+  auto stopped_result=(*table)->result<int>(id);CHECK(stopped_result&&std::holds_alternative<Rejected>(**stopped_result));
   schedule->close();id.execution_id.bytes[0]=74;
   CHECK(!Managed::create(*table,schedule,resources,id,host,*bound,8,env.options(),policy,resolver,[]{}));
   CHECK(!(*table)->find(id));CHECK(entered==1);

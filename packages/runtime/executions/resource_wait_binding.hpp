@@ -18,7 +18,7 @@ public:
   // 仅在 Execution 的 Volatile Accepted 内存发布之后调用。允许早到 terminal。
   void publish(scheduler::Ticket);
   void drive(); // 一次最多一个 acquire；可靠 pending 位由 Execution 控制 owner 消费。
-  void cancel();
+  foundation::Result<scheduler::Retirement> cancel();
   // 仅由 Scheduler 的 completed（或 enqueue 拒绝）调用，不能由普通运行期 cancel 调用。
   void terminal();
   // 仅从已赢得 Scheduler start claim 的 work 内调用；释放权唯一转移给实际业务栈。

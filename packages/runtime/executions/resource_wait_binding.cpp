@@ -75,11 +75,12 @@ void ResourceWaitBinding::drive() {
     if(!result)(void)scheduler_->retire(ticket,result.error());
   }
 }
-void ResourceWaitBinding::cancel() {
+foundation::Result<scheduler::Retirement> ResourceWaitBinding::cancel() {
   auto owner=shared_from_this();stop_.request_stop();scheduler::Ticket ticket;
   {std::lock_guard lock(mutex_);ticket=ticket_;}
   // retire 与业务 start 共用 Scheduler 锁；AlreadyStarted 只保留协作意图。
-  if(ticket)(void)scheduler_->retire(ticket);
+  if(ticket)return scheduler_->retire(ticket);
+  return scheduler::Retirement::Retired; // publish 会重新提交已登记的取消意图。
 }
 void ResourceWaitBinding::terminal() {
   auto owner=shared_from_this();std::unique_ptr<resources::ResourceManager::Lease> lease;

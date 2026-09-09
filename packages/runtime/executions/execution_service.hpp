@@ -108,8 +108,8 @@ public:
       return contracts::Rejected{contracts::error(contracts::ContractsErrc::BudgetExceeded)};
     }
   }
-  // 授权仍在当前 Policy 中完成；true 表示提交取消意图，不声称已停止。
-  contracts::Result<bool> cancel(const policy::VerifiedCaller& caller,const std::shared_ptr<policy::SessionAuthority>& session,
+  // 当前授权通过后，结果由 Scheduler 的 start/retire 仲裁给出。
+  contracts::Result<contracts::CancelDisposition> cancel(const policy::VerifiedCaller& caller,const std::shared_ptr<policy::SessionAuthority>& session,
       contracts::ExecutionRef ref) {
     if(!session)return fail();
     auto allowed=session->observations()->get(caller,ref,policy::AccessUse::CancelExecution);
@@ -117,9 +117,9 @@ public:
     std::shared_ptr<ManagedControl> found;
     {std::lock_guard lock(state_->mutex);for(const auto& slot:state_->slots)
       if(slot.execution&&slot.execution->execution()==ref){found=slot.execution;break;}}
-    if(found) {if(found->finished())return false;found->cancel();return true;}
+    if(found)return found->cancel();
     auto summary=state_->table->access_find(ref);
-    if(summary&&summary->summary->value().phase==contracts::ExecutionPhase::Terminal)return false;
+    if(summary&&summary->summary->value().phase==contracts::ExecutionPhase::Terminal)return contracts::CancelDisposition::AlreadyTerminal;
     return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::Rejected));
   }
   void close() {

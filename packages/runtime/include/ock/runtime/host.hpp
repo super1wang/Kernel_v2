@@ -142,6 +142,10 @@ public:
       ExecutionRef, TimePoint, std::stop_token) {
     return make_unexpected(host_error(HostErrc::UnsupportedCapability));
   }
+  virtual Result<CancelDisposition> cancel(const policy::VerifiedCaller&,
+      std::shared_ptr<policy::SessionAuthority>, ExecutionRef) {
+    return make_unexpected(host_error(HostErrc::UnsupportedCapability));
+  }
   virtual std::shared_ptr<policy::ExecutionAccessSourcePort> observations() const = 0;
   virtual bool in_execution_thread() const noexcept = 0;
   virtual void stop_accepting() = 0;
@@ -209,6 +213,7 @@ public:
   Result<ExecutionResult<R>> result(const policy::VerifiedCaller&, ExecutionRef) const;
   Result<ExecutionWaitReply> wait(const policy::VerifiedCaller&, ExecutionRef,
       TimePoint, std::stop_token = {}) const;
+  Result<CancelDisposition> cancel(const policy::VerifiedCaller&, ExecutionRef) const;
   Result<void> close();
 private:
   friend class NativeHost;

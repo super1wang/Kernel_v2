@@ -15,6 +15,8 @@ B5 提交存储由可信 Registrar 的四参数 `read/compute` 重载声明 `reg
 
 `HostSession::result<R>` 在结果 pin 前后执行当前 ReadResult 授权，并核对真实 R 类型，返回拥有型 InvokeReply 与 ResponseAuthorization；传输适配仍需消费发送许可。`wait` 仅允许可信线程观测为 Application 的调用，在当前 Wait 授权期限与请求期限的较早者内等待，返回前重验授权。Timeout/Cancelled 只结束等待，不能声称执行已取消。Host 关闭后新的会话查询被拒绝，已取得的结果 owner 继续保活。
 
+`HostSession::cancel` 使用当前 CancelExecution 授权，返回 CoreContracts 的 `CancelDisposition`：Requested 表示取消赢得尚未开始的退役仲裁，AlreadyClaimed 表示 start 已赢且只登记协作意图，AlreadyTerminal 表示权威执行已结束。分类来自同一 Scheduler start/retire 仲裁，不根据先读摘要再操作猜测；三种结果均不改写既有执行事实，不保证物理投递已排空。原始 InvokeOptions.stop 在接受后由执行 owner 保持注册，可在排队或等待资源时直接退役，回调仅弱引用 owner；运行期取消不提前释放业务 Lease。
+
 ## 模块与预算
 
 ```cpp
@@ -163,6 +165,10 @@ public:
       ExecutionRef, TimePoint, std::stop_token) {
     return make_unexpected(host_error(HostErrc::UnsupportedCapability));
   }
+  virtual Result<CancelDisposition> cancel(const policy::VerifiedCaller&,
+      std::shared_ptr<policy::SessionAuthority>, ExecutionRef) {
+    return make_unexpected(host_error(HostErrc::UnsupportedCapability));
+  }
   virtual std::shared_ptr<policy::ExecutionAccessSourcePort> observations() const = 0;
   virtual bool in_execution_thread() const noexcept = 0;
   virtual void stop_accepting() = 0;
@@ -234,6 +240,7 @@ public:
   Result<ExecutionResult<R>> result(const policy::VerifiedCaller&, ExecutionRef) const;
   Result<ExecutionWaitReply> wait(const policy::VerifiedCaller&, ExecutionRef,
       TimePoint, std::stop_token = {}) const;
+  Result<CancelDisposition> cancel(const policy::VerifiedCaller&, ExecutionRef) const;
   Result<void> close();
 };
 template<ContractValue A, ContractResult R> class HostBound final {

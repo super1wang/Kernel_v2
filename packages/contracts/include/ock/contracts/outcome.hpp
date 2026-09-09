@@ -9,6 +9,8 @@ enum class EvidenceState {
   RequiredRecordFailed,
   PersistenceUncertain
 };
+// 控制仲裁结果不表示业务已经停止，也不改写执行事实。
+enum class CancelDisposition { Requested, AlreadyClaimed, AlreadyTerminal };
 enum class ExecutionPhase {
   Queued,
   WaitingResources,

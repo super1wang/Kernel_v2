@@ -463,6 +463,15 @@ Result<ExecutionWaitReply> HostSession::wait(const policy::VerifiedCaller& calle
   if(!backend)return failure<ExecutionWaitReply>(HostErrc::UnsupportedCapability);
   return backend->wait(caller,s->authority,s->host->ports.threads,ref,deadline,stop);
 }
+Result<CancelDisposition> HostSession::cancel(const policy::VerifiedCaller& caller,ExecutionRef ref) const {
+  auto s=state_;if(!s)return failure<CancelDisposition>(HostErrc::InvalidSession);
+  detail::HostAdmission admission(s->host);
+  if(!admission)return make_unexpected(admission.error());
+  std::shared_ptr<HostExecutionPort> backend;
+  {std::lock_guard lock(s->host->mutex);backend=s->host->executions;}
+  if(!backend)return failure<CancelDisposition>(HostErrc::UnsupportedCapability);
+  return backend->cancel(caller,s->authority,ref);
+}
 Result<void> HostSession::restrict_delegation(const policy::DelegationInput& delegation) {
   auto s=state_;if(!s)return failure<void>(HostErrc::InvalidSession);
   detail::HostAdmission admission(s->host);if(!admission)return make_unexpected(admission.error());
