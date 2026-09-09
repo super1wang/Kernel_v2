@@ -1,0 +1,119 @@
+CMake is re-running because J:/Code/Kernel_v2/build/b4-debug/tests/unit/data/CMakeFiles/generate.stamp is out-of-date.
+  the file 'J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt'
+  is newer than 'J:/Code/Kernel_v2/build/b4-debug/tests/unit/data/CMakeFiles/generate.stamp.depend'
+  result='-1'
+-- Configuring done (2.8s)
+-- Generating done (0.4s)
+-- Build files have been written to: J:/Code/Kernel_v2/build/b4-debug
+适用于 .NET Framework MSBuild 版本 17.14.23+b0019275e
+
+  ock_Adapter_CpuPool.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\Debug\ock_Adapter_CpuPool.lib
+  host_execution.cpp
+  host.cpp
+  invocation.cpp
+  正在生成代码...
+  ock_Runtime.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\Debug\ock_Runtime.lib
+  main.cpp
+  ock_native_service.vcxproj -> J:\Code\Kernel_v2\build\b4-debug\examples\native_service\Debug\ock_native_service.exe
+  native_tests.cpp
+  execution_service_cases.cpp
+  structured_cases.cpp
+  async_cases.cpp
+  session_cases.cpp
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(22,29): error C2039: "HostExecutionFactoryPort": 不是 "ock::runtime::host" 的成员 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(11,11):
+      参见“ock::runtime::host”的声明
+  
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(22,29): error C2504: “HostExecutionFactoryPort”: 未定义基类 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(23,32): error C2039: "HostExecutionPort": 不是 "ock::runtime::host" 的成员 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(11,11):
+      参见“ock::runtime::host”的声明
+  
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(23,32): error C2065: “HostExecutionPort”: 未声明的标识符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(23,15): error C2923: "std::shared_ptr": "HostExecutionPort" 不是参数 "_Ty" 的有效 模板 类型参数 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+      J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(23,32):
+      参见“HostExecutionPort”的声明
+  
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(23,15): error C3203: "shared_ptr": 未指定的 类 模板 不能用作 模板 参数 "T" 的 模板 参数，应为真实类型 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(23,52): error C3668: “native_test::`anonymous-namespace'::SessionFactory::create”: 包含重写说明符“override”的方法没有重写任何基类方法 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(26,11): error C2039: "ExecutionOptions": 不是 "ock::runtime::host" 的成员 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(11,11):
+      参见“ock::runtime::host”的声明
+  
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(26,11): error C2065: “ExecutionOptions”: 未声明的标识符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(26,28): error C2146: 语法错误: 缺少“;”(在标识符“options”的前面) [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(26,28): error C2065: “options”: 未声明的标识符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(26,36): error C2065: “options”: 未声明的标识符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(27,23): error C2039: "make_executions": 不是 "ock::runtime::host" 的成员 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(11,11):
+      参见“ock::runtime::host”的声明
+  
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(27,47): error C2065: “options”: 未声明的标识符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(27,23): error C3861: “make_executions”: 找不到标识符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(32,31): error C2039: "ModuleLifecyclePort": 不是 "ock::runtime::host" 的成员 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(11,11):
+      参见“ock::runtime::host”的声明
+  
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(32,31): error C2504: “ModuleLifecyclePort”: 未定义基类 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(33,34): error C2039: "ModuleContext": 不是 "ock::runtime::host" 的成员 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(11,11):
+      参见“ock::runtime::host”的声明
+  
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(33,22): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(33,47): error C2143: 语法错误: 缺少“,”(在“&”的前面) [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(34,9): error C2039: "ModuleStopResult": 不是 "ock::runtime::host" 的成员 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(11,11):
+      参见“ock::runtime::host”的声明
+  
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(34,26): error C3646: “stop”: 未知重写说明符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(34,30): error C2059: 语法错误:“(” [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(34,40): error C2334: “{”的前面有意外标记；跳过明显的函数体 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(33,16): error C3668: “native_test::`anonymous-namespace'::SessionLifecycle::start”: 包含重写说明符“override”的方法没有重写任何基类方法 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(48,9): error C2039: "HostOptions": 不是 "ock::runtime::host" 的成员 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(11,11):
+      参见“ock::runtime::host”的声明
+  
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(48,9): error C2065: “HostOptions”: 未声明的标识符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(48,21): error C2146: 语法错误: 缺少“;”(在标识符“limits”的前面) [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(48,21): error C2065: “limits”: 未声明的标识符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(48,28): error C2065: “limits”: 未声明的标识符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(48,53): error C2065: “limits”: 未声明的标识符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(49,19): error C3083: “NativeHost”:“::”左侧的符号必须是一种类型 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(49,31): error C2039: "create": 不是 "ock::runtime::host" 的成员 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(11,11):
+      参见“ock::runtime::host”的声明
+  
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(49,38): error C2065: “limits”: 未声明的标识符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(49,31): error C3861: “create”: 找不到标识符 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(51,23): error C2039: "NativeHost": 不是 "ock::runtime::host" 的成员 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+      J:\Code\Kernel_v2\packages\runtime\include\ock\runtime\detail\invocation.hpp(11,11):
+      参见“ock::runtime::host”的声明
+  
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(51,33): error C2143: 语法错误: 缺少“;”(在“&”的前面) [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(51,23): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(51,39): error C2238: 意外的标记位于“;”之前 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(51,179): error C2078: 初始值设定项太多 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(54,16): error C3313: “observer”: 变量不能具有类型“void” [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(54,24): error C3536: “observer”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(54,100): error C3536: “who”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(60,36): error C2760: 语法错误: 此处出现意外的“>”；应为“表达式” [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(60,36): error C3878: 语法错误:“simple-declaration”后出现意外标记“>” [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(61,4): error C2059: 语法错误:“;” [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(64,19): error C3313: “submitter”: 变量不能具有类型“void” [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(64,27): error C3536: “submitter”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(64,108): error C3536: “caller”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(65,58): error C2100: 无法取消引用类型为“<error type>”的操作数 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(65,127): error C3536: “a”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(66,58): error C2100: 无法取消引用类型为“<error type>”的操作数 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(66,127): error C3536: “b”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(72,24): error C3536: “retain”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(76,21): error C3313: “submitter”: 变量不能具有类型“void” [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(76,29): error C3536: “submitter”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(76,110): error C3536: “caller”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(77,64): error C2100: 无法取消引用类型为“<error type>”的操作数 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(77,136): error C3536: “bound”: 初始化之前无法使用 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+J:\Code\Kernel_v2\tests\contract\native\session_cases.cpp(80,7): error C2672: “std::holds_alternative”: 未找到匹配的重载函数 [J:\Code\Kernel_v2\build\b4-debug\tests\contract\native\ock_native_tests.vcxproj]
+      E:\vs2022IDE\VC\Tools\MSVC\14.44.35207\include\variant(1148,27):
+      可能是“bool std::holds_alternative(const std::variant<_Types...> &) noexcept”
+  
+  正在生成代码...

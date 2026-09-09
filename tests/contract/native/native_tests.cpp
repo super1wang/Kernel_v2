@@ -39,6 +39,7 @@ int main(int argc,char**argv) {
     {"T03.native.host_async_deadline",host_async_deadline},
     {"T03.native.host_required_record",host_required_record},
     {"T03.native.host_required_record_drain",host_required_record_drain},
+    {"T03.native.host_cached_result_sessions",host_cached_result_sessions},
 #endif
     {"T03.native.managed_execution_path",managed_execution_path},
     {"T03.native.managed_execution_resource_wait",managed_execution_resource_wait},

@@ -340,6 +340,7 @@ public:
   virtual void set_wake(std::function<void()>)=0;
   virtual contracts::Result<void> before_child_wait(std::span<const resources::Claim>) const=0;
   virtual void finalize_required_record(contracts::RequiredRecordState,std::optional<contracts::RecordFailure>)=0;
+  virtual void retire_ownership() noexcept=0;
 };
 
 // 由可信 typed 注册适配器提供；必须计入可变缓冲区，不能仅返回 sizeof(T)。
@@ -485,7 +486,7 @@ public:
   std::shared_ptr<const invocation::detail::BoundState> material() const noexcept override {return bound_.state_;}
   invocation::InvokeOptions options() const noexcept override {return options_;}
   const void* reply_pointer() const noexcept override {return reply();}
-  bool asynchronous() const noexcept override {return bound_.state_->entry->asynchronous_read;}
+  bool asynchronous() const noexcept override {return asynchronous_;}
   bool settled() const noexcept override {return settled_.load(std::memory_order_acquire);}
   bool accepts_children() const noexcept override {
     return !completed_.load(std::memory_order_acquire)&&
@@ -499,6 +500,11 @@ public:
     return source->before_child_wait(claims);
   }
   contracts::CppTypeToken result_type() const noexcept override {return contracts::CppTypeToken::of<R>();}
+  void retire_ownership() noexcept override {
+    registry::detail::ExecutionCallbackFrame frame;
+    foundation::invariant(settled()&&reply());
+    bound_.state_.reset();options_.stop={};
+  }
   void finalize_required_record(contracts::RequiredRecordState state,std::optional<contracts::RecordFailure> failure) override {
     registry::detail::ExecutionCallbackFrame frame;
     foundation::invariant(settled()&&reply());
@@ -595,7 +601,9 @@ private:
   void signal() noexcept {try {if(wake_)wake_();}catch(...){}}
   InvocationRecord(invocation::NativeBound<A,R> bound,A args,
       invocation::InvokeOptions options,Policy policy)
-      :bound_(std::move(bound)),input_(std::move(args)),options_(options),policy_(policy) {}
+      :catalog_(bound.state_?bound.state_->catalog:nullptr),
+       asynchronous_(bound.state_&&bound.state_->entry->asynchronous_read),
+       bound_(std::move(bound)),input_(std::move(args)),options_(options),policy_(policy) {}
   void store(contracts::InvokeReply<R> reply,bool release=true) {
     // 测量失败或超额时保留固定错误回执；不让结果容量失败吞掉可靠完成。
     try {
@@ -610,6 +618,9 @@ private:
     if(release) {input_.reset();call_.reset();settled_.store(true,std::memory_order_release);}
     completed_.store(true,std::memory_order_release);
   }
+  // 最后释放注册代码/服务 owner；结果 pin 不需要保留调用授权与 Engine。
+  std::shared_ptr<const registry::Catalog> catalog_;
+  const bool asynchronous_;
   invocation::NativeBound<A,R> bound_;
   std::optional<A> input_;
   invocation::InvokeOptions options_;

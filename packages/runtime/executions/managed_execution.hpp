@@ -37,7 +37,14 @@ public:
   };
   contracts::Result<std::shared_ptr<ChildLink>> reserve_child(
       const std::shared_ptr<ExecutionTable>& table,const Record& record,std::size_t max_depth) {
-    auto parent=record_->material(),child=record.material();
+    std::shared_ptr<const invocation::detail::BoundState> parent;
+    {
+      std::lock_guard lock(lifetime_mutex_);
+      if(!accept_children_||!record_->accepts_children()||cancel_requested_)return fail();
+      parent=record_->material();
+    }
+    auto child=record.material();
+    if(!parent||!child)return contracts::make_unexpected(contracts::error(contracts::ContractsErrc::InvalidAuthority));
     if(table_!=table || parent->session!=child->session ||
        parent->caller->view().description().principal!=child->caller->view().description().principal ||
        record.options().deadline>deadline())
@@ -238,7 +245,7 @@ private:
     std::shared_ptr<ChildLink> parent;
     {
       std::unique_lock lock(lifetime_mutex_);
-      if(required_applying_||!body_completed_||!record_->reply_pointer()||finished())return;
+      if(ownership_changing_||!body_completed_||!record_->reply_pointer()||finished())return;
       accept_children_=false;
       if(!completion_recorded_) {
         auto completion=record_->completion();
@@ -265,11 +272,12 @@ private:
         }
         return;
       }
-      if(required&&!required_applied_) {
-        // 移动业务 R 可能调用用户代码；仲裁在锁内，实际值转移在锁外。
-        required_applying_=true;lock.unlock();
-        record_->finalize_required_record(required->state,required->failure);
-        lock.lock();required_applied_=true;required_applying_=false;
+      if(!ownership_released_) {
+        // 业务值移动及治理 owner 析构都可能重入；完成后才发布 Terminal。
+        ownership_changing_=true;lock.unlock();
+        if(required)record_->finalize_required_record(required->state,required->failure);
+        record_->retire_ownership();
+        lock.lock();ownership_released_=true;ownership_changing_=false;
       }
       if(!finalizing_) {
         auto finalizing=table_->transition(entry_,contracts::ExecutionPhase::Finalizing,conditions(),completion_fault_);
@@ -311,7 +319,7 @@ private:
   bool completion_recorded_=false,finalizing_=false,waiting_child_=false;
   std::optional<contracts::Error> completion_fault_;
   std::shared_ptr<RequiredCompletion> required_;
-  bool required_applied_=false,required_applying_=false;
+  bool ownership_released_=false,ownership_changing_=false;
   std::optional<std::stop_callback<OriginalStop>> original_stop_;
 };
 
