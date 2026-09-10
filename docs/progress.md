@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 正式 DAG 收口：**D3.05 Passed**，同一 `dacc540` 三配置各 126/126 与独立 AI SPEC/CODE 已核验；正式前置为已提交事实（[包级决定](../evidence/B5/final-dacc540/D3.05-acceptance.json)）。其余包与 G3 以状态索引和后续决定为准。
+
 - B5 正式 DAG 收口：**D3.04 Passed**，同一 `dacc540` 三配置各 126/126 与独立 AI SPEC/CODE 已核验；正式前置为已提交事实（[包级决定](../evidence/B5/final-dacc540/D3.04-acceptance.json)）。其余包与 G3 以状态索引和后续决定为准。
 
 - B5 首轮正式 Debug 在已核对 Git 字节的 `c4b5c97` 上完成 **124/126**，两处旧绑定及 Evidence Schema 缺项使该轮整体 Failed，原文保留（[报告](../evidence/c4b5c974f8d1-257f5d1d66c1/win-msvc-debug/D3.07/20260909T233415Z-4005f95839c2/report.json)）。已修正安装探针的 B5 Runtime/客户端系统依赖预期与 Executor 三个变更源摘要；直接集 **2/2** 通过（[原文](../evidence/B5/final-bindings-retry-00f6b1b665/commands.json)）。新增 QPC 可选对象的严格 Schema 及真实/旧格式/损坏反例直接集 **3/3** 通过（[原文](../evidence/B5/final-bindings-e1fa5a786e/0-stdout.log)）；该次后续安装重试失败也保持原样。核心执行、资源/取消/父子/异步排空、全部真实 CLI 在首轮均通过，但不拼成最终验收。重新冻结同来源三配置与原 126 项 expected，B5/G3 仍待正式 Passed。
@@ -186,7 +188,7 @@
 | D3.02 | 实现公平Ready调度与依赖结构 | D3.01、D1.03 | Passed | Critical | B4 |
 | D3.03 | 实现资源归一化、MultiClaim与租约 | D3.02、D1.04 | Passed | Critical | B4 |
 | D3.04 | Submit、执行投影索引与拥有型输入 | D3.02、D3.03、D1.05 | Passed | Critical | B5 |
-| D3.05 | 实现取消、期限与permit竞争 | D3.04、D0.05 | InProgress | Critical | B5 |
+| D3.05 | 实现取消、期限与permit竞争 | D3.04、D0.05 | Passed | Critical | B5 |
 | D3.06 | 实现父子寿命、Finalizing与失败收尾 | D3.04、D3.05 | NotStarted | Critical | B5 |
 | D3.07 | 真实任务观察CLI、完整Embedded占用与停止门禁 | D3.06、D2.07 | NotStarted | Critical | B5 |
 | D4.01 | 实现轻量状态域与结构共享Snapshot | D1.02、D0.06、D3.03 | NotStarted | Standard | B6 |

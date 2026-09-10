@@ -1,0 +1,68 @@
+{
+  "format": "ock.b5-package-acceptance/1",
+  "created_at": "2026-09-10T00:11:53.457303+00:00",
+  "task_id": "D3.05",
+  "status": "Passed",
+  "review_mode": "ai-self-review",
+  "human_review_required": false,
+  "source_commit": "dacc540c03744f68379214ffbb8b342f5ec60a34",
+  "inputs_sha256": "9ca9dc06f5ab45410cd3f923aa93421d4a818a8506132c16717b10d9da44f882",
+  "shared_audit": {
+    "path": "evidence/B5/final-dacc540/shared-audit.json",
+    "sha256": "06c19fd70f36286ade1c9380e099aec7d3d1a25bcb86bdd18bf54fda9d2459a2"
+  },
+  "technical_reviews": [
+    {
+      "path": "docs/reviews/B5-D3.05-spec.json",
+      "sha256": "6e1b8f35382bed49bed71ce3b01d90ba2a7712d96d2eadb2789be97a89f45c14"
+    },
+    {
+      "path": "docs/reviews/B5-D3.05-code.json",
+      "sha256": "e3c00146bc2bba9b25653fd5028733380bf5ed45a2fd8a3d75f22ada291a292f"
+    }
+  ],
+  "required_cases": [
+    "T03.native.execution_service_control",
+    "T03.native.host_execution_resources",
+    "T03.native.host_async_deadline",
+    "T03.native.cancel_and_budget",
+    "T06.native.session_and_deadline",
+    "T13.resources.execution_running_cancel",
+    "T13.resources.execution_binding_interleavings",
+    "T07.permit.cancel_claim_orders",
+    "T07.permit.revoke_claim_orders",
+    "T07.permit.binding_expiry_single_use",
+    "T07.permit.leases_do_not_authorize",
+    "T07.effect.cancel_revoke_send_orders",
+    "T07.effect.cancel_before_permit_records_no_apply",
+    "T13.scheduler.quota_control",
+    "T13.scheduler.started_deadline",
+    "T13.scheduler.real_concurrent_completion",
+    "T13.scheduler.start_deadline_race",
+    "T13.scheduler.completion_backpressure",
+    "T13.scheduler.close_and_callbacks"
+  ],
+  "profiles": [
+    "win-msvc-asan",
+    "win-msvc-debug",
+    "win-msvc-release"
+  ],
+  "committed_prerequisites": [
+    {
+      "task_id": "D3.04",
+      "committed_at": "6e395d51d317e46b7777f2315c7701567de8b1f4",
+      "path": "evidence/B5/final-dacc540/D3.04-acceptance.json",
+      "sha256": "84360df3c12ac1c37243596b50d693ac9402bbf921c0f5b8e5643078e8a43734"
+    },
+    {
+      "task_id": "D0.05",
+      "committed_at": "6e395d51d317e46b7777f2315c7701567de8b1f4",
+      "path": "docs/progress.md",
+      "sha256": "f25ae381a789db046a7cc0013579352d775baf72350fe35bf4c0cabb5c705cc3",
+      "note": "仅核对已提交 Passed 状态，不重开历史证据或测试。"
+    }
+  ],
+  "additional_checkpoint_facts": [],
+  "errors": [],
+  "note": "按 E02 共享物理执行，保留独立包级需求、AI SPEC/CODE 与已提交前置；不是新增测试运行或人工批准。"
+}
