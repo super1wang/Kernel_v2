@@ -36,7 +36,7 @@
 | `EffectResolved` | `effect_id,application=NotApplied|Applied|PartiallyApplied,status=Succeeded|Failed,external_evidence`；与 EffectFact 一致；携带 `result` 或明确 `result_error`，结果编码失败也保留最小发送回执 |
 | `LifecycleResolved` | `transition_id,before,after,generation,status`；与 LifecycleFact 一致。失败可真实进入 `Failed`，不能把 after 改回 before |
 | `PlanCompleted` | `exports`、有序 `steps{step_id,status}` 摘要及 `known_facts`；必要步骤全部 Succeeded，必要子执行的实际 Outcome 全部成功且已收尾，不携带伪造的全局 CommitId。纯读计划也使用此变体 |
-| `FailedBeforeApply` | `failure_phase,reason,proof=NoAppliedStateOrEffect`；必须无已应用事实、无未解决未知；已进入业务的失败才使用它 |
+| `FailedBeforeApply` | `failure_phase,reason,proof=NoAppliedStateOrEffect`；必须无已应用事实、无未解决未知；业务已进入或执行已 Accepted 的失败可使用它，分别记录两种条件 |
 | `CancelledBeforeApply` | `reason,proof=NoAppliedStateOrEffect`；模型必须先有取消意图并在应用前赢得决定点；等待超时不能生成它 |
 | `PartialCompletion` | 有序成功/失败/取消步骤摘要；有确定应用事实，至少一个必要步骤未成功，没有未解决未知 |
 | `Indeterminate` | `unknown_ids` 精确列出所有未解决 UnknownFact；每个 UnknownFact 携带边界、CommitId/EffectId 引用及对账方法；其他已知提交继续保留 |
@@ -138,3 +138,7 @@ python -X utf8 -m unittest discover -s tests/model/execution_model -v
 本包原始运行证据位于 evidence/bootstrap/D0.03 的独立 run 目录。初始红为模型尚不存在的导入失败；后续行为红捕获 4 个失败和 3 个缺能力错误，另有必要记录故障投影和资源等待挂起恢复反例红；修复后保留独立绿记录。所有记录保留实际 argv、cwd、exit_code、输入哈希及原始 stdout/stderr，不覆盖失败、不手写 Passed。独立复核还增加实际子结果判定、对账后相反事实、owner 环、取消传播及已记录 Outcome 重写的反例，并保留对应失败与修复运行。最新完整结果由主集成者的证据索引绑定最终工作区版本。
 
 未运行/未实现范围：真实 C++、Executor Conformance 后端、真实线程竞态、进程崩溃/磁盘耐久、正式 DTO/wire、设备或外部服务、D0.04/D0.05、D0.06 正式采集及 G0。模型方法的可信事实来源是合同前置，不构成针对恶意 native 模块的安全沙箱。本包人工评审待批准。
+
+## B5/G3 post-gate：Accepted 后失败（2026-09-10）
+
+按 [ADR](../adr/ADR-b5-accepted-outcome.md)，BeforeApplyDecision 追加 execution_accepted，默认 false；FailedBeforeApply 要求 business_entered 或 execution_accepted 为真，仍要求无应用/未知事实。受管理完成的接受事实由 Execution owner 产生，早到完成未发布前不可见。生产 wire 同步可选布尔字段，仅 true 时输出；旧三字段保持 Native 编码。条件重验包含此字段，不能伪造业务已进入。ReadCompleted 仍要求成功结果，Read/PureCompute 的封装失败使用业务已进入的 FailedBeforeApply。接受前 Submit 仍可拒绝；已经 Accepted 的 Terminal result 必须为 Completed。

@@ -95,6 +95,10 @@ void conditions(data::PayloadBuilder &b,
     (void)b.begin_object();
     (void)b.key("business_entered");
     (void)b.boolean(c.before_apply->business_entered);
+    if(c.before_apply->execution_accepted) {
+      (void)b.key("execution_accepted");
+      (void)b.boolean(true);
+    }
     constexpr std::string_view decisions[] = {"NotReached", "CancelWon",
                                               "ClaimWon"};
     text(b, "decision",

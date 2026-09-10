@@ -7,6 +7,7 @@
 #include <map>
 #include <mutex>
 #include <condition_variable>
+#include <utility>
 
 namespace ock::runtime::executions::detail {
 // 内部拥有表。调用者身份与观察权限由 Runtime 适配器检查，不能直接安装为 SDK 入口。
@@ -14,6 +15,10 @@ class ExecutionTable final {
 public:
   using Limits=host::ExecutionLimits;
   struct Usage {std::size_t records=0,input_bytes=0,reply_bytes=0,waiters=0;};
+  struct Reclamation {
+    std::uint64_t terminal_evictions=0,admission_pressure_evictions=0;
+    std::uint64_t admission_pressure_scans=0,admission_pressure_failures=0,pinned_terminal_skips=0;
+  };
   enum class WaitState {Terminal,Timeout,Cancelled};
   using ReplyAccess=const void* (*)(const void*) noexcept;
   struct Notice {
@@ -27,6 +32,10 @@ private:
   struct Reservation {
     std::shared_ptr<Ledger> ledger;
     std::size_t input=0,reply=0;
+    void release_input_once() noexcept {
+      std::lock_guard lock(ledger->mutex);
+      ledger->used.input_bytes-=std::exchange(input,0);
+    }
     ~Reservation() {
       if(!ledger)return;
       std::lock_guard lock(ledger->mutex);
@@ -119,12 +128,22 @@ public:
     if(!valid)return contracts::make_unexpected(valid.error());
     try {
       auto reservation=std::make_shared<Reservation>();
-      {
+      const auto reserve=[&] {
         std::lock_guard lock(ledger_->mutex);const auto& l=ledger_->limits;auto& u=ledger_->used;
         if(u.records>=l.records||input_bytes>l.input_bytes-u.input_bytes||
-           reply_bytes>l.reply_bytes-u.reply_bytes)return failure();
+           reply_bytes>l.reply_bytes-u.reply_bytes)return false;
         ++u.records;u.input_bytes+=input_bytes;u.reply_bytes+=reply_bytes;
         reservation->ledger=ledger_;reservation->input=input_bytes;reservation->reply=reply_bytes;
+        return true;
+      };
+      if(!reserve()) {
+        // 普通终态保留值是上限，不是最低保留量；硬压力下只做一轮有限回收。
+        if(input_bytes<=ledger_->limits.input_bytes&&reply_bytes<=ledger_->limits.reply_bytes)
+          reclaim(ledger_->limits.scan_limit,true,input_bytes,reply_bytes);
+        if(!reserve()) {
+          std::lock_guard lock(mutex_);++reclamation_.admission_pressure_failures;
+          return failure();
+        }
       }
       auto entry=std::shared_ptr<Entry>(new Entry(std::move(summary),std::move(payload),type,std::move(reservation),std::move(targets),reply));
       std::lock_guard lock(mutex_);
@@ -307,20 +326,48 @@ public:
   }
   // 普通缓存回收不摘除被外部 owner 持有的记录；每轮扫描有显式上限。
   std::size_t trim(std::size_t scan_limit) {
-    std::size_t removed=0,scanned=0;
-    while(scanned<scan_limit) {
+    return reclaim(scan_limit,false,0,0);
+  }
+  Reclamation reclamation() const {std::lock_guard lock(mutex_);return reclamation_;}
+  // 仅由记录完成器在实际 input owner 排空后调用；结果 pin 仍保留 record/reply 计费。
+  void release_input_charge(const std::shared_ptr<Entry>& entry) noexcept {
+    foundation::invariant(entry&&entry->reservation_->ledger==ledger_);
+    entry->reservation_->release_input_once();
+  }
+private:
+  // 三个内部强索引以外的所有 owner（结果、等待者、在途执行等）均视为 pin。
+  static bool evictable(const std::shared_ptr<Entry>& entry) noexcept {
+    return entry->accepted_&&entry->summary_.phase==contracts::ExecutionPhase::Terminal&&entry.use_count()==3;
+  }
+  bool capacity_for(std::size_t input,std::size_t reply) const {
+    std::lock_guard lock(ledger_->mutex);const auto& l=ledger_->limits;const auto& u=ledger_->used;
+    return u.records<l.records&&input<=l.input_bytes-u.input_bytes&&reply<=l.reply_bytes-u.reply_bytes;
+  }
+  std::size_t reclaim(std::size_t scan_limit,bool admission,std::size_t input,std::size_t reply) {
+    std::size_t removed=0;
+    {std::lock_guard lock(mutex_);scan_limit=(std::min)(scan_limit,ordered_.size());}
+    for(std::size_t scanned=0;scanned<scan_limit;++scanned) {
       std::shared_ptr<Entry> retired;
       {
         std::lock_guard lock(mutex_);
-        if(terminal_count_<=ledger_->limits.terminal_records&&terminal_bytes_<=ledger_->limits.terminal_bytes)break;
-        auto i=ordered_.upper_bound(trim_after_);
-        if(i==ordered_.end()){trim_after_=0;break;}
-        trim_after_=i->first;++scanned;
-        // 三个索引分别持有一次，其他引用均视为 pin。
-        if(i->second.use_count()!=3||!i->second->accepted_||i->second->summary_.phase!=contracts::ExecutionPhase::Terminal)continue;
+        if(admission ? capacity_for(input,reply) :
+           (terminal_count_<=ledger_->limits.terminal_records&&terminal_bytes_<=ledger_->limits.terminal_bytes))break;
+        if(ordered_.empty())break;
+        auto& after=admission?admission_after_:trim_after_;
+        auto i=ordered_.upper_bound(after);
+        if(i==ordered_.end())i=ordered_.begin();
+        after=i->first;
+        if(admission)++reclamation_.admission_pressure_scans;
+        if(!evictable(i->second)) {
+          if(i->second->accepted_&&i->second->summary_.phase==contracts::ExecutionPhase::Terminal)
+            ++reclamation_.pinned_terminal_skips;
+          continue;
+        }
         retired=std::move(i->second);by_id_.erase(retired->execution().execution_id);ordered_.erase(i);++removed;
         terminal_owners_.erase(owner_key(*retired));
         --terminal_count_;terminal_bytes_-=retired->reservation_->reply;
+        ++reclamation_.terminal_evictions;
+        if(admission)++reclamation_.admission_pressure_evictions;
       }
       retired.reset();
     }
@@ -379,7 +426,8 @@ private:
   std::vector<Notice> notices_;
   std::uint64_t notice_sequence_=0;
   bool notice_exhausted_=false;
-  std::uint64_t next_=0,trim_after_=0;
+  std::uint64_t next_=0,trim_after_=0,admission_after_=0;
+  Reclamation reclamation_;
   std::size_t terminal_count_=0,terminal_bytes_=0;
   bool closed_=false;
 };

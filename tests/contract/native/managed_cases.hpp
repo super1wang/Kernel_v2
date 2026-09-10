@@ -33,11 +33,11 @@ inline void managed_record() {
   });
   auto bound=e.bind();CHECK(bound);entered=0;
   auto registered=ManagedAccess::registered_record(*bound,2,e.options());CHECK(registered);
-  CHECK((*registered)->reject_before_start(invocation_error(InvocationErrc::Cancelled)));
+  CHECK((*registered)->discard_before_accept(invocation_error(InvocationErrc::Cancelled)));
   // 冻结目录保存独立额度；调用方的后续变量变化不能改变该声明。
   auto original_policy=policy;policy.input_limit=1;
   auto immutable=ManagedAccess::registered_record(*bound,2,e.options());CHECK(immutable);
-  CHECK((*immutable)->reject_before_start(invocation_error(InvocationErrc::Cancelled)));
+  CHECK((*immutable)->discard_before_accept(invocation_error(InvocationErrc::Cancelled)));
   policy=original_policy;
   auto first=ManagedAccess::create_record(*bound,2,e.options(),policy);CHECK(first);
   CHECK(!(*first)->reply());CHECK(entered==0);
@@ -48,15 +48,16 @@ inline void managed_record() {
   CHECK((*first)->run_once({}));CHECK((*first)->reply());
   CHECK(result(*(*first)->reply())==4&&entered==1);
   CHECK(!(*first)->run_once({}));
-  CHECK(!(*first)->reject_before_start(invocation_error(InvocationErrc::Cancelled)));
+  CHECK(!(*first)->discard_before_accept(invocation_error(InvocationErrc::Cancelled)));
   auto second=ManagedAccess::create_record(*bound,3,e.options(),policy);CHECK(second);
-  CHECK((*second)->reject_before_start(invocation_error(InvocationErrc::Cancelled)));
+  CHECK((*second)->discard_before_accept(invocation_error(InvocationErrc::Cancelled)));
   CHECK(!(*second)->run_once({}));CHECK(entered==1);
   CHECK(std::holds_alternative<Rejected>(*(*second)->reply()));
   policy.input_limit=1;CHECK(!ManagedAccess::create_record(*bound,3,e.options(),policy));
   policy.input_limit=sizeof(int);policy.reply_limit=1;
   auto limited=ManagedAccess::create_record(*bound,3,e.options(),policy);CHECK(limited);
-  CHECK((*limited)->run_once({}));CHECK(std::holds_alternative<Rejected>(*(*limited)->reply()));
+  CHECK((*limited)->run_once({}));CHECK(std::holds_alternative<Completed<int>>(*(*limited)->reply()));
+  CHECK(std::holds_alternative<FailedBeforeApply>(std::get<Completed<int>>(*(*limited)->reply()).outcome.value()));
   CHECK(entered==2);
   std::stop_source original;auto options=e.options();options.stop=original.get_token();
   auto cancelled=ManagedAccess::create_record(*bound,3,options,policy);CHECK(cancelled);original.request_stop();
@@ -89,7 +90,7 @@ inline void managed_record_ownership() {
   auto second=std::make_shared<const std::vector<int>>(8,1);weak=second;
   auto cancelled=ManagedAccess::create_record(*bound,OwnedRecordInput{second},e.options(),policy);CHECK(cancelled);
   second.reset();CHECK(!weak.expired());
-  CHECK((*cancelled)->reject_before_start(invocation_error(InvocationErrc::Cancelled)));
+  CHECK((*cancelled)->discard_before_accept(invocation_error(InvocationErrc::Cancelled)));
   CHECK(weak.expired());
 }
 inline void managed_admission() {

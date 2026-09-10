@@ -10,6 +10,7 @@
 #include "execution_service_cases.hpp"
 using namespace native_test;
 namespace native_test {void observation_journal();void observation_lease_drain();void host_observation_drain();void host_combined_drain();}
+namespace native_test {void execution_admission_endurance();void execution_admission_pins();void execution_reclaim_protection();void managed_accepted_failures();void managed_async_input_accounting();}
 void registered_compute() { Env e;auto b=e.bind();CHECK(b);entered=0;CHECK(result(b->invoke(2,e.options()))==4);CHECK(result(b->invoke(5,e.options()))==7);CHECK(entered==2); }
 void registered_read() { Env e(true);auto b=e.bind();CHECK(b);e.reader.reset();CHECK(result(b->invoke(3,e.options()))==10); }
 void invalid_input() { Env e;auto b=e.bind();CHECK(b);entered=0;CHECK(std::holds_alternative<Rejected>(b->invoke(-1,e.options())));CHECK(entered==0);CHECK(result(b->invoke(0,e.options()))==2); value_invalid_input(); }
@@ -28,6 +29,11 @@ int main(int argc,char**argv) {
     {"T03.native.managed_record",managed_record},
     {"T03.native.managed_record_ownership",managed_record_ownership},
     {"T03.native.execution_table_ownership",execution_table_ownership},
+    {"T03.native.execution_admission_endurance",execution_admission_endurance},
+    {"T03.native.execution_admission_pins",execution_admission_pins},
+    {"T03.native.execution_reclaim_protection",execution_reclaim_protection},
+    {"T06.native.managed_accepted_failures",managed_accepted_failures},
+    {"T03.native.managed_async_input_accounting",managed_async_input_accounting},
     {"T06.native.execution_source_observation",execution_source_observation},
     {"T06.native.observation_journal",observation_journal},
     {"T03.native.observation_lease_drain",observation_lease_drain},

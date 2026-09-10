@@ -15,3 +15,4 @@
 | [B4：Executor 寿命与资源边界](ADR-b4-executor-resources.md) | A09/A21/A22、E06 | D3.01–D3.03 | 实施前决定；正式结果以 B4 计划及 progress 为准 |
 
 D0.01 已批准；D0.02 沿用既有架构决定形成具体 ADR，未更改唯一规范。正式决定必须同步合同、测试、资料和受影响包。
+| [B5：接受身份与业务进入](ADR-b5-accepted-outcome.md) | A05/A09.1，E00/E02 | B5/G3 post-gate closure | C2 编码前决定，验证及状态见 B5 规划/progress |

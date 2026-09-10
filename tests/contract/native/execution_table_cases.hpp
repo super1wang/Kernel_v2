@@ -191,7 +191,7 @@ inline void managed_execution_path() {
   auto stopped=Managed::create(*table,schedule,resources,id,host,*bound,9,options,policy,resolver,[]{});CHECK(stopped);
   CHECK(!(*stopped)->finished());original.request_stop();CHECK((*stopped)->finished());
   (*stopped)->drive();schedule->pump();CHECK(entered==1);
-  auto stopped_result=(*table)->result<int>(id);CHECK(stopped_result&&std::holds_alternative<Rejected>(**stopped_result));
+  auto stopped_result=(*table)->result<int>(id);CHECK(stopped_result&&std::holds_alternative<Completed<int>>(**stopped_result));
   schedule->close();id.execution_id.bytes[0]=74;
   CHECK(!Managed::create(*table,schedule,resources,id,host,*bound,8,env.options(),policy,resolver,[]{}));
   CHECK(!(*table)->find(id));CHECK(entered==1);
@@ -222,7 +222,7 @@ inline void managed_execution_path() {
       CHECK((*visible)->value().phase==ExecutionPhase::Terminal);
       CHECK((*visible)->value().fault.has_value());
       auto reply=(*early_table)->result<int>(id);
-      CHECK(reply&&std::holds_alternative<Rejected>(**reply));
+      CHECK(reply&&std::holds_alternative<Completed<int>>(**reply));
     }
     CHECK(early_schedule->snapshot().active==0);
     early_schedule.reset();

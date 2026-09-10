@@ -1,0 +1,68 @@
+{
+  "status": "PlannedBeforeFormalRun",
+  "task_id": "D3.07",
+  "scope": "B5/G3 post-gate closure",
+  "requirements": {
+    "C1": [
+      "T03.native.execution_admission_endurance",
+      "T03.native.execution_admission_pins",
+      "T03.native.execution_reclaim_protection"
+    ],
+    "C1b": [
+      "T03.native.managed_async_input_accounting",
+      "T03.native.host_async_drain",
+      "T03.native.host_cached_result_sessions"
+    ],
+    "C2": [
+      "T06.native.managed_accepted_failures",
+      "T03.native.managed_async_input_accounting",
+      "T06.contracts.before_apply_and_composite_proofs",
+      "T06.protocol.outcome",
+      "T20.cli.managed_post_closure"
+    ],
+    "G3-A": [
+      "T06.native.managed_admission",
+      "T03.native.managed_resources",
+      "T03.native.managed_record",
+      "T03.native.managed_record_ownership",
+      "T03.native.execution_table_ownership",
+      "T06.native.execution_source_observation",
+      "T06.native.observation_journal",
+      "T03.native.observation_lease_drain",
+      "T03.native.execution_service_control",
+      "T03.native.host_execution_lifecycle",
+      "T03.native.host_execution_resources",
+      "T03.native.host_structured_lifetime",
+      "T06.native.host_structured_admission",
+      "T03.native.host_async_completion",
+      "T03.native.host_async_drain",
+      "T03.native.host_async_deadline",
+      "T03.native.host_required_record",
+      "T03.native.host_required_record_drain",
+      "T03.native.host_cached_result_sessions",
+      "T03.native.host_observation_drain",
+      "T03.native.host_combined_drain",
+      "T03.native.managed_execution_path",
+      "T03.native.managed_execution_resource_wait",
+      "T03.native.no_task_path",
+      "T03.native.reentrant_and_concurrent",
+      "T03.native.cancel_and_budget",
+      "T06.native.session_and_deadline",
+      "T06.native.target_binding",
+      "T06.native.outcome_consistency",
+      "T06.native.revoke_and_regrant",
+      "T03.native.no_task_path",
+      "T03.native.reentrant_and_concurrent"
+    ],
+    "G3-B": [
+      "T20.cli.managed_post_closure",
+      "T03.binding.submit",
+      "T20.protocol.list",
+      "T24.sdk.version_header",
+      "T24.sdk.install_and_missing_components",
+      "T01.architecture.dependency_dag",
+      "T01.b4.architecture_guards"
+    ],
+    "G3-C": "原方法、原数值上限、三个独立配置实际刷新；最终交付追加真实报告绑定"
+  }
+}

@@ -327,6 +327,7 @@ struct BeforeApplyDecision {
   bool business_entered;
   ApplyDecision decision;
   bool no_application_proven;
+  bool execution_accepted=false;
   bool operator==(const BeforeApplyDecision &) const = default;
 };
 struct FinalizationFacts {
@@ -676,7 +677,7 @@ private:
                 has_applied || unknown_count != 0 || x.reason.code().value() == 0)
               return reject(ContractsErrc::InvalidProof);
             if constexpr (std::same_as<X, FailedBeforeApply>) {
-              if (!c.before_apply->business_entered)
+              if (!c.before_apply->business_entered&&!c.before_apply->execution_accepted)
                 return reject(ContractsErrc::InvalidProof);
             } else if (c.before_apply->decision != ApplyDecision::CancelWon)
               return reject(ContractsErrc::InvalidProof);

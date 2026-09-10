@@ -51,6 +51,22 @@ int main(int argc,char **argv)try{
   CHECK(unknown);
   std::cerr<<"unknown validated\n";
   auto encoder=[](const int &v){return data::Payload::parse(std::to_string(v));};
+  auto accepted_conditions=conditions();
+  accepted_conditions.before_apply=BeforeApplyDecision{false,ApplyDecision::NotReached,true,true};
+  auto before_start=Outcome<int>::validate(FailedBeforeApply{name("dispatch"),contracts::error(ContractsErrc::Rejected)},
+      facts(),EvidenceState::Volatile,accepted_conditions,validation);CHECK(before_start);
+  auto before_wire=control::encode_invoke<int>(Completed<int>{*before_start},encoder);CHECK(before_wire&&schema->validate(before_wire->view()));
+  CHECK(before_wire->view().at("outcome").at("conditions").at("before_apply").at("execution_accepted").boolean()==true);
+  CHECK(before_wire->view().at("outcome").at("conditions").at("before_apply").at("business_entered").boolean()==false);
+  auto accepted_json=before_wire->encode();CHECK(accepted_json);
+  const std::string accepted_field="\"execution_accepted\":true";
+  auto accepted_position=accepted_json->find(accepted_field);CHECK(accepted_position!=std::string::npos);
+  for(const std::string replacement:{"\"execution_accepted\":1","\"unknown_acceptance\":true"}) {
+    auto invalid_json=*accepted_json;
+    invalid_json.replace(accepted_position,accepted_field.size(),replacement);
+    auto invalid_wire=data::Payload::parse(invalid_json);CHECK(invalid_wire);
+    CHECK(!schema->validate(invalid_wire->view()));
+  }
   auto wire=control::encode_invoke<int>(Completed<int>{*unknown},encoder);CHECK(wire);
   std::cerr<<"unknown encoded\n";
   CHECK(schema->validate(wire->view()));

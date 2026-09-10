@@ -306,7 +306,7 @@ void host_required_record() {
   CHECK(queued.session->cancel(*queued.caller,waiting));
   auto done=queued.wait(waiting);CHECK(done&&done->state==host::ExecutionWaitState::Terminal);
   CHECK(done->observed.summary->value().record_state==RequiredRecordState::Recorded);
-  auto rejected=queued.session->result<int>(*queued.caller,waiting);CHECK(rejected&&std::holds_alternative<Rejected>(*rejected->value));
+  auto rejected=queued.session->result<int>(*queued.caller,waiting);CHECK(rejected&&std::holds_alternative<Completed<int>>(*rejected->value));
   CHECK(call->complete(7));release_async();call.reset();CHECK(queued.wait(running));
 }
 void host_required_record_drain() {

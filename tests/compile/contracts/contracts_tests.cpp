@@ -347,6 +347,14 @@ void lifecycle_report_preserves_state() {
 void before_apply_and_composite_proofs() {
   Publication pub;
   OutcomeValidation v{pub, {}, fact_budget()};
+  auto accepted=conditions();accepted.before_apply=BeforeApplyDecision{false,ApplyDecision::NotReached,true};
+  const auto failed=FailedBeforeApply{name("dispatch"),error(ContractsErrc::Rejected)};
+  CHECK(!Outcome<int>::validate(failed,facts(),EvidenceState::Volatile,accepted,v));
+  accepted.before_apply->execution_accepted=true;
+  auto accepted_failure=Outcome<int>::validate(failed,facts(),EvidenceState::Volatile,accepted,v);CHECK(accepted_failure);
+  auto unaccepted=accepted;unaccepted.before_apply->execution_accepted=false;
+  CHECK(!accepted_failure->revalidate(v,unaccepted,*facts()));
+  CHECK(!Outcome<int>::validate(failed,facts({effect_fact()}),EvidenceState::Volatile,accepted,v));
   auto forged = conditions();
   forged.before_apply =
       BeforeApplyDecision{true, ApplyDecision::CancelWon, true};

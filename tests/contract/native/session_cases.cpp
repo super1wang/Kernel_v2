@@ -97,7 +97,7 @@ void host_cached_result_sessions() {
   }
   session_release=true;retain(first,2);
   auto done=observer->wait(**who,second,std::chrono::steady_clock::now()+std::chrono::seconds(2));CHECK(done&&done->state==host::ExecutionWaitState::Terminal);
-  auto refused=observer->result<int>(**who,second);CHECK(refused&&std::holds_alternative<Rejected>(*refused->value));
+  auto refused=observer->result<int>(**who,second);CHECK(refused&&std::holds_alternative<Completed<int>>(*refused->value));
   CHECK(session_entered==1);
 }
 }

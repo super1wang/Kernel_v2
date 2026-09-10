@@ -250,7 +250,7 @@ Read 若要在原子组中读取候选，必须注册 `candidate_read` 适配，
 | `EffectResolved` | EffectId、明确的 NotApplied/Applied/PartiallyApplied、成功或失败状态、外部证据及可用结果；无需 CommitId |
 | `LifecycleResolved` | 转换身份、before/after/lifecycle generation、成功或失败状态；失败也可能已进入 Failed 等真实状态 |
 | `PlanCompleted` | 所有必要节点成功且子执行收尾完毕；exports＋有序步骤事实摘要；不伪造一个全局 CommitId |
-| `FailedBeforeApply` | 业务已进入但可证明没有正式状态/外部效果；包含失败阶段和原因 |
+| `FailedBeforeApply` | 业务已进入或执行已 Accepted，且可证明没有正式状态/外部效果；两种事实分别表达，包含失败阶段和原因 |
 | `CancelledBeforeApply` | 取消先赢且可证明未应用；不同于等待超时 |
 | `PartialCompletion` | 组合未完整成功，已有确定效果，且不存在未解决的未知效果；列明成功/失败/取消步骤 |
 | `Indeterminate` | 效果或存储提交无法判断；携带已知事实、unknown 边界、CommitId/EffectId、对账方法 |
@@ -1100,3 +1100,5 @@ E02–E12保留v3.1列明的2026-09-06来源记录，本次不将其写成重新
 - [E15] Microsoft：[PROCESS_MEMORY_COUNTERS_EX](https://learn.microsoft.com/en-us/windows/win32/api/psapi/ns-psapi-process_memory_counters_ex)。WorkingSetSize与PrivateUsage等测量字段，不是内核已测占用。
 
 除上述有限事实外，组件划分、Outcome、许可、水位、预算和实施顺序是本方案的工程决定。它们必须由实现和测试证明，不能把官方库说明当作整套系统已认证。
+
+**B5/G3 post-gate C2（2026-09-10）：** 按 [接受与业务进入 ADR](adr/ADR-b5-accepted-outcome.md)落实 A09.1。A05 的 FailedBeforeApply 除业务已进入外，也允许执行已 Accepted、业务尚未开始的失败；BeforeApplyDecision 明确分列 business_entered 与默认 false 的 execution_accepted，二者至少一个为真，仍必须证明未应用且无未知事实。取消先赢保持 CancelledBeforeApply。该澄清不改变 Native 接受前 Rejected，不增加 Outcome 变体或设备/持久能力。

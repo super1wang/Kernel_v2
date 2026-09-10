@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- **B5/G3 post-gate closure InProgress；B6 生产集成 HOLD。** 用户建议中的 C1 准入/终态回收、C1b 输入计费、C2 Accepted 后结果分类已在源码确认，按 [B5 收口规划](plans/B5.md)修复并刷新实际影响验证；历史 G3/包级 Passed 保留。
+
 - **B5 完成，D3.04–D3.07 Passed；G3 Passed。** 各包正式前置按 DAG 依次提交，再形成 G3 决定。见 [B5/G3 交付](validation/B5-delivery.md)及 [G3 自动验收](../evidence/G3/acceptance-dacc540.json)。
 - 最终语义来源 `dacc540`：Debug、Release、ASan / RelWithDebInfo 均 **126/126**，附加 Schema 检查通过；618 个输入与提交字节一致，AI SPEC/CODE 与自动事实齐全，errors/review_errors 为空。G3-C 按实际未变 Embedded 编译依赖复用原始报告，来源区别见交付说明。
 - 当前已 Passed：G0–G3、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07、D3.01–D3.07。B1/B2 历史 Passed 保留。下一批 B6 / D4.01–D4.04 尚未开始，本任务止于 B5/G3。

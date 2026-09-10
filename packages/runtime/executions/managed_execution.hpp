@@ -109,7 +109,7 @@ public:
       request.detach_waiter=[binding=owner->binding_]{binding->terminal();};
       auto ticket=scheduler->enqueue(std::move(request));
       if(!ticket) {
-        owner->binding_->terminal();owner->record_->reject_before_start(ticket.error());
+        owner->binding_->terminal();owner->record_->discard_before_accept(ticket.error());
         table->abandon(owner->entry_);return contracts::make_unexpected(ticket.error());
       }
       owner->ticket_=*ticket;
@@ -233,7 +233,12 @@ private:
   }
   void completed(contracts::Result<void> status) {
     binding_->terminal();
-    if(!record_->reply_pointer())record_->reject_before_start(status?contracts::error(contracts::ContractsErrc::Rejected):status.error());
+    if(!record_->reply_pointer()) {
+      auto reason=status?contracts::error(contracts::ContractsErrc::Rejected):status.error();
+      record_->complete_before_start(reason,
+          reason.code()==scheduler::error(scheduler::Errc::CancelledBeforeStart).code()||
+          reason.code()==scheduler::error(scheduler::Errc::ExpiredBeforeDispatch).code());
+    }
     {
       std::lock_guard lock(lifetime_mutex_);
       if(!status)completion_fault_=contracts::Error{status.error().code()};
@@ -254,6 +259,7 @@ private:
         foundation::invariant(bool(recorded));completion_recorded_=true;
       }
       const auto required=required_?std::optional(required_->snapshot()):std::nullopt;
+      if(record_->settled())table_->release_input_charge(entry_);
       if(required) {
         auto published=table_->record_status(entry_,required->state,required->failure);
         foundation::invariant(bool(published));

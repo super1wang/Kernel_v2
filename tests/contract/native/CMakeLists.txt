@@ -1,4 +1,4 @@
-add_executable(ock_native_tests native_tests.cpp allocation_probe.cpp execution_service_cases.cpp structured_cases.cpp async_cases.cpp session_cases.cpp observation_cases.cpp combined_cases.cpp)
+add_executable(ock_native_tests native_tests.cpp allocation_probe.cpp execution_service_cases.cpp structured_cases.cpp async_cases.cpp session_cases.cpp observation_cases.cpp combined_cases.cpp post_closure_cases.cpp)
 target_link_libraries(ock_native_tests PRIVATE ock_invocation_internal ock_registry_internal ock_policy_internal OCK::CoreContracts)
 if(OCK_BUILD_CPU_POOL)
   target_link_libraries(ock_native_tests PRIVATE OCK::Adapter::CpuPool)

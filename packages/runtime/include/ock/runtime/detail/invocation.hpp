@@ -97,7 +97,7 @@ Result<policy::InlineAdmission> validate_call(const BoundState& state,
       std::span(actual).first(*count), options.stop, options.deadline);
 }
 template <class R> Result<Outcome<R>> outcome_read(
-    Result<R> result, std::shared_ptr<const KnownFacts> facts) {
+    Result<R> result, std::shared_ptr<const KnownFacts> facts,bool accepted=false) {
   class NoPublication final : public PublicationAuthorityPort {
   public:
     Result<std::shared_ptr<const PublicationProof>> attest(const PublishedCommit &) override {
@@ -109,14 +109,14 @@ template <class R> Result<Outcome<R>> outcome_read(
   };
   static NoPublication publication;
   if (!facts) return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
-  OutcomeConditions conditions{BeforeApplyDecision{true, ApplyDecision::NotReached, true}, {},
+  OutcomeConditions conditions{BeforeApplyDecision{true, ApplyDecision::NotReached, true,accepted}, {},
                                {RequiredRecordState::NotRequired, 0, 0}};
   OutcomeValidation validation{publication, {}, {0, 0, 0}};
   return Outcome<R>::validate(ReadCompleted<R>{std::move(result), ResultScope::ReadOnly},
                               std::move(facts), EvidenceState::Volatile, conditions, validation);
 }
 template <class R> Result<Outcome<R>> outcome_failure(
-    Error error, std::shared_ptr<const KnownFacts> facts) {
+    Error error, std::shared_ptr<const KnownFacts> facts,bool entered=true,bool accepted=false,bool cancelled=false) {
   class NoPublication final : public PublicationAuthorityPort {
   public:
     Result<std::shared_ptr<const PublicationProof>> attest(const PublishedCommit &) override {
@@ -128,10 +128,13 @@ template <class R> Result<Outcome<R>> outcome_failure(
   };
   static NoPublication publication;
   if (!facts) return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
-  OutcomeConditions conditions{BeforeApplyDecision{true, ApplyDecision::NotReached, true}, {},
+  OutcomeConditions conditions{BeforeApplyDecision{entered, cancelled?ApplyDecision::CancelWon:ApplyDecision::NotReached, true,accepted}, {},
                                {RequiredRecordState::NotRequired, 0, 0}};
   OutcomeValidation validation{publication, {}, {0, 0, 0}};
-  return Outcome<R>::validate(FailedBeforeApply{*Name::parse("native"), error}, std::move(facts),
+  typename Outcome<R>::Candidate candidate=cancelled
+      ?typename Outcome<R>::Candidate{CancelledBeforeApply{error}}
+      :typename Outcome<R>::Candidate{FailedBeforeApply{*Name::parse(accepted?(entered?"managed.result":"managed.dispatch"):"native"), error}};
+  return Outcome<R>::validate(std::move(candidate), std::move(facts),
                               EvidenceState::Volatile, conditions, validation);
 }
 } // namespace detail
@@ -212,7 +215,7 @@ private:
       return Rejected{std::move(error)};
     };
     const auto failed = [&](Error error) -> InvokeReply<R> {
-      auto outcome = detail::outcome_failure<R>(error, state->empty_facts);
+      auto outcome = detail::outcome_failure<R>(error, state->empty_facts,true,managed);
       // 失败分支没有 R，不会再次执行可能抛出的 R 验证器。
       foundation::invariant(bool(outcome));
       observation.kind=InvocationRecordKind::FailedBeforeApply;observation.error=error.code();
@@ -251,7 +254,7 @@ private:
       NativeAccess::dispatch(*state->catalog, *state->entry, &args, work, &result);
       if (!result) return failed(invocation_error(InvocationErrc::InvalidOutput));
       if (!*result) return failed(result->error());
-      auto completed = detail::outcome_read<R>(std::move(*result), state->empty_facts);
+      auto completed = detail::outcome_read<R>(std::move(*result), state->empty_facts,managed);
       if (!completed) return failed(completed.error());
       InvokeReply<R> reply{Completed<R>{std::move(*completed)}};
       observation.kind=InvocationRecordKind::ReadCompleted;observation.error.reset();
@@ -326,7 +329,8 @@ public:
   virtual bool run_once(std::stop_token,std::span<const contracts::ResourceLease* const>,
                         std::shared_ptr<contracts::ExecutionScopePort> = {},
                         std::unique_ptr<contracts::ResourceLease> = {})=0;
-  virtual bool reject_before_start(contracts::Error)=0;
+  virtual bool discard_before_accept(contracts::Error)=0;
+  virtual bool complete_before_start(contracts::Error,bool cancelled=false)=0;
   virtual const void* reply_pointer() const noexcept=0;
   virtual contracts::CppTypeToken result_type() const noexcept=0;
   virtual InvocationCompletion completion() const=0;
@@ -468,11 +472,18 @@ public:
   }
   // 仅用于 Scheduler 已确认未开始的退役/拒绝；不能代替 start/cancel 权威仲裁。
   // 一次性 claim 只防御重复交付，取消请求本身不得调用此方法。
-  bool reject_before_start(contracts::Error reason) {
+  bool discard_before_accept(contracts::Error reason) override {
+    auto keep_alive=this->shared_from_this();
+    if(claimed_.exchange(true,std::memory_order_acq_rel)) return false;
+    async_dispatch_.reset();reply_.emplace(contracts::Rejected{contracts::Error{reason.code()}});
+    input_.reset();call_.reset();settled_.store(true,std::memory_order_release);
+    completed_.store(true,std::memory_order_release);return true;
+  }
+  bool complete_before_start(contracts::Error reason,bool cancelled=false) override {
     auto keep_alive=this->shared_from_this();
     if(claimed_.exchange(true,std::memory_order_acq_rel)) return false;
     async_dispatch_.reset();
-    store(contracts::Rejected{contracts::Error{reason.code()}});
+    store(failure_reply(reason,false,cancelled||cancel_before_start(reason)));
     return true;
   }
   const contracts::InvokeReply<R>* reply() const noexcept {
@@ -509,9 +520,7 @@ public:
     registry::detail::ExecutionCallbackFrame frame;
     foundation::invariant(settled()&&reply());
     // 尚未发布 Terminal，没有外部结果引用；保留业务候选值，只追加记录事实。
-    // 接受后开始前的拒绝仍是原拒绝，不伪造 business_entered 的 Outcome。
-    // 必要记录状态归同一 ExecutionSummary，原始拒绝原因保持。
-    if(std::holds_alternative<contracts::Rejected>(*reply_))return;
+    foundation::invariant(std::holds_alternative<contracts::Completed<R>>(*reply_));
     auto pending=std::move(std::get<contracts::Completed<R>>(*reply_).outcome)
         .with_required_record(contracts::RequiredRecordState::Pending);
     foundation::invariant(bool(pending));
@@ -572,24 +581,24 @@ private:
       auto outcome=[&] {
         if(!result) {
           fault=result.error().code();kind=invocation::InvocationRecordKind::FailedBeforeApply;
-          return invocation::detail::outcome_failure<R>(result.error(),state->empty_facts);
+          return invocation::detail::outcome_failure<R>(result.error(),state->empty_facts,true,true);
         }
-        return invocation::detail::outcome_read<R>(std::move(result),state->empty_facts);
+        return invocation::detail::outcome_read<R>(std::move(result),state->empty_facts,true);
       }();
       if(!outcome) {
         fault=outcome.error().code();kind=invocation::InvocationRecordKind::FailedBeforeApply;
-        auto failed=invocation::detail::outcome_failure<R>(outcome.error(),state->empty_facts);
+        auto failed=invocation::detail::outcome_failure<R>(outcome.error(),state->empty_facts,true,true);
         foundation::invariant(bool(failed));
         store(contracts::Completed<R>{std::move(*failed)},false);
       } else store(contracts::Completed<R>{std::move(*outcome)},false);
     } catch(const std::bad_alloc&) {
       fault=invocation::invocation_error(invocation::InvocationErrc::BudgetExceeded).code();
       kind=invocation::InvocationRecordKind::FailedBeforeApply;
-      store(contracts::Rejected{contracts::Error{*fault}},false);
+      store(failure_reply(contracts::Error{*fault},true),false);
     } catch(...) {
       fault=invocation::invocation_error(invocation::InvocationErrc::HandlerException).code();
       kind=invocation::InvocationRecordKind::FailedBeforeApply;
-      store(contracts::Rejected{contracts::Error{*fault}},false);
+      store(failure_reply(contracts::Error{*fault},true),false);
     }
     state->observe(kind,fault);signal();return {};
   }
@@ -605,18 +614,36 @@ private:
        asynchronous_(bound.state_&&bound.state_->entry->asynchronous_read),
        bound_(std::move(bound)),input_(std::move(args)),options_(options),policy_(policy) {}
   void store(contracts::InvokeReply<R> reply,bool release=true) {
-    // 测量失败或超额时保留固定错误回执；不让结果容量失败吞掉可靠完成。
+    // 此路径仅完成受管理执行；接受前丢弃独立处理。不会把已接受结果降为 Rejected。
+    if(auto rejected=std::get_if<contracts::Rejected>(&reply))
+      reply.template emplace<contracts::Completed<R>>(failure_reply(rejected->reason,false,cancel_before_start(rejected->reason)));
+    const auto fail_measurement=[&] {
+      const auto& outcome=std::get<contracts::Completed<R>>(reply).outcome;
+      // 原始失败/取消已有固定最小回执，容量诊断不能覆盖其仲裁事实。
+      if(std::holds_alternative<contracts::ReadCompleted<R>>(outcome.value()))
+        reply.template emplace<contracts::Completed<R>>(failure_reply(invocation::invocation_error(invocation::InvocationErrc::BudgetExceeded),true));
+    };
     try {
       auto bytes=policy_.reply_bytes(reply);
       if(!bytes || *bytes>policy_.reply_limit) {
-        reply=contracts::Rejected{invocation::invocation_error(invocation::InvocationErrc::BudgetExceeded)};
+        fail_measurement();
       } else reply_bytes_=*bytes;
     } catch(...) {
-      reply=contracts::Rejected{invocation::invocation_error(invocation::InvocationErrc::BudgetExceeded)};
+      fail_measurement();
     }
     reply_.emplace(std::move(reply));
     if(release) {input_.reset();call_.reset();settled_.store(true,std::memory_order_release);}
     completed_.store(true,std::memory_order_release);
+  }
+  static bool cancel_before_start(const contracts::Error& reason) noexcept {
+    return reason.code()==invocation::invocation_error(invocation::InvocationErrc::Cancelled).code()||
+        reason.code()==invocation::invocation_error(invocation::InvocationErrc::Expired).code()||
+        reason.code()==policy::policy_error(policy::PolicyErrc::Cancelled).code()||
+        reason.code()==policy::policy_error(policy::PolicyErrc::Expired).code();
+  }
+  contracts::Completed<R> failure_reply(contracts::Error reason,bool entered,bool cancelled=false) const {
+    auto outcome=invocation::detail::outcome_failure<R>(contracts::Error{reason.code()},bound_.state_->empty_facts,entered,true,cancelled);
+    foundation::invariant(bool(outcome));return {std::move(*outcome)};
   }
   // 最后释放注册代码/服务 owner；结果 pin 不需要保留调用授权与 Engine。
   std::shared_ptr<const registry::Catalog> catalog_;
