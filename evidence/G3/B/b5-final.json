@@ -1,0 +1,53 @@
+{
+  "format": "ock.g3-checkpoint/1",
+  "created_at": "2026-09-10T00:11:14.077638+00:00",
+  "checkpoint": "G3-B",
+  "status": "Passed",
+  "parent_gate_status": "NotDecidedByThisCheckpoint",
+  "source_commit": "dacc540c03744f68379214ffbb8b342f5ec60a34",
+  "inputs_sha256": "9ca9dc06f5ab45410cd3f923aa93421d4a818a8506132c16717b10d9da44f882",
+  "shared_semantic_audit": {
+    "path": "evidence/B5/final-dacc540/shared-audit.json",
+    "sha256": "06c19fd70f36286ade1c9380e099aec7d3d1a25bcb86bdd18bf54fda9d2459a2"
+  },
+  "required_cases": [
+    "T03.binding.submit",
+    "T20.protocol.cursor",
+    "T06.protocol.router",
+    "T19.protocol.observation_wire",
+    "T19.protocol.subscription",
+    "T20.protocol.list",
+    "T06.protocol.outcome",
+    "T06.protocol.frames",
+    "T20.cli.managed_roundtrip",
+    "T20.cli.managed_wire",
+    "T20.cli.managed_interrupt",
+    "T20.cli.managed_slow",
+    "T20.cli.managed_slow_timeout",
+    "T20.client.protocol",
+    "T20.client.watch",
+    "T20.client.exit_codes",
+    "T20.ipc.two_process",
+    "T19.ipc.authorization_start",
+    "T22.ipc.backpressure"
+  ],
+  "profiles": [
+    "win-msvc-asan",
+    "win-msvc-debug",
+    "win-msvc-release"
+  ],
+  "cost_samples": {
+    "path": "evidence/B5/managed-cost-reader-c3be8ab991/samples.json",
+    "sha256": "a32d1e2af66775c6f2a71ebc930098634e02b29b3f5d0386a82203859509080c"
+  },
+  "cost_scope": "AutomationHost Release samples; client 5 ms polling; not Embedded or hard latency limits",
+  "cost_binary_identity": {
+    "binary": "J:\\Code\\Kernel_v2\\build\\b4-debug\\examples\\managed_service\\Release\\ock_managed_service.exe",
+    "binary_sha256": "bae69cee549e7b5bddc7585782aa9454299e5f1995fabfa97332c796c7396d1d",
+    "binary_bytes": 1787904,
+    "source_sha256": "a8e47ac2ced23ddd952c76b6e4ea123ed17e4a13211a57d047de24c334cd0859",
+    "wire_source_sha256": "2d0e2f8a00927b8b2a128f411ca052957074bdfec2187029ac79a6aecee02755"
+  },
+  "scope": "真实 CLI/Named Pipe 与 list/subscribe/watch 竞态、TTL、撤权首字节、gap、断线和慢流；性能样本保留原 Release 来源，不冒充最终语义二进制或硬延迟预算。",
+  "errors": []
+}

@@ -1,0 +1,174 @@
+{
+  "format": "ock.run-manifest/1",
+  "task_id": "D3.07",
+  "profile": "win-msvc-release",
+  "configuration": "Release",
+  "preset": "win-msvc-release",
+  "asan": false,
+  "source_patterns": [
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    "dependencies.lock",
+    "THIRD_PARTY_NOTICES",
+    "cmake/**",
+    "packages/**",
+    "sdk/**",
+    "schemas/**",
+    "tests/**",
+    "tools/**",
+    "examples/**",
+    "docs/contracts/**",
+    "docs/toolchain.md",
+    "docs/01_Architecture_v3.3.md",
+    "docs/02_Execution_Plan_v3.3.md",
+    "AGENTS.md",
+    "docs/adr/README.md",
+    "apps/**",
+    "docs/plans/B4.md",
+    "docs/adr/ADR-b4-executor-resources.md",
+    "docs/plans/B5.md",
+    "docs/reviews/B5-review.md"
+  ],
+  "required_artifacts": [
+    "docs/plans/B5.md",
+    "docs/reviews/B5-review.md",
+    "tests/manifests/b5-requirement-map.json",
+    ".gitattributes",
+    "footprint-budgets.json",
+    "docs/reviews/B5-embedded-budget-decision.md",
+    "evidence/B5/source-byte-freeze-34285608b6/report.json",
+    "evidence/c4b5c974f8d1-257f5d1d66c1/win-msvc-debug/D3.07/20260909T233415Z-4005f95839c2/report.json",
+    "evidence/G3/C/cb67dc769b5746b9b07ef558dd630ee7/report.json",
+    "evidence/G3/C/cb67dc769b5746b9b07ef558dd630ee7/identity.json",
+    "evidence/G3/C/cb67dc769b5746b9b07ef558dd630ee7/source.json",
+    "evidence/G3/C/cb67dc769b5746b9b07ef558dd630ee7/budget-binding.json",
+    "evidence/G3/C/86685a7b20dd4702b3f2ec352ff57fa4/report.json",
+    "evidence/G3/C/86685a7b20dd4702b3f2ec352ff57fa4/identity.json",
+    "evidence/G3/C/86685a7b20dd4702b3f2ec352ff57fa4/source.json",
+    "evidence/G3/C/86685a7b20dd4702b3f2ec352ff57fa4/budget-binding.json",
+    "evidence/G3/C/13354720f40a4bf497fb5327439abd37/report.json",
+    "evidence/G3/C/13354720f40a4bf497fb5327439abd37/identity.json",
+    "evidence/G3/C/13354720f40a4bf497fb5327439abd37/source.json",
+    "evidence/G3/C/13354720f40a4bf497fb5327439abd37/budget-binding.json",
+    "evidence/B5/observed-embedded-c53de988af/result.json",
+    "evidence/B5/observed-embedded-c53de988af/samples.json",
+    "evidence/B5/observed-embedded-c53de988af/inputs.json",
+    "evidence/B5/observed-embedded-c53de988af/prerequisite-audit.json",
+    "evidence/B5/observed-embedded-c53de988af/build-identity.json"
+  ],
+  "expected_manifest": "tests/manifests/b5.expected.json",
+  "dependency_lock": "dependencies.lock",
+  "build_dir": "build/b4-release",
+  "configure": [
+    "cmake",
+    "--preset",
+    "win-msvc-release",
+    "-B",
+    "build/b4-release",
+    "-DOCK_DEPENDENCY_COMPONENTS=CLI;CpuPool",
+    "-DOCK_DEPENDENCIES_OFFLINE=ON",
+    "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+    "-DOCK_BUILD_B2_TESTS=ON",
+    "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+    "-DOCK_ENABLE_ASAN=OFF",
+    "-DOCK_BUILD_G0_TESTS=ON",
+    "-DOCK_BUILD_EXECUTION_MODEL_TESTS=ON",
+    "-DOCK_BUILD_FOUNDATION_TESTS=OFF",
+    "-DOCK_BUILD_CORE_CONTRACTS_TESTS=OFF",
+    "-DOCK_BUILD_REGISTRATION_TESTS=OFF",
+    "-DOCK_BUILD_AUTHORIZATION_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_TESTS=ON",
+    "-DOCK_BUILD_HOST_TESTS=OFF",
+    "-DOCK_BUILD_LOGGING_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_SDK_TESTS=OFF",
+    "-DOCK_BUILD_FOOTPRINT_TESTS=OFF",
+    "-DOCK_BUILD_COMPONENTS=B5Subset",
+    "-DOCK_BUILD_B4_TESTS=ON"
+  ],
+  "build": [
+    "cmake",
+    "--build",
+    "build/b4-release",
+    "--config",
+    "Release",
+    "--parallel",
+    "4",
+    "--",
+    "/nr:false"
+  ],
+  "build_outputs": [
+    "build/b4-release/CMakeCache.txt",
+    "build/b4-release/ock-target-graph.json",
+    "build/b4-release/toolchain-Release.json",
+    "build/b4-release/dependency-acquisition.json",
+    "build/b4-release/CTestTestfile.cmake",
+    "build/b4-release/CMakeFiles/CMakeConfigureLog.yaml",
+    "build/b4-release/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake",
+    "build/b4-release/Release/ock_Runtime.lib",
+    "build/b4-release/Release/ock_Adapter_CpuPool.lib",
+    "build/b4-release/tests/contract/resources/CTestTestfile.cmake",
+    "build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+    "build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+    "build/b4-release/tests/conformance/executor/Release/ock_executor_contract.exe",
+    "build/b4-release/apps/ock/Release/ock.exe",
+    "build/b4-release/examples/managed_service/Release/ock_managed_service.exe"
+  ],
+  "toolchain_artifact": "build/b4-release/toolchain-Release.json",
+  "test_regex": "^(T06\\.native\\.managed_admission|T03\\.native\\.managed_resources|T03\\.native\\.managed_record|T03\\.native\\.managed_record_ownership|T03\\.native\\.execution_table_ownership|T06\\.native\\.execution_source_observation|T06\\.native\\.observation_journal|T03\\.native\\.observation_lease_drain|T03\\.native\\.execution_service_control|T03\\.native\\.host_execution_lifecycle|T03\\.native\\.host_execution_resources|T03\\.native\\.host_structured_lifetime|T06\\.native\\.host_structured_admission|T03\\.native\\.host_async_completion|T03\\.native\\.host_async_drain|T03\\.native\\.host_async_deadline|T03\\.native\\.host_required_record|T03\\.native\\.host_required_record_drain|T03\\.native\\.host_cached_result_sessions|T03\\.native\\.host_observation_drain|T03\\.native\\.host_combined_drain|T03\\.native\\.managed_execution_path|T03\\.native\\.managed_execution_resource_wait|T03\\.native\\.no_task_path|T03\\.native\\.reentrant_and_concurrent|T03\\.native\\.cancel_and_budget|T06\\.native\\.session_and_deadline|T06\\.native\\.target_binding|T06\\.native\\.outcome_consistency|T06\\.native\\.revoke_and_regrant|T03\\.binding\\.submit|T20\\.protocol\\.cursor|T06\\.protocol\\.router|T19\\.protocol\\.observation_wire|T19\\.protocol\\.subscription|T20\\.protocol\\.list|T06\\.protocol\\.outcome|T06\\.protocol\\.frames|T20\\.cli\\.managed_roundtrip|T20\\.cli\\.managed_wire|T20\\.cli\\.managed_interrupt|T20\\.cli\\.managed_slow|T20\\.cli\\.managed_slow_timeout|T20\\.client\\.protocol|T20\\.client\\.watch|T20\\.client\\.exit_codes|T20\\.ipc\\.two_process|T19\\.ipc\\.authorization_start|T22\\.ipc\\.backpressure|T13\\.scheduler\\.quota_control|T13\\.scheduler\\.started_deadline|T13\\.scheduler\\.real_concurrent_completion|T13\\.scheduler\\.start_deadline_race|T13\\.scheduler\\.completion_backpressure|T13\\.scheduler\\.close_and_callbacks|T12\\.executor\\.cpu_pool\\.ownership_transfer|T12\\.executor\\.cpu_pool\\.exactly_once|T12\\.executor\\.cpu_pool\\.rejection_cleanup|T12\\.executor\\.cpu_pool\\.exception_boundary|T12\\.executor\\.cpu_pool\\.drain_shutdown|T12\\.executor\\.cpu_pool\\.worker_rejection|T12\\.executor\\.cpu_pool\\.queue_full|T12\\.executor\\.controlled\\.ownership_transfer|T12\\.executor\\.controlled\\.exactly_once|T12\\.executor\\.controlled\\.rejection_cleanup|T12\\.executor\\.controlled\\.exception_boundary|T12\\.executor\\.controlled\\.drain_shutdown|T12\\.executor\\.controlled\\.worker_rejection|T12\\.executor\\.controlled\\.queue_full|T12\\.executor\\.inline\\.ownership_transfer|T12\\.executor\\.inline\\.exactly_once|T12\\.executor\\.inline\\.rejection_cleanup|T12\\.executor\\.inline\\.exception_boundary|T12\\.executor\\.inline\\.drain_shutdown|T12\\.executor\\.inline\\.worker_rejection|T12\\.executor\\.inline\\.queue_full|T12\\.executor\\.conformance_manifest|T12\\.executor\\.concurrent_duplicate|T22\\.executor\\.real_parallel|T22\\.executor\\.stop_timeout|T22\\.executor\\.inline_reentrancy|T22\\.executor\\.controlled_order|T22\\.executor\\.cpu_pool\\.worker_destruction|T22\\.executor\\.controlled\\.worker_destruction|T22\\.executor\\.inline\\.worker_destruction|T13\\.resources\\.alias_read_write_same_slot|T13\\.resources\\.multi_claim_partial_failure_zero_occupancy|T13\\.resources\\.aggregate_overflow|T13\\.resources\\.exclusive_shared_units|T13\\.resources\\.lease_only_own_release|T13\\.resources\\.unknown_key_bounded|T13\\.resources\\.waiter_release_race|T13\\.resources\\.waiter_cancel|T13\\.resources\\.callback_outside_lock|T13\\.resources\\.compute_commit_separation|T13\\.resources\\.parent_wait_rejects_held_child_resources|T13\\.resources\\.scheduler_resource_wakeup|T13\\.resources\\.lease_reentrant_destruction|T13\\.resources\\.waiter_reentrant_destruction|T13\\.resources\\.resource_key_boundaries|T13\\.resources\\.execution_binding|T13\\.resources\\.execution_running_cancel|T13\\.resources\\.execution_binding_interleavings|T07\\.permit\\.cancel_claim_orders|T07\\.permit\\.revoke_claim_orders|T07\\.permit\\.binding_expiry_single_use|T07\\.permit\\.leases_do_not_authorize|T07\\.effect\\.cancel_revoke_send_orders|T07\\.effect\\.cancel_before_permit_records_no_apply|T06\\.execution\\.executor_rejection|T06\\.execution\\.duplicate_callback|T06\\.execution\\.suspended_owner|T12\\.execution\\.required_record_failure|T12\\.execution\\.isolation_lifetime|T06\\.execution\\.necessary_children|T06\\.execution\\.cancel_keeps_facts|T12\\.execution\\.commit_publication_gate|T20\\.execution\\.snapshot_consistency|T20\\.observer\\.lost_terminal_notification|T06\\.execution\\.queued_cancel|T06\\.execution\\.owner_acyclic|T06\\.execution\\.cancel_propagates_owned_children|T01\\.architecture\\.dependency_dag|T01\\.b4\\.architecture_guards|T24\\.sdk\\.version_header|T24\\.sdk\\.install_and_missing_components)$",
+  "repeat": 1,
+  "timeout_seconds": 1800,
+  "checks": [
+    {
+      "id": "CHECK.evidence.creation_clock_schema",
+      "argv": [
+        "python",
+        "-m",
+        "unittest",
+        "tests.tools.evidence.test_creation_clock_schema",
+        "-v"
+      ],
+      "timeout_seconds": 30
+    }
+  ],
+  "review_policy": {
+    "format": "ock.review-policy-binding/1",
+    "mode": "ai-self-review",
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+  },
+  "review_required": [
+    "spec",
+    "code"
+  ],
+  "review_records": [
+    "docs/reviews/B5-spec.json",
+    "docs/reviews/B5-code.json"
+  ],
+  "runtime_artifact_patterns": [
+    "evidence/bootstrap/B4/worker-fatal-*/*",
+    "build/install-check-*/*.json",
+    "build/install-check-*/*.log",
+    "build/install-check-*/consumer/CMakeCache.txt",
+    "build/install-check-*/consumer/Release/installed_metadata.exe",
+    "build/install-check-*/relocated/lib/cmake/OCK/*.cmake",
+    "build/install-check-*/relocated/share/ock/sdk_api_manifest.json"
+  ],
+  "required_runtime_artifacts": [
+    {
+      "pattern": "evidence/bootstrap/B4/worker-fatal-cpu_pool-*/process.json",
+      "minimum": 1
+    },
+    {
+      "pattern": "evidence/bootstrap/B4/worker-fatal-controlled-*/process.json",
+      "minimum": 1
+    },
+    {
+      "pattern": "evidence/bootstrap/B4/worker-fatal-inline-*/process.json",
+      "minimum": 1
+    },
+    {
+      "pattern": "build/install-check-*/commands.json",
+      "minimum": 1
+    }
+  ]
+}

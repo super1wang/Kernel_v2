@@ -1,0 +1,136 @@
+{
+  "format": "ock.g3-checkpoint/1",
+  "created_at": "2026-09-10T00:11:17.482540+00:00",
+  "checkpoint": "G3-C",
+  "status": "Passed",
+  "parent_gate_status": "NotDecidedByThisCheckpoint",
+  "source_commit": "dacc540c03744f68379214ffbb8b342f5ec60a34",
+  "inputs_sha256": "9ca9dc06f5ab45410cd3f923aa93421d4a818a8506132c16717b10d9da44f882",
+  "shared_semantic_audit": {
+    "path": "evidence/B5/final-dacc540/shared-audit.json",
+    "sha256": "06c19fd70f36286ade1c9380e099aec7d3d1a25bcb86bdd18bf54fda9d2459a2"
+  },
+  "standard_profiles": [
+    {
+      "report": {
+        "path": "evidence/G3/C/cb67dc769b5746b9b07ef558dd630ee7/report.json",
+        "sha256": "e860bbd211e4cb3ce44bc201902e8a5476e328a8b33c4d5b99cae1cfcf384889"
+      },
+      "identity": {
+        "path": "evidence/G3/C/cb67dc769b5746b9b07ef558dd630ee7/identity.json",
+        "sha256": "787cef7b614b0d504b72fe4bd02f540f1304167a3de0bbcb46666d20e53b96a6"
+      },
+      "inventory": {
+        "path": "evidence/G3/C/cb67dc769b5746b9b07ef558dd630ee7/artifacts.json",
+        "sha256": "0f4747bc08a6a1510cc6f17bc99f54106a21e80c62fcfd8e5579e7d97b7ae25e"
+      },
+      "profile": "win-msvc-release",
+      "actual_original_inputs_changed": [
+        "packages/control/server/cursor.cpp"
+      ],
+      "metrics": {
+        "private_peak_absolute_max": 1687552,
+        "private_peak_paired_max": 966656,
+        "working_set_peak_absolute_max": 6860800,
+        "working_set_peak_paired_max": 2498560,
+        "ready_private_absolute_max": 1675264,
+        "ready_private_paired_max": 958464,
+        "ready_working_set_absolute_max": 6823936,
+        "ready_working_set_paired_max": 2457600,
+        "ready_peak_commit_absolute_max": 1482752,
+        "ready_peak_commit_paired_max": 761856,
+        "ready_peak_working_set_absolute_max": 6549504,
+        "ready_peak_working_set_paired_max": 2179072,
+        "distribution_increment_bytes": 1341304
+      },
+      "startup_metrics": {
+        "construction_to_ready_ms_absolute_max": 1.0519,
+        "construction_to_ready_ms_paired_max": 1.0518,
+        "create_to_ready_ms_absolute_max": 46.8851,
+        "create_to_ready_ms_paired_max": 14.135900000000003
+      }
+    },
+    {
+      "report": {
+        "path": "evidence/G3/C/86685a7b20dd4702b3f2ec352ff57fa4/report.json",
+        "sha256": "78b7af457a267ba66ca513379da3198f1f5646cf2501b4efa3b79c744064cdc4"
+      },
+      "identity": {
+        "path": "evidence/G3/C/86685a7b20dd4702b3f2ec352ff57fa4/identity.json",
+        "sha256": "4618c4267ab17f5d3ca11fc5de79c23f8cf280642a40d7487c0079934dd009df"
+      },
+      "inventory": {
+        "path": "evidence/G3/C/86685a7b20dd4702b3f2ec352ff57fa4/artifacts.json",
+        "sha256": "748d24cc58a41b25251467c06669429da4f438882173d5c4c84fa67b317917ec"
+      },
+      "profile": "win-msvc-debug",
+      "actual_original_inputs_changed": [
+        "packages/control/server/cursor.cpp"
+      ],
+      "metrics": {
+        "private_peak_absolute_max": 2166784,
+        "private_peak_paired_max": 1122304,
+        "working_set_peak_absolute_max": 9568256,
+        "working_set_peak_paired_max": 3776512,
+        "ready_private_absolute_max": 2166784,
+        "ready_private_paired_max": 1126400,
+        "ready_working_set_absolute_max": 9560064,
+        "ready_working_set_paired_max": 3768320,
+        "ready_peak_commit_absolute_max": 1753088,
+        "ready_peak_commit_paired_max": 675840,
+        "ready_peak_working_set_absolute_max": 8777728,
+        "ready_peak_working_set_paired_max": 2965504,
+        "distribution_increment_bytes": 3828224
+      },
+      "startup_metrics": null
+    },
+    {
+      "report": {
+        "path": "evidence/G3/C/13354720f40a4bf497fb5327439abd37/report.json",
+        "sha256": "2b02fafba7ec055ef3c90d3ec7a503442e92db2d8a8052c33dd9f5f6e00eb47e"
+      },
+      "identity": {
+        "path": "evidence/G3/C/13354720f40a4bf497fb5327439abd37/identity.json",
+        "sha256": "bced88d2c5cc2e1b612f64ab906b6a6587fca0bfee27469ca84dadfc9d04adc3"
+      },
+      "inventory": {
+        "path": "evidence/G3/C/13354720f40a4bf497fb5327439abd37/artifacts.json",
+        "sha256": "ff83ed20110065578f118bbe23cb4a3edd89974e45d412743cf651fbce7b6769"
+      },
+      "profile": "win-msvc-asan",
+      "actual_original_inputs_changed": [
+        "packages/control/server/cursor.cpp"
+      ],
+      "metrics": {
+        "private_peak_absolute_max": 60645376,
+        "private_peak_paired_max": 9383936,
+        "working_set_peak_absolute_max": 22908928,
+        "working_set_peak_paired_max": 9109504,
+        "ready_private_absolute_max": 60645376,
+        "ready_private_paired_max": 9441280,
+        "ready_working_set_absolute_max": 22691840,
+        "ready_working_set_paired_max": 8839168,
+        "ready_peak_commit_absolute_max": 60026880,
+        "ready_peak_commit_paired_max": 8609792,
+        "ready_peak_working_set_absolute_max": 19369984,
+        "ready_peak_working_set_paired_max": 5480448,
+        "distribution_increment_bytes": 2414592
+      },
+      "startup_metrics": null
+    }
+  ],
+  "reuse_audit": {
+    "path": "evidence/B5/observed-embedded-c53de988af/prerequisite-audit.json",
+    "sha256": "42684291f9373b4f91c9fea3a68e8ce559b6df8e57e58493c6ea03680da54001"
+  },
+  "additional_observation_result": {
+    "path": "evidence/B5/observed-embedded-c53de988af/result.json",
+    "sha256": "72eb702061f9163c718d2544dbe9add812650dfa0fb164b0628c4fcf102228dc"
+  },
+  "additional_observation_samples": {
+    "path": "evidence/B5/observed-embedded-c53de988af/samples.json",
+    "sha256": "34ab0dae41cff4659c6f8a22439af4ecfe7d674efb5f552fa73f885d530ea507"
+  },
+  "scope": "原 G3-C 方法输入中仅未链接 Control 改动；实际 Embedded 编译源和已批准预算保持原字节，复用完整原报告。额外操作 Trace/异步文件/慢文件独立列成本，不套用默认三线程上限。Git 导航与实际测量 SHA 的区别见 B5-review.md。",
+  "errors": []
+}

@@ -1,0 +1,439 @@
+{
+  "format": "ock.evidence-summary/1",
+  "purpose": "navigation-only; full audit remains required",
+  "task_id": "D3.07",
+  "run_id": "20260910T000512Z-c82d2acf4391",
+  "profile": "win-msvc-asan",
+  "report_claims": {
+    "automated_status": "Passed",
+    "package_status": "Passed"
+  },
+  "duration_seconds": 309.865007,
+  "counts": {
+    "expected": 126,
+    "discovered": 126,
+    "executed": 126,
+    "rounds": 1
+  },
+  "set_digests": {
+    "expected": "af5c8caebde2923b4209eb40bd7a42c3ff7baa1638631a85c308b54693c18c36",
+    "discovered": "af5c8caebde2923b4209eb40bd7a42c3ff7baa1638631a85c308b54693c18c36",
+    "executed": "af5c8caebde2923b4209eb40bd7a42c3ff7baa1638631a85c308b54693c18c36"
+  },
+  "discovery": {
+    "missing": [],
+    "unexpected": []
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "executed": 126,
+      "failed": [],
+      "skipped": [],
+      "missing": [],
+      "unexpected": []
+    }
+  ],
+  "commands": [
+    {
+      "id": "cmake-version",
+      "role": "metadata",
+      "argv": [
+        "cmake",
+        "--version"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-10T00:05:13.171165+00:00",
+      "finished_at": "2026-09-10T00:05:13.295504+00:00",
+      "duration_seconds": 0.124339
+    },
+    {
+      "id": "ctest-version",
+      "role": "metadata",
+      "argv": [
+        "ctest",
+        "--version"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-10T00:05:13.310399+00:00",
+      "finished_at": "2026-09-10T00:05:13.437550+00:00",
+      "duration_seconds": 0.127151
+    },
+    {
+      "id": "configure",
+      "role": "configure",
+      "argv": [
+        "cmake",
+        "--preset",
+        "win-msvc-asan",
+        "-B",
+        "build/b4-asan",
+        "-DOCK_DEPENDENCY_COMPONENTS=CLI;CpuPool",
+        "-DOCK_DEPENDENCIES_OFFLINE=ON",
+        "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+        "-DOCK_BUILD_B2_TESTS=ON",
+        "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-DOCK_ENABLE_ASAN=ON",
+        "-DOCK_BUILD_G0_TESTS=ON",
+        "-DOCK_BUILD_EXECUTION_MODEL_TESTS=ON",
+        "-DOCK_BUILD_FOUNDATION_TESTS=OFF",
+        "-DOCK_BUILD_CORE_CONTRACTS_TESTS=OFF",
+        "-DOCK_BUILD_REGISTRATION_TESTS=OFF",
+        "-DOCK_BUILD_AUTHORIZATION_TESTS=OFF",
+        "-DOCK_BUILD_NATIVE_TESTS=ON",
+        "-DOCK_BUILD_HOST_TESTS=OFF",
+        "-DOCK_BUILD_LOGGING_TESTS=OFF",
+        "-DOCK_BUILD_NATIVE_SDK_TESTS=OFF",
+        "-DOCK_BUILD_FOOTPRINT_TESTS=OFF",
+        "-DOCK_BUILD_COMPONENTS=B5Subset",
+        "-DOCK_BUILD_B4_TESTS=ON"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-10T00:05:13.452069+00:00",
+      "finished_at": "2026-09-10T00:05:16.816367+00:00",
+      "duration_seconds": 3.364298
+    },
+    {
+      "id": "build",
+      "role": "build",
+      "argv": [
+        "cmake",
+        "--build",
+        "build/b4-asan",
+        "--config",
+        "RelWithDebInfo",
+        "--parallel",
+        "4",
+        "--",
+        "/nr:false"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-10T00:05:16.830388+00:00",
+      "finished_at": "2026-09-10T00:05:54.580446+00:00",
+      "duration_seconds": 37.750058
+    },
+    {
+      "id": "check-000",
+      "role": "check",
+      "argv": [
+        "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "tests.tools.evidence.test_creation_clock_schema",
+        "-v"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-10T00:05:57.175722+00:00",
+      "finished_at": "2026-09-10T00:05:57.594103+00:00",
+      "duration_seconds": 0.418381
+    },
+    {
+      "id": "discover",
+      "role": "discover",
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "J:\\Code\\Kernel_v2\\build\\b4-asan",
+        "-C",
+        "RelWithDebInfo",
+        "-R",
+        "^(T06\\.native\\.managed_admission|T03\\.native\\.managed_resources|T03\\.native\\.managed_record|T03\\.native\\.managed_record_ownership|T03\\.native\\.execution_table_ownership|T06\\.native\\.execution_source_observation|T06\\.native\\.observation_journal|T03\\.native\\.observation_lease_drain|T03\\.native\\.execution_service_control|T03\\.native\\.host_execution_lifecycle|T03\\.native\\.host_execution_resources|T03\\.native\\.host_structured_lifetime|T06\\.native\\.host_structured_admission|T03\\.native\\.host_async_completion|T03\\.native\\.host_async_drain|T03\\.native\\.host_async_deadline|T03\\.native\\.host_required_record|T03\\.native\\.host_required_record_drain|T03\\.native\\.host_cached_result_sessions|T03\\.native\\.host_observation_drain|T03\\.native\\.host_combined_drain|T03\\.native\\.managed_execution_path|T03\\.native\\.managed_execution_resource_wait|T03\\.native\\.no_task_path|T03\\.native\\.reentrant_and_concurrent|T03\\.native\\.cancel_and_budget|T06\\.native\\.session_and_deadline|T06\\.native\\.target_binding|T06\\.native\\.outcome_consistency|T06\\.native\\.revoke_and_regrant|T03\\.binding\\.submit|T20\\.protocol\\.cursor|T06\\.protocol\\.router|T19\\.protocol\\.observation_wire|T19\\.protocol\\.subscription|T20\\.protocol\\.list|T06\\.protocol\\.outcome|T06\\.protocol\\.frames|T20\\.cli\\.managed_roundtrip|T20\\.cli\\.managed_wire|T20\\.cli\\.managed_interrupt|T20\\.cli\\.managed_slow|T20\\.cli\\.managed_slow_timeout|T20\\.client\\.protocol|T20\\.client\\.watch|T20\\.client\\.exit_codes|T20\\.ipc\\.two_process|T19\\.ipc\\.authorization_start|T22\\.ipc\\.backpressure|T13\\.scheduler\\.quota_control|T13\\.scheduler\\.started_deadline|T13\\.scheduler\\.real_concurrent_completion|T13\\.scheduler\\.start_deadline_race|T13\\.scheduler\\.completion_backpressure|T13\\.scheduler\\.close_and_callbacks|T12\\.executor\\.cpu_pool\\.ownership_transfer|T12\\.executor\\.cpu_pool\\.exactly_once|T12\\.executor\\.cpu_pool\\.rejection_cleanup|T12\\.executor\\.cpu_pool\\.exception_boundary|T12\\.executor\\.cpu_pool\\.drain_shutdown|T12\\.executor\\.cpu_pool\\.worker_rejection|T12\\.executor\\.cpu_pool\\.queue_full|T12\\.executor\\.controlled\\.ownership_transfer|T12\\.executor\\.controlled\\.exactly_once|T12\\.executor\\.controlled\\.rejection_cleanup|T12\\.executor\\.controlled\\.exception_boundary|T12\\.executor\\.controlled\\.drain_shutdown|T12\\.executor\\.controlled\\.worker_rejection|T12\\.executor\\.controlled\\.queue_full|T12\\.executor\\.inline\\.ownership_transfer|T12\\.executor\\.inline\\.exactly_once|T12\\.executor\\.inline\\.rejection_cleanup|T12\\.executor\\.inline\\.exception_boundary|T12\\.executor\\.inline\\.drain_shutdown|T12\\.executor\\.inline\\.worker_rejection|T12\\.executor\\.inline\\.queue_full|T12\\.executor\\.conformance_manifest|T12\\.executor\\.concurrent_duplicate|T22\\.executor\\.real_parallel|T22\\.executor\\.stop_timeout|T22\\.executor\\.inline_reentrancy|T22\\.executor\\.controlled_order|T22\\.executor\\.cpu_pool\\.worker_destruction|T22\\.executor\\.controlled\\.worker_destruction|T22\\.executor\\.inline\\.worker_destruction|T13\\.resources\\.alias_read_write_same_slot|T13\\.resources\\.multi_claim_partial_failure_zero_occupancy|T13\\.resources\\.aggregate_overflow|T13\\.resources\\.exclusive_shared_units|T13\\.resources\\.lease_only_own_release|T13\\.resources\\.unknown_key_bounded|T13\\.resources\\.waiter_release_race|T13\\.resources\\.waiter_cancel|T13\\.resources\\.callback_outside_lock|T13\\.resources\\.compute_commit_separation|T13\\.resources\\.parent_wait_rejects_held_child_resources|T13\\.resources\\.scheduler_resource_wakeup|T13\\.resources\\.lease_reentrant_destruction|T13\\.resources\\.waiter_reentrant_destruction|T13\\.resources\\.resource_key_boundaries|T13\\.resources\\.execution_binding|T13\\.resources\\.execution_running_cancel|T13\\.resources\\.execution_binding_interleavings|T07\\.permit\\.cancel_claim_orders|T07\\.permit\\.revoke_claim_orders|T07\\.permit\\.binding_expiry_single_use|T07\\.permit\\.leases_do_not_authorize|T07\\.effect\\.cancel_revoke_send_orders|T07\\.effect\\.cancel_before_permit_records_no_apply|T06\\.execution\\.executor_rejection|T06\\.execution\\.duplicate_callback|T06\\.execution\\.suspended_owner|T12\\.execution\\.required_record_failure|T12\\.execution\\.isolation_lifetime|T06\\.execution\\.necessary_children|T06\\.execution\\.cancel_keeps_facts|T12\\.execution\\.commit_publication_gate|T20\\.execution\\.snapshot_consistency|T20\\.observer\\.lost_terminal_notification|T06\\.execution\\.queued_cancel|T06\\.execution\\.owner_acyclic|T06\\.execution\\.cancel_propagates_owned_children|T01\\.architecture\\.dependency_dag|T01\\.b4\\.architecture_guards|T24\\.sdk\\.version_header|T24\\.sdk\\.install_and_missing_components)$",
+        "--show-only=json-v1"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-10T00:05:57.596108+00:00",
+      "finished_at": "2026-09-10T00:05:57.804675+00:00",
+      "duration_seconds": 0.208567
+    },
+    {
+      "id": "test-001",
+      "role": "test",
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "J:\\Code\\Kernel_v2\\build\\b4-asan",
+        "-C",
+        "RelWithDebInfo",
+        "-R",
+        "^(T06\\.native\\.managed_admission|T03\\.native\\.managed_resources|T03\\.native\\.managed_record|T03\\.native\\.managed_record_ownership|T03\\.native\\.execution_table_ownership|T06\\.native\\.execution_source_observation|T06\\.native\\.observation_journal|T03\\.native\\.observation_lease_drain|T03\\.native\\.execution_service_control|T03\\.native\\.host_execution_lifecycle|T03\\.native\\.host_execution_resources|T03\\.native\\.host_structured_lifetime|T06\\.native\\.host_structured_admission|T03\\.native\\.host_async_completion|T03\\.native\\.host_async_drain|T03\\.native\\.host_async_deadline|T03\\.native\\.host_required_record|T03\\.native\\.host_required_record_drain|T03\\.native\\.host_cached_result_sessions|T03\\.native\\.host_observation_drain|T03\\.native\\.host_combined_drain|T03\\.native\\.managed_execution_path|T03\\.native\\.managed_execution_resource_wait|T03\\.native\\.no_task_path|T03\\.native\\.reentrant_and_concurrent|T03\\.native\\.cancel_and_budget|T06\\.native\\.session_and_deadline|T06\\.native\\.target_binding|T06\\.native\\.outcome_consistency|T06\\.native\\.revoke_and_regrant|T03\\.binding\\.submit|T20\\.protocol\\.cursor|T06\\.protocol\\.router|T19\\.protocol\\.observation_wire|T19\\.protocol\\.subscription|T20\\.protocol\\.list|T06\\.protocol\\.outcome|T06\\.protocol\\.frames|T20\\.cli\\.managed_roundtrip|T20\\.cli\\.managed_wire|T20\\.cli\\.managed_interrupt|T20\\.cli\\.managed_slow|T20\\.cli\\.managed_slow_timeout|T20\\.client\\.protocol|T20\\.client\\.watch|T20\\.client\\.exit_codes|T20\\.ipc\\.two_process|T19\\.ipc\\.authorization_start|T22\\.ipc\\.backpressure|T13\\.scheduler\\.quota_control|T13\\.scheduler\\.started_deadline|T13\\.scheduler\\.real_concurrent_completion|T13\\.scheduler\\.start_deadline_race|T13\\.scheduler\\.completion_backpressure|T13\\.scheduler\\.close_and_callbacks|T12\\.executor\\.cpu_pool\\.ownership_transfer|T12\\.executor\\.cpu_pool\\.exactly_once|T12\\.executor\\.cpu_pool\\.rejection_cleanup|T12\\.executor\\.cpu_pool\\.exception_boundary|T12\\.executor\\.cpu_pool\\.drain_shutdown|T12\\.executor\\.cpu_pool\\.worker_rejection|T12\\.executor\\.cpu_pool\\.queue_full|T12\\.executor\\.controlled\\.ownership_transfer|T12\\.executor\\.controlled\\.exactly_once|T12\\.executor\\.controlled\\.rejection_cleanup|T12\\.executor\\.controlled\\.exception_boundary|T12\\.executor\\.controlled\\.drain_shutdown|T12\\.executor\\.controlled\\.worker_rejection|T12\\.executor\\.controlled\\.queue_full|T12\\.executor\\.inline\\.ownership_transfer|T12\\.executor\\.inline\\.exactly_once|T12\\.executor\\.inline\\.rejection_cleanup|T12\\.executor\\.inline\\.exception_boundary|T12\\.executor\\.inline\\.drain_shutdown|T12\\.executor\\.inline\\.worker_rejection|T12\\.executor\\.inline\\.queue_full|T12\\.executor\\.conformance_manifest|T12\\.executor\\.concurrent_duplicate|T22\\.executor\\.real_parallel|T22\\.executor\\.stop_timeout|T22\\.executor\\.inline_reentrancy|T22\\.executor\\.controlled_order|T22\\.executor\\.cpu_pool\\.worker_destruction|T22\\.executor\\.controlled\\.worker_destruction|T22\\.executor\\.inline\\.worker_destruction|T13\\.resources\\.alias_read_write_same_slot|T13\\.resources\\.multi_claim_partial_failure_zero_occupancy|T13\\.resources\\.aggregate_overflow|T13\\.resources\\.exclusive_shared_units|T13\\.resources\\.lease_only_own_release|T13\\.resources\\.unknown_key_bounded|T13\\.resources\\.waiter_release_race|T13\\.resources\\.waiter_cancel|T13\\.resources\\.callback_outside_lock|T13\\.resources\\.compute_commit_separation|T13\\.resources\\.parent_wait_rejects_held_child_resources|T13\\.resources\\.scheduler_resource_wakeup|T13\\.resources\\.lease_reentrant_destruction|T13\\.resources\\.waiter_reentrant_destruction|T13\\.resources\\.resource_key_boundaries|T13\\.resources\\.execution_binding|T13\\.resources\\.execution_running_cancel|T13\\.resources\\.execution_binding_interleavings|T07\\.permit\\.cancel_claim_orders|T07\\.permit\\.revoke_claim_orders|T07\\.permit\\.binding_expiry_single_use|T07\\.permit\\.leases_do_not_authorize|T07\\.effect\\.cancel_revoke_send_orders|T07\\.effect\\.cancel_before_permit_records_no_apply|T06\\.execution\\.executor_rejection|T06\\.execution\\.duplicate_callback|T06\\.execution\\.suspended_owner|T12\\.execution\\.required_record_failure|T12\\.execution\\.isolation_lifetime|T06\\.execution\\.necessary_children|T06\\.execution\\.cancel_keeps_facts|T12\\.execution\\.commit_publication_gate|T20\\.execution\\.snapshot_consistency|T20\\.observer\\.lost_terminal_notification|T06\\.execution\\.queued_cancel|T06\\.execution\\.owner_acyclic|T06\\.execution\\.cancel_propagates_owned_children|T01\\.architecture\\.dependency_dag|T01\\.b4\\.architecture_guards|T24\\.sdk\\.version_header|T24\\.sdk\\.install_and_missing_components)$",
+        "--no-tests=error",
+        "--output-on-failure",
+        "--output-junit",
+        "J:\\Code\\Kernel_v2\\evidence\\dacc540c0374-9ca9dc06f5ab\\win-msvc-asan\\D3.07\\20260910T000512Z-c82d2acf4391\\round-001-junit.xml"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-10T00:05:57.935731+00:00",
+      "finished_at": "2026-09-10T00:10:22.670602+00:00",
+      "duration_seconds": 264.734871
+    }
+  ],
+  "command_costs": {
+    "scope": "top-level-only",
+    "total": 7,
+    "duration_seconds": 306.727665,
+    "by_role": [
+      {
+        "role": "build",
+        "count": 1,
+        "duration_seconds": 37.750058
+      },
+      {
+        "role": "check",
+        "count": 1,
+        "duration_seconds": 0.418381
+      },
+      {
+        "role": "configure",
+        "count": 1,
+        "duration_seconds": 3.364298
+      },
+      {
+        "role": "discover",
+        "count": 1,
+        "duration_seconds": 0.208567
+      },
+      {
+        "role": "metadata",
+        "count": 2,
+        "duration_seconds": 0.25149
+      },
+      {
+        "role": "test",
+        "count": 1,
+        "duration_seconds": 264.734871
+      }
+    ],
+    "configure": {
+      "count": 1,
+      "duration_seconds": 3.364298
+    },
+    "build": {
+      "count": 1,
+      "duration_seconds": 37.750058
+    },
+    "install": {
+      "count": 0,
+      "duration_seconds": 0
+    },
+    "nested_command_count": null
+  },
+  "failure_signals": [],
+  "source_claims": {
+    "source": {
+      "commit": "dacc540c03744f68379214ffbb8b342f5ec60a34",
+      "dirty": true,
+      "root": "J:\\Code\\Kernel_v2",
+      "build_inputs_sha256": "9ca9dc06f5ab45410cd3f923aa93421d4a818a8506132c16717b10d9da44f882",
+      "archive": "source-inputs.zip",
+      "archive_sha256": "7061b5481af26e296fcc1462f3d0cbe835861c03152652413d979e630fcb1688"
+    },
+    "manifest": {
+      "path": "tests/runs/b5-win-msvc-asan.json",
+      "sha256": "78cb20a05f05c64c5b0f8abf3daf07694f6af5245bdef916d364b888552eb13e",
+      "snapshot": "manifest.json"
+    },
+    "requirements_manifest_sha256": "df9717edeb77967d4fde139d9ca4e7d45f431b35d4b2a7474ee2ae680128fd34",
+    "collector": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\accept_gate.py",
+        "sha256": "a33a4efe90b080a64ca6579922eb0ec55816076a018faef1f358096203016d38"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\build_identity.py",
+        "sha256": "23620838037ab4dd49ad30bc7ff96cdb29abbd67036a87edcd8d76a8119dee86"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\common.py",
+        "sha256": "1026f8e9ce8a6ca79d019e15f7cd9f810180423e88aa58f9c4e5aa4d145e221b"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\gate.py",
+        "sha256": "8e1526662d21c341baf6ad35cf139b039e6df65dd0e0fb774c7f8d3e3856013f"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\import_bootstrap.py",
+        "sha256": "1e4260dc6356ab17749772457f27873fa1b2c5864290e38d1494e4aa0ee2b759"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\process.py",
+        "sha256": "25f73b5fec06f85df18ab47e70f44c07f94b1531d55f24882298e97defbeea69"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\review_policy.py",
+        "sha256": "35f3628a58d464d27978fbe9eaa58d2944f32eca766c31215e729f9048bbdd40"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\run.py",
+        "sha256": "fc2b3e5e50996db54cf276aa18db84854b9f58eb03a369dc9c3e5a23b88c1465"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\summary.py",
+        "sha256": "1a21ff50b78027f822e94649638c6d52a6dadd654440cf8109bb5ccf4f6b1161"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\validate.py",
+        "sha256": "bef0acaf56a5e21bf04e8bd176b00fe5e62852698b38259a88447bbc2cc107a3"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\schemas\\evidence-v1.schema.json",
+        "sha256": "141b24bde4adac00d3b09f42722102b8b45420974dea12ac159202f58d3e37f9"
+      }
+    ]
+  },
+  "references": [
+    {
+      "path": "001-cmake-version-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "001-cmake-version-stdout.log",
+      "role": "command-raw",
+      "sha256": "02282b1eefbb0dd98bd4578caa8861cc2de062ebcbef435bace0359683bbfa57",
+      "size": 97
+    },
+    {
+      "path": "002-ctest-version-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "002-ctest-version-stdout.log",
+      "role": "command-raw",
+      "sha256": "a1f1a612ac841f12ccc139b534f734d054a3c12b13186dc706bc385b662fa1ac",
+      "size": 97
+    },
+    {
+      "path": "003-configure-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "003-configure-stdout.log",
+      "role": "command-raw",
+      "sha256": "2214548e5c79411d8f41fbe76e8e00264d7cf289b06ef68bc8f3eb80223376d1",
+      "size": 546
+    },
+    {
+      "path": "004-build-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "004-build-stdout.log",
+      "role": "command-raw",
+      "sha256": "88d6a4a4af7b4aee9a31238d7b91219b16ff028cb583a94fc2342439f06bc5d9",
+      "size": 9792
+    },
+    {
+      "path": "005-check-000-stderr.log",
+      "role": "command-raw",
+      "sha256": "6b5b33a9722c86c17bec661a6f816c1e7215cb955d2b84015a9f0e75fb0387e3",
+      "size": 614
+    },
+    {
+      "path": "005-check-000-stdout.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "006-discover-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "006-discover-stdout.log",
+      "role": "command-raw",
+      "sha256": "88d912fbf724c603e3398031f67adbcc9bf122e07b8d40bdfc5c43fb7c61be07",
+      "size": 135949
+    },
+    {
+      "path": "007-test-001-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "007-test-001-stdout.log",
+      "role": "command-raw",
+      "sha256": "98d75ec57b3b514ee8404bf48409fa6955f04743d1c0e355b982d1aab7bd7738",
+      "size": 20396
+    },
+    {
+      "path": "build-artifacts.zip",
+      "role": "build-archive",
+      "sha256": "3a2840ad23fb86cd734c4b413b1f4acf9f56338f4fa25b58c7b12e4d3d2669f0",
+      "size": 10612718
+    },
+    {
+      "path": "discovered.json",
+      "role": "discovered",
+      "sha256": "4f55c3c799849edc89fd0a1f0afc76f2632f28d507d07eac1b81bc7741b31019",
+      "size": 128871
+    },
+    {
+      "path": "expected.json",
+      "role": "expected",
+      "sha256": "df9717edeb77967d4fde139d9ca4e7d45f431b35d4b2a7474ee2ae680128fd34",
+      "size": 24992
+    },
+    {
+      "path": "manifest.json",
+      "role": "manifest",
+      "sha256": "78cb20a05f05c64c5b0f8abf3daf07694f6af5245bdef916d364b888552eb13e",
+      "size": 10860
+    },
+    {
+      "path": "report.json",
+      "role": "report",
+      "sha256": "b3dfe7f062aeaeda82ac64c36d9d43e8f70dd2ebf7edbc1913df7ab4c37e041d",
+      "size": 181595
+    },
+    {
+      "path": "review-records.zip",
+      "role": "review-archive",
+      "sha256": "824f8bcb12f81327a36a2e3bb58698052ace568dd424cf2bf392c2ef11081197",
+      "size": 2612
+    },
+    {
+      "path": "round-001-junit.xml",
+      "role": "junit",
+      "sha256": "d1e27226ffb2b83ec368a46d2bfcc1e6666936d047c37025cd993b6d4173cf61",
+      "size": 49886
+    },
+    {
+      "path": "runtime-artifacts.zip",
+      "role": "runtime_archive",
+      "sha256": "811db14f21fa5afa5ca2a8b991580da5f60be879621ed03bcfb8b44e52c96fed",
+      "size": 31409
+    },
+    {
+      "path": "source-inputs.json",
+      "role": "source-inputs",
+      "sha256": "520c00082a25b632c93209dc9877ea3ce0576e32b55af23d795bfce3220698d8",
+      "size": 100681
+    },
+    {
+      "path": "source-inputs.zip",
+      "role": "source-archive",
+      "sha256": "7061b5481af26e296fcc1462f3d0cbe835861c03152652413d979e630fcb1688",
+      "size": 1656098
+    }
+  ],
+  "content_sha256": "3f115802ba6090941b460f454a413f7b852d84ef6304d73905442fa48bfeaec3"
+}
