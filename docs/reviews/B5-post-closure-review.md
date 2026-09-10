@@ -23,3 +23,5 @@ SPEC 结论：批准本次窄范围合同及事前 expected。安装 SDK 属开�
 直接测试已覆盖默认额度 12,000 次顺序执行、record/reply 压力、所有 pin 拒绝及释放恢复、保护状态、析构重入、异步真实 input owner 与相同大输入再次准入、接受前与接受后各错误分类。真实 Control 多连接占用两个 worker 后验证等待取消/过期的 get/wait/result/list；未改变服务并发额度。协议正例和非法类型/未知字段反例均直接通过。
 
 CODE 结论：本次变更未发现 P0/P1/P2 阻断。正式 Debug/Release/ASan 影响矩阵、安装/DAG 以及原预算 G3-C 刷新仍须真实通过；本文件不是 Passed 决定。
+
+首轮正式 Debug 为 46/49：公开头摘要尚未同步，以及父取消后的已接受子执行测试仍期待旧 Rejected。已复核 outcome.hpp 新接受事实与 detail/invocation.hpp 的完成分类，只更新这两个安装头摘要，依赖与公开头集合不变；子执行改为断言 Completed/CancelledBeforeApply、execution_accepted=true、business_entered=false。首轮原报告保留于 `evidence/3ebd4f48995b-21cd1b564b57/win-msvc-debug/D3.07/20260910T032133Z-a232692569ee/report.json`，不与后续结果拼接。

@@ -1,6 +1,6 @@
 # B5/G3 收口 Embedded 预算来源更新
 
-日期：2026-09-10T03:19:39.824133+00:00。审核者：Codex AI，依据自动验收政策。正式运行前批准新来源绑定；不表示测量或 G3 已 Passed。
+日期：2026-09-10T03:24:31.982259+00:00。审核者：Codex AI，依据自动验收政策。正式运行前批准新来源绑定；不表示测量或 G3 已 Passed。
 
 C1/C1b/C2 改变 Runtime、CoreContracts 及安装头，旧 G3-C 报告保留历史事实，本轮不复用其编译输入结论。固定消费者、6 组 ABBA、Release 占用与同一二进制启动、Debug/ASan 全线程分配诊断、三线程结构上界及 40 次 Invoke 零分配要求均保持原合同。
 
@@ -8,8 +8,8 @@ C1/C1b/C2 改变 Runtime、CoreContracts 及安装头，旧 G3-C 报告保留历
 
 新方法摘要（同机 Python 3.13.3，包含当前全部 Embedded 方法输入）：
 
-- win-msvc-debug：`23faf51713b3aa54ef69785ec3cee30b9d3753f80afa37ec6112cecdeceffb4e`
-- win-msvc-release：`7541002ca67198e46a34600848d04c62035d5a6316b45c1d9378144500cfcd94`
-- win-msvc-asan：`89f39057dee3b28e2b30d4f5e794ce3b9c4b210112b367e773a0a31dbe537a8e`
+- win-msvc-debug：`a4ad35b5d7c9f75cd69ee86e7b918b930abe69d75771038a4b3784c0a1592a1e`
+- win-msvc-release：`c013ebbbfcd80255dd41482f4bdff393633d0ce604dcdde5bdc6ab36b800f49d`
+- win-msvc-asan：`29ab11246f5b90da9e6e18583ca3d9313f242a7f89c742d24870b53bf3b524b0`
 
 AI 技术结论：批准在上述原预算下刷新。正式报告须核对实际安装组件、依赖图、编译配置、原始进程/模块/线程/分配样本与结束时输入摘要；任一失败保持原文并阻止收口。

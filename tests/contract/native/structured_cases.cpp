@@ -198,7 +198,10 @@ void host_structured_admission() {
         std::chrono::steady_clock::now()+std::chrono::seconds(2),{});
     CHECK(done&&done->state==host::ExecutionWaitState::Terminal);
     auto rejected=fixture.session->result<int>(*fixture.caller,child_ref);
-    CHECK(rejected&&std::holds_alternative<Rejected>(*rejected->value));
+    CHECK(rejected&&std::holds_alternative<Completed<int>>(*rejected->value));
+    const auto& outcome=std::get<Completed<int>>(*rejected->value).outcome;
+    CHECK(std::holds_alternative<CancelledBeforeApply>(outcome.value()));
+    CHECK(outcome.conditions().before_apply->execution_accepted&&!outcome.conditions().before_apply->business_entered);
     saved_scope.reset();create_child={};
   }
 }
