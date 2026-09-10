@@ -1,0 +1,89 @@
+{
+  "format": "ock.b5-package-acceptance/1",
+  "created_at": "2026-09-10T00:11:54.939656+00:00",
+  "task_id": "D3.06",
+  "status": "Passed",
+  "review_mode": "ai-self-review",
+  "human_review_required": false,
+  "source_commit": "dacc540c03744f68379214ffbb8b342f5ec60a34",
+  "inputs_sha256": "9ca9dc06f5ab45410cd3f923aa93421d4a818a8506132c16717b10d9da44f882",
+  "shared_audit": {
+    "path": "evidence/B5/final-dacc540/shared-audit.json",
+    "sha256": "06c19fd70f36286ade1c9380e099aec7d3d1a25bcb86bdd18bf54fda9d2459a2"
+  },
+  "technical_reviews": [
+    {
+      "path": "docs/reviews/B5-D3.06-spec.json",
+      "sha256": "5fca61fb93ca6c7b1cea40419b89efdbca66416628b1aac18ec3a5afe7369a4b"
+    },
+    {
+      "path": "docs/reviews/B5-D3.06-code.json",
+      "sha256": "585e02350f572f65afc11e4ae6577aa4fd6554d15ed22bff1ada3b7860ab4a0c"
+    }
+  ],
+  "required_cases": [
+    "T03.native.managed_record",
+    "T03.native.managed_record_ownership",
+    "T03.native.host_structured_lifetime",
+    "T06.native.host_structured_admission",
+    "T03.native.host_async_completion",
+    "T03.native.host_async_drain",
+    "T03.native.host_required_record",
+    "T03.native.host_required_record_drain",
+    "T03.native.observation_lease_drain",
+    "T03.native.host_observation_drain",
+    "T03.native.host_combined_drain",
+    "T12.executor.cpu_pool.ownership_transfer",
+    "T12.executor.cpu_pool.exactly_once",
+    "T12.executor.cpu_pool.rejection_cleanup",
+    "T12.executor.cpu_pool.exception_boundary",
+    "T12.executor.cpu_pool.drain_shutdown",
+    "T12.executor.cpu_pool.worker_rejection",
+    "T12.executor.cpu_pool.queue_full",
+    "T12.executor.controlled.ownership_transfer",
+    "T12.executor.controlled.exactly_once",
+    "T12.executor.controlled.rejection_cleanup",
+    "T12.executor.controlled.exception_boundary",
+    "T12.executor.controlled.drain_shutdown",
+    "T12.executor.controlled.worker_rejection",
+    "T12.executor.controlled.queue_full",
+    "T12.executor.inline.ownership_transfer",
+    "T12.executor.inline.exactly_once",
+    "T12.executor.inline.rejection_cleanup",
+    "T12.executor.inline.exception_boundary",
+    "T12.executor.inline.drain_shutdown",
+    "T12.executor.inline.worker_rejection",
+    "T12.executor.inline.queue_full",
+    "T12.executor.conformance_manifest",
+    "T12.executor.concurrent_duplicate",
+    "T22.executor.real_parallel",
+    "T22.executor.stop_timeout",
+    "T22.executor.inline_reentrancy",
+    "T22.executor.controlled_order",
+    "T22.executor.cpu_pool.worker_destruction",
+    "T22.executor.controlled.worker_destruction",
+    "T22.executor.inline.worker_destruction"
+  ],
+  "profiles": [
+    "win-msvc-asan",
+    "win-msvc-debug",
+    "win-msvc-release"
+  ],
+  "committed_prerequisites": [
+    {
+      "task_id": "D3.04",
+      "committed_at": "689c5e7fda9bce3ef32b53fb5fa0e09c3eeb9482",
+      "path": "evidence/B5/final-dacc540/D3.04-acceptance.json",
+      "sha256": "84360df3c12ac1c37243596b50d693ac9402bbf921c0f5b8e5643078e8a43734"
+    },
+    {
+      "task_id": "D3.05",
+      "committed_at": "689c5e7fda9bce3ef32b53fb5fa0e09c3eeb9482",
+      "path": "evidence/B5/final-dacc540/D3.05-acceptance.json",
+      "sha256": "244496380fd37dfa8ee52d4c04ebfc753e2960506a09fd95c004133ea31e56b7"
+    }
+  ],
+  "additional_checkpoint_facts": [],
+  "errors": [],
+  "note": "按 E02 共享物理执行，保留独立包级需求、AI SPEC/CODE 与已提交前置；不是新增测试运行或人工批准。"
+}

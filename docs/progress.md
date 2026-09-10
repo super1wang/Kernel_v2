@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- B5 正式 DAG 收口：**D3.06 Passed**，同一 `dacc540` 三配置各 126/126 与独立 AI SPEC/CODE 已核验；正式前置为已提交事实（[包级决定](../evidence/B5/final-dacc540/D3.06-acceptance.json)）。其余包与 G3 以状态索引和后续决定为准。
+
 - B5 正式 DAG 收口：**D3.05 Passed**，同一 `dacc540` 三配置各 126/126 与独立 AI SPEC/CODE 已核验；正式前置为已提交事实（[包级决定](../evidence/B5/final-dacc540/D3.05-acceptance.json)）。其余包与 G3 以状态索引和后续决定为准。
 
 - B5 正式 DAG 收口：**D3.04 Passed**，同一 `dacc540` 三配置各 126/126 与独立 AI SPEC/CODE 已核验；正式前置为已提交事实（[包级决定](../evidence/B5/final-dacc540/D3.04-acceptance.json)）。其余包与 G3 以状态索引和后续决定为准。
@@ -189,7 +191,7 @@
 | D3.03 | 实现资源归一化、MultiClaim与租约 | D3.02、D1.04 | Passed | Critical | B4 |
 | D3.04 | Submit、执行投影索引与拥有型输入 | D3.02、D3.03、D1.05 | Passed | Critical | B5 |
 | D3.05 | 实现取消、期限与permit竞争 | D3.04、D0.05 | Passed | Critical | B5 |
-| D3.06 | 实现父子寿命、Finalizing与失败收尾 | D3.04、D3.05 | NotStarted | Critical | B5 |
+| D3.06 | 实现父子寿命、Finalizing与失败收尾 | D3.04、D3.05 | Passed | Critical | B5 |
 | D3.07 | 真实任务观察CLI、完整Embedded占用与停止门禁 | D3.06、D2.07 | NotStarted | Critical | B5 |
 | D4.01 | 实现轻量状态域与结构共享Snapshot | D1.02、D0.06、D3.03 | NotStarted | Standard | B6 |
 | D4.02 | 实现EditView、WriteSet、约束与内存History | D4.01 | NotStarted | Standard | B6 |
