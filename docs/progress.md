@@ -4,6 +4,13 @@
 
 ## 当前生产节点
 
+- **B5 完成，D3.04–D3.07 Passed；G3 Passed。** 各包正式前置按 DAG 依次提交，再形成 G3 决定。见 [B5/G3 交付](validation/B5-delivery.md)及 [G3 自动验收](../evidence/G3/acceptance-dacc540.json)。
+- 最终语义来源 `dacc540`：Debug、Release、ASan / RelWithDebInfo 均 **126/126**，附加 Schema 检查通过；618 个输入与提交字节一致，AI SPEC/CODE 与自动事实齐全，errors/review_errors 为空。G3-C 按实际未变 Embedded 编译依赖复用原始报告，来源区别见交付说明。
+- 当前已 Passed：G0–G3、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07、D3.01–D3.07。B1/B2 历史 Passed 保留。下一批 B6 / D4.01–D4.04 尚未开始，本任务止于 B5/G3。
+- 仅内核与规划验证消费者；未扩展 GUI/CAD/CAM/设备，不声明持久套件或 G8 发布。交付提交只归档事实和状态，被测实现仍为 `dacc540`。
+
+## B5 开发与收口记录（历史，不代表当前状态）
+
 - B5 正式 DAG 收口：**D3.07 Passed**，同一 `dacc540` 三配置各 126/126 与独立 AI SPEC/CODE 已核验；正式前置为已提交事实（[包级决定](../evidence/B5/final-dacc540/D3.07-acceptance.json)）。其余包与 G3 以状态索引和后续决定为准。
 
 - B5 正式 DAG 收口：**D3.06 Passed**，同一 `dacc540` 三配置各 126/126 与独立 AI SPEC/CODE 已核验；正式前置为已提交事实（[包级决定](../evidence/B5/final-dacc540/D3.06-acceptance.json)）。其余包与 G3 以状态索引和后续决定为准。
@@ -12,7 +19,7 @@
 
 - B5 正式 DAG 收口：**D3.04 Passed**，同一 `dacc540` 三配置各 126/126 与独立 AI SPEC/CODE 已核验；正式前置为已提交事实（[包级决定](../evidence/B5/final-dacc540/D3.04-acceptance.json)）。其余包与 G3 以状态索引和后续决定为准。
 
-- B5 首轮正式 Debug 在已核对 Git 字节的 `c4b5c97` 上完成 **124/126**，两处旧绑定及 Evidence Schema 缺项使该轮整体 Failed，原文保留（[报告](../evidence/c4b5c974f8d1-257f5d1d66c1/win-msvc-debug/D3.07/20260909T233415Z-4005f95839c2/report.json)）。已修正安装探针的 B5 Runtime/客户端系统依赖预期与 Executor 三个变更源摘要；直接集 **2/2** 通过（[原文](../evidence/B5/final-bindings-retry-00f6b1b665/commands.json)）。新增 QPC 可选对象的严格 Schema 及真实/旧格式/损坏反例直接集 **3/3** 通过（[原文](../evidence/B5/final-bindings-e1fa5a786e/0-stdout.log)）；该次后续安装重试失败也保持原样。核心执行、资源/取消/父子/异步排空、全部真实 CLI 在首轮均通过，但不拼成最终验收。重新冻结同来源三配置与原 126 项 expected，B5/G3 仍待正式 Passed。
+- B5 首轮正式 Debug 在已核对 Git 字节的 `c4b5c97` 上完成 **124/126**，两处旧绑定及 Evidence Schema 缺项使该轮整体 Failed，原文保留（[报告](../evidence/c4b5c974f8d1-257f5d1d66c1/win-msvc-debug/D3.07/20260909T233415Z-4005f95839c2/report.json)）。已修正安装探针的 B5 Runtime/客户端系统依赖预期与 Executor 三个变更源摘要；直接集 **2/2** 通过（[原文](../evidence/B5/final-bindings-retry-00f6b1b665/commands.json)）。新增 QPC 可选对象的严格 Schema 及真实/旧格式/损坏反例直接集 **3/3** 通过（[原文](../evidence/B5/final-bindings-e1fa5a786e/0-stderr.log)）；该次后续安装重试失败也保持原样。核心执行、资源/取消/父子/异步排空、全部真实 CLI 在首轮均通过，但不拼成最终验收。重新冻结同来源三配置与原 126 项 expected，B5/G3 仍待正式 Passed。
 
 - B5 已补额外观测成本：同一 Release 安装消费者的默认/操作 Trace/异步文件/慢文件固定对照共 **36 个进程全部完成并排空**（[结果](../evidence/B5/observed-embedded-c53de988af/result.json)、[原始样本](../evidence/B5/observed-embedded-c53de988af/samples.json)）。默认 Host 日志与治理均保留；新增线程为 3/3/4/4，文件 writer 在 shutdown 阶段实际 join。每次 Trace 170 条接受、固定 ring 淘汰 42 条，文件写出 136–152 条并保留 gap，不作为可靠记录。CPU 粒度不足以支持稳定开销比例，逐操作墙钟与真实文件已保存。三份标准 G3-C 报告的原始命令/预算/安装/二进制与方法输入已核对：仅未链接的 Control cursor 源改动，原编译依赖保持字节一致，故按原来源复用（[范围审计](../evidence/B5/observed-embedded-c53de988af/prerequisite-audit.json)）。最终 126 项共享语义/代表性回归 expected 与三配置清单已建立，SPEC/CODE 技术材料齐备，**正式矩阵及 B5/G3 DAG 放行尚待完成**。
 
@@ -156,7 +163,7 @@
 | G0 | Passed |
 | G1 | Passed |
 | G2 | Passed |
-| G3 | NotStarted |
+| G3 | Passed |
 | G4 | NotStarted |
 | G5 | NotStarted |
 | G6 | NotStarted |
