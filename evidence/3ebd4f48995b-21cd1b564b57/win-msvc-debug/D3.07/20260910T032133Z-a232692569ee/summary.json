@@ -1,0 +1,413 @@
+{
+  "format": "ock.evidence-summary/1",
+  "purpose": "navigation-only; full audit remains required",
+  "task_id": "D3.07",
+  "run_id": "20260910T032133Z-a232692569ee",
+  "profile": "win-msvc-debug",
+  "report_claims": {
+    "automated_status": "Failed",
+    "package_status": "Failed"
+  },
+  "duration_seconds": 66.468248,
+  "counts": {
+    "expected": 49,
+    "discovered": 49,
+    "executed": 49,
+    "rounds": 1
+  },
+  "set_digests": {
+    "expected": "9aa55a4c8b0bc044e2a053bc92dd222f61ecbef82dc8cb8cb0fe76696eac2a17",
+    "discovered": "9aa55a4c8b0bc044e2a053bc92dd222f61ecbef82dc8cb8cb0fe76696eac2a17",
+    "executed": "9aa55a4c8b0bc044e2a053bc92dd222f61ecbef82dc8cb8cb0fe76696eac2a17"
+  },
+  "discovery": {
+    "missing": [],
+    "unexpected": []
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "executed": 49,
+      "failed": [
+        "T01.architecture.dependency_dag",
+        "T01.b4.architecture_guards",
+        "T06.native.host_structured_admission"
+      ],
+      "skipped": [],
+      "missing": [],
+      "unexpected": []
+    }
+  ],
+  "commands": [
+    {
+      "id": "cmake-version",
+      "role": "metadata",
+      "argv": [
+        "cmake",
+        "--version"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-10T03:21:34.485474+00:00",
+      "finished_at": "2026-09-10T03:21:34.676016+00:00",
+      "duration_seconds": 0.190542
+    },
+    {
+      "id": "ctest-version",
+      "role": "metadata",
+      "argv": [
+        "ctest",
+        "--version"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-10T03:21:34.750558+00:00",
+      "finished_at": "2026-09-10T03:21:34.914364+00:00",
+      "duration_seconds": 0.163806
+    },
+    {
+      "id": "configure",
+      "role": "configure",
+      "argv": [
+        "cmake",
+        "--preset",
+        "win-msvc-debug",
+        "-B",
+        "build/b4-debug",
+        "-DOCK_DEPENDENCY_COMPONENTS=CLI;CpuPool",
+        "-DOCK_DEPENDENCIES_OFFLINE=ON",
+        "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+        "-DOCK_BUILD_B2_TESTS=ON",
+        "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-DOCK_ENABLE_ASAN=OFF",
+        "-DOCK_BUILD_G0_TESTS=ON",
+        "-DOCK_BUILD_EXECUTION_MODEL_TESTS=ON",
+        "-DOCK_BUILD_FOUNDATION_TESTS=OFF",
+        "-DOCK_BUILD_CORE_CONTRACTS_TESTS=ON",
+        "-DOCK_BUILD_REGISTRATION_TESTS=OFF",
+        "-DOCK_BUILD_AUTHORIZATION_TESTS=OFF",
+        "-DOCK_BUILD_NATIVE_TESTS=ON",
+        "-DOCK_BUILD_HOST_TESTS=OFF",
+        "-DOCK_BUILD_LOGGING_TESTS=OFF",
+        "-DOCK_BUILD_NATIVE_SDK_TESTS=OFF",
+        "-DOCK_BUILD_FOOTPRINT_TESTS=OFF",
+        "-DOCK_BUILD_COMPONENTS=B5Subset",
+        "-DOCK_BUILD_B4_TESTS=ON"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-10T03:21:34.993147+00:00",
+      "finished_at": "2026-09-10T03:21:38.463098+00:00",
+      "duration_seconds": 3.469951
+    },
+    {
+      "id": "build",
+      "role": "build",
+      "argv": [
+        "cmake",
+        "--build",
+        "build/b4-debug",
+        "--config",
+        "Debug",
+        "--parallel",
+        "4",
+        "--",
+        "/nr:false"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-10T03:21:38.475610+00:00",
+      "finished_at": "2026-09-10T03:22:06.930277+00:00",
+      "duration_seconds": 28.454667
+    },
+    {
+      "id": "discover",
+      "role": "discover",
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "J:\\Code\\Kernel_v2\\build\\b4-debug",
+        "-C",
+        "Debug",
+        "-R",
+        "^(T06\\.native\\.managed_admission|T03\\.native\\.managed_resources|T03\\.native\\.managed_record|T03\\.native\\.managed_record_ownership|T03\\.native\\.execution_table_ownership|T06\\.native\\.execution_source_observation|T06\\.native\\.observation_journal|T03\\.native\\.observation_lease_drain|T03\\.native\\.execution_service_control|T03\\.native\\.host_execution_lifecycle|T03\\.native\\.host_execution_resources|T03\\.native\\.host_structured_lifetime|T06\\.native\\.host_structured_admission|T03\\.native\\.host_async_completion|T03\\.native\\.host_async_drain|T03\\.native\\.host_async_deadline|T03\\.native\\.host_required_record|T03\\.native\\.host_required_record_drain|T03\\.native\\.host_cached_result_sessions|T03\\.native\\.host_observation_drain|T03\\.native\\.host_combined_drain|T03\\.native\\.managed_execution_path|T03\\.native\\.managed_execution_resource_wait|T03\\.native\\.no_task_path|T03\\.native\\.reentrant_and_concurrent|T03\\.native\\.cancel_and_budget|T06\\.native\\.session_and_deadline|T06\\.native\\.target_binding|T06\\.native\\.outcome_consistency|T06\\.native\\.revoke_and_regrant|T03\\.native\\.execution_admission_endurance|T03\\.native\\.execution_admission_pins|T03\\.native\\.execution_reclaim_protection|T06\\.native\\.managed_accepted_failures|T03\\.native\\.managed_async_input_accounting|T06\\.contracts\\.before_apply_and_composite_proofs|T06\\.protocol\\.outcome|T20\\.cli\\.managed_post_closure|T06\\.native\\.business_failure|T06\\.native\\.invalid_output|T13\\.resources\\.execution_binding|T13\\.resources\\.execution_running_cancel|T13\\.resources\\.execution_binding_interleavings|T01\\.architecture\\.dependency_dag|T01\\.b4\\.architecture_guards|T24\\.sdk\\.version_header|T24\\.sdk\\.install_and_missing_components|T03\\.binding\\.submit|T20\\.protocol\\.list)$",
+        "--show-only=json-v1"
+      ],
+      "status": "Exited",
+      "exit_code": 0,
+      "started_at": "2026-09-10T03:22:08.700417+00:00",
+      "finished_at": "2026-09-10T03:22:08.881945+00:00",
+      "duration_seconds": 0.181528
+    },
+    {
+      "id": "test-001",
+      "role": "test",
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "J:\\Code\\Kernel_v2\\build\\b4-debug",
+        "-C",
+        "Debug",
+        "-R",
+        "^(T06\\.native\\.managed_admission|T03\\.native\\.managed_resources|T03\\.native\\.managed_record|T03\\.native\\.managed_record_ownership|T03\\.native\\.execution_table_ownership|T06\\.native\\.execution_source_observation|T06\\.native\\.observation_journal|T03\\.native\\.observation_lease_drain|T03\\.native\\.execution_service_control|T03\\.native\\.host_execution_lifecycle|T03\\.native\\.host_execution_resources|T03\\.native\\.host_structured_lifetime|T06\\.native\\.host_structured_admission|T03\\.native\\.host_async_completion|T03\\.native\\.host_async_drain|T03\\.native\\.host_async_deadline|T03\\.native\\.host_required_record|T03\\.native\\.host_required_record_drain|T03\\.native\\.host_cached_result_sessions|T03\\.native\\.host_observation_drain|T03\\.native\\.host_combined_drain|T03\\.native\\.managed_execution_path|T03\\.native\\.managed_execution_resource_wait|T03\\.native\\.no_task_path|T03\\.native\\.reentrant_and_concurrent|T03\\.native\\.cancel_and_budget|T06\\.native\\.session_and_deadline|T06\\.native\\.target_binding|T06\\.native\\.outcome_consistency|T06\\.native\\.revoke_and_regrant|T03\\.native\\.execution_admission_endurance|T03\\.native\\.execution_admission_pins|T03\\.native\\.execution_reclaim_protection|T06\\.native\\.managed_accepted_failures|T03\\.native\\.managed_async_input_accounting|T06\\.contracts\\.before_apply_and_composite_proofs|T06\\.protocol\\.outcome|T20\\.cli\\.managed_post_closure|T06\\.native\\.business_failure|T06\\.native\\.invalid_output|T13\\.resources\\.execution_binding|T13\\.resources\\.execution_running_cancel|T13\\.resources\\.execution_binding_interleavings|T01\\.architecture\\.dependency_dag|T01\\.b4\\.architecture_guards|T24\\.sdk\\.version_header|T24\\.sdk\\.install_and_missing_components|T03\\.binding\\.submit|T20\\.protocol\\.list)$",
+        "--no-tests=error",
+        "--output-on-failure",
+        "--output-junit",
+        "J:\\Code\\Kernel_v2\\evidence\\3ebd4f48995b-21cd1b564b57\\win-msvc-debug\\D3.07\\20260910T032133Z-a232692569ee\\round-001-junit.xml"
+      ],
+      "status": "Exited",
+      "exit_code": 8,
+      "started_at": "2026-09-10T03:22:08.980997+00:00",
+      "finished_at": "2026-09-10T03:22:40.683591+00:00",
+      "duration_seconds": 31.702594
+    }
+  ],
+  "command_costs": {
+    "scope": "top-level-only",
+    "total": 6,
+    "duration_seconds": 64.163088,
+    "by_role": [
+      {
+        "role": "build",
+        "count": 1,
+        "duration_seconds": 28.454667
+      },
+      {
+        "role": "configure",
+        "count": 1,
+        "duration_seconds": 3.469951
+      },
+      {
+        "role": "discover",
+        "count": 1,
+        "duration_seconds": 0.181528
+      },
+      {
+        "role": "metadata",
+        "count": 2,
+        "duration_seconds": 0.354348
+      },
+      {
+        "role": "test",
+        "count": 1,
+        "duration_seconds": 31.702594
+      }
+    ],
+    "configure": {
+      "count": 1,
+      "duration_seconds": 3.469951
+    },
+    "build": {
+      "count": 1,
+      "duration_seconds": 28.454667
+    },
+    "install": {
+      "count": 0,
+      "duration_seconds": 0
+    },
+    "nested_command_count": null
+  },
+  "failure_signals": [
+    "command not successful: test-001",
+    "round 1 failed: T01.architecture.dependency_dag, T01.b4.architecture_guards, T06.native.host_structured_admission",
+    "report error: command failed: test-001",
+    "report error: required case failed or skipped"
+  ],
+  "source_claims": {
+    "source": {
+      "commit": "3ebd4f48995b54118cc0a0215761750793b26679",
+      "dirty": true,
+      "root": "J:\\Code\\Kernel_v2",
+      "build_inputs_sha256": "21cd1b564b571db541d85d139f61b25fb71e2cf5f28d782f5e1ce7b668512772",
+      "archive": "source-inputs.zip",
+      "archive_sha256": "2dbba9e51f7585538ec6b3764a30fea5732d2b84d2b561088dd20e7a5f45c81a"
+    },
+    "manifest": {
+      "path": "tests/runs/b5-post-closure-win-msvc-debug.json",
+      "sha256": "9debad725c1a79a1e089382d2f9fac6bcd64a09995d3fd78252fe378ba445e83",
+      "snapshot": "manifest.json"
+    },
+    "requirements_manifest_sha256": "e7fa8a1bb78cf78d0417a158926a9f86394282e95db77f8cadcd5e82388c5776",
+    "collector": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\accept_gate.py",
+        "sha256": "a33a4efe90b080a64ca6579922eb0ec55816076a018faef1f358096203016d38"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\build_identity.py",
+        "sha256": "23620838037ab4dd49ad30bc7ff96cdb29abbd67036a87edcd8d76a8119dee86"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\common.py",
+        "sha256": "1026f8e9ce8a6ca79d019e15f7cd9f810180423e88aa58f9c4e5aa4d145e221b"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\gate.py",
+        "sha256": "8e1526662d21c341baf6ad35cf139b039e6df65dd0e0fb774c7f8d3e3856013f"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\import_bootstrap.py",
+        "sha256": "1e4260dc6356ab17749772457f27873fa1b2c5864290e38d1494e4aa0ee2b759"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\process.py",
+        "sha256": "25f73b5fec06f85df18ab47e70f44c07f94b1531d55f24882298e97defbeea69"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\review_policy.py",
+        "sha256": "35f3628a58d464d27978fbe9eaa58d2944f32eca766c31215e729f9048bbdd40"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\run.py",
+        "sha256": "fc2b3e5e50996db54cf276aa18db84854b9f58eb03a369dc9c3e5a23b88c1465"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\summary.py",
+        "sha256": "1a21ff50b78027f822e94649638c6d52a6dadd654440cf8109bb5ccf4f6b1161"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\tools\\evidence\\validate.py",
+        "sha256": "bef0acaf56a5e21bf04e8bd176b00fe5e62852698b38259a88447bbc2cc107a3"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\schemas\\evidence-v1.schema.json",
+        "sha256": "141b24bde4adac00d3b09f42722102b8b45420974dea12ac159202f58d3e37f9"
+      }
+    ]
+  },
+  "references": [
+    {
+      "path": "001-cmake-version-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "001-cmake-version-stdout.log",
+      "role": "command-raw",
+      "sha256": "02282b1eefbb0dd98bd4578caa8861cc2de062ebcbef435bace0359683bbfa57",
+      "size": 97
+    },
+    {
+      "path": "002-ctest-version-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "002-ctest-version-stdout.log",
+      "role": "command-raw",
+      "sha256": "a1f1a612ac841f12ccc139b534f734d054a3c12b13186dc706bc385b662fa1ac",
+      "size": 97
+    },
+    {
+      "path": "003-configure-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "003-configure-stdout.log",
+      "role": "command-raw",
+      "sha256": "369ff2d7568a788517806dc464954a8d66ed667d6154c162596a6be174cf936a",
+      "size": 547
+    },
+    {
+      "path": "004-build-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "004-build-stdout.log",
+      "role": "command-raw",
+      "sha256": "4787503b86e840371da31927bcaa22d6c1ed64384a82db203f2b067c17f0efc4",
+      "size": 8995
+    },
+    {
+      "path": "005-discover-stderr.log",
+      "role": "command-raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "005-discover-stdout.log",
+      "role": "command-raw",
+      "sha256": "10c65f4378131be757efb11b0712fd05cfadd19087613c06e6193bbb89c7281c",
+      "size": 49313
+    },
+    {
+      "path": "006-test-001-stderr.log",
+      "role": "command-raw",
+      "sha256": "18e00877dc1071c85cd4f479d451bebeef8309022e46cf8c63b0bed5151984a4",
+      "size": 27
+    },
+    {
+      "path": "006-test-001-stdout.log",
+      "role": "command-raw",
+      "sha256": "c5279b0d652fe67215797dbe435963627a145af1f035ef2b0c05c5321bddda77",
+      "size": 23770
+    },
+    {
+      "path": "build-artifacts.zip",
+      "role": "build-archive",
+      "sha256": "0f3138956801d21cc07de4888c0f85ff7ba58b6232b45e6fcf733e273438c5ed",
+      "size": 12453735
+    },
+    {
+      "path": "discovered.json",
+      "role": "discovered",
+      "sha256": "ae7df293886acea7f39003576ff3a2b3b6b8fdc87d383542d74390c60aa925ed",
+      "size": 46386
+    },
+    {
+      "path": "expected.json",
+      "role": "expected",
+      "sha256": "335e93c2800c1190b2f5747b360c4d55ee4a1005582139da3d50cf199911aac4",
+      "size": 9808
+    },
+    {
+      "path": "manifest.json",
+      "role": "manifest",
+      "sha256": "1df83a049a25a8601d31a1d4b5d46d23e0435b62c6555e4d747464099667c5d1",
+      "size": 5932
+    },
+    {
+      "path": "report.json",
+      "role": "report",
+      "sha256": "b42550257c2bd6df2ba5c9e526a649cbb60f517330d69143ad9f00c9579279c0",
+      "size": 150841
+    },
+    {
+      "path": "review-records.zip",
+      "role": "review-archive",
+      "sha256": "045ec9a07a85d21016e33a44b6ef47f0837592da792c4d13d85ae185964ad749",
+      "size": 1912
+    },
+    {
+      "path": "round-001-junit.xml",
+      "role": "junit",
+      "sha256": "4e4ad8b7af651cbf9a17a152c8282a1b4a624aeef02ae4c9a4546880a632b8bc",
+      "size": 32116
+    },
+    {
+      "path": "runtime-artifacts.zip",
+      "role": "runtime_archive",
+      "sha256": "89e259a2554593e1e0329ae436ad8e71d1ddf7362a25d4ae1b322ad6c69dddcb",
+      "size": 35267
+    },
+    {
+      "path": "source-inputs.json",
+      "role": "source-inputs",
+      "sha256": "ded7a5877e35ebf7561502cb517bfafaa7cad0928811ab5f4d705e021e94baa9",
+      "size": 98684
+    },
+    {
+      "path": "source-inputs.zip",
+      "role": "source-archive",
+      "sha256": "2dbba9e51f7585538ec6b3764a30fea5732d2b84d2b561088dd20e7a5f45c81a",
+      "size": 1570646
+    }
+  ],
+  "content_sha256": "7d3b570d3a31f87a8a8ad6ff7f09ea56c08e226ea59d2c77bc5c4c757b8753f4"
+}

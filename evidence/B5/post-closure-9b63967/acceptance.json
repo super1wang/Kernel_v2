@@ -1,0 +1,119 @@
+{
+  "format": "ock.b5-post-gate-closure-acceptance/1",
+  "created_at": "2026-09-10T03:41:18.326430+00:00",
+  "status": "Passed",
+  "source": {
+    "commit": "9b63967214160a02fbc5f9eeab58dbaf1781e64a",
+    "inputs_sha256": "94d50dfbf40acb92f73a56681fa4301e75c4ebffe2aab01a1cc1b565340b8ee0",
+    "dependency_lock_sha256": "ac03ac1d4cc82ea23403be553ed896b4f5540e9abf12f29311f4883f1711b822"
+  },
+  "scope": "仅 C1/C1b/C2 与受影响 G3-A/B/C；历史 G0-G3/B1-B5 Passed 保留。",
+  "requirements": {
+    "C1": {
+      "status": "Passed",
+      "evidence": "semantic-acceptance.json",
+      "cases": [
+        "T03.native.execution_admission_endurance",
+        "T03.native.execution_admission_pins",
+        "T03.native.execution_reclaim_protection"
+      ]
+    },
+    "C1b": {
+      "status": "Passed",
+      "evidence": "semantic-acceptance.json",
+      "cases": [
+        "T03.native.managed_async_input_accounting",
+        "T03.native.host_async_drain",
+        "T03.native.host_cached_result_sessions"
+      ]
+    },
+    "C2": {
+      "status": "Passed",
+      "evidence": "semantic-acceptance.json",
+      "cases": [
+        "T06.native.managed_accepted_failures",
+        "T03.native.managed_async_input_accounting",
+        "T06.contracts.before_apply_and_composite_proofs",
+        "T06.protocol.outcome",
+        "T20.cli.managed_post_closure"
+      ]
+    },
+    "G3-A": {
+      "status": "Passed",
+      "evidence": "semantic-acceptance.json",
+      "cases": [
+        "T06.native.managed_admission",
+        "T03.native.managed_resources",
+        "T03.native.managed_record",
+        "T03.native.managed_record_ownership",
+        "T03.native.execution_table_ownership",
+        "T06.native.execution_source_observation",
+        "T06.native.observation_journal",
+        "T03.native.observation_lease_drain",
+        "T03.native.execution_service_control",
+        "T03.native.host_execution_lifecycle",
+        "T03.native.host_execution_resources",
+        "T03.native.host_structured_lifetime",
+        "T06.native.host_structured_admission",
+        "T03.native.host_async_completion",
+        "T03.native.host_async_drain",
+        "T03.native.host_async_deadline",
+        "T03.native.host_required_record",
+        "T03.native.host_required_record_drain",
+        "T03.native.host_cached_result_sessions",
+        "T03.native.host_observation_drain",
+        "T03.native.host_combined_drain",
+        "T03.native.managed_execution_path",
+        "T03.native.managed_execution_resource_wait",
+        "T03.native.no_task_path",
+        "T03.native.reentrant_and_concurrent",
+        "T03.native.cancel_and_budget",
+        "T06.native.session_and_deadline",
+        "T06.native.target_binding",
+        "T06.native.outcome_consistency",
+        "T06.native.revoke_and_regrant",
+        "T03.native.no_task_path",
+        "T03.native.reentrant_and_concurrent"
+      ]
+    },
+    "G3-B": {
+      "status": "Passed",
+      "evidence": "semantic-acceptance.json",
+      "cases": [
+        "T20.cli.managed_post_closure",
+        "T03.binding.submit",
+        "T20.protocol.list",
+        "T24.sdk.version_header",
+        "T24.sdk.install_and_missing_components",
+        "T01.architecture.dependency_dag",
+        "T01.b4.architecture_guards"
+      ]
+    },
+    "G3-C": {
+      "status": "Passed",
+      "evidence": "footprint-integrity.json",
+      "cases": []
+    }
+  },
+  "decisions": [
+    {
+      "path": "evidence/B5/post-closure-9b63967/semantic-acceptance.json",
+      "sha256": "6775269f0789a28f5bbec77547bc2d5a3ad3e4d53e75cd5431c0d6c7a4b9a453"
+    },
+    {
+      "path": "evidence/B5/post-closure-9b63967/footprint-integrity.json",
+      "sha256": "e9adca548b4b9949904f5a955333df9d2b91047f2355e708628c49a1f18b768b"
+    }
+  ],
+  "formal_cases_per_profile": 49,
+  "next_batch": {
+    "id": "B6",
+    "status": "Ready for Development",
+    "production_started": false
+  },
+  "ai_technical_review": "Bound by semantic acceptance; no human approval claim",
+  "limitations": [
+    "仅内核与规划验证消费者，不扩展 GUI/CAD/CAM/设备或 D4/D5。",
+    "Debug/ASan Embedded 数据是分配诊断，不作为 Release 性能。"
+  ]
+}

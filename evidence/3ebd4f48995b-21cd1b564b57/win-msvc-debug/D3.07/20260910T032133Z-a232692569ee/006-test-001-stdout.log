@@ -1,0 +1,313 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b4-debug
+Test project J:/Code/Kernel_v2/build/b4-debug
+      Start   4: T01.b4.architecture_guards
+ 1/49 Test   #4: T01.b4.architecture_guards ........................***Failed    7.43 sec
+test_approved_architecture_matches_manifest (tests.architecture.test_architecture.ArchitectureTests.test_approved_architecture_matches_manifest) ... FAIL
+test_authorized_immutable_read_is_allowed (tests.architecture.test_architecture.ArchitectureTests.test_authorized_immutable_read_is_allowed) ... ok
+test_client_has_no_server_dependency (tests.architecture.test_architecture.ArchitectureTests.test_client_has_no_server_dependency) ... ok
+test_comment_markers_inside_strings_do_not_hide_includes (tests.architecture.test_architecture.ArchitectureTests.test_comment_markers_inside_strings_do_not_hide_includes) ... ok
+test_dot_include_prefix_is_rejected (tests.architecture.test_architecture.ArchitectureTests.test_dot_include_prefix_is_rejected) ... ok
+test_dsl_is_not_a_required_release_component (tests.architecture.test_architecture.ArchitectureTests.test_dsl_is_not_a_required_release_component) ... ok
+test_generic_state_rpc_is_rejected (tests.architecture.test_architecture.ArchitectureTests.test_generic_state_rpc_is_rejected) ... ok
+test_include_comment_does_not_bypass_ownership (tests.architecture.test_architecture.ArchitectureTests.test_include_comment_does_not_bypass_ownership) ... ok
+test_macro_include_requires_explicit_review (tests.architecture.test_architecture.ArchitectureTests.test_macro_include_requires_explicit_review) ... ok
+test_multiline_comment_preserves_directive_line (tests.architecture.test_architecture.ArchitectureTests.test_multiline_comment_preserves_directive_line) ... ok
+test_no_runtime_component_is_marked_implemented (tests.architecture.test_architecture.ArchitectureTests.test_no_runtime_component_is_marked_implemented) ... ok
+test_observation_cannot_become_product_target (tests.architecture.test_architecture.ArchitectureTests.test_observation_cannot_become_product_target) ... ok
+test_ock_include_path_traversal_is_rejected (tests.architecture.test_architecture.ArchitectureTests.test_ock_include_path_traversal_is_rejected) ... ok
+test_public_header_cannot_expose_private_dependency (tests.architecture.test_architecture.ArchitectureTests.test_public_header_cannot_expose_private_dependency) ... ok
+test_public_header_signature_change_is_detected (tests.architecture.test_architecture.ArchitectureTests.test_public_header_signature_change_is_detected) ... ok
+test_raw_string_include_text_is_not_a_directive (tests.architecture.test_architecture.ArchitectureTests.test_raw_string_include_text_is_not_a_directive) ... ok
+test_runtime_can_include_core_contracts (tests.architecture.test_architecture.ArchitectureTests.test_runtime_can_include_core_contracts) ... ok
+test_runtime_cannot_depend_on_state_even_transitively (tests.architecture.test_architecture.ArchitectureTests.test_runtime_cannot_depend_on_state_even_transitively) ... ok
+test_runtime_include_to_data_rejected (tests.architecture.test_architecture.ArchitectureTests.test_runtime_include_to_data_rejected) ... ok
+test_runtime_include_to_state_rejected (tests.architecture.test_architecture.ArchitectureTests.test_runtime_include_to_state_rejected) ... ok
+test_state_only_depends_on_core_contracts (tests.architecture.test_architecture.ArchitectureTests.test_state_only_depends_on_core_contracts) ... ok
+test_target_cycle_is_rejected (tests.architecture.test_architecture.ArchitectureTests.test_target_cycle_is_rejected) ... ok
+test_test_support_cannot_enter_product_dag (tests.architecture.test_architecture.ArchitectureTests.test_test_support_cannot_enter_product_dag) ... ok
+test_ui_business_write_must_use_operation (tests.architecture.test_architecture.ArchitectureTests.test_ui_business_write_must_use_operation) ... ok
+test_unknown_ock_header_has_no_implicit_owner (tests.architecture.test_architecture.ArchitectureTests.test_unknown_ock_header_has_no_implicit_owner) ... ok
+test_unregistered_h_header_is_detected (tests.architecture.test_architecture.ArchitectureTests.test_unregistered_h_header_is_detected) ... ok
+test_version_is_independent_from_document_version (tests.architecture.test_architecture.ArchitectureTests.test_version_is_independent_from_document_version) ... ok
+test_workspace_cannot_include_runtime_private (tests.architecture.test_architecture.ArchitectureTests.test_workspace_cannot_include_runtime_private) ... ok
+test_workspace_write_cannot_bypass_operation (tests.architecture.test_architecture.ArchitectureTests.test_workspace_write_cannot_bypass_operation) ... ok
+test_implementation_cannot_be_claimed_without_library (tests.architecture.test_b2_sdk.B2SurfaceTests.test_implementation_cannot_be_claimed_without_library) ... ok
+test_native_and_protocol_closures (tests.architecture.test_b2_sdk.B2SurfaceTests.test_native_and_protocol_closures) ... ok
+test_observation_source_owner_cannot_expand (tests.architecture.test_b2_sdk.B2SurfaceTests.test_observation_source_owner_cannot_expand) ... ok
+test_production_components (tests.architecture.test_b2_sdk.B2SurfaceTests.test_production_components) ... FAIL
+test_runtime_pruned_graph_requires_explicit_selection (tests.architecture.test_b2_sdk.B2SurfaceTests.test_runtime_pruned_graph_requires_explicit_selection) ... FAIL
+test_actual_native_surface (tests.architecture.test_native_sdk.NativeSurfaceTests.test_actual_native_surface) ... FAIL
+test_approved_edge_needs_actual_source (tests.architecture.test_native_sdk.NativeSurfaceTests.test_approved_edge_needs_actual_source) ... ok
+test_fixed_surface_cannot_grow_with_manifest (tests.architecture.test_native_sdk.NativeSurfaceTests.test_fixed_surface_cannot_grow_with_manifest) ... ok
+test_installed_detail_actual_edges_are_fixed (tests.architecture.test_native_sdk.NativeSurfaceTests.test_installed_detail_actual_edges_are_fixed) ... ok
+test_log_component_enum_is_not_host_type (tests.architecture.test_native_sdk.NativeSurfaceTests.test_log_component_enum_is_not_host_type) ... ok
+test_system_dependency_is_exact (tests.architecture.test_native_sdk.NativeSurfaceTests.test_system_dependency_is_exact) ... ok
+test_unknown_detail_still_rejected (tests.architecture.test_native_sdk.NativeSurfaceTests.test_unknown_detail_still_rejected) ... ok
+test_b3_projection_must_not_claim_cpu (tests.architecture.test_b4_sdk.B4SurfaceTests.test_b3_projection_must_not_claim_cpu) ... FAIL
+test_b5_metadata_and_selection (tests.architecture.test_b4_sdk.B4SurfaceTests.test_b5_metadata_and_selection) ... FAIL
+test_cpu_cannot_regress_to_contract (tests.architecture.test_b4_sdk.B4SurfaceTests.test_cpu_cannot_regress_to_contract) ... ok
+test_cpu_is_real_and_private (tests.architecture.test_b4_sdk.B4SurfaceTests.test_cpu_is_real_and_private) ... FAIL
+test_embedded_has_only_runtime_and_cpu (tests.architecture.test_b4_sdk.B4SurfaceTests.test_embedded_has_only_runtime_and_cpu) ... FAIL
+test_runtime_cannot_include_cpu (tests.architecture.test_b4_sdk.B4SurfaceTests.test_runtime_cannot_include_cpu) ... ok
+test_unknown_profile_rejected (tests.architecture.test_b4_sdk.B4SurfaceTests.test_unknown_profile_rejected) ... ok
+
+======================================================================
+FAIL: test_approved_architecture_matches_manifest (tests.architecture.test_architecture.ArchitectureTests.test_approved_architecture_matches_manifest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\architecture\test_architecture.py", line 14, in test_approved_architecture_matches_manifest
+    self.assertEqual([], validate_manifest(self.manifest))
+AssertionError: Lists differ: [] != ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\pack[154 chars]hpp']
+
+Second list contains 2 additional elements.
+First extra element 0:
+'公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp'
+
+- []
++ ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp',
++  '公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\runtime\\include\\ock\\runtime\\detail\\invocation.hpp']
+
+======================================================================
+FAIL: test_production_components (tests.architecture.test_b2_sdk.B2SurfaceTests.test_production_components)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\architecture\test_b2_sdk.py", line 29, in test_production_components
+    self.assertEqual(check.validate_manifest(manifest), [])
+AssertionError: Lists differ: ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\pack[154 chars]hpp'] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+'公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp'
+
++ []
+- ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp',
+-  '公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\runtime\\include\\ock\\runtime\\detail\\invocation.hpp']
+
+======================================================================
+FAIL: test_runtime_pruned_graph_requires_explicit_selection (tests.architecture.test_b2_sdk.B2SurfaceTests.test_runtime_pruned_graph_requires_explicit_selection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\architecture\test_b2_sdk.py", line 17, in test_runtime_pruned_graph_requires_explicit_selection
+    self.assertEqual(check.validate_manifest(manifest,graph,'Runtime'),[])
+AssertionError: Lists differ: ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\pack[154 chars]hpp'] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+'公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp'
+
++ []
+- ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp',
+-  '公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\runtime\\include\\ock\\runtime\\detail\\invocation.hpp']
+
+======================================================================
+FAIL: test_actual_native_surface (tests.architecture.test_native_sdk.NativeSurfaceTests.test_actual_native_surface)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\architecture\test_native_sdk.py", line 19, in test_actual_native_surface
+    self.assertEqual(check.validate_manifest(manifest), [])
+AssertionError: Lists differ: ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\pack[154 chars]hpp'] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+'公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp'
+
++ []
+- ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp',
+-  '公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\runtime\\include\\ock\\runtime\\detail\\invocation.hpp']
+
+======================================================================
+FAIL: test_b3_projection_must_not_claim_cpu (tests.architecture.test_b4_sdk.B4SurfaceTests.test_b3_projection_must_not_claim_cpu)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\architecture\test_b4_sdk.py", line 27, in test_b3_projection_must_not_claim_cpu
+    self.assertEqual([],check.validate_manifest(m,g,'B3Subset'))
+AssertionError: Lists differ: [] != ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\pack[154 chars]hpp']
+
+Second list contains 2 additional elements.
+First extra element 0:
+'公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp'
+
+- []
++ ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp',
++  '公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\runtime\\include\\ock\\runtime\\detail\\invocation.hpp']
+
+======================================================================
+FAIL: test_b5_metadata_and_selection (tests.architecture.test_b4_sdk.B4SurfaceTests.test_b5_metadata_and_selection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\architecture\test_b4_sdk.py", line 12, in test_b5_metadata_and_selection
+    self.assertEqual([],check.validate_manifest(m,g,'B5Subset'))
+AssertionError: Lists differ: [] != ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\pack[154 chars]hpp']
+
+Second list contains 2 additional elements.
+First extra element 0:
+'公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp'
+
+- []
++ ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp',
++  '公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\runtime\\include\\ock\\runtime\\detail\\invocation.hpp']
+
+======================================================================
+FAIL: test_cpu_is_real_and_private (tests.architecture.test_b4_sdk.B4SurfaceTests.test_cpu_is_real_and_private)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\architecture\test_b4_sdk.py", line 19, in test_cpu_is_real_and_private
+    m,g=self.graph();self.assertEqual([],check.validate_manifest(m,g,'B4Subset'))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\pack[154 chars]hpp']
+
+Second list contains 2 additional elements.
+First extra element 0:
+'公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp'
+
+- []
++ ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp',
++  '公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\runtime\\include\\ock\\runtime\\detail\\invocation.hpp']
+
+======================================================================
+FAIL: test_embedded_has_only_runtime_and_cpu (tests.architecture.test_b4_sdk.B4SurfaceTests.test_embedded_has_only_runtime_and_cpu)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\architecture\test_b4_sdk.py", line 36, in test_embedded_has_only_runtime_and_cpu
+    self.assertEqual([],check.validate_manifest(m,embedded,'Embedded'))
+AssertionError: Lists differ: [] != ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\pack[154 chars]hpp']
+
+Second list contains 2 additional elements.
+First extra element 0:
+'公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp'
+
+- []
++ ['公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp',
++  '公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\runtime\\include\\ock\\runtime\\detail\\invocation.hpp']
+
+----------------------------------------------------------------------
+Ran 48 tests in 7.118s
+
+FAILED (failures=8)
+
+      Start   8: T24.sdk.version_header
+ 2/49 Test   #8: T24.sdk.version_header ............................   Passed    0.06 sec
+      Start   9: T01.architecture.dependency_dag
+ 3/49 Test   #9: T01.architecture.dependency_dag ...................***Failed    0.36 sec
+{
+  "check_id": "CHECK.D0.02.architecture",
+  "errors": [
+    "公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\contracts\\include\\ock\\contracts\\outcome.hpp",
+    "公开头声明/字节变化需要审查：J:\\Code\\Kernel_v2\\packages\\runtime\\include\\ock\\runtime\\detail\\invocation.hpp"
+  ],
+  "scope": "合同目标/公开表面静态检查；无Runtime运行或授权实现"
+}
+
+      Start  11: T24.sdk.install_and_missing_components
+ 4/49 Test  #11: T24.sdk.install_and_missing_components ............   Passed   15.98 sec
+      Start 305: T13.resources.execution_binding
+ 5/49 Test #305: T13.resources.execution_binding ...................   Passed    0.07 sec
+      Start 306: T13.resources.execution_running_cancel
+ 6/49 Test #306: T13.resources.execution_running_cancel ............   Passed    0.07 sec
+      Start 307: T13.resources.execution_binding_interleavings
+ 7/49 Test #307: T13.resources.execution_binding_interleavings .....   Passed    0.06 sec
+      Start 313: T20.cli.managed_post_closure
+ 8/49 Test #313: T20.cli.managed_post_closure ......................   Passed    0.57 sec
+      Start 336: T20.protocol.list
+ 9/49 Test #336: T20.protocol.list .................................   Passed    0.17 sec
+      Start 338: T03.binding.submit
+10/49 Test #338: T03.binding.submit ................................   Passed    0.22 sec
+      Start 339: T06.protocol.outcome
+11/49 Test #339: T06.protocol.outcome ..............................   Passed    0.54 sec
+      Start 374: T06.contracts.before_apply_and_composite_proofs
+12/49 Test #374: T06.contracts.before_apply_and_composite_proofs ...   Passed    0.07 sec
+      Start 395: T03.native.cancel_and_budget
+13/49 Test #395: T03.native.cancel_and_budget ......................   Passed    0.11 sec
+      Start 398: T03.native.execution_admission_endurance
+14/49 Test #398: T03.native.execution_admission_endurance ..........   Passed    1.29 sec
+      Start 399: T03.native.execution_admission_pins
+15/49 Test #399: T03.native.execution_admission_pins ...............   Passed    0.09 sec
+      Start 400: T03.native.execution_reclaim_protection
+16/49 Test #400: T03.native.execution_reclaim_protection ...........   Passed    0.09 sec
+      Start 401: T03.native.execution_service_control
+17/49 Test #401: T03.native.execution_service_control ..............   Passed    0.29 sec
+      Start 402: T03.native.execution_table_ownership
+18/49 Test #402: T03.native.execution_table_ownership ..............   Passed    0.08 sec
+      Start 403: T03.native.host_async_completion
+19/49 Test #403: T03.native.host_async_completion ..................   Passed    0.11 sec
+      Start 404: T03.native.host_async_deadline
+20/49 Test #404: T03.native.host_async_deadline ....................   Passed    0.31 sec
+      Start 405: T03.native.host_async_drain
+21/49 Test #405: T03.native.host_async_drain .......................   Passed    0.08 sec
+      Start 406: T03.native.host_cached_result_sessions
+22/49 Test #406: T03.native.host_cached_result_sessions ............   Passed    0.12 sec
+      Start 407: T03.native.host_combined_drain
+23/49 Test #407: T03.native.host_combined_drain ....................   Passed    1.29 sec
+      Start 408: T03.native.host_execution_lifecycle
+24/49 Test #408: T03.native.host_execution_lifecycle ...............   Passed    0.07 sec
+      Start 409: T03.native.host_execution_resources
+25/49 Test #409: T03.native.host_execution_resources ...............   Passed    0.07 sec
+      Start 410: T03.native.host_observation_drain
+26/49 Test #410: T03.native.host_observation_drain .................   Passed    0.27 sec
+      Start 411: T03.native.host_required_record
+27/49 Test #411: T03.native.host_required_record ...................   Passed    0.19 sec
+      Start 412: T03.native.host_required_record_drain
+28/49 Test #412: T03.native.host_required_record_drain .............   Passed    0.07 sec
+      Start 413: T03.native.host_structured_lifetime
+29/49 Test #413: T03.native.host_structured_lifetime ...............   Passed    0.06 sec
+      Start 414: T03.native.managed_async_input_accounting
+30/49 Test #414: T03.native.managed_async_input_accounting .........   Passed    0.06 sec
+      Start 415: T03.native.managed_execution_path
+31/49 Test #415: T03.native.managed_execution_path .................   Passed    0.05 sec
+      Start 416: T03.native.managed_execution_resource_wait
+32/49 Test #416: T03.native.managed_execution_resource_wait ........   Passed    0.05 sec
+      Start 417: T03.native.managed_record
+33/49 Test #417: T03.native.managed_record .........................   Passed    0.05 sec
+      Start 418: T03.native.managed_record_ownership
+34/49 Test #418: T03.native.managed_record_ownership ...............   Passed    0.05 sec
+      Start 419: T03.native.managed_resources
+35/49 Test #419: T03.native.managed_resources ......................   Passed    0.05 sec
+      Start 421: T03.native.no_task_path
+36/49 Test #421: T03.native.no_task_path ...........................   Passed    0.08 sec
+      Start 422: T03.native.observation_lease_drain
+37/49 Test #422: T03.native.observation_lease_drain ................   Passed    0.06 sec
+      Start 424: T03.native.reentrant_and_concurrent
+38/49 Test #424: T03.native.reentrant_and_concurrent ...............   Passed    0.07 sec
+      Start 430: T06.native.business_failure
+39/49 Test #430: T06.native.business_failure .......................   Passed    0.04 sec
+      Start 431: T06.native.execution_source_observation
+40/49 Test #431: T06.native.execution_source_observation ...........   Passed    0.05 sec
+      Start 432: T06.native.host_structured_admission
+41/49 Test #432: T06.native.host_structured_admission ..............***Failed    0.09 sec
+rejected&&std::holds_alternative<Rejected>(*rejected->value)
+
+      Start 433: T06.native.invalid_output
+42/49 Test #433: T06.native.invalid_output .........................   Passed    0.07 sec
+      Start 435: T06.native.managed_accepted_failures
+43/49 Test #435: T06.native.managed_accepted_failures ..............   Passed    0.11 sec
+      Start 436: T06.native.managed_admission
+44/49 Test #436: T06.native.managed_admission ......................   Passed    0.05 sec
+      Start 437: T06.native.observation_journal
+45/49 Test #437: T06.native.observation_journal ....................   Passed    0.05 sec
+      Start 438: T06.native.outcome_consistency
+46/49 Test #438: T06.native.outcome_consistency ....................   Passed    0.06 sec
+      Start 441: T06.native.revoke_and_regrant
+47/49 Test #441: T06.native.revoke_and_regrant .....................   Passed    0.10 sec
+      Start 442: T06.native.session_and_deadline
+48/49 Test #442: T06.native.session_and_deadline ...................   Passed    0.08 sec
+      Start 443: T06.native.target_binding
+49/49 Test #443: T06.native.target_binding .........................   Passed    0.06 sec
+
+94% tests passed, 3 tests failed out of 49
+
+Label Time Summary:
+B4       =   7.43 sec*proc (1 test)
+B5       =   4.55 sec*proc (28 tests)
+D0.02    =  16.40 sec*proc (3 tests)
+D1.02    =   0.07 sec*proc (1 test)
+D1.05    =   2.31 sec*proc (14 tests)
+D3.04    =   2.46 sec*proc (25 tests)
+D3.05    =   0.20 sec*proc (3 tests)
+D3.07    =   2.09 sec*proc (3 tests)
+
+Total Test time (real) =  31.54 sec
+
+The following tests FAILED:
+	  4 - T01.b4.architecture_guards (Failed)               B4
+	  9 - T01.architecture.dependency_dag (Failed)          D0.02
+	432 - T06.native.host_structured_admission (Failed)     B5 D3.04

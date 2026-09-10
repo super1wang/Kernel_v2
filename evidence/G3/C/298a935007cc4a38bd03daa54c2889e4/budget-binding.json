@@ -1,0 +1,49 @@
+{
+  "file": {
+    "path": "J:\\Code\\Kernel_v2\\footprint-budgets.json",
+    "sha256": "61565b57c9cac7f619b30764ebdabc15fa5c850cdc97e4e9a8a3dee60400199f",
+    "bytes": 23345
+  },
+  "selected": {
+    "win-msvc-release/occupancy": {
+      "status": "Approved",
+      "method_digest": "c013ebbbfcd80255dd41482f4bdff393633d0ce604dcdde5bdc6ab36b800f49d",
+      "approved_at": "2026-09-10T03:24:31.982259+00:00",
+      "pilot_run_ids": [
+        "evidence/B5/embedded-pilot-1df84b5c12/1-embedded-stdout.log",
+        "evidence/B5/embedded-pilot-d8d809d523/1-embedded-stdout.log",
+        "evidence/B5/embedded-pilot-e2cb99d25c/pilot.json",
+        "evidence/B5/embedded-startup-f771053399/samples/summary.json"
+      ],
+      "limits": {
+        "private_peak_absolute_max": 16777216,
+        "private_peak_paired_max": 4194304,
+        "ready_private_absolute_max": 16777216,
+        "ready_private_paired_max": 4194304,
+        "ready_peak_commit_absolute_max": 16777216,
+        "ready_peak_commit_paired_max": 4194304,
+        "working_set_peak_absolute_max": 67108864,
+        "working_set_peak_paired_max": 8388608,
+        "ready_peak_working_set_absolute_max": 67108864,
+        "ready_peak_working_set_paired_max": 8388608,
+        "distribution_increment_bytes": 4194304,
+        "ready_working_set_absolute_max": 67108864,
+        "ready_working_set_paired_max": 8388608
+      }
+    },
+    "win-msvc-release/startup": {
+      "status": "Approved",
+      "method_digest": "c013ebbbfcd80255dd41482f4bdff393633d0ce604dcdde5bdc6ab36b800f49d",
+      "approved_at": "2026-09-10T03:24:31.982259+00:00",
+      "pilot_run_ids": [
+        "evidence/B5/embedded-startup-f771053399/samples/summary.json"
+      ],
+      "limits": {
+        "construction_to_ready_ms_absolute_max": 250,
+        "construction_to_ready_ms_paired_max": 100,
+        "create_to_ready_ms_absolute_max": 1000,
+        "create_to_ready_ms_paired_max": 250
+      }
+    }
+  }
+}

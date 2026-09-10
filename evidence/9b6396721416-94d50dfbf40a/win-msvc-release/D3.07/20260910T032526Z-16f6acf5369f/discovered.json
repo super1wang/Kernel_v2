@@ -1,0 +1,1867 @@
+{
+  "backtraceGraph": {
+    "commands": [
+      "add_test"
+    ],
+    "files": [
+      "J:/Code/Kernel_v2/CMakeLists.txt",
+      "J:/Code/Kernel_v2/tests/contract/resources/CMakeLists.txt",
+      "J:/Code/Kernel_v2/tests/integration/cli/CMakeLists.txt",
+      "J:/Code/Kernel_v2/tests/unit/data/CMakeLists.txt"
+    ],
+    "nodes": [
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 86,
+        "parent": 0
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 119,
+        "parent": 2
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 122,
+        "parent": 4
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 125,
+        "parent": 6
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 5,
+        "parent": 8
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 5,
+        "parent": 10
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 8,
+        "parent": 12
+      },
+      {
+        "file": 2
+      },
+      {
+        "command": 0,
+        "file": 2,
+        "line": 3,
+        "parent": 14
+      },
+      {
+        "file": 3
+      },
+      {
+        "command": 0,
+        "file": 3,
+        "line": 93,
+        "parent": 16
+      },
+      {
+        "file": 3
+      },
+      {
+        "command": 0,
+        "file": 3,
+        "line": 102,
+        "parent": 18
+      },
+      {
+        "file": 3
+      },
+      {
+        "command": 0,
+        "file": 3,
+        "line": 108,
+        "parent": 20
+      }
+    ]
+  },
+  "kind": "ctestInfo",
+  "tests": [
+    {
+      "backtrace": 1,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "tests.architecture.test_architecture",
+        "tests.architecture.test_b2_sdk",
+        "tests.architecture.test_native_sdk",
+        "tests.architecture.test_b4_sdk",
+        "-v"
+      ],
+      "config": "Release",
+      "name": "T01.b4.architecture_guards",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B4"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 90.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace": 3,
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/Release/ock_sdk_metadata_probe.exe"
+      ],
+      "config": "Release",
+      "name": "T24.sdk.version_header",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D0.02"
+          ]
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release"
+        }
+      ]
+    },
+    {
+      "backtrace": 5,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tools/architecture/check.py",
+        "--graph",
+        "J:/Code/Kernel_v2/build/b4-release/ock-target-graph.json"
+      ],
+      "config": "Release",
+      "name": "T01.architecture.dependency_dag",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D0.02"
+          ]
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release"
+        }
+      ]
+    },
+    {
+      "backtrace": 7,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/install_consumer/verify_baseline.py",
+        "--build",
+        "J:/Code/Kernel_v2/build/b4-release",
+        "--config",
+        "Release"
+      ],
+      "config": "Release",
+      "name": "T24.sdk.install_and_missing_components",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D0.02"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 180.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release"
+        }
+      ]
+    },
+    {
+      "backtrace": 9,
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "execution_binding"
+      ],
+      "config": "Release",
+      "name": "T13.resources.execution_binding",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04",
+            "D3.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 30.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace": 11,
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "execution_running_cancel"
+      ],
+      "config": "Release",
+      "name": "T13.resources.execution_running_cancel",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04",
+            "D3.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 30.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace": 13,
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources/Release/ock_resources_contract.exe",
+        "execution_binding_interleavings"
+      ],
+      "config": "Release",
+      "name": "T13.resources.execution_binding_interleavings",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04",
+            "D3.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 30.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/resources"
+        }
+      ]
+    },
+    {
+      "backtrace": 15,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/integration/cli/managed_post_closure.py",
+        "J:/Code/Kernel_v2/build/b4-release/examples/managed_service/Release/ock_managed_service.exe"
+      ],
+      "config": "Release",
+      "name": "T20.cli.managed_post_closure",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.07"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 60.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/integration/cli"
+        }
+      ]
+    },
+    {
+      "backtrace": 17,
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/unit/data/Release/list_contract.exe",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/execution-list.schema.json",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/common.schema.json"
+      ],
+      "config": "Release",
+      "name": "T20.protocol.list",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 30.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace": 19,
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/unit/data/Release/dynamic_submit_contract.exe"
+      ],
+      "config": "Release",
+      "name": "T03.binding.submit",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.07"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 30.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "backtrace": 21,
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/unit/data/Release/outcome_wire_contract.exe",
+        "J:/Code/Kernel_v2/schemas/rpc-v1/outcome.schema.json"
+      ],
+      "config": "Release",
+      "name": "T06.protocol.outcome",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 30.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/unit/data"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/compile/contracts/Release/ock_contracts_tests.exe",
+        "T06.contracts.before_apply_and_composite_proofs"
+      ],
+      "config": "Release",
+      "name": "T06.contracts.before_apply_and_composite_proofs",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:\\Code\\Kernel_v2\\build\\msvc-validation\\e8697b7e3597a578\\bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 180.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/compile/contracts"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.cancel_and_budget"
+      ],
+      "config": "Release",
+      "name": "T03.native.cancel_and_budget",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.execution_admission_endurance"
+      ],
+      "config": "Release",
+      "name": "T03.native.execution_admission_endurance",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.execution_admission_pins"
+      ],
+      "config": "Release",
+      "name": "T03.native.execution_admission_pins",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.execution_reclaim_protection"
+      ],
+      "config": "Release",
+      "name": "T03.native.execution_reclaim_protection",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.execution_service_control"
+      ],
+      "config": "Release",
+      "name": "T03.native.execution_service_control",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.execution_table_ownership"
+      ],
+      "config": "Release",
+      "name": "T03.native.execution_table_ownership",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.host_async_completion"
+      ],
+      "config": "Release",
+      "name": "T03.native.host_async_completion",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.host_async_deadline"
+      ],
+      "config": "Release",
+      "name": "T03.native.host_async_deadline",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.host_async_drain"
+      ],
+      "config": "Release",
+      "name": "T03.native.host_async_drain",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.host_cached_result_sessions"
+      ],
+      "config": "Release",
+      "name": "T03.native.host_cached_result_sessions",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.host_combined_drain"
+      ],
+      "config": "Release",
+      "name": "T03.native.host_combined_drain",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.07"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 60.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.host_execution_lifecycle"
+      ],
+      "config": "Release",
+      "name": "T03.native.host_execution_lifecycle",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.host_execution_resources"
+      ],
+      "config": "Release",
+      "name": "T03.native.host_execution_resources",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.host_observation_drain"
+      ],
+      "config": "Release",
+      "name": "T03.native.host_observation_drain",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.host_required_record"
+      ],
+      "config": "Release",
+      "name": "T03.native.host_required_record",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.host_required_record_drain"
+      ],
+      "config": "Release",
+      "name": "T03.native.host_required_record_drain",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.host_structured_lifetime"
+      ],
+      "config": "Release",
+      "name": "T03.native.host_structured_lifetime",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.managed_async_input_accounting"
+      ],
+      "config": "Release",
+      "name": "T03.native.managed_async_input_accounting",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.managed_execution_path"
+      ],
+      "config": "Release",
+      "name": "T03.native.managed_execution_path",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.managed_execution_resource_wait"
+      ],
+      "config": "Release",
+      "name": "T03.native.managed_execution_resource_wait",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.managed_record"
+      ],
+      "config": "Release",
+      "name": "T03.native.managed_record",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.managed_record_ownership"
+      ],
+      "config": "Release",
+      "name": "T03.native.managed_record_ownership",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.managed_resources"
+      ],
+      "config": "Release",
+      "name": "T03.native.managed_resources",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.no_task_path"
+      ],
+      "config": "Release",
+      "name": "T03.native.no_task_path",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.observation_lease_drain"
+      ],
+      "config": "Release",
+      "name": "T03.native.observation_lease_drain",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T03.native.reentrant_and_concurrent"
+      ],
+      "config": "Release",
+      "name": "T03.native.reentrant_and_concurrent",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T06.native.business_failure"
+      ],
+      "config": "Release",
+      "name": "T06.native.business_failure",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T06.native.execution_source_observation"
+      ],
+      "config": "Release",
+      "name": "T06.native.execution_source_observation",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T06.native.host_structured_admission"
+      ],
+      "config": "Release",
+      "name": "T06.native.host_structured_admission",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T06.native.invalid_output"
+      ],
+      "config": "Release",
+      "name": "T06.native.invalid_output",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T06.native.managed_accepted_failures"
+      ],
+      "config": "Release",
+      "name": "T06.native.managed_accepted_failures",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T06.native.managed_admission"
+      ],
+      "config": "Release",
+      "name": "T06.native.managed_admission",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T06.native.observation_journal"
+      ],
+      "config": "Release",
+      "name": "T06.native.observation_journal",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T06.native.outcome_consistency"
+      ],
+      "config": "Release",
+      "name": "T06.native.outcome_consistency",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T06.native.revoke_and_regrant"
+      ],
+      "config": "Release",
+      "name": "T06.native.revoke_and_regrant",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T06.native.session_and_deadline"
+      ],
+      "config": "Release",
+      "name": "T06.native.session_and_deadline",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b4-release/tests/contract/native/Release/ock_native_tests.exe",
+        "T06.native.target_binding"
+      ],
+      "config": "Release",
+      "name": "T06.native.target_binding",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b4-release/tests/contract/native"
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 1,
+    "minor": 0
+  }
+}

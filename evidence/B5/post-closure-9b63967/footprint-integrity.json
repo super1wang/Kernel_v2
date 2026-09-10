@@ -1,0 +1,2366 @@
+{
+  "format": "ock.b5-post-closure-footprint-check/1",
+  "created_at": "2026-09-10T03:40:34.088637+00:00",
+  "status": "Passed",
+  "source_commit": "9b63967214160a02fbc5f9eeab58dbaf1781e64a",
+  "limits_unchanged_from": "85cf798",
+  "limits_sha256": "b9f73588c0f0f2da729d9a678daa938c46425c731b4c20015c9f15573f75981a",
+  "native_budget_unchanged": true,
+  "reports": [
+    {
+      "profile": "win-msvc-release",
+      "report": "evidence/G3/C/298a935007cc4a38bd03daa54c2889e4/report.json",
+      "sha256": "c2b82d3f5ef02b85fbca7dc20778c5e43cbc16ec7282e08fb9c74c96ff161b89",
+      "method_digest": "c013ebbbfcd80255dd41482f4bdff393633d0ce604dcdde5bdc6ab36b800f49d",
+      "blocks": 6,
+      "embedded_invoke_zero_windows": 0,
+      "metrics": {
+        "private_peak_absolute_max": 1699840,
+        "private_peak_paired_max": 987136,
+        "working_set_peak_absolute_max": 6852608,
+        "working_set_peak_paired_max": 2490368,
+        "ready_private_absolute_max": 1675264,
+        "ready_private_paired_max": 954368,
+        "ready_working_set_absolute_max": 6823936,
+        "ready_working_set_paired_max": 2457600,
+        "ready_peak_commit_absolute_max": 1482752,
+        "ready_peak_commit_paired_max": 765952,
+        "ready_peak_working_set_absolute_max": 6533120,
+        "ready_peak_working_set_paired_max": 2166784,
+        "distribution_increment_bytes": 1345912
+      },
+      "startup_metrics": {
+        "construction_to_ready_ms_absolute_max": 1.1783,
+        "construction_to_ready_ms_paired_max": 1.1783,
+        "create_to_ready_ms_absolute_max": 47.1265,
+        "create_to_ready_ms_paired_max": 17.8886
+      }
+    },
+    {
+      "profile": "win-msvc-debug",
+      "report": "evidence/G3/C/f6e00a0ddab045a88eadcc9a50092e01/report.json",
+      "sha256": "02390b5a4d80a8aecd699f406c6b5820b7d8a33cbe7eca3af9046ea1d764558e",
+      "method_digest": "a4ad35b5d7c9f75cd69ee86e7b918b930abe69d75771038a4b3784c0a1592a1e",
+      "blocks": 6,
+      "embedded_invoke_zero_windows": 480,
+      "metrics": {
+        "private_peak_absolute_max": 2166784,
+        "private_peak_paired_max": 1118208,
+        "working_set_peak_absolute_max": 9560064,
+        "working_set_peak_paired_max": 3776512,
+        "ready_private_absolute_max": 2166784,
+        "ready_private_paired_max": 1118208,
+        "ready_working_set_absolute_max": 9555968,
+        "ready_working_set_paired_max": 3772416,
+        "ready_peak_commit_absolute_max": 1753088,
+        "ready_peak_commit_paired_max": 667648,
+        "ready_peak_working_set_absolute_max": 8773632,
+        "ready_peak_working_set_paired_max": 2969600,
+        "distribution_increment_bytes": 3839488
+      },
+      "startup_metrics": null
+    },
+    {
+      "profile": "win-msvc-asan",
+      "report": "evidence/G3/C/244d8dc4ef3541679746491c681c68c7/report.json",
+      "sha256": "e37f44d648417d6b1b7645ae87f80de2e54ab169d3aee3362ae57c8a1c611796",
+      "method_digest": "29ab11246f5b90da9e6e18583ca3d9313f242a7f89c742d24870b53bf3b524b0",
+      "blocks": 6,
+      "embedded_invoke_zero_windows": 480,
+      "metrics": {
+        "private_peak_absolute_max": 60682240,
+        "private_peak_paired_max": 9478144,
+        "working_set_peak_absolute_max": 22908928,
+        "working_set_peak_paired_max": 9195520,
+        "ready_private_absolute_max": 60678144,
+        "ready_private_paired_max": 9285632,
+        "ready_working_set_absolute_max": 22818816,
+        "ready_working_set_paired_max": 8429568,
+        "ready_peak_commit_absolute_max": 60063744,
+        "ready_peak_commit_paired_max": 8638464,
+        "ready_peak_working_set_absolute_max": 19439616,
+        "ready_peak_working_set_paired_max": 5533696,
+        "distribution_increment_bytes": 2421248
+      },
+      "startup_metrics": null
+    }
+  ],
+  "verified_materials": [
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\producer-build-stdout.log",
+      "sha256": "bf671e5ad6bf9dff9d55f1086655ad176ec65ee1efcd143e1bb4048a44b37289",
+      "bytes": 491
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\producer-build-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\architecture-stdout.log",
+      "sha256": "83927ec06e4069c417a9e6c8163075a59db12c23e078a40142d2316faddbd936",
+      "bytes": 152
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\architecture-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\install-stdout.log",
+      "sha256": "7c994138ee4908af0e4ad3d07f89c1f4be9a5730baf066b1e32f7298bab90889",
+      "bytes": 5829
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\install-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\configure-stdout.log",
+      "sha256": "d3299173c44e280c38b15dc9761376cd47f1baed3c03cf3fc30e60a6335db069",
+      "bytes": 494
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\configure-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\build-stdout.log",
+      "sha256": "18c778631ee7b91344ba9806c38ee2618dc8dd35380e562d0918823c8083e5e9",
+      "bytes": 678
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\build-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\baseline-imports-stdout.log",
+      "sha256": "b283e83eace0f3df073e1310e316e899a04b3f97875ba5ffc3b5ca510eae915f",
+      "bytes": 5419
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\baseline-imports-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\embedded-imports-stdout.log",
+      "sha256": "804b18be1d4d1d1b1ddb900ba2fffeebfb5c444eed012b3affe0fc5225689d5e",
+      "bytes": 9067
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\embedded-imports-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b0-0-baseline-stdout.log",
+      "sha256": "4162ee14ebe5321a601530005fde5b59c7ce314c915a2100d1813aec969c3365",
+      "bytes": 125
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b0-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b0-1-embedded-stdout.log",
+      "sha256": "8675c6e112a43a225f82d2ddb74dd214de653943d74896e4b19217b3ee842c6f",
+      "bytes": 309
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b0-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b0-2-embedded-stdout.log",
+      "sha256": "65c9fb9cec8e4ab3874db4454e6e401201fbd13936cd8cd9704b3211f6d2f9ed",
+      "bytes": 308
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b0-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b0-3-baseline-stdout.log",
+      "sha256": "4162ee14ebe5321a601530005fde5b59c7ce314c915a2100d1813aec969c3365",
+      "bytes": 125
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b0-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b1-0-baseline-stdout.log",
+      "sha256": "a306cc0a2774b2a41a838aea461d30edae572a782cf35c437be28d54e97717e2",
+      "bytes": 125
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b1-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b1-1-embedded-stdout.log",
+      "sha256": "889f1ff882c8cd6f7d29326dc5a49dec4957a1019220610e27c61b4ebc7c599c",
+      "bytes": 309
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b1-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b1-2-embedded-stdout.log",
+      "sha256": "356c9afa5dbf1a2709b24e7dc3ddf0379aae0e8b5611fe0d068bdb7b7d38e74c",
+      "bytes": 309
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b1-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b1-3-baseline-stdout.log",
+      "sha256": "4162ee14ebe5321a601530005fde5b59c7ce314c915a2100d1813aec969c3365",
+      "bytes": 125
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b1-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b2-0-baseline-stdout.log",
+      "sha256": "4162ee14ebe5321a601530005fde5b59c7ce314c915a2100d1813aec969c3365",
+      "bytes": 125
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b2-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b2-1-embedded-stdout.log",
+      "sha256": "e1ec29b618f9de3e7504cfb9edf2d0dfaae2523d3c6ffa9f7638356c8fd8d8ee",
+      "bytes": 309
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b2-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b2-2-embedded-stdout.log",
+      "sha256": "973eb1dcc691994fa884d82769a3267b37c49151b0f2c31d1c909215a4b099be",
+      "bytes": 309
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b2-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b2-3-baseline-stdout.log",
+      "sha256": "4162ee14ebe5321a601530005fde5b59c7ce314c915a2100d1813aec969c3365",
+      "bytes": 125
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b2-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b3-0-baseline-stdout.log",
+      "sha256": "4162ee14ebe5321a601530005fde5b59c7ce314c915a2100d1813aec969c3365",
+      "bytes": 125
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b3-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b3-1-embedded-stdout.log",
+      "sha256": "a5f3726d82c72d7c6783f5514320e9d2591610a099d1cfe5176ba6a608a0a052",
+      "bytes": 309
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b3-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b3-2-embedded-stdout.log",
+      "sha256": "9fd2ab292efa3218c97b7de58cf90d127542f66c6c41ef3b967f8c8ae79c2421",
+      "bytes": 309
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b3-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b3-3-baseline-stdout.log",
+      "sha256": "a306cc0a2774b2a41a838aea461d30edae572a782cf35c437be28d54e97717e2",
+      "bytes": 125
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b3-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b4-0-baseline-stdout.log",
+      "sha256": "4162ee14ebe5321a601530005fde5b59c7ce314c915a2100d1813aec969c3365",
+      "bytes": 125
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b4-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b4-1-embedded-stdout.log",
+      "sha256": "9f572394d69b3ac7df78ca03097230d798f1823dfa1f1c3cf92d322b65de9166",
+      "bytes": 308
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b4-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b4-2-embedded-stdout.log",
+      "sha256": "40866eff3e218d14b59f001e7883483e7015e79c6aeab5e6c36b941103b2f0c7",
+      "bytes": 309
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b4-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b4-3-baseline-stdout.log",
+      "sha256": "4162ee14ebe5321a601530005fde5b59c7ce314c915a2100d1813aec969c3365",
+      "bytes": 125
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b4-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b5-0-baseline-stdout.log",
+      "sha256": "4162ee14ebe5321a601530005fde5b59c7ce314c915a2100d1813aec969c3365",
+      "bytes": 125
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b5-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b5-1-embedded-stdout.log",
+      "sha256": "8fbdb6abc0845bdcaf4a1e3ce9522ebcccfa9005fa1c2744dbb43b845c1bfbaf",
+      "bytes": 309
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b5-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b5-2-embedded-stdout.log",
+      "sha256": "a8830e6fa4ca936330554910d482fc70af8dae13e49845da8f86db5fab363f6b",
+      "bytes": 308
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b5-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b5-3-baseline-stdout.log",
+      "sha256": "a306cc0a2774b2a41a838aea461d30edae572a782cf35c437be28d54e97717e2",
+      "bytes": 125
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\b5-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup-stdout.log",
+      "sha256": "7c0d02d67fd86a27a8e7967f2197b1a7493802102ba08f128cc1134fbe2126a0",
+      "bytes": 443
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\footprint-budgets.json",
+      "sha256": "61565b57c9cac7f619b30764ebdabc15fa5c850cdc97e4e9a8a3dee60400199f",
+      "bytes": 23345
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\docs\\reviews\\B5-post-closure-budget-decision.md",
+      "sha256": "e988d9727115761d56435388642043c9e09bb2b0e42fa1e73feebbc8d54097f6",
+      "bytes": 1412
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\docs\\reviews\\automatic-acceptance-policy.json",
+      "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80",
+      "bytes": 1061
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\adapters\\cpu_pool\\cpu_pool.hpp",
+      "sha256": "0e345904dc6b1cf3ccedfe9406c123df2ebd933e68eacf984bb0b78c3d7cdad7",
+      "bytes": 686
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\contracts\\context.hpp",
+      "sha256": "63be9cd8d366127be9a859b7e90bab88cb3a7ec5d58dac0df6702cba9a228682",
+      "bytes": 15225
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\contracts\\executor.hpp",
+      "sha256": "02e0d21f666d5df04d8849878650ec20433098c9be149d28f3d4c922f3ee5228",
+      "bytes": 2013
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\contracts\\identity.hpp",
+      "sha256": "2c42e99c22301baeea4e1af5c45faee9c578e66b9f7f0d8c2eaf370bac54dbad",
+      "bytes": 6417
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\contracts\\logging.hpp",
+      "sha256": "efbaf36bbb24fbbc4edbe55a576e24b27ffef9a3b8f25dd30fbe043713a3b7a7",
+      "bytes": 3339
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\contracts\\observation.hpp",
+      "sha256": "4cdf03dd9575d2c540e7ab2945ded79b8f946f89c724118f264550fa9e46adfa",
+      "bytes": 12865
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\contracts\\operation.hpp",
+      "sha256": "661eca4fa9fd1b5395e7bffc70e15a9ed3537f647c48f104813170f808e4810a",
+      "bytes": 14777
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\contracts\\outcome.hpp",
+      "sha256": "90fc9200887266d16e7f9cd6b24e8bf7d461081afe63f97f6edadac0f4eb2425",
+      "bytes": 32239
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\contracts\\ports.hpp",
+      "sha256": "3e1b21bb1ce2dcb419181672bead2be07a4885be5e36d73d802f0f8ef556d2f4",
+      "bytes": 8242
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\foundation\\foundation.hpp",
+      "sha256": "1e3325f6077dd42d2f3ec8460d1eb4eeeca169c668975c41fb90556773940ae0",
+      "bytes": 12295
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\foundation\\sdk_version.hpp",
+      "sha256": "9639b5f94f585eb3f21b5dd6b36ccf73e2a3d956e92669abf66fae9b6addf6a5",
+      "bytes": 544
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\runtime\\detail\\host.hpp",
+      "sha256": "d4fda02152e3e9c3dee4ec61d7c698bc8dee28d4b1ed3391c99115f2eae541f2",
+      "bytes": 5160
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\runtime\\detail\\invocation.hpp",
+      "sha256": "d87fac46ebcd1a0a608c403120f1ddf033d889616954bcd79c8bc930d91b44c3",
+      "bytes": 37336
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\runtime\\detail\\private_bridge.hpp",
+      "sha256": "1162b82bb220cb20219de6f76e68ecd7ad3fd8770e1f1774d919c0af96e85bad",
+      "bytes": 1636
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\runtime\\host.hpp",
+      "sha256": "022740eb91ee1b0f2ca7bc988f2a143f066ee35e73f807bba06b658fc20b17d3",
+      "bytes": 12613
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\runtime\\logging.hpp",
+      "sha256": "fea2a70741172afe7f2d6f690176de02976ab1be03aac2fab011395877aa320c",
+      "bytes": 2290
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\runtime\\native_types.hpp",
+      "sha256": "ef746141206e22f6eacb016ebf5f471c743a24520d63b099faa3b22eef610322",
+      "bytes": 1860
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\runtime\\policy.hpp",
+      "sha256": "87900168f2ac084e0b65416320ced3e7f1270cb2f68aeeff82f51ec9a4da7e39",
+      "bytes": 16170
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\runtime\\registry.hpp",
+      "sha256": "8840691318a8963cc2dcaedfafbc032819f4ec9c1c57e0da82df70e80c1787b8",
+      "bytes": 21612
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\runtime\\resources.hpp",
+      "sha256": "5cddc6d731eca0d30029fe6585b18f1a2a018d815e49fafc5902a3994760516f",
+      "bytes": 2880
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\ock\\runtime\\scheduler.hpp",
+      "sha256": "96771b63158d6d6914bb2bddbc97c007ca217594659a7e097b67e8acf9ef0eb3",
+      "bytes": 2990
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\include\\tl\\expected.hpp",
+      "sha256": "5a6a46da2e46ee3360bd8fbd759affefc46b8bfd6295043262ec867acac1fa14",
+      "bytes": 92778
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\lib\\cmake\\OCK\\OCKConfig.cmake",
+      "sha256": "71619b432e1c5b86d31c692ad1d2f82403d5d388e3f25563274408a997bb16b1",
+      "bytes": 2160
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\lib\\cmake\\OCK\\OCKConfigVersion.cmake",
+      "sha256": "07198e622f7af2a173d7170762408b8cafa6c4081619d5f0231442c7936b7699",
+      "bytes": 3332
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\lib\\cmake\\OCK\\OCKTargets-release.cmake",
+      "sha256": "78f32a00b1ac3c67018e32ebf49fe0c6d87ef89c9c288ba9334b37bf7ff10674",
+      "bytes": 1394
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\lib\\cmake\\OCK\\OCKTargets.cmake",
+      "sha256": "dfbc7626e05618c067c68c6be5d4a2f8dfcd1d242fc3624eef41edfa688984d1",
+      "bytes": 6676
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\lib\\cmake\\OCK\\OCKThirdPartyTargets.cmake",
+      "sha256": "0ee2d519f9f6b3a3f42e70def47d37825e15a473cee1f379f10a29c2e0e046da",
+      "bytes": 4361
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\lib\\ock_Adapter_CpuPool.lib",
+      "sha256": "5843cbf68e8e482de7e0b06e64f735b0861226c0c4476635e4f3d11d5fbcb522",
+      "bytes": 1508474
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\lib\\ock_Runtime.lib",
+      "sha256": "3664d020748e319cafbcdabb58f74d097d39c3158a39d93c64e756027c3632e4",
+      "bytes": 25198318
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\share\\ock\\licenses\\tl-expected-CC0-1.0.txt",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "bytes": 7048
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\installed\\share\\ock\\sdk_api_manifest.json",
+      "sha256": "7fd4d92fcffd98d690af9774d2d258f7f274b5a9e899a0bb9c3a78db691fe562",
+      "bytes": 15099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\consumer\\Release\\footprint_baseline.exe",
+      "sha256": "2878fb1c79c00d5a5fc00b346f40d72eac5bc2a105b77d5d2b9f841745bde5db",
+      "bytes": 15360
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-298a935007cc4a38bd03daa54c2889e4\\consumer\\Release\\footprint_embedded.exe",
+      "sha256": "2b82a3ea75322f56f1b4f1ef435eebb6cf31fd7bbe17983ac101b0eb357352c0",
+      "bytes": 659968
+    },
+    {
+      "path": "C:\\Windows\\System32\\vcruntime140.dll",
+      "sha256": "d1f4225df2cd877dbf130d5668a021dce3f94118455ff5ec952061c30afc9ce7",
+      "bytes": 178616
+    },
+    {
+      "path": "C:\\Windows\\System32\\vcruntime140_1.dll",
+      "sha256": "a7146c08f89fe5b04541ab507cdb59ff7b44534d4ba3c668a426c6450a03434e",
+      "bytes": 50112
+    },
+    {
+      "path": "C:\\Windows\\System32\\apphelp.dll",
+      "sha256": "2c84d7a6c78c2e5a07e30075ced4a6a6e37784415bf18d4b111b449513fab1e4",
+      "bytes": 649008
+    },
+    {
+      "path": "C:\\Windows\\System32\\ntdll.dll",
+      "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+      "bytes": 2487776
+    },
+    {
+      "path": "C:\\Windows\\System32\\kernel32.dll",
+      "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+      "bytes": 826712
+    },
+    {
+      "path": "C:\\Windows\\System32\\KernelBase.dll",
+      "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+      "bytes": 3909184
+    },
+    {
+      "path": "C:\\Windows\\System32\\ucrtbase.dll",
+      "sha256": "57d49bfcd9b49fd9661f656f758d3c49d1ad8060abd1efadad5cb455746c93e8",
+      "bytes": 1401056
+    },
+    {
+      "path": "C:\\Windows\\System32\\msvcp140.dll",
+      "sha256": "7c26614e1d733892c2deac7e245ce115504b1d80592dd0a01b08e3e5a55f89ca",
+      "bytes": 643512
+    },
+    {
+      "path": "C:\\Windows\\System32\\msvcp140_atomic_wait.dll",
+      "sha256": "3d0cbfaa1bf3eecf5a3f4491d2960ee803cb994f30292c6adc4a07c498f60e2b",
+      "bytes": 57792
+    },
+    {
+      "path": "C:\\Windows\\System32\\bcrypt.dll",
+      "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+      "bytes": 161456
+    },
+    {
+      "path": "C:\\Windows\\System32\\kernel.appcore.dll",
+      "sha256": "23bd89a2f8954b8daff526344ba70f306a81da641c316cbe9f6b5a7d2dd4298e",
+      "bytes": 111848
+    },
+    {
+      "path": "C:\\Windows\\System32\\advapi32.dll",
+      "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+      "bytes": 731648
+    },
+    {
+      "path": "C:\\Windows\\System32\\rpcrt4.dll",
+      "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+      "bytes": 1165536
+    },
+    {
+      "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+      "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+      "bytes": 628376
+    },
+    {
+      "path": "C:\\Windows\\System32\\msvcrt.dll",
+      "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+      "bytes": 694488
+    },
+    {
+      "path": "C:\\Windows\\System32\\sechost.dll",
+      "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+      "bytes": 690352
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\artifacts.json",
+      "sha256": "e51e2ac47fe2400eb76f58d14633bedbbe81c6246651e3d3f504a1578457ecd9",
+      "bytes": 59910
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\baseline-CL.command.tlog",
+      "sha256": "24cc5b699c8e7b194e1f7b8f055529e9aa0df163807b07457da89dbb4f79063a",
+      "bytes": 928
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\baseline.exe",
+      "sha256": "2878fb1c79c00d5a5fc00b346f40d72eac5bc2a105b77d5d2b9f841745bde5db",
+      "bytes": 15360
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\budget-binding.json",
+      "sha256": "37e03387a14c4e4768792492da1caff559088ab03782d6f3b530e3a397c5ceec",
+      "bytes": 1944
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\commands.json",
+      "sha256": "a3d5df5b537e986f3d6cba898ced5e8d311efe9de5eb379b47cc8ddba7cfdc31",
+      "bytes": 12329462
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\consumer-CMakeCache.txt",
+      "sha256": "dbcb17dceb1892fc65856119a64092a5ae175b843012a39f32f75b8745027a4f",
+      "bytes": 13712
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\distribution.json",
+      "sha256": "24a0d5660bb16ca4d7380bcab15a0aace0f26b6abdb3570cd46f97bd3254bc73",
+      "bytes": 8190
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\embedded-CL.command.tlog",
+      "sha256": "8770682717fd807e914dfb8b5cc96b1fec819f9af17ed08a9376e1c1194339e1",
+      "bytes": 1192
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\embedded.exe",
+      "sha256": "2b82a3ea75322f56f1b4f1ef435eebb6cf31fd7bbe17983ac101b0eb357352c0",
+      "bytes": 659968
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\footprint_baseline.vcxproj",
+      "sha256": "91070a9c122b562a8c03e665e76a38990c5f2634e3a77fb0175e0ab36e5e70f3",
+      "bytes": 68338
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\footprint_embedded.vcxproj",
+      "sha256": "207cc1228d02c2a85e243f7e41b99c062cdb98d8e11d97a1b6ae144c7255ba58",
+      "bytes": 71262
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\identity.json",
+      "sha256": "73024963242243878526eccecea000b55c809de3f298f69356eb5289d4b9e451",
+      "bytes": 28248
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\installed.json",
+      "sha256": "5d385c590c385d736f9a1fdd6f7821f8c70cea984790bb8dc1a09dfe4b35812b",
+      "bytes": 7790
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\ock_Adapter_CpuPool-CL.command.tlog",
+      "sha256": "19009e0b15d55d7932d81dadfb974f6d0e5664a8f2bfc1c056b53fa72e1ea025",
+      "bytes": 1684
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\ock_Runtime-CL.command.tlog",
+      "sha256": "1c031f5870fa6d8bd62be9b94f8bde682c26f227eae0b57afffdf26c22e6d9cc",
+      "bytes": 14942
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\producer-CMakeCache.txt",
+      "sha256": "697f104ec907a9f3636ea461c17e5a6cf33c3adaa83484aac4c7eb5117adba89",
+      "bytes": 15749
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\producer-dependency-acquisition.json",
+      "sha256": "9c105f57579f41379cc3bd70aee41786910c81bbc08036f59e1a164a5f15f1d3",
+      "bytes": 1212
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\producer-ock-target-graph.json",
+      "sha256": "899ec2568e2ff65e5d68db147efaa4bbf50205a47875584441bad14d9500d99a",
+      "bytes": 1419
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\report.json",
+      "sha256": "c2b82d3f5ef02b85fbca7dc20778c5e43cbc16ec7282e08fb9c74c96ff161b89",
+      "bytes": 3568
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\samples.json",
+      "sha256": "c1011a1ec86c45e4e03d134be6b654cba8e7269afaec4dff69782333384490a2",
+      "bytes": 189613
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\source.json",
+      "sha256": "61c8d4aed81fabe01040e98a4d5d6faa6c7be2110d6f06af31e85de69d89d304",
+      "bytes": 168
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\0-0-baseline-command.json",
+      "sha256": "61f17781141b706c63d9aaf50ae09e64aff2db83c9d0d251740f1d8e2c5a6952",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\0-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\0-0-baseline-stdout.log",
+      "sha256": "6fa5060ec1e46542dcddc067254fc5a9210a3b5b2d8fe30676fde37320525167",
+      "bytes": 215
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\0-1-embedded-command.json",
+      "sha256": "41e4ebfa18941737aded1b048917d9bdc98142297eb12e81521276f22aecf6e5",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\0-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\0-1-embedded-stdout.log",
+      "sha256": "bf6a8126b569141577ec9bfdfc449672c52328b4ddf50c5124c18afe0bde0164",
+      "bytes": 398
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\0-2-embedded-command.json",
+      "sha256": "8ca3c07f007d9539fd55c14fc8f6f423bea4f82b41cf896b924a2fbfb107c688",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\0-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\0-2-embedded-stdout.log",
+      "sha256": "a140f782d0ef19e4a5ea4c6cd714a8b57787c8bf9a1400d26e10afc3c1e65729",
+      "bytes": 398
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\0-3-baseline-command.json",
+      "sha256": "09b19db9b9e394321e2167e0f464e46a7f9e741f20f2cba02b77210199d5b603",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\0-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\0-3-baseline-stdout.log",
+      "sha256": "fdc2c2b738ec98e70f7b4bcf8c6175ec09ef561eb5dcf0c7ead47701842c4a6b",
+      "bytes": 215
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\1-0-baseline-command.json",
+      "sha256": "1af787d6f31a7d19018e87a70dbc1dbacd6aa6add8f827c3704b360e6a466a50",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\1-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\1-0-baseline-stdout.log",
+      "sha256": "a993f73f8724943996bbabd789b5094a84f8464058c26b7186d8c12e336bfe56",
+      "bytes": 215
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\1-1-embedded-command.json",
+      "sha256": "508bf0595425b04e59bc4d2d6617a1573f07a5c914dc66bea365b180a1d88d97",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\1-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\1-1-embedded-stdout.log",
+      "sha256": "1d3117a80484bc7503a9b24a9009e8e0e13a6a603ae0d9331f0f64d177f9b9b5",
+      "bytes": 398
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\1-2-embedded-command.json",
+      "sha256": "478ee3c909c1326bfb7c88cd2ac818e4b4a610a2b3e9489a39e30337acf5c552",
+      "bytes": 826
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\1-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\1-2-embedded-stdout.log",
+      "sha256": "2a21b98cb5ab165b3b2d136561db2796ea5b38efbb1f6d55acb90f104ce273e7",
+      "bytes": 399
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\1-3-baseline-command.json",
+      "sha256": "654cfc83dbe8f8cc77bfb9e5cabdb2057455ca274757c133d002d37e73ff1207",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\1-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\1-3-baseline-stdout.log",
+      "sha256": "ea2d40a7cd1c252e538e37406b794a7ca7e13fbd6d32e82296a3a75065ba53c7",
+      "bytes": 215
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\2-0-baseline-command.json",
+      "sha256": "24249c2e4193697b328afbb01b525185c7507468e602e3af3ffac00e9bc00b1f",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\2-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\2-0-baseline-stdout.log",
+      "sha256": "a523669ad1408339334a6026f6fb347b5a00105b10879db0834e344a8192e006",
+      "bytes": 215
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\2-1-embedded-command.json",
+      "sha256": "b30222ac68152bbf777224c9805d1acc22bbec767e567a0de594ebb34778452f",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\2-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\2-1-embedded-stdout.log",
+      "sha256": "bfefb59e54460f11bc5afbabf389e249ba80d40fa74f0da75cced4d0e8963fb9",
+      "bytes": 398
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\2-2-embedded-command.json",
+      "sha256": "7edb8a6a587a75c4d28570b62590d333aa3f8b1e405a20153082adc5467404de",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\2-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\2-2-embedded-stdout.log",
+      "sha256": "41b5c35d94895e5f14c909e2d764ea5a7e026269a1b0ae3f32a0ba854e9989da",
+      "bytes": 399
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\2-3-baseline-command.json",
+      "sha256": "f0f1ebd18e9e6d333cfd144166069dfb80141e320c19fdb4aa46984194caf560",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\2-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\2-3-baseline-stdout.log",
+      "sha256": "3cb4a93b1115b2d39fb492c28650cf5c65a298b9bf5e2c200dd950224abcc621",
+      "bytes": 215
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\3-0-baseline-command.json",
+      "sha256": "cf7644b29ba9dd206117ff3f426d0bac0c59982661d5098ea7ffc6d63483bd74",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\3-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\3-0-baseline-stdout.log",
+      "sha256": "852f7abbe4ad5b64b9914f648137d0d979e909786c9cd98a416efd8d320ab017",
+      "bytes": 215
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\3-1-embedded-command.json",
+      "sha256": "dc16991810e3b014a6bdab6e6758c9ec21f2fe75ea9e1a18883ae940bf8726c1",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\3-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\3-1-embedded-stdout.log",
+      "sha256": "a0717ca71cefc4fb60d2257f63df94bb9c7aaee9055c88e6ebb801fc64ca629a",
+      "bytes": 399
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\3-2-embedded-command.json",
+      "sha256": "df6944c280d7693983d527d960842bd069d5447e3bfce493e0006fd753990918",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\3-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\3-2-embedded-stdout.log",
+      "sha256": "19151c246d628428a87c9c58fc6e8011c1dc48c3f2ba90d746b967ea53237bf1",
+      "bytes": 398
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\3-3-baseline-command.json",
+      "sha256": "90ab0449230040f68a745e4dca96e6f0fbbc2476f1dc6c60cc6575f58c97cba1",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\3-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\3-3-baseline-stdout.log",
+      "sha256": "679bc07af23ffe97ebbe7911e2217d884cfd6566f3d1d561e854b9a68602d60f",
+      "bytes": 215
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\4-0-baseline-command.json",
+      "sha256": "15defdd08778136f7c09484927e3df14649031268c6c44d01f29a97a343b3695",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\4-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\4-0-baseline-stdout.log",
+      "sha256": "c25c1c3b57ffdee0812ef8971ea0376878d9a0baba2bb6918741dfc3f3ff265e",
+      "bytes": 215
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\4-1-embedded-command.json",
+      "sha256": "642ecaf9a37ad0f9123d9b089890e62a441027dd6384462feaeb733cfe5178c2",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\4-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\4-1-embedded-stdout.log",
+      "sha256": "21608da3f5c6cd8e6dd0f5040d199980185468a89f2c80676712b618e37c7dd0",
+      "bytes": 398
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\4-2-embedded-command.json",
+      "sha256": "434c38e43ab503a1b342cdf4f56f0da75928ab34c56c5f0590ebf7c894ee61c1",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\4-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\4-2-embedded-stdout.log",
+      "sha256": "46d5d97d54b90260c81a5fcbac9c0879e1c31e735bcbef786b02bfe7f815ab3a",
+      "bytes": 398
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\4-3-baseline-command.json",
+      "sha256": "24e598603794d0e4153a896a6b6d5f82029a34edc23ff4c9e1dd8f733f2ba738",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\4-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\4-3-baseline-stdout.log",
+      "sha256": "ec60e1004bd923eb62d0f14c00b572c53e067822bc50c5236f349376362f0eba",
+      "bytes": 215
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\5-0-baseline-command.json",
+      "sha256": "89e2f983010e55906168a0ee24a69feed387f7cb66310b64f9b238d14483a72d",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\5-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\5-0-baseline-stdout.log",
+      "sha256": "dbe6a41bc8f04f3e8f601884137a64ae5f141688e2c2fb639029f63e6a917e8c",
+      "bytes": 215
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\5-1-embedded-command.json",
+      "sha256": "c4981c3444b45d2674f68a4aa1f7ee05c2b6f392d85b392c9ee86bade82fd3b2",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\5-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\5-1-embedded-stdout.log",
+      "sha256": "b0aae7f99fb81d6cbf0bec960224a9cd2b60d550fad976596b3c85e6920708ef",
+      "bytes": 398
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\5-2-embedded-command.json",
+      "sha256": "8449c4de4f4c5fbcf03d6deef6420eb910c661e4b3698e4b6ccc62af17ef269f",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\5-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\5-2-embedded-stdout.log",
+      "sha256": "d1c238270aa1f60593b8683f2e980a4bfa0043987f6cd7bd83b309872a7640be",
+      "bytes": 398
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\5-3-baseline-command.json",
+      "sha256": "c33bc284cde5bc71b0868a62316511ff2665020b1c79db24a7da48335b99bd47",
+      "bytes": 827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\5-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\5-3-baseline-stdout.log",
+      "sha256": "2ac5f12509219e9bb8dec074940f08089c249306b2ace18621a08d4d1d6b861e",
+      "bytes": 215
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\inputs.json",
+      "sha256": "bbcaf2e9e2ed5f8a53b22e52220f750b537e7d85bd0bfacb019906759a5e5f0e",
+      "bytes": 997
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\samples.json",
+      "sha256": "08529cd566914ec97347def1b666abd131710bd97728a8e27db398b0a0d6d348",
+      "bytes": 11262
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\298a935007cc4a38bd03daa54c2889e4\\startup\\summary.json",
+      "sha256": "d7ecb5383e5f2bb02e81defc2776cadc4f1cfc3cb3b9a42e9f5c35a3b99a7c9d",
+      "bytes": 987
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\producer-build-stdout.log",
+      "sha256": "3f4031b44ed79998617f1d309adf3bb288bafc012a486b192ced02ee9f26dd56",
+      "bytes": 487
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\producer-build-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\architecture-stdout.log",
+      "sha256": "83927ec06e4069c417a9e6c8163075a59db12c23e078a40142d2316faddbd936",
+      "bytes": 152
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\architecture-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\install-stdout.log",
+      "sha256": "d567bcc52bba4f5e9a09cc9b1a4aa8ed860122f2f2d9816444bee6973c644687",
+      "bytes": 5827
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\install-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\configure-stdout.log",
+      "sha256": "75a091802c5a74493cf502b1379d52389120c06005595b3e5e8a4a3856c21263",
+      "bytes": 494
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\configure-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\build-stdout.log",
+      "sha256": "1947a063fa4b0be92853919394ea056c562644e3fd7f2c5d864c6ca0cb7f2a80",
+      "bytes": 772
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\build-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\baseline-imports-stdout.log",
+      "sha256": "a00e03f9352c65f2da2562fa6236ff00362fa4508f3ce4dc1a7db0dd1acc389f",
+      "bytes": 6842
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\baseline-imports-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\embedded-imports-stdout.log",
+      "sha256": "da06206edf01e1d95235d9c5bc42023223a5792c4efea6ee70acb8124f35cb0b",
+      "bytes": 10191
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\embedded-imports-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b0-0-baseline-stdout.log",
+      "sha256": "f706e3bdac50b7f4532b491acf577fb7241bdd9c41188ed26fe8886a7ecf0749",
+      "bytes": 16099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b0-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b0-1-embedded-stdout.log",
+      "sha256": "e4c1aeb9a0c2435d3feee075e8c5b1d4bcbb8a1123b3284b9daa1c47cb1019c3",
+      "bytes": 17882
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b0-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b0-2-embedded-stdout.log",
+      "sha256": "75b7a8562d294f12976fe4ab2e72b672a90f051965948bd32ae4b15678af3d1c",
+      "bytes": 17882
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b0-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b0-3-baseline-stdout.log",
+      "sha256": "265bfc2ffebd2f8caf1c5bd373ef9041f793e93ea548162aa5eaade855731f47",
+      "bytes": 16099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b0-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b1-0-baseline-stdout.log",
+      "sha256": "265bfc2ffebd2f8caf1c5bd373ef9041f793e93ea548162aa5eaade855731f47",
+      "bytes": 16099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b1-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b1-1-embedded-stdout.log",
+      "sha256": "a268fdfe5cc4a7fd5158bfccfab424c3dfb7673b18b205accfe5bf89a7b7b7fb",
+      "bytes": 17882
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b1-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b1-2-embedded-stdout.log",
+      "sha256": "b20ae9c6d4203d53f96955162dd2cb3e3d0fc72087077781dd9b48d394492ae9",
+      "bytes": 17882
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b1-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b1-3-baseline-stdout.log",
+      "sha256": "265bfc2ffebd2f8caf1c5bd373ef9041f793e93ea548162aa5eaade855731f47",
+      "bytes": 16099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b1-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b2-0-baseline-stdout.log",
+      "sha256": "ea0f0712897a7c1ab8fa5c7641e4a480022e09bec335b8e7c50f5820548deaa7",
+      "bytes": 16099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b2-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b2-1-embedded-stdout.log",
+      "sha256": "d73dba211fecde5037f6e599307e7748d40bef37f172b026dffebbd85f8d14bf",
+      "bytes": 17882
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b2-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b2-2-embedded-stdout.log",
+      "sha256": "e9dc50551c406f9edcc5ebe0a82b4ce661a0efd3bb109731f17a20113a5bd2f2",
+      "bytes": 17882
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b2-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b2-3-baseline-stdout.log",
+      "sha256": "265bfc2ffebd2f8caf1c5bd373ef9041f793e93ea548162aa5eaade855731f47",
+      "bytes": 16099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b2-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b3-0-baseline-stdout.log",
+      "sha256": "265bfc2ffebd2f8caf1c5bd373ef9041f793e93ea548162aa5eaade855731f47",
+      "bytes": 16099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b3-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b3-1-embedded-stdout.log",
+      "sha256": "81836ff1cd45180c9e184cf63e373928bc52647c1f19dd4ddd42df0bfa602437",
+      "bytes": 17882
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b3-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b3-2-embedded-stdout.log",
+      "sha256": "bf5e982252b599781d840a47f6453a1684221538635d04b33ea5aa89ef94997e",
+      "bytes": 17882
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b3-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b3-3-baseline-stdout.log",
+      "sha256": "265bfc2ffebd2f8caf1c5bd373ef9041f793e93ea548162aa5eaade855731f47",
+      "bytes": 16099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b3-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b4-0-baseline-stdout.log",
+      "sha256": "265bfc2ffebd2f8caf1c5bd373ef9041f793e93ea548162aa5eaade855731f47",
+      "bytes": 16099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b4-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b4-1-embedded-stdout.log",
+      "sha256": "d39b316e1e67194c32f00f19ff318aeb798ef31750d1152cd88aa7bee2ff96b3",
+      "bytes": 17882
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b4-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b4-2-embedded-stdout.log",
+      "sha256": "b8e6e6b6b77fb8ef563a27e49fc8d1c1e1ecde8462341078dbce94c1a66b6319",
+      "bytes": 17882
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b4-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b4-3-baseline-stdout.log",
+      "sha256": "ea0f0712897a7c1ab8fa5c7641e4a480022e09bec335b8e7c50f5820548deaa7",
+      "bytes": 16099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b4-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b5-0-baseline-stdout.log",
+      "sha256": "93badd1528d969c787b348f546a59761f8a89bd2a087ac488ae2aa4d44e76b28",
+      "bytes": 16099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b5-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b5-1-embedded-stdout.log",
+      "sha256": "28043c4a7b488dfecd650e02a385c0e52ef997f983c1c4a360c2d01baea29650",
+      "bytes": 17882
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b5-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b5-2-embedded-stdout.log",
+      "sha256": "c936852d8e1024876753c4d9e8cf98b530836eac030bde2668ab8f9d5c968138",
+      "bytes": 17882
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b5-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b5-3-baseline-stdout.log",
+      "sha256": "265bfc2ffebd2f8caf1c5bd373ef9041f793e93ea548162aa5eaade855731f47",
+      "bytes": 16099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\b5-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\adapters\\cpu_pool\\cpu_pool.hpp",
+      "sha256": "0e345904dc6b1cf3ccedfe9406c123df2ebd933e68eacf984bb0b78c3d7cdad7",
+      "bytes": 686
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\contracts\\context.hpp",
+      "sha256": "63be9cd8d366127be9a859b7e90bab88cb3a7ec5d58dac0df6702cba9a228682",
+      "bytes": 15225
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\contracts\\executor.hpp",
+      "sha256": "02e0d21f666d5df04d8849878650ec20433098c9be149d28f3d4c922f3ee5228",
+      "bytes": 2013
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\contracts\\identity.hpp",
+      "sha256": "2c42e99c22301baeea4e1af5c45faee9c578e66b9f7f0d8c2eaf370bac54dbad",
+      "bytes": 6417
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\contracts\\logging.hpp",
+      "sha256": "efbaf36bbb24fbbc4edbe55a576e24b27ffef9a3b8f25dd30fbe043713a3b7a7",
+      "bytes": 3339
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\contracts\\observation.hpp",
+      "sha256": "4cdf03dd9575d2c540e7ab2945ded79b8f946f89c724118f264550fa9e46adfa",
+      "bytes": 12865
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\contracts\\operation.hpp",
+      "sha256": "661eca4fa9fd1b5395e7bffc70e15a9ed3537f647c48f104813170f808e4810a",
+      "bytes": 14777
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\contracts\\outcome.hpp",
+      "sha256": "90fc9200887266d16e7f9cd6b24e8bf7d461081afe63f97f6edadac0f4eb2425",
+      "bytes": 32239
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\contracts\\ports.hpp",
+      "sha256": "3e1b21bb1ce2dcb419181672bead2be07a4885be5e36d73d802f0f8ef556d2f4",
+      "bytes": 8242
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\foundation\\foundation.hpp",
+      "sha256": "1e3325f6077dd42d2f3ec8460d1eb4eeeca169c668975c41fb90556773940ae0",
+      "bytes": 12295
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\foundation\\sdk_version.hpp",
+      "sha256": "9639b5f94f585eb3f21b5dd6b36ccf73e2a3d956e92669abf66fae9b6addf6a5",
+      "bytes": 544
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\runtime\\detail\\host.hpp",
+      "sha256": "d4fda02152e3e9c3dee4ec61d7c698bc8dee28d4b1ed3391c99115f2eae541f2",
+      "bytes": 5160
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\runtime\\detail\\invocation.hpp",
+      "sha256": "d87fac46ebcd1a0a608c403120f1ddf033d889616954bcd79c8bc930d91b44c3",
+      "bytes": 37336
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\runtime\\detail\\private_bridge.hpp",
+      "sha256": "1162b82bb220cb20219de6f76e68ecd7ad3fd8770e1f1774d919c0af96e85bad",
+      "bytes": 1636
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\runtime\\host.hpp",
+      "sha256": "022740eb91ee1b0f2ca7bc988f2a143f066ee35e73f807bba06b658fc20b17d3",
+      "bytes": 12613
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\runtime\\logging.hpp",
+      "sha256": "fea2a70741172afe7f2d6f690176de02976ab1be03aac2fab011395877aa320c",
+      "bytes": 2290
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\runtime\\native_types.hpp",
+      "sha256": "ef746141206e22f6eacb016ebf5f471c743a24520d63b099faa3b22eef610322",
+      "bytes": 1860
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\runtime\\policy.hpp",
+      "sha256": "87900168f2ac084e0b65416320ced3e7f1270cb2f68aeeff82f51ec9a4da7e39",
+      "bytes": 16170
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\runtime\\registry.hpp",
+      "sha256": "8840691318a8963cc2dcaedfafbc032819f4ec9c1c57e0da82df70e80c1787b8",
+      "bytes": 21612
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\runtime\\resources.hpp",
+      "sha256": "5cddc6d731eca0d30029fe6585b18f1a2a018d815e49fafc5902a3994760516f",
+      "bytes": 2880
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\ock\\runtime\\scheduler.hpp",
+      "sha256": "96771b63158d6d6914bb2bddbc97c007ca217594659a7e097b67e8acf9ef0eb3",
+      "bytes": 2990
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\include\\tl\\expected.hpp",
+      "sha256": "5a6a46da2e46ee3360bd8fbd759affefc46b8bfd6295043262ec867acac1fa14",
+      "bytes": 92778
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\lib\\cmake\\OCK\\OCKConfig.cmake",
+      "sha256": "71619b432e1c5b86d31c692ad1d2f82403d5d388e3f25563274408a997bb16b1",
+      "bytes": 2160
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\lib\\cmake\\OCK\\OCKConfigVersion.cmake",
+      "sha256": "07198e622f7af2a173d7170762408b8cafa6c4081619d5f0231442c7936b7699",
+      "bytes": 3332
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\lib\\cmake\\OCK\\OCKTargets-debug.cmake",
+      "sha256": "ff71637a2bbeab37376b0da1001c2848306777f6bc61851bf58703a4f8615b14",
+      "bytes": 1376
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\lib\\cmake\\OCK\\OCKTargets.cmake",
+      "sha256": "dfbc7626e05618c067c68c6be5d4a2f8dfcd1d242fc3624eef41edfa688984d1",
+      "bytes": 6676
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\lib\\cmake\\OCK\\OCKThirdPartyTargets.cmake",
+      "sha256": "0ee2d519f9f6b3a3f42e70def47d37825e15a473cee1f379f10a29c2e0e046da",
+      "bytes": 4361
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\lib\\ock_Adapter_CpuPool.lib",
+      "sha256": "64bc84635dfa2541dbfeb82a8b25c016737f24d7b97cb6ae6dc2ca39d0db259f",
+      "bytes": 2454542
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\lib\\ock_Runtime.lib",
+      "sha256": "380d06e8597be6f0b34d75b1497edecb34a9b98f0a6f5c28e5c513160cca55dc",
+      "bytes": 54350256
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\share\\ock\\licenses\\tl-expected-CC0-1.0.txt",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "bytes": 7048
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\installed\\share\\ock\\sdk_api_manifest.json",
+      "sha256": "7fd4d92fcffd98d690af9774d2d258f7f274b5a9e899a0bb9c3a78db691fe562",
+      "bytes": 15099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\consumer\\Debug\\footprint_baseline.exe",
+      "sha256": "d7f197416338012c88b8fcbf0adae85d3f5ce354c32661b20fa2aaf7d05dbecc",
+      "bytes": 114688
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\\consumer\\Debug\\footprint_embedded.exe",
+      "sha256": "cd72ee08206920c668494217dd3b26cfc0bc3447a103c04bef5cf20dc3ff6b76",
+      "bytes": 3954176
+    },
+    {
+      "path": "C:\\Windows\\System32\\msvcp140d.dll",
+      "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+      "bytes": 891832
+    },
+    {
+      "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+      "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+      "bytes": 102328
+    },
+    {
+      "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+      "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+      "bytes": 200120
+    },
+    {
+      "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+      "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+      "bytes": 61368
+    },
+    {
+      "path": "C:\\Windows\\System32\\ucrtbased.dll",
+      "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+      "bytes": 2120104
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\artifacts.json",
+      "sha256": "15cd69382ffdf7753b7ec18a6def28dd7366e45dabdc3a7d3f3a5362538c5d13",
+      "bytes": 73790
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\baseline-CL.command.tlog",
+      "sha256": "6a21f2851e5d8683b08f33ed6f61875272b27e20f81deaffd318db21b871fea2",
+      "bytes": 1938
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\baseline.exe",
+      "sha256": "d7f197416338012c88b8fcbf0adae85d3f5ce354c32661b20fa2aaf7d05dbecc",
+      "bytes": 114688
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\budget-binding.json",
+      "sha256": "2cf20f9e1fc6deeea4cd542a6f3076cc500857d53777058ebadbd0f061fed9c9",
+      "bytes": 1405
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\commands.json",
+      "sha256": "c88d38723ef191f7a9e9bd204d8c08ef3a5d82de862d83fd79c1e9adc10261a4",
+      "bytes": 12375052
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\consumer-CMakeCache.txt",
+      "sha256": "01c7cb173b8fa8e94c4000a162672a5e3bfc77bf3d124add7f9e484afb369b41",
+      "bytes": 13711
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\distribution.json",
+      "sha256": "a33145ede956564a40b22c7659364ec90a50584dea285cd4456425cdcfe13f5b",
+      "bytes": 3317
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\embedded-CL.command.tlog",
+      "sha256": "b3254f8bf30333c0c6050e554128035ac6385b1f039c3b31d8030ce2090039fd",
+      "bytes": 2466
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\embedded.exe",
+      "sha256": "cd72ee08206920c668494217dd3b26cfc0bc3447a103c04bef5cf20dc3ff6b76",
+      "bytes": 3954176
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\footprint_baseline.vcxproj",
+      "sha256": "49c426e9535533fe13a37e08f54cfc45848f51916109d4766f6071c582c0bb1a",
+      "bytes": 68636
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\footprint_embedded.vcxproj",
+      "sha256": "6c888bc15f17d092ee4d997e80b33b8a8cfd4b7d31b8b776249a14556beaf9d7",
+      "bytes": 71560
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\identity.json",
+      "sha256": "62dc07d01e22e86256f35a76a25c01083cd8278dbe5385e6c380ed37fd62225f",
+      "bytes": 28243
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\installed.json",
+      "sha256": "18a1d15f0ee5943688bf3188f91b2fce412cef0357f3a909c950d04501ebc85d",
+      "bytes": 7788
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\ock_Adapter_CpuPool-CL.command.tlog",
+      "sha256": "649043262cccf4dbd5d7fc434099bda9412db686e88cfe8dcfdd184c970f12ec",
+      "bytes": 1666
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\ock_Runtime-CL.command.tlog",
+      "sha256": "bd53cd5479729924024dc202136d5da95754b5f1b260168c39f6f36af795e3d4",
+      "bytes": 14762
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\producer-CMakeCache.txt",
+      "sha256": "697f104ec907a9f3636ea461c17e5a6cf33c3adaa83484aac4c7eb5117adba89",
+      "bytes": 15749
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\producer-dependency-acquisition.json",
+      "sha256": "9c105f57579f41379cc3bd70aee41786910c81bbc08036f59e1a164a5f15f1d3",
+      "bytes": 1212
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\producer-ock-target-graph.json",
+      "sha256": "899ec2568e2ff65e5d68db147efaa4bbf50205a47875584441bad14d9500d99a",
+      "bytes": 1419
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\report.json",
+      "sha256": "02390b5a4d80a8aecd699f406c6b5820b7d8a33cbe7eca3af9046ea1d764558e",
+      "bytes": 3344
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\samples.json",
+      "sha256": "bcdd9be2cc194cb7531faffaa853cbbc5bddf123ce7f29f0a7e0dc2633dbdbd3",
+      "bytes": 790874
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\f6e00a0ddab045a88eadcc9a50092e01\\source.json",
+      "sha256": "8d585d51cecdef7bcfe5c32ed971e5b7de62e27bb6d6a409dbbc3c33e9389ee6",
+      "bytes": 168
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\producer-build-stdout.log",
+      "sha256": "6cd7f9cee1bd3abdd366d395928e6039712a1dc97925b2c950300a89807f5e1e",
+      "bytes": 519
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\producer-build-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\architecture-stdout.log",
+      "sha256": "83927ec06e4069c417a9e6c8163075a59db12c23e078a40142d2316faddbd936",
+      "bytes": 152
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\architecture-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\install-stdout.log",
+      "sha256": "53613d87c4b8ec82cdb716f6adfe96f37fdba2f73e121c9fcbaade7a7bee4a0e",
+      "bytes": 5836
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\install-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\configure-stdout.log",
+      "sha256": "6e83e27d7c5e545549b9f5550bd9faef97485dca1b9ca181c650a6da88b0e682",
+      "bytes": 494
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\configure-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\build-stdout.log",
+      "sha256": "dc8ba14b67ed471b1ad9a76f904ce68cdbdb2d09f26432ee9fe66e4f68538987",
+      "bytes": 790
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\build-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\baseline-imports-stdout.log",
+      "sha256": "b73f44e8954629e38b969613f8534a4d4228f4e7e68285e1fa76736e2071bf26",
+      "bytes": 12986
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\baseline-imports-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\embedded-imports-stdout.log",
+      "sha256": "b232b2f8dbf12a777f25f404967aacea020dc5abc2fd156bcf3a2dcde61c5555",
+      "bytes": 16482
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\embedded-imports-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b0-0-baseline-stdout.log",
+      "sha256": "bd3800c94ddf3a5be24c6c9f40be67d57318b0f24975b3945abed40b9836ad32",
+      "bytes": 16063
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b0-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b0-1-embedded-stdout.log",
+      "sha256": "5ef2f73ededb4ef7ee38d67693670124a426f31be698c6ea376da7da21588a60",
+      "bytes": 17726
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b0-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b0-2-embedded-stdout.log",
+      "sha256": "27f664f7dcbda96dd22d088cfb49d63dbb6d6bf761fcd21d1bf59840eaab9cad",
+      "bytes": 17726
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b0-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b0-3-baseline-stdout.log",
+      "sha256": "e8ae8387ed19c99363ea6b31fb704608c81424eac38a73c2d8a7209c806ac484",
+      "bytes": 16063
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b0-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b1-0-baseline-stdout.log",
+      "sha256": "bd3800c94ddf3a5be24c6c9f40be67d57318b0f24975b3945abed40b9836ad32",
+      "bytes": 16063
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b1-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b1-1-embedded-stdout.log",
+      "sha256": "276f27fd72a7c32e14a0277069adeb4927c809bfca8bec705ca2fc47f617a370",
+      "bytes": 17726
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b1-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b1-2-embedded-stdout.log",
+      "sha256": "a0a8bdd9d9ed5b01e3548ad0add3b9275fa07a96916bbae1d7febeb05fc3f205",
+      "bytes": 17726
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b1-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b1-3-baseline-stdout.log",
+      "sha256": "bd3800c94ddf3a5be24c6c9f40be67d57318b0f24975b3945abed40b9836ad32",
+      "bytes": 16063
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b1-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b2-0-baseline-stdout.log",
+      "sha256": "bd3800c94ddf3a5be24c6c9f40be67d57318b0f24975b3945abed40b9836ad32",
+      "bytes": 16063
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b2-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b2-1-embedded-stdout.log",
+      "sha256": "22938a390f32d785d779bec8443abead08b22755447dce919b2a905678909d4e",
+      "bytes": 17726
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b2-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b2-2-embedded-stdout.log",
+      "sha256": "434626da247d8f33445d7bc074fbca990de24ae55cdb10f64a7b59a1ce03d164",
+      "bytes": 17726
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b2-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b2-3-baseline-stdout.log",
+      "sha256": "bd3800c94ddf3a5be24c6c9f40be67d57318b0f24975b3945abed40b9836ad32",
+      "bytes": 16063
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b2-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b3-0-baseline-stdout.log",
+      "sha256": "bd3800c94ddf3a5be24c6c9f40be67d57318b0f24975b3945abed40b9836ad32",
+      "bytes": 16063
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b3-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b3-1-embedded-stdout.log",
+      "sha256": "37eba78e11fc817a5acce52fdc50828a0e590607d2edb131f07f585c86fdc5fd",
+      "bytes": 17726
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b3-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b3-2-embedded-stdout.log",
+      "sha256": "9a0e2596f1f80a841c91819a417ae940257be9944c393367645f732a5ff67ac2",
+      "bytes": 17726
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b3-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b3-3-baseline-stdout.log",
+      "sha256": "bd3800c94ddf3a5be24c6c9f40be67d57318b0f24975b3945abed40b9836ad32",
+      "bytes": 16063
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b3-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b4-0-baseline-stdout.log",
+      "sha256": "bd3800c94ddf3a5be24c6c9f40be67d57318b0f24975b3945abed40b9836ad32",
+      "bytes": 16063
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b4-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b4-1-embedded-stdout.log",
+      "sha256": "6a364775d1442b58feb5be2ead45e46a7bb2705d4163a89a39cad3b1e6a345fd",
+      "bytes": 17726
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b4-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b4-2-embedded-stdout.log",
+      "sha256": "1451a3e5248143c852e3c15095c9806231fa177f0c493e66ac660a27719d4f28",
+      "bytes": 17726
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b4-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b4-3-baseline-stdout.log",
+      "sha256": "bd3800c94ddf3a5be24c6c9f40be67d57318b0f24975b3945abed40b9836ad32",
+      "bytes": 16063
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b4-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b5-0-baseline-stdout.log",
+      "sha256": "bd3800c94ddf3a5be24c6c9f40be67d57318b0f24975b3945abed40b9836ad32",
+      "bytes": 16063
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b5-0-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b5-1-embedded-stdout.log",
+      "sha256": "edb1d72b359331f3bd11d8ead3029bee47eb6a98b5a3c76578c823a5abb69b1c",
+      "bytes": 17726
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b5-1-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b5-2-embedded-stdout.log",
+      "sha256": "abf523a8c89188c9855d9559d140cf3b0565b39c1ca51cdbd797b680cc0b1b1e",
+      "bytes": 17726
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b5-2-embedded-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b5-3-baseline-stdout.log",
+      "sha256": "bd3800c94ddf3a5be24c6c9f40be67d57318b0f24975b3945abed40b9836ad32",
+      "bytes": 16063
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\b5-3-baseline-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\adapters\\cpu_pool\\cpu_pool.hpp",
+      "sha256": "0e345904dc6b1cf3ccedfe9406c123df2ebd933e68eacf984bb0b78c3d7cdad7",
+      "bytes": 686
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\contracts\\context.hpp",
+      "sha256": "63be9cd8d366127be9a859b7e90bab88cb3a7ec5d58dac0df6702cba9a228682",
+      "bytes": 15225
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\contracts\\executor.hpp",
+      "sha256": "02e0d21f666d5df04d8849878650ec20433098c9be149d28f3d4c922f3ee5228",
+      "bytes": 2013
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\contracts\\identity.hpp",
+      "sha256": "2c42e99c22301baeea4e1af5c45faee9c578e66b9f7f0d8c2eaf370bac54dbad",
+      "bytes": 6417
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\contracts\\logging.hpp",
+      "sha256": "efbaf36bbb24fbbc4edbe55a576e24b27ffef9a3b8f25dd30fbe043713a3b7a7",
+      "bytes": 3339
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\contracts\\observation.hpp",
+      "sha256": "4cdf03dd9575d2c540e7ab2945ded79b8f946f89c724118f264550fa9e46adfa",
+      "bytes": 12865
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\contracts\\operation.hpp",
+      "sha256": "661eca4fa9fd1b5395e7bffc70e15a9ed3537f647c48f104813170f808e4810a",
+      "bytes": 14777
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\contracts\\outcome.hpp",
+      "sha256": "90fc9200887266d16e7f9cd6b24e8bf7d461081afe63f97f6edadac0f4eb2425",
+      "bytes": 32239
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\contracts\\ports.hpp",
+      "sha256": "3e1b21bb1ce2dcb419181672bead2be07a4885be5e36d73d802f0f8ef556d2f4",
+      "bytes": 8242
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\foundation\\foundation.hpp",
+      "sha256": "1e3325f6077dd42d2f3ec8460d1eb4eeeca169c668975c41fb90556773940ae0",
+      "bytes": 12295
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\foundation\\sdk_version.hpp",
+      "sha256": "9639b5f94f585eb3f21b5dd6b36ccf73e2a3d956e92669abf66fae9b6addf6a5",
+      "bytes": 544
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\runtime\\detail\\host.hpp",
+      "sha256": "d4fda02152e3e9c3dee4ec61d7c698bc8dee28d4b1ed3391c99115f2eae541f2",
+      "bytes": 5160
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\runtime\\detail\\invocation.hpp",
+      "sha256": "d87fac46ebcd1a0a608c403120f1ddf033d889616954bcd79c8bc930d91b44c3",
+      "bytes": 37336
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\runtime\\detail\\private_bridge.hpp",
+      "sha256": "1162b82bb220cb20219de6f76e68ecd7ad3fd8770e1f1774d919c0af96e85bad",
+      "bytes": 1636
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\runtime\\host.hpp",
+      "sha256": "022740eb91ee1b0f2ca7bc988f2a143f066ee35e73f807bba06b658fc20b17d3",
+      "bytes": 12613
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\runtime\\logging.hpp",
+      "sha256": "fea2a70741172afe7f2d6f690176de02976ab1be03aac2fab011395877aa320c",
+      "bytes": 2290
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\runtime\\native_types.hpp",
+      "sha256": "ef746141206e22f6eacb016ebf5f471c743a24520d63b099faa3b22eef610322",
+      "bytes": 1860
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\runtime\\policy.hpp",
+      "sha256": "87900168f2ac084e0b65416320ced3e7f1270cb2f68aeeff82f51ec9a4da7e39",
+      "bytes": 16170
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\runtime\\registry.hpp",
+      "sha256": "8840691318a8963cc2dcaedfafbc032819f4ec9c1c57e0da82df70e80c1787b8",
+      "bytes": 21612
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\runtime\\resources.hpp",
+      "sha256": "5cddc6d731eca0d30029fe6585b18f1a2a018d815e49fafc5902a3994760516f",
+      "bytes": 2880
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\ock\\runtime\\scheduler.hpp",
+      "sha256": "96771b63158d6d6914bb2bddbc97c007ca217594659a7e097b67e8acf9ef0eb3",
+      "bytes": 2990
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\include\\tl\\expected.hpp",
+      "sha256": "5a6a46da2e46ee3360bd8fbd759affefc46b8bfd6295043262ec867acac1fa14",
+      "bytes": 92778
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\lib\\cmake\\OCK\\OCKConfig.cmake",
+      "sha256": "71619b432e1c5b86d31c692ad1d2f82403d5d388e3f25563274408a997bb16b1",
+      "bytes": 2160
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\lib\\cmake\\OCK\\OCKConfigVersion.cmake",
+      "sha256": "07198e622f7af2a173d7170762408b8cafa6c4081619d5f0231442c7936b7699",
+      "bytes": 3332
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\lib\\cmake\\OCK\\OCKTargets-relwithdebinfo.cmake",
+      "sha256": "c32931ef05d1668ba3e4e7fbe9976d0f30422aeefa564a2e97e6099a73a18f2d",
+      "bytes": 1457
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\lib\\cmake\\OCK\\OCKTargets.cmake",
+      "sha256": "dfbc7626e05618c067c68c6be5d4a2f8dfcd1d242fc3624eef41edfa688984d1",
+      "bytes": 6676
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\lib\\cmake\\OCK\\OCKThirdPartyTargets.cmake",
+      "sha256": "0ee2d519f9f6b3a3f42e70def47d37825e15a473cee1f379f10a29c2e0e046da",
+      "bytes": 4361
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\lib\\ock_Adapter_CpuPool.lib",
+      "sha256": "5d09b471610e1d6794fcf9f3404d70a5e97e5b9840e28e354698374045f3abb0",
+      "bytes": 1767840
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\lib\\ock_Runtime.lib",
+      "sha256": "ab1fa0690de4562e689dd3ecaf46b7f89c0ffeb189461d530d0a73c2cd3874aa",
+      "bytes": 31471608
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\share\\ock\\licenses\\tl-expected-CC0-1.0.txt",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "bytes": 7048
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\installed\\share\\ock\\sdk_api_manifest.json",
+      "sha256": "7fd4d92fcffd98d690af9774d2d258f7f274b5a9e899a0bb9c3a78db691fe562",
+      "bytes": 15099
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\consumer\\RelWithDebInfo\\footprint_baseline.exe",
+      "sha256": "bf84c3b70cbf2bf3a4d2a8c3d658a7b0e27b4af2f9520062a3e9262dce87acf9",
+      "bytes": 87040
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\build\\embedded-formal-244d8dc4ef3541679746491c681c68c7\\consumer\\RelWithDebInfo\\footprint_embedded.exe",
+      "sha256": "80ebd3f4352c91d34be939290351649990652d1e2c4df5f12005462448909a09",
+      "bytes": 2508288
+    },
+    {
+      "path": "C:\\Windows\\System32\\dbghelp.dll",
+      "sha256": "0009fd16d3d67ef5944d40853bbb2865429ad52ea9a21ddec8e5b249ec4c9e31",
+      "bytes": 2367712
+    },
+    {
+      "path": "C:\\Windows\\System32\\oleaut32.dll",
+      "sha256": "e81833eb87f827a16e67f45d8c7560f35bcdb8a2d9ddcc2123bab527850b3b5d",
+      "bytes": 880400
+    },
+    {
+      "path": "C:\\Windows\\System32\\combase.dll",
+      "sha256": "3c480ed4067740582edfe7db625fa6f95f9c71295ca72bc79bd66df9f9fc0eaa",
+      "bytes": 3686032
+    },
+    {
+      "path": "C:\\Windows\\System32\\msvcp_win.dll",
+      "sha256": "8bd115015ebaad009fc17509872fe05007188aac6c0ab64d5f51d4429018e32b",
+      "bytes": 636640
+    },
+    {
+      "path": "C:\\Windows\\System32\\SHCore.dll",
+      "sha256": "06f3d53d94525084a153db2fc0203c96e8bafe6064c614d0472e0dfd6d093e89",
+      "bytes": 901064
+    },
+    {
+      "path": "E:\\vs2022IDE\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\clang_rt.asan_dynamic-x86_64.dll",
+      "sha256": "2babc2a4298d128c8abc33efc7f3b70611246010059ef343d72f096d8ae24ff3",
+      "bytes": 1190432
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\artifacts.json",
+      "sha256": "99d78b00be03678586417fcbafd8a2ce5dca052afc063a7612f0e33a9ad1d1dc",
+      "bytes": 98668
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\baseline-CL.command.tlog",
+      "sha256": "5079f983d549360db4f6319bce2c11d4002e2d4e5d2be61e5c039db595372668",
+      "bytes": 2210
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\baseline.exe",
+      "sha256": "bf84c3b70cbf2bf3a4d2a8c3d658a7b0e27b4af2f9520062a3e9262dce87acf9",
+      "bytes": 87040
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\budget-binding.json",
+      "sha256": "065603161df9dcdb6b9b12d6cf45f70bfbb14bf48a6d3c400cdccbb68be77f54",
+      "bytes": 1413
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\commands.json",
+      "sha256": "793a63497e77a15ad21b45190fc5323d8b157fd01bc4145148aedd6f60688210",
+      "bytes": 12390435
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\consumer-CMakeCache.txt",
+      "sha256": "57884d65bfc314b5c66330f4c1264dfeaf2d4a9dd49ce27f84260761916999ea",
+      "bytes": 13710
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\distribution.json",
+      "sha256": "058cd9cb6185defbcf9e76346173ab80a321bee33ada570ebf0ffc1a1d8b3ad6",
+      "bytes": 3335
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\embedded-CL.command.tlog",
+      "sha256": "1c145c1e1f71e59f9f7cca1cb57845e51b7587a8360397a8ffe37c43fb9c8d29",
+      "bytes": 2738
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\embedded.exe",
+      "sha256": "80ebd3f4352c91d34be939290351649990652d1e2c4df5f12005462448909a09",
+      "bytes": 2508288
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\footprint_baseline.vcxproj",
+      "sha256": "de4c6e991a481e5508c900a329e0f5350866e2526c194fc2e22aa0150e6006d8",
+      "bytes": 68881
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\footprint_embedded.vcxproj",
+      "sha256": "4a418fef0493a6467ec9b97f56c2aa7b19ef475c6faa37f2c6e00b64e3e9e84b",
+      "bytes": 71805
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\identity.json",
+      "sha256": "dcf411775cd6778a0ecff59cc76777874681fed9da33d69aad1c632d3535afa3",
+      "bytes": 28250
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\installed.json",
+      "sha256": "ec23b6317f9a775c1dc758c11d5f17cfb09598aa6c20548502f34df6ff85b5ee",
+      "bytes": 7797
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\ock_Adapter_CpuPool-CL.command.tlog",
+      "sha256": "63df08e7fc50a261487e9b540532edfd1cc3971a251fb917ad69041250c66826",
+      "bytes": 1816
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\ock_Runtime-CL.command.tlog",
+      "sha256": "2344f625f107c5e7b72713acfc0ac7b34f429d264ebb1ce766f7cababc279ea6",
+      "bytes": 16262
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\producer-CMakeCache.txt",
+      "sha256": "739cc6c936e446eff556f00970eb0b78fbb399e7b99e2d3acf5373881f3bf75f",
+      "bytes": 15762
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\producer-dependency-acquisition.json",
+      "sha256": "9c105f57579f41379cc3bd70aee41786910c81bbc08036f59e1a164a5f15f1d3",
+      "bytes": 1212
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\producer-ock-target-graph.json",
+      "sha256": "899ec2568e2ff65e5d68db147efaa4bbf50205a47875584441bad14d9500d99a",
+      "bytes": 1419
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\report.json",
+      "sha256": "e37f44d648417d6b1b7645ae87f80de2e54ab169d3aee3362ae57c8a1c611796",
+      "bytes": 3377
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\samples.json",
+      "sha256": "183156f9f891f7192d03683a0574e0d82a502baf3039975d8b0dfaf1e17fc72a",
+      "bytes": 819096
+    },
+    {
+      "path": "J:\\Code\\Kernel_v2\\evidence\\G3\\C\\244d8dc4ef3541679746491c681c68c7\\source.json",
+      "sha256": "3d917491a02fcb37293fc8da09eb6ae5eaa43d46fc6662b38b81063974fcc809",
+      "bytes": 168
+    }
+  ],
+  "scope": "同一已提交来源、原预算、固定三配置完整 Embedded 原始材料复核；不代替最终语义矩阵。"
+}

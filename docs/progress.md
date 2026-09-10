@@ -4,12 +4,12 @@
 
 ## 当前生产节点
 
-- **B5/G3 post-gate closure InProgress；B6 生产集成 HOLD。** 用户建议中的 C1 准入/终态回收、C1b 输入计费、C2 Accepted 后结果分类已在源码确认，按 [B5 收口规划](plans/B5.md)修复并刷新实际影响验证；历史 G3/包级 Passed 保留。
+- **B5/G3 post-gate closure Passed；B6 / D4.01–D4.04 Ready for Development，尚未开始。** C1 准入压力回收、C1b settled 输入计费、C2 Accepted 后结果分类已关闭。来源 `9b63967` 的 Debug/Release/ASan 正式影响集各 **49/49**；G3-C 按原预算、原方法新采样三配置全部通过，Debug/ASan 各 480 个完整 Invoke 零新增分配窗口。见 [收口交付](validation/B5-post-closure-delivery.md)与 [最终决定](../evidence/B5/post-closure-9b63967/acceptance.json)。
 
 - **B5 完成，D3.04–D3.07 Passed；G3 Passed。** 各包正式前置按 DAG 依次提交，再形成 G3 决定。见 [B5/G3 交付](validation/B5-delivery.md)及 [G3 自动验收](../evidence/G3/acceptance-dacc540.json)。
-- 最终语义来源 `dacc540`：Debug、Release、ASan / RelWithDebInfo 均 **126/126**，附加 Schema 检查通过；618 个输入与提交字节一致，AI SPEC/CODE 与自动事实齐全，errors/review_errors 为空。G3-C 按实际未变 Embedded 编译依赖复用原始报告，来源区别见交付说明。
+- 历史 B5/G3 语义来源 `dacc540`：Debug、Release、ASan / RelWithDebInfo 均 **126/126**，附加 Schema 检查通过；618 个输入与提交字节一致。该历史 Passed 保留，不代表新 Runtime 的 G3-C；本次已另行完成 `9b63967` 的实际影响矩阵及新 Embedded 采样。
 - 当前已 Passed：G0–G3、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07、D3.01–D3.07。B1/B2 历史 Passed 保留。下一批 B6 / D4.01–D4.04 尚未开始，本任务止于 B5/G3。
-- 仅内核与规划验证消费者；未扩展 GUI/CAD/CAM/设备，不声明持久套件或 G8 发布。交付提交只归档事实和状态，被测实现仍为 `dacc540`。
+- 仅内核与规划验证消费者；未扩展 GUI/CAD/CAM/设备，不声明持久套件或 G8 发布。本次交付归档只补事实和状态，被测来源为 `9b63967`；原 `dacc540` 报告及首轮失败原文保持不变。
 
 ## B5 开发与收口记录（历史，不代表当前状态）
 

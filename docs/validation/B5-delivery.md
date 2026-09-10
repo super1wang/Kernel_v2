@@ -1,5 +1,7 @@
 # B5 / G3 交付（2026-09-10）
 
+后续 C1/C1b/C2 已完成 [B5/G3 post-gate closure](B5-post-closure-delivery.md)：`9b63967` 三配置影响集各 49/49，原预算下新 G3-C 三配置通过，B6 Ready for Development。以下保留原 B5/G3 历史交付与来源。
+
 B5 的 D3.04–D3.07 已按正式依赖顺序提交 Passed 事实，G3 自动验收 Passed。范围仅为内核与规划验证消费者；B1/B2 等既有 Passed 保留。
 
 ## 最终来源与机器事实

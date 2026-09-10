@@ -1,0 +1,132 @@
+{
+  "format": "ock.run-manifest/1",
+  "task_id": "D3.07",
+  "profile": "win-msvc-asan",
+  "configuration": "RelWithDebInfo",
+  "preset": "win-msvc-asan",
+  "asan": true,
+  "source_patterns": [
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    "dependencies.lock",
+    "THIRD_PARTY_NOTICES",
+    "cmake/**",
+    "packages/**",
+    "sdk/**",
+    "schemas/**",
+    "tests/**",
+    "tools/**",
+    "examples/**",
+    "docs/contracts/**",
+    "docs/toolchain.md",
+    "docs/01_Architecture_v3.3.md",
+    "docs/02_Execution_Plan_v3.3.md",
+    "AGENTS.md",
+    "docs/adr/README.md",
+    "apps/**",
+    "docs/plans/B4.md",
+    "docs/adr/ADR-b4-executor-resources.md",
+    "docs/plans/B5.md",
+    "docs/reviews/B5-post-closure-review.md",
+    "docs/adr/ADR-b5-accepted-outcome.md"
+  ],
+  "required_artifacts": [
+    "docs/plans/B5.md",
+    "docs/reviews/B5-post-closure-review.md",
+    "tests/manifests/b5-post-closure-map.json",
+    ".gitattributes",
+    "footprint-budgets.json",
+    "docs/reviews/B5-post-closure-budget-decision.md"
+  ],
+  "expected_manifest": "tests/manifests/b5-post-closure.expected.json",
+  "dependency_lock": "dependencies.lock",
+  "build_dir": "build/b4-asan",
+  "configure": [
+    "cmake",
+    "--preset",
+    "win-msvc-asan",
+    "-B",
+    "build/b4-asan",
+    "-DOCK_DEPENDENCY_COMPONENTS=CLI;CpuPool",
+    "-DOCK_DEPENDENCIES_OFFLINE=ON",
+    "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+    "-DOCK_BUILD_B2_TESTS=ON",
+    "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+    "-DOCK_ENABLE_ASAN=ON",
+    "-DOCK_BUILD_G0_TESTS=ON",
+    "-DOCK_BUILD_EXECUTION_MODEL_TESTS=ON",
+    "-DOCK_BUILD_FOUNDATION_TESTS=OFF",
+    "-DOCK_BUILD_CORE_CONTRACTS_TESTS=ON",
+    "-DOCK_BUILD_REGISTRATION_TESTS=OFF",
+    "-DOCK_BUILD_AUTHORIZATION_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_TESTS=ON",
+    "-DOCK_BUILD_HOST_TESTS=OFF",
+    "-DOCK_BUILD_LOGGING_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_SDK_TESTS=OFF",
+    "-DOCK_BUILD_FOOTPRINT_TESTS=OFF",
+    "-DOCK_BUILD_COMPONENTS=B5Subset",
+    "-DOCK_BUILD_B4_TESTS=ON"
+  ],
+  "build": [
+    "cmake",
+    "--build",
+    "build/b4-asan",
+    "--config",
+    "RelWithDebInfo",
+    "--parallel",
+    "4",
+    "--",
+    "/nr:false"
+  ],
+  "build_outputs": [
+    "build/b4-asan/CMakeCache.txt",
+    "build/b4-asan/ock-target-graph.json",
+    "build/b4-asan/toolchain-RelWithDebInfo.json",
+    "build/b4-asan/dependency-acquisition.json",
+    "build/b4-asan/CTestTestfile.cmake",
+    "build/b4-asan/CMakeFiles/CMakeConfigureLog.yaml",
+    "build/b4-asan/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake",
+    "build/b4-asan/RelWithDebInfo/ock_Runtime.lib",
+    "build/b4-asan/RelWithDebInfo/ock_Adapter_CpuPool.lib",
+    "build/b4-asan/tests/contract/resources/CTestTestfile.cmake",
+    "build/b4-asan/tests/contract/resources/RelWithDebInfo/ock_resources_contract.exe",
+    "build/b4-asan/RelWithDebInfo/ock_probe_asan.exe",
+    "build/b4-asan/tests/contract/native/RelWithDebInfo/ock_native_tests.exe",
+    "build/b4-asan/tests/conformance/executor/RelWithDebInfo/ock_executor_contract.exe",
+    "build/b4-asan/apps/ock/RelWithDebInfo/ock.exe",
+    "build/b4-asan/examples/managed_service/RelWithDebInfo/ock_managed_service.exe"
+  ],
+  "toolchain_artifact": "build/b4-asan/toolchain-RelWithDebInfo.json",
+  "test_regex": "^(T06\\.native\\.managed_admission|T03\\.native\\.managed_resources|T03\\.native\\.managed_record|T03\\.native\\.managed_record_ownership|T03\\.native\\.execution_table_ownership|T06\\.native\\.execution_source_observation|T06\\.native\\.observation_journal|T03\\.native\\.observation_lease_drain|T03\\.native\\.execution_service_control|T03\\.native\\.host_execution_lifecycle|T03\\.native\\.host_execution_resources|T03\\.native\\.host_structured_lifetime|T06\\.native\\.host_structured_admission|T03\\.native\\.host_async_completion|T03\\.native\\.host_async_drain|T03\\.native\\.host_async_deadline|T03\\.native\\.host_required_record|T03\\.native\\.host_required_record_drain|T03\\.native\\.host_cached_result_sessions|T03\\.native\\.host_observation_drain|T03\\.native\\.host_combined_drain|T03\\.native\\.managed_execution_path|T03\\.native\\.managed_execution_resource_wait|T03\\.native\\.no_task_path|T03\\.native\\.reentrant_and_concurrent|T03\\.native\\.cancel_and_budget|T06\\.native\\.session_and_deadline|T06\\.native\\.target_binding|T06\\.native\\.outcome_consistency|T06\\.native\\.revoke_and_regrant|T03\\.native\\.execution_admission_endurance|T03\\.native\\.execution_admission_pins|T03\\.native\\.execution_reclaim_protection|T06\\.native\\.managed_accepted_failures|T03\\.native\\.managed_async_input_accounting|T06\\.contracts\\.before_apply_and_composite_proofs|T06\\.protocol\\.outcome|T20\\.cli\\.managed_post_closure|T06\\.native\\.business_failure|T06\\.native\\.invalid_output|T13\\.resources\\.execution_binding|T13\\.resources\\.execution_running_cancel|T13\\.resources\\.execution_binding_interleavings|T01\\.architecture\\.dependency_dag|T01\\.b4\\.architecture_guards|T24\\.sdk\\.version_header|T24\\.sdk\\.install_and_missing_components|T03\\.binding\\.submit|T20\\.protocol\\.list)$",
+  "repeat": 1,
+  "timeout_seconds": 1800,
+  "checks": [],
+  "review_policy": {
+    "format": "ock.review-policy-binding/1",
+    "mode": "ai-self-review",
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+  },
+  "review_required": [
+    "spec",
+    "code"
+  ],
+  "review_records": [
+    "docs/reviews/B5-post-closure-spec.json",
+    "docs/reviews/B5-post-closure-code.json"
+  ],
+  "runtime_artifact_patterns": [
+    "build/install-check-*/*.json",
+    "build/install-check-*/*.log",
+    "build/install-check-*/consumer/CMakeCache.txt",
+    "build/install-check-*/consumer/RelWithDebInfo/installed_metadata.exe",
+    "build/install-check-*/relocated/lib/cmake/OCK/*.cmake",
+    "build/install-check-*/relocated/share/ock/sdk_api_manifest.json"
+  ],
+  "required_runtime_artifacts": [
+    {
+      "pattern": "build/install-check-*/commands.json",
+      "minimum": 1
+    }
+  ]
+}

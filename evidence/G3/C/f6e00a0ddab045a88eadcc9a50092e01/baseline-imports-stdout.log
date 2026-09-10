@@ -1,0 +1,171 @@
+Microsoft (R) COFF/PE Dumper Version 14.44.35216.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file J:\Code\Kernel_v2\build\embedded-formal-f6e00a0ddab045a88eadcc9a50092e01\consumer\Debug\footprint_baseline.exe
+
+File Type: EXECUTABLE IMAGE
+
+  Section contains the following imports:
+
+    KERNEL32.dll
+             14001C000 Import Address Table
+             14001C698 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          9D CloseHandle
+                         481 QueryPerformanceCounter
+                         482 QueryPerformanceFrequency
+                         55C SetEvent
+                         625 WaitForSingleObject
+                         242 GetCurrentProcessId
+                         412 MapViewOfFile
+                         5FE UnmapViewOfFile
+                         246 GetCurrentThreadId
+                         1D4 FreeLibrary
+                         61C VirtualQuery
+                         2E4 GetProcessHeap
+                         380 HeapFree
+                         37C HeapAlloc
+                         28D GetLastError
+                         2A5 GetModuleHandleW
+                         301 GetStartupInfoW
+                         39A InitializeSListHead
+                         31A GetSystemTimeAsFileTime
+                         3B8 IsProcessorFeaturePresent
+                         5D8 TerminateProcess
+                         241 GetCurrentProcess
+                         5B8 SetUnhandledExceptionFilter
+                         5FB UnhandledExceptionFilter
+                         518 RtlVirtualUnwind
+                         511 RtlLookupFunctionEntry
+                         509 RtlCaptureContext
+                         64C WideCharToMultiByte
+                         423 MultiByteToWideChar
+                         498 RaiseException
+                         3B0 IsDebuggerPresent
+                         2DD GetProcAddress
+
+    MSVCP140D_ATOMIC_WAIT.dll
+             14001C220 Import Address Table
+             14001C8B8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           9 __std_atomic_wait_direct
+                           4 __std_atomic_notify_all_direct
+
+    MSVCP140D.dll
+             14001C188 Import Address Table
+             14001C820 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         556 _Cnd_do_broadcast_at_thread_exit
+                         5BC _Thrd_id
+                         5C0 _Thrd_yield
+                         598 _Query_perf_counter
+                         599 _Query_perf_frequency
+                         5BD _Thrd_join
+                         27D ?_Throw_Cpp_error@std@@YAXH@Z
+
+    VCRUNTIME140D.dll
+             14001C288 Import Address Table
+             14001C920 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          2F __vcrt_GetModuleHandleW
+                          3C memcpy
+                          21 __std_exception_copy
+                          22 __std_exception_destroy
+                           1 _CxxThrowException
+                          3B memcmp
+                           8 __C_specific_handler
+                           9 __C_specific_handler_noexcept
+                          25 __std_type_info_destroy_list
+                          1B __current_exception
+                          31 __vcrt_LoadLibraryExW
+                          2E __vcrt_GetModuleFileNameW
+                          1C __current_exception_context
+
+    VCRUNTIME140_1D.dll
+             14001C358 Import Address Table
+             14001C9F0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 __CxxFrameHandler4
+
+    ucrtbased.dll
+             14001C3B8 Import Address Table
+             14001CA50 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         2C6 _set_app_type
+                          5B __setusermatherr
+                          B6 _configure_narrow_argv
+                         171 _initialize_narrow_environment
+                         13D _get_initial_narrow_environment
+                         174 _initterm
+                         175 _initterm_e
+                         450 exit
+                          EA _exit
+                         2CB _set_fmode
+                          49 __p___argc
+                          4A __p___argv
+                         531 strlen
+                          9F _c_exit
+                         2B6 _register_thread_local_exe_atexit_callback
+                          B5 _configthreadlocale
+                         2CE _set_new_mode
+                          4D __p__commode
+                         52C strcpy_s
+                         528 strcat_s
+                          68 __stdio_common_vsprintf_s
+                         2C2 _seh_filter_dll
+                         172 _initialize_onexit_table
+                         2C3 _seh_filter_exe
+                          E5 _execute_onexit_table
+                          C2 _crt_atexit
+                          C1 _crt_at_quick_exit
+                         39C _wmakepath_s
+                         3B8 _wsplitpath_s
+                         564 wcscpy_s
+                          9B _beginthreadex
+                         54B terminate
+                          5C __stdio_common_vfprintf
+                         4FC puts
+                         4FB putchar
+                          35 __acrt_iob_func
+                           5 _CrtDbgReportW
+                         543 strtoull
+                         542 strtoul
+                         3D6 abort
+                          7E _aligned_malloc
+                          7C _aligned_free
+                         505 realloc
+                         4D8 malloc
+                         484 free
+                         3FD calloc
+                           4 _CrtDbgReport
+                          14 _CrtSetAllocHook
+                         179 _invoke_watson
+                         2B5 _register_onexit_function
+                         299 _msize
+                          A4 _cexit
+                          80 _aligned_msize
+
+  Summary
+
+        1000 .00cfg
+        1000 .data
+        2000 .idata
+        2000 .pdata
+        6000 .rdata
+        1000 .reloc
+        1000 .rsrc
+       12000 .text
+        1000 .tls
