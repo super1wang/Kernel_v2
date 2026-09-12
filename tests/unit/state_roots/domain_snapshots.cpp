@@ -44,13 +44,15 @@ int main() try {
   auto caller=CallerView::check(issuer,*grant);CHECK(caller);
   auto authority=std::make_shared<ReadAuthority>(issuer);
   using Domain=ock::state::StateDomain<Configuration>;
-  auto made=Domain::create(domain(),Configuration{{4,5}}, {4096,1},authority);CHECK(made);
+  ock::state::DomainOptions options{.root_bytes=4096,.candidate_bytes=4096,.result_bytes=4096,
+    .history_entries=4,.history_bytes=16384,.snapshot_pins=1,.history_pins=2,.inflight_commits=1,.reclaim_batch=1};
+  auto made=Domain::create(domain(),Configuration{{4,5}}, options,authority);CHECK(made);
   auto owner=*made;
   std::optional<ock::state::Snapshot<Configuration>> pin;
   {auto first=owner->snapshot(*caller);CHECK(first);pin=*first;CHECK(owner->validate_base(*first));}
   CHECK(owner->snapshot_pins()==1&&!owner->snapshot(*caller));
   auto copy=*pin;pin.reset();CHECK(owner->snapshot_pins()==1);
-  auto other=Domain::create(domain(),Configuration{{6}}, {4096,1},authority);CHECK(other);
+  auto other=Domain::create(domain(),Configuration{{6}}, options,authority);CHECK(other);
   CHECK(!(*other)->validate_base(copy)); // 同 DTO 不能冒充同一真实域 owner。
   issuer->revoke(**grant);CHECK(!owner->snapshot(*caller));CHECK(copy.value().values[0]==4);
   owner->close();CHECK(!owner->validate_base(copy));CHECK(copy.value().values[0]==4);
@@ -58,7 +60,15 @@ int main() try {
 
   auto fresh_grant=issuer->authenticate({principal,{},{}});CHECK(fresh_grant);
   auto fresh=CallerView::check(issuer,*fresh_grant);CHECK(fresh);
-  auto active=Domain::create(domain(),Configuration{{7}}, {4096,2},authority);CHECK(active);
+  options.snapshot_pins=2;
+  auto reopenable=Domain::create(domain(),Configuration{{8}},options,authority);CHECK(reopenable);
+  auto old_generation=(*reopenable)->snapshot(*fresh);CHECK(old_generation);
+  (*reopenable)->close();CHECK(!(*reopenable)->reopen(Configuration{{9}},1));
+  CHECK((*reopenable)->reopen(Configuration{{9}},2));
+  CHECK(!(*reopenable)->validate_base(*old_generation));
+  auto new_generation=(*reopenable)->snapshot(*fresh);
+  CHECK(new_generation&&new_generation->lifecycle_generation()==2&&new_generation->revision()==0);
+  auto active=Domain::create(domain(),Configuration{{7}}, options,authority);CHECK(active);
   std::weak_ptr<Domain> weak=*active;
   authority->callback=[&]{(*active)->close();active->reset();};
   auto closed=(*active)->snapshot(*fresh);CHECK(!closed&&weak.expired());

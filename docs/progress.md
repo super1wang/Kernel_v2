@@ -8,6 +8,8 @@
 
 - B6 首段生产实现包括显式 `FrozenRoot<T>`、整体 `PublishedState`、授权 Snapshot/pin 寿命、私有 immer 通用对象/反向引用，以及无发布权限的候选 CRUD/WriteSet。StateNative 独立 Debug 库已构建，State 子目录直接测试 3/3 通过，覆盖冻结别名、关闭/撤权后旧快照保活、重入关闭、引用约束、候选读写和预算拒绝不污染。根目录 CTest 曾因未构建的 Foundation 入口中止，未计为测试通过。当前内存计量仍为局部逻辑计量；完整 owner 预算、History、可信提交、Runtime/Atomic 接线及 SDK 收口继续开发，不代表 D4.01 Implementation-Ready 或 Passed。
 
+- B6 第二段生产实现已加入有界 History/pin、关闭后显式新 lifecycle generation、空差量提交、Undo/Redo 新 revision、内存 permit/close 仲裁、发布证明、`AtomicProviderPort` 私有候选绑定，以及同源单编辑/Atomic 候选组。State 子目录 Debug 直接集现为 5/5，通过候选读、纯计算、逐步撤权、失败零发布、128 步上限、禁止形态和伪造 PreparedCommit 等反例。尚未完成 Runtime Native/managed 结果接线、完整内存所有者计量、安装消费者与正式矩阵，故 D4.01–D4.04 仍为 InProgress。
+
 - **B5/G3 post-gate closure Passed（B6 准入历史）。** C1 准入压力回收、C1b settled 输入计费、C2 Accepted 后结果分类已关闭。来源 `9b63967` 的 Debug/Release/ASan 正式影响集各 **49/49**；G3-C 按原预算、原方法新采样三配置全部通过，Debug/ASan 各 480 个完整 Invoke 零新增分配窗口。见 [收口交付](validation/B5-post-closure-delivery.md)与 [最终决定](../evidence/B5/post-closure-9b63967/acceptance.json)。
 
 - **B5 完成，D3.04–D3.07 Passed；G3 Passed。** 各包正式前置按 DAG 依次提交，再形成 G3 决定。见 [B5/G3 交付](validation/B5-delivery.md)及 [G3 自动验收](../evidence/G3/acceptance-dacc540.json)。
