@@ -79,7 +79,7 @@ def main():
         consume(prefix)
         # 独立无测试生产配置也必须提供完整Foundation安装面。
         producer=work/'producer-no-tests'
-        run(['cmake','--preset','win-msvc-debug','-B',str(producer),'-DBUILD_TESTING=OFF','-DOCK_BUILD_G0_TESTS=OFF','-DOCK_BUILD_DEPENDENCY_PROBES=OFF','-DOCK_DEPENDENCY_COMPONENTS=Foundation','-DOCK_DEPENDENCIES_OFFLINE=ON'])
+        run(['cmake','--preset','win-msvc-debug','-B',str(producer),'-DBUILD_TESTING=OFF','-DOCK_BUILD_G0_TESTS=OFF','-DOCK_BUILD_DEPENDENCY_PROBES=OFF','-DOCK_BUILD_COMPONENTS=Runtime','-DOCK_DEPENDENCY_COMPONENTS=Foundation','-DOCK_DEPENDENCIES_OFFLINE=ON'])
         run(['cmake','--build',str(producer),'--config',args.config,'--target','ock_Runtime','--parallel','2','--','/nr:false'])
         consume(install(producer))
     elif args.case=='missing_dependency_rejected':

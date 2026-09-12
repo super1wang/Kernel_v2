@@ -26,6 +26,8 @@ class NativeAccess final {
       contracts::CppTypeToken, contracts::CppTypeToken) noexcept;
   static void dispatch(const registry::Catalog&, const NativeEntry&, const void*,
                         contracts::WorkContext&, void*);
+  static contracts::Result<contracts::AtomicDomainRef> resolve_domain(
+      const registry::Catalog&,const NativeEntry&,foundation::ObjectId);
   static contracts::Result<std::shared_ptr<registry::detail::AsyncDispatchPort>> prepare_async(
       const registry::Catalog&,const NativeEntry&,std::shared_ptr<contracts::PortLifetime>);
 };

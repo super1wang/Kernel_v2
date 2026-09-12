@@ -191,8 +191,8 @@ def main():
                 f"find_package(OCK 0.1.0 CONFIG REQUIRED COMPONENTS {component})",
             ]
             if component in ("CoreContracts", "Runtime"):
-                lines += ["if(NOT OCK_RUNTIME_AVAILABLE OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL NativeSubset)",
-                          'message(FATAL_ERROR "NativeSubset metadata missing")', "endif()"]
+                lines += ["if(NOT OCK_RUNTIME_AVAILABLE OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL B6Subset)",
+                          'message(FATAL_ERROR "B6Subset metadata missing")', "endif()"]
             (source / "CMakeLists.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
             configured, raw = command("installed-" + component, [
                 "cmake", "-S", str(source), "-B", str(source / "build"),

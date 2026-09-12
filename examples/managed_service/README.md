@@ -1,6 +1,6 @@
 # 受管理执行验证消费者
 
-开发 SDK `0.1.0-dev.6 / B5Subset` 支持将本目录复制到仓库之外，使用迁移后的安装目录独立构建。`find_package(OCK)` 取得 Control、AdapterLocalIPC、CpuPool 以及 `OCK_SCHEMA_DIR` 指向的已安装 RPC Schema；消费者不读取生产源码目录。
+开发 SDK `0.1.0-dev.7 / B6Subset` 支持将本目录复制到仓库之外，使用迁移后的安装目录独立构建。`find_package(OCK)` 取得 Control、AdapterLocalIPC、CpuPool 以及 `OCK_SCHEMA_DIR` 指向的已安装 RPC Schema；消费者不读取生产源码目录。
 
 ```powershell
 cmake -S . -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH=C:/sdk/ock

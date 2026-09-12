@@ -373,7 +373,8 @@ Result<void> RegistrationBatch::insert(
     std::size_t i, std::shared_ptr<const DefinitionSnapshot> s,
     const OperationOptions &o, std::shared_ptr<const void> handler,
     CppTypeToken ht, detail::HotEntry::NativeThunk native,
-    std::shared_ptr<const void> storage, CppTypeToken storage_type,detail::HotEntry::AsyncFactory async_factory) {
+    std::shared_ptr<const void> storage, CppTypeToken storage_type,detail::HotEntry::AsyncFactory async_factory,
+    detail::HotEntry::DomainThunk domain) {
   auto &m = modules_[i].manifest;
   auto &d = s->description();
   auto bad = [&](RegistryErrc c) { return fail(c, &m.name, &d.key); };
@@ -423,7 +424,7 @@ Result<void> RegistrationBatch::insert(
                      native,
                      {},
                      CppTypeToken::of<void>(),
-                     o.resources, std::move(storage), storage_type,async_factory};
+                     o.resources, std::move(storage), storage_type,async_factory,domain};
   if (read) {
     auto owner = service(i, *o.read_service, s->context_type());
     if (!owner)
@@ -448,6 +449,7 @@ Result<void> RegistrationBatch::insert(
             p.type_ != *s->provider_type())
           return bad(RegistryErrc::ProviderMismatch);
         h.owners.push_back(p.owner_);
+        h.provider_owner=p.owner_;h.provider_type=p.type_;
         found = true;
       }
     if (!found)

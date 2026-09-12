@@ -13,8 +13,8 @@ class NativeSurfaceTests(unittest.TestCase):
 
     def test_actual_native_surface(self):
         manifest = check.load_manifest()
-        self.assertEqual(manifest['stage'], 'B5Subset')
-        self.assertEqual(manifest['sdk_version'], '0.1.0-dev.6')
+        self.assertEqual(manifest['stage'], 'B6Subset')
+        self.assertEqual(manifest['sdk_version'], '0.1.0-dev.7')
         self.assertEqual(manifest['targets']['Runtime']['kind'], 'STATIC_LIBRARY')
         self.assertEqual(check.validate_manifest(manifest), [])
 

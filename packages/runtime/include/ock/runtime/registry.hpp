@@ -189,6 +189,9 @@ struct SubmissionStorage {
   std::size_t input_limit, reply_limit;
   Result<std::size_t> (*input_bytes)(const A&);
   Result<std::size_t> (*reply_bytes)(const InvokeReply<R>&);
+  // StateEdit 在发布前计量业务 R；Read/PureCompute 可留空。
+  Result<std::size_t> (*state_result_bytes)(
+      const std::conditional_t<std::same_as<R,void>,std::monostate,R>&)=nullptr;
 };
 // 热条目没有冷描述指针。处理器及其真实类型见证只可被注册器保存。
 namespace detail {
@@ -224,6 +227,7 @@ struct HotEntry final {
   using NativeThunk = void (*)(const HotEntry &, const void *, WorkContext &,
                                void *);
   using AsyncFactory=Result<std::shared_ptr<AsyncDispatchPort>> (*)(const HotEntry&,std::shared_ptr<PortLifetime>);
+  using DomainThunk=Result<AtomicDomainRef> (*)(const HotEntry&,foundation::ObjectId);
   Shape shape;
   std::shared_ptr<const void> handler;
   CppTypeToken handler_type;
@@ -237,7 +241,100 @@ struct HotEntry final {
   std::shared_ptr<const void> submission_storage;
   CppTypeToken submission_storage_type = CppTypeToken::of<void>();
   AsyncFactory async_factory=nullptr;
+  DomainThunk domain=nullptr;
+  std::shared_ptr<void> provider_owner;
+  CppTypeToken provider_type=CppTypeToken::of<void>();
 };
+template<ContractResult R> struct StateNativeCall {
+  StateNativeCall(const CallerView& caller,AtomicDomainRef domain,CommitId commit,ReservationId reservation,
+      std::shared_ptr<const ActionPermit> permit,std::shared_ptr<PermitAuthorityPort> authority,PermitBinding binding,
+      bool accepted)
+      :caller(&caller),domain(std::move(domain)),commit(commit),reservation(reservation),permit(std::move(permit)),
+       authority(std::move(authority)),binding(std::move(binding)),accepted(accepted) {}
+  const CallerView* caller=nullptr;
+  AtomicDomainRef domain;
+  CommitId commit;
+  ReservationId reservation;
+  std::shared_ptr<const ActionPermit> permit;
+  std::shared_ptr<PermitAuthorityPort> authority;
+  PermitBinding binding;
+  bool accepted=false;
+  std::optional<typename Outcome<R>::PreparedState> prepared_outcome;
+  std::optional<Outcome<R>> outcome;
+  std::optional<CommitReport> report;
+  std::shared_ptr<PublicationAuthorityPort> publication;
+  std::shared_ptr<const PublicationProof> proof;
+  std::optional<Error> failure;
+};
+
+template<class P> Result<AtomicDomainRef> provider_domain(const HotEntry& entry,foundation::ObjectId target) {
+  if(entry.provider_type!=CppTypeToken::of<P>()||!entry.provider_owner)
+    return make_unexpected(error(ContractsErrc::TypeMismatch));
+  return std::static_pointer_cast<AtomicProviderPort<P>>(entry.provider_owner)->resolve(target);
+}
+
+template<ContractValue A,ContractResult R,class P>
+void state_edit_native(const HotEntry& entry,const void* args,WorkContext& work,void* result) {
+  using Function=Result<R> (*)(const A&,EditView<P>&,WorkContext&);
+  auto& call=*static_cast<StateNativeCall<R>*>(result);
+  auto fail=[&](Error value){call.failure=value;};
+  if(!call.caller||entry.handler_type!=CppTypeToken::of<Function>()||entry.provider_type!=CppTypeToken::of<P>())
+    return fail(error(ContractsErrc::TypeMismatch));
+  auto provider=std::static_pointer_cast<AtomicProviderPort<P>>(entry.provider_owner);
+  auto inline_provider=std::dynamic_pointer_cast<InlineAtomicProviderPort<P>>(provider);
+  auto publication=std::dynamic_pointer_cast<PublicationAuthorityPort>(provider);
+  if(!inline_provider||!publication)return fail(error(ContractsErrc::InvalidContract));
+  auto frame=provider->begin(call.domain,*call.caller);if(!frame)return fail(frame.error());
+  auto base=provider->base(**frame);if(!base)return fail(base.error());
+  call.binding.lifecycle_generation=base->lifecycle_generation;
+  PreparedIdentity identity{call.commit,call.reservation,call.domain,base->revision,base->lifecycle_generation};
+  auto fn=std::static_pointer_cast<const Function>(entry.handler);
+  EditView<P> view((*frame)->edit,call.domain);
+  auto output=(*fn)(*static_cast<const A*>(args),view,work);
+  if(!output)return fail(output.error());
+  if constexpr(!std::same_as<R,void>) {
+    auto valid=TypeContract<R>::validate(*output);if(!valid)return fail(valid.error());
+    if(entry.submission_storage_type!=CppTypeToken::of<SubmissionStorage<A,R>>()||!entry.submission_storage)
+      return fail(error(ContractsErrc::InvalidContract));
+    auto storage=std::static_pointer_cast<const SubmissionStorage<A,R>>(entry.submission_storage);
+    if(!storage->state_result_bytes)return fail(error(ContractsErrc::InvalidContract));
+    auto bytes=storage->state_result_bytes(*output);if(!bytes)return fail(bytes.error());
+    constexpr std::size_t envelope=sizeof(InvokeReply<R>)+sizeof(KnownFacts)+2*sizeof(Fact)+256;
+    if(envelope>storage->reply_limit||*bytes>storage->reply_limit-envelope)
+      return fail(error(ContractsErrc::BudgetExceeded));
+  }
+  auto fact_id=[]<class To,class From>(const From& from){To to;to.bytes=from.bytes;return to;};
+  const auto revision=identity.base_revision+1;
+  FactId commit_fact=fact_id.template operator()<FactId>(identity.commit);
+  FactId publish_fact=commit_fact;publish_fact.bytes[0]^=0x80;
+  std::array<Fact,2> values{CommitFact{commit_fact,identity.commit,identity.domain,revision,CommitDurability::Memory},
+      PublishedFact{publish_fact,identity.commit,revision}};
+  auto facts=KnownFacts::create(values,{2,0,0});if(!facts)return fail(facts.error());
+  OutcomeConditions conditions{BeforeApplyDecision{true,ApplyDecision::ClaimWon,false,call.accepted},{},
+      {RequiredRecordState::NotRequired,0,0}};
+  auto outcome=Outcome<R>::prepare_state(StateCommitted<R>{identity.commit,identity.domain,revision,revision,
+      std::move(output)},std::move(*facts),EvidenceState::Volatile,conditions,{2,0,0});
+  if(!outcome)return fail(outcome.error());
+  call.prepared_outcome.emplace(std::move(*outcome));
+  auto prepared=provider->prepare(**frame,identity);if(!prepared)return fail(prepared.error());
+  auto report=inline_provider->commit_inline(*prepared,call.permit,call.authority,call.binding);
+  if(!report)return fail(report.error());
+  call.report=*report;
+  if(report->disposition!=CommitDisposition::Published) {
+    return fail(report->error.value_or(error(ContractsErrc::Rejected)));
+  }
+  try {
+    PublishedCommit published{identity.commit,identity.domain,identity.base_revision+1,identity.base_revision+1};
+    auto proof=publication->attest(published);
+    // commit_inline 已返回 Published；此后不一致属于可信实现损坏，不能伪报未应用。
+    foundation::invariant(bool(proof));
+    call.publication=std::move(publication);call.proof=std::move(*proof);
+    std::array<std::shared_ptr<const PublicationProof>,1> proofs{call.proof};
+    OutcomeValidation validation{*call.publication,proofs,{2,0,0}};
+    call.outcome.emplace(Outcome<R>::publish_state(std::move(*call.prepared_outcome),validation));
+    call.prepared_outcome.reset();
+  } catch(...) {std::terminate();}
+}
 
 template<AsyncInput A,ContractResult R,class Reader>
   requires (std::same_as<R,void> || AsyncInput<R>)
@@ -357,7 +454,8 @@ class RegistrationBatch final {
   Result<void> insert(std::size_t, std::shared_ptr<const DefinitionSnapshot>,
                       const OperationOptions &, std::shared_ptr<const void>,
                       CppTypeToken, detail::HotEntry::NativeThunk,
-                      std::shared_ptr<const void>, CppTypeToken,detail::HotEntry::AsyncFactory);
+                      std::shared_ptr<const void>, CppTypeToken,detail::HotEntry::AsyncFactory,
+                      detail::HotEntry::DomainThunk);
   Result<void> preflight(std::size_t, const DefinitionInput &,
                          const OperationOptions &);
   Result<std::shared_ptr<void>> service(std::size_t, const ServiceRef &,
@@ -388,7 +486,8 @@ class Registrar final {
                       detail::HotEntry::NativeThunk native,
                       std::shared_ptr<const void> storage = {},
                       CppTypeToken storage_type = CppTypeToken::of<void>(),
-                      detail::HotEntry::AsyncFactory async_factory=nullptr) {
+                      detail::HotEntry::AsyncFactory async_factory=nullptr,
+                      detail::HotEntry::DomainThunk domain=nullptr) {
     try {
       if (batch_.state_ != RegistrationBatch::State::Validating ||
           batch_.failed_)
@@ -402,7 +501,7 @@ class Registrar final {
                            &batch_.modules_[module_].manifest.name);
       return batch_.insert(module_, d->snapshot(), o,
                            std::make_shared<const F>(fn),
-                           CppTypeToken::of<F>(), native, std::move(storage), storage_type,async_factory);
+                           CppTypeToken::of<F>(), native, std::move(storage), storage_type,async_factory,domain);
     } catch (...) {
       batch_.fail(RegistryErrc::CallbackException);
       throw;
@@ -464,7 +563,20 @@ public:
                                          WorkContext &),
                           const DefinitionInput &d, const OperationOptions &o) {
     return accept(f, [&] { return make_state_edit_definition(f, d); }, d, o,
-                  nullptr);
+                  &detail::state_edit_native<A,R,P>,std::shared_ptr<const void>{},
+                  CppTypeToken::of<void>(),nullptr,&detail::provider_domain<P>);
+  }
+  template <AsyncInput A, ContractResult R, class P>
+    requires (!std::same_as<R,void> && AsyncInput<R>)
+  Result<void> state_edit(Result<R> (*f)(const A &, EditView<P> &,WorkContext &),
+                          const DefinitionInput& d,const OperationOptions& o,
+                          SubmissionStorage<A,R> storage) {
+    if(!storage.input_limit||!storage.reply_limit||!storage.input_bytes||!storage.reply_bytes||
+        !storage.state_result_bytes)return batch_.fail(RegistryErrc::InvalidDefinition);
+    return accept(f,[&]{return make_state_edit_definition(f,d);},d,o,
+        &detail::state_edit_native<A,R,P>,
+        std::make_shared<const SubmissionStorage<A,R>>(storage),
+        CppTypeToken::of<SubmissionStorage<A,R>>(),nullptr,&detail::provider_domain<P>);
   }
   template <ContractValue A, ContractResult R>
   Result<void> external_effect(EffectReport<R> (*f)(const A &, EffectContext &),

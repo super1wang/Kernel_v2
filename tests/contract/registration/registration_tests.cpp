@@ -523,15 +523,18 @@ void service_binding() {
 template <class P> class AtomicPort final : public AtomicProviderPort<P> {
 public:
   Result<std::unique_ptr<typename P::Frame>>
-  begin(const AtomicDomainRef &) override {
+  begin(const AtomicDomainRef &,const CallerView &) override {
     return std::make_unique<typename P::Frame>();
   }
+  Result<AtomicDomainRef> resolve(foundation::ObjectId) const override {return domain();}
+  Result<PreparedBase> base(const Provider::Frame&) const override {return PreparedBase{0,1};}
   Result<std::shared_ptr<const PreparedCommit>>
   prepare(typename P::Frame &, const PreparedIdentity &) override {
     return make_unexpected(error(ContractsErrc::Rejected));
   }
   Result<void> commit(std::shared_ptr<const PreparedCommit>,
                       std::shared_ptr<const ActionPermit>,
+                      std::shared_ptr<PermitAuthorityPort>,PermitBinding,
                       std::shared_ptr<CommitReceiver>) override {
     return {};
   }

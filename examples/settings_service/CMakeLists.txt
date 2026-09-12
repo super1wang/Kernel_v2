@@ -1,0 +1,5 @@
+add_executable(ock_settings_service main.cpp)
+target_link_libraries(ock_settings_service PRIVATE OCK::State ock_invocation_internal ock_registry_internal ock_policy_internal)
+target_include_directories(ock_settings_service PRIVATE "${PROJECT_SOURCE_DIR}")
+target_compile_features(ock_settings_service PRIVATE cxx_std_20)
+target_compile_options(ock_settings_service PRIVATE /utf-8 /Zc:__cplusplus /permissive- /EHsc)

@@ -4,19 +4,21 @@ import unittest
 from tools.architecture import check
 
 class B4SurfaceTests(unittest.TestCase):
-    def test_b5_metadata_and_selection(self):
-        m,g=self.graph();self.assertEqual(m['sdk_version'],'0.1.0-dev.6')
-        self.assertEqual(m['stage'],'B5Subset')
-        self.assertEqual(m['targets']['Runtime']['implementation'],'B5Subset')
+    def test_b6_metadata_and_selection(self):
+        m,g=self.graph();self.assertEqual(m['sdk_version'],'0.1.0-dev.7')
+        self.assertEqual(m['stage'],'B6Subset')
+        self.assertEqual(m['targets']['Runtime']['implementation'],'B6Subset')
         self.assertEqual(m['targets']['Control']['implementation'],'B5Subset')
-        self.assertEqual([],check.validate_manifest(m,g,'B5Subset'))
+        self.assertEqual(m['targets']['State']['implementation'],'B6Subset')
+        self.assertEqual([],check.validate_manifest(m,g,'B6Subset'))
     def graph(self):
         manifest=check.load_manifest()
         graph={name:{'kind':t['kind'],'dependencies':t['dependencies'],'system_dependencies':t.get('system_dependencies',[]),'implementation':t['implementation'],'external_dependencies':t.get('external_dependencies',[]),'compile_features':t['public_compile_features'],'compile_options':t['public_compile_options'],'compile_definitions':[]} for name,t in manifest['targets'].items()}
         return manifest,graph
 
     def test_cpu_is_real_and_private(self):
-        m,g=self.graph();self.assertEqual([],check.validate_manifest(m,g,'B4Subset'))
+        m,g=self.graph();g['State'].update(kind='INTERFACE_LIBRARY',implementation='ContractBaseline')
+        self.assertEqual([],check.validate_manifest(m,g,'B4Subset'))
         self.assertEqual(g['Adapter::CpuPool']['dependencies'],['CoreContracts'])
         g['Adapter::CpuPool']['external_dependencies']=['thread_pool']
         self.assertTrue(check.validate_manifest(m,g,'B4Subset'))
@@ -24,6 +26,7 @@ class B4SurfaceTests(unittest.TestCase):
     def test_b3_projection_must_not_claim_cpu(self):
         m,g=self.graph();self.assertTrue(check.validate_manifest(m,g,'B3Subset'))
         g['Adapter::CpuPool'].update(kind='INTERFACE_LIBRARY',implementation='ContractBaseline')
+        g['State'].update(kind='INTERFACE_LIBRARY',implementation='ContractBaseline')
         self.assertEqual([],check.validate_manifest(m,g,'B3Subset'))
         self.assertTrue(check.validate_manifest(m,g,'B4Subset'))
 

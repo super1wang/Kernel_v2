@@ -74,8 +74,21 @@ int main() try {
   CHECK((*made)->snapshot(*caller)->revision()==1&&permits.count==1);
   CHECK(!atomic.execute(*caller,std::span<const ock::state::AtomicStep>(&*pure,1),{},attempt(4,1),std::make_shared<Permit>(binding),permits,binding,work));
 
-  auto forbidden=description(AtomicMode::StateEdit,Shape::StateEdit);forbidden.form=AtomicForm::Await;
-  auto before_entries=edit_entries;CHECK(!ock::state::AtomicStep::state_edit(forbidden,Command{object,5},put,1024,1024));CHECK(edit_entries==before_entries);
+  auto before_entries=edit_entries;
+  for(auto form:{AtomicForm::Await,AtomicForm::Ticket,AtomicForm::Nested,AtomicForm::Conditional,AtomicForm::Loop,AtomicForm::Parallel}) {
+    auto forbidden=description(AtomicMode::StateEdit,Shape::StateEdit);forbidden.form=form;
+    CHECK(!ock::state::AtomicStep::state_edit(forbidden,Command{object,5},put,1024,1024));
+  }
+  for(auto malformed:{0,1,2}) {
+    auto forbidden=description(AtomicMode::StateEdit,Shape::StateEdit);
+    if(malformed==0)forbidden.complete=false;
+    if(malformed==1)forbidden.async_dispatch=true;
+    if(malformed==2)forbidden.external_wait=true;
+    CHECK(!ock::state::AtomicStep::state_edit(forbidden,Command{object,5},put,1024,1024));
+  }
+  auto wrong_shape=description(AtomicMode::StateEdit,Shape::Read);
+  CHECK(!ock::state::AtomicStep::state_edit(wrong_shape,Command{object,5},put,1024,1024));
+  CHECK(edit_entries==before_entries);
   std::vector<ock::state::AtomicStep> too_many(129,*edit);
   CHECK(!atomic.execute(*caller,too_many,{},attempt(5,1),std::make_shared<Permit>(binding),permits,binding,work));
 
@@ -84,17 +97,17 @@ int main() try {
 
   auto provider_domain=ock::state::StateDomain<ock::state::ObjectRoot>::create(object_domain(),{},domain_options,std::make_shared<Reads>(issuer));CHECK(provider_domain);
   auto provider_permits=std::make_shared<Permits>();
-  auto provider=ock::state::ObjectMemoryProvider::create(*provider_domain,*caller,atomic_options.edit,provider_permits,binding);CHECK(provider);
-  auto frame=(*provider)->begin(object_domain());CHECK(frame);
+  auto provider=ock::state::ObjectMemoryProvider::create(*provider_domain,atomic_options.edit);CHECK(provider);
+  auto frame=(*provider)->begin(object_domain(),*caller);CHECK(frame);
   EditView<ock::state::ObjectStateProvider> provider_view((*frame)->edit,object_domain());
   CHECK(put(Command{object,11},provider_view,work));CHECK((*frame)->candidate().find(object));
   auto public_prepared=(*provider)->prepare(**frame,attempt(20,0));CHECK(public_prepared);
   auto receiver=std::make_shared<Receiver>();
   auto forged=PreparedCommit::create(attempt(20,0),{},64);CHECK(forged);
-  CHECK(!(*provider)->commit(*forged,std::make_shared<Permit>(binding),receiver)&&receiver->calls==0);
-  CHECK((*provider)->commit(*public_prepared,std::make_shared<Permit>(binding),receiver));
+  CHECK(!(*provider)->commit(*forged,std::make_shared<Permit>(binding),provider_permits,binding,receiver)&&receiver->calls==0);
+  CHECK((*provider)->commit(*public_prepared,std::make_shared<Permit>(binding),provider_permits,binding,receiver));
   CHECK(receiver->calls==1&&receiver->report->disposition==CommitDisposition::Published);
   CHECK((*provider)->published(attempt(20,0))&&(*provider_domain)->snapshot(*caller)->value().find(object));
-  CHECK(!(*provider)->commit(*public_prepared,std::make_shared<Permit>(binding),receiver)&&receiver->calls==1);
+  CHECK(!(*provider)->commit(*public_prepared,std::make_shared<Permit>(binding),provider_permits,binding,receiver)&&receiver->calls==1);
   return 0;
 } catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

@@ -455,6 +455,55 @@ public:
   Outcome(const Outcome &) = default;
   Outcome &operator=(const Outcome &) = delete;
   Outcome &operator=(Outcome &&) = delete;
+  class PreparedState final {
+    friend class Outcome<R>;
+    PreparedState(StateCommitted<R> value,
+                  std::shared_ptr<const KnownFacts> facts,
+                  EvidenceState evidence, OutcomeConditions conditions)
+        : value_(std::move(value)), facts_(std::move(facts)), evidence_(evidence),
+          conditions_(std::move(conditions)) {}
+    StateCommitted<R> value_;
+    std::shared_ptr<const KnownFacts> facts_;
+    EvidenceState evidence_;
+    OutcomeConditions conditions_;
+  public:
+    PreparedState(PreparedState&&)=default;
+    PreparedState(const PreparedState&)=delete;
+  };
+  // State 的业务结果、事实和全部拥有型材料在 CommitClaimed 前完成验证。
+  // 最终封口仍强制校验真实 PublicationProof，不提供跳过发布门的入口。
+  static Result<PreparedState> prepare_state(StateCommitted<R> value,
+      std::shared_ptr<const KnownFacts> facts, EvidenceState evidence,
+      const OutcomeConditions& conditions, FactBudget budget) {
+    if(!facts)return make_unexpected(error(ContractsErrc::InvalidFact));
+    class PreparedProof final : public PublicationProof {};
+    class PreparedAuthority final : public PublicationAuthorityPort {
+    public:
+      Result<std::shared_ptr<const PublicationProof>> attest(const PublishedCommit&) override {
+        return make_unexpected(error(ContractsErrc::InvalidPhase));
+      }
+      Result<void> validate(const PublicationProof&,const PublishedCommit&) const override {return {};}
+    };
+    static PreparedProof proof;
+    static PreparedAuthority publication;
+    std::shared_ptr<const PublicationProof> borrowed(
+        std::shared_ptr<const PublicationProof>{},&proof);
+    std::array<std::shared_ptr<const PublicationProof>,1> proofs{std::move(borrowed)};
+    OutcomeValidation validation{publication,proofs,budget};
+    Candidate candidate{value};
+    auto checked=verify(candidate,*facts,evidence,conditions,validation);
+    if(!checked)return make_unexpected(checked.error());
+    return PreparedState{std::move(value),std::move(facts),evidence,conditions};
+  }
+  static Outcome publish_state(PreparedState prepared,const OutcomeValidation& validation) noexcept {
+    try {
+      auto verified=verify_publications(*prepared.facts_,validation);
+      // 已发布后的证明不一致是可信 provider/Runtime 的内部不变量损坏，不能降级为未应用失败。
+      foundation::invariant(bool(verified));
+      return Outcome{Candidate{std::move(prepared.value_)},std::move(prepared.facts_),
+          prepared.evidence_,std::move(prepared.conditions_)};
+    } catch(...) {std::terminate();}
+  }
   static Result<Outcome> validate(Candidate candidate,
                                   std::shared_ptr<const KnownFacts> facts,
                                   EvidenceState evidence,
@@ -572,23 +621,8 @@ private:
       if (f.repair != expected)
         return reject(ContractsErrc::InvalidFact);
     }
-    for (const auto &f : fs.values())
-      if (auto published = std::get_if<PublishedFact>(&f)) {
-        const CommitFact *commit = nullptr;
-        for (const auto &x : fs.values())
-          if (auto cf = std::get_if<CommitFact>(&x);
-              cf && cf->commit == published->commit)
-            commit = cf;
-        PublishedCommit expected{commit->commit, commit->domain,
-                                 commit->revision,
-                                 published->published_version};
-        bool proven = false;
-        for (const auto &proof : v.proofs)
-          if (proof && v.publication.validate(*proof, expected))
-            proven = true;
-        if (!proven)
-          return reject(ContractsErrc::InvalidProof);
-      }
+    auto publications=verify_publications(fs,v);
+    if(!publications)return publications;
     const auto unknown_count = detail::count_unresolved(fs);
     bool has_applied = detail::applied(fs);
     if (c.before_apply && (c.before_apply->decision > ApplyDecision::ClaimWon ||
@@ -700,6 +734,19 @@ private:
           }
         },
         value);
+  }
+  static Result<void> verify_publications(const KnownFacts& fs,const OutcomeValidation& v) {
+    for(const auto& f:fs.values())if(auto published=std::get_if<PublishedFact>(&f)) {
+      const CommitFact* commit=nullptr;
+      for(const auto& x:fs.values())if(auto cf=std::get_if<CommitFact>(&x);
+          cf&&cf->commit==published->commit)commit=cf;
+      if(!commit)return reject(ContractsErrc::InvalidFact);
+      PublishedCommit expected{commit->commit,commit->domain,commit->revision,published->published_version};
+      bool proven=false;
+      for(const auto& proof:v.proofs)if(proof&&v.publication.validate(*proof,expected))proven=true;
+      if(!proven)return reject(ContractsErrc::InvalidProof);
+    }
+    return {};
   }
   Candidate value_;
   std::shared_ptr<const KnownFacts> facts_;

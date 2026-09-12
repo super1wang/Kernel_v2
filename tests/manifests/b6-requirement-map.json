@@ -1,0 +1,90 @@
+{
+  "status": "PlannedBeforeFormalRun",
+  "task_id": "D4.04",
+  "scope": "B6 D4.01-D4.04",
+  "requirements": {
+    "D4.01": [
+      "T24.state.settings_service",
+      "T24.state.installed_consumer",
+      "T08.state.frozen_roots",
+      "T08.state.snapshot_ownership",
+      "T23.state.structural_sharing_cost"
+    ],
+    "D4.02": [
+      "T09.state.object_references",
+      "T09.state.memory_commit",
+      "T02.contracts.context_capability_boundary"
+    ],
+    "D4.03": [
+      "T09.state.memory_commit",
+      "T06.state.runtime_native",
+      "T06.contracts.outcome_closed_variants",
+      "T06.contracts.publication_proof_required",
+      "T06.contracts.before_apply_and_composite_proofs",
+      "T06.contracts.atomic_prepared_identity",
+      "T07.policy.cancel_arbitration",
+      "T07.policy.consume_before_revoke",
+      "T07.policy.expiry_boundary",
+      "T07.policy.permit_concurrent",
+      "T07.policy.permit_once",
+      "T07.policy.permit_origin_binding",
+      "T07.policy.revoke_before_consume",
+      "T07.policy.target_lifecycle",
+      "T03.native.cancel_and_budget",
+      "T03.native.no_task_path",
+      "T03.native.reentrant_and_concurrent",
+      "T06.native.authority_origin",
+      "T06.native.business_failure",
+      "T06.native.invalid_output",
+      "T06.native.managed_accepted_failures",
+      "T06.native.outcome_consistency",
+      "T06.native.permission_intersection",
+      "T06.native.revoke_and_regrant",
+      "T06.native.target_binding"
+    ],
+    "D4.04": [
+      "T10.state.atomic_group",
+      "T06.state.runtime_native",
+      "T02.contracts.state_edit_shape",
+      "T02.contracts.atomic_read_adapters",
+      "T02.contracts.atomic_async_rejected",
+      "T02.registration.atomic_candidate_contract",
+      "T02.registration.provider_binding",
+      "T02.registration.service_binding",
+      "T02.registration.shape_compile_contract",
+      "T05.registration.typed_binding_success",
+      "T02.native.candidate_read_dispatch",
+      "T02.native.invalid_input",
+      "T02.native.validation_exception",
+      "T03.native.managed_execution_path",
+      "T03.native.managed_record",
+      "T03.native.managed_record_ownership",
+      "T03.native.provider_unavailable",
+      "T03.native.thread_modes"
+    ],
+    "SDK/Profile": [
+      "T24.sdk.version_header",
+      "T01.architecture.dependency_dag",
+      "T01.architecture.negative_guards",
+      "T24.sdk.install_and_missing_components",
+      "T01.contracts.component_closure",
+      "T01.contracts.public_include_boundary",
+      "T24.contracts.public_headers",
+      "T24.contracts.installed_component_consumer"
+    ],
+    "Performance": [
+      "T23.state.structural_sharing_cost",
+      "T23.native.allocation_governance",
+      "T23.native.allocation_other_costs",
+      "T23.native.allocation_probe",
+      "T23.native.allocation_steady"
+    ],
+    "Harness": [
+      "T02.contracts.compile_fixture_setup"
+    ]
+  },
+  "notes": [
+    "同一用例可映射多个包；逻辑验收独立，物理执行共享。",
+    "Embedded/Runtime 裁剪和受影响完整 footprint 由 B6 交付材料中的独立正式报告绑定，不混入 CTest discovered。"
+  ]
+}

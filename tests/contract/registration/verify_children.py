@@ -48,7 +48,7 @@ def main():
   assert (prefix/'include/ock/runtime/registry.hpp').is_file()
   for component in ('CoreContracts','Runtime','Data'):
    source=out/component;source.mkdir();lines=['cmake_minimum_required(VERSION 3.25)','project(InstalledRegistryBoundary LANGUAGES NONE)',f'find_package(OCK 0.1.0 CONFIG REQUIRED COMPONENTS {component})']
-   if component in ('CoreContracts','Runtime'):lines+=['if(NOT OCK_RUNTIME_AVAILABLE OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL NativeSubset)','message(FATAL_ERROR "NativeSubset metadata missing")','endif()']
+   if component in ('CoreContracts','Runtime'):lines+=['if(NOT OCK_RUNTIME_AVAILABLE OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL B6Subset)','message(FATAL_ERROR "B6Subset metadata missing")','endif()']
    (source/'CMakeLists.txt').write_text('\n'.join(lines)+'\n')
    r,raw=command('installed-'+component,['cmake','-S',str(source),'-B',str(source/'build'),f'-DOCK_DIR={prefix}/lib/cmake/OCK'])
    if component in ('CoreContracts','Runtime'):assert good(r)

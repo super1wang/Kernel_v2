@@ -98,7 +98,7 @@ def collect(args):
         run('architecture',[sys.executable,'-X','utf8',str(ROOT/'tools/architecture/check.py'),'--graph',str(producer/'ock-target-graph.json')])
         run('install',['cmake','--install',str(producer),'--config',configuration,'--prefix',str(prefix)])
         manifest=read_json(prefix/'share/ock/sdk_api_manifest.json')
-        if manifest['installation_profile']!='Embedded' or manifest['sdk_version']!='0.1.0-dev.6':raise ValueError('wrong installed SDK')
+        if manifest['installation_profile']!='Embedded' or manifest['sdk_version']!='0.1.0-dev.7':raise ValueError('wrong installed SDK')
         installed=[item(p) for p in sorted(prefix.rglob('*')) if p.is_file()];inventory.extend(installed)
         save_json(out/'installed.json',installed)
         for name in ('CMakeCache.txt','ock-target-graph.json','dependency-acquisition.json'):

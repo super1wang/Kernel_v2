@@ -155,6 +155,7 @@ public:
       if(!committed)return foundation::make_unexpected(committed.error());
       return AtomicExecution{std::move(values),std::move(*committed)};
     } catch(const std::bad_alloc&) {return foundation::make_unexpected(error(StateErrc::BudgetExceeded));}
+    catch(...) {return foundation::make_unexpected(error(StateErrc::InvalidCandidate));}
   }
 private:
   std::shared_ptr<StateDomain<ObjectRoot>> domain_;

@@ -1,3 +1,6 @@
+#define NOMINMAX
+#include <Windows.h>
+#include <bcrypt.h>
 #include "validation.hpp"
 #include "invocation.hpp"
 #include <algorithm>
@@ -58,7 +61,23 @@ void NativeAccess::dispatch(const registry::Catalog& catalog, const NativeEntry&
   foundation::invariant(hot.native && catalog.cold_[*slot].get()==entry.definition.get());
   hot.native(hot,args,work,result);
 }
+Result<AtomicDomainRef> NativeAccess::resolve_domain(const registry::Catalog& catalog,const NativeEntry& entry,
+    foundation::ObjectId target) {
+  auto slot=foundation::resolve_slot(entry.handle,catalog.identity(),catalog.generation(),catalog.size());
+  if(!slot||catalog.cold_[*slot].get()!=entry.definition.get()||!catalog.hot_[*slot].domain)
+    return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
+  try {return catalog.hot_[*slot].domain(catalog.hot_[*slot],target);}
+  catch(...) {return make_unexpected(invocation_error(InvocationErrc::ProviderUnavailable));}
+}
 namespace detail {
+Result<CommitIds> new_commit_ids() noexcept {
+  CommitIds result;
+  if(BCryptGenRandom(nullptr,result.commit.bytes.data(),static_cast<ULONG>(result.commit.bytes.size()),BCRYPT_USE_SYSTEM_PREFERRED_RNG)<0||
+     BCryptGenRandom(nullptr,result.reservation.bytes.data(),static_cast<ULONG>(result.reservation.bytes.size()),BCRYPT_USE_SYSTEM_PREFERRED_RNG)<0||
+     result.commit.empty()||result.reservation.empty())
+    return make_unexpected(invocation_error(InvocationErrc::BudgetExceeded));
+  return result;
+}
 struct EngineState {
   std::shared_ptr<const registry::Catalog> catalog;
   std::shared_ptr<policy::SessionAuthority> session;

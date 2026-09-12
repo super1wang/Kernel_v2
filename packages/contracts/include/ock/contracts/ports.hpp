@@ -128,15 +128,27 @@ class CommitReceiver : public PortLifetime {
 public:
   virtual void completed(CommitReport) noexcept = 0;
 };
+struct PreparedBase {std::uint64_t revision,lifecycle_generation;};
 template <class P> class AtomicProviderPort : public PortLifetime {
 public:
   virtual Result<std::unique_ptr<typename P::Frame>>
-  begin(const AtomicDomainRef &) = 0;
+  begin(const AtomicDomainRef &,const CallerView &) = 0;
+  virtual Result<AtomicDomainRef> resolve(foundation::ObjectId) const = 0;
+  virtual Result<PreparedBase> base(const typename P::Frame &) const = 0;
   virtual Result<std::shared_ptr<const PreparedCommit>>
   prepare(typename P::Frame &, const PreparedIdentity &) = 0;
   virtual Result<void> commit(std::shared_ptr<const PreparedCommit>,
                               std::shared_ptr<const ActionPermit>,
+                              std::shared_ptr<PermitAuthorityPort>,
+                              PermitBinding,
                               std::shared_ptr<CommitReceiver>) = 0;
+};
+// 内存 provider 可保证调用返回前给出唯一 CommitReport；Native/managed 同步
+// StateEdit 只接收此能力，不能把潜在迟到 callback 误报为未应用。
+template <class P> class InlineAtomicProviderPort : public AtomicProviderPort<P> {
+public:
+  virtual Result<CommitReport> commit_inline(std::shared_ptr<const PreparedCommit>,
+      std::shared_ptr<const ActionPermit>,std::shared_ptr<PermitAuthorityPort>,PermitBinding) noexcept=0;
 };
 struct RecordRequest {
   ExecutionRef execution;

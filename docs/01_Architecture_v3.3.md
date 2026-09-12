@@ -332,6 +332,8 @@ Outbox dispatcher 同样不能早于 Published 交付该本机提交的业务成
 
 CoreContracts 只定义 AtomicProviderKey、AtomicDomainRef、受限运行帧、prepared commit 与提交结果端口。State 是默认实现，不是 Runtime 必选项。简单类型化配置 provider 与通用对象表 provider 实现相同的提交契约。
 
+B6 实施细化见 [AtomicProvider 调用期权威 ADR](adr/ADR-b6-atomic-provider-context.md)：provider 由实际 target 解析 domain，`begin` 接收当前 caller，frame 暴露真实 base revision/lifecycle，commit 接收调用期 permit authority 与协调器保存的 expected binding。同步 Native/managed StateEdit 只接入显式 `InlineAtomicProviderPort` 的内存实现；普通 callback provider 仍须由拥有型异步协调器排空。该补充不增加 State 对 Runtime 的依赖，也不使 PreparedCommit DTO 获得候选所有权。
+
 ```text
 Domain → PublishedState{revision, immutable_root, history_cursor, lifecycle_generation}
 SnapshotHandle → owning PublishedState

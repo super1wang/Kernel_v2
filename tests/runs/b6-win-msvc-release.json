@@ -1,0 +1,121 @@
+{
+  "format": "ock.run-manifest/1",
+  "task_id": "D4.04",
+  "source_patterns": [
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    "dependencies.lock",
+    "THIRD_PARTY_NOTICES",
+    "cmake/**",
+    "packages/**",
+    "sdk/**",
+    "schemas/**",
+    "tests/**",
+    "tools/**",
+    "examples/**",
+    "docs/contracts/**",
+    "docs/toolchain.md",
+    "docs/01_Architecture_v3.3.md",
+    "docs/02_Execution_Plan_v3.3.md",
+    "AGENTS.md",
+    "docs/adr/README.md",
+    "docs/adr/ADR-b6-atomic-provider-context.md",
+    "docs/plans/B6.md",
+    "docs/reviews/B6-review.md",
+    "footprint-budgets.json"
+  ],
+  "required_artifacts": [
+    "docs/plans/B6.md",
+    "docs/reviews/B6-review.md",
+    "tests/manifests/b6-requirement-map.json",
+    "docs/adr/ADR-b6-atomic-provider-context.md",
+    ".gitattributes",
+    "footprint-budgets.json",
+    "docs/reviews/B6-embedded-budget-decision.md"
+  ],
+  "expected_manifest": "tests/manifests/b6.expected.json",
+  "dependency_lock": "dependencies.lock",
+  "test_regex": "^(T24\\.state\\.settings_service|T24\\.state\\.installed_consumer|T08\\.state\\.frozen_roots|T08\\.state\\.snapshot_ownership|T23\\.state\\.structural_sharing_cost|T09\\.state\\.object_references|T09\\.state\\.memory_commit|T02\\.contracts\\.context_capability_boundary|T06\\.state\\.runtime_native|T06\\.contracts\\.outcome_closed_variants|T06\\.contracts\\.publication_proof_required|T06\\.contracts\\.before_apply_and_composite_proofs|T06\\.contracts\\.atomic_prepared_identity|T07\\.policy\\.cancel_arbitration|T07\\.policy\\.consume_before_revoke|T07\\.policy\\.expiry_boundary|T07\\.policy\\.permit_concurrent|T07\\.policy\\.permit_once|T07\\.policy\\.permit_origin_binding|T07\\.policy\\.revoke_before_consume|T07\\.policy\\.target_lifecycle|T03\\.native\\.cancel_and_budget|T03\\.native\\.no_task_path|T03\\.native\\.reentrant_and_concurrent|T06\\.native\\.authority_origin|T06\\.native\\.business_failure|T06\\.native\\.invalid_output|T06\\.native\\.managed_accepted_failures|T06\\.native\\.outcome_consistency|T06\\.native\\.permission_intersection|T06\\.native\\.revoke_and_regrant|T06\\.native\\.target_binding|T10\\.state\\.atomic_group|T02\\.contracts\\.state_edit_shape|T02\\.contracts\\.atomic_read_adapters|T02\\.contracts\\.atomic_async_rejected|T02\\.registration\\.atomic_candidate_contract|T02\\.registration\\.provider_binding|T02\\.registration\\.service_binding|T02\\.registration\\.shape_compile_contract|T05\\.registration\\.typed_binding_success|T02\\.native\\.candidate_read_dispatch|T02\\.native\\.invalid_input|T02\\.native\\.validation_exception|T03\\.native\\.managed_execution_path|T03\\.native\\.managed_record|T03\\.native\\.managed_record_ownership|T03\\.native\\.provider_unavailable|T03\\.native\\.thread_modes|T24\\.sdk\\.version_header|T01\\.architecture\\.dependency_dag|T01\\.architecture\\.negative_guards|T24\\.sdk\\.install_and_missing_components|T01\\.contracts\\.component_closure|T01\\.contracts\\.public_include_boundary|T24\\.contracts\\.public_headers|T24\\.contracts\\.installed_component_consumer|T23\\.native\\.allocation_governance|T23\\.native\\.allocation_other_costs|T23\\.native\\.allocation_probe|T23\\.native\\.allocation_steady|T02\\.contracts\\.compile_fixture_setup)$",
+  "repeat": 1,
+  "timeout_seconds": 1800,
+  "checks": [],
+  "review_policy": {
+    "format": "ock.review-policy-binding/1",
+    "mode": "ai-self-review",
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+  },
+  "review_required": [
+    "spec",
+    "code"
+  ],
+  "review_records": [
+    "docs/reviews/B6-spec.json",
+    "docs/reviews/B6-code.json"
+  ],
+  "runtime_artifact_patterns": [
+    "evidence/bootstrap/B6/state-install-*/*"
+  ],
+  "required_runtime_artifacts": [
+    {
+      "pattern": "evidence/bootstrap/B6/state-install-*/result.json",
+      "minimum": 1
+    }
+  ],
+  "profile": "win-msvc-release",
+  "configuration": "Release",
+  "preset": "win-msvc-release",
+  "asan": false,
+  "build_dir": "build/b6-formal-release",
+  "configure": [
+    "cmake",
+    "--preset",
+    "win-msvc-release",
+    "-B",
+    "build/b6-formal-release",
+    "-DOCK_BUILD_COMPONENTS=B6Subset",
+    "-DOCK_DEPENDENCY_COMPONENTS=CLI;CpuPool;State",
+    "-DOCK_DEPENDENCIES_OFFLINE=ON",
+    "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+    "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+    "-DOCK_BUILD_G0_TESTS=OFF",
+    "-DOCK_BUILD_EXECUTION_MODEL_TESTS=OFF",
+    "-DOCK_BUILD_FOUNDATION_TESTS=OFF",
+    "-DOCK_BUILD_CORE_CONTRACTS_TESTS=ON",
+    "-DOCK_BUILD_REGISTRATION_TESTS=ON",
+    "-DOCK_BUILD_AUTHORIZATION_TESTS=ON",
+    "-DOCK_BUILD_NATIVE_TESTS=ON",
+    "-DOCK_BUILD_HOST_TESTS=OFF",
+    "-DOCK_BUILD_LOGGING_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_SDK_TESTS=OFF",
+    "-DOCK_BUILD_FOOTPRINT_TESTS=OFF",
+    "-DOCK_BUILD_B4_TESTS=OFF",
+    "-DOCK_BUILD_STATE_TESTS=ON",
+    "-DOCK_ENABLE_ASAN=OFF"
+  ],
+  "build": [
+    "cmake",
+    "--build",
+    "build/b6-formal-release",
+    "--config",
+    "Release",
+    "--parallel",
+    "4",
+    "--",
+    "/nr:false"
+  ],
+  "build_outputs": [
+    "build/b6-formal-release/CMakeCache.txt",
+    "build/b6-formal-release/ock-target-graph.json",
+    "build/b6-formal-release/toolchain-Release.json",
+    "build/b6-formal-release/dependency-acquisition.json",
+    "build/b6-formal-release/CTestTestfile.cmake",
+    "build/b6-formal-release/CMakeFiles/CMakeConfigureLog.yaml",
+    "build/b6-formal-release/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake",
+    "build/b6-formal-release/Release/ock_Runtime.lib",
+    "build/b6-formal-release/Release/ock_State.lib",
+    "build/b6-formal-release/tests/unit/state_roots/Release/ock_state_runtime.exe",
+    "build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe"
+  ],
+  "toolchain_artifact": "build/b6-formal-release/toolchain-Release.json"
+}

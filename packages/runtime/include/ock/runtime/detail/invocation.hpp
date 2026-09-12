@@ -69,6 +69,8 @@ struct FinalObservation {
   std::optional<foundation::ErrorCode> error;
   ~FinalObservation() {state.observe(kind,error);}
 };
+struct CommitIds {CommitId commit;ReservationId reservation;};
+Result<CommitIds> new_commit_ids() noexcept;
 bool same_targets(std::span<const foundation::ObjectId>,
                   std::span<const foundation::ObjectId>) noexcept;
 Result<void> check_thread(const BoundState&) noexcept;
@@ -95,6 +97,19 @@ Result<policy::InlineAdmission> validate_call(const BoundState& state,
     return make_unexpected(invocation_error(InvocationErrc::InvalidBinding));
   return state.authorization->admit(*state.entry->definition,
       std::span(actual).first(*count), options.stop, options.deadline);
+}
+template <ContractValue A>
+Result<void> validate_state_request(const BoundState& state,std::size_t slot,
+    TargetProjection<A> projection,const A& args,const InvokeOptions& options) {
+  auto valid=TypeContract<A>::validate(args);if(!valid)return valid;
+  auto& actual=state.slots[slot].targets;auto count=projection(args,actual);
+  if(!count)return make_unexpected(count.error());
+  if(!*count||*count>actual.size()||!same_targets(state.targets,std::span(actual).first(*count)))
+    return make_unexpected(invocation_error(InvocationErrc::InvalidInput));
+  if(!options.work_limit||options.work_limit>state.budget.work_units)
+    return make_unexpected(invocation_error(InvocationErrc::BudgetExceeded));
+  if(options.stop.stop_requested())return make_unexpected(invocation_error(InvocationErrc::Cancelled));
+  return {};
 }
 template <class R> Result<Outcome<R>> outcome_read(
     Result<R> result, std::shared_ptr<const KnownFacts> facts,bool accepted=false) {
@@ -169,12 +184,17 @@ private:
       auto current=NativeAccess::check(*state->catalog,*state->entry,
                                       CppTypeToken::of<A>(),CppTypeToken::of<R>());
       if (!current) return current;
-      if (state->entry->shape!=Shape::Read ||
+      if ((state->entry->shape!=Shape::Read&&state->entry->shape!=Shape::StateEdit) ||
           (state->entry->execution.requires_external_wait&&!state->entry->asynchronous_read))
         return make_unexpected(invocation_error(InvocationErrc::ProviderUnavailable));
-      auto admission=detail::validate_call(*state,*slot,projection_,args,options);
-      if (!admission) return make_unexpected(admission.error());
-      if(deadline)*deadline=admission->deadline();
+      if(state->entry->shape==Shape::StateEdit) {
+        auto valid=detail::validate_state_request(*state,*slot,projection_,args,options);
+        if(!valid)return valid;if(deadline)*deadline=options.deadline;
+      } else {
+        auto admission=detail::validate_call(*state,*slot,projection_,args,options);
+        if (!admission) return make_unexpected(admission.error());
+        if(deadline)*deadline=admission->deadline();
+      }
       return {};
     } catch (const std::bad_alloc&) {
       return make_unexpected(invocation_error(InvocationErrc::BudgetExceeded));
@@ -229,7 +249,7 @@ private:
       auto current = NativeAccess::check(*state->catalog, *state->entry,
                                          CppTypeToken::of<A>(), CppTypeToken::of<R>());
       if (!current) return rejected(current.error());
-      if (state->entry->shape != Shape::Read)
+      if (state->entry->shape != Shape::Read&&state->entry->shape!=Shape::StateEdit)
         return rejected(invocation_error(InvocationErrc::ProviderUnavailable));
       if(state->entry->asynchronous_read)
         return rejected(invocation_error(InvocationErrc::SubmitRequired));
@@ -240,25 +260,51 @@ private:
         return rejected(invocation_error(InvocationErrc::ResourceUnavailable));
       auto thread = managed ? detail::check_managed_thread(*state) : detail::check_thread(*state);
       if (!thread) return rejected(thread.error());
-      auto admitted = detail::validate_call(*state,*slot,projection,args,options);
-      if (!admitted) return rejected(admitted.error());
-      admission.emplace(std::move(*admitted));
-      if(auto scope=std::dynamic_pointer_cast<registry::detail::InvocationScopePort>(execution))
-        scope->admitted(admission->deadline());
       auto budget = foundation::CheckedCount<std::uint64_t>::create(0, options.work_limit);
       if (!budget) return rejected(budget.error());
-      WorkContext work(options.stop, admission->deadline(), *budget, state->trace,
-                       BorrowedResourceViews{resources},std::move(execution));
-      std::optional<Result<R>> result;
-      entered = true;
-      NativeAccess::dispatch(*state->catalog, *state->entry, &args, work, &result);
-      if (!result) return failed(invocation_error(InvocationErrc::InvalidOutput));
-      if (!*result) return failed(result->error());
-      auto completed = detail::outcome_read<R>(std::move(*result), state->empty_facts,managed);
-      if (!completed) return failed(completed.error());
-      InvokeReply<R> reply{Completed<R>{std::move(*completed)}};
-      observation.kind=InvocationRecordKind::ReadCompleted;observation.error.reset();
-      return reply;
+      if(state->entry->shape==Shape::Read) {
+        auto admitted = detail::validate_call(*state,*slot,projection,args,options);
+        if (!admitted) return rejected(admitted.error());
+        admission.emplace(std::move(*admitted));
+        if(auto scope=std::dynamic_pointer_cast<registry::detail::InvocationScopePort>(execution))
+          scope->admitted(admission->deadline());
+        WorkContext work(options.stop, admission->deadline(), *budget, state->trace,
+                         BorrowedResourceViews{resources},std::move(execution));
+        std::optional<Result<R>> result;entered = true;
+        NativeAccess::dispatch(*state->catalog, *state->entry, &args, work, &result);
+        if (!result) return failed(invocation_error(InvocationErrc::InvalidOutput));
+        if (!*result) return failed(result->error());
+        auto completed = detail::outcome_read<R>(std::move(*result), state->empty_facts,managed);
+        if (!completed) return failed(completed.error());
+        observation.kind=InvocationRecordKind::ReadCompleted;observation.error.reset();
+        return InvokeReply<R>{Completed<R>{std::move(*completed)}};
+      }
+      if(state->targets.empty())return rejected(invocation_error(InvocationErrc::InvalidBinding));
+      // provider/domain 是冻结绑定能力；先确认它仍可用，再运行客户端输入投影。
+      auto domain=NativeAccess::resolve_domain(*state->catalog,*state->entry,state->targets.front());
+      if(!domain)return rejected(invocation_error(InvocationErrc::ProviderUnavailable));
+      auto request_valid=detail::validate_state_request(*state,*slot,projection,args,options);
+      if(!request_valid)return rejected(request_valid.error());
+      auto& actual=state->slots[*slot].targets;
+      auto count=projection(args,actual);foundation::invariant(bool(count)&&*count>0);
+      if(actual[0]!=domain->domain_id)return rejected(invocation_error(InvocationErrc::InvalidInput));
+      const policy::OperationSelector selector{state->entry->definition->description().key,
+          state->entry->definition->description().contract_digest};
+      policy::ActionRequest request{selector,domain->domain_id,
+          {{selector,std::vector<foundation::ObjectId>(actual.begin(),actual.begin()+*count)}},options.deadline};
+      auto action=state->session->prepare(*state->caller,request);if(!action)return rejected(action.error());
+      auto permit=(*action)->issue();if(!permit)return rejected(permit.error());
+      auto binding=(*action)->current_expected_binding();if(!binding)return rejected(binding.error());
+      auto ids=detail::new_commit_ids();if(!ids)return rejected(ids.error());
+      if(auto scope=std::dynamic_pointer_cast<registry::detail::InvocationScopePort>(execution))scope->admitted(binding->deadline);
+      WorkContext work(options.stop,binding->deadline,*budget,state->trace,BorrowedResourceViews{resources},std::move(execution));
+      registry::detail::StateNativeCall<R> call{state->caller->view(),*domain,ids->commit,ids->reservation,*permit,*action,*binding,managed};
+      entered=true;NativeAccess::dispatch(*state->catalog,*state->entry,&args,work,&call);
+      if(call.failure)return failed(*call.failure);
+      if(!call.outcome||!call.report||call.report->disposition!=CommitDisposition::Published||!call.publication||!call.proof)
+        return failed(invocation_error(InvocationErrc::InvalidOutput));
+      observation.kind=InvocationRecordKind::StateCommitted;observation.error.reset();
+      return InvokeReply<R>{Completed<R>{std::move(*call.outcome)}};
     } catch (const std::bad_alloc&) {
       auto error = invocation_error(InvocationErrc::BudgetExceeded);
       return entered ? failed(error) : rejected(error);
@@ -627,9 +673,15 @@ private:
       auto bytes=policy_.reply_bytes(reply);
       if(!bytes || *bytes>policy_.reply_limit) {
         fail_measurement();
+        const auto& outcome=std::get<contracts::Completed<R>>(reply).outcome;
+        if(std::holds_alternative<contracts::StateCommitted<R>>(outcome.value()))
+          reply_bytes_=policy_.reply_limit;
       } else reply_bytes_=*bytes;
     } catch(...) {
       fail_measurement();
+      const auto& outcome=std::get<contracts::Completed<R>>(reply).outcome;
+      if(std::holds_alternative<contracts::StateCommitted<R>>(outcome.value()))
+        reply_bytes_=policy_.reply_limit;
     }
     reply_.emplace(std::move(reply));
     if(release) {input_.reset();call_.reset();settled_.store(true,std::memory_order_release);}

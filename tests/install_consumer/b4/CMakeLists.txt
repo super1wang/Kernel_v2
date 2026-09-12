@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 project(OCKB4InstalledConsumer LANGUAGES CXX)
 find_package(OCK CONFIG REQUIRED COMPONENTS Runtime Adapter::CpuPool)
-if(NOT OCK_SDK_VERSION STREQUAL "0.1.0-dev.6" OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL "B5Subset" OR NOT OCK_INSTALLATION_PROFILE MATCHES "^B[45]Subset$")
+if(NOT OCK_SDK_VERSION STREQUAL "0.1.0-dev.7" OR NOT OCK_IMPLEMENTATION_STAGE STREQUAL "B6Subset" OR NOT OCK_INSTALLATION_PROFILE MATCHES "^B[456]Subset$")
   message(FATAL_ERROR "B4 installed SDK metadata mismatch")
 endif()
 get_target_property(cpu_kind OCK::Adapter::CpuPool TYPE)

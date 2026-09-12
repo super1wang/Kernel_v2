@@ -3,9 +3,11 @@
 namespace native_test {
 class NativeProvider final : public AtomicProviderPort<Provider> {
 public:
-  Result<std::unique_ptr<Provider::Frame>> begin(const AtomicDomainRef&) override { throw std::runtime_error("unexpected provider begin"); }
+  Result<std::unique_ptr<Provider::Frame>> begin(const AtomicDomainRef&,const CallerView&) override { throw std::runtime_error("unexpected provider begin"); }
+  Result<AtomicDomainRef> resolve(foundation::ObjectId) const override {throw std::runtime_error("unexpected provider resolve");}
+  Result<PreparedBase> base(const Provider::Frame&) const override {throw std::runtime_error("unexpected provider base");}
   Result<std::shared_ptr<const PreparedCommit>> prepare(Provider::Frame&,const PreparedIdentity&) override { throw std::runtime_error("unexpected provider prepare"); }
-  Result<void> commit(std::shared_ptr<const PreparedCommit>,std::shared_ptr<const ActionPermit>,std::shared_ptr<CommitReceiver>) override { throw std::runtime_error("unexpected provider commit"); }
+  Result<void> commit(std::shared_ptr<const PreparedCommit>,std::shared_ptr<const ActionPermit>,std::shared_ptr<PermitAuthorityPort>,PermitBinding,std::shared_ptr<CommitReceiver>) override { throw std::runtime_error("unexpected provider commit"); }
 };
 inline void add_provider(registry::ModuleInput& m) {
   m.manifest.providers.push_back(name("provider"));

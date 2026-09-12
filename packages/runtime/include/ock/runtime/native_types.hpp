@@ -33,7 +33,7 @@ struct InvokeOptions {
 template <class A>
 using TargetProjection = Result<std::size_t> (*)(const A&,
     std::span<foundation::ObjectId>) noexcept;
-enum class InvocationRecordKind { Rejected, ReadCompleted, FailedBeforeApply };
+enum class InvocationRecordKind { Rejected, ReadCompleted, StateCommitted, FailedBeforeApply };
 struct InvocationRecord {
   std::uint64_t sequence;
   Name static_trace_label;

@@ -75,7 +75,13 @@ struct Provider {
   struct Frame { EditPort edit; CandidateReadPort read; };
 };
 struct UnavailableProvider final : AtomicProviderPort<Provider> {
-  Result<std::unique_ptr<Provider::Frame>> begin(const AtomicDomainRef&) override {
+  Result<std::unique_ptr<Provider::Frame>> begin(const AtomicDomainRef&,const CallerView&) override {
+    return make_unexpected(invocation_error(InvocationErrc::ProviderUnavailable));
+  }
+  Result<AtomicDomainRef> resolve(foundation::ObjectId) const override {
+    return make_unexpected(invocation_error(InvocationErrc::ProviderUnavailable));
+  }
+  Result<PreparedBase> base(const Provider::Frame&) const override {
     return make_unexpected(invocation_error(InvocationErrc::ProviderUnavailable));
   }
   Result<std::shared_ptr<const PreparedCommit>>
@@ -84,6 +90,7 @@ struct UnavailableProvider final : AtomicProviderPort<Provider> {
   }
   Result<void> commit(std::shared_ptr<const PreparedCommit>,
                       std::shared_ptr<const ActionPermit>,
+                      std::shared_ptr<PermitAuthorityPort>,PermitBinding,
                       std::shared_ptr<CommitReceiver>) override {
     return make_unexpected(invocation_error(InvocationErrc::ProviderUnavailable));
   }
