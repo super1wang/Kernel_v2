@@ -1,0 +1,94 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:\\Code\\Kernel_v2\\build\\b6-formal-asan",
+      "--config",
+      "Debug",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\state-install-ulvelcmc\\original"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-12T15:51:22.009614+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "D:\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 8287398706358,
+      "qpc_frequency": 10000000
+    },
+    "pid": 69024,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-12T15:51:22.518876+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "c211808f94fc9c440e2986b10dd5762ee714a799c0d999ce9435c58fdb994be0",
+        "size": 12496
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\state-install-ulvelcmc\\source",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\state-install-ulvelcmc\\relocated",
+      "-DOCK_CONSUMER_ASAN=ON",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\state-install-ulvelcmc\\consumer"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-12T15:51:22.639207+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 19,
+      "terminated_owned_job": false
+    },
+    "executable": "D:\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 8287405001306,
+      "qpc_frequency": 10000000
+    },
+    "pid": 33244,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-12T15:51:25.542937+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "0907791e7373f91dd137a475dbaca18004d53225a351fd0c7f6869004297372d",
+        "size": 136
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "398d3e7898acfd0d242e807cdee6a874f55286335d1ce91790439b76e53b2e54",
+        "size": 817
+      }
+    ]
+  }
+]

@@ -1,0 +1,225 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:\\Code\\Kernel_v2\\build\\b6-formal-debug",
+      "--config",
+      "Debug",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\state-install-x4drcs8c\\original"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-12T16:07:24.522220+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 8297023787548,
+      "qpc_frequency": 10000000
+    },
+    "pid": 62856,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-12T16:07:25.043465+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "92898bd4d516ea225e99bf8acb932e597b2cf729c6435099b80c8dcc4135ee69",
+        "size": 12496
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\state-install-x4drcs8c\\source",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\state-install-x4drcs8c\\relocated",
+      "-DOCK_CONSUMER_ASAN=OFF",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\state-install-x4drcs8c\\consumer"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-12T16:07:25.667399+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 8297035248294,
+      "qpc_frequency": 10000000
+    },
+    "pid": 68220,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-12T16:07:30.394198+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "e9d52cb765a8c9ab1681a6701e8f94a68c192d68291f2a0beaa1e40d016ff56d",
+        "size": 468
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\state-install-x4drcs8c\\consumer",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-12T16:07:30.396098+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 20,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 8297082521265,
+      "qpc_frequency": 10000000
+    },
+    "pid": 71844,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-12T16:07:34.218679+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "a8cf6b411d61a400532286462eab7390d229c43427945f8d2d81d251f509413f",
+        "size": 399
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\state-install-x4drcs8c\\consumer\\Debug\\installed_state.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-12T16:07:34.220681+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\state-install-x4drcs8c\\consumer\\Debug\\installed_state.exe",
+    "creation_clock": {
+      "qpc_ticks": 8297120765965,
+      "qpc_frequency": 10000000
+    },
+    "pid": 3264,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-12T16:07:34.393723+00:00",
+    "raw": [
+      {
+        "path": "3-stdout.log",
+        "sha256": "ed6d6ff719a08a998755ef5820999dc2922de8194276d7fea2b7c61f6c5ddef0",
+        "size": 52
+      },
+      {
+        "path": "3-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\state-install-x4drcs8c\\source",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\state-install-x4drcs8c\\relocated",
+      "-DOCK_CONSUMER_ASAN=OFF",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\state-install-x4drcs8c\\missing",
+      "-DREQUIRE_COMPONENT=Workspace"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-12T16:07:34.395798+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 8297122521077,
+      "qpc_frequency": 10000000
+    },
+    "pid": 69504,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-12T16:07:38.159163+00:00",
+    "raw": [
+      {
+        "path": "4-stdout.log",
+        "sha256": "8a006eff038f8548ee42985e3cba60b730f81e0b67f1fd52105b8cb4813ffc69",
+        "size": 366
+      },
+      {
+        "path": "4-stderr.log",
+        "sha256": "7ce97910d6ab941f6d146e62ed641d30d4b733a1262698dc72a41fb744990c83",
+        "size": 355
+      }
+    ]
+  }
+]

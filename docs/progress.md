@@ -4,17 +4,17 @@
 
 ## 当前生产节点
 
-- **B6 / D4.01–D4.04 InProgress。** 2026-09-12 已接纳 [B6 编码前规划](plans/B6.md)，当前进入 State 根、Snapshot 与现有 CoreContracts 接口接线；连续推进 Edit/History、Memory Commit、同源 Atomic。B6 完成不等于 G4，尚未声称任何 D4 包 Passed。
+- **B6 完成，D4.01–D4.04 Passed。** owning PublishedState/Snapshot、候选 Edit/WriteSet/History、内存 Commit 发布 gate 与同源有限 Atomic 组已完成；Runtime 发布后结果事实保持，State 公开仅依赖 CoreContracts，immer 私有。最终来源 `b6203fd` / `ab332d1b0e16…` 的 Debug、Release、ASan 各 **62/62**，完整审计错误为 0；[自动验收](../evidence/B6/final-b6203fd/acceptance.json)为 Passed，详见 [B6 交付](validation/B6-delivery.md)。
 
-- B6 首段生产实现包括显式 `FrozenRoot<T>`、整体 `PublishedState`、授权 Snapshot/pin 寿命、私有 immer 通用对象/反向引用，以及无发布权限的候选 CRUD/WriteSet。StateNative 独立 Debug 库已构建，State 子目录直接测试 3/3 通过，覆盖冻结别名、关闭/撤权后旧快照保活、重入关闭、引用约束、候选读写和预算拒绝不污染。根目录 CTest 曾因未构建的 Foundation 入口中止，未计为测试通过。当前内存计量仍为局部逻辑计量；完整 owner 预算、History、可信提交、Runtime/Atomic 接线及 SDK 收口继续开发，不代表 D4.01 Implementation-Ready 或 Passed。
+- `StateNative` 最小投影仅取得 expected/immer，9/9 State 测试及迁移安装通过；Runtime-only 仍仅取得 expected，Embedded 仍不含 State/immer。受影响 Embedded footprint 三配置各 6 组 ABBA 均 Passed，Debug/ASan 零分配窗口及三线程结构上界保持。首次 ASan 的运行库缺失和消费者 ABI 不一致失败报告保持原文，最终矩阵从修复后的同一提交完整重跑。
 
-- B6 第二段生产实现已加入有界 History/pin、关闭后显式新 lifecycle generation、空差量提交、Undo/Redo 新 revision、内存 permit/close 仲裁、发布证明、`AtomicProviderPort` 私有候选绑定，以及同源单编辑/Atomic 候选组。State 子目录 Debug 直接集现为 5/5，通过候选读、纯计算、逐步撤权、失败零发布、128 步上限、禁止形态和伪造 PreparedCommit 等反例。尚未完成 Runtime Native/managed 结果接线、完整内存所有者计量、安装消费者与正式矩阵，故 D4.01–D4.04 仍为 InProgress。
+- **G4 仍为 NotStarted。** B6 Passed 不扩展到 B7 的 D4.05–D4.08；PlanCompiler、Runner、控制流、Shell Plan 及后续 Durable/Product 范围尚未开始。
 
 - **B5/G3 post-gate closure Passed（B6 准入历史）。** C1 准入压力回收、C1b settled 输入计费、C2 Accepted 后结果分类已关闭。来源 `9b63967` 的 Debug/Release/ASan 正式影响集各 **49/49**；G3-C 按原预算、原方法新采样三配置全部通过，Debug/ASan 各 480 个完整 Invoke 零新增分配窗口。见 [收口交付](validation/B5-post-closure-delivery.md)与 [最终决定](../evidence/B5/post-closure-9b63967/acceptance.json)。
 
 - **B5 完成，D3.04–D3.07 Passed；G3 Passed。** 各包正式前置按 DAG 依次提交，再形成 G3 决定。见 [B5/G3 交付](validation/B5-delivery.md)及 [G3 自动验收](../evidence/G3/acceptance-dacc540.json)。
 - 历史 B5/G3 语义来源 `dacc540`：Debug、Release、ASan / RelWithDebInfo 均 **126/126**，附加 Schema 检查通过；618 个输入与提交字节一致。该历史 Passed 保留，不代表新 Runtime 的 G3-C；本次已另行完成 `9b63967` 的实际影响矩阵及新 Embedded 采样。
-- 当前已 Passed：G0–G3、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07、D3.01–D3.07。B1/B2 历史 Passed 保留。B6 当前开发状态见本页顶部；该历史交付范围止于 B5/G3。
+- 当前已 Passed：G0–G3、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07、D3.01–D3.07、D4.01–D4.04。B1/B2 历史 Passed 保留；下一批为 B7，G4 尚未开始。
 - 仅内核与规划验证消费者；未扩展 GUI/CAD/CAM/设备，不声明持久套件或 G8 发布。本次交付归档只补事实和状态，被测来源为 `9b63967`；原 `dacc540` 报告及首轮失败原文保持不变。
 
 ## B5 开发与收口记录（历史，不代表当前状态）
@@ -210,10 +210,10 @@
 | D3.05 | 实现取消、期限与permit竞争 | D3.04、D0.05 | Passed | Critical | B5 |
 | D3.06 | 实现父子寿命、Finalizing与失败收尾 | D3.04、D3.05 | Passed | Critical | B5 |
 | D3.07 | 真实任务观察CLI、完整Embedded占用与停止门禁 | D3.06、D2.07 | Passed | Critical | B5 |
-| D4.01 | 实现轻量状态域与结构共享Snapshot | D1.02、D0.06、D3.03 | NotStarted | Standard | B6 |
-| D4.02 | 实现EditView、WriteSet、约束与内存History | D4.01 | NotStarted | Standard | B6 |
-| D4.03 | 实现内存CommitCoordinator与发布gate | D4.02、D3.05、D0.05 | NotStarted | Critical | B6 |
-| D4.04 | 实现独立编辑与Atomic组同源绑定 | D4.03、D1.05 | NotStarted | Critical | B6 |
+| D4.01 | 实现轻量状态域与结构共享Snapshot | D1.02、D0.06、D3.03 | Passed | Standard | B6 |
+| D4.02 | 实现EditView、WriteSet、约束与内存History | D4.01 | Passed | Standard | B6 |
+| D4.03 | 实现内存CommitCoordinator与发布gate | D4.02、D3.05、D0.05 | Passed | Critical | B6 |
+| D4.04 | 实现独立编辑与Atomic组同源绑定 | D4.03、D1.05 | Passed | Critical | B6 |
 | D4.05 | 实现PlanCompiler、slots与预算IR | D2.02、D0.04、D3.04 | NotStarted | Standard | B7 |
 | D4.06 | 实现顺序Call/Await与Atomic调度 | D4.05、D4.04、D3.06 | NotStarted | Critical | B7 |
 | D4.07 | 实现If/ForEach/Parallel与失败收尾 | D4.06 | NotStarted | Critical | B7 |

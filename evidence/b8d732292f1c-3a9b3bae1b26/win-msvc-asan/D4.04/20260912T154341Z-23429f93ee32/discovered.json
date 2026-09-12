@@ -1,0 +1,2620 @@
+{
+  "backtraceGraph": {
+    "commands": [
+      "add_test"
+    ],
+    "files": [
+      "J:/Code/Kernel_v2/CMakeLists.txt",
+      "J:/Code/Kernel_v2/tests/unit/state_roots/CMakeLists.txt"
+    ],
+    "nodes": [
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 103,
+        "parent": 0
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 104,
+        "parent": 2
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 154,
+        "parent": 4
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 157,
+        "parent": 6
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 158,
+        "parent": 8
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 160,
+        "parent": 10
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 203,
+        "parent": 12
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 204,
+        "parent": 14
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 207,
+        "parent": 16
+      },
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 207,
+        "parent": 18
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 4,
+        "parent": 20
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 8,
+        "parent": 22
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 12,
+        "parent": 24
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 16,
+        "parent": 26
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 20,
+        "parent": 28
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 25,
+        "parent": 30
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 29,
+        "parent": 32
+      }
+    ]
+  },
+  "kind": "ctestInfo",
+  "tests": [
+    {
+      "backtrace": 1,
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/examples/settings_service/Debug/ock_settings_service.exe"
+      ],
+      "config": "Debug",
+      "name": "T24.state.settings_service",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B6"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace": 3,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/install_consumer/verify_state.py",
+        "--build",
+        "J:/Code/Kernel_v2/build/b6-formal-asan",
+        "--config",
+        "Debug"
+      ],
+      "config": "Debug",
+      "name": "T24.state.installed_consumer",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B6"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace": 5,
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/Debug/ock_sdk_metadata_probe.exe"
+      ],
+      "config": "Debug",
+      "name": "T24.sdk.version_header",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D0.02"
+          ]
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan"
+        }
+      ]
+    },
+    {
+      "backtrace": 7,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tools/architecture/check.py",
+        "--graph",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/ock-target-graph.json"
+      ],
+      "config": "Debug",
+      "name": "T01.architecture.dependency_dag",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D0.02"
+          ]
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan"
+        }
+      ]
+    },
+    {
+      "backtrace": 9,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "J:/Code/Kernel_v2/tests/architecture",
+        "-v"
+      ],
+      "config": "Debug",
+      "name": "T01.architecture.negative_guards",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D0.02"
+          ]
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace": 11,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/install_consumer/verify_baseline.py",
+        "--build",
+        "J:/Code/Kernel_v2/build/b6-formal-asan",
+        "--config",
+        "Debug"
+      ],
+      "config": "Debug",
+      "name": "T24.sdk.install_and_missing_components",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D0.02"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 180.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan"
+        }
+      ]
+    },
+    {
+      "backtrace": 13,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "tests.architecture.test_contracts_stage.ComponentClosureTests",
+        "-v"
+      ],
+      "config": "Debug",
+      "name": "T01.contracts.component_closure",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 90.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace": 15,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "tests.architecture.test_contracts_stage.PublicBoundaryTests",
+        "-v"
+      ],
+      "config": "Debug",
+      "name": "T01.contracts.public_include_boundary",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 90.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace": 17,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/install_consumer/verify_contracts.py",
+        "--build",
+        "J:/Code/Kernel_v2/build/b6-formal-asan",
+        "--config",
+        "Debug",
+        "--case",
+        "public_headers"
+      ],
+      "config": "Debug",
+      "name": "T24.contracts.public_headers",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace": 19,
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:/Code/Kernel_v2/tests/install_consumer/verify_contracts.py",
+        "--build",
+        "J:/Code/Kernel_v2/build/b6-formal-asan",
+        "--config",
+        "Debug",
+        "--case",
+        "installed_component_consumer"
+      ],
+      "config": "Debug",
+      "name": "T24.contracts.installed_component_consumer",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2"
+        }
+      ]
+    },
+    {
+      "backtrace": 21,
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots/Debug/ock_state_roots.exe"
+      ],
+      "config": "Debug",
+      "name": "T08.state.frozen_roots",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots"
+        }
+      ]
+    },
+    {
+      "backtrace": 23,
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots/Debug/ock_state_snapshots.exe"
+      ],
+      "config": "Debug",
+      "name": "T08.state.snapshot_ownership",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots"
+        }
+      ]
+    },
+    {
+      "backtrace": 25,
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots/Debug/ock_state_commit.exe"
+      ],
+      "config": "Debug",
+      "name": "T09.state.memory_commit",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots"
+        }
+      ]
+    },
+    {
+      "backtrace": 27,
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots/Debug/ock_state_atomic.exe"
+      ],
+      "config": "Debug",
+      "name": "T10.state.atomic_group",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots"
+        }
+      ]
+    },
+    {
+      "backtrace": 29,
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots/Debug/ock_state_runtime.exe"
+      ],
+      "config": "Debug",
+      "name": "T06.state.runtime_native",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots"
+        }
+      ]
+    },
+    {
+      "backtrace": 31,
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots/Debug/ock_state_objects.exe"
+      ],
+      "config": "Debug",
+      "name": "T09.state.object_references",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots"
+        }
+      ]
+    },
+    {
+      "backtrace": 33,
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots/Debug/ock_state_cost.exe"
+      ],
+      "config": "Debug",
+      "name": "T23.state.structural_sharing_cost",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/unit/state_roots"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\tests\\compile\\contracts\\fixture.py",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/Debug/ock_contracts_tests.exe",
+        "--includes",
+        "J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/child-runs",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--profile",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/compile-profile-Debug.txt",
+        "--fixture",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/child-runs/fixtures/0e6cd15aad5172d62b2d2822",
+        "--run-id",
+        "0e6cd15aad5172d62b2d2822"
+      ],
+      "config": "Debug",
+      "name": "T02.contracts.compile_fixture_setup",
+      "properties": [
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:\\Code\\Kernel_v2\\build\\msvc-validation\\e8697b7e3597a578\\bin"
+          ]
+        },
+        {
+          "name": "FIXTURES_SETUP",
+          "value": [
+            "contracts_compile"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "CompileContracts",
+            "Tools"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 300.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\tests\\compile\\contracts\\verify_children.py",
+        "--case",
+        "T02.contracts.state_edit_shape",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/Debug/ock_contracts_tests.exe",
+        "--includes",
+        "J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/child-runs",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--profile",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/compile-profile-Debug.txt",
+        "--fixture",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/child-runs/fixtures/0e6cd15aad5172d62b2d2822",
+        "--run-id",
+        "0e6cd15aad5172d62b2d2822"
+      ],
+      "config": "Debug",
+      "name": "T02.contracts.state_edit_shape",
+      "properties": [
+        {
+          "name": "DEPENDS",
+          "value": [
+            "T02.contracts.compile_fixture_setup"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:\\Code\\Kernel_v2\\build\\msvc-validation\\e8697b7e3597a578\\bin"
+          ]
+        },
+        {
+          "name": "FIXTURES_REQUIRED",
+          "value": [
+            "contracts_compile"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "RESOURCE_LOCK",
+          "value": [
+            "contracts_compile_build"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\tests\\compile\\contracts\\verify_children.py",
+        "--case",
+        "T02.contracts.context_capability_boundary",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/Debug/ock_contracts_tests.exe",
+        "--includes",
+        "J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/child-runs",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--profile",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/compile-profile-Debug.txt",
+        "--fixture",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/child-runs/fixtures/0e6cd15aad5172d62b2d2822",
+        "--run-id",
+        "0e6cd15aad5172d62b2d2822"
+      ],
+      "config": "Debug",
+      "name": "T02.contracts.context_capability_boundary",
+      "properties": [
+        {
+          "name": "DEPENDS",
+          "value": [
+            "T02.contracts.compile_fixture_setup"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:\\Code\\Kernel_v2\\build\\msvc-validation\\e8697b7e3597a578\\bin"
+          ]
+        },
+        {
+          "name": "FIXTURES_REQUIRED",
+          "value": [
+            "contracts_compile"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "RESOURCE_LOCK",
+          "value": [
+            "contracts_compile_build"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\tests\\compile\\contracts\\verify_children.py",
+        "--case",
+        "T02.contracts.atomic_read_adapters",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/Debug/ock_contracts_tests.exe",
+        "--includes",
+        "J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/child-runs",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--profile",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/compile-profile-Debug.txt",
+        "--fixture",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/child-runs/fixtures/0e6cd15aad5172d62b2d2822",
+        "--run-id",
+        "0e6cd15aad5172d62b2d2822"
+      ],
+      "config": "Debug",
+      "name": "T02.contracts.atomic_read_adapters",
+      "properties": [
+        {
+          "name": "DEPENDS",
+          "value": [
+            "T02.contracts.compile_fixture_setup"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:\\Code\\Kernel_v2\\build\\msvc-validation\\e8697b7e3597a578\\bin"
+          ]
+        },
+        {
+          "name": "FIXTURES_REQUIRED",
+          "value": [
+            "contracts_compile"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "RESOURCE_LOCK",
+          "value": [
+            "contracts_compile_build"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\tests\\compile\\contracts\\verify_children.py",
+        "--case",
+        "T02.contracts.atomic_async_rejected",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/Debug/ock_contracts_tests.exe",
+        "--includes",
+        "J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/child-runs",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--profile",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/compile-profile-Debug.txt",
+        "--fixture",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/child-runs/fixtures/0e6cd15aad5172d62b2d2822",
+        "--run-id",
+        "0e6cd15aad5172d62b2d2822"
+      ],
+      "config": "Debug",
+      "name": "T02.contracts.atomic_async_rejected",
+      "properties": [
+        {
+          "name": "DEPENDS",
+          "value": [
+            "T02.contracts.compile_fixture_setup"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:\\Code\\Kernel_v2\\build\\msvc-validation\\e8697b7e3597a578\\bin"
+          ]
+        },
+        {
+          "name": "FIXTURES_REQUIRED",
+          "value": [
+            "contracts_compile"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "RESOURCE_LOCK",
+          "value": [
+            "contracts_compile_build"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/Debug/ock_contracts_tests.exe",
+        "T06.contracts.outcome_closed_variants"
+      ],
+      "config": "Debug",
+      "name": "T06.contracts.outcome_closed_variants",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:\\Code\\Kernel_v2\\build\\msvc-validation\\e8697b7e3597a578\\bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 180.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/Debug/ock_contracts_tests.exe",
+        "T06.contracts.publication_proof_required"
+      ],
+      "config": "Debug",
+      "name": "T06.contracts.publication_proof_required",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:\\Code\\Kernel_v2\\build\\msvc-validation\\e8697b7e3597a578\\bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 180.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/Debug/ock_contracts_tests.exe",
+        "T06.contracts.before_apply_and_composite_proofs"
+      ],
+      "config": "Debug",
+      "name": "T06.contracts.before_apply_and_composite_proofs",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:\\Code\\Kernel_v2\\build\\msvc-validation\\e8697b7e3597a578\\bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 180.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts/Debug/ock_contracts_tests.exe",
+        "T06.contracts.atomic_prepared_identity"
+      ],
+      "config": "Debug",
+      "name": "T06.contracts.atomic_prepared_identity",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:\\Code\\Kernel_v2\\build\\msvc-validation\\e8697b7e3597a578\\bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.02"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 180.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/compile/contracts"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/registration/Debug/ock_registration_tests.exe",
+        "T02.registration.atomic_candidate_contract"
+      ],
+      "config": "Debug",
+      "name": "T02.registration.atomic_candidate_contract",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.03"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/registration"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/registration/Debug/ock_registration_tests.exe",
+        "T02.registration.provider_binding"
+      ],
+      "config": "Debug",
+      "name": "T02.registration.provider_binding",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.03"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/registration"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/registration/Debug/ock_registration_tests.exe",
+        "T02.registration.service_binding"
+      ],
+      "config": "Debug",
+      "name": "T02.registration.service_binding",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.03"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/registration"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\tests\\contract\\registration\\verify_children.py",
+        "--case",
+        "T02.registration.shape_compile_contract",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/registration/Debug/ock_registration_tests.exe",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--includes",
+        "J:/Code/Kernel_v2|J:/Code/Kernel_v2/tests/compile/contracts|J:/Code/Kernel_v2/packages/runtime/include|J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/registration/child-runs",
+        "--root-build",
+        "J:/Code/Kernel_v2/build/b6-formal-asan",
+        "--target-metadata",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/registration/registry-target-Debug.json"
+      ],
+      "config": "Debug",
+      "name": "T02.registration.shape_compile_contract",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.03"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/registration"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/registration/Debug/ock_registration_tests.exe",
+        "T05.registration.typed_binding_success"
+      ],
+      "config": "Debug",
+      "name": "T05.registration.typed_binding_success",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.03"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/registration"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization/Debug/ock_policy_tests.exe",
+        "T07.policy.cancel_arbitration"
+      ],
+      "config": "Debug",
+      "name": "T07.policy.cancel_arbitration",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization/Debug/ock_policy_tests.exe",
+        "T07.policy.consume_before_revoke"
+      ],
+      "config": "Debug",
+      "name": "T07.policy.consume_before_revoke",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization/Debug/ock_policy_tests.exe",
+        "T07.policy.expiry_boundary"
+      ],
+      "config": "Debug",
+      "name": "T07.policy.expiry_boundary",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization/Debug/ock_policy_tests.exe",
+        "T07.policy.permit_concurrent"
+      ],
+      "config": "Debug",
+      "name": "T07.policy.permit_concurrent",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization/Debug/ock_policy_tests.exe",
+        "T07.policy.permit_once"
+      ],
+      "config": "Debug",
+      "name": "T07.policy.permit_once",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\tests\\contract\\authorization\\verify_children.py",
+        "--case",
+        "T07.policy.permit_origin_binding",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization/Debug/ock_policy_tests.exe",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--includes",
+        "J:/Code/Kernel_v2|J:/Code/Kernel_v2/tests/compile/contracts|J:/Code/Kernel_v2/packages/runtime/include|J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization/child-runs",
+        "--root-build",
+        "J:/Code/Kernel_v2/build/b6-formal-asan",
+        "--target-metadata",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization/policy-target-Debug.json"
+      ],
+      "config": "Debug",
+      "name": "T07.policy.permit_origin_binding",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization/Debug/ock_policy_tests.exe",
+        "T07.policy.revoke_before_consume"
+      ],
+      "config": "Debug",
+      "name": "T07.policy.revoke_before_consume",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization/Debug/ock_policy_tests.exe",
+        "T07.policy.target_lifecycle"
+      ],
+      "config": "Debug",
+      "name": "T07.policy.target_lifecycle",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/authorization"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T02.native.candidate_read_dispatch"
+      ],
+      "config": "Debug",
+      "name": "T02.native.candidate_read_dispatch",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T02.native.invalid_input"
+      ],
+      "config": "Debug",
+      "name": "T02.native.invalid_input",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T02.native.validation_exception"
+      ],
+      "config": "Debug",
+      "name": "T02.native.validation_exception",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T03.native.cancel_and_budget"
+      ],
+      "config": "Debug",
+      "name": "T03.native.cancel_and_budget",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T03.native.managed_execution_path"
+      ],
+      "config": "Debug",
+      "name": "T03.native.managed_execution_path",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T03.native.managed_record"
+      ],
+      "config": "Debug",
+      "name": "T03.native.managed_record",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T03.native.managed_record_ownership"
+      ],
+      "config": "Debug",
+      "name": "T03.native.managed_record_ownership",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "B5",
+            "D3.04"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T03.native.no_task_path"
+      ],
+      "config": "Debug",
+      "name": "T03.native.no_task_path",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T03.native.provider_unavailable"
+      ],
+      "config": "Debug",
+      "name": "T03.native.provider_unavailable",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T03.native.reentrant_and_concurrent"
+      ],
+      "config": "Debug",
+      "name": "T03.native.reentrant_and_concurrent",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T03.native.thread_modes"
+      ],
+      "config": "Debug",
+      "name": "T03.native.thread_modes",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T06.native.authority_origin"
+      ],
+      "config": "Debug",
+      "name": "T06.native.authority_origin",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T06.native.business_failure"
+      ],
+      "config": "Debug",
+      "name": "T06.native.business_failure",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T06.native.invalid_output"
+      ],
+      "config": "Debug",
+      "name": "T06.native.invalid_output",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T06.native.managed_accepted_failures"
+      ],
+      "config": "Debug",
+      "name": "T06.native.managed_accepted_failures",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T06.native.outcome_consistency"
+      ],
+      "config": "Debug",
+      "name": "T06.native.outcome_consistency",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T06.native.permission_intersection"
+      ],
+      "config": "Debug",
+      "name": "T06.native.permission_intersection",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T06.native.revoke_and_regrant"
+      ],
+      "config": "Debug",
+      "name": "T06.native.revoke_and_regrant",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "T06.native.target_binding"
+      ],
+      "config": "Debug",
+      "name": "T06.native.target_binding",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\tests\\contract\\native\\verify_children.py",
+        "--case",
+        "T23.native.allocation_governance",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--includes",
+        "J:/Code/Kernel_v2|J:/Code/Kernel_v2/tests/compile/contracts|J:/Code/Kernel_v2/packages/runtime/include|J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include|J:/Code/Kernel_v2/packages/adapters/cpu_pool/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/child-runs",
+        "--root-build",
+        "J:/Code/Kernel_v2/build/b6-formal-asan",
+        "--target-metadata",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/native-target-Debug.json",
+        "--example",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/examples/native_service/Debug/ock_native_service.exe"
+      ],
+      "config": "Debug",
+      "name": "T23.native.allocation_governance",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\tests\\contract\\native\\verify_children.py",
+        "--case",
+        "T23.native.allocation_other_costs",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--includes",
+        "J:/Code/Kernel_v2|J:/Code/Kernel_v2/tests/compile/contracts|J:/Code/Kernel_v2/packages/runtime/include|J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include|J:/Code/Kernel_v2/packages/adapters/cpu_pool/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/child-runs",
+        "--root-build",
+        "J:/Code/Kernel_v2/build/b6-formal-asan",
+        "--target-metadata",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/native-target-Debug.json",
+        "--example",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/examples/native_service/Debug/ock_native_service.exe"
+      ],
+      "config": "Debug",
+      "name": "T23.native.allocation_other_costs",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\tests\\contract\\native\\verify_children.py",
+        "--case",
+        "T23.native.allocation_probe",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--includes",
+        "J:/Code/Kernel_v2|J:/Code/Kernel_v2/tests/compile/contracts|J:/Code/Kernel_v2/packages/runtime/include|J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include|J:/Code/Kernel_v2/packages/adapters/cpu_pool/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/child-runs",
+        "--root-build",
+        "J:/Code/Kernel_v2/build/b6-formal-asan",
+        "--target-metadata",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/native-target-Debug.json",
+        "--example",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/examples/native_service/Debug/ock_native_service.exe"
+      ],
+      "config": "Debug",
+      "name": "T23.native.allocation_probe",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    },
+    {
+      "command": [
+        "J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+        "-X",
+        "utf8",
+        "J:\\Code\\Kernel_v2\\tests\\contract\\native\\verify_children.py",
+        "--case",
+        "T23.native.allocation_steady",
+        "--binary",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/Debug/ock_native_tests.exe",
+        "--runtime-dir",
+        "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin",
+        "--includes",
+        "J:/Code/Kernel_v2|J:/Code/Kernel_v2/tests/compile/contracts|J:/Code/Kernel_v2/packages/runtime/include|J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include|J:/Code/Kernel_v2/packages/adapters/cpu_pool/include",
+        "--generator",
+        "Visual Studio 17 2022",
+        "--platform",
+        "x64",
+        "--toolset",
+        "v143,version=14.44.35207",
+        "--sdk",
+        "10.0.26100.0",
+        "--config",
+        "Debug",
+        "--work",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/child-runs",
+        "--root-build",
+        "J:/Code/Kernel_v2/build/b6-formal-asan",
+        "--target-metadata",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native/native-target-Debug.json",
+        "--example",
+        "J:/Code/Kernel_v2/build/b6-formal-asan/examples/native_service/Debug/ock_native_service.exe"
+      ],
+      "config": "Debug",
+      "name": "T23.native.allocation_steady",
+      "properties": [
+        {
+          "name": "ENVIRONMENT",
+          "value": [
+            "MSBUILDDISABLENODEREUSE=1"
+          ]
+        },
+        {
+          "name": "ENVIRONMENT_MODIFICATION",
+          "value": [
+            "PATH=path_list_prepend:J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin"
+          ]
+        },
+        {
+          "name": "LABELS",
+          "value": [
+            "D1.05"
+          ]
+        },
+        {
+          "name": "TIMEOUT",
+          "value": 600.0
+        },
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "J:/Code/Kernel_v2/build/b6-formal-asan/tests/contract/native"
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 1,
+    "minor": 0
+  }
+}

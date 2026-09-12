@@ -1,0 +1,566 @@
+{
+  "format": "ock.expected/1",
+  "task_id": "D4.04",
+  "scope": "B6 D4.01-D4.04 S_required；按 v3.3-r2 完成条件和受影响公开合同事前固定，不从本次 discovered 反推；三配置共享同一逻辑集合。",
+  "cases": [
+    {
+      "id": "T24.state.settings_service",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T24.state.installed_consumer",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T08.state.frozen_roots",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T08.state.snapshot_ownership",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T23.state.structural_sharing_cost",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T09.state.object_references",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T09.state.memory_commit",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.contracts.context_capability_boundary",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.state.runtime_native",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.contracts.outcome_closed_variants",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.contracts.publication_proof_required",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.contracts.before_apply_and_composite_proofs",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.contracts.atomic_prepared_identity",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T07.policy.cancel_arbitration",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T07.policy.consume_before_revoke",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T07.policy.expiry_boundary",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T07.policy.permit_concurrent",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T07.policy.permit_once",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T07.policy.permit_origin_binding",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T07.policy.revoke_before_consume",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T07.policy.target_lifecycle",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T03.native.cancel_and_budget",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T03.native.no_task_path",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T03.native.reentrant_and_concurrent",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.native.authority_origin",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.native.business_failure",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.native.invalid_output",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.native.managed_accepted_failures",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.native.outcome_consistency",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.native.permission_intersection",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.native.revoke_and_regrant",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T06.native.target_binding",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T10.state.atomic_group",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.contracts.state_edit_shape",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.contracts.atomic_read_adapters",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.contracts.atomic_async_rejected",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.registration.atomic_candidate_contract",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.registration.provider_binding",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.registration.service_binding",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.registration.shape_compile_contract",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T05.registration.typed_binding_success",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.native.candidate_read_dispatch",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.native.invalid_input",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.native.validation_exception",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T03.native.managed_execution_path",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T03.native.managed_record",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T03.native.managed_record_ownership",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T03.native.provider_unavailable",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T03.native.thread_modes",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T24.sdk.version_header",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T01.architecture.dependency_dag",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T01.architecture.negative_guards",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T24.sdk.install_and_missing_components",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T01.contracts.component_closure",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T01.contracts.public_include_boundary",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T24.contracts.public_headers",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T24.contracts.installed_component_consumer",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T23.native.allocation_governance",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T23.native.allocation_other_costs",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T23.native.allocation_probe",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T23.native.allocation_steady",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    },
+    {
+      "id": "T02.contracts.compile_fixture_setup",
+      "repeat_required": 1,
+      "profiles": [
+        "win-msvc-debug",
+        "win-msvc-release",
+        "win-msvc-asan"
+      ]
+    }
+  ],
+  "checks": []
+}

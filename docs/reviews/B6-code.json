@@ -1,0 +1,33 @@
+{
+  "format": "ock.technical-review/1",
+  "task_id": "D4.04",
+  "review_kind": "code",
+  "review_status": "Approved",
+  "reviewed_inputs_sha256": "ab332d1b0e163579537611c83f2f65a1c7e99b6eeb1c67b33ddcf25d86d77992",
+  "reviewed_at": "2026-09-12T16:07:15.546920+00:00",
+  "reviewer": "Codex AI，B6 D4.01-D4.04 集中CODE技术复核",
+  "actor_type": "AI",
+  "approval_text": "批准 B6-review.md 的 CODE 技术结论及 requirement-map 对 D4.01-D4.04 的独立映射；机器三配置、安装、裁剪、footprint 与最终验收仍须独立满足。",
+  "evidence": [
+    {
+      "path": "docs/reviews/B6-review.md",
+      "sha256": "50ede956760239c00e070995f0ea6d7aa0ed14d630ba3fba97f1a769777d6fb4"
+    },
+    {
+      "path": "tests/manifests/b6-requirement-map.json",
+      "sha256": "1fb88f869980936a2663392942a7ff4ad83df4572411ec862524be9b53dfdc11"
+    },
+    {
+      "path": "docs/adr/ADR-b6-atomic-provider-context.md",
+      "sha256": "4c2ec9d9ba9579a9505873822f7fc5f42b300027faf6aef3e5a0f73f616dc302"
+    },
+    {
+      "path": "docs/reviews/B6-embedded-budget-decision.md",
+      "sha256": "c860124710f5e8e4505ff41f1fb8589333995888f67e26203ddcc7d2878bfad5"
+    }
+  ],
+  "limitations": [
+    "仅内核 B6 与规划验证消费者；不扩展 B7/G4、Plan、Durable、Project/Document 或产品模块。",
+    "技术批准不等于机器运行通过或包级 Passed。"
+  ]
+}
