@@ -4,6 +4,8 @@
 
 ## 当前生产节点
 
+- **B6 / D4.01–D4.04 InProgress。** 2026-09-12 已接纳 [B6 编码前规划](plans/B6.md)，当前进入 State 根、Snapshot 与现有 CoreContracts 接口接线；连续推进 Edit/History、Memory Commit、同源 Atomic。B6 完成不等于 G4，尚未声称任何 D4 包 Passed。
+
 - **B5/G3 post-gate closure Passed；B6 / D4.01–D4.04 Ready for Development，尚未开始。** C1 准入压力回收、C1b settled 输入计费、C2 Accepted 后结果分类已关闭。来源 `9b63967` 的 Debug/Release/ASan 正式影响集各 **49/49**；G3-C 按原预算、原方法新采样三配置全部通过，Debug/ASan 各 480 个完整 Invoke 零新增分配窗口。见 [收口交付](validation/B5-post-closure-delivery.md)与 [最终决定](../evidence/B5/post-closure-9b63967/acceptance.json)。
 
 - **B5 完成，D3.04–D3.07 Passed；G3 Passed。** 各包正式前置按 DAG 依次提交，再形成 G3 决定。见 [B5/G3 交付](validation/B5-delivery.md)及 [G3 自动验收](../evidence/G3/acceptance-dacc540.json)。
