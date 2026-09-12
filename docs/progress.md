@@ -1,16 +1,18 @@
 # 内核实施进度
 
-更新：2026-09-10。唯一规范为 [架构 v3.3-r2](01_Architecture_v3.3.md) 与 [执行计划 v3.3-r2](02_Execution_Plan_v3.3.md)。恢复任务默认只读本文件顶部、当前 Development Batch 的相关规范/合同和 diff；历史 review/evidence 按需读取。
+更新：2026-09-12。唯一规范为 [架构 v3.3-r2](01_Architecture_v3.3.md) 与 [执行计划 v3.3-r2](02_Execution_Plan_v3.3.md)。恢复任务默认只读本文件顶部、当前 Development Batch 的相关规范/合同和 diff；历史 review/evidence 按需读取。
 
 ## 当前生产节点
 
 - **B6 / D4.01–D4.04 InProgress。** 2026-09-12 已接纳 [B6 编码前规划](plans/B6.md)，当前进入 State 根、Snapshot 与现有 CoreContracts 接口接线；连续推进 Edit/History、Memory Commit、同源 Atomic。B6 完成不等于 G4，尚未声称任何 D4 包 Passed。
 
-- **B5/G3 post-gate closure Passed；B6 / D4.01–D4.04 Ready for Development，尚未开始。** C1 准入压力回收、C1b settled 输入计费、C2 Accepted 后结果分类已关闭。来源 `9b63967` 的 Debug/Release/ASan 正式影响集各 **49/49**；G3-C 按原预算、原方法新采样三配置全部通过，Debug/ASan 各 480 个完整 Invoke 零新增分配窗口。见 [收口交付](validation/B5-post-closure-delivery.md)与 [最终决定](../evidence/B5/post-closure-9b63967/acceptance.json)。
+- B6 首段生产实现包括显式 `FrozenRoot<T>`、整体 `PublishedState`、授权 Snapshot/pin 寿命、私有 immer 通用对象/反向引用，以及无发布权限的候选 CRUD/WriteSet。StateNative 独立 Debug 库已构建，State 子目录直接测试 3/3 通过，覆盖冻结别名、关闭/撤权后旧快照保活、重入关闭、引用约束、候选读写和预算拒绝不污染。根目录 CTest 曾因未构建的 Foundation 入口中止，未计为测试通过。当前内存计量仍为局部逻辑计量；完整 owner 预算、History、可信提交、Runtime/Atomic 接线及 SDK 收口继续开发，不代表 D4.01 Implementation-Ready 或 Passed。
+
+- **B5/G3 post-gate closure Passed（B6 准入历史）。** C1 准入压力回收、C1b settled 输入计费、C2 Accepted 后结果分类已关闭。来源 `9b63967` 的 Debug/Release/ASan 正式影响集各 **49/49**；G3-C 按原预算、原方法新采样三配置全部通过，Debug/ASan 各 480 个完整 Invoke 零新增分配窗口。见 [收口交付](validation/B5-post-closure-delivery.md)与 [最终决定](../evidence/B5/post-closure-9b63967/acceptance.json)。
 
 - **B5 完成，D3.04–D3.07 Passed；G3 Passed。** 各包正式前置按 DAG 依次提交，再形成 G3 决定。见 [B5/G3 交付](validation/B5-delivery.md)及 [G3 自动验收](../evidence/G3/acceptance-dacc540.json)。
 - 历史 B5/G3 语义来源 `dacc540`：Debug、Release、ASan / RelWithDebInfo 均 **126/126**，附加 Schema 检查通过；618 个输入与提交字节一致。该历史 Passed 保留，不代表新 Runtime 的 G3-C；本次已另行完成 `9b63967` 的实际影响矩阵及新 Embedded 采样。
-- 当前已 Passed：G0–G3、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07、D3.01–D3.07。B1/B2 历史 Passed 保留。下一批 B6 / D4.01–D4.04 尚未开始，本任务止于 B5/G3。
+- 当前已 Passed：G0–G3、D0.01–D0.06、D1.01–D1.06、D2.01–D2.07、D3.01–D3.07。B1/B2 历史 Passed 保留。B6 当前开发状态见本页顶部；该历史交付范围止于 B5/G3。
 - 仅内核与规划验证消费者；未扩展 GUI/CAD/CAM/设备，不声明持久套件或 G8 发布。本次交付归档只补事实和状态，被测来源为 `9b63967`；原 `dacc540` 报告及首轮失败原文保持不变。
 
 ## B5 开发与收口记录（历史，不代表当前状态）
