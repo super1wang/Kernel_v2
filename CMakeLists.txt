@@ -103,8 +103,10 @@ if(BUILD_TESTING)
     add_test(NAME T24.state.settings_service COMMAND ock_settings_service)
     add_test(NAME T24.state.installed_consumer COMMAND "${Python3_EXECUTABLE}" -X utf8
       "${PROJECT_SOURCE_DIR}/tests/install_consumer/verify_state.py" --build "${CMAKE_BINARY_DIR}" --config "$<CONFIG>")
+    get_filename_component(_ock_state_runtime_dir "${CMAKE_CXX_COMPILER}" DIRECTORY)
     set_tests_properties(T24.state.settings_service T24.state.installed_consumer PROPERTIES
-      TIMEOUT 600 LABELS "B6" WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}")
+      TIMEOUT 600 LABELS "B6" WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
+      ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:${_ock_state_runtime_dir}")
   endif()
   option(OCK_BUILD_B4_TESTS "Enable Executor/Scheduler/Resources contracts" OFF)
   if(OCK_BUILD_B4_TESTS)

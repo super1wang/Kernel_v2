@@ -27,4 +27,16 @@ if(OCK_BUILD_STATE)
   target_link_libraries(ock_state_cost PRIVATE OCK::State)
   target_include_directories(ock_state_cost PRIVATE "${PROJECT_SOURCE_DIR}")
   add_test(NAME T23.state.structural_sharing_cost COMMAND ock_state_cost)
+
+  get_filename_component(_ock_state_runtime_dir "${CMAKE_CXX_COMPILER}" DIRECTORY)
+  set_tests_properties(
+    T08.state.frozen_roots
+    T08.state.snapshot_ownership
+    T09.state.memory_commit
+    T10.state.atomic_group
+    T06.state.runtime_native
+    T09.state.object_references
+    T23.state.structural_sharing_cost
+    PROPERTIES ENVIRONMENT_MODIFICATION
+      "PATH=path_list_prepend:${_ock_state_runtime_dir}")
 endif()

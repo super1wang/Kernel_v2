@@ -14,6 +14,12 @@ def main():
     os.environ['PATH']=str(Path(compiler).parent)+os.pathsep+os.environ.get('PATH','')
     acquisition=json.loads((producer/'dependency-acquisition.json').read_text(encoding='utf-8'))
     graph=json.loads((producer/'ock-target-graph.json').read_text(encoding='utf-8'))
+    cache={}
+    for line in (producer/'CMakeCache.txt').read_text(encoding='utf-8').splitlines():
+        if line and not line.startswith(('#','//')) and ':' in line and '=' in line:
+            key=line.split(':',1)[0];cache[key]=line.split('=',1)[1]
+    if cache.get('OCK_ENABLE_ASAN') not in {'ON','OFF'}:raise AssertionError('producer ASan mode missing')
+    asan=cache['OCK_ENABLE_ASAN']=='ON'
     selected=set(acquisition['selected'])
     expected={'expected','immer'} if graph['build_components']=='StateNative' else {
         'expected','immer','jsoncons','asio','cli11','thread_pool'}
@@ -33,11 +39,11 @@ def main():
     assert manifest['sdk_version']=='0.1.0-dev.7' and manifest['stage']=='B6Subset'
     assert manifest['targets']['State']['kind']=='STATIC_LIBRARY'
     source=work/'source';shutil.copytree(ROOT/'tests/install_consumer/state',source)
-    base=['cmake','-S',str(source),'-G','Visual Studio 17 2022','-A','x64','-T','v143,version=14.44.35207','-DCMAKE_SYSTEM_VERSION=10.0.26100.0',f'-DCMAKE_TOOLCHAIN_FILE={ROOT}/cmake/LockedMSVC.cmake',f'-DCMAKE_PREFIX_PATH={relocated}']
+    base=['cmake','-S',str(source),'-G','Visual Studio 17 2022','-A','x64','-T','v143,version=14.44.35207','-DCMAKE_SYSTEM_VERSION=10.0.26100.0',f'-DCMAKE_TOOLCHAIN_FILE={ROOT}/cmake/LockedMSVC.cmake',f'-DCMAKE_PREFIX_PATH={relocated}',f'-DOCK_CONSUMER_ASAN={"ON" if asan else "OFF"}']
     run([*base,'-B',str(work/'consumer')]);run(['cmake','--build',str(work/'consumer'),'--config',args.config,'--parallel','4','--','/nr:false'])
     result=run([str(work/'consumer'/args.config/'installed_state.exe')]);assert result.stdout.strip()==b'0.1.0-dev.7 State installed snapshot/commit passed'
     rejected=run([*base,'-B',str(work/'missing'),'-DREQUIRE_COMPONENT=Workspace'],False)
     assert b'is not implemented in the current SDK' in rejected.stderr
-    (evidence/'result.json').write_text(json.dumps({'status':'Passed','scope':'B6 relocated State snapshot/commit consumer','configuration':args.config,'profile':manifest['installation_profile'],'selected':acquisition['selected']}),encoding='utf-8')
+    (evidence/'result.json').write_text(json.dumps({'status':'Passed','scope':'B6 relocated State snapshot/commit consumer','configuration':args.config,'asan':asan,'profile':manifest['installation_profile'],'selected':acquisition['selected']}),encoding='utf-8')
     print('B6 installed State consumer passed:',evidence)
 if __name__=='__main__':main()
