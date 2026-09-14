@@ -4,7 +4,7 @@
 
 ## 门禁更正（2026-09-14）
 
-代码结论保留。公共 CommitReport 布局变化要求刷新 footprint，原交付未完成该项，故正式验证 Pending、B7 HOLD。原下列直接验证不能代替 Native/Embedded 原预算测量；新增证据通过后再解除 HOLD。
+公共 CommitReport 布局变化触发 footprint 刷新，原交付遗漏该项；已先以 `55bf336` 更正为正式验证 Pending、B7 HOLD。现已完成原预算测量并提交机器证据 `f9426ee327a004c7242f3c3e6827cf549f1b3c60`，恢复 B6 final precision Passed / Frozen，解除 B7 准入 HOLD。生产代码及原功能验收不变。
 
 ## 实现结论
 
@@ -28,3 +28,15 @@ State runtime 新增反例覆盖 ServerCapture 组注册拒绝、Native 缺失 e
 安装消费者曾由机器默认 CMake 3.29 拒绝，因为仓库锁定的 preset 需要 CMake 3.31；在独立的 CMake 3.31.6 下，B6 State 安装消费者通过。该环境拒绝原文未作为产品失败重写。
 
 本交付不声称 B7/G4、持久化或产品验收。
+
+## 最终 footprint 门禁补齐
+
+- Native：Debug / Release / ASan 的 occupancy、allocation，加 Release latency，共 7/7 Passed；每项 6 组 ABBA / 24 个主样本，新增 Native 线程为 0。
+- Embedded：Debug、Release、ASan 共 3/3 Passed；每项 6 组 ABBA / 24 个主样本，Release startup 另有 6 组 / 24 个样本。Debug / ASan 各 480 个完整 Invoke 零新增分配窗口通过，内核线程结构上界仍为 3。
+- 六个生产投影重新配置/构建：Runtime-only 只获取 expected，Embedded 只获取 expected / thread_pool；目标图没有 State，未获取 immer。
+- 使用锁定 CMake 3.31.6-msvc6、MSVC 工具链及 Python 3.11.9；190 个测量输入逐字节匹配 `3abde2ebc1f11acccbad106142c96760a95f5d47`。验证 checkout 是 `55bf336`，仅含后续文档/门禁绑定，不把它冒充新的生产来源。
+- 11 项预算均沿用原数值、pilot 与采样方法，只刷新来源摘要与审批绑定。没有正式采样失败或重跑；汇总脚本首次误判预期失败注入已单独记录并纠正，未修改正式原始证据。
+
+[机器 acceptance](../../evidence/B6/precision-3abde2e-footprint/acceptance.json)绑定报告、commands、samples、artifacts、来源与裁剪证据；[汇总校验说明](../../evidence/B6/precision-3abde2e-footprint/verification-notes.md)保留校验过程。
+
+该结果完成最终规划触发的遗漏验证，B6 为 Full GO。仅解除 B7 准入；B7 未实现，G4 NotStarted，不增加 CI required checks 或产品/设备放行声明。
