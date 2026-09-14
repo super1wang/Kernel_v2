@@ -1,0 +1,6036 @@
+[
+  {
+    "run_id": "72652-b0-0-baseline-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b0-0-baseline",
+    "block": 0,
+    "kind": "A",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\apphelp.dll",
+        "sha256": "2c84d7a6c78c2e5a07e30075ced4a6a6e37784415bf18d4b111b449513fab1e4",
+        "bytes": 649008
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_baseline.exe",
+        "sha256": "f5b82f511ea73d56ac76f50b3aa885f4c7a33c20dbb3fabb7ab79be295139010",
+        "bytes": 73728
+      }
+    ],
+    "private_peak": 716800,
+    "working_set_peak": 4366336,
+    "ready_private": 716800,
+    "internal_ms": 112.3812,
+    "create_to_ready_ms": 345.3768,
+    "ready_peak_commit": 786432,
+    "ready_peak_working_set": 4366336,
+    "sample_count": 247,
+    "missed_intervals": 677,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 716800,
+          "median": 716800,
+          "p95": 716800,
+          "max": 716800
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 4366336,
+          "median": 4366336,
+          "p95": 4366336,
+          "max": 4366336
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 716800,
+          "median": 716800,
+          "p95": 716800,
+          "max": 716800
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 4366336,
+          "median": 4366336,
+          "p95": 4366336,
+          "max": 4366336
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 716800,
+          "median": 716800,
+          "p95": 716800,
+          "max": 716800
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 4366336,
+          "median": 4366336,
+          "p95": 4366336,
+          "max": 4366336
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 716800,
+          "median": 716800,
+          "p95": 716800,
+          "max": 716800
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 4366336,
+          "median": 4366336,
+          "p95": 4366336,
+          "max": 4366336
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 716800,
+          "median": 716800,
+          "p95": 716800,
+          "max": 716800
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 4366336,
+          "median": 4366336,
+          "p95": 4366336,
+          "max": 4366336
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 716800,
+          "median": 716800,
+          "p95": 716800,
+          "max": 716800
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 4366336,
+          "median": 4366336,
+          "p95": 4366336,
+          "max": 4366336
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 716800,
+          "median": 716800,
+          "p95": 716800,
+          "max": 716800
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 4366336,
+          "median": 4366336,
+          "p95": 4366336,
+          "max": 4366336
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 716800,
+          "median": 716800,
+          "p95": 716800,
+          "max": 716800
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 4366336,
+          "median": 4366336,
+          "p95": 4366336,
+          "max": 4366336
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 716800,
+          "median": 716800,
+          "p95": 716800,
+          "max": 716800
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 4366336,
+          "median": 4366336,
+          "p95": 4366336,
+          "max": 4366336
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 716800,
+          "median": 716800,
+          "p95": 716800,
+          "max": 716800
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 4366336,
+          "median": 4366336,
+          "p95": 4366336,
+          "max": 4366336
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "23752-b0-1-native-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b0-1-native",
+    "block": 0,
+    "kind": "B",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d.dll",
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+        "bytes": 891832
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+        "bytes": 102328
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\apphelp.dll",
+        "sha256": "2c84d7a6c78c2e5a07e30075ced4a6a6e37784415bf18d4b111b449513fab1e4",
+        "bytes": 649008
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+        "bytes": 161456
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\advapi32.dll",
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+        "bytes": 731648
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+        "bytes": 1165536
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+        "bytes": 628376
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+        "bytes": 694488
+      },
+      {
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+        "bytes": 690352
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_native.exe",
+        "sha256": "ff8a7d3bb5516eacf2a46fc85b7958b0e24e5145df63e86ad51775e51a4b3af8",
+        "bytes": 2745856
+      }
+    ],
+    "private_peak": 1241088,
+    "working_set_peak": 7426048,
+    "ready_private": 1183744,
+    "internal_ms": 89.1975,
+    "create_to_ready_ms": 433.0152,
+    "ready_peak_commit": 1183744,
+    "ready_peak_working_set": 7159808,
+    "sample_count": 247,
+    "missed_intervals": 633,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1052672,
+          "median": 1052672,
+          "p95": 1052672,
+          "max": 1052672
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5672960,
+          "median": 5672960,
+          "p95": 5677056,
+          "max": 5677056
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1052672,
+          "median": 1052672,
+          "p95": 1052672,
+          "max": 1052672
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5677056,
+          "median": 5677056,
+          "p95": 5742592,
+          "max": 5742592
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1183744,
+          "median": 1183744,
+          "p95": 1196032,
+          "max": 1196032
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 7159808,
+          "median": 7159808,
+          "p95": 7163904,
+          "max": 7163904
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1241088,
+          "median": 1241088,
+          "p95": 1241088,
+          "max": 1241088
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 7417856,
+          "median": 7417856,
+          "p95": 7417856,
+          "max": 7417856
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 1241088,
+          "median": 1241088,
+          "p95": 1241088,
+          "max": 1241088
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 7417856,
+          "median": 7417856,
+          "p95": 7417856,
+          "max": 7417856
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1241088,
+          "median": 1241088,
+          "p95": 1241088,
+          "max": 1241088
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 7417856,
+          "median": 7417856,
+          "p95": 7421952,
+          "max": 7421952
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1241088,
+          "median": 1241088,
+          "p95": 1241088,
+          "max": 1241088
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 7421952,
+          "median": 7421952,
+          "p95": 7421952,
+          "max": 7426048
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1241088,
+          "median": 1241088,
+          "p95": 1241088,
+          "max": 1241088
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 7426048,
+          "median": 7426048,
+          "p95": 7426048,
+          "max": 7426048
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1175552,
+          "median": 1241088,
+          "p95": 1241088,
+          "max": 1241088
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 7360512,
+          "median": 7426048,
+          "p95": 7426048,
+          "max": 7426048
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1101824,
+          "median": 1101824,
+          "p95": 1101824,
+          "max": 1101824
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 7286784,
+          "median": 7286784,
+          "p95": 7286784,
+          "max": 7286784
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "27064-b0-2-native-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b0-2-native",
+    "block": 0,
+    "kind": "B",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d.dll",
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+        "bytes": 891832
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+        "bytes": 102328
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+        "bytes": 161456
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\advapi32.dll",
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+        "bytes": 731648
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+        "bytes": 1165536
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+        "bytes": 628376
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+        "bytes": 694488
+      },
+      {
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+        "bytes": 690352
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_native.exe",
+        "sha256": "ff8a7d3bb5516eacf2a46fc85b7958b0e24e5145df63e86ad51775e51a4b3af8",
+        "bytes": 2745856
+      }
+    ],
+    "private_peak": 1191936,
+    "working_set_peak": 6893568,
+    "ready_private": 1142784,
+    "internal_ms": 84.5166,
+    "create_to_ready_ms": 288.3329,
+    "ready_peak_commit": 1142784,
+    "ready_peak_working_set": 6635520,
+    "sample_count": 246,
+    "missed_intervals": 634,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 999424,
+          "median": 999424,
+          "p95": 999424,
+          "max": 999424
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5132288,
+          "median": 5132288,
+          "p95": 5136384,
+          "max": 5136384
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 999424,
+          "median": 999424,
+          "p95": 999424,
+          "max": 999424
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5136384,
+          "median": 5136384,
+          "p95": 5136384,
+          "max": 5136384
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1142784,
+          "median": 1142784,
+          "p95": 1142784,
+          "max": 1142784
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6635520,
+          "median": 6635520,
+          "p95": 6635520,
+          "max": 6635520
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6885376,
+          "median": 6885376,
+          "p95": 6885376,
+          "max": 6885376
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 6885376,
+          "median": 6885376,
+          "p95": 6885376,
+          "max": 6885376
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6885376,
+          "median": 6885376,
+          "p95": 6885376,
+          "max": 6885376
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6893568
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6893568,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6893568
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1073152,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6770688,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6893568
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1073152,
+          "median": 1073152,
+          "p95": 1073152,
+          "max": 1073152
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6770688,
+          "median": 6770688,
+          "p95": 6770688,
+          "max": 6770688
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "45672-b0-3-baseline-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b0-3-baseline",
+    "block": 0,
+    "kind": "A",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_baseline.exe",
+        "sha256": "f5b82f511ea73d56ac76f50b3aa885f4c7a33c20dbb3fabb7ab79be295139010",
+        "bytes": 73728
+      }
+    ],
+    "private_peak": 659456,
+    "working_set_peak": 3891200,
+    "ready_private": 659456,
+    "internal_ms": 90.4189,
+    "create_to_ready_ms": 312.2635,
+    "ready_peak_commit": 659456,
+    "ready_peak_working_set": 3891200,
+    "sample_count": 247,
+    "missed_intervals": 633,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "73884-b1-0-baseline-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b1-0-baseline",
+    "block": 1,
+    "kind": "A",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_baseline.exe",
+        "sha256": "f5b82f511ea73d56ac76f50b3aa885f4c7a33c20dbb3fabb7ab79be295139010",
+        "bytes": 73728
+      }
+    ],
+    "private_peak": 663552,
+    "working_set_peak": 3891200,
+    "ready_private": 663552,
+    "internal_ms": 81.3629,
+    "create_to_ready_ms": 308.9933,
+    "ready_peak_commit": 663552,
+    "ready_peak_working_set": 3891200,
+    "sample_count": 247,
+    "missed_intervals": 630,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 663552,
+          "median": 663552,
+          "p95": 663552,
+          "max": 663552
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 663552,
+          "median": 663552,
+          "p95": 663552,
+          "max": 663552
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 663552,
+          "median": 663552,
+          "p95": 663552,
+          "max": 663552
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 663552,
+          "median": 663552,
+          "p95": 663552,
+          "max": 663552
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 663552,
+          "median": 663552,
+          "p95": 663552,
+          "max": 663552
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 663552,
+          "median": 663552,
+          "p95": 663552,
+          "max": 663552
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 663552,
+          "median": 663552,
+          "p95": 663552,
+          "max": 663552
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 663552,
+          "median": 663552,
+          "p95": 663552,
+          "max": 663552
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 663552,
+          "median": 663552,
+          "p95": 663552,
+          "max": 663552
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 663552,
+          "median": 663552,
+          "p95": 663552,
+          "max": 663552
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "73852-b1-1-native-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b1-1-native",
+    "block": 1,
+    "kind": "B",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d.dll",
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+        "bytes": 891832
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+        "bytes": 102328
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+        "bytes": 161456
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\advapi32.dll",
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+        "bytes": 731648
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+        "bytes": 1165536
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+        "bytes": 628376
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+        "bytes": 694488
+      },
+      {
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+        "bytes": 690352
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_native.exe",
+        "sha256": "ff8a7d3bb5516eacf2a46fc85b7958b0e24e5145df63e86ad51775e51a4b3af8",
+        "bytes": 2745856
+      }
+    ],
+    "private_peak": 1204224,
+    "working_set_peak": 6897664,
+    "ready_private": 1142784,
+    "internal_ms": 85.4683,
+    "create_to_ready_ms": 303.4438,
+    "ready_peak_commit": 1142784,
+    "ready_peak_working_set": 6627328,
+    "sample_count": 247,
+    "missed_intervals": 633,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1003520,
+          "median": 1003520,
+          "p95": 1003520,
+          "max": 1003520
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5128192,
+          "median": 5128192,
+          "p95": 5132288,
+          "max": 5132288
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1003520,
+          "median": 1003520,
+          "p95": 1003520,
+          "max": 1003520
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5132288,
+          "median": 5132288,
+          "p95": 5218304,
+          "max": 5218304
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1142784,
+          "median": 1142784,
+          "p95": 1142784,
+          "max": 1142784
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6627328,
+          "median": 6627328,
+          "p95": 6627328,
+          "max": 6627328
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1204224,
+          "median": 1204224,
+          "p95": 1204224,
+          "max": 1204224
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 1204224,
+          "median": 1204224,
+          "p95": 1204224,
+          "max": 1204224
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1204224,
+          "median": 1204224,
+          "p95": 1204224,
+          "max": 1204224
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6893568,
+          "max": 6893568
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1204224,
+          "median": 1204224,
+          "p95": 1204224,
+          "max": 1204224
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6893568,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6897664
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1204224,
+          "median": 1204224,
+          "p95": 1204224,
+          "max": 1204224
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6897664,
+          "median": 6897664,
+          "p95": 6897664,
+          "max": 6897664
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1134592,
+          "median": 1204224,
+          "p95": 1204224,
+          "max": 1204224
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6828032,
+          "median": 6897664,
+          "p95": 6897664,
+          "max": 6897664
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1073152,
+          "median": 1073152,
+          "p95": 1073152,
+          "max": 1073152
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6766592,
+          "median": 6766592,
+          "p95": 6766592,
+          "max": 6766592
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "74352-b1-2-native-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b1-2-native",
+    "block": 1,
+    "kind": "B",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d.dll",
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+        "bytes": 891832
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+        "bytes": 102328
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+        "bytes": 161456
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\advapi32.dll",
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+        "bytes": 731648
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+        "bytes": 1165536
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+        "bytes": 628376
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+        "bytes": 694488
+      },
+      {
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+        "bytes": 690352
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_native.exe",
+        "sha256": "ff8a7d3bb5516eacf2a46fc85b7958b0e24e5145df63e86ad51775e51a4b3af8",
+        "bytes": 2745856
+      }
+    ],
+    "private_peak": 1204224,
+    "working_set_peak": 6893568,
+    "ready_private": 1142784,
+    "internal_ms": 86.4646,
+    "create_to_ready_ms": 320.194,
+    "ready_peak_commit": 1142784,
+    "ready_peak_working_set": 6627328,
+    "sample_count": 247,
+    "missed_intervals": 636,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 999424,
+          "median": 999424,
+          "p95": 999424,
+          "max": 999424
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5124096,
+          "median": 5124096,
+          "p95": 5128192,
+          "max": 5128192
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 999424,
+          "median": 999424,
+          "p95": 999424,
+          "max": 999424
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5128192,
+          "median": 5128192,
+          "p95": 5128192,
+          "max": 5128192
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1142784,
+          "median": 1142784,
+          "p95": 1142784,
+          "max": 1142784
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6627328,
+          "median": 6627328,
+          "p95": 6627328,
+          "max": 6627328
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1204224,
+          "median": 1204224,
+          "p95": 1204224,
+          "max": 1204224
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6885376,
+          "median": 6885376,
+          "p95": 6885376,
+          "max": 6885376
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 1204224,
+          "median": 1204224,
+          "p95": 1204224,
+          "max": 1204224
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 6885376,
+          "median": 6885376,
+          "p95": 6885376,
+          "max": 6885376
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1204224,
+          "median": 1204224,
+          "p95": 1204224,
+          "max": 1204224
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6885376,
+          "median": 6885376,
+          "p95": 6885376,
+          "max": 6885376
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1204224,
+          "median": 1204224,
+          "p95": 1204224,
+          "max": 1204224
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1204224,
+          "median": 1204224,
+          "p95": 1204224,
+          "max": 1204224
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6893568,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6893568
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1134592,
+          "median": 1204224,
+          "p95": 1204224,
+          "max": 1204224
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6828032,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6893568
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1077248,
+          "median": 1077248,
+          "p95": 1077248,
+          "max": 1077248
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6770688,
+          "median": 6770688,
+          "p95": 6770688,
+          "max": 6770688
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "73476-b1-3-baseline-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b1-3-baseline",
+    "block": 1,
+    "kind": "A",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_baseline.exe",
+        "sha256": "f5b82f511ea73d56ac76f50b3aa885f4c7a33c20dbb3fabb7ab79be295139010",
+        "bytes": 73728
+      }
+    ],
+    "private_peak": 659456,
+    "working_set_peak": 3895296,
+    "ready_private": 659456,
+    "internal_ms": 88.0251,
+    "create_to_ready_ms": 305.7109,
+    "ready_peak_commit": 659456,
+    "ready_peak_working_set": 3895296,
+    "sample_count": 247,
+    "missed_intervals": 636,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "74700-b2-0-baseline-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b2-0-baseline",
+    "block": 2,
+    "kind": "A",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_baseline.exe",
+        "sha256": "f5b82f511ea73d56ac76f50b3aa885f4c7a33c20dbb3fabb7ab79be295139010",
+        "bytes": 73728
+      }
+    ],
+    "private_peak": 659456,
+    "working_set_peak": 3891200,
+    "ready_private": 659456,
+    "internal_ms": 82.8199,
+    "create_to_ready_ms": 291.3467,
+    "ready_peak_commit": 720896,
+    "ready_peak_working_set": 3891200,
+    "sample_count": 247,
+    "missed_intervals": 630,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "66080-b2-1-native-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b2-1-native",
+    "block": 2,
+    "kind": "B",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d.dll",
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+        "bytes": 891832
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+        "bytes": 102328
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+        "bytes": 161456
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\advapi32.dll",
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+        "bytes": 731648
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+        "bytes": 1165536
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+        "bytes": 628376
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+        "bytes": 694488
+      },
+      {
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+        "bytes": 690352
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_native.exe",
+        "sha256": "ff8a7d3bb5516eacf2a46fc85b7958b0e24e5145df63e86ad51775e51a4b3af8",
+        "bytes": 2745856
+      }
+    ],
+    "private_peak": 1196032,
+    "working_set_peak": 6901760,
+    "ready_private": 1146880,
+    "internal_ms": 82.1681,
+    "create_to_ready_ms": 296.9245,
+    "ready_peak_commit": 1146880,
+    "ready_peak_working_set": 6643712,
+    "sample_count": 248,
+    "missed_intervals": 629,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1015808,
+          "median": 1015808,
+          "p95": 1015808,
+          "max": 1015808
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5152768,
+          "median": 5152768,
+          "p95": 5152768,
+          "max": 5152768
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1015808,
+          "median": 1015808,
+          "p95": 1015808,
+          "max": 1015808
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5156864,
+          "median": 5156864,
+          "p95": 5255168,
+          "max": 5255168
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1146880,
+          "median": 1146880,
+          "p95": 1146880,
+          "max": 1146880
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6643712,
+          "median": 6643712,
+          "p95": 6643712,
+          "max": 6643712
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1196032,
+          "median": 1196032,
+          "p95": 1196032,
+          "max": 1196032
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6893568,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6893568
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 1196032,
+          "median": 1196032,
+          "p95": 1196032,
+          "max": 1196032
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 6893568,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6893568
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1196032,
+          "median": 1196032,
+          "p95": 1196032,
+          "max": 1196032
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6893568,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6893568
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1196032,
+          "median": 1196032,
+          "p95": 1196032,
+          "max": 1196032
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6897664,
+          "median": 6897664,
+          "p95": 6897664,
+          "max": 6901760
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1196032,
+          "median": 1196032,
+          "p95": 1196032,
+          "max": 1196032
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6901760,
+          "median": 6901760,
+          "p95": 6901760,
+          "max": 6901760
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1196032,
+          "median": 1196032,
+          "p95": 1196032,
+          "max": 1196032
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6901760,
+          "median": 6901760,
+          "p95": 6901760,
+          "max": 6901760
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1073152,
+          "median": 1073152,
+          "p95": 1073152,
+          "max": 1073152
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6778880,
+          "median": 6778880,
+          "p95": 6778880,
+          "max": 6778880
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "48204-b2-2-native-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b2-2-native",
+    "block": 2,
+    "kind": "B",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d.dll",
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+        "bytes": 891832
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+        "bytes": 102328
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+        "bytes": 161456
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\advapi32.dll",
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+        "bytes": 731648
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+        "bytes": 1165536
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+        "bytes": 628376
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+        "bytes": 694488
+      },
+      {
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+        "bytes": 690352
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_native.exe",
+        "sha256": "ff8a7d3bb5516eacf2a46fc85b7958b0e24e5145df63e86ad51775e51a4b3af8",
+        "bytes": 2745856
+      }
+    ],
+    "private_peak": 1191936,
+    "working_set_peak": 6889472,
+    "ready_private": 1142784,
+    "internal_ms": 89.4378,
+    "create_to_ready_ms": 334.1644,
+    "ready_peak_commit": 1142784,
+    "ready_peak_working_set": 6631424,
+    "sample_count": 248,
+    "missed_intervals": 638,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1003520,
+          "median": 1003520,
+          "p95": 1003520,
+          "max": 1003520
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5132288,
+          "median": 5132288,
+          "p95": 5136384,
+          "max": 5136384
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1003520,
+          "median": 1003520,
+          "p95": 1003520,
+          "max": 1003520
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5136384,
+          "median": 5136384,
+          "p95": 5226496,
+          "max": 5226496
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1142784,
+          "median": 1142784,
+          "p95": 1146880,
+          "max": 1146880
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6631424,
+          "median": 6631424,
+          "p95": 6635520,
+          "max": 6635520
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6881280,
+          "median": 6881280,
+          "p95": 6881280,
+          "max": 6881280
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 6881280,
+          "median": 6881280,
+          "p95": 6881280,
+          "max": 6881280
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6881280,
+          "median": 6881280,
+          "p95": 6885376,
+          "max": 6885376
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6885376,
+          "median": 6885376,
+          "p95": 6885376,
+          "max": 6889472
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1122304,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6819840,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1064960,
+          "median": 1064960,
+          "p95": 1064960,
+          "max": 1064960
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6762496,
+          "median": 6762496,
+          "p95": 6762496,
+          "max": 6762496
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "42120-b2-3-baseline-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b2-3-baseline",
+    "block": 2,
+    "kind": "A",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_baseline.exe",
+        "sha256": "f5b82f511ea73d56ac76f50b3aa885f4c7a33c20dbb3fabb7ab79be295139010",
+        "bytes": 73728
+      }
+    ],
+    "private_peak": 655360,
+    "working_set_peak": 3891200,
+    "ready_private": 655360,
+    "internal_ms": 106.7562,
+    "create_to_ready_ms": 367.9446,
+    "ready_peak_commit": 655360,
+    "ready_peak_working_set": 3891200,
+    "sample_count": 248,
+    "missed_intervals": 648,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 655360,
+          "median": 655360,
+          "p95": 655360,
+          "max": 655360
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 655360,
+          "median": 655360,
+          "p95": 655360,
+          "max": 655360
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 655360,
+          "median": 655360,
+          "p95": 655360,
+          "max": 655360
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 655360,
+          "median": 655360,
+          "p95": 655360,
+          "max": 655360
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 655360,
+          "median": 655360,
+          "p95": 655360,
+          "max": 655360
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 655360,
+          "median": 655360,
+          "p95": 655360,
+          "max": 655360
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 655360,
+          "median": 655360,
+          "p95": 655360,
+          "max": 655360
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 655360,
+          "median": 655360,
+          "p95": 655360,
+          "max": 655360
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 655360,
+          "median": 655360,
+          "p95": 655360,
+          "max": 655360
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 655360,
+          "median": 655360,
+          "p95": 655360,
+          "max": 655360
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "69452-b3-0-baseline-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b3-0-baseline",
+    "block": 3,
+    "kind": "A",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_baseline.exe",
+        "sha256": "f5b82f511ea73d56ac76f50b3aa885f4c7a33c20dbb3fabb7ab79be295139010",
+        "bytes": 73728
+      }
+    ],
+    "private_peak": 659456,
+    "working_set_peak": 3891200,
+    "ready_private": 659456,
+    "internal_ms": 82.1189,
+    "create_to_ready_ms": 314.7523,
+    "ready_peak_commit": 724992,
+    "ready_peak_working_set": 3891200,
+    "sample_count": 247,
+    "missed_intervals": 630,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "70016-b3-1-native-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b3-1-native",
+    "block": 3,
+    "kind": "B",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d.dll",
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+        "bytes": 891832
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+        "bytes": 102328
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+        "bytes": 161456
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\advapi32.dll",
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+        "bytes": 731648
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+        "bytes": 1165536
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+        "bytes": 628376
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+        "bytes": 694488
+      },
+      {
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+        "bytes": 690352
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_native.exe",
+        "sha256": "ff8a7d3bb5516eacf2a46fc85b7958b0e24e5145df63e86ad51775e51a4b3af8",
+        "bytes": 2745856
+      }
+    ],
+    "private_peak": 1200128,
+    "working_set_peak": 6897664,
+    "ready_private": 1138688,
+    "internal_ms": 83.1469,
+    "create_to_ready_ms": 320.9365,
+    "ready_peak_commit": 1138688,
+    "ready_peak_working_set": 6631424,
+    "sample_count": 247,
+    "missed_intervals": 630,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 995328,
+          "median": 995328,
+          "p95": 995328,
+          "max": 995328
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5128192,
+          "median": 5128192,
+          "p95": 5132288,
+          "max": 5132288
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 995328,
+          "median": 995328,
+          "p95": 995328,
+          "max": 995328
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5132288,
+          "median": 5132288,
+          "p95": 5218304,
+          "max": 5218304
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1138688,
+          "median": 1138688,
+          "p95": 1142784,
+          "max": 1142784
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6631424,
+          "median": 6631424,
+          "p95": 6635520,
+          "max": 6635520
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1200128,
+          "median": 1200128,
+          "p95": 1200128,
+          "max": 1200128
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 1200128,
+          "median": 1200128,
+          "p95": 1200128,
+          "max": 1200128
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1200128,
+          "median": 1200128,
+          "p95": 1200128,
+          "max": 1200128
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1200128,
+          "median": 1200128,
+          "p95": 1200128,
+          "max": 1200128
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6893568,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6897664
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1200128,
+          "median": 1200128,
+          "p95": 1200128,
+          "max": 1200128
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6897664,
+          "median": 6897664,
+          "p95": 6897664,
+          "max": 6897664
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1130496,
+          "median": 1200128,
+          "p95": 1200128,
+          "max": 1200128
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6832128,
+          "median": 6897664,
+          "p95": 6897664,
+          "max": 6897664
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1073152,
+          "median": 1073152,
+          "p95": 1073152,
+          "max": 1073152
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6774784,
+          "median": 6774784,
+          "p95": 6774784,
+          "max": 6774784
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "74152-b3-2-native-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b3-2-native",
+    "block": 3,
+    "kind": "B",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d.dll",
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+        "bytes": 891832
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+        "bytes": 102328
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+        "bytes": 161456
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\advapi32.dll",
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+        "bytes": 731648
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+        "bytes": 1165536
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+        "bytes": 628376
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+        "bytes": 694488
+      },
+      {
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+        "bytes": 690352
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_native.exe",
+        "sha256": "ff8a7d3bb5516eacf2a46fc85b7958b0e24e5145df63e86ad51775e51a4b3af8",
+        "bytes": 2745856
+      }
+    ],
+    "private_peak": 1187840,
+    "working_set_peak": 6893568,
+    "ready_private": 1138688,
+    "internal_ms": 85.3918,
+    "create_to_ready_ms": 309.0068,
+    "ready_peak_commit": 1138688,
+    "ready_peak_working_set": 6635520,
+    "sample_count": 247,
+    "missed_intervals": 636,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 995328,
+          "median": 995328,
+          "p95": 995328,
+          "max": 995328
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5132288,
+          "median": 5132288,
+          "p95": 5136384,
+          "max": 5136384
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 995328,
+          "median": 995328,
+          "p95": 995328,
+          "max": 995328
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5136384,
+          "median": 5136384,
+          "p95": 5238784,
+          "max": 5238784
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1138688,
+          "median": 1138688,
+          "p95": 1138688,
+          "max": 1138688
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6635520,
+          "median": 6635520,
+          "p95": 6635520,
+          "max": 6635520
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1187840,
+          "median": 1187840,
+          "p95": 1187840,
+          "max": 1187840
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6885376,
+          "median": 6885376,
+          "p95": 6885376,
+          "max": 6885376
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 1187840,
+          "median": 1187840,
+          "p95": 1187840,
+          "max": 1187840
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 6885376,
+          "median": 6885376,
+          "p95": 6885376,
+          "max": 6885376
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1187840,
+          "median": 1187840,
+          "p95": 1187840,
+          "max": 1187840
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6885376,
+          "median": 6885376,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1187840,
+          "median": 1187840,
+          "p95": 1187840,
+          "max": 1187840
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6893568
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1187840,
+          "median": 1187840,
+          "p95": 1187840,
+          "max": 1187840
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6893568,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6893568
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1155072,
+          "median": 1187840,
+          "p95": 1187840,
+          "max": 1187840
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6828032,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6893568
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1056768,
+          "median": 1056768,
+          "p95": 1056768,
+          "max": 1056768
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6762496,
+          "median": 6762496,
+          "p95": 6762496,
+          "max": 6762496
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "37864-b3-3-baseline-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b3-3-baseline",
+    "block": 3,
+    "kind": "A",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_baseline.exe",
+        "sha256": "f5b82f511ea73d56ac76f50b3aa885f4c7a33c20dbb3fabb7ab79be295139010",
+        "bytes": 73728
+      }
+    ],
+    "private_peak": 667648,
+    "working_set_peak": 3895296,
+    "ready_private": 667648,
+    "internal_ms": 85.0243,
+    "create_to_ready_ms": 302.162,
+    "ready_peak_commit": 729088,
+    "ready_peak_working_set": 3895296,
+    "sample_count": 247,
+    "missed_intervals": 636,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 667648,
+          "median": 667648,
+          "p95": 667648,
+          "max": 667648
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 667648,
+          "median": 667648,
+          "p95": 667648,
+          "max": 667648
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 667648,
+          "median": 667648,
+          "p95": 667648,
+          "max": 667648
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 667648,
+          "median": 667648,
+          "p95": 667648,
+          "max": 667648
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 667648,
+          "median": 667648,
+          "p95": 667648,
+          "max": 667648
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 667648,
+          "median": 667648,
+          "p95": 667648,
+          "max": 667648
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 667648,
+          "median": 667648,
+          "p95": 667648,
+          "max": 667648
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 667648,
+          "median": 667648,
+          "p95": 667648,
+          "max": 667648
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 667648,
+          "median": 667648,
+          "p95": 667648,
+          "max": 667648
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 667648,
+          "median": 667648,
+          "p95": 667648,
+          "max": 667648
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3895296,
+          "median": 3895296,
+          "p95": 3895296,
+          "max": 3895296
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "67496-b4-0-baseline-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b4-0-baseline",
+    "block": 4,
+    "kind": "A",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_baseline.exe",
+        "sha256": "f5b82f511ea73d56ac76f50b3aa885f4c7a33c20dbb3fabb7ab79be295139010",
+        "bytes": 73728
+      }
+    ],
+    "private_peak": 671744,
+    "working_set_peak": 3903488,
+    "ready_private": 671744,
+    "internal_ms": 82.948,
+    "create_to_ready_ms": 308.7771,
+    "ready_peak_commit": 696320,
+    "ready_peak_working_set": 3903488,
+    "sample_count": 248,
+    "missed_intervals": 632,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3903488,
+          "median": 3903488,
+          "p95": 3903488,
+          "max": 3903488
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3903488,
+          "median": 3903488,
+          "p95": 3903488,
+          "max": 3903488
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3903488,
+          "median": 3903488,
+          "p95": 3903488,
+          "max": 3903488
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3903488,
+          "median": 3903488,
+          "p95": 3903488,
+          "max": 3903488
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 3903488,
+          "median": 3903488,
+          "p95": 3903488,
+          "max": 3903488
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3903488,
+          "median": 3903488,
+          "p95": 3903488,
+          "max": 3903488
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3903488,
+          "median": 3903488,
+          "p95": 3903488,
+          "max": 3903488
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3903488,
+          "median": 3903488,
+          "p95": 3903488,
+          "max": 3903488
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3903488,
+          "median": 3903488,
+          "p95": 3903488,
+          "max": 3903488
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3903488,
+          "median": 3903488,
+          "p95": 3903488,
+          "max": 3903488
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "73084-b4-1-native-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b4-1-native",
+    "block": 4,
+    "kind": "B",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d.dll",
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+        "bytes": 891832
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+        "bytes": 102328
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+        "bytes": 161456
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\advapi32.dll",
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+        "bytes": 731648
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+        "bytes": 1165536
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+        "bytes": 628376
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+        "bytes": 694488
+      },
+      {
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+        "bytes": 690352
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_native.exe",
+        "sha256": "ff8a7d3bb5516eacf2a46fc85b7958b0e24e5145df63e86ad51775e51a4b3af8",
+        "bytes": 2745856
+      }
+    ],
+    "private_peak": 1208320,
+    "working_set_peak": 6905856,
+    "ready_private": 1146880,
+    "internal_ms": 84.9461,
+    "create_to_ready_ms": 324.0851,
+    "ready_peak_commit": 1146880,
+    "ready_peak_working_set": 6639616,
+    "sample_count": 247,
+    "missed_intervals": 636,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1007616,
+          "median": 1007616,
+          "p95": 1007616,
+          "max": 1007616
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5140480,
+          "median": 5140480,
+          "p95": 5144576,
+          "max": 5144576
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1007616,
+          "median": 1007616,
+          "p95": 1007616,
+          "max": 1007616
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5144576,
+          "median": 5144576,
+          "p95": 5238784,
+          "max": 5238784
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1146880,
+          "median": 1146880,
+          "p95": 1146880,
+          "max": 1146880
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6639616,
+          "median": 6639616,
+          "p95": 6639616,
+          "max": 6639616
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1208320,
+          "median": 1208320,
+          "p95": 1208320,
+          "max": 1208320
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6897664,
+          "median": 6897664,
+          "p95": 6897664,
+          "max": 6897664
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 1208320,
+          "median": 1208320,
+          "p95": 1208320,
+          "max": 1208320
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 6897664,
+          "median": 6897664,
+          "p95": 6897664,
+          "max": 6897664
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1208320,
+          "median": 1208320,
+          "p95": 1208320,
+          "max": 1208320
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6897664,
+          "median": 6897664,
+          "p95": 6897664,
+          "max": 6897664
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1208320,
+          "median": 1208320,
+          "p95": 1208320,
+          "max": 1208320
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6901760,
+          "median": 6901760,
+          "p95": 6901760,
+          "max": 6905856
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1208320,
+          "median": 1208320,
+          "p95": 1208320,
+          "max": 1208320
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6905856,
+          "median": 6905856,
+          "p95": 6905856,
+          "max": 6905856
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1208320,
+          "median": 1208320,
+          "p95": 1208320,
+          "max": 1208320
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6905856,
+          "median": 6905856,
+          "p95": 6905856,
+          "max": 6905856
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1077248,
+          "median": 1077248,
+          "p95": 1077248,
+          "max": 1077248
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6778880,
+          "median": 6778880,
+          "p95": 6778880,
+          "max": 6778880
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "60608-b4-2-native-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b4-2-native",
+    "block": 4,
+    "kind": "B",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d.dll",
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+        "bytes": 891832
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+        "bytes": 102328
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+        "bytes": 161456
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\advapi32.dll",
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+        "bytes": 731648
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+        "bytes": 1165536
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+        "bytes": 628376
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+        "bytes": 694488
+      },
+      {
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+        "bytes": 690352
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_native.exe",
+        "sha256": "ff8a7d3bb5516eacf2a46fc85b7958b0e24e5145df63e86ad51775e51a4b3af8",
+        "bytes": 2745856
+      }
+    ],
+    "private_peak": 1191936,
+    "working_set_peak": 6897664,
+    "ready_private": 1130496,
+    "internal_ms": 84.4342,
+    "create_to_ready_ms": 326.8365,
+    "ready_peak_commit": 1130496,
+    "ready_peak_working_set": 6627328,
+    "sample_count": 247,
+    "missed_intervals": 639,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 991232,
+          "median": 991232,
+          "p95": 991232,
+          "max": 991232
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5128192,
+          "median": 5128192,
+          "p95": 5132288,
+          "max": 5132288
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 991232,
+          "median": 991232,
+          "p95": 991232,
+          "max": 991232
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5132288,
+          "median": 5132288,
+          "p95": 5222400,
+          "max": 5222400
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1130496,
+          "median": 1130496,
+          "p95": 1130496,
+          "max": 1130496
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6627328,
+          "median": 6627328,
+          "p95": 6627328,
+          "max": 6627328
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6893568,
+          "max": 6893568
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6893568,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6897664
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6897664,
+          "median": 6897664,
+          "p95": 6897664,
+          "max": 6897664
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1122304,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6828032,
+          "median": 6897664,
+          "p95": 6897664,
+          "max": 6897664
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1064960,
+          "median": 1064960,
+          "p95": 1064960,
+          "max": 1064960
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6766592,
+          "median": 6766592,
+          "p95": 6766592,
+          "max": 6766592
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "43376-b4-3-baseline-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b4-3-baseline",
+    "block": 4,
+    "kind": "A",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_baseline.exe",
+        "sha256": "f5b82f511ea73d56ac76f50b3aa885f4c7a33c20dbb3fabb7ab79be295139010",
+        "bytes": 73728
+      }
+    ],
+    "private_peak": 659456,
+    "working_set_peak": 3891200,
+    "ready_private": 659456,
+    "internal_ms": 85.4235,
+    "create_to_ready_ms": 324.1114,
+    "ready_peak_commit": 720896,
+    "ready_peak_working_set": 3891200,
+    "sample_count": 247,
+    "missed_intervals": 633,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 659456,
+          "median": 659456,
+          "p95": 659456,
+          "max": 659456
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3891200,
+          "median": 3891200,
+          "p95": 3891200,
+          "max": 3891200
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "75064-b5-0-baseline-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b5-0-baseline",
+    "block": 5,
+    "kind": "A",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_baseline.exe",
+        "sha256": "f5b82f511ea73d56ac76f50b3aa885f4c7a33c20dbb3fabb7ab79be295139010",
+        "bytes": 73728
+      }
+    ],
+    "private_peak": 671744,
+    "working_set_peak": 3899392,
+    "ready_private": 671744,
+    "internal_ms": 81.6634,
+    "create_to_ready_ms": 303.0614,
+    "ready_peak_commit": 671744,
+    "ready_peak_working_set": 3899392,
+    "sample_count": 247,
+    "missed_intervals": 633,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "28856-b5-1-native-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b5-1-native",
+    "block": 5,
+    "kind": "B",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d.dll",
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+        "bytes": 891832
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+        "bytes": 102328
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+        "bytes": 161456
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\advapi32.dll",
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+        "bytes": 731648
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+        "bytes": 1165536
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+        "bytes": 628376
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+        "bytes": 694488
+      },
+      {
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+        "bytes": 690352
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_native.exe",
+        "sha256": "ff8a7d3bb5516eacf2a46fc85b7958b0e24e5145df63e86ad51775e51a4b3af8",
+        "bytes": 2745856
+      }
+    ],
+    "private_peak": 1191936,
+    "working_set_peak": 6889472,
+    "ready_private": 1130496,
+    "internal_ms": 84.4162,
+    "create_to_ready_ms": 335.9138,
+    "ready_peak_commit": 1130496,
+    "ready_peak_working_set": 6619136,
+    "sample_count": 247,
+    "missed_intervals": 639,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 995328,
+          "median": 995328,
+          "p95": 995328,
+          "max": 995328
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5124096,
+          "median": 5124096,
+          "p95": 5128192,
+          "max": 5128192
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 995328,
+          "median": 995328,
+          "p95": 995328,
+          "max": 995328
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5128192,
+          "median": 5128192,
+          "p95": 5246976,
+          "max": 5246976
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1130496,
+          "median": 1130496,
+          "p95": 1134592,
+          "max": 1134592
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6619136,
+          "median": 6619136,
+          "p95": 6623232,
+          "max": 6623232
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6881280,
+          "median": 6881280,
+          "p95": 6881280,
+          "max": 6881280
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 6881280,
+          "median": 6881280,
+          "p95": 6881280,
+          "max": 6881280
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6881280,
+          "median": 6881280,
+          "p95": 6885376,
+          "max": 6885376
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6885376,
+          "median": 6885376,
+          "p95": 6885376,
+          "max": 6885376
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1191936,
+          "median": 1191936,
+          "p95": 1191936,
+          "max": 1191936
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1069056,
+          "median": 1069056,
+          "p95": 1069056,
+          "max": 1069056
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6766592,
+          "median": 6766592,
+          "p95": 6766592,
+          "max": 6766592
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "74776-b5-2-native-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b5-2-native",
+    "block": 5,
+    "kind": "B",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d.dll",
+        "sha256": "7de55061770829e3958576f4c737b9805f7153a0e5933bb2ecd9ab9adc61b3e3",
+        "bytes": 891832
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcp140d_atomic_wait.dll",
+        "sha256": "0c5c194078138548fea061c560c41f3008c285f7b79873f34fc461c7446a06de",
+        "bytes": 102328
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "5850784fa87b95468d1f62ab05a31f56fb65228f28f05cb4f09f793155968484",
+        "bytes": 161456
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\advapi32.dll",
+        "sha256": "ef9f49ae4ee66897404ad0a1fc9b79273234c666684d359736e1206fa91fa767",
+        "bytes": 731648
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "sha256": "784c9e5b2d555473813f33679d06e29698b0ddcda678e6ae91fd2ba576b3a074",
+        "bytes": 1165536
+      },
+      {
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "760f94221801d269db3ee2f143b9183c7f23a12d640c25802189743c52dbc082",
+        "bytes": 628376
+      },
+      {
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "b26b31430173fe479484acf64cf598360c5264241e8e5ee8cf0ec2d0c484196d",
+        "bytes": 694488
+      },
+      {
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "6717157270f1692bb07b4c0238c9cb1e96d43eecbc8ed2b046519b56944e280e",
+        "bytes": 690352
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_native.exe",
+        "sha256": "ff8a7d3bb5516eacf2a46fc85b7958b0e24e5145df63e86ad51775e51a4b3af8",
+        "bytes": 2745856
+      }
+    ],
+    "private_peak": 1200128,
+    "working_set_peak": 6897664,
+    "ready_private": 1138688,
+    "internal_ms": 88.3129,
+    "create_to_ready_ms": 284.0741,
+    "ready_peak_commit": 1138688,
+    "ready_peak_working_set": 6631424,
+    "sample_count": 247,
+    "missed_intervals": 630,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 999424,
+          "median": 999424,
+          "p95": 999424,
+          "max": 999424
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5132288,
+          "median": 5132288,
+          "p95": 5132288,
+          "max": 5132288
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 999424,
+          "median": 999424,
+          "p95": 999424,
+          "max": 999424
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 5136384,
+          "median": 5136384,
+          "p95": 5136384,
+          "max": 5136384
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1138688,
+          "median": 1138688,
+          "p95": 1138688,
+          "max": 1138688
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6631424,
+          "median": 6631424,
+          "p95": 6631424,
+          "max": 6631424
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1200128,
+          "median": 1200128,
+          "p95": 1200128,
+          "max": 1200128
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 1200128,
+          "median": 1200128,
+          "p95": 1200128,
+          "max": 1200128
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6889472,
+          "max": 6889472
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 1200128,
+          "median": 1200128,
+          "p95": 1200128,
+          "max": 1200128
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 6889472,
+          "median": 6889472,
+          "p95": 6893568,
+          "max": 6893568
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1200128,
+          "median": 1200128,
+          "p95": 1200128,
+          "max": 1200128
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6893568,
+          "median": 6893568,
+          "p95": 6893568,
+          "max": 6897664
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1200128,
+          "median": 1200128,
+          "p95": 1200128,
+          "max": 1200128
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6897664,
+          "median": 6897664,
+          "p95": 6897664,
+          "max": 6897664
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1126400,
+          "median": 1200128,
+          "p95": 1200128,
+          "max": 1200128
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6828032,
+          "median": 6897664,
+          "p95": 6897664,
+          "max": 6897664
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 1069056,
+          "median": 1069056,
+          "p95": 1069056,
+          "max": 1069056
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 6770688,
+          "median": 6770688,
+          "p95": 6770688,
+          "max": 6770688
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  },
+  {
+    "run_id": "51492-b5-3-baseline-9ed2ec592c364a2a8d450c687259a3f0",
+    "command": "b5-3-baseline",
+    "block": 5,
+    "kind": "A",
+    "identity": "f8b982982f9de364ebc991a44357e8a17f2a6355983638566083cb7f428fd449",
+    "modules": [
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140d.dll",
+        "sha256": "ab6d0cc02fa70bb739fbae00e5de7544cb2dad33a563731a91fb692158d21160",
+        "bytes": 200120
+      },
+      {
+        "path": "C:\\Windows\\System32\\vcruntime140_1d.dll",
+        "sha256": "b8316d415d4cfab42cdfa6f59e3f5d7dac5b998ae681a1d83368342f07ffea6a",
+        "bytes": 61368
+      },
+      {
+        "path": "C:\\Windows\\System32\\ntdll.dll",
+        "sha256": "02596dc5754749b6de72a467daf6ac5105a7c1f1b3273852a49c2c2c58fbcbab",
+        "bytes": 2487776
+      },
+      {
+        "path": "C:\\Windows\\System32\\ucrtbased.dll",
+        "sha256": "1d769955ca1c4f5997baee5e762de79a23ed5d2660ed7c32c84e6bc7dade60c4",
+        "bytes": 2120104
+      },
+      {
+        "path": "C:\\Windows\\System32\\kernel32.dll",
+        "sha256": "8620387af570c45622c15f8be43be49a2a78f7f38edb76464acbf1aed20027af",
+        "bytes": 826712
+      },
+      {
+        "path": "C:\\Windows\\System32\\KernelBase.dll",
+        "sha256": "ea62aed7add3270609d23c6d70688a82394167d463c5b18a163bf9b6f1522002",
+        "bytes": 3909184
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\build\\footprint-9ed2ec592c364a2a8d450c687259a3f0\\Debug\\footprint_baseline.exe",
+        "sha256": "f5b82f511ea73d56ac76f50b3aa885f4c7a33c20dbb3fabb7ab79be295139010",
+        "bytes": 73728
+      }
+    ],
+    "private_peak": 671744,
+    "working_set_peak": 3899392,
+    "ready_private": 671744,
+    "internal_ms": 82.9266,
+    "create_to_ready_ms": 274.1158,
+    "ready_peak_commit": 729088,
+    "ready_peak_working_set": 3899392,
+    "sample_count": 247,
+    "missed_intervals": 636,
+    "windows": {
+      "ProcessMainEntered": {
+        "private_bytes": {
+          "count": 2,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "HostConstructionBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "HostReady": {
+        "private_bytes": {
+          "count": 2,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "WarmupComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "IdleSamplingBegin": {
+        "private_bytes": {
+          "count": 66,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 66,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "ShutdownBegin": {
+        "private_bytes": {
+          "count": 2,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 2,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "ShutdownComplete": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "BoundReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "SessionReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      },
+      "OwnersReleased": {
+        "private_bytes": {
+          "count": 34,
+          "min": 671744,
+          "median": 671744,
+          "p95": 671744,
+          "max": 671744
+        },
+        "working_set_bytes": {
+          "count": 34,
+          "min": 3899392,
+          "median": 3899392,
+          "p95": 3899392,
+          "max": 3899392
+        }
+      }
+    },
+    "thread_peak": 4,
+    "thread_boundaries": {
+      "assigned_suspended": 1,
+      "ProcessMainEntered": 4,
+      "HostConstructionBegin": 4,
+      "HostReady": 4,
+      "WarmupComplete": 4,
+      "IdleSamplingBegin": 4,
+      "ShutdownBegin": 4,
+      "ShutdownComplete": 4,
+      "BoundReleased": 4,
+      "SessionReleased": 4,
+      "OwnersReleased": 4,
+      "ExitPermitted": 4
+    },
+    "allocation": null
+  }
+]

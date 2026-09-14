@@ -1,0 +1,41 @@
+{
+  "format": "ock.development-batch-closure/1",
+  "batch_id": "B6-semantic-v2",
+  "batch_status": "Passed",
+  "gate_status": "Passed",
+  "created_at": "2026-09-14T09:48:53.802173+00:00",
+  "source_commit": "32c38ad54e875a2812a875685421a46074c292ff",
+  "tree_sha": "b127c0d38e883f41a427902499247f90b99b7260",
+  "inputs_sha256": "1ab400bd230e493d15d856e7b1cff9b56a9538d1679133c8a9cee5d6d669991c",
+  "formal_acceptance": {
+    "path": "evidence/B6/semantic-precision-32c38ad/formal-acceptance-02.json",
+    "sha256": "8f4d1fea7fcbb459db11ebfbdac392d7eacb58aa4fb6f6d61cf59bf76e211b03"
+  },
+  "footprint_integrity": {
+    "path": "evidence/B6/semantic-precision-32c38ad/footprint-integrity.json",
+    "sha256": "b159fdecebb146be8996dc7382e977616ed82dca1c1ecf39cd13b09161455ad1"
+  },
+  "matrix": {
+    "win-msvc-debug": {
+      "expected": 31,
+      "executed": 31,
+      "status": "Passed"
+    },
+    "win-msvc-release": {
+      "expected": 31,
+      "executed": 31,
+      "status": "Passed"
+    },
+    "win-msvc-asan": {
+      "expected": 31,
+      "executed": 31,
+      "status": "Passed"
+    }
+  },
+  "native_footprint": "7/7 Passed",
+  "embedded_footprint": "3/3 Passed including Release startup",
+  "B7_entry": "GO",
+  "G4": "NotStarted",
+  "scope": "B6 semantic precision v2 F1-F5；v2 取代 v1 最终放行决定，历史 B6/C1-C6 Passed 与旧来源机器事实保留。未进入 B7 实现。",
+  "failure_policy": "开发失败、首次审核附件缺少摘要的验收失败、所有首轮机器报告保持原文；最终仅选用同一来源和完整审核绑定的第二轮三配置及新来源 footprint。"
+}

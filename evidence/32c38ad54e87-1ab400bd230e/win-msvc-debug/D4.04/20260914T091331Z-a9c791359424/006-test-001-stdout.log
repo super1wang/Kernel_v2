@@ -1,0 +1,79 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b6-formal-debug
+Test project J:/Code/Kernel_v2/build/b6-formal-debug
+      Start   2: T24.state.installed_consumer
+ 1/31 Test   #2: T24.state.installed_consumer ......................   Passed   20.26 sec
+      Start   6: T24.sdk.version_header
+ 2/31 Test   #6: T24.sdk.version_header ............................   Passed    0.08 sec
+      Start  18: T01.contracts.component_closure
+ 3/31 Test  #18: T01.contracts.component_closure ...................   Passed    1.84 sec
+      Start  19: T01.contracts.public_include_boundary
+ 4/31 Test  #19: T01.contracts.public_include_boundary .............   Passed    4.69 sec
+      Start  20: T24.contracts.public_headers
+ 5/31 Test  #20: T24.contracts.public_headers ......................   Passed   15.20 sec
+      Start  24: T08.state.snapshot_ownership
+ 6/31 Test  #24: T08.state.snapshot_ownership ......................   Passed    0.09 sec
+      Start  25: T09.state.memory_commit
+ 7/31 Test  #25: T09.state.memory_commit ...........................   Passed    0.09 sec
+      Start  26: T10.state.atomic_group
+ 8/31 Test  #26: T10.state.atomic_group ............................   Passed    0.10 sec
+      Start  27: T06.state.runtime_native
+ 9/31 Test  #27: T06.state.runtime_native ..........................   Passed    0.21 sec
+      Start  75: T02.contracts.compile_fixture_setup
+10/31 Test  #75: T02.contracts.compile_fixture_setup ...............   Passed    4.50 sec
+      Start  91: T06.contracts.outcome_closed_variants
+11/31 Test  #91: T06.contracts.outcome_closed_variants .............   Passed    0.07 sec
+      Start  93: T06.contracts.publication_proof_required
+12/31 Test  #93: T06.contracts.publication_proof_required ..........   Passed    0.07 sec
+      Start  96: T06.contracts.before_apply_and_composite_proofs
+13/31 Test  #96: T06.contracts.before_apply_and_composite_proofs ...   Passed    0.08 sec
+      Start 101: T06.contracts.atomic_prepared_identity
+14/31 Test #101: T06.contracts.atomic_prepared_identity ............   Passed    0.12 sec
+      Start 136: T07.policy.cancel_arbitration
+15/31 Test #136: T07.policy.cancel_arbitration .....................   Passed    0.15 sec
+      Start 137: T07.policy.consume_before_revoke
+16/31 Test #137: T07.policy.consume_before_revoke ..................   Passed    0.11 sec
+      Start 140: T07.policy.expiry_boundary
+17/31 Test #140: T07.policy.expiry_boundary ........................   Passed    0.12 sec
+      Start 147: T07.policy.permit_concurrent
+18/31 Test #147: T07.policy.permit_concurrent ......................   Passed    0.08 sec
+      Start 148: T07.policy.permit_once
+19/31 Test #148: T07.policy.permit_once ............................   Passed    0.10 sec
+      Start 151: T07.policy.revoke_before_consume
+20/31 Test #151: T07.policy.revoke_before_consume ..................   Passed    0.08 sec
+      Start 157: T07.policy.target_lifecycle
+21/31 Test #157: T07.policy.target_lifecycle .......................   Passed    0.19 sec
+      Start 178: T02.native.validation_exception
+22/31 Test #178: T02.native.validation_exception ...................   Passed    0.13 sec
+      Start 179: T03.native.cancel_and_budget
+23/31 Test #179: T03.native.cancel_and_budget ......................   Passed    0.13 sec
+      Start 193: T03.native.host_execution_resources
+24/31 Test #193: T03.native.host_execution_resources ...............   Passed    0.10 sec
+      Start 195: T03.native.host_required_record
+25/31 Test #195: T03.native.host_required_record ...................   Passed    0.23 sec
+      Start 199: T03.native.managed_execution_path
+26/31 Test #199: T03.native.managed_execution_path .................   Passed    0.07 sec
+      Start 201: T03.native.managed_record
+27/31 Test #201: T03.native.managed_record .........................   Passed    0.08 sec
+      Start 205: T03.native.no_task_path
+28/31 Test #205: T03.native.no_task_path ...........................   Passed    0.08 sec
+      Start 214: T06.native.business_failure
+29/31 Test #214: T06.native.business_failure .......................   Passed    0.08 sec
+      Start 219: T06.native.managed_accepted_failures
+30/31 Test #219: T06.native.managed_accepted_failures ..............   Passed    0.15 sec
+      Start 222: T06.native.outcome_consistency
+31/31 Test #222: T06.native.outcome_consistency ....................   Passed    0.08 sec
+
+100% tests passed, 0 tests failed out of 31
+
+Label Time Summary:
+B5                  =   0.48 sec*proc (4 tests)
+B6                  =  20.26 sec*proc (1 test)
+CompileContracts    =   4.50 sec*proc (1 test)
+D0.02               =   0.08 sec*proc (1 test)
+D1.02               =  22.08 sec*proc (7 tests)
+D1.04               =   0.82 sec*proc (7 tests)
+D1.05               =   0.65 sec*proc (6 tests)
+D3.04               =   0.48 sec*proc (4 tests)
+Tools               =   4.50 sec*proc (1 test)
+
+Total Test time (real) =  49.42 sec
