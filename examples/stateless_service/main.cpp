@@ -88,7 +88,7 @@ struct StopGuard {
 int main() {
   using namespace native_service;
   try {
-    static_assert(ock::sdk::version == "0.1.0-dev.7");
+    static_assert(ock::sdk::version == "0.1.0-dev.8");
     static_assert(ock::sdk::runtime_available && ock::sdk::implementation_stage == "B6Subset");
     auto clock=std::make_shared<Clock>();
     auto auth=std::make_shared<Authentication>(clock->now()+std::chrono::hours(1));

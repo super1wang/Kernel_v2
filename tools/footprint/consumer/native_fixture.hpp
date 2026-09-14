@@ -117,7 +117,7 @@ class Scenario {
 public:
   static constexpr const char* kind="native";
   explicit Scenario(){
-    static_assert(ock::sdk::runtime_available&&ock::sdk::implementation_stage=="NativeSubset");
+    static_assert(ock::sdk::runtime_available&&ock::sdk::implementation_stage=="B6Subset");
     owners_=std::make_unique<Owners>();auto& o=*owners_;
     o.clock=std::make_shared<Clock>();o.auth=std::make_shared<Authentication>(o.clock->now()+std::chrono::hours(1));
     o.target_lifetime=std::make_shared<Lifetime>();target_=o.target_lifetime;
