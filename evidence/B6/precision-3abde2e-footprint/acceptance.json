@@ -1,0 +1,506 @@
+{
+  "format": "ock.b6-final-precision-footprint-acceptance/1",
+  "status": "Passed",
+  "created_at": "2026-09-14T08:20:37.263336+00:00",
+  "production_commit": "3abde2ebc1f11acccbad106142c96760a95f5d47",
+  "validation_checkout": "55bf3369dc34934bf2ffc84b7c94981e6646cdcd",
+  "source_binding": {
+    "path": "evidence/B6/precision-3abde2e-footprint/source-binding.json",
+    "sha256": "cd5009a8ddbd7001611f9b75a5d56e31cf37ea02d33da2c6cb5d4574f9597d08",
+    "bytes": 32246
+  },
+  "expected": {
+    "path": "evidence/B6/precision-3abde2e-footprint/expected.json",
+    "sha256": "105b650e815de99cd5b8f5aff5d7758841676349a104e02e57c59fa306ae19ba",
+    "bytes": 1193
+  },
+  "commands": {
+    "path": "evidence/B6/precision-3abde2e-footprint/commands.json",
+    "sha256": "bf53efd900e240f5e7afdc7ac29de94f8acb4f0d382732c4d3a929b597a00481",
+    "bytes": 10072
+  },
+  "budgets": {
+    "path": "footprint-budgets.json",
+    "sha256": "b9a07d40e0c7bb3759da8bb46f497a1b6dffc498cba9a09232089b6d20bb8532",
+    "bytes": 23363
+  },
+  "previous_budgets": {
+    "path": "evidence/B6/precision-3abde2e-footprint/previous-budgets.json",
+    "sha256": "04a794ae7af53235781c74d4d594e36927bcb10cea42d658f0c40d3f13df9435",
+    "bytes": 23345
+  },
+  "budget_limits_and_pilots_unchanged": true,
+  "verified_source_inputs": 190,
+  "reports": [
+    {
+      "kind": "native",
+      "profile": "win-msvc-debug",
+      "mode": "occupancy",
+      "report": {
+        "path": "evidence/G1/win-msvc-debug/native_occupancy/3875cc70dcc8413a988c9e34aa47654f/report.json",
+        "sha256": "e946a8c41e4b63a0029f3c4f56c94039bfe358514da4867e1d1ed911b6fbe777",
+        "bytes": 4253
+      },
+      "commands": {
+        "path": "evidence/G1/win-msvc-debug/native_occupancy/3875cc70dcc8413a988c9e34aa47654f/commands.json",
+        "sha256": "3209230cc15ffcb1c6ecfac7f0a379b1254d6e0065ab1ab3e934026352241131",
+        "bytes": 4491144
+      },
+      "samples": {
+        "path": "evidence/G1/win-msvc-debug/native_occupancy/3875cc70dcc8413a988c9e34aa47654f/samples.json",
+        "sha256": "cc224f8a69309ecb97f992dc421745d9a32d13f50f9193f67cfe6e3b17bd9e3e",
+        "bytes": 168588
+      },
+      "artifacts": {
+        "path": "evidence/G1/win-msvc-debug/native_occupancy/3875cc70dcc8413a988c9e34aa47654f/artifacts.json",
+        "sha256": "7e362c0b8b7147dab6a68ce7fec08e16d803ae9d19b835950d0bea0d5bc905ef",
+        "bytes": 55871
+      },
+      "budget_keys": [
+        "win-msvc-debug/occupancy"
+      ],
+      "blocks": 6,
+      "samples_count": 24,
+      "commands_count": 34,
+      "status": "Passed"
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-debug",
+      "mode": "allocation",
+      "report": {
+        "path": "evidence/G1/win-msvc-debug/allocation_report/78f4dd777b9840b49a1ad04c3531a8b7/report.json",
+        "sha256": "fc919842573c68d816a80174a0e935dbab966f4367a4466887f312822ff01185",
+        "bytes": 4337
+      },
+      "commands": {
+        "path": "evidence/G1/win-msvc-debug/allocation_report/78f4dd777b9840b49a1ad04c3531a8b7/commands.json",
+        "sha256": "48b386c252c8891ca650ffcf3eed5db1d211da6a15b674bdd83b4f9701f1ca3e",
+        "bytes": 4716610
+      },
+      "samples": {
+        "path": "evidence/G1/win-msvc-debug/allocation_report/78f4dd777b9840b49a1ad04c3531a8b7/samples.json",
+        "sha256": "1360ef10a63ad0b0f60d87f6817370976ad1d64104419cbeca742c34f5a95ccf",
+        "bytes": 815537
+      },
+      "artifacts": {
+        "path": "evidence/G1/win-msvc-debug/allocation_report/78f4dd777b9840b49a1ad04c3531a8b7/artifacts.json",
+        "sha256": "7b2dedf5bd81ef028bd35a6585f0901073bc09146de59fc037d3c88a779e054a",
+        "bytes": 55916
+      },
+      "budget_keys": [
+        "win-msvc-debug/allocation"
+      ],
+      "blocks": 6,
+      "samples_count": 24,
+      "commands_count": 35,
+      "status": "Passed"
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-release",
+      "mode": "occupancy",
+      "report": {
+        "path": "evidence/G1/win-msvc-release/native_occupancy/afb3d0b0409d44b180e30e8d21cfd112/report.json",
+        "sha256": "9adcdb30dec8b5aeaa8b722ae942bca776c284939cc64f42c48e2f27b527d1ca",
+        "bytes": 4251
+      },
+      "commands": {
+        "path": "evidence/G1/win-msvc-release/native_occupancy/afb3d0b0409d44b180e30e8d21cfd112/commands.json",
+        "sha256": "4dbe8a7fa442c717fdac351e99a157f82ec9743977ac7b79ad99776bdeecd95c",
+        "bytes": 4565570
+      },
+      "samples": {
+        "path": "evidence/G1/win-msvc-release/native_occupancy/afb3d0b0409d44b180e30e8d21cfd112/samples.json",
+        "sha256": "9a0297775c089053fb63eda95d6481e9cec03c06b3e4e1a9637d449d143a842c",
+        "bytes": 168435
+      },
+      "artifacts": {
+        "path": "evidence/G1/win-msvc-release/native_occupancy/afb3d0b0409d44b180e30e8d21cfd112/artifacts.json",
+        "sha256": "6353e7b62830170d208c14a4a567e612b54459e7215c72b43c222ddc4c458208",
+        "bytes": 55868
+      },
+      "budget_keys": [
+        "win-msvc-release/occupancy"
+      ],
+      "blocks": 6,
+      "samples_count": 24,
+      "commands_count": 34,
+      "status": "Passed"
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-release",
+      "mode": "allocation",
+      "report": {
+        "path": "evidence/G1/win-msvc-release/allocation_report/eae0bfd1bd4a4e36be5389b0cc333a73/report.json",
+        "sha256": "4121496b5ac9c227ae1199d6687759126d39930ceb83eb3fa8364d9a5f9ed420",
+        "bytes": 4337
+      },
+      "commands": {
+        "path": "evidence/G1/win-msvc-release/allocation_report/eae0bfd1bd4a4e36be5389b0cc333a73/commands.json",
+        "sha256": "ac2a1bcd8f76fd32053044c1483376b8d20f4c9088c2bd16111288b95a7edb85",
+        "bytes": 4749288
+      },
+      "samples": {
+        "path": "evidence/G1/win-msvc-release/allocation_report/eae0bfd1bd4a4e36be5389b0cc333a73/samples.json",
+        "sha256": "b6e1c8da9e633b3151987a83bc6ed1b08c1f98d920b667c8176bb1db8658274b",
+        "bytes": 820257
+      },
+      "artifacts": {
+        "path": "evidence/G1/win-msvc-release/allocation_report/eae0bfd1bd4a4e36be5389b0cc333a73/artifacts.json",
+        "sha256": "eb7fe65965bc4859a4608d5f7165403c54706e0b6fda5d4cb60dd855f5ad7fcd",
+        "bytes": 55900
+      },
+      "budget_keys": [
+        "win-msvc-release/allocation"
+      ],
+      "blocks": 6,
+      "samples_count": 24,
+      "commands_count": 35,
+      "status": "Passed"
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-release",
+      "mode": "latency",
+      "report": {
+        "path": "evidence/G1/win-msvc-release/ready_latency/c606a266a4d645ce899a5da0ae5d3559/report.json",
+        "sha256": "7a112fba85b02583a3a137af958175a72b9a571ddc899dcb5235802ee3648e36",
+        "bytes": 3042
+      },
+      "commands": {
+        "path": "evidence/G1/win-msvc-release/ready_latency/c606a266a4d645ce899a5da0ae5d3559/commands.json",
+        "sha256": "e7d6004dfc65702a101c25fd9cb9f79b87ef83bffbca8d7e1e8f41d1c31842fe",
+        "bytes": 561849
+      },
+      "samples": {
+        "path": "evidence/G1/win-msvc-release/ready_latency/c606a266a4d645ce899a5da0ae5d3559/samples.json",
+        "sha256": "3bcb9ebccc6d65941b9ad5a60906f141c15e03a4e5cdd51fb3f4178022b97016",
+        "bytes": 168111
+      },
+      "artifacts": {
+        "path": "evidence/G1/win-msvc-release/ready_latency/c606a266a4d645ce899a5da0ae5d3559/artifacts.json",
+        "sha256": "63f472e05bdbdc52de1b34b6624ba9410c7394213046f932f0999c0341441127",
+        "bytes": 55772
+      },
+      "budget_keys": [
+        "win-msvc-release/latency"
+      ],
+      "blocks": 6,
+      "samples_count": 24,
+      "commands_count": 34,
+      "status": "Passed"
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-asan",
+      "mode": "occupancy",
+      "report": {
+        "path": "evidence/G1/win-msvc-asan/native_occupancy/3dcaf413247e427b930df6bc57207cb5/report.json",
+        "sha256": "a00aedc9edfe9ffb88be63841d17e419a0c3dc3ae7cc0e745f018cb47898bbea",
+        "bytes": 4293
+      },
+      "commands": {
+        "path": "evidence/G1/win-msvc-asan/native_occupancy/3dcaf413247e427b930df6bc57207cb5/commands.json",
+        "sha256": "7807441a2c86974e9552b73282c3f0138b26c2a6d33451f149df06fea88f4a76",
+        "bytes": 4631958
+      },
+      "samples": {
+        "path": "evidence/G1/win-msvc-asan/native_occupancy/3dcaf413247e427b930df6bc57207cb5/samples.json",
+        "sha256": "b8e427b3b50695990bd86401dafdb7ddbe2bcd1f986e937f3536a45c52f135ef",
+        "bytes": 215534
+      },
+      "artifacts": {
+        "path": "evidence/G1/win-msvc-asan/native_occupancy/3dcaf413247e427b930df6bc57207cb5/artifacts.json",
+        "sha256": "4d12113c66cd9e6cd63993aa52c46de646c7f3b774481176311b614ff090c23a",
+        "bytes": 95607
+      },
+      "budget_keys": [
+        "win-msvc-asan/occupancy"
+      ],
+      "blocks": 6,
+      "samples_count": 24,
+      "commands_count": 34,
+      "status": "Passed"
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-asan",
+      "mode": "allocation",
+      "report": {
+        "path": "evidence/G1/win-msvc-asan/allocation_report/bd4d9c1ad7644250a326c425000eb4df/report.json",
+        "sha256": "9360d1d3067d273688352a8722e492369696da51d489ec3f4bb3b19301742d3d",
+        "bytes": 4377
+      },
+      "commands": {
+        "path": "evidence/G1/win-msvc-asan/allocation_report/bd4d9c1ad7644250a326c425000eb4df/commands.json",
+        "sha256": "b0c6b2e60d44befc05306012a8c0021f85ba1cc2970aa38f3e71f6a4c983bb0d",
+        "bytes": 4811948
+      },
+      "samples": {
+        "path": "evidence/G1/win-msvc-asan/allocation_report/bd4d9c1ad7644250a326c425000eb4df/samples.json",
+        "sha256": "7ce5465dada6b06157bc45dc214c5e89e10f63bd66bc8172d8f296ebad9bf20c",
+        "bytes": 853630
+      },
+      "artifacts": {
+        "path": "evidence/G1/win-msvc-asan/allocation_report/bd4d9c1ad7644250a326c425000eb4df/artifacts.json",
+        "sha256": "925db39d94aedc64d59ef0ddf3e2879c7a3c7473204e5b3318e50c3594b12864",
+        "bytes": 95652
+      },
+      "budget_keys": [
+        "win-msvc-asan/allocation"
+      ],
+      "blocks": 6,
+      "samples_count": 24,
+      "commands_count": 35,
+      "status": "Passed"
+    },
+    {
+      "kind": "embedded",
+      "profile": "win-msvc-debug",
+      "mode": "combined",
+      "report": {
+        "path": "evidence/G3/C/8bda3c7a9b7d40219be357faa43c7f38/report.json",
+        "sha256": "df79fa3065325aee225f5bb6f14abc3db215ac6a6a2469420ed335bfb8e6bf6f",
+        "bytes": 3344
+      },
+      "commands": {
+        "path": "evidence/G3/C/8bda3c7a9b7d40219be357faa43c7f38/commands.json",
+        "sha256": "37b550a9b72cc3806da682e8b5d72b5676b714e1e611ea3fe24afa71eb07d8da",
+        "bytes": 4396945
+      },
+      "samples": {
+        "path": "evidence/G3/C/8bda3c7a9b7d40219be357faa43c7f38/samples.json",
+        "sha256": "90762469e7ba92d8994c67350e766502872e8bf9585a9866b0617d8cfa44b5e7",
+        "bytes": 786151
+      },
+      "artifacts": {
+        "path": "evidence/G3/C/8bda3c7a9b7d40219be357faa43c7f38/artifacts.json",
+        "sha256": "2588e5d1a93b710777645712419e947ad14aef6e5c7b08e2e31988d6a16a2db6",
+        "bytes": 71002
+      },
+      "budget_keys": [
+        "win-msvc-debug/allocation"
+      ],
+      "blocks": 6,
+      "samples_count": 24,
+      "commands_count": 31,
+      "status": "Passed"
+    },
+    {
+      "kind": "embedded",
+      "profile": "win-msvc-release",
+      "mode": "combined",
+      "report": {
+        "path": "evidence/G3/C/3c1a6e0f7d644e65b2f64372eb486be4/report.json",
+        "sha256": "5559d5af1747b9f1b122219b2bd6836dcfb070baafc1885276e6310ebd5eca9c",
+        "bytes": 3578
+      },
+      "commands": {
+        "path": "evidence/G3/C/3c1a6e0f7d644e65b2f64372eb486be4/commands.json",
+        "sha256": "d148435859dc70130f728b64b9daea2153068ddafaa907571f7179f9e27b8829",
+        "bytes": 4342410
+      },
+      "samples": {
+        "path": "evidence/G3/C/3c1a6e0f7d644e65b2f64372eb486be4/samples.json",
+        "sha256": "4229521e1ec7048442c65b08dde23de7df2e8256f2398e392367541c0159e0ed",
+        "bytes": 185326
+      },
+      "artifacts": {
+        "path": "evidence/G3/C/3c1a6e0f7d644e65b2f64372eb486be4/artifacts.json",
+        "sha256": "3d162a4baab310ca01b61495e03d8485fe3e922d09e7a59268e9620d158bb35d",
+        "bytes": 57122
+      },
+      "budget_keys": [
+        "win-msvc-release/occupancy",
+        "win-msvc-release/startup"
+      ],
+      "blocks": 6,
+      "samples_count": 24,
+      "commands_count": 32,
+      "status": "Passed"
+    },
+    {
+      "kind": "embedded",
+      "profile": "win-msvc-asan",
+      "mode": "combined",
+      "report": {
+        "path": "evidence/G3/C/7c601fb8a3d94841bfd77427cf8ab9e8/report.json",
+        "sha256": "beaef973d1007b6aa9cf19706fd9d157fc9dc4364512b2224d267b4e3c815a7b",
+        "bytes": 3383
+      },
+      "commands": {
+        "path": "evidence/G3/C/7c601fb8a3d94841bfd77427cf8ab9e8/commands.json",
+        "sha256": "918c94d4563ac07fb2b7718d512a0a54e111b34caaa58bb779cb8d59d28c5c6a",
+        "bytes": 4440369
+      },
+      "samples": {
+        "path": "evidence/G3/C/7c601fb8a3d94841bfd77427cf8ab9e8/samples.json",
+        "sha256": "6d1eff44dab9a74dc99a72e068179e248bed489b02da005b450e0bf42460b255",
+        "bytes": 814871
+      },
+      "artifacts": {
+        "path": "evidence/G3/C/7c601fb8a3d94841bfd77427cf8ab9e8/artifacts.json",
+        "sha256": "a1bb6288dc3a6c75f0d59514f4f243ba0f30ff1c2f8262d6e16aaddc3dcfa232",
+        "bytes": 95880
+      },
+      "budget_keys": [
+        "win-msvc-asan/allocation"
+      ],
+      "blocks": 6,
+      "samples_count": 24,
+      "commands_count": 31,
+      "status": "Passed"
+    }
+  ],
+  "pruning": [
+    {
+      "kind": "native",
+      "profile": "debug",
+      "targets": [
+        "Foundation",
+        "CoreContracts",
+        "Runtime"
+      ],
+      "selected": [
+        "expected"
+      ],
+      "graph": {
+        "path": "evidence/B6/precision-3abde2e-footprint/pruning/native-debug/ock-target-graph.json",
+        "sha256": "9398f489620edf32c41fc03f1d6ee5871d119271725c53a3f64e8fa89020ef62",
+        "bytes": 1124
+      },
+      "acquisition": {
+        "path": "evidence/B6/precision-3abde2e-footprint/pruning/native-debug/dependency-acquisition.json",
+        "sha256": "2dd8c017b42323679fb3182703a71649191ce5f5e1c5e67a3e75618de0300278",
+        "bytes": 628
+      },
+      "status": "Passed"
+    },
+    {
+      "kind": "native",
+      "profile": "release",
+      "targets": [
+        "Foundation",
+        "CoreContracts",
+        "Runtime"
+      ],
+      "selected": [
+        "expected"
+      ],
+      "graph": {
+        "path": "evidence/B6/precision-3abde2e-footprint/pruning/native-release/ock-target-graph.json",
+        "sha256": "9398f489620edf32c41fc03f1d6ee5871d119271725c53a3f64e8fa89020ef62",
+        "bytes": 1124
+      },
+      "acquisition": {
+        "path": "evidence/B6/precision-3abde2e-footprint/pruning/native-release/dependency-acquisition.json",
+        "sha256": "2dd8c017b42323679fb3182703a71649191ce5f5e1c5e67a3e75618de0300278",
+        "bytes": 628
+      },
+      "status": "Passed"
+    },
+    {
+      "kind": "native",
+      "profile": "asan",
+      "targets": [
+        "Foundation",
+        "CoreContracts",
+        "Runtime"
+      ],
+      "selected": [
+        "expected"
+      ],
+      "graph": {
+        "path": "evidence/B6/precision-3abde2e-footprint/pruning/native-asan/ock-target-graph.json",
+        "sha256": "9398f489620edf32c41fc03f1d6ee5871d119271725c53a3f64e8fa89020ef62",
+        "bytes": 1124
+      },
+      "acquisition": {
+        "path": "evidence/B6/precision-3abde2e-footprint/pruning/native-asan/dependency-acquisition.json",
+        "sha256": "2dd8c017b42323679fb3182703a71649191ce5f5e1c5e67a3e75618de0300278",
+        "bytes": 628
+      },
+      "status": "Passed"
+    },
+    {
+      "kind": "embedded",
+      "profile": "debug",
+      "targets": [
+        "Foundation",
+        "CoreContracts",
+        "Runtime",
+        "Adapter::CpuPool"
+      ],
+      "selected": [
+        "expected",
+        "thread_pool"
+      ],
+      "graph": {
+        "path": "evidence/B6/precision-3abde2e-footprint/pruning/embedded-debug/ock-target-graph.json",
+        "sha256": "7c1038150022c24e7ace175271058630fffa5964b78b8cf6132585596554e172",
+        "bytes": 1419
+      },
+      "acquisition": {
+        "path": "evidence/B6/precision-3abde2e-footprint/pruning/embedded-debug/dependency-acquisition.json",
+        "sha256": "9c105f57579f41379cc3bd70aee41786910c81bbc08036f59e1a164a5f15f1d3",
+        "bytes": 1212
+      },
+      "status": "Passed"
+    },
+    {
+      "kind": "embedded",
+      "profile": "release",
+      "targets": [
+        "Foundation",
+        "CoreContracts",
+        "Runtime",
+        "Adapter::CpuPool"
+      ],
+      "selected": [
+        "expected",
+        "thread_pool"
+      ],
+      "graph": {
+        "path": "evidence/B6/precision-3abde2e-footprint/pruning/embedded-release/ock-target-graph.json",
+        "sha256": "7c1038150022c24e7ace175271058630fffa5964b78b8cf6132585596554e172",
+        "bytes": 1419
+      },
+      "acquisition": {
+        "path": "evidence/B6/precision-3abde2e-footprint/pruning/embedded-release/dependency-acquisition.json",
+        "sha256": "9c105f57579f41379cc3bd70aee41786910c81bbc08036f59e1a164a5f15f1d3",
+        "bytes": 1212
+      },
+      "status": "Passed"
+    },
+    {
+      "kind": "embedded",
+      "profile": "asan",
+      "targets": [
+        "Foundation",
+        "CoreContracts",
+        "Runtime",
+        "Adapter::CpuPool"
+      ],
+      "selected": [
+        "expected",
+        "thread_pool"
+      ],
+      "graph": {
+        "path": "evidence/B6/precision-3abde2e-footprint/pruning/embedded-asan/ock-target-graph.json",
+        "sha256": "7c1038150022c24e7ace175271058630fffa5964b78b8cf6132585596554e172",
+        "bytes": 1419
+      },
+      "acquisition": {
+        "path": "evidence/B6/precision-3abde2e-footprint/pruning/embedded-asan/dependency-acquisition.json",
+        "sha256": "9c105f57579f41379cc3bd70aee41786910c81bbc08036f59e1a164a5f15f1d3",
+        "bytes": 1212
+      },
+      "status": "Passed"
+    }
+  ],
+  "B7_entry": "GO",
+  "G4": "NotStarted",
+  "scope": "仅补 CoreContracts 布局变化触发的 footprint；保留既有代码与功能验收，未重跑历史全矩阵；不是 GUI、设备或物理机放行。"
+}
