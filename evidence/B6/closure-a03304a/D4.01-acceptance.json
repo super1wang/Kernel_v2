@@ -1,0 +1,57 @@
+{
+  "format": "ock.batch-package-closure/1",
+  "task_id": "D4.01",
+  "package_status": "Passed",
+  "created_at": "2026-09-14T03:36:15.071207+00:00",
+  "actor_type": "AI",
+  "human_review_required": false,
+  "source_commit": "a03304a407b7716c1c68cb601cedc7c08d2ffa2c",
+  "inputs_sha256": "5d15ef17eb4e1305e9275a077a80c3f8a2fde46d24b6f553b4d886f7607d1e9a",
+  "policy": {
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+  },
+  "prerequisites": [
+    {
+      "task_id": "D1.02",
+      "status": "Passed",
+      "kind": "HistoricalCommittedStatus",
+      "commit": "a03304a407b7716c1c68cb601cedc7c08d2ffa2c",
+      "path": "docs/progress.md"
+    },
+    {
+      "task_id": "D0.06",
+      "status": "Passed",
+      "kind": "HistoricalCommittedStatus",
+      "commit": "a03304a407b7716c1c68cb601cedc7c08d2ffa2c",
+      "path": "docs/progress.md"
+    },
+    {
+      "task_id": "D3.03",
+      "status": "Passed",
+      "kind": "HistoricalCommittedStatus",
+      "commit": "a03304a407b7716c1c68cb601cedc7c08d2ffa2c",
+      "path": "docs/progress.md"
+    }
+  ],
+  "technical_conclusions": {
+    "path": "docs/reviews/B6-closure-package-conclusions.md",
+    "sha256": "20a5bea6dac7033199d3a2c87fe6666a4961316b1bf4dfad41e859bd1ce7dfc8"
+  },
+  "matrix": {
+    "path": "evidence/B6/closure-a03304a/matrix-acceptance.json",
+    "sha256": "9f4d5b60089d4384347cbc1384f3d1faee927828b45b4fe654140c0b5fed77da"
+  },
+  "closure_inputs": {
+    "path": "evidence/B6/closure-a03304a/closure-inputs.json",
+    "sha256": "2516eb95931ac446376718fb95800727c2a08fb399f17a08e15c2f7748f194ec"
+  },
+  "required_cases": [
+    "T24.state.settings_service",
+    "T24.state.installed_consumer",
+    "T08.state.frozen_roots",
+    "T08.state.snapshot_ownership",
+    "T23.state.structural_sharing_cost"
+  ],
+  "note": "独立逻辑完成条件与已提交前置已核对；共享同源完整矩阵及成本/安装实证，不重复物理执行。"
+}

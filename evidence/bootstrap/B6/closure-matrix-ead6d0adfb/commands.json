@@ -1,0 +1,80 @@
+[
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/evidence/run.py",
+      "tests/runs/b6-closure-win-msvc-debug.json"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:59:21.129182+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 1021,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9552071511456,
+      "qpc_frequency": 10000000
+    },
+    "pid": 66232,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T03:05:14.336272+00:00",
+    "label": "debug",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-matrix-ead6d0adfb\\debug-stdout.log",
+        "sha256": "e1c793c31b1462065d9602ab7dba6e17ce5fd297ea4637f165ce5ef03e536889"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-matrix-ead6d0adfb\\debug-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/evidence/run.py",
+      "tests/runs/b6-closure-win-msvc-release.json"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T03:05:14.338277+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 1212,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9555603624128,
+      "qpc_frequency": 10000000
+    },
+    "pid": 71628,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-14T03:14:19.926465+00:00",
+    "label": "release",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-matrix-ead6d0adfb\\release-stdout.log",
+        "sha256": "69a1cffaecbb314e87271c69d946e81672b43d67aab0ac49a7fd9740796754b0"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-matrix-ead6d0adfb\\release-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  }
+]

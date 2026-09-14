@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="9"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-U2F62TA"
+	time="17"
+	timestamp="2026-09-13T21:59:03"
+	>
+	<testcase name="T24.state.settings_service" classname="T24.state.settings_service" time="1.28185" status="run">
+		<properties>
+			<property name="cmake_labels" value="B6"/>
+		</properties>
+		<system-out>0.1.0-dev.8 State Host native Atomic passed
+</system-out>
+	</testcase>
+	<testcase name="T24.state.installed_consumer" classname="T24.state.installed_consumer" time="11.2327" status="run">
+		<properties>
+			<property name="cmake_labels" value="B6"/>
+		</properties>
+		<system-out>argv: ['cmake', '--install', 'J:\\Code\\Kernel_v2\\build\\b6-state-final', '--config', 'Debug', '--prefix', 'J:\\Code\\Kernel_v2\\build\\state-install-8q9zq2_t\\original'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\state-install-8q9zq2_t\\source', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\state-install-8q9zq2_t\\relocated', '-DOCK_CONSUMER_ASAN=OFF', '-DOCK_CONSUMER_STATE_HOST=OFF', '-B', 'J:\\Code\\Kernel_v2\\build\\state-install-8q9zq2_t\\consumer'] exit_code: 0
+argv: ['cmake', '--build', 'J:\\Code\\Kernel_v2\\build\\state-install-8q9zq2_t\\consumer', '--config', 'Debug', '--parallel', '4', '--', '/nr:false'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\state-install-8q9zq2_t\\consumer\\Debug\\installed_state.exe'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\state-install-8...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T08.state.frozen_roots" classname="T08.state.frozen_roots" time="0.107864" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T08.state.snapshot_ownership" classname="T08.state.snapshot_ownership" time="0.113093" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T09.state.memory_commit" classname="T09.state.memory_commit" time="0.124051" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T10.state.atomic_group" classname="T10.state.atomic_group" time="0.162715" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.state.runtime_native" classname="T06.state.runtime_native" time="0.260408" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T09.state.object_references" classname="T09.state.object_references" time="0.134682" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T23.state.structural_sharing_cost" classname="T23.state.structural_sharing_cost" time="3.93787" status="run">
+		<properties/>
+		<system-out>{"objects":1000,"changed":1,"references":0,"status":"Passed","snapshot_ns":2500,"edit_ns":29700,"constraints_ns":100,"prepare_ns":9000,"commit_ns":7900,"reclaim_ns":7800,"logical_root_bytes":320056,"logical_delta_bytes":768,"history_ring_bytes":880,"history_retained_bytes":880,"index_unique_retained_bytes":93096,"index_allocated_bytes":1488,"index_allocations":3,"index_after_reclaim_bytes":91608,"baseline_index_bytes":91608}
+{"objects":1000,"changed":10,"references":0,"status":"Passed","snapshot_ns":900,"edit_ns":109500,"constraints_ns":100,"prepare_ns":5300,"commit_ns":5600,"reclaim_ns":16500,"logical_root_bytes":320056,"logical_delta_bytes":7680,"history_ring_bytes":7792,"history_retained_bytes":7792,"index_unique_retained_bytes":103616,"index_allocated_bytes":14816,"index_allocations":30,"index_after_reclaim_bytes":91608,"baseline_index_bytes":91608}
+{"objects":1000,"changed":100,"references":0,"status":"Passed","snapshot_ns":700,"edit_ns":1267200,"constraints_ns":100,"prepare_ns":6600,"commit_ns":6100,"re...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+</testsuite>

@@ -1,0 +1,118 @@
+{
+  "status": "Passed",
+  "checked_at": "2026-09-14T02:58:53.209865+00:00",
+  "scope": "当前最终来源与全部 10 份成本报告的方法输入一致；安装材料和每个原始命令流逐字节复核。此检查不修改原报告、不授予历史 G1/G3 或 G4。",
+  "reports": [
+    {
+      "kind": "native",
+      "profile": "win-msvc-debug",
+      "mode": "allocation",
+      "path": "evidence\\G1\\win-msvc-debug\\allocation_report\\243952e48c92401a8a40f2e40506351f\\report.json",
+      "sha256": "510f33079d2a639875c37ec1f8116e9094b1e41f97e0a9b872e77a9bc3515eb7",
+      "method_digest": "8dff92c4ef086829b01350e2eda9246deb180790581772a958698afa6cfe0fcf",
+      "samples": 24,
+      "artifact_count": 300,
+      "commands": 35
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-debug",
+      "mode": "occupancy",
+      "path": "evidence\\G1\\win-msvc-debug\\native_occupancy\\259cb426a6944164909e6676b58b9eff\\report.json",
+      "sha256": "ec64405507eb2e0f3dc5c780d651c1f47bcd49965f42bbf4a88bb9a10e4f554f",
+      "method_digest": "1283f7756ea87c00adbb67540722344d9ef1687ae25594795bc377923ceebc94",
+      "samples": 24,
+      "artifact_count": 300,
+      "commands": 34
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-release",
+      "mode": "occupancy",
+      "path": "evidence\\G1\\win-msvc-release\\native_occupancy\\260469cb8ef444ea81d1f5abebcbbb98\\report.json",
+      "sha256": "c48f6d811da5dc49d6c0a08aa462e668772e555dbf04e64b08b32e7a491803ac",
+      "method_digest": "78d42fae20defbf8d13992ac0b6b1beb77e3b68171f13408b6bc3aaff205f718",
+      "samples": 24,
+      "artifact_count": 300,
+      "commands": 34
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-release",
+      "mode": "allocation",
+      "path": "evidence\\G1\\win-msvc-release\\allocation_report\\4a34b7bb6d6b4818b489b3bb6d074848\\report.json",
+      "sha256": "e0226b72588196622d88ef6ce9153cfd20d6474758bb90329b9ea6e19fa00775",
+      "method_digest": "855dfbb1dcc2eefff970ac93d2c69e937bb340c99ba3743a2544e1c903faaa1a",
+      "samples": 24,
+      "artifact_count": 300,
+      "commands": 35
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-release",
+      "mode": "latency",
+      "path": "evidence\\G1\\win-msvc-release\\ready_latency\\803c68c89cf444d1a96ef639a9e279d5\\report.json",
+      "sha256": "88932c1fbc640defbb226519534826e79a505b5331f723875904caf2fa91729a",
+      "method_digest": "2375c77ea9cb22ad1820f3d3475f731acbf9384ed7693ed5a6f6026c9f1c39d2",
+      "samples": 24,
+      "artifact_count": 300,
+      "commands": 34
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-asan",
+      "mode": "occupancy",
+      "path": "evidence\\G1\\win-msvc-asan\\native_occupancy\\7f2fc0be071e41aaa3c31ba70a50ff23\\report.json",
+      "sha256": "1fcae3b8489605ebbab032be76360bb7f3f7a7f3033c53b16139eebc6797fbfc",
+      "method_digest": "df782399e609711166ea867896848db76a54ab5944e66153cb3a0b2b96daf3d1",
+      "samples": 24,
+      "artifact_count": 528,
+      "commands": 34
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-asan",
+      "mode": "allocation",
+      "path": "evidence\\G1\\win-msvc-asan\\allocation_report\\17eb52eba1ee418282637c2216e614f5\\report.json",
+      "sha256": "f9f7808215014dd89f7fae17451de23a5ff8f6c1f64d538e2ceb7f42a823ae1c",
+      "method_digest": "63c38229dc3997b56fe1d07e9064abcc1ee9d63b26103ebde8fb8a7792ac1131",
+      "samples": 24,
+      "artifact_count": 528,
+      "commands": 35
+    },
+    {
+      "kind": "embedded",
+      "profile": "win-msvc-debug",
+      "mode": "embedded",
+      "path": "evidence\\G3\\C\\a023c373f7f14081bcc7dd9b69bbcbdd\\report.json",
+      "sha256": "40c753d4050783937bd747322496600ab345af0d3f49df8aa46fa4a3041bdcc7",
+      "method_digest": "7aed1df45286c9d87b291f9353fcab6cb911acc71dd34fd0c0fa4e54f0757e84",
+      "samples": 24,
+      "artifact_count": 401,
+      "commands": 31
+    },
+    {
+      "kind": "embedded",
+      "profile": "win-msvc-release",
+      "mode": "embedded",
+      "path": "evidence\\G3\\C\\fd15b467221f435b9e7ef4f2902b1948\\report.json",
+      "sha256": "8324a868cb51095baf7f9f06644d3373fab5fba297b720f835006f3de44b5327",
+      "method_digest": "bdf703935a0d7f985d145cf546f5f5b80debddd83e8424a5770436d71bb7bf4a",
+      "samples": 24,
+      "artifact_count": 317,
+      "commands": 32
+    },
+    {
+      "kind": "embedded",
+      "profile": "win-msvc-asan",
+      "mode": "embedded",
+      "path": "evidence\\G3\\C\\89ecdd23deba41e1a8e5bfd255bef8c2\\report.json",
+      "sha256": "8755651deab68c39d6eb5f0df65160c0972cb151e7bdaa85f9853ef0291995e3",
+      "method_digest": "f31b36b4ce273e399abe8e0770b7b402c537f8deadd55a37d06d86f63a1aaacf",
+      "samples": 24,
+      "artifact_count": 545,
+      "commands": 31
+    }
+  ],
+  "preserved_failure": "evidence/G1/win-msvc-release/ready_latency/6ca847224eae4eeda9bd3fa2d3f91984/report.json"
+}

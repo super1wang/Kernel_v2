@@ -1,12 +1,12 @@
 # 内核实施进度
 
-更新：2026-09-12。唯一规范为 [架构 v3.3-r2](01_Architecture_v3.3.md) 与 [执行计划 v3.3-r2](02_Execution_Plan_v3.3.md)。恢复任务默认只读本文件顶部、当前 Development Batch 的相关规范/合同和 diff；历史 review/evidence 按需读取。
+更新：2026-09-13。唯一规范为 [架构 v3.3-r2](01_Architecture_v3.3.md) 与 [执行计划 v3.3-r2](02_Execution_Plan_v3.3.md)。恢复任务默认只读本文件顶部、当前 Development Batch 的相关规范/合同和 diff；历史 review/evidence 按需读取。
 
 ## 当前生产节点
 
-- **2026-09-13 B6 closure InProgress；B7 State/Atomic 集成 HOLD。** 用户已要求按 [审计及收口方案](plans/B6_审计报告与最终收口方案_2026-09-12.md) 修复 C1–C6。当前复审 ChangesRequested：提交仲裁、逐次证明、生命周期/prepared 回收、Atomic 完整治理、History 压力及跨层验收存在缺口。下述 B6 Passed 为历史来源事实，不代表本轮收口已完成。
+- **B6 closure InProgress（2026-09-13）：D4.01 Passed；其余包待依次归档。** 最终 a03304a / 5d15ef17eb4e… 三配置各 89/89、StateNative 9/9、Runtime-only 安装及 Native/Embedded 原预算成本已通过；B7 仍 HOLD，G4 NotStarted。历史 B6 Passed 保留，当前结论见 [独立收口决定](../evidence/B6/closure-a03304a/D4.01-acceptance.json)。
 
-- **B6 完成，D4.01–D4.04 Passed。** owning PublishedState/Snapshot、候选 Edit/WriteSet/History、内存 Commit 发布 gate 与同源有限 Atomic 组已完成；Runtime 发布后结果事实保持，State 公开仅依赖 CoreContracts，immer 私有。最终来源 `b6203fd` / `ab332d1b0e16…` 的 Debug、Release、ASan 各 **62/62**，完整审计错误为 0；[自动验收](../evidence/B6/final-b6203fd/acceptance.json)为 Passed，详见 [B6 交付](validation/B6-delivery.md)。
+- **B6 历史实现（审计前）完成，D4.01–D4.04 Passed。** owning PublishedState/Snapshot、候选 Edit/WriteSet/History、内存 Commit 发布 gate 与同源有限 Atomic 组已完成；Runtime 发布后结果事实保持，State 公开仅依赖 CoreContracts，immer 私有。最终来源 `b6203fd` / `ab332d1b0e16…` 的 Debug、Release、ASan 各 **62/62**，完整审计错误为 0；[自动验收](../evidence/B6/final-b6203fd/acceptance.json)为 Passed，详见 [B6 交付](validation/B6-delivery.md)。
 
 - `StateNative` 最小投影仅取得 expected/immer，9/9 State 测试及迁移安装通过；Runtime-only 仍仅取得 expected，Embedded 仍不含 State/immer。受影响 Embedded footprint 三配置各 6 组 ABBA 均 Passed，Debug/ASan 零分配窗口及三线程结构上界保持。首次 ASan 的运行库缺失和消费者 ABI 不一致失败报告保持原文，最终矩阵从修复后的同一提交完整重跑。
 

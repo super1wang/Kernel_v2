@@ -1,0 +1,40 @@
+{
+  "status": "Collected",
+  "budget_status": "NotEvaluated",
+  "blocks": 6,
+  "summary": {
+    "baseline": {
+      "create_to_ready_ms": {
+        "count": 12,
+        "min": 15.729,
+        "median": 20.2845,
+        "p95": 36.8314,
+        "max": 36.8314
+      },
+      "construction_to_ready_ms": {
+        "count": 12,
+        "min": 0.0,
+        "median": 0.0,
+        "p95": 0.0001,
+        "max": 0.0001
+      }
+    },
+    "embedded": {
+      "create_to_ready_ms": {
+        "count": 12,
+        "min": 17.4006,
+        "median": 22.6316,
+        "p95": 35.5056,
+        "max": 35.5056
+      },
+      "construction_to_ready_ms": {
+        "count": 12,
+        "min": 0.6655,
+        "median": 0.732,
+        "p95": 0.8341,
+        "max": 0.8341
+      }
+    }
+  },
+  "method": "QPC before CreateProcess to child actual Ready; includes owned Job assignment/resume, no stage handshake or allocation instrumentation; cold cache not forced"
+}

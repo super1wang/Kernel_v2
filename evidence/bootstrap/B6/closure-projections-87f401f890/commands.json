@@ -1,0 +1,135 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "build/b6-native-debug",
+      "-DOCK_BUILD_COMPONENTS=Runtime",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_DEPENDENCY_PROBES=OFF"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:20:17.055142+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 39,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9528630769349,
+      "qpc_frequency": 10000000
+    },
+    "pid": 43948,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:20:23.187671+00:00",
+    "label": "native-configure",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-87f401f890\\native-configure-stdout.log",
+        "sha256": "96ed0fad9293ccc400686478a194172afacc63fa03bab8b0e511411c20b78b36"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-87f401f890\\native-configure-stderr.log",
+        "sha256": "e39c2e3265d3e9f92413b4ff2c0942d01df9c631a0f4c80048a7ddd2d76b10ab"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/b6-native-debug",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:20:23.189186+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 19,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9528692111728,
+      "qpc_frequency": 10000000
+    },
+    "pid": 32200,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:20:46.511711+00:00",
+    "label": "native-build",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-87f401f890\\native-build-stdout.log",
+        "sha256": "9159758700b0a6337316ad0a7f30dae9995477d93123e4d77d1f164e3aefeb80"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-87f401f890\\native-build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tests/install_consumer/verify_native.py",
+      "--build",
+      "build/b6-native-debug",
+      "--config",
+      "Debug",
+      "--case",
+      "installed_host",
+      "--evidence-task",
+      "B2"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:20:46.512274+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 53,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9528925347934,
+      "qpc_frequency": 10000000
+    },
+    "pid": 37160,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:20:55.082332+00:00",
+    "label": "runtime-install",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-87f401f890\\runtime-install-stdout.log",
+        "sha256": "1f9bb64e1715c52045a2746b4c7342fa17307e054c5c59fc11554870ddc8e20d"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-87f401f890\\runtime-install-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  }
+]

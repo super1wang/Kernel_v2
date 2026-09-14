@@ -1,0 +1,11 @@
+{
+  "status": "FailedRunPreserved",
+  "reviewer": "Codex AI",
+  "reviewed_at": "2026-09-14T02:36:33.569039+00:00",
+  "report": {
+    "path": "evidence\\G1\\win-msvc-release\\ready_latency\\6ca847224eae4eeda9bd3fa2d3f91984\\report.json",
+    "sha256": "88e8e9392b4524e96368b268dd9efb2efbf6a6c09f8b4c69db0113c2f0c44f7b"
+  },
+  "finding": "24 个进程中一个 Native 在 ProcessMainEntered 前已只有 3 个线程，其余 23 个为 4；该进程从进入到退出均保持 3。配对差额为负，未观察到内核新增线程。独立 PSS Native/空基线的三个非主线程均为相同 ntdll.dll RVA 199232；正控多一个 ucrtbase 工作线程。证据支持本轮启动期系统线程数量不匹配，不能将失败改写为 Passed。",
+  "next_action": "允许一次预先限定的完整六组重新采集。来源、配置、方法、数值预算、线程等式及所有样本保留规则不变。若再次失败，停止该模式并诊断，不循环至通过。"
+}

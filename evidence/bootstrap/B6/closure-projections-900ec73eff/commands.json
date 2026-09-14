@@ -1,0 +1,143 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "build/b6-state-final",
+      "-DOCK_BUILD_COMPONENTS=StateNative",
+      "-DOCK_DEPENDENCY_COMPONENTS=State",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DOCK_BUILD_STATE_TESTS=ON",
+      "-DPython3_EXECUTABLE=J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:57:56.715084+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 21,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9551227367717,
+      "qpc_frequency": 10000000
+    },
+    "pid": 61032,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:57:59.286404+00:00",
+    "label": "state-configure",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-900ec73eff\\state-configure-stdout.log",
+        "sha256": "4760ee58f035a011e8b003980f804cc76dc10c049c13c0245042be2a6eacf1d8"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-900ec73eff\\state-configure-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/b6-state-final",
+      "--config",
+      "Debug",
+      "--target",
+      "ock_settings_service",
+      "ock_state_roots",
+      "ock_state_snapshots",
+      "ock_state_commit",
+      "ock_state_atomic",
+      "ock_state_runtime",
+      "ock_state_objects",
+      "ock_state_cost",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:57:59.287408+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 103,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9551253098433,
+      "qpc_frequency": 10000000
+    },
+    "pid": 15268,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:59:03.277829+00:00",
+    "label": "state-build",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-900ec73eff\\state-build-stdout.log",
+        "sha256": "33236747c0f419adb13d789feaf252c5a85c18fd60dcacaade1166a651eb9036"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-900ec73eff\\state-build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/b6-state-final",
+      "-C",
+      "Debug",
+      "-R",
+      "^T(24.state.(settings_service|installed_consumer)|08.state.(frozen_roots|snapshot_ownership)|09.state.(memory_commit|object_references)|10.state.atomic_group|06.state.runtime_native|23.state.structural_sharing_cost)$",
+      "--no-tests=error",
+      "--output-on-failure",
+      "--output-junit",
+      "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-900ec73eff\\state.xml"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:59:03.278825+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 95,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "creation_clock": {
+      "qpc_ticks": 9551893032890,
+      "qpc_frequency": 10000000
+    },
+    "pid": 23252,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:59:20.858418+00:00",
+    "label": "state-test",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-900ec73eff\\state-test-stdout.log",
+        "sha256": "cacbb18c6a688a3f1c21d5e7c59d1175243adba8a038316ef652c8f3363b0b67"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-900ec73eff\\state-test-stderr.log",
+        "sha256": "3833d0e4df7b1273c27ab6959e3a7917b02d48537fd4ef5e21aebf23f45666e1"
+      }
+    ]
+  }
+]

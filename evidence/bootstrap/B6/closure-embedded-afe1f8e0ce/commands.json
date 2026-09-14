@@ -1,0 +1,260 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-debug",
+      "-B",
+      "build/b6-embedded-debug",
+      "-DOCK_BUILD_COMPONENTS=Embedded",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation;CpuPool",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_DEPENDENCY_PROBES=OFF"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:46:10.760518+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 11,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9544167830100,
+      "qpc_frequency": 10000000
+    },
+    "pid": 65048,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:46:12.233680+00:00",
+    "label": "configure-debug",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-embedded-afe1f8e0ce\\configure-debug-stdout.log",
+        "sha256": "c27b26791b28b75c506978bace88ef13cf6fdfac880b87c86c769f85a213dcc1"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-embedded-afe1f8e0ce\\configure-debug-stderr.log",
+        "sha256": "f2681187743ec83dc4e106acaf236d2dd7d58504f7917e7a0aa3f7be6a79d4bb"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/embedded_formal.py",
+      "--profile",
+      "win-msvc-debug",
+      "--producer",
+      "build/b6-embedded-debug"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:46:12.234683+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 160,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9544182570958,
+      "qpc_frequency": 10000000
+    },
+    "pid": 67320,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:48:51.504842+00:00",
+    "label": "measure-debug",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-embedded-afe1f8e0ce\\measure-debug-stdout.log",
+        "sha256": "c2cb540e4e76c54594cd3fcdc401da8d4935d2badd68fa4fef195bd51a02c24b"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-embedded-afe1f8e0ce\\measure-debug-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-release",
+      "-B",
+      "build/b6-embedded-release",
+      "-DOCK_BUILD_COMPONENTS=Embedded",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation;CpuPool",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_DEPENDENCY_PROBES=OFF"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:48:51.507842+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 11,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9545775318883,
+      "qpc_frequency": 10000000
+    },
+    "pid": 22120,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:48:52.639766+00:00",
+    "label": "configure-release",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-embedded-afe1f8e0ce\\configure-release-stdout.log",
+        "sha256": "8ca8d5afb5e484039aa355cda8127dc78063736be1abb1a24f62c6aa58c289a8"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-embedded-afe1f8e0ce\\configure-release-stderr.log",
+        "sha256": "f2681187743ec83dc4e106acaf236d2dd7d58504f7917e7a0aa3f7be6a79d4bb"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/embedded_formal.py",
+      "--profile",
+      "win-msvc-release",
+      "--producer",
+      "build/b6-embedded-release"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:48:52.641270+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 210,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9545786629465,
+      "qpc_frequency": 10000000
+    },
+    "pid": 37600,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:52:09.063351+00:00",
+    "label": "measure-release",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-embedded-afe1f8e0ce\\measure-release-stdout.log",
+        "sha256": "f75b8225913fbe68864d5d10dbadc940d29b85075ce4eba923f8459d6079e465"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-embedded-afe1f8e0ce\\measure-release-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-asan",
+      "-B",
+      "build/b6-embedded-asan",
+      "-DOCK_BUILD_COMPONENTS=Embedded",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation;CpuPool",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_DEPENDENCY_PROBES=OFF"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:52:09.066443+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 11,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9547750900914,
+      "qpc_frequency": 10000000
+    },
+    "pid": 64988,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:52:10.452840+00:00",
+    "label": "configure-asan",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-embedded-afe1f8e0ce\\configure-asan-stdout.log",
+        "sha256": "82d4b2e9b0f7562d315eb5dc66ef7e75903d199e0b037e446eeacb501b908304"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-embedded-afe1f8e0ce\\configure-asan-stderr.log",
+        "sha256": "f2681187743ec83dc4e106acaf236d2dd7d58504f7917e7a0aa3f7be6a79d4bb"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/embedded_formal.py",
+      "--profile",
+      "win-msvc-asan",
+      "--producer",
+      "build/b6-embedded-asan"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:52:10.456892+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 160,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9547764795069,
+      "qpc_frequency": 10000000
+    },
+    "pid": 21668,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:55:22.403570+00:00",
+    "label": "measure-asan",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-embedded-afe1f8e0ce\\measure-asan-stdout.log",
+        "sha256": "aaef7991efd57463dfef35d9314037b8f91d9d483ab1109ea3fbca525eee2efe"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-embedded-afe1f8e0ce\\measure-asan-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  }
+]

@@ -1,0 +1,256 @@
+[
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "build/b6-closure-projections.py",
+      "release"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:24:48.332199+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 62,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9531343545201,
+      "qpc_frequency": 10000000
+    },
+    "pid": 27004,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:25:19.133434+00:00",
+    "label": "producer-release",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-native-959ac6017b\\producer-release-stdout.log",
+        "sha256": "8b1fc8056ac0a4d89109863cccab54a6fa49c5912df0a087f011129249fc1fd9"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-native-959ac6017b\\producer-release-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "build/b6-closure-projections.py",
+      "asan"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:25:19.134440+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 62,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9531651566188,
+      "qpc_frequency": 10000000
+    },
+    "pid": 25920,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:25:45.368842+00:00",
+    "label": "producer-asan",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-native-959ac6017b\\producer-asan-stdout.log",
+        "sha256": "ac21a89d6b6c3b9b6ad1581b5a504358e7bb25504b336b83d8587e51a8d10a52"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-native-959ac6017b\\producer-asan-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/formal.py",
+      "--profile",
+      "win-msvc-debug",
+      "--mode",
+      "occupancy",
+      "--build",
+      "build/b6-native-debug"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:25:45.370348+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 205,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9531913920236,
+      "qpc_frequency": 10000000
+    },
+    "pid": 61164,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:28:05.726257+00:00",
+    "label": "win-msvc-debug-occupancy",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-native-959ac6017b\\win-msvc-debug-occupancy-stdout.log",
+        "sha256": "444615436e14ce606643dae935d00480a65680d0f73e29459209cdbc349f11aa"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-native-959ac6017b\\win-msvc-debug-occupancy-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/formal.py",
+      "--profile",
+      "win-msvc-release",
+      "--mode",
+      "occupancy",
+      "--build",
+      "build/b6-native-release"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:28:05.727262+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 205,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9533317494974,
+      "qpc_frequency": 10000000
+    },
+    "pid": 40256,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:30:26.483262+00:00",
+    "label": "win-msvc-release-occupancy",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-native-959ac6017b\\win-msvc-release-occupancy-stdout.log",
+        "sha256": "796999896cb4abd09e860ed8a07ad8cb16d00ae9d0a6b88dea6f8eb02ca51aba"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-native-959ac6017b\\win-msvc-release-occupancy-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/formal.py",
+      "--profile",
+      "win-msvc-release",
+      "--mode",
+      "allocation",
+      "--build",
+      "build/b6-native-release"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:30:26.484365+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 220,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9534725068179,
+      "qpc_frequency": 10000000
+    },
+    "pid": 71196,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:32:53.828008+00:00",
+    "label": "win-msvc-release-allocation",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-native-959ac6017b\\win-msvc-release-allocation-stdout.log",
+        "sha256": "51a9d327e129bd7490a0b84491370f3f770449ffb117ebacaf37a4b99f52de48"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-native-959ac6017b\\win-msvc-release-allocation-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/formal.py",
+      "--profile",
+      "win-msvc-release",
+      "--mode",
+      "latency",
+      "--build",
+      "build/b6-native-release"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:32:53.830011+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 205,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9536198514635,
+      "qpc_frequency": 10000000
+    },
+    "pid": 48572,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-14T02:35:29.019129+00:00",
+    "label": "win-msvc-release-latency",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-native-959ac6017b\\win-msvc-release-latency-stdout.log",
+        "sha256": "525b97dd746eaa1c8f0ad6faf5bbe031ac845e0696e61065548053bde5f134a9"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-native-959ac6017b\\win-msvc-release-latency-stderr.log",
+        "sha256": "329235b1c2521b71c9fbd8fdc25c9a7f86f3b3d3956a7d0cc5709edef4c5ca59"
+      }
+    ]
+  }
+]

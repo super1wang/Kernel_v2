@@ -1,0 +1,263 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "J:\\Code\\Kernel_v2\\build\\b6-formal-debug",
+      "--config",
+      "Debug",
+      "--prefix",
+      "J:\\Code\\Kernel_v2\\build\\state-install-e974s2pb\\original"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:59:36.696542+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9552227183964,
+      "qpc_frequency": 10000000
+    },
+    "pid": 36312,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:59:37.880974+00:00",
+    "raw": [
+      {
+        "path": "0-stdout.log",
+        "sha256": "a6f928fc60d3a9212bc71067471066f8c9821c0537b37ce6fe1adeb234b8eed9",
+        "size": 12810
+      },
+      {
+        "path": "0-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\state-install-e974s2pb\\source",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\state-install-e974s2pb\\relocated",
+      "-DOCK_CONSUMER_ASAN=OFF",
+      "-DOCK_CONSUMER_STATE_HOST=ON",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\state-install-e974s2pb\\consumer"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:59:37.991881+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9552240149165,
+      "qpc_frequency": 10000000
+    },
+    "pid": 48896,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:59:41.482234+00:00",
+    "raw": [
+      {
+        "path": "1-stdout.log",
+        "sha256": "475e18e32330ca69dac16187811ca88592b2737210b9214732fd97901673c0ac",
+        "size": 468
+      },
+      {
+        "path": "1-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\state-install-e974s2pb\\consumer",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:59:41.483877+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 33,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9552275056915,
+      "qpc_frequency": 10000000
+    },
+    "pid": 35432,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:59:47.568496+00:00",
+    "raw": [
+      {
+        "path": "2-stdout.log",
+        "sha256": "15e5c6f877a6c38a05732b42e50bbb528fd3b73e0eed63d31ae28573a2c4dd5e",
+        "size": 631
+      },
+      {
+        "path": "2-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\state-install-e974s2pb\\consumer\\Debug\\installed_state.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:59:47.571501+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\state-install-e974s2pb\\consumer\\Debug\\installed_state.exe",
+    "creation_clock": {
+      "qpc_ticks": 9552335946754,
+      "qpc_frequency": 10000000
+    },
+    "pid": 3568,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:59:47.747849+00:00",
+    "raw": [
+      {
+        "path": "3-stdout.log",
+        "sha256": "4308d6bbb0500dc8221db549f311f604c5d863644dc576c88848f6faeb8fa476",
+        "size": 52
+      },
+      {
+        "path": "3-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\state-install-e974s2pb\\consumer\\Debug\\installed_state_host.exe"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:59:47.750706+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 2,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\state-install-e974s2pb\\consumer\\Debug\\installed_state_host.exe",
+    "creation_clock": {
+      "qpc_ticks": 9552337734375,
+      "qpc_frequency": 10000000
+    },
+    "pid": 12528,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:59:48.069108+00:00",
+    "raw": [
+      {
+        "path": "4-stdout.log",
+        "sha256": "219ce2d569a610be89b14a4a40453ecc55ff5045bbbfbe0cdebdcdb3bf182a61",
+        "size": 46
+      },
+      {
+        "path": "4-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2\\build\\state-install-e974s2pb\\source",
+      "-G",
+      "Visual Studio 17 2022",
+      "-A",
+      "x64",
+      "-T",
+      "v143,version=14.44.35207",
+      "-DCMAKE_SYSTEM_VERSION=10.0.26100.0",
+      "-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake",
+      "-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\state-install-e974s2pb\\relocated",
+      "-DOCK_CONSUMER_ASAN=OFF",
+      "-DOCK_CONSUMER_STATE_HOST=ON",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\state-install-e974s2pb\\missing",
+      "-DREQUIRE_COMPONENT=Workspace"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:59:48.072047+00:00",
+    "exit_code": 1,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 30,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9552340957602,
+      "qpc_frequency": 10000000
+    },
+    "pid": 8140,
+    "observed_exit_code": 1,
+    "finished_at": "2026-09-14T02:59:51.406968+00:00",
+    "raw": [
+      {
+        "path": "5-stdout.log",
+        "sha256": "8a006eff038f8548ee42985e3cba60b730f81e0b67f1fd52105b8cb4813ffc69",
+        "size": 366
+      },
+      {
+        "path": "5-stderr.log",
+        "sha256": "8a3dcc8295a3fb9bff3e7486c3333d69ef8cf7f34ccd585fb553b2f7e078332d",
+        "size": 355
+      }
+    ]
+  }
+]

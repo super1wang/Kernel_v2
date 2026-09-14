@@ -1,0 +1,1682 @@
+Start testing: Sep 13 22:16 ÷–≤øœƒ¡Ó ±
+----------------------------------------------------------
+1/252 Testing: T24.state.settings_service
+1/252 Test: T24.state.settings_service
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/examples/settings_service/Release/ock_settings_service.exe"
+Directory: J:/Code/Kernel_v2
+"T24.state.settings_service" start time: Sep 13 22:16 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+0.1.0-dev.8 State Host managed Atomic passed
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"T24.state.settings_service" end time: Sep 13 22:16 ÷–≤øœƒ¡Ó ±
+"T24.state.settings_service" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/252 Testing: T24.state.installed_consumer
+2/252 Test: T24.state.installed_consumer
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:/Code/Kernel_v2/tests/install_consumer/verify_state.py" "--build" "J:/Code/Kernel_v2/build/b6-formal-release" "--config" "Release"
+Directory: J:/Code/Kernel_v2
+"T24.state.installed_consumer" start time: Sep 13 22:16 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+argv: ['cmake', '--install', 'J:\\Code\\Kernel_v2\\build\\b6-formal-release', '--config', 'Release', '--prefix', 'J:\\Code\\Kernel_v2\\build\\state-install-fe5oqg4u\\original'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\state-install-fe5oqg4u\\source', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\state-install-fe5oqg4u\\relocated', '-DOCK_CONSUMER_ASAN=OFF', '-DOCK_CONSUMER_STATE_HOST=ON', '-B', 'J:\\Code\\Kernel_v2\\build\\state-install-fe5oqg4u\\consumer'] exit_code: 0
+argv: ['cmake', '--build', 'J:\\Code\\Kernel_v2\\build\\state-install-fe5oqg4u\\consumer', '--config', 'Release', '--parallel', '4', '--', '/nr:false'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\state-install-fe5oqg4u\\consumer\\Release\\installed_state.exe'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\state-install-fe5oqg4u\\consumer\\Release\\installed_state_host.exe'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\state-install-fe5oqg4u\\source', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\state-install-fe5oqg4u\\relocated', '-DOCK_CONSUMER_ASAN=OFF', '-DOCK_CONSUMER_STATE_HOST=ON', '-B', 'J:\\Code\\Kernel_v2\\build\\state-install-fe5oqg4u\\missing', '-DREQUIRE_COMPONENT=Workspace'] exit_code: 1
+B6 installed State consumer passed: J:\Code\Kernel_v2\evidence\bootstrap\B6\state-install-adfa5076f4
+<end of output>
+Test time =  16.73 sec
+----------------------------------------------------------
+Test Passed.
+"T24.state.installed_consumer" end time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+"T24.state.installed_consumer" time elapsed: 00:00:16
+----------------------------------------------------------
+
+6/252 Testing: T24.sdk.version_header
+6/252 Test: T24.sdk.version_header
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/Release/ock_sdk_metadata_probe.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release
+"T24.sdk.version_header" start time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+0.1.0-dev.8
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"T24.sdk.version_header" end time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+"T24.sdk.version_header" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/252 Testing: T01.architecture.dependency_dag
+7/252 Test: T01.architecture.dependency_dag
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:/Code/Kernel_v2/tools/architecture/check.py" "--graph" "J:/Code/Kernel_v2/build/b6-formal-release/ock-target-graph.json"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release
+"T01.architecture.dependency_dag" start time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{
+  "check_id": "CHECK.D0.02.architecture",
+  "errors": [],
+  "scope": "ÂêàÂêåÁõÆÊ†á/ÂÖ¨ÂºÄË°®Èù¢ÈùôÊÄÅÊ£ÄÊü•ÔºõÊó†RuntimeËøêË°åÊàñÊéàÊùÉÂÆûÁé∞"
+}
+<end of output>
+Test time =   0.41 sec
+----------------------------------------------------------
+Test Passed.
+"T01.architecture.dependency_dag" end time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+"T01.architecture.dependency_dag" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/252 Testing: T01.architecture.negative_guards
+8/252 Test: T01.architecture.negative_guards
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "-m" "unittest" "discover" "-s" "J:/Code/Kernel_v2/tests/architecture" "-v"
+Directory: J:/Code/Kernel_v2
+"T01.architecture.negative_guards" start time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+test_approved_architecture_matches_manifest (test_architecture.ArchitectureTests.test_approved_architecture_matches_manifest) ... ok
+test_authorized_immutable_read_is_allowed (test_architecture.ArchitectureTests.test_authorized_immutable_read_is_allowed) ... ok
+test_client_has_no_server_dependency (test_architecture.ArchitectureTests.test_client_has_no_server_dependency) ... ok
+test_comment_markers_inside_strings_do_not_hide_includes (test_architecture.ArchitectureTests.test_comment_markers_inside_strings_do_not_hide_includes) ... ok
+test_dot_include_prefix_is_rejected (test_architecture.ArchitectureTests.test_dot_include_prefix_is_rejected) ... ok
+test_dsl_is_not_a_required_release_component (test_architecture.ArchitectureTests.test_dsl_is_not_a_required_release_component) ... ok
+test_generic_state_rpc_is_rejected (test_architecture.ArchitectureTests.test_generic_state_rpc_is_rejected) ... ok
+test_include_comment_does_not_bypass_ownership (test_architecture.ArchitectureTests.test_include_comment_does_not_bypass_ownership) ... ok
+test_macro_include_requires_explicit_review (test_architecture.ArchitectureTests.test_macro_include_requires_explicit_review) ... ok
+test_multiline_comment_preserves_directive_line (test_architecture.ArchitectureTests.test_multiline_comment_preserves_directive_line) ... ok
+test_no_runtime_component_is_marked_implemented (test_architecture.ArchitectureTests.test_no_runtime_component_is_marked_implemented) ... ok
+test_observation_cannot_become_product_target (test_architecture.ArchitectureTests.test_observation_cannot_become_product_target) ... ok
+test_ock_include_path_traversal_is_rejected (test_architecture.ArchitectureTests.test_ock_include_path_traversal_is_rejected) ... ok
+test_public_header_cannot_expose_private_dependency (test_architecture.ArchitectureTests.test_public_header_cannot_expose_private_dependency) ... ok
+test_public_header_signature_change_is_detected (test_architecture.ArchitectureTests.test_public_header_signature_change_is_detected) ... ok
+test_raw_string_include_text_is_not_a_directive (test_architecture.ArchitectureTests.test_raw_string_include_text_is_not_a_directive) ... ok
+test_runtime_can_include_core_contracts (test_architecture.ArchitectureTests.test_runtime_can_include_core_contracts) ... ok
+test_runtime_cannot_depend_on_state_even_transitively (test_architecture.ArchitectureTests.test_runtime_cannot_depend_on_state_even_transitively) ... ok
+test_runtime_include_to_data_rejected (test_architecture.ArchitectureTests.test_runtime_include_to_data_rejected) ... ok
+test_runtime_include_to_state_rejected (test_architecture.ArchitectureTests.test_runtime_include_to_state_rejected) ... ok
+test_state_only_depends_on_core_contracts (test_architecture.ArchitectureTests.test_state_only_depends_on_core_contracts) ... ok
+test_target_cycle_is_rejected (test_architecture.ArchitectureTests.test_target_cycle_is_rejected) ... ok
+test_test_support_cannot_enter_product_dag (test_architecture.ArchitectureTests.test_test_support_cannot_enter_product_dag) ... ok
+test_ui_business_write_must_use_operation (test_architecture.ArchitectureTests.test_ui_business_write_must_use_operation) ... ok
+test_unknown_ock_header_has_no_implicit_owner (test_architecture.ArchitectureTests.test_unknown_ock_header_has_no_implicit_owner) ... ok
+test_unregistered_h_header_is_detected (test_architecture.ArchitectureTests.test_unregistered_h_header_is_detected) ... ok
+test_version_is_independent_from_document_version (test_architecture.ArchitectureTests.test_version_is_independent_from_document_version) ... ok
+test_workspace_cannot_include_runtime_private (test_architecture.ArchitectureTests.test_workspace_cannot_include_runtime_private) ... ok
+test_workspace_write_cannot_bypass_operation (test_architecture.ArchitectureTests.test_workspace_write_cannot_bypass_operation) ... ok
+test_implementation_cannot_be_claimed_without_library (test_b2_sdk.B2SurfaceTests.test_implementation_cannot_be_claimed_without_library) ... ok
+test_native_and_protocol_closures (test_b2_sdk.B2SurfaceTests.test_native_and_protocol_closures) ... ok
+test_observation_source_owner_cannot_expand (test_b2_sdk.B2SurfaceTests.test_observation_source_owner_cannot_expand) ... ok
+test_production_components (test_b2_sdk.B2SurfaceTests.test_production_components) ... ok
+test_runtime_pruned_graph_requires_explicit_selection (test_b2_sdk.B2SurfaceTests.test_runtime_pruned_graph_requires_explicit_selection) ... ok
+test_b3_projection_must_not_claim_cpu (test_b4_sdk.B4SurfaceTests.test_b3_projection_must_not_claim_cpu) ... ok
+test_b6_metadata_and_selection (test_b4_sdk.B4SurfaceTests.test_b6_metadata_and_selection) ... ok
+test_cpu_cannot_regress_to_contract (test_b4_sdk.B4SurfaceTests.test_cpu_cannot_regress_to_contract) ... ok
+test_cpu_is_real_and_private (test_b4_sdk.B4SurfaceTests.test_cpu_is_real_and_private) ... ok
+test_embedded_has_only_runtime_and_cpu (test_b4_sdk.B4SurfaceTests.test_embedded_has_only_runtime_and_cpu) ... ok
+test_runtime_cannot_include_cpu (test_b4_sdk.B4SurfaceTests.test_runtime_cannot_include_cpu) ... ok
+test_unknown_profile_rejected (test_b4_sdk.B4SurfaceTests.test_unknown_profile_rejected) ... ok
+test_contracts_cannot_duplicate_or_add_third_party_backend (test_contracts_stage.ComponentClosureTests.test_contracts_cannot_duplicate_or_add_third_party_backend) ... ok
+test_core_stage_preserves_foundation_and_only_adds_contracts (test_contracts_stage.ComponentClosureTests.test_core_stage_preserves_foundation_and_only_adds_contracts) ... ok
+test_foundation_cannot_regress_or_lose_expected (test_contracts_stage.ComponentClosureTests.test_foundation_cannot_regress_or_lose_expected) ... ok
+test_other_product_implementation_rejected (test_contracts_stage.ComponentClosureTests.test_other_product_implementation_rejected) ... ok
+test_product_closure_rejects_other_modules_and_unknown_targets (test_contracts_stage.ComponentClosureTests.test_product_closure_rejects_other_modules_and_unknown_targets) ... ok
+test_actual_public_macros_and_compile_conditions_match_manifest (test_contracts_stage.PublicBoundaryTests.test_actual_public_macros_and_compile_conditions_match_manifest) ... ok
+test_comments_literals_and_narrow_types_not_backdoors (test_contracts_stage.PublicBoundaryTests.test_comments_literals_and_narrow_types_not_backdoors) ... ok
+test_dom_sql_and_runtime_includes_rejected (test_contracts_stage.PublicBoundaryTests.test_dom_sql_and_runtime_includes_rejected) ... ok
+test_exact_six_headers_required (test_contracts_stage.PublicBoundaryTests.test_exact_six_headers_required) ... ok
+test_public_capability_backdoors_rejected (test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) ... ok
+test_registered_public_macros_must_remain_explicitly_empty (test_contracts_stage.PublicBoundaryTests.test_registered_public_macros_must_remain_explicitly_empty) ... ok
+test_external_dependency_cannot_disappear_or_expand (test_foundation_stage.FoundationStageTests.test_external_dependency_cannot_disappear_or_expand) ... ok
+test_foundation_only_is_allowed (test_foundation_stage.FoundationStageTests.test_foundation_only_is_allowed) ... ok
+test_historical_baseline_still_supported (test_foundation_stage.FoundationStageTests.test_historical_baseline_still_supported) ... ok
+test_other_component_cannot_add_public_dependency (test_foundation_stage.FoundationStageTests.test_other_component_cannot_add_public_dependency) ... ok
+test_runtime_cannot_claim_implementation (test_foundation_stage.FoundationStageTests.test_runtime_cannot_claim_implementation) ... ok
+test_unknown_stage_rejected (test_foundation_stage.FoundationStageTests.test_unknown_stage_rejected) ... ok
+test_cached_metadata_hardlink_cannot_overwrite_original (test_msvc_isolation.MSVCIsolationTests.test_cached_metadata_hardlink_cannot_overwrite_original) ... ok
+test_concurrent_publish_is_complete_and_existing_metadata_readonly (test_msvc_isolation.MSVCIsolationTests.test_concurrent_publish_is_complete_and_existing_metadata_readonly) ... ok
+test_copy_is_exact_reusable_and_excludes_only_uploader (test_msvc_isolation.MSVCIsolationTests.test_copy_is_exact_reusable_and_excludes_only_uploader) ... ok
+test_extended_drive_is_same_boundary_but_outside_still_rejected (test_msvc_isolation.MSVCIsolationTests.test_extended_drive_is_same_boundary_but_outside_still_rejected) ... ok
+test_unlisted_files_and_path_escape_rejected (test_msvc_isolation.MSVCIsolationTests.test_unlisted_files_and_path_escape_rejected) ... ok
+test_actual_native_surface (test_native_sdk.NativeSurfaceTests.test_actual_native_surface) ... ok
+test_approved_edge_needs_actual_source (test_native_sdk.NativeSurfaceTests.test_approved_edge_needs_actual_source) ... ok
+test_fixed_surface_cannot_grow_with_manifest (test_native_sdk.NativeSurfaceTests.test_fixed_surface_cannot_grow_with_manifest) ... ok
+test_installed_detail_actual_edges_are_fixed (test_native_sdk.NativeSurfaceTests.test_installed_detail_actual_edges_are_fixed) ... ok
+test_log_component_enum_is_not_host_type (test_native_sdk.NativeSurfaceTests.test_log_component_enum_is_not_host_type) ... ok
+test_system_dependency_is_exact (test_native_sdk.NativeSurfaceTests.test_system_dependency_is_exact) ... ok
+test_unknown_detail_still_rejected (test_native_sdk.NativeSurfaceTests.test_unknown_detail_still_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 70 tests in 16.580s
+
+OK
+<end of output>
+Test time =  16.75 sec
+----------------------------------------------------------
+Test Passed.
+"T01.architecture.negative_guards" end time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+"T01.architecture.negative_guards" time elapsed: 00:00:16
+----------------------------------------------------------
+
+9/252 Testing: T24.sdk.install_and_missing_components
+9/252 Test: T24.sdk.install_and_missing_components
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:/Code/Kernel_v2/tests/install_consumer/verify_baseline.py" "--build" "J:/Code/Kernel_v2/build/b6-formal-release" "--config" "Release"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release
+"T24.sdk.install_and_missing_components" start time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+argv: ['cmake', '--install', 'J:\\Code\\Kernel_v2\\build\\b6-formal-release', '--config', 'Release', '--prefix', 'J:\\Code\\Kernel_v2\\build\\install-check-v2tb8fsj\\original'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\tests\\install_consumer\\baseline', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\install-check-v2tb8fsj\\relocated', '-B', 'J:\\Code\\Kernel_v2\\build\\install-check-v2tb8fsj\\consumer'] exit_code: 0
+argv: ['cmake', '--build', 'J:\\Code\\Kernel_v2\\build\\install-check-v2tb8fsj\\consumer', '--config', 'Release', '--parallel'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\install-check-v2tb8fsj\\consumer\\Release\\installed_metadata.exe'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\tests\\install_consumer\\baseline', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\install-check-v2tb8fsj\\relocated', '-B', 'J:\\Code\\Kernel_v2\\build\\install-check-v2tb8fsj\\Automation', '-DREQUIRE_COMPONENT=Automation'] exit_code: 1
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\tests\\install_consumer\\baseline', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\install-check-v2tb8fsj\\relocated', '-B', 'J:\\Code\\Kernel_v2\\build\\install-check-v2tb8fsj\\Observation', '-DREQUIRE_COMPONENT=Observation'] exit_code: 1
+installed metadata and missing-component contracts verified; artifacts: J:\Code\Kernel_v2\build\install-check-v2tb8fsj
+<end of output>
+Test time =  14.83 sec
+----------------------------------------------------------
+Test Passed.
+"T24.sdk.install_and_missing_components" end time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+"T24.sdk.install_and_missing_components" time elapsed: 00:00:14
+----------------------------------------------------------
+
+18/252 Testing: T01.contracts.component_closure
+18/252 Test: T01.contracts.component_closure
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "-m" "unittest" "tests.architecture.test_contracts_stage.ComponentClosureTests" "-v"
+Directory: J:/Code/Kernel_v2
+"T01.contracts.component_closure" start time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+test_contracts_cannot_duplicate_or_add_third_party_backend (tests.architecture.test_contracts_stage.ComponentClosureTests.test_contracts_cannot_duplicate_or_add_third_party_backend) ... ok
+test_core_stage_preserves_foundation_and_only_adds_contracts (tests.architecture.test_contracts_stage.ComponentClosureTests.test_core_stage_preserves_foundation_and_only_adds_contracts) ... ok
+test_foundation_cannot_regress_or_lose_expected (tests.architecture.test_contracts_stage.ComponentClosureTests.test_foundation_cannot_regress_or_lose_expected) ... ok
+test_other_product_implementation_rejected (tests.architecture.test_contracts_stage.ComponentClosureTests.test_other_product_implementation_rejected) ... ok
+test_product_closure_rejects_other_modules_and_unknown_targets (tests.architecture.test_contracts_stage.ComponentClosureTests.test_product_closure_rejects_other_modules_and_unknown_targets) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.607s
+
+OK
+<end of output>
+Test time =   1.71 sec
+----------------------------------------------------------
+Test Passed.
+"T01.contracts.component_closure" end time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+"T01.contracts.component_closure" time elapsed: 00:00:01
+----------------------------------------------------------
+
+19/252 Testing: T01.contracts.public_include_boundary
+19/252 Test: T01.contracts.public_include_boundary
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "-m" "unittest" "tests.architecture.test_contracts_stage.PublicBoundaryTests" "-v"
+Directory: J:/Code/Kernel_v2
+"T01.contracts.public_include_boundary" start time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+test_actual_public_macros_and_compile_conditions_match_manifest (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_actual_public_macros_and_compile_conditions_match_manifest) ... ok
+test_comments_literals_and_narrow_types_not_backdoors (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_comments_literals_and_narrow_types_not_backdoors) ... ok
+test_dom_sql_and_runtime_includes_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_dom_sql_and_runtime_includes_rejected) ... ok
+test_exact_six_headers_required (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_exact_six_headers_required) ... ok
+test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) ... ok
+test_registered_public_macros_must_remain_explicitly_empty (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_registered_public_macros_must_remain_explicitly_empty) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 4.036s
+
+OK
+<end of output>
+Test time =   4.15 sec
+----------------------------------------------------------
+Test Passed.
+"T01.contracts.public_include_boundary" end time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+"T01.contracts.public_include_boundary" time elapsed: 00:00:04
+----------------------------------------------------------
+
+20/252 Testing: T24.contracts.public_headers
+20/252 Test: T24.contracts.public_headers
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:/Code/Kernel_v2/tests/install_consumer/verify_contracts.py" "--build" "J:/Code/Kernel_v2/build/b6-formal-release" "--config" "Release" "--case" "public_headers"
+Directory: J:/Code/Kernel_v2
+"T24.contracts.public_headers" start time: Sep 13 22:17 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "public_headers", "status": "Passed", "work": "J:\\Code\\Kernel_v2\\build\\d1.02-sdk\\5a91d0f5f51e4d59a40c9bf2fd510bc6"}
+<end of output>
+Test time =  12.06 sec
+----------------------------------------------------------
+Test Passed.
+"T24.contracts.public_headers" end time: Sep 13 22:18 ÷–≤øœƒ¡Ó ±
+"T24.contracts.public_headers" time elapsed: 00:00:12
+----------------------------------------------------------
+
+21/252 Testing: T24.contracts.installed_component_consumer
+21/252 Test: T24.contracts.installed_component_consumer
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:/Code/Kernel_v2/tests/install_consumer/verify_contracts.py" "--build" "J:/Code/Kernel_v2/build/b6-formal-release" "--config" "Release" "--case" "installed_component_consumer"
+Directory: J:/Code/Kernel_v2
+"T24.contracts.installed_component_consumer" start time: Sep 13 22:18 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "installed_component_consumer", "status": "Passed", "work": "J:\\Code\\Kernel_v2\\build\\d1.02-sdk\\2703451870fd423aa363fb07f592c7b9"}
+<end of output>
+Test time =  70.08 sec
+----------------------------------------------------------
+Test Passed.
+"T24.contracts.installed_component_consumer" end time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+"T24.contracts.installed_component_consumer" time elapsed: 00:01:10
+----------------------------------------------------------
+
+23/252 Testing: T08.state.frozen_roots
+23/252 Test: T08.state.frozen_roots
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots/Release/ock_state_roots.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots
+"T08.state.frozen_roots" start time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T08.state.frozen_roots" end time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+"T08.state.frozen_roots" time elapsed: 00:00:00
+----------------------------------------------------------
+
+24/252 Testing: T08.state.snapshot_ownership
+24/252 Test: T08.state.snapshot_ownership
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots/Release/ock_state_snapshots.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots
+"T08.state.snapshot_ownership" start time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T08.state.snapshot_ownership" end time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+"T08.state.snapshot_ownership" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/252 Testing: T09.state.memory_commit
+25/252 Test: T09.state.memory_commit
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots/Release/ock_state_commit.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots
+"T09.state.memory_commit" start time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T09.state.memory_commit" end time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+"T09.state.memory_commit" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/252 Testing: T10.state.atomic_group
+26/252 Test: T10.state.atomic_group
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots/Release/ock_state_atomic.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots
+"T10.state.atomic_group" start time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T10.state.atomic_group" end time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+"T10.state.atomic_group" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/252 Testing: T06.state.runtime_native
+27/252 Test: T06.state.runtime_native
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots/Release/ock_state_runtime.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots
+"T06.state.runtime_native" start time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"T06.state.runtime_native" end time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+"T06.state.runtime_native" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/252 Testing: T09.state.object_references
+28/252 Test: T09.state.object_references
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots/Release/ock_state_objects.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots
+"T09.state.object_references" start time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T09.state.object_references" end time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+"T09.state.object_references" time elapsed: 00:00:00
+----------------------------------------------------------
+
+29/252 Testing: T23.state.structural_sharing_cost
+29/252 Test: T23.state.structural_sharing_cost
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots/Release/ock_state_cost.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/unit/state_roots
+"T23.state.structural_sharing_cost" start time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"objects":1000,"changed":1,"references":0,"status":"Passed","snapshot_ns":400,"edit_ns":3300,"constraints_ns":0,"prepare_ns":2600,"commit_ns":2600,"reclaim_ns":1600,"logical_root_bytes":312056,"logical_delta_bytes":752,"history_ring_bytes":864,"history_retained_bytes":864,"index_unique_retained_bytes":90776,"index_allocated_bytes":1472,"index_allocations":3,"index_after_reclaim_bytes":89304,"baseline_index_bytes":89304}
+{"objects":1000,"changed":10,"references":0,"status":"Passed","snapshot_ns":100,"edit_ns":13100,"constraints_ns":0,"prepare_ns":800,"commit_ns":500,"reclaim_ns":4200,"logical_root_bytes":312056,"logical_delta_bytes":7520,"history_ring_bytes":7632,"history_retained_bytes":7632,"index_unique_retained_bytes":101224,"index_allocated_bytes":14656,"index_allocations":30,"index_after_reclaim_bytes":89304,"baseline_index_bytes":89304}
+{"objects":1000,"changed":100,"references":0,"status":"Passed","snapshot_ns":100,"edit_ns":162600,"constraints_ns":0,"prepare_ns":700,"commit_ns":400,"reclaim_ns":27100,"logical_root_bytes":312056,"logical_delta_bytes":75200,"history_ring_bytes":75312,"history_retained_bytes":75312,"index_unique_retained_bytes":125568,"index_allocated_bytes":142952,"index_allocations":300,"index_after_reclaim_bytes":89304,"baseline_index_bytes":89304}
+{"objects":10000,"changed":1,"references":0,"status":"Passed","snapshot_ns":400,"edit_ns":2600,"constraints_ns":0,"prepare_ns":1800,"commit_ns":1200,"reclaim_ns":3000,"logical_root_bytes":3120056,"logical_delta_bytes":752,"history_ring_bytes":864,"history_retained_bytes":864,"index_unique_retained_bytes":733280,"index_allocated_bytes":1328,"index_allocations":4,"index_after_reclaim_bytes":731952,"baseline_index_bytes":731952}
+{"objects":10000,"changed":10,"references":0,"status":"Passed","snapshot_ns":100,"edit_ns":15200,"constraints_ns":0,"prepare_ns":800,"commit_ns":400,"reclaim_ns":5100,"logical_root_bytes":3120056,"logical_delta_bytes":7520,"history_ring_bytes":7632,"history_retained_bytes":7632,"index_unique_retained_bytes":742496,"index_allocated_bytes":13280,"index_allocations":40,"index_after_reclaim_bytes":731952,"baseline_index_bytes":731952}
+{"objects":10000,"changed":100,"references":0,"status":"Passed","snapshot_ns":100,"edit_ns":168900,"constraints_ns":0,"prepare_ns":900,"commit_ns":400,"reclaim_ns":33700,"logical_root_bytes":3120056,"logical_delta_bytes":75200,"history_ring_bytes":75312,"history_retained_bytes":75312,"index_unique_retained_bytes":824608,"index_allocated_bytes":143424,"index_allocations":400,"index_after_reclaim_bytes":731952,"baseline_index_bytes":731952}
+{"objects":100000,"changed":1,"references":0,"status":"Passed","snapshot_ns":400,"edit_ns":2800,"constraints_ns":100,"prepare_ns":5400,"commit_ns":1700,"reclaim_ns":2400,"logical_root_bytes":31200056,"logical_delta_bytes":752,"history_ring_bytes":864,"history_retained_bytes":864,"index_unique_retained_bytes":9196544,"index_allocated_bytes":1232,"index_allocations":5,"index_after_reclaim_bytes":9195312,"baseline_index_bytes":9195312}
+{"objects":100000,"changed":10,"references":0,"status":"Passed","snapshot_ns":200,"edit_ns":79200,"constraints_ns":100,"prepare_ns":700,"commit_ns":500,"reclaim_ns":7300,"logical_root_bytes":31200056,"logical_delta_bytes":7520,"history_ring_bytes":7632,"history_retained_bytes":7632,"index_unique_retained_bytes":9204896,"index_allocated_bytes":12320,"index_allocations":50,"index_after_reclaim_bytes":9195312,"baseline_index_bytes":9195312}
+{"objects":100000,"changed":100,"references":0,"status":"Passed","snapshot_ns":100,"edit_ns":188600,"constraints_ns":0,"prepare_ns":700,"commit_ns":600,"reclaim_ns":46100,"logical_root_bytes":31200056,"logical_delta_bytes":75200,"history_ring_bytes":75312,"history_retained_bytes":75312,"index_unique_retained_bytes":9267744,"index_allocated_bytes":123200,"index_allocations":500,"index_after_reclaim_bytes":9195312,"baseline_index_bytes":9195312}
+{"objects":1000,"changed":1,"references":1,"status":"Passed","snapshot_ns":400,"edit_ns":18700,"constraints_ns":12000,"prepare_ns":17000,"commit_ns":2900,"reclaim_ns":2300,"logical_root_bytes":328040,"logical_delta_bytes":784,"history_ring_bytes":896,"history_retained_bytes":896,"index_unique_retained_bytes":241008,"index_allocated_bytes":3452,"index_allocations":11,"index_after_reclaim_bytes":238484,"baseline_index_bytes":238484}
+{"objects":1000,"changed":10,"references":1,"status":"Passed","snapshot_ns":300,"edit_ns":47400,"constraints_ns":11700,"prepare_ns":12600,"commit_ns":800,"reclaim_ns":7700,"logical_root_bytes":328040,"logical_delta_bytes":7840,"history_ring_bytes":7952,"history_retained_bytes":7952,"index_unique_retained_bytes":258124,"index_allocated_bytes":34328,"index_allocations":110,"index_after_reclaim_bytes":238484,"baseline_index_bytes":238484}
+{"objects":1000,"changed":100,"references":1,"status":"Passed","snapshot_ns":100,"edit_ns":337900,"constraints_ns":12300,"prepare_ns":12800,"commit_ns":700,"reclaim_ns":29000,"logical_root_bytes":328040,"logical_delta_bytes":78400,"history_ring_bytes":78512,"history_retained_bytes":78512,"index_unique_retained_bytes":304500,"index_allocated_bytes":336488,"index_allocations":1100,"index_after_reclaim_bytes":238484,"baseline_index_bytes":238484}
+{"objects":10000,"changed":1,"references":1,"status":"Passed","snapshot_ns":700,"edit_ns":149600,"constraints_ns":138400,"prepare_ns":140000,"commit_ns":2400,"reclaim_ns":3200,"logical_root_bytes":3280040,"logical_delta_bytes":784,"history_ring_bytes":896,"history_retained_bytes":896,"index_unique_retained_bytes":2066208,"index_allocated_bytes":3404,"index_allocations":14,"index_after_reclaim_bytes":2063780,"baseline_index_bytes":2063780}
+{"objects":10000,"changed":10,"references":1,"status":"Passed","snapshot_ns":100,"edit_ns":169900,"constraints_ns":130600,"prepare_ns":135800,"commit_ns":600,"reclaim_ns":10700,"logical_root_bytes":3280040,"logical_delta_bytes":7840,"history_ring_bytes":7952,"history_retained_bytes":7952,"index_unique_retained_bytes":2082588,"index_allocated_bytes":34040,"index_allocations":140,"index_after_reclaim_bytes":2063780,"baseline_index_bytes":2063780}
+{"objects":10000,"changed":100,"references":1,"status":"Passed","snapshot_ns":100,"edit_ns":572300,"constraints_ns":172500,"prepare_ns":152900,"commit_ns":1200,"reclaim_ns":97800,"logical_root_bytes":3280040,"logical_delta_bytes":78400,"history_ring_bytes":78512,"history_retained_bytes":78512,"index_unique_retained_bytes":2221044,"index_allocated_bytes":361776,"index_allocations":1400,"index_after_reclaim_bytes":2063780,"baseline_index_bytes":2063780}
+{"objects":100000,"changed":1,"references":1,"status":"Passed","snapshot_ns":700,"edit_ns":11606600,"constraints_ns":12709400,"prepare_ns":12599600,"commit_ns":2700,"reclaim_ns":9700,"logical_root_bytes":32800040,"logical_delta_bytes":784,"history_ring_bytes":896,"history_retained_bytes":896,"index_unique_retained_bytes":24392928,"index_allocated_bytes":3500,"index_allocations":17,"index_after_reclaim_bytes":24390500,"baseline_index_bytes":24390500}
+{"objects":100000,"changed":10,"references":1,"status":"Passed","snapshot_ns":800,"edit_ns":11123600,"constraints_ns":11129800,"prepare_ns":10929000,"commit_ns":2000,"reclaim_ns":39800,"logical_root_bytes":32800040,"logical_delta_bytes":7840,"history_ring_bytes":7952,"history_retained_bytes":7952,"index_unique_retained_bytes":24409308,"index_allocated_bytes":35000,"index_allocations":170,"index_after_reclaim_bytes":24390500,"baseline_index_bytes":24390500}
+{"objects":100000,"changed":100,"references":1,"status":"Passed","snapshot_ns":800,"edit_ns":9850300,"constraints_ns":7718300,"prepare_ns":8934600,"commit_ns":2600,"reclaim_ns":183600,"logical_root_bytes":32800040,"logical_delta_bytes":78400,"history_ring_bytes":78512,"history_retained_bytes":78512,"index_unique_retained_bytes":24531764,"index_allocated_bytes":350000,"index_allocations":1700,"index_after_reclaim_bytes":24390500,"baseline_index_bytes":24390500}
+<end of output>
+Test time =   0.97 sec
+----------------------------------------------------------
+Test Passed.
+"T23.state.structural_sharing_cost" end time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+"T23.state.structural_sharing_cost" time elapsed: 00:00:00
+----------------------------------------------------------
+
+37/252 Testing: T20.cli.managed_wire
+37/252 Test: T20.cli.managed_wire
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:/Code/Kernel_v2/tests/integration/cli/managed_wire.py" "J:/Code/Kernel_v2/build/b6-formal-release/examples/managed_service/Release/ock_managed_service.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/integration/cli
+"T20.cli.managed_wire" start time: Sep 13 22:19 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+HOST 44192 managed-wire-7f8da643f5f24ab485d62608dfcbd860
+HOST 58544 managed-wire-6e99b2d408cd41159860673a652f0ef3
+cursor rejection MAC {'code': -32011, 'message': 'CursorInvalid'}
+cursor rejection connection {'code': -32011, 'message': 'CursorInvalid'}
+cursor rejection Host {'code': -32011, 'message': 'CursorInvalid'}
+cursor rejection phase {'code': -32011, 'message': 'CursorInvalid'}
+atomic filter rejection, 8-watch quota, cross-connection and repeated unsubscribe passed
+real subscribe ACK barrier, events, observation versions and reconnect generation passed
+eight live connections with real authorized query coordinators passed
+production TTL elapsed seconds 10.94
+production TTL elapsed seconds 20.97
+production TTL elapsed seconds 30.98
+production TTL elapsed seconds 40.02
+production TTL elapsed seconds 50.03
+production TTL elapsed seconds 60.05
+production TTL elapsed seconds 70.06
+production TTL elapsed seconds 80.09
+production TTL elapsed seconds 90.12
+production TTL elapsed seconds 100.14
+production TTL elapsed seconds 110.17
+production TTL elapsed seconds 120.19
+original and continued cursors expired on unchanged real clock; fresh list succeeds
+<end of output>
+Test time = 122.35 sec
+----------------------------------------------------------
+Test Passed.
+"T20.cli.managed_wire" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T20.cli.managed_wire" time elapsed: 00:02:02
+----------------------------------------------------------
+
+75/252 Testing: T02.contracts.compile_fixture_setup
+75/252 Test: T02.contracts.compile_fixture_setup
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:\Code\Kernel_v2\tests\compile\contracts\fixture.py" "--binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/Release/ock_contracts_tests.exe" "--includes" "J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include" "--generator" "Visual Studio 17 2022" "--platform" "x64" "--toolset" "v143,version=14.44.35207" "--sdk" "10.0.26100.0" "--config" "Release" "--work" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/child-runs" "--runtime-dir" "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin" "--profile" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/compile-profile-Release.txt" "--fixture" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/child-runs/fixtures/76684457880d497fffdb7ec3" "--run-id" "76684457880d497fffdb7ec3"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts
+"T02.contracts.compile_fixture_setup" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"status": "Ready", "fixture": "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/child-runs/fixtures/76684457880d497fffdb7ec3", "run_id": "76684457880d497fffdb7ec3", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-formal-release\\tests\\compile\\contracts\\child-runs\\setup-76684457880d497fffdb7ec3"}
+<end of output>
+Test time =   4.31 sec
+----------------------------------------------------------
+Test Passed.
+"T02.contracts.compile_fixture_setup" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T02.contracts.compile_fixture_setup" time elapsed: 00:00:04
+----------------------------------------------------------
+
+80/252 Testing: T02.contracts.state_edit_shape
+80/252 Test: T02.contracts.state_edit_shape
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:\Code\Kernel_v2\tests\compile\contracts\verify_children.py" "--case" "T02.contracts.state_edit_shape" "--binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/Release/ock_contracts_tests.exe" "--includes" "J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include" "--generator" "Visual Studio 17 2022" "--platform" "x64" "--toolset" "v143,version=14.44.35207" "--sdk" "10.0.26100.0" "--config" "Release" "--work" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/child-runs" "--runtime-dir" "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin" "--profile" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/compile-profile-Release.txt" "--fixture" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/child-runs/fixtures/76684457880d497fffdb7ec3" "--run-id" "76684457880d497fffdb7ec3"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts
+"T02.contracts.state_edit_shape" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "T02.contracts.state_edit_shape", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-formal-release\\tests\\compile\\contracts\\child-runs\\689cb396392f4027b4a85c9726f90f51"}
+<end of output>
+Test time =   7.89 sec
+----------------------------------------------------------
+Test Passed.
+"T02.contracts.state_edit_shape" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T02.contracts.state_edit_shape" time elapsed: 00:00:07
+----------------------------------------------------------
+
+83/252 Testing: T02.contracts.context_capability_boundary
+83/252 Test: T02.contracts.context_capability_boundary
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:\Code\Kernel_v2\tests\compile\contracts\verify_children.py" "--case" "T02.contracts.context_capability_boundary" "--binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/Release/ock_contracts_tests.exe" "--includes" "J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include" "--generator" "Visual Studio 17 2022" "--platform" "x64" "--toolset" "v143,version=14.44.35207" "--sdk" "10.0.26100.0" "--config" "Release" "--work" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/child-runs" "--runtime-dir" "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin" "--profile" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/compile-profile-Release.txt" "--fixture" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/child-runs/fixtures/76684457880d497fffdb7ec3" "--run-id" "76684457880d497fffdb7ec3"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts
+"T02.contracts.context_capability_boundary" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "T02.contracts.context_capability_boundary", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-formal-release\\tests\\compile\\contracts\\child-runs\\ab7b1522632d4339b5a087049a18af57"}
+<end of output>
+Test time =  14.79 sec
+----------------------------------------------------------
+Test Passed.
+"T02.contracts.context_capability_boundary" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T02.contracts.context_capability_boundary" time elapsed: 00:00:14
+----------------------------------------------------------
+
+84/252 Testing: T02.contracts.atomic_read_adapters
+84/252 Test: T02.contracts.atomic_read_adapters
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:\Code\Kernel_v2\tests\compile\contracts\verify_children.py" "--case" "T02.contracts.atomic_read_adapters" "--binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/Release/ock_contracts_tests.exe" "--includes" "J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include" "--generator" "Visual Studio 17 2022" "--platform" "x64" "--toolset" "v143,version=14.44.35207" "--sdk" "10.0.26100.0" "--config" "Release" "--work" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/child-runs" "--runtime-dir" "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin" "--profile" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/compile-profile-Release.txt" "--fixture" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/child-runs/fixtures/76684457880d497fffdb7ec3" "--run-id" "76684457880d497fffdb7ec3"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts
+"T02.contracts.atomic_read_adapters" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "T02.contracts.atomic_read_adapters", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-formal-release\\tests\\compile\\contracts\\child-runs\\55611561f79a46a0bfd6f578ac1d083b"}
+<end of output>
+Test time =   7.84 sec
+----------------------------------------------------------
+Test Passed.
+"T02.contracts.atomic_read_adapters" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T02.contracts.atomic_read_adapters" time elapsed: 00:00:07
+----------------------------------------------------------
+
+85/252 Testing: T02.contracts.atomic_async_rejected
+85/252 Test: T02.contracts.atomic_async_rejected
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:\Code\Kernel_v2\tests\compile\contracts\verify_children.py" "--case" "T02.contracts.atomic_async_rejected" "--binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/Release/ock_contracts_tests.exe" "--includes" "J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include" "--generator" "Visual Studio 17 2022" "--platform" "x64" "--toolset" "v143,version=14.44.35207" "--sdk" "10.0.26100.0" "--config" "Release" "--work" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/child-runs" "--runtime-dir" "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin" "--profile" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/compile-profile-Release.txt" "--fixture" "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/child-runs/fixtures/76684457880d497fffdb7ec3" "--run-id" "76684457880d497fffdb7ec3"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts
+"T02.contracts.atomic_async_rejected" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "T02.contracts.atomic_async_rejected", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-formal-release\\tests\\compile\\contracts\\child-runs\\b38a79c6c82b4748b2af1d77e9d1f3de"}
+<end of output>
+Test time =   5.75 sec
+----------------------------------------------------------
+Test Passed.
+"T02.contracts.atomic_async_rejected" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T02.contracts.atomic_async_rejected" time elapsed: 00:00:05
+----------------------------------------------------------
+
+91/252 Testing: T06.contracts.outcome_closed_variants
+91/252 Test: T06.contracts.outcome_closed_variants
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/Release/ock_contracts_tests.exe" "T06.contracts.outcome_closed_variants"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts
+"T06.contracts.outcome_closed_variants" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+Passed T06.contracts.outcome_closed_variants
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"T06.contracts.outcome_closed_variants" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T06.contracts.outcome_closed_variants" time elapsed: 00:00:00
+----------------------------------------------------------
+
+93/252 Testing: T06.contracts.publication_proof_required
+93/252 Test: T06.contracts.publication_proof_required
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/Release/ock_contracts_tests.exe" "T06.contracts.publication_proof_required"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts
+"T06.contracts.publication_proof_required" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+Passed T06.contracts.publication_proof_required
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"T06.contracts.publication_proof_required" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T06.contracts.publication_proof_required" time elapsed: 00:00:00
+----------------------------------------------------------
+
+96/252 Testing: T06.contracts.before_apply_and_composite_proofs
+96/252 Test: T06.contracts.before_apply_and_composite_proofs
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/Release/ock_contracts_tests.exe" "T06.contracts.before_apply_and_composite_proofs"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts
+"T06.contracts.before_apply_and_composite_proofs" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+Passed T06.contracts.before_apply_and_composite_proofs
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"T06.contracts.before_apply_and_composite_proofs" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T06.contracts.before_apply_and_composite_proofs" time elapsed: 00:00:00
+----------------------------------------------------------
+
+101/252 Testing: T06.contracts.atomic_prepared_identity
+101/252 Test: T06.contracts.atomic_prepared_identity
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts/Release/ock_contracts_tests.exe" "T06.contracts.atomic_prepared_identity"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/compile/contracts
+"T06.contracts.atomic_prepared_identity" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+Passed T06.contracts.atomic_prepared_identity
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"T06.contracts.atomic_prepared_identity" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T06.contracts.atomic_prepared_identity" time elapsed: 00:00:00
+----------------------------------------------------------
+
+110/252 Testing: T02.registration.atomic_candidate_contract
+110/252 Test: T02.registration.atomic_candidate_contract
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/registration/Release/ock_registration_tests.exe" "T02.registration.atomic_candidate_contract"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/registration
+"T02.registration.atomic_candidate_contract" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T02.registration.atomic_candidate_contract" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T02.registration.atomic_candidate_contract" time elapsed: 00:00:00
+----------------------------------------------------------
+
+122/252 Testing: T02.registration.provider_binding
+122/252 Test: T02.registration.provider_binding
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/registration/Release/ock_registration_tests.exe" "T02.registration.provider_binding"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/registration
+"T02.registration.provider_binding" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.07 sec
+----------------------------------------------------------
+Test Passed.
+"T02.registration.provider_binding" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T02.registration.provider_binding" time elapsed: 00:00:00
+----------------------------------------------------------
+
+124/252 Testing: T02.registration.service_binding
+124/252 Test: T02.registration.service_binding
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/registration/Release/ock_registration_tests.exe" "T02.registration.service_binding"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/registration
+"T02.registration.service_binding" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T02.registration.service_binding" end time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+"T02.registration.service_binding" time elapsed: 00:00:00
+----------------------------------------------------------
+
+125/252 Testing: T02.registration.shape_compile_contract
+125/252 Test: T02.registration.shape_compile_contract
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:\Code\Kernel_v2\tests\contract\registration\verify_children.py" "--case" "T02.registration.shape_compile_contract" "--binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/registration/Release/ock_registration_tests.exe" "--runtime-dir" "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin" "--includes" "J:/Code/Kernel_v2|J:/Code/Kernel_v2/tests/compile/contracts|J:/Code/Kernel_v2/packages/runtime/include|J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include" "--generator" "Visual Studio 17 2022" "--platform" "x64" "--toolset" "v143,version=14.44.35207" "--sdk" "10.0.26100.0" "--config" "Release" "--work" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/registration/child-runs" "--root-build" "J:/Code/Kernel_v2/build/b6-formal-release" "--target-metadata" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/registration/registry-target-Release.json"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/registration
+"T02.registration.shape_compile_contract" start time: Sep 13 22:21 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "T02.registration.shape_compile_contract", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-formal-release\\tests\\contract\\registration\\child-runs\\ee745cb0a0c64e6590e46aebaeb85cc1"}
+<end of output>
+Test time =  16.36 sec
+----------------------------------------------------------
+Test Passed.
+"T02.registration.shape_compile_contract" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T02.registration.shape_compile_contract" time elapsed: 00:00:16
+----------------------------------------------------------
+
+131/252 Testing: T05.registration.typed_binding_success
+131/252 Test: T05.registration.typed_binding_success
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/registration/Release/ock_registration_tests.exe" "T05.registration.typed_binding_success"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/registration
+"T05.registration.typed_binding_success" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T05.registration.typed_binding_success" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T05.registration.typed_binding_success" time elapsed: 00:00:00
+----------------------------------------------------------
+
+136/252 Testing: T07.policy.cancel_arbitration
+136/252 Test: T07.policy.cancel_arbitration
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization/Release/ock_policy_tests.exe" "T07.policy.cancel_arbitration"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization
+"T07.policy.cancel_arbitration" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T07.policy.cancel_arbitration" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T07.policy.cancel_arbitration" time elapsed: 00:00:00
+----------------------------------------------------------
+
+137/252 Testing: T07.policy.consume_before_revoke
+137/252 Test: T07.policy.consume_before_revoke
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization/Release/ock_policy_tests.exe" "T07.policy.consume_before_revoke"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization
+"T07.policy.consume_before_revoke" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T07.policy.consume_before_revoke" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T07.policy.consume_before_revoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+140/252 Testing: T07.policy.expiry_boundary
+140/252 Test: T07.policy.expiry_boundary
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization/Release/ock_policy_tests.exe" "T07.policy.expiry_boundary"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization
+"T07.policy.expiry_boundary" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T07.policy.expiry_boundary" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T07.policy.expiry_boundary" time elapsed: 00:00:00
+----------------------------------------------------------
+
+147/252 Testing: T07.policy.permit_concurrent
+147/252 Test: T07.policy.permit_concurrent
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization/Release/ock_policy_tests.exe" "T07.policy.permit_concurrent"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization
+"T07.policy.permit_concurrent" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"T07.policy.permit_concurrent" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T07.policy.permit_concurrent" time elapsed: 00:00:00
+----------------------------------------------------------
+
+148/252 Testing: T07.policy.permit_once
+148/252 Test: T07.policy.permit_once
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization/Release/ock_policy_tests.exe" "T07.policy.permit_once"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization
+"T07.policy.permit_once" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"T07.policy.permit_once" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T07.policy.permit_once" time elapsed: 00:00:00
+----------------------------------------------------------
+
+149/252 Testing: T07.policy.permit_origin_binding
+149/252 Test: T07.policy.permit_origin_binding
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:\Code\Kernel_v2\tests\contract\authorization\verify_children.py" "--case" "T07.policy.permit_origin_binding" "--binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization/Release/ock_policy_tests.exe" "--runtime-dir" "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin" "--includes" "J:/Code/Kernel_v2|J:/Code/Kernel_v2/tests/compile/contracts|J:/Code/Kernel_v2/packages/runtime/include|J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include" "--generator" "Visual Studio 17 2022" "--platform" "x64" "--toolset" "v143,version=14.44.35207" "--sdk" "10.0.26100.0" "--config" "Release" "--work" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization/child-runs" "--root-build" "J:/Code/Kernel_v2/build/b6-formal-release" "--target-metadata" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization/policy-target-Release.json"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization
+"T07.policy.permit_origin_binding" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "T07.policy.permit_origin_binding", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-formal-release\\tests\\contract\\authorization\\child-runs\\a383da665c8740f59e91d56c20cab721"}
+<end of output>
+Test time =  10.98 sec
+----------------------------------------------------------
+Test Passed.
+"T07.policy.permit_origin_binding" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T07.policy.permit_origin_binding" time elapsed: 00:00:10
+----------------------------------------------------------
+
+151/252 Testing: T07.policy.revoke_before_consume
+151/252 Test: T07.policy.revoke_before_consume
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization/Release/ock_policy_tests.exe" "T07.policy.revoke_before_consume"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization
+"T07.policy.revoke_before_consume" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T07.policy.revoke_before_consume" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T07.policy.revoke_before_consume" time elapsed: 00:00:00
+----------------------------------------------------------
+
+157/252 Testing: T07.policy.target_lifecycle
+157/252 Test: T07.policy.target_lifecycle
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization/Release/ock_policy_tests.exe" "T07.policy.target_lifecycle"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/authorization
+"T07.policy.target_lifecycle" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"T07.policy.target_lifecycle" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T07.policy.target_lifecycle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+172/252 Testing: T02.native.candidate_read_dispatch
+172/252 Test: T02.native.candidate_read_dispatch
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T02.native.candidate_read_dispatch"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T02.native.candidate_read_dispatch" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"T02.native.candidate_read_dispatch" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T02.native.candidate_read_dispatch" time elapsed: 00:00:00
+----------------------------------------------------------
+
+174/252 Testing: T02.native.invalid_input
+174/252 Test: T02.native.invalid_input
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T02.native.invalid_input"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T02.native.invalid_input" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"T02.native.invalid_input" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T02.native.invalid_input" time elapsed: 00:00:00
+----------------------------------------------------------
+
+178/252 Testing: T02.native.validation_exception
+178/252 Test: T02.native.validation_exception
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T02.native.validation_exception"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T02.native.validation_exception" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T02.native.validation_exception" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T02.native.validation_exception" time elapsed: 00:00:00
+----------------------------------------------------------
+
+179/252 Testing: T03.native.cancel_and_budget
+179/252 Test: T03.native.cancel_and_budget
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.cancel_and_budget"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.cancel_and_budget" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.cancel_and_budget" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.cancel_and_budget" time elapsed: 00:00:00
+----------------------------------------------------------
+
+182/252 Testing: T03.native.execution_admission_endurance
+182/252 Test: T03.native.execution_admission_endurance
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.execution_admission_endurance"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.execution_admission_endurance" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.execution_admission_endurance" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.execution_admission_endurance" time elapsed: 00:00:00
+----------------------------------------------------------
+
+183/252 Testing: T03.native.execution_admission_pins
+183/252 Test: T03.native.execution_admission_pins
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.execution_admission_pins"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.execution_admission_pins" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.execution_admission_pins" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.execution_admission_pins" time elapsed: 00:00:00
+----------------------------------------------------------
+
+184/252 Testing: T03.native.execution_reclaim_protection
+184/252 Test: T03.native.execution_reclaim_protection
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.execution_reclaim_protection"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.execution_reclaim_protection" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.execution_reclaim_protection" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.execution_reclaim_protection" time elapsed: 00:00:00
+----------------------------------------------------------
+
+187/252 Testing: T03.native.host_async_completion
+187/252 Test: T03.native.host_async_completion
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.host_async_completion"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.host_async_completion" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.host_async_completion" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.host_async_completion" time elapsed: 00:00:00
+----------------------------------------------------------
+
+189/252 Testing: T03.native.host_async_drain
+189/252 Test: T03.native.host_async_drain
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.host_async_drain"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.host_async_drain" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.host_async_drain" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.host_async_drain" time elapsed: 00:00:00
+----------------------------------------------------------
+
+190/252 Testing: T03.native.host_cached_result_sessions
+190/252 Test: T03.native.host_cached_result_sessions
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.host_cached_result_sessions"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.host_cached_result_sessions" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.07 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.host_cached_result_sessions" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.host_cached_result_sessions" time elapsed: 00:00:00
+----------------------------------------------------------
+
+191/252 Testing: T03.native.host_combined_drain
+191/252 Test: T03.native.host_combined_drain
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.host_combined_drain"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.host_combined_drain" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+combined 0 begin
+combined 0 ready
+combined 0 session-open
+combined 0 bound
+combined 0 observer-installed
+combined 0 submitted
+combined handler entry
+combined handler reentrant 1 resource 1
+combined 0 first-entered
+combined 0 resource-wait
+combined 0 callback-fault-isolated
+combined 0 observer-entered
+combined 0 first-stop-timeout
+combined 0 observer-stop-timeout
+combined 0 outcome-verified
+combined 0 observer-released
+combined 0 logging-pending
+combined 0 quiescent
+combined 1 begin
+combined 1 ready
+combined 1 session-open
+combined 1 bound
+combined 1 observer-installed
+combined 1 submitted
+combined handler entry
+combined handler reentrant 1 resource 1
+combined 1 first-entered
+combined 1 resource-wait
+combined 1 callback-fault-isolated
+combined 1 observer-entered
+combined 1 first-stop-timeout
+combined 1 observer-stop-timeout
+combined 1 outcome-verified
+combined 1 observer-released
+combined 1 logging-pending
+combined 1 quiescent
+combined 2 begin
+combined 2 ready
+combined 2 session-open
+combined 2 bound
+combined 2 observer-installed
+combined 2 submitted
+combined handler entry
+combined handler reentrant 1 resource 1
+combined 2 first-entered
+combined 2 resource-wait
+combined 2 callback-fault-isolated
+combined 2 observer-entered
+combined 2 first-stop-timeout
+combined 2 observer-stop-timeout
+combined 2 outcome-verified
+combined 2 observer-released
+combined 2 logging-pending
+combined 2 quiescent
+combined 3 begin
+combined 3 ready
+combined 3 session-open
+combined 3 bound
+combined 3 observer-installed
+combined 3 submitted
+combined handler entry
+combined handler reentrant 1 resource 1
+combined 3 first-entered
+combined 3 resource-wait
+combined 3 callback-fault-isolated
+combined 3 observer-entered
+combined 3 first-stop-timeout
+combined 3 observer-stop-timeout
+combined 3 outcome-verified
+combined 3 observer-released
+combined 3 logging-pending
+combined 3 quiescent
+combined 4 begin
+combined 4 ready
+combined 4 session-open
+combined 4 bound
+combined 4 observer-installed
+combined 4 submitted
+combined handler entry
+combined handler reentrant 1 resource 1
+combined 4 first-entered
+combined 4 resource-wait
+combined 4 callback-fault-isolated
+combined 4 observer-entered
+combined 4 first-stop-timeout
+combined 4 observer-stop-timeout
+combined 4 outcome-verified
+combined 4 observer-released
+combined 4 logging-pending
+combined 4 quiescent
+combined 5 begin
+combined 5 ready
+combined 5 session-open
+combined 5 bound
+combined 5 observer-installed
+combined 5 submitted
+combined handler entry
+combined handler reentrant 1 resource 1
+combined 5 first-entered
+combined 5 resource-wait
+combined 5 callback-fault-isolated
+combined 5 observer-entered
+combined 5 first-stop-timeout
+combined 5 observer-stop-timeout
+combined 5 outcome-verified
+combined 5 observer-released
+combined 5 logging-pending
+combined 5 quiescent
+combined 6 begin
+combined 6 ready
+combined 6 session-open
+combined 6 bound
+combined 6 observer-installed
+combined 6 submitted
+combined handler entry
+combined handler reentrant 1 resource 1
+combined 6 first-entered
+combined 6 resource-wait
+combined 6 callback-fault-isolated
+combined 6 observer-entered
+combined 6 first-stop-timeout
+combined 6 observer-stop-timeout
+combined 6 outcome-verified
+combined 6 observer-released
+combined 6 logging-pending
+combined 6 quiescent
+combined 7 begin
+combined 7 ready
+combined 7 session-open
+combined 7 bound
+combined 7 observer-installed
+combined 7 submitted
+combined handler entry
+combined handler reentrant 1 resource 1
+combined 7 first-entered
+combined 7 resource-wait
+combined 7 callback-fault-isolated
+combined 7 observer-entered
+combined 7 first-stop-timeout
+combined 7 observer-stop-timeout
+combined 7 outcome-verified
+combined 7 observer-released
+combined 7 logging-pending
+combined 7 quiescent
+<end of output>
+Test time =   1.18 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.host_combined_drain" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.host_combined_drain" time elapsed: 00:00:01
+----------------------------------------------------------
+
+192/252 Testing: T03.native.host_execution_lifecycle
+192/252 Test: T03.native.host_execution_lifecycle
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.host_execution_lifecycle"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.host_execution_lifecycle" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.host_execution_lifecycle" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.host_execution_lifecycle" time elapsed: 00:00:00
+----------------------------------------------------------
+
+193/252 Testing: T03.native.host_execution_resources
+193/252 Test: T03.native.host_execution_resources
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.host_execution_resources"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.host_execution_resources" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.host_execution_resources" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.host_execution_resources" time elapsed: 00:00:00
+----------------------------------------------------------
+
+194/252 Testing: T03.native.host_observation_drain
+194/252 Test: T03.native.host_observation_drain
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.host_observation_drain"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.host_observation_drain" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.25 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.host_observation_drain" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.host_observation_drain" time elapsed: 00:00:00
+----------------------------------------------------------
+
+195/252 Testing: T03.native.host_required_record
+195/252 Test: T03.native.host_required_record
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.host_required_record"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.host_required_record" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.host_required_record" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.host_required_record" time elapsed: 00:00:00
+----------------------------------------------------------
+
+196/252 Testing: T03.native.host_required_record_drain
+196/252 Test: T03.native.host_required_record_drain
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.host_required_record_drain"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.host_required_record_drain" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.host_required_record_drain" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.host_required_record_drain" time elapsed: 00:00:00
+----------------------------------------------------------
+
+197/252 Testing: T03.native.host_structured_lifetime
+197/252 Test: T03.native.host_structured_lifetime
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.host_structured_lifetime"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.host_structured_lifetime" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.host_structured_lifetime" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.host_structured_lifetime" time elapsed: 00:00:00
+----------------------------------------------------------
+
+198/252 Testing: T03.native.managed_async_input_accounting
+198/252 Test: T03.native.managed_async_input_accounting
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.managed_async_input_accounting"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.managed_async_input_accounting" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.managed_async_input_accounting" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.managed_async_input_accounting" time elapsed: 00:00:00
+----------------------------------------------------------
+
+199/252 Testing: T03.native.managed_execution_path
+199/252 Test: T03.native.managed_execution_path
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.managed_execution_path"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.managed_execution_path" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.managed_execution_path" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.managed_execution_path" time elapsed: 00:00:00
+----------------------------------------------------------
+
+200/252 Testing: T03.native.managed_execution_resource_wait
+200/252 Test: T03.native.managed_execution_resource_wait
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.managed_execution_resource_wait"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.managed_execution_resource_wait" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.managed_execution_resource_wait" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.managed_execution_resource_wait" time elapsed: 00:00:00
+----------------------------------------------------------
+
+201/252 Testing: T03.native.managed_record
+201/252 Test: T03.native.managed_record
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.managed_record"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.managed_record" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.managed_record" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.managed_record" time elapsed: 00:00:00
+----------------------------------------------------------
+
+202/252 Testing: T03.native.managed_record_ownership
+202/252 Test: T03.native.managed_record_ownership
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.managed_record_ownership"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.managed_record_ownership" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.managed_record_ownership" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.managed_record_ownership" time elapsed: 00:00:00
+----------------------------------------------------------
+
+205/252 Testing: T03.native.no_task_path
+205/252 Test: T03.native.no_task_path
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.no_task_path"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.no_task_path" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.no_task_path" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.no_task_path" time elapsed: 00:00:00
+----------------------------------------------------------
+
+207/252 Testing: T03.native.provider_unavailable
+207/252 Test: T03.native.provider_unavailable
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.provider_unavailable"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.provider_unavailable" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.provider_unavailable" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.provider_unavailable" time elapsed: 00:00:00
+----------------------------------------------------------
+
+208/252 Testing: T03.native.reentrant_and_concurrent
+208/252 Test: T03.native.reentrant_and_concurrent
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.reentrant_and_concurrent"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.reentrant_and_concurrent" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.reentrant_and_concurrent" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.reentrant_and_concurrent" time elapsed: 00:00:00
+----------------------------------------------------------
+
+210/252 Testing: T03.native.thread_modes
+210/252 Test: T03.native.thread_modes
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T03.native.thread_modes"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T03.native.thread_modes" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"T03.native.thread_modes" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.native.thread_modes" time elapsed: 00:00:00
+----------------------------------------------------------
+
+213/252 Testing: T06.native.authority_origin
+213/252 Test: T06.native.authority_origin
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T06.native.authority_origin"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T06.native.authority_origin" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"T06.native.authority_origin" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T06.native.authority_origin" time elapsed: 00:00:00
+----------------------------------------------------------
+
+214/252 Testing: T06.native.business_failure
+214/252 Test: T06.native.business_failure
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T06.native.business_failure"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T06.native.business_failure" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"T06.native.business_failure" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T06.native.business_failure" time elapsed: 00:00:00
+----------------------------------------------------------
+
+217/252 Testing: T06.native.invalid_output
+217/252 Test: T06.native.invalid_output
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T06.native.invalid_output"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T06.native.invalid_output" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"T06.native.invalid_output" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T06.native.invalid_output" time elapsed: 00:00:00
+----------------------------------------------------------
+
+219/252 Testing: T06.native.managed_accepted_failures
+219/252 Test: T06.native.managed_accepted_failures
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T06.native.managed_accepted_failures"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T06.native.managed_accepted_failures" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"T06.native.managed_accepted_failures" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T06.native.managed_accepted_failures" time elapsed: 00:00:00
+----------------------------------------------------------
+
+222/252 Testing: T06.native.outcome_consistency
+222/252 Test: T06.native.outcome_consistency
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T06.native.outcome_consistency"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T06.native.outcome_consistency" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"T06.native.outcome_consistency" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T06.native.outcome_consistency" time elapsed: 00:00:00
+----------------------------------------------------------
+
+223/252 Testing: T06.native.permission_intersection
+223/252 Test: T06.native.permission_intersection
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T06.native.permission_intersection"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T06.native.permission_intersection" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"T06.native.permission_intersection" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T06.native.permission_intersection" time elapsed: 00:00:00
+----------------------------------------------------------
+
+225/252 Testing: T06.native.revoke_and_regrant
+225/252 Test: T06.native.revoke_and_regrant
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T06.native.revoke_and_regrant"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T06.native.revoke_and_regrant" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"T06.native.revoke_and_regrant" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T06.native.revoke_and_regrant" time elapsed: 00:00:00
+----------------------------------------------------------
+
+227/252 Testing: T06.native.target_binding
+227/252 Test: T06.native.target_binding
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "T06.native.target_binding"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T06.native.target_binding" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"T06.native.target_binding" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T06.native.target_binding" time elapsed: 00:00:00
+----------------------------------------------------------
+
+228/252 Testing: T23.native.allocation_governance
+228/252 Test: T23.native.allocation_governance
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:\Code\Kernel_v2\tests\contract\native\verify_children.py" "--case" "T23.native.allocation_governance" "--binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "--runtime-dir" "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin" "--includes" "J:/Code/Kernel_v2|J:/Code/Kernel_v2/tests/compile/contracts|J:/Code/Kernel_v2/packages/runtime/include|J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include|J:/Code/Kernel_v2/packages/adapters/cpu_pool/include" "--generator" "Visual Studio 17 2022" "--platform" "x64" "--toolset" "v143,version=14.44.35207" "--sdk" "10.0.26100.0" "--config" "Release" "--work" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/child-runs" "--root-build" "J:/Code/Kernel_v2/build/b6-formal-release" "--target-metadata" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/native-target-Release.json" "--example" "J:/Code/Kernel_v2/build/b6-formal-release/examples/native_service/Release/ock_native_service.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T23.native.allocation_governance" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "T23.native.allocation_governance", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-formal-release\\tests\\contract\\native\\child-runs\\d54660b0acec4308a4a802355374d5dc"}
+<end of output>
+Test time =   0.21 sec
+----------------------------------------------------------
+Test Passed.
+"T23.native.allocation_governance" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T23.native.allocation_governance" time elapsed: 00:00:00
+----------------------------------------------------------
+
+229/252 Testing: T23.native.allocation_other_costs
+229/252 Test: T23.native.allocation_other_costs
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:\Code\Kernel_v2\tests\contract\native\verify_children.py" "--case" "T23.native.allocation_other_costs" "--binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "--runtime-dir" "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin" "--includes" "J:/Code/Kernel_v2|J:/Code/Kernel_v2/tests/compile/contracts|J:/Code/Kernel_v2/packages/runtime/include|J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include|J:/Code/Kernel_v2/packages/adapters/cpu_pool/include" "--generator" "Visual Studio 17 2022" "--platform" "x64" "--toolset" "v143,version=14.44.35207" "--sdk" "10.0.26100.0" "--config" "Release" "--work" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/child-runs" "--root-build" "J:/Code/Kernel_v2/build/b6-formal-release" "--target-metadata" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/native-target-Release.json" "--example" "J:/Code/Kernel_v2/build/b6-formal-release/examples/native_service/Release/ock_native_service.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T23.native.allocation_other_costs" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "T23.native.allocation_other_costs", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-formal-release\\tests\\contract\\native\\child-runs\\a86b34c587a442e4847e578b5127f6c2"}
+<end of output>
+Test time =   0.20 sec
+----------------------------------------------------------
+Test Passed.
+"T23.native.allocation_other_costs" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T23.native.allocation_other_costs" time elapsed: 00:00:00
+----------------------------------------------------------
+
+230/252 Testing: T23.native.allocation_probe
+230/252 Test: T23.native.allocation_probe
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:\Code\Kernel_v2\tests\contract\native\verify_children.py" "--case" "T23.native.allocation_probe" "--binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "--runtime-dir" "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin" "--includes" "J:/Code/Kernel_v2|J:/Code/Kernel_v2/tests/compile/contracts|J:/Code/Kernel_v2/packages/runtime/include|J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include|J:/Code/Kernel_v2/packages/adapters/cpu_pool/include" "--generator" "Visual Studio 17 2022" "--platform" "x64" "--toolset" "v143,version=14.44.35207" "--sdk" "10.0.26100.0" "--config" "Release" "--work" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/child-runs" "--root-build" "J:/Code/Kernel_v2/build/b6-formal-release" "--target-metadata" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/native-target-Release.json" "--example" "J:/Code/Kernel_v2/build/b6-formal-release/examples/native_service/Release/ock_native_service.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T23.native.allocation_probe" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "T23.native.allocation_probe", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-formal-release\\tests\\contract\\native\\child-runs\\f1c2c64667074cf1be7b1388cae70233"}
+<end of output>
+Test time =   0.28 sec
+----------------------------------------------------------
+Test Passed.
+"T23.native.allocation_probe" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T23.native.allocation_probe" time elapsed: 00:00:00
+----------------------------------------------------------
+
+231/252 Testing: T23.native.allocation_steady
+231/252 Test: T23.native.allocation_steady
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:\Code\Kernel_v2\tests\contract\native\verify_children.py" "--case" "T23.native.allocation_steady" "--binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe" "--runtime-dir" "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin" "--includes" "J:/Code/Kernel_v2|J:/Code/Kernel_v2/tests/compile/contracts|J:/Code/Kernel_v2/packages/runtime/include|J:/Code/Kernel_v2/packages/contracts/include|J:/Code/Kernel_v2/packages/foundation/include|J:/Code/Kernel_v2/build/d0.06-a/cache/sources/expected-fe3b18aecb84/include|J:/Code/Kernel_v2/packages/adapters/cpu_pool/include" "--generator" "Visual Studio 17 2022" "--platform" "x64" "--toolset" "v143,version=14.44.35207" "--sdk" "10.0.26100.0" "--config" "Release" "--work" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/child-runs" "--root-build" "J:/Code/Kernel_v2/build/b6-formal-release" "--target-metadata" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native/native-target-Release.json" "--example" "J:/Code/Kernel_v2/build/b6-formal-release/examples/native_service/Release/ock_native_service.exe"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/native
+"T23.native.allocation_steady" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "T23.native.allocation_steady", "status": "Passed", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-formal-release\\tests\\contract\\native\\child-runs\\a72b0946a71245c68bea102340edae3d"}
+<end of output>
+Test time =   0.21 sec
+----------------------------------------------------------
+Test Passed.
+"T23.native.allocation_steady" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T23.native.allocation_steady" time elapsed: 00:00:00
+----------------------------------------------------------
+
+232/252 Testing: T03.host.ready_gate
+232/252 Test: T03.host.ready_gate
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/Release/ock_host_tests.exe" "T03.host.ready_gate"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host
+"T03.host.ready_gate" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T03.host.ready_gate" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.host.ready_gate" time elapsed: 00:00:00
+----------------------------------------------------------
+
+236/252 Testing: T03.host.catalog_registration
+236/252 Test: T03.host.catalog_registration
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/Release/ock_host_tests.exe" "T03.host.catalog_registration"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host
+"T03.host.catalog_registration" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T03.host.catalog_registration" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.host.catalog_registration" time elapsed: 00:00:00
+----------------------------------------------------------
+
+237/252 Testing: T03.host.catalog_context
+237/252 Test: T03.host.catalog_context
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/Release/ock_host_tests.exe" "T03.host.catalog_context"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host
+"T03.host.catalog_context" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T03.host.catalog_context" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.host.catalog_context" time elapsed: 00:00:00
+----------------------------------------------------------
+
+238/252 Testing: T03.host.native_results
+238/252 Test: T03.host.native_results
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/Release/ock_host_tests.exe" "T03.host.native_results"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host
+"T03.host.native_results" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T03.host.native_results" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.host.native_results" time elapsed: 00:00:00
+----------------------------------------------------------
+
+239/252 Testing: T03.host.session_ownership
+239/252 Test: T03.host.session_ownership
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/Release/ock_host_tests.exe" "T03.host.session_ownership"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host
+"T03.host.session_ownership" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"T03.host.session_ownership" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.host.session_ownership" time elapsed: 00:00:00
+----------------------------------------------------------
+
+241/252 Testing: T22.host.shutdown_deadline
+241/252 Test: T22.host.shutdown_deadline
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/Release/ock_host_tests.exe" "T22.host.shutdown_deadline"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host
+"T22.host.shutdown_deadline" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"T22.host.shutdown_deadline" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T22.host.shutdown_deadline" time elapsed: 00:00:00
+----------------------------------------------------------
+
+243/252 Testing: T22.host.admission_race
+243/252 Test: T22.host.admission_race
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/Release/ock_host_tests.exe" "T22.host.admission_race"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host
+"T22.host.admission_race" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"T22.host.admission_race" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T22.host.admission_race" time elapsed: 00:00:00
+----------------------------------------------------------
+
+244/252 Testing: T22.host.return_lifetime
+244/252 Test: T22.host.return_lifetime
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/Release/ock_host_tests.exe" "T22.host.return_lifetime"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host
+"T22.host.return_lifetime" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"T22.host.return_lifetime" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T22.host.return_lifetime" time elapsed: 00:00:00
+----------------------------------------------------------
+
+245/252 Testing: T22.host.shutdown_order
+245/252 Test: T22.host.shutdown_order
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/Release/ock_host_tests.exe" "T22.host.shutdown_order"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host
+"T22.host.shutdown_order" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"T22.host.shutdown_order" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T22.host.shutdown_order" time elapsed: 00:00:00
+----------------------------------------------------------
+
+247/252 Testing: T23.host.owner_reclamation
+247/252 Test: T23.host.owner_reclamation
+Command: "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/Release/ock_host_tests.exe" "T23.host.owner_reclamation"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host
+"T23.host.owner_reclamation" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"T23.host.owner_reclamation" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T23.host.owner_reclamation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+250/252 Testing: T03.host.configuration
+250/252 Test: T03.host.configuration
+Command: "J:/Code/Kernel_v2/build/runtime/python311/python.exe" "-X" "utf8" "J:/Code/Kernel_v2/tests/contract/host/verify_runtime.py" "--binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/Release/ock_host_tests.exe" "--case" "T03.host.configuration" "--work" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/child-runs" "--runtime-dir" "J:/Code/Kernel_v2/build/msvc-validation/e8697b7e3597a578/bin" "--fault-binary" "J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host/Release/ock_host_fault_tests.exe" "--configuration" "Release"
+Directory: J:/Code/Kernel_v2/build/b6-formal-release/tests/contract/host
+"T03.host.configuration" start time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+Output:
+----------------------------------------------------------
+{"case": "T03.host.configuration", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-formal-release\\tests\\contract\\host\\child-runs\\6b9edf904ae0429b9aff8375e13ee007", "status": "Passed"}
+<end of output>
+Test time =   0.39 sec
+----------------------------------------------------------
+Test Passed.
+"T03.host.configuration" end time: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+"T03.host.configuration" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 13 22:22 ÷–≤øœƒ¡Ó ±
+
+B5 = 124.28 sec*proc
+
+B6 =  16.78 sec*proc
+
+CompileContracts =   4.31 sec*proc
+
+D0.02 =  32.04 sec*proc
+
+D1.02 = 124.41 sec*proc
+
+D1.03 =  16.61 sec*proc
+
+D1.04 =  11.38 sec*proc
+
+D1.05 =   1.82 sec*proc
+
+D1.06 =   1.06 sec*proc
+
+D3.04 =   0.74 sec*proc
+
+D3.07 = 123.53 sec*proc
+
+Tools =   4.31 sec*proc
+

@@ -1,0 +1,89 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--preset",
+      "win-msvc-release",
+      "-B",
+      "build/b6-native-release",
+      "-DOCK_BUILD_COMPONENTS=Runtime",
+      "-DOCK_DEPENDENCY_COMPONENTS=Foundation",
+      "-DOCK_DEPENDENCIES_OFFLINE=ON",
+      "-DBUILD_TESTING=OFF",
+      "-DOCK_BUILD_DEPENDENCY_PROBES=OFF"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:24:48.424681+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 39,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9531344464002,
+      "qpc_frequency": 10000000
+    },
+    "pid": 50768,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:24:52.576700+00:00",
+    "label": "native-configure",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-9d5aac0f10\\native-configure-stdout.log",
+        "sha256": "2cf50857ffb15bb5c62b169e83af9e60cc84f2728981f4c2c60a9c8d1f360f93"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-9d5aac0f10\\native-configure-stderr.log",
+        "sha256": "e39c2e3265d3e9f92413b4ff2c0942d01df9c631a0f4c80048a7ddd2d76b10ab"
+      }
+    ]
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/b6-native-release",
+      "--config",
+      "Release",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T02:24:52.578207+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 19,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9531385998790,
+      "qpc_frequency": 10000000
+    },
+    "pid": 72656,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T02:25:18.883470+00:00",
+    "label": "native-build",
+    "raw": [
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-9d5aac0f10\\native-build-stdout.log",
+        "sha256": "d7d038bd805139172f4a13e78f42ef482d8158a1658d557a1ece0b4dd0c929d4"
+      },
+      {
+        "path": "J:\\Code\\Kernel_v2\\evidence\\bootstrap\\B6\\closure-projections-9d5aac0f10\\native-build-stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  }
+]
