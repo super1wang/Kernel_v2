@@ -11,6 +11,7 @@ public:
   const contracts::PreparedIdentity& identity() const noexcept {return identity_;}
   const std::shared_ptr<const contracts::PreparedCommit>& contract() const noexcept {return contract_;}
   std::size_t delta_bytes() const noexcept {return history_->delta_bytes();}
+  contracts::CommitClaim& claim() const noexcept {return claim_;}
 private:
   friend class StateDomain<T>;
   PreparedState(contracts::PreparedIdentity identity,
@@ -23,6 +24,7 @@ private:
   std::shared_ptr<const contracts::PreparedCommit> contract_;
   std::shared_ptr<const detail::PublishedState<T>> publication_;
   std::shared_ptr<const HistoryRecord<T>> history_;
+  mutable contracts::CommitClaim claim_;
 };
 
 struct MemoryCommit final {

@@ -5,7 +5,7 @@ from tools.architecture import check
 
 class B4SurfaceTests(unittest.TestCase):
     def test_b6_metadata_and_selection(self):
-        m,g=self.graph();self.assertEqual(m['sdk_version'],'0.1.0-dev.7')
+        m,g=self.graph();self.assertEqual(m['sdk_version'],'0.1.0-dev.8')
         self.assertEqual(m['stage'],'B6Subset')
         self.assertEqual(m['targets']['Runtime']['implementation'],'B6Subset')
         self.assertEqual(m['targets']['Control']['implementation'],'B5Subset')

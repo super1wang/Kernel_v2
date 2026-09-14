@@ -4,7 +4,7 @@
 #define OCK_SDK_VERSION_MAJOR 0
 #define OCK_SDK_VERSION_MINOR 1
 #define OCK_SDK_VERSION_PATCH 0
-#define OCK_SDK_VERSION "0.1.0-dev.7"
+#define OCK_SDK_VERSION "0.1.0-dev.8"
 #define OCK_CONTRACT_BASELINE 0
 
 namespace ock::sdk {

@@ -1629,6 +1629,18 @@ Result<void> ActionAuthorization::cancel() {
   return {};
 }
 
+Result<void> ActionAuthorization::consume_claimed(const ActionPermit& permit,
+    const PermitBinding& expected,CommitClaim& claim) {
+  auto a=state_->value;auto s=a->hold.store;
+  std::lock_guard lock(s->mutex);
+  auto current=action_current(*a);if(!current)return current;
+  if(a->status!=ActionStatus::Issued||&permit!=a->permit.get()||expected!=a->binding)
+    return deny(PolicyErrc::InvalidPermit);
+  if(!claim.try_claim())return deny(PolicyErrc::InvalidPermit);
+  a->status=ActionStatus::Consumed;
+  return {};
+}
+
 namespace detail {
 template <class Change>
 Result<void> update_config(const std::shared_ptr<Store> &s, Change change,

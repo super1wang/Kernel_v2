@@ -11,7 +11,7 @@ if(REQUIRE_COMPONENT)
 else()
   find_package(OCK 0.1.0 CONFIG REQUIRED COMPONENTS State Runtime)
 endif()
-if(NOT OCK_SDK_VERSION STREQUAL "0.1.0-dev.7" OR
+if(NOT OCK_SDK_VERSION STREQUAL "0.1.0-dev.8" OR
    NOT OCK_IMPLEMENTATION_STAGE STREQUAL "B6Subset" OR
    NOT OCK_INSTALLATION_PROFILE MATCHES "^(StateNative|B6Subset)$")
   message(FATAL_ERROR "B6 State installed SDK metadata mismatch")
@@ -23,3 +23,10 @@ if(NOT state_kind STREQUAL "STATIC_LIBRARY" OR NOT state_links STREQUAL "OCK::Co
 endif()
 add_executable(installed_state main.cpp)
 target_link_libraries(installed_state PRIVATE OCK::State OCK::Runtime)
+
+if(OCK_CONSUMER_STATE_HOST)
+  find_package(OCK CONFIG REQUIRED COMPONENTS Adapter::CpuPool)
+  add_executable(installed_state_host host_main.cpp)
+  target_compile_definitions(installed_state_host PRIVATE OCK_SETTINGS_MANAGED=1)
+  target_link_libraries(installed_state_host PRIVATE OCK::State OCK::Runtime OCK::Adapter::CpuPool)
+endif()

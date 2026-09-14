@@ -1,0 +1,382 @@
+{
+  "status": "PlannedBeforeFormalRun",
+  "task_id": "D4.04",
+  "scope": "B6 closure C1-C6；历史需求映射保留并追加审计责任",
+  "requirements": {
+    "D4.01": [
+      "T24.state.settings_service",
+      "T24.state.installed_consumer",
+      "T08.state.frozen_roots",
+      "T08.state.snapshot_ownership",
+      "T23.state.structural_sharing_cost"
+    ],
+    "D4.02": [
+      "T09.state.object_references",
+      "T09.state.memory_commit",
+      "T02.contracts.context_capability_boundary"
+    ],
+    "D4.03": [
+      "T09.state.memory_commit",
+      "T06.state.runtime_native",
+      "T06.contracts.outcome_closed_variants",
+      "T06.contracts.publication_proof_required",
+      "T06.contracts.before_apply_and_composite_proofs",
+      "T06.contracts.atomic_prepared_identity",
+      "T07.policy.cancel_arbitration",
+      "T07.policy.consume_before_revoke",
+      "T07.policy.expiry_boundary",
+      "T07.policy.permit_concurrent",
+      "T07.policy.permit_once",
+      "T07.policy.permit_origin_binding",
+      "T07.policy.revoke_before_consume",
+      "T07.policy.target_lifecycle",
+      "T03.native.cancel_and_budget",
+      "T03.native.no_task_path",
+      "T03.native.reentrant_and_concurrent",
+      "T06.native.authority_origin",
+      "T06.native.business_failure",
+      "T06.native.invalid_output",
+      "T06.native.managed_accepted_failures",
+      "T06.native.outcome_consistency",
+      "T06.native.permission_intersection",
+      "T06.native.revoke_and_regrant",
+      "T06.native.target_binding"
+    ],
+    "D4.04": [
+      "T10.state.atomic_group",
+      "T06.state.runtime_native",
+      "T02.contracts.state_edit_shape",
+      "T02.contracts.atomic_read_adapters",
+      "T02.contracts.atomic_async_rejected",
+      "T02.registration.atomic_candidate_contract",
+      "T02.registration.provider_binding",
+      "T02.registration.service_binding",
+      "T02.registration.shape_compile_contract",
+      "T05.registration.typed_binding_success",
+      "T02.native.candidate_read_dispatch",
+      "T02.native.invalid_input",
+      "T02.native.validation_exception",
+      "T03.native.managed_execution_path",
+      "T03.native.managed_record",
+      "T03.native.managed_record_ownership",
+      "T03.native.provider_unavailable",
+      "T03.native.thread_modes"
+    ],
+    "SDK/Profile": [
+      "T24.sdk.version_header",
+      "T01.architecture.dependency_dag",
+      "T01.architecture.negative_guards",
+      "T24.sdk.install_and_missing_components",
+      "T01.contracts.component_closure",
+      "T01.contracts.public_include_boundary",
+      "T24.contracts.public_headers",
+      "T24.contracts.installed_component_consumer"
+    ],
+    "Performance": [
+      "T23.state.structural_sharing_cost",
+      "T23.native.allocation_governance",
+      "T23.native.allocation_other_costs",
+      "T23.native.allocation_probe",
+      "T23.native.allocation_steady"
+    ],
+    "Harness": [
+      "T02.contracts.compile_fixture_setup"
+    ]
+  },
+  "notes": [
+    "同一用例可映射多个包；逻辑验收独立，物理执行共享。",
+    "Embedded/Runtime 裁剪和受影响完整 footprint 由 B6 交付材料中的独立正式报告绑定，不混入 CTest discovered。"
+  ],
+  "audit": [
+    {
+      "id": "R01",
+      "scenario": "Started 后取消仍在真实 Policy claim 前拒绝",
+      "tests": [
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "id": "R02",
+      "scenario": "close/cancel/revoke/deadline 各自 claim 两侧",
+      "tests": [
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "id": "R03",
+      "scenario": "C1 report 屏障、C2 发布封口、C1 再封口",
+      "tests": [
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "id": "R04",
+      "scenario": "完整 PreparedIdentity 与旧回报/证明",
+      "tests": [
+        "T06.contracts.atomic_prepared_identity",
+        "T10.state.atomic_group"
+      ]
+    },
+    {
+      "id": "R05",
+      "scenario": "并发 close/reopen/snapshot 捕获同版身份",
+      "tests": [
+        "T09.state.memory_commit",
+        "T08.state.snapshot_ownership"
+      ]
+    },
+    {
+      "id": "R06",
+      "scenario": "帧丢弃、精确 abandon、proof bad_alloc 后重试",
+      "tests": [
+        "T09.state.memory_commit",
+        "T10.state.atomic_group"
+      ]
+    },
+    {
+      "id": "R07",
+      "scenario": "回调释放最后 owner、锁外释放",
+      "tests": [
+        "T08.state.snapshot_ownership"
+      ]
+    },
+    {
+      "id": "R08",
+      "scenario": "真实目录 handler、TypeContract 输入、伪 digest",
+      "tests": [
+        "T10.state.atomic_group",
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "id": "R09",
+      "scenario": "实际 target 投影不匹配、后成员权限和每步当前权威",
+      "tests": [
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "id": "R10",
+      "scenario": "真实 Host 非空排他资源、第二执行等待后冲突",
+      "tests": [
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "id": "R11",
+      "scenario": "Native/Host group、值绑定、标量断言、128/129、拒绝嵌套",
+      "tests": [
+        "T06.state.runtime_native",
+        "T10.state.atomic_group"
+      ]
+    },
+    {
+      "id": "R12",
+      "scenario": "未满 ring 的字节压力、全 pin 拒绝和恢复",
+      "tests": [
+        "T09.state.memory_commit"
+      ]
+    },
+    {
+      "id": "R13",
+      "scenario": "实际 index 分配台账、共享 root、retained History、溢出",
+      "tests": [
+        "T09.state.object_references",
+        "T09.state.memory_commit",
+        "T23.state.structural_sharing_cost"
+      ]
+    },
+    {
+      "id": "R14",
+      "scenario": "公开 revision policy：缺失/过期在业务前拒绝",
+      "tests": [
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "id": "R15",
+      "scenario": "迁移安装后的公开 Host+CpuPool StateEdit/Atomic",
+      "tests": [
+        "T24.state.installed_consumer",
+        "T24.state.settings_service"
+      ]
+    },
+    {
+      "id": "R16",
+      "scenario": "Published 后输出/必要记录失败及 Finalizing 排空",
+      "tests": [
+        "T06.state.runtime_native",
+        "T03.native.host_observation_drain",
+        "T03.native.host_required_record_drain"
+      ]
+    },
+    {
+      "id": "R17",
+      "scenario": "18 个 N×k×引用组合，真实 snapshot/prepare/commit/reclaim",
+      "tests": [
+        "T23.state.structural_sharing_cost"
+      ]
+    },
+    {
+      "id": "R18",
+      "scenario": "受影响 B5/Host/SDK；投影和原预算 footprint 独立运行",
+      "tests": [
+        "T20.cli.managed_wire",
+        "T24.sdk.install_and_missing_components",
+        "T24.state.installed_consumer"
+      ]
+    }
+  ],
+  "original_plan_rows": [
+    {
+      "row": 1,
+      "tests": [
+        "T24.state.installed_consumer"
+      ]
+    },
+    {
+      "row": 2,
+      "tests": [
+        "T08.state.snapshot_ownership"
+      ]
+    },
+    {
+      "row": 3,
+      "tests": [
+        "T08.state.frozen_roots",
+        "T09.state.memory_commit"
+      ]
+    },
+    {
+      "row": 4,
+      "tests": [
+        "T23.state.structural_sharing_cost"
+      ]
+    },
+    {
+      "row": 5,
+      "tests": [
+        "T09.state.object_references"
+      ]
+    },
+    {
+      "row": 6,
+      "tests": [
+        "T09.state.memory_commit"
+      ]
+    },
+    {
+      "row": 7,
+      "tests": [
+        "T09.state.memory_commit"
+      ]
+    },
+    {
+      "row": 8,
+      "tests": [
+        "T09.state.memory_commit"
+      ]
+    },
+    {
+      "row": 9,
+      "tests": [
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "row": 10,
+      "tests": [
+        "T09.state.memory_commit"
+      ]
+    },
+    {
+      "row": 11,
+      "tests": [
+        "T06.contracts.atomic_prepared_identity",
+        "T10.state.atomic_group"
+      ]
+    },
+    {
+      "row": 12,
+      "tests": [
+        "T06.contracts.before_apply_and_composite_proofs"
+      ]
+    },
+    {
+      "row": 13,
+      "tests": [
+        "T06.state.runtime_native",
+        "T09.state.memory_commit"
+      ]
+    },
+    {
+      "row": 14,
+      "tests": [
+        "T06.state.runtime_native",
+        "T03.native.host_observation_drain"
+      ]
+    },
+    {
+      "row": 15,
+      "tests": [
+        "T08.state.snapshot_ownership",
+        "T03.native.host_combined_drain"
+      ]
+    },
+    {
+      "row": 16,
+      "tests": [
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "row": 17,
+      "tests": [
+        "T06.state.runtime_native",
+        "T10.state.atomic_group"
+      ]
+    },
+    {
+      "row": 18,
+      "tests": [
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "row": 19,
+      "tests": [
+        "T06.state.runtime_native",
+        "T02.contracts.atomic_read_adapters"
+      ]
+    },
+    {
+      "row": 20,
+      "tests": [
+        "T10.state.atomic_group",
+        "T02.contracts.atomic_async_rejected",
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "row": 21,
+      "tests": [
+        "T10.state.atomic_group",
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "row": 22,
+      "tests": [
+        "T06.state.runtime_native"
+      ]
+    },
+    {
+      "row": 23,
+      "tests": [
+        "T24.state.installed_consumer",
+        "T23.native.allocation_steady",
+        "T01.architecture.dependency_dag"
+      ]
+    }
+  ]
+}

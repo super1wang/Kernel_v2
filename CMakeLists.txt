@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 project(OCK VERSION 0.1.0 LANGUAGES CXX)
-set(OCK_SDK_VERSION "0.1.0-dev.7")
+set(OCK_SDK_VERSION "0.1.0-dev.8")
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
 set(OCK_BUILD_COMPONENTS "B6Subset" CACHE STRING "Production component selection")

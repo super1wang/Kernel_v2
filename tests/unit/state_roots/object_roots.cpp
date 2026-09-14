@@ -41,5 +41,16 @@ int main() try {
   auto unresolved=ObjectEdit::begin(empty,{65536,65536,4});CHECK(unresolved);
   CHECK(unresolved->create(*second)&&!unresolved->freeze());
   CHECK(unresolved->create(*first)&&unresolved->freeze());
+  ObjectRoot tiny_index(1);CHECK(!tiny_index.replace(*first,65536));
+  CHECK(tiny_index.index_memory().retained_bytes==0&&tiny_index.size()==0);
+  ObjectRoot tracked(65536);
+  {
+    auto next=tracked.replace(*first,65536);CHECK(next);
+    auto counted=tracked.index_memory();CHECK(counted.retained_bytes>0&&counted.live_nodes>0);
+    {std::vector<ObjectRoot> copies(100,*next);CHECK(tracked.index_memory().retained_bytes==counted.retained_bytes);}
+    auto with_refs=next->replace(*second,65536);CHECK(with_refs);
+    CHECK(tracked.index_memory().retained_bytes>counted.retained_bytes);
+  }
+  auto reclaimed=tracked.index_memory();CHECK(reclaimed.retained_bytes==0&&reclaimed.live_nodes==0&&reclaimed.allocated_bytes==reclaimed.freed_bytes);
   return 0;
 } catch(const std::exception& e) {std::cerr<<e.what()<<'\n';return 1;}

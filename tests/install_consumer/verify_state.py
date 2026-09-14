@@ -36,14 +36,17 @@ def main():
         text=p.read_text(encoding='utf-8').replace('\\','/').casefold()
         assert ROOT.as_posix().casefold() not in text and original.as_posix().casefold() not in text and 'immer' not in text
     manifest=json.loads((relocated/'share/ock/sdk_api_manifest.json').read_text(encoding='utf-8'))
-    assert manifest['sdk_version']=='0.1.0-dev.7' and manifest['stage']=='B6Subset'
+    assert manifest['sdk_version']=='0.1.0-dev.8' and manifest['stage']=='B6Subset'
     assert manifest['targets']['State']['kind']=='STATIC_LIBRARY'
     source=work/'source';shutil.copytree(ROOT/'tests/install_consumer/state',source)
     base=['cmake','-S',str(source),'-G','Visual Studio 17 2022','-A','x64','-T','v143,version=14.44.35207','-DCMAKE_SYSTEM_VERSION=10.0.26100.0',f'-DCMAKE_TOOLCHAIN_FILE={ROOT}/cmake/LockedMSVC.cmake',f'-DCMAKE_PREFIX_PATH={relocated}',f'-DOCK_CONSUMER_ASAN={"ON" if asan else "OFF"}']
+    base.append(f'-DOCK_CONSUMER_STATE_HOST={"ON" if graph["build_components"]=="B6Subset" else "OFF"}')
     run([*base,'-B',str(work/'consumer')]);run(['cmake','--build',str(work/'consumer'),'--config',args.config,'--parallel','4','--','/nr:false'])
-    result=run([str(work/'consumer'/args.config/'installed_state.exe')]);assert result.stdout.strip()==b'0.1.0-dev.7 State installed snapshot/commit passed'
+    result=run([str(work/'consumer'/args.config/'installed_state.exe')]);assert result.stdout.strip()==b'0.1.0-dev.8 State installed snapshot/commit passed'
+    if graph['build_components']=='B6Subset':
+        host=run([str(work/'consumer'/args.config/'installed_state_host.exe')]);assert host.stdout.strip()==b'0.1.0-dev.8 State Host managed Atomic passed'
     rejected=run([*base,'-B',str(work/'missing'),'-DREQUIRE_COMPONENT=Workspace'],False)
     assert b'is not implemented in the current SDK' in rejected.stderr
-    (evidence/'result.json').write_text(json.dumps({'status':'Passed','scope':'B6 relocated State snapshot/commit consumer','configuration':args.config,'asan':asan,'profile':manifest['installation_profile'],'selected':acquisition['selected']}),encoding='utf-8')
+    (evidence/'result.json').write_text(json.dumps({'status':'Passed','scope':'B6 relocated State snapshot/commit and B6Subset public Host managed Atomic consumers','configuration':args.config,'asan':asan,'profile':manifest['installation_profile'],'selected':acquisition['selected']}),encoding='utf-8')
     print('B6 installed State consumer passed:',evidence)
 if __name__=='__main__':main()

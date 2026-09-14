@@ -310,6 +310,7 @@ public:
   Result<PermitBinding> current_expected_binding() const;
   Result<void> consume(const ActionPermit &, const PermitBinding &) override;
   Result<void> cancel();
+  Result<void> consume_claimed(const ActionPermit &,const PermitBinding &,CommitClaim &) override;
   OCK_POLICY_ENTITY(ActionAuthorization);
 };
 struct PageBindingData {

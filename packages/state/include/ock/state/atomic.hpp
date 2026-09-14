@@ -17,6 +17,7 @@ struct ObjectStateProvider {
   struct Frame final {
     Snapshot<ObjectRoot> base;
     ObjectEdit edit;
+    std::shared_ptr<const void> prepared_owner;
     Frame(Snapshot<ObjectRoot> snapshot,ObjectEdit candidate):base(std::move(snapshot)),edit(std::move(candidate)) {}
     CandidateReadPort candidate() const {return CandidateReadPort(edit);}
   };
@@ -63,7 +64,7 @@ public:
       std::size_t input_bytes,std::size_t result_bytes) {
     auto valid=validate(description,contracts::AtomicMode::StateEdit,contracts::Shape::StateEdit,true);
     if(!valid||!handler)return foundation::make_unexpected(valid?error(StateErrc::InvalidCandidate):valid.error());
-    auto frozen=FrozenRoot<A>::freeze(input,input_bytes);if(!frozen)return foundation::make_unexpected(frozen.error());
+    auto frozen=freeze_input(input,input_bytes);if(!frozen)return foundation::make_unexpected(frozen.error());
     try {return AtomicStep{description,[frozen=*frozen,handler,result_bytes,domain=description.domain](ObjectEdit& edit,contracts::WorkContext& work)->foundation::Result<ObjectValue> {
       contracts::EditView<ObjectStateProvider> view(edit,domain);
       auto output=handler(frozen.value(),view,work);if(!output)return foundation::make_unexpected(output.error());
@@ -76,7 +77,7 @@ public:
       std::size_t input_bytes,std::size_t result_bytes) {
     auto valid=validate(description,contracts::AtomicMode::CandidateRead,contracts::Shape::Read,true);
     if(!valid||!handler)return foundation::make_unexpected(valid?error(StateErrc::InvalidCandidate):valid.error());
-    auto frozen=FrozenRoot<A>::freeze(input,input_bytes);if(!frozen)return foundation::make_unexpected(frozen.error());
+    auto frozen=freeze_input(input,input_bytes);if(!frozen)return foundation::make_unexpected(frozen.error());
     try {return AtomicStep{std::move(description),[frozen=*frozen,handler,result_bytes](ObjectEdit& edit,contracts::WorkContext& work)->foundation::Result<ObjectValue> {
       ObjectStateProvider::CandidateReadPort reader(edit);auto output=handler(frozen.value(),reader,work);
       if(!output)return foundation::make_unexpected(output.error());return ObjectValue::freeze(*output,result_bytes);
@@ -87,7 +88,7 @@ public:
       foundation::Result<R>(*handler)(const A&,contracts::WorkContext&),std::size_t input_bytes,std::size_t result_bytes) {
     auto valid=validate(description,contracts::AtomicMode::PureCompute,contracts::Shape::Read,false);
     if(!valid||!handler)return foundation::make_unexpected(valid?error(StateErrc::InvalidCandidate):valid.error());
-    auto frozen=FrozenRoot<A>::freeze(input,input_bytes);if(!frozen)return foundation::make_unexpected(frozen.error());
+    auto frozen=freeze_input(input,input_bytes);if(!frozen)return foundation::make_unexpected(frozen.error());
     try {return AtomicStep{std::move(description),[frozen=*frozen,handler,result_bytes](ObjectEdit&,contracts::WorkContext& work)->foundation::Result<ObjectValue> {
       auto output=handler(frozen.value(),work);if(!output)return foundation::make_unexpected(output.error());
       return ObjectValue::freeze(*output,result_bytes);
@@ -96,6 +97,15 @@ public:
   const AtomicDescription& description() const noexcept {return description_;}
   foundation::Result<ObjectValue> invoke(ObjectEdit& edit,contracts::WorkContext& work) const {return invoke_(edit,work);}
 private:
+  template<RootValue A> static foundation::Result<FrozenRoot<A>> freeze_input(const A& input,std::size_t maximum) {
+    auto frozen=FrozenRoot<A>::freeze(input,maximum);if(!frozen)return foundation::make_unexpected(frozen.error());
+    try {
+      auto valid=contracts::TypeContract<A>::validate(frozen->value());
+      if(!valid)return foundation::make_unexpected(valid.error());
+      return frozen;
+    } catch(const std::bad_alloc&) {return foundation::make_unexpected(error(StateErrc::BudgetExceeded));}
+    catch(...) {return foundation::make_unexpected(error(StateErrc::InvalidCandidate));}
+  }
   static foundation::Result<void> validate(const AtomicDescription& d,contracts::AtomicMode mode,
       contracts::Shape shape,bool provider) {
     if(d.form!=AtomicForm::Call||!d.complete||d.async_dispatch||d.external_wait||d.mode!=mode||d.shape!=shape||

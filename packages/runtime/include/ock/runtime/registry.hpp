@@ -164,6 +164,7 @@ struct ExecutorBinding {
   bool async_dispatch, external_wait;
   std::shared_ptr<ExecutorPort> owner;
 };
+class CandidateBindings;
 class Registrar;
 struct ModuleInput {
   ModuleManifest manifest;
@@ -174,12 +175,22 @@ struct ModuleInput {
   std::vector<ExecutorBinding> executors;
   std::function<void(Registrar &)> register_operations;
 };
+enum class RevisionPolicy { ServerCapture, RequireExplicitRevision };
 struct OperationOptions {
   std::optional<ServiceRef> read_service;
   std::optional<ProviderRef> provider;
   ExecutorRef executor;
   std::vector<ResourceRef> resources;
   bool requires_dynamic_schema = false;
+  RevisionPolicy revision_policy=RevisionPolicy::ServerCapture;
+};
+struct AtomicMember {
+  OperationKey operation;ContractDigest contract;std::vector<foundation::ObjectId> targets;
+};
+struct AtomicMembership {
+  foundation::RegistryId registry;foundation::RegistryGeneration generation;
+  std::vector<AtomicMember> members;std::vector<ResourceRef> resources;
+  std::shared_ptr<const void> provider_owner;
 };
 // 由可信注册者声明拥有型提交的完整存储额度，包含动态缓冲区。
 // 客户端提交不能替换计量函数或上限；未声明者仅保留原 Invoke 能力。
@@ -192,6 +203,7 @@ struct SubmissionStorage {
   // StateEdit 在发布前计量业务 R；Read/PureCompute 可留空。
   Result<std::size_t> (*state_result_bytes)(
       const std::conditional_t<std::same_as<R,void>,std::monostate,R>&)=nullptr;
+  Result<AtomicMembership> (*atomic_membership)(const A&)=nullptr;
 };
 // 热条目没有冷描述指针。处理器及其真实类型见证只可被注册器保存。
 namespace detail {
@@ -244,6 +256,7 @@ struct HotEntry final {
   DomainThunk domain=nullptr;
   std::shared_ptr<void> provider_owner;
   CppTypeToken provider_type=CppTypeToken::of<void>();
+  RevisionPolicy revision_policy=RevisionPolicy::ServerCapture;
 };
 template<ContractResult R> struct StateNativeCall {
   StateNativeCall(const CallerView& caller,AtomicDomainRef domain,CommitId commit,ReservationId reservation,
@@ -259,6 +272,7 @@ template<ContractResult R> struct StateNativeCall {
   std::shared_ptr<PermitAuthorityPort> authority;
   PermitBinding binding;
   bool accepted=false;
+  std::optional<PreparedBase> expected_state;
   std::optional<typename Outcome<R>::PreparedState> prepared_outcome;
   std::optional<Outcome<R>> outcome;
   std::optional<CommitReport> report;
@@ -284,8 +298,22 @@ void state_edit_native(const HotEntry& entry,const void* args,WorkContext& work,
   auto inline_provider=std::dynamic_pointer_cast<InlineAtomicProviderPort<P>>(provider);
   auto publication=std::dynamic_pointer_cast<PublicationAuthorityPort>(provider);
   if(!inline_provider||!publication)return fail(error(ContractsErrc::InvalidContract));
+  if constexpr(AsyncInput<A>&&AsyncInput<R>) {
+    if(entry.submission_storage_type==CppTypeToken::of<SubmissionStorage<A,R>>()&&entry.submission_storage) {
+      auto storage=std::static_pointer_cast<const SubmissionStorage<A,R>>(entry.submission_storage);
+      if(storage->atomic_membership) {
+        auto membership=storage->atomic_membership(*static_cast<const A*>(args));
+        if(!membership)return fail(membership.error());
+        if(membership->provider_owner.get()!=entry.provider_owner.get())return fail(error(ContractsErrc::InvalidAuthority));
+      }
+    }
+  }
   auto frame=provider->begin(call.domain,*call.caller);if(!frame)return fail(frame.error());
   auto base=provider->base(**frame);if(!base)return fail(base.error());
+  if((entry.revision_policy==RevisionPolicy::RequireExplicitRevision&&!call.expected_state)||
+      (call.expected_state&&(call.expected_state->revision!=base->revision||
+       call.expected_state->lifecycle_generation!=base->lifecycle_generation)))
+    return fail(error(ContractsErrc::InvalidContract));
   call.binding.lifecycle_generation=base->lifecycle_generation;
   PreparedIdentity identity{call.commit,call.reservation,call.domain,base->revision,base->lifecycle_generation};
   auto fn=std::static_pointer_cast<const Function>(entry.handler);
@@ -319,16 +347,22 @@ void state_edit_native(const HotEntry& entry,const void* args,WorkContext& work,
   auto prepared=provider->prepare(**frame,identity);if(!prepared)return fail(prepared.error());
   auto report=inline_provider->commit_inline(*prepared,call.permit,call.authority,call.binding);
   if(!report)return fail(report.error());
+  auto report_valid=validate_commit_report(CommitState{identity,CommitDisposition::Pending},*report);
+  if(!report_valid) {
+    foundation::invariant(report->disposition!=CommitDisposition::Published);
+    return fail(report_valid.error());
+  }
+  foundation::invariant(report->disposition==CommitDisposition::Published||
+      report->disposition==CommitDisposition::KnownNotCommitted);
   call.report=*report;
   if(report->disposition!=CommitDisposition::Published) {
     return fail(report->error.value_or(error(ContractsErrc::Rejected)));
   }
   try {
-    PublishedCommit published{identity.commit,identity.domain,identity.base_revision+1,identity.base_revision+1};
-    auto proof=publication->attest(published);
+    auto proof=report->publication_proof;
     // commit_inline 已返回 Published；此后不一致属于可信实现损坏，不能伪报未应用。
     foundation::invariant(bool(proof));
-    call.publication=std::move(publication);call.proof=std::move(*proof);
+    call.publication=std::move(publication);call.proof=std::move(proof);
     std::array<std::shared_ptr<const PublicationProof>,1> proofs{call.proof};
     OutcomeValidation validation{*call.publication,proofs,{2,0,0}};
     call.outcome.emplace(Outcome<R>::publish_state(std::move(*call.prepared_outcome),validation));
@@ -414,6 +448,7 @@ void candidate_read_native(const HotEntry &entry, const void *args,
 class Catalog final : public BindingPort {
   friend class RegistrationBatch;
   friend class invocation::NativeAccess;
+  friend class CandidateBindings;
   Catalog(RegistryId id, std::vector<detail::HotEntry> h,
           std::vector<std::shared_ptr<const DefinitionSnapshot>> c,
           std::vector<std::shared_ptr<const void>> owners, std::vector<Name> module_order);
@@ -606,6 +641,18 @@ public:
           return with_candidate_read<P>(*r, c, ProviderContract<P>::key());
         },
         d, o, &detail::candidate_read_native<A, R, Reader, P>);
+  }
+  template<AsyncInput A,AsyncInput R,class Reader,class P>
+  Result<void> candidate_read(Result<R>(*read)(const A&,WorkContext&,ReadServices<Reader>&),
+      Result<R>(*candidate)(const A&,const typename P::CandidateReadPort&,WorkContext&),
+      const DefinitionInput& definition,const OperationOptions& options,SubmissionStorage<A,R> storage) {
+    if(!storage.input_limit||!storage.reply_limit||!storage.input_bytes||!storage.reply_bytes||!storage.state_result_bytes)
+      return batch_.fail(RegistryErrc::InvalidDefinition);
+    return accept(std::pair{read,candidate},[&]()->Result<OperationDefinition<A,R>> {
+      auto operation=make_read_definition(read,definition);if(!operation)return make_unexpected(operation.error());
+      return with_candidate_read<P>(*operation,candidate,ProviderContract<P>::key());
+    },definition,options,&detail::candidate_read_native<A,R,Reader,P>,
+      std::make_shared<const SubmissionStorage<A,R>>(storage),CppTypeToken::of<SubmissionStorage<A,R>>());
   }
   template <class T>
   Result<std::shared_ptr<T>> service(const Name &m, const Name &n) {

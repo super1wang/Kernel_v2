@@ -1,5 +1,7 @@
-# Settings State 验证消费者
+# 无文档 Settings 内核消费者
 
-本程序是 B6 的无 Document、无数据库验证消费者。它注册一个真实 `StateEdit`，经 Policy、Registry 和 NativeEngine 更新内存配置；随后用同一绑定进入现有 managed `InvocationRecord` 再提交一次。两次结果都必须是带 `CommitFact`、`PublishedFact` 和有效发布证明的 `StateCommitted`，最终 Snapshot revision 为 2。
+样例只使用安装公开头和 OCK::State、OCK::Runtime；B6Subset 另外链接 OCK::Adapter::CpuPool。显式启用 Host State、注册单次 StateEdit 与有限 Atomic 组；组的第二步绑定第一步类型化结果，共享一个候选与一次发布。所有请求要求明确 revision/lifecycle。
 
-固定认证字节、身份和本地端口只服务本进程验证，不是产品认证方案。程序不启动 GUI、CAD/CAM、设备或后台线程。
+B6Subset 经过公开 HostBound.submit、实际资源集合、线程池、执行表、wait/result 和 Host shutdown；StateNative 使用同一 HostBound.invoke，无线程池与资源配置。不再使用内部 InvocationAccess 或 run_once 模拟 managed。
+
+迁移安装消费者与本例使用相同公开实现，验证两步结果为 8/9、正式值为 8、revision 仅增加 1。认证、摘要和目标配置是本地验证装配，不暴露远程写 RPC，也不代表设备或持久化验收。

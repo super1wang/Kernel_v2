@@ -1,0 +1,33 @@
+{
+  "format": "ock.technical-review/1",
+  "task_id": "D4.04",
+  "review_kind": "code",
+  "review_status": "Approved",
+  "reviewed_inputs_sha256": "d101b9072993a36f8855a5a6f818a1c243f9aac65d895eb2021ddc26bcc84019",
+  "reviewed_at": "2026-09-14T02:10:36.553475+00:00",
+  "reviewer": "Codex AI B6 closure 集中技术复核",
+  "actor_type": "AI",
+  "approval_text": "批准 B6-closure-review.md 所述技术结论。正式机器矩阵、投影、原预算 footprint 和 DAG 放行须独立满足。",
+  "evidence": [
+    {
+      "path": "docs/reviews/B6-closure-review.md",
+      "sha256": "fc82ac5b125c08cfccddfa17376d971b8cd1c0aba282e042fd713cc74c95f132"
+    },
+    {
+      "path": "tests/manifests/b6-closure-requirement-map.json",
+      "sha256": "fe8b7f6a34195f0841122a04bf8e2d22949e2c485afc766eddaa8b3c58f66b66"
+    },
+    {
+      "path": "docs/adr/ADR-b6-closure-ownership.md",
+      "sha256": "a440d21aec32fa5663c146d48737532055f79a0ed8046a90e5e90f34ab9f7546"
+    },
+    {
+      "path": "docs/reviews/B6-closure-budget-decision.md",
+      "sha256": "133ad93bcf1137c2afb71c6a77d2b10caff7ba478bec29ebb97745077aac030a"
+    }
+  ],
+  "limitations": [
+    "仅内核 B6；不授予 B7/G4 或产品放行。",
+    "AI 技术复核与机器事实分开。"
+  ]
+}

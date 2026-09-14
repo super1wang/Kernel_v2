@@ -55,9 +55,16 @@ private:
   std::shared_ptr<const std::vector<foundation::ObjectId>> references_;
 };
 // 私有 persistent map 同时持有正文与反向引用；每次更新返回新根。
+struct IndexMemory {
+  std::size_t limit,retained_bytes,peak_bytes,allocated_bytes,freed_bytes,live_nodes,allocations;
+};
 class ObjectRoot final {
 public:
   ObjectRoot();
+  // 独立索引谱系上限为 1..64 MiB；越界构造抛 invalid_argument。
+  explicit ObjectRoot(std::size_t index_bytes);
+  IndexMemory index_memory() const noexcept;
+  std::size_t logical_bytes() const noexcept;
   std::size_t size() const noexcept;
   std::size_t owned_bytes() const noexcept;
   std::optional<ObjectRecord> find(foundation::ObjectId) const;

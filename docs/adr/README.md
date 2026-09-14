@@ -17,3 +17,5 @@
 D0.01 已批准；D0.02 沿用既有架构决定形成具体 ADR，未更改唯一规范。正式决定必须同步合同、测试、资料和受影响包。
 | [B5：接受身份与业务进入](ADR-b5-accepted-outcome.md) | A05/A09.1，E00/E02 | B5/G3 post-gate closure | C2 编码前决定，验证及状态见 B5 规划/progress |
 | [B6：AtomicProvider 调用期权威与内存同步提交边界](ADR-b6-atomic-provider-context.md) | A05/A07、E00/E02 | D4.01–D4.04 | 已采纳；B6 正式结果以 plans/B6 与 progress 为准 |
+
+| [B6 closure：提交仲裁、逐次证明与有限 Atomic 所有权](ADR-b6-closure-ownership.md) | A05/A07/A19/A21、E00/E02 | D4.01–D4.04 | 审计修复决定；正式结果以 progress 为准 |

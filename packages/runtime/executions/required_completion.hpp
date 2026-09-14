@@ -30,7 +30,7 @@ public:
       std::shared_ptr<ExecutionTable> table,std::function<void()> wake) {
     try {
       auto owner=std::shared_ptr<RequiredCompletion>(new RequiredCompletion(std::move(port),std::move(table),std::move(wake)));
-      contracts::RecordRequest request{identity,{},{},*contracts::Name::parse("read.finalization"),{},256};
+      contracts::RecordRequest request{identity,{},{},*contracts::Name::parse("execution.finalization"),{},256};
       auto snapshot=contracts::RecordRequestSnapshot::create(request,256);
       if(!snapshot)return contracts::make_unexpected(snapshot.error());
       owner->request_=std::move(*snapshot);
@@ -74,7 +74,7 @@ private:
     {
       std::lock_guard lock(mutex_);if(state_!=contracts::RequiredRecordState::Pending)return;
       auto checked=contracts::validate_record_report(request_->value(),state_,report);
-      // 当前 Read 无 commit/effect，故修复只能归 ManualReview。
+      // 当前内存执行收尾不宣称 Durable；修复归 ManualReview。
       if(!checked||(report.failure&&report.failure->repair!=contracts::RepairKind::ManualReview)) {
         failure_locked(contracts::error(contracts::ContractsErrc::InvalidFact));
       } else if(report.state==contracts::RequiredRecordState::Failed)failure_locked(report.failure->reason);
@@ -87,7 +87,7 @@ private:
     signal();
   }
   void failure_locked(contracts::Error error) {
-    // 本服务当前只接受 Read；统一关闭其新准入，在发布封锁事实前先执行门控。
+    // 必要收尾失败统一关闭新准入；已发布的 State 事实仍保留。
     table_->close_admission();
     if(!error.code().value())error=contracts::error(contracts::ContractsErrc::InvalidFact);
     failure_=contracts::RecordFailure{contracts::Error{error.code()},true,contracts::RepairKind::ManualReview};

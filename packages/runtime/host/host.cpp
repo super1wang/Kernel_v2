@@ -275,7 +275,7 @@ Result<void> NativeHost::add(const HostModule& module) {
   try {
     if(!owned(module.lifecycle)) {auto e=host_error(HostErrc::InvalidOwner);s->first_error(e);return make_unexpected(e);}
     const auto& m=module.registration;
-    if(!m.providers.empty()||!m.manifest.required_providers.empty()||
+    if(((!m.providers.empty()||!m.manifest.required_providers.empty())&&!s->options.enable_state)||
        ((!m.resources.empty()||!m.manifest.required_resources.empty())&&!s->ports.execution_factory)) {
       auto e=host_error(HostErrc::UnsupportedCapability);s->first_error(e);return make_unexpected(e);
     }
@@ -310,7 +310,11 @@ Result<void> NativeHost::start() {
       auto d=s->catalog->describe(static_cast<std::uint32_t>(i));
       if(!d)return fail(d.error());
       const auto& execution=(*d)->description().execution;
-      if((*d)->shape()!=Shape::Read||(execution.requires_external_wait&&!(*d)->asynchronous_read())||(*d)->provider()||
+      const bool state_edit=s->options.enable_state&&(*d)->provider()&&
+          (((*d)->shape()==Shape::StateEdit&&(*d)->description().atomic_mode==AtomicMode::StateEdit)||
+           ((*d)->shape()==Shape::Read&&(*d)->description().atomic_mode==AtomicMode::CandidateRead));
+      if(((*d)->shape()!=Shape::Read&&!state_edit)||(execution.requires_external_wait&&!(*d)->asynchronous_read())||
+         ((*d)->provider()&&!state_edit)||
          ((!execution.inline_safe||execution.requires_async_dispatch||(*d)->asynchronous_read())&&!s->ports.execution_factory))
         return fail(host_error(HostErrc::UnsupportedCapability));
     }
@@ -365,6 +369,7 @@ Result<void> NativeHost::start() {
     }
     auto capabilities=s->executions?s->executions->capabilities():ExecutionCapabilities{};
     {std::lock_guard lock(s->mutex);
+      s->capabilities.state=s->options.enable_state;
       s->capabilities.async_execution=capabilities.async_execution;
       s->capabilities.execution_observation=capabilities.execution_observation;
       s->phase=HostPhase::Ready;}

@@ -34,6 +34,9 @@ struct Reads final:ock::state::SnapshotAuthority{
 struct Permit final:ActionPermit{PermitBinding value;explicit Permit(PermitBinding v):value(std::move(v)){}
   const PermitBinding& binding()const noexcept override{return value;}};
 struct Permits final:PermitAuthorityPort{
+  Result<void> consume_claimed(const ActionPermit& p,const PermitBinding& b,CommitClaim& claim) override {
+    auto valid=consume(p,b);if(!valid)return valid;return claim.try_claim()?Result<void>{}:reject(ContractsErrc::Rejected);
+  }
   Result<std::shared_ptr<const ActionPermit>> issue(const CallerGrant&,const PermitBinding& value)override{
     return std::shared_ptr<const ActionPermit>(std::make_shared<Permit>(value));}
   Result<void> consume(const ActionPermit& permit,const PermitBinding& expected)override{

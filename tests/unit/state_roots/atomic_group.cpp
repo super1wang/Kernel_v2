@@ -34,7 +34,11 @@ static AtomicDomainRef object_domain(){auto d=domain();d.provider=ProviderContra
 struct Reads final:ock::state::SnapshotAuthority{std::shared_ptr<Issuer> issuer;explicit Reads(std::shared_ptr<Issuer> v):issuer(std::move(v)){}
   Result<void> authorize(const CallerView& c,const AtomicDomainRef& d)const override{return d==object_domain()?validate_caller(*issuer,c):reject(ContractsErrc::InvalidGrant);}};
 struct Permit final:ActionPermit{PermitBinding b;explicit Permit(PermitBinding v):b(std::move(v)){}const PermitBinding& binding()const noexcept override{return b;}};
-struct Permits final:PermitAuthorityPort{int count=0;Result<std::shared_ptr<const ActionPermit>> issue(const CallerGrant&,const PermitBinding& b)override{return std::shared_ptr<const ActionPermit>(std::make_shared<Permit>(b));}
+struct Permits final:PermitAuthorityPort{int count=0;
+  Result<void> consume_claimed(const ActionPermit& p,const PermitBinding& b,CommitClaim& claim) override {
+    auto valid=consume(p,b);if(!valid)return valid;return claim.try_claim()?Result<void>{}:reject(ContractsErrc::Rejected);
+  }
+  Result<std::shared_ptr<const ActionPermit>> issue(const CallerGrant&,const PermitBinding& b)override{return std::shared_ptr<const ActionPermit>(std::make_shared<Permit>(b));}
   Result<void> consume(const ActionPermit& p,const PermitBinding& b)override{++count;return p.binding()==b?Result<void>{}:reject(ContractsErrc::InvalidGrant);}};
 struct Authority final:ock::state::AtomicAuthorityPort {
   mutable int calls=0;int fail_at=0;
@@ -75,6 +79,9 @@ int main() try {
   CHECK(!atomic.execute(*caller,std::span<const ock::state::AtomicStep>(&*pure,1),{},attempt(4,1),std::make_shared<Permit>(binding),permits,binding,work));
 
   auto before_entries=edit_entries;
+  CHECK(!ock::state::AtomicStep::state_edit(description(AtomicMode::StateEdit,Shape::StateEdit),Command{{},5},put,1024,1024));
+  CHECK(!ock::state::AtomicStep::candidate_read(description(AtomicMode::CandidateRead,Shape::Read),Command{{},5},read_candidate,1024,1024));
+  CHECK(!ock::state::AtomicStep::pure_compute(description(AtomicMode::PureCompute,Shape::Read),Command{{},5},compute,1024,1024));
   for(auto form:{AtomicForm::Await,AtomicForm::Ticket,AtomicForm::Nested,AtomicForm::Conditional,AtomicForm::Loop,AtomicForm::Parallel}) {
     auto forbidden=description(AtomicMode::StateEdit,Shape::StateEdit);forbidden.form=form;
     CHECK(!ock::state::AtomicStep::state_edit(forbidden,Command{object,5},put,1024,1024));
@@ -98,6 +105,13 @@ int main() try {
   auto provider_domain=ock::state::StateDomain<ock::state::ObjectRoot>::create(object_domain(),{},domain_options,std::make_shared<Reads>(issuer));CHECK(provider_domain);
   auto provider_permits=std::make_shared<Permits>();
   auto provider=ock::state::ObjectMemoryProvider::create(*provider_domain,atomic_options.edit);CHECK(provider);
+  // Dropping the frame releases the unpublished reservation even if its DTO survives.
+  std::shared_ptr<const PreparedCommit> abandoned_dto;
+  {
+    auto abandoned=(*provider)->begin(object_domain(),*caller);CHECK(abandoned);
+    auto staged=(*provider)->prepare(**abandoned,attempt(19,0));CHECK(staged);
+    abandoned_dto=*staged;
+  }
   auto frame=(*provider)->begin(object_domain(),*caller);CHECK(frame);
   EditView<ock::state::ObjectStateProvider> provider_view((*frame)->edit,object_domain());
   CHECK(put(Command{object,11},provider_view,work));CHECK((*frame)->candidate().find(object));
@@ -109,5 +123,13 @@ int main() try {
   CHECK(receiver->calls==1&&receiver->report->disposition==CommitDisposition::Published);
   CHECK((*provider)->published(attempt(20,0))&&(*provider_domain)->snapshot(*caller)->value().find(object));
   CHECK(!(*provider)->commit(*public_prepared,std::make_shared<Permit>(binding),provider_permits,binding,receiver)&&receiver->calls==1);
+  auto first_proof=receiver->report->publication_proof;CHECK(first_proof);
+  auto first_fact=(*provider)->published(attempt(20,0))->publication;
+  auto second_frame=(*provider)->begin(object_domain(),*caller);CHECK(second_frame);
+  auto second=(*provider)->prepare(**second_frame,attempt(21,1));CHECK(second);
+  CHECK((*provider)->commit(*second,std::make_shared<Permit>(binding),provider_permits,binding,receiver));
+  CHECK((*provider)->validate(*first_proof,first_fact));
+  (*provider_domain)->close();CHECK((*provider_domain)->reopen({},2));
+  CHECK((*provider)->validate(*first_proof,first_fact));
   return 0;
 } catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}

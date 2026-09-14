@@ -488,6 +488,9 @@ Result<void> RegistrationBatch::insert(
     if (!found)
       return bad(RegistryErrc::MissingResource);
   }
+  if(o.revision_policy!=RevisionPolicy::ServerCapture&&o.revision_policy!=RevisionPolicy::RequireExplicitRevision)
+    return bad(RegistryErrc::InvalidDefinition);
+  h.revision_policy=o.revision_policy;
   hot_.push_back(std::move(h));
   cold_.push_back(std::move(s));
   return {};

@@ -1,6 +1,7 @@
 #pragma once
 // D1.02：描述DTO不授予能力；受信接收端必须核对配置authority。
 #include <chrono>
+#include <atomic>
 #include <ock/contracts/identity.hpp>
 #include <stop_token>
 namespace ock::contracts {
@@ -71,11 +72,27 @@ public:
 protected:
   ActionPermit() = default;
 };
+// 由提交尝试拥有；可信 authority 在其消费仲裁内最后调用 try_claim。
+class CommitClaim final {
+public:
+  bool try_claim() noexcept {
+    unsigned expected=0;return state_.compare_exchange_strong(expected,1);
+  }
+  bool cancel() noexcept {
+    unsigned expected=0;return state_.compare_exchange_strong(expected,2);
+  }
+  bool claimed() const noexcept {return state_.load()==1;}
+private:
+  std::atomic<unsigned> state_{0};
+};
 class PermitAuthorityPort : public PortLifetime {
 public:
   virtual Result<std::shared_ptr<const ActionPermit>>
   issue(const CallerGrant &, const PermitBinding &) = 0;
   virtual Result<void> consume(const ActionPermit &, const PermitBinding &) = 0;
+  virtual Result<void> consume_claimed(const ActionPermit &,const PermitBinding &,CommitClaim &) {
+    return reject(ContractsErrc::InvalidAuthority);
+  }
 };
 class ActivityLease : public PortLifetime {};
 class ResourceLease : public PortLifetime {};
@@ -132,6 +149,10 @@ class ExecutionScopePort : public PortLifetime {
 public:
   virtual ExecutionRef execution() const noexcept = 0;
 };
+class CandidateAuthorizationPort:public PortLifetime {
+public:
+  virtual Result<void> validate_current() const=0;
+};
 class WorkContext final {
 public:
   WorkContext(std::stop_token stop,
@@ -151,14 +172,19 @@ public:
               std::chrono::steady_clock::time_point deadline,
               foundation::CheckedCount<std::uint64_t> budget, Name trace,
               BorrowedResourceViews resources,
-              std::shared_ptr<ExecutionScopePort> execution = {})
+              std::shared_ptr<ExecutionScopePort> execution = {},
+              std::shared_ptr<const CandidateAuthorizationPort> candidate_authorization = {})
       : stop_(stop), deadline_(deadline), budget_(budget), trace_(trace),
-        resource_views_(resources.values), execution_(std::move(execution)) {
+        resource_views_(resources.values), execution_(std::move(execution)),candidate_authorization_(std::move(candidate_authorization)) {
     for (const auto *resource : resource_views_)
       foundation::invariant(resource != nullptr);
   }
   WorkContext(const WorkContext &) = delete;
   WorkContext &operator=(const WorkContext &) = delete;
+  Result<void> validate_candidate_authorization() const {
+    if(!candidate_authorization_)return reject(ContractsErrc::InvalidAuthority);
+    return candidate_authorization_->validate_current();
+  }
   bool stop_requested() const noexcept { return stop_.stop_requested(); }
   std::stop_token stop_token() const noexcept {return stop_;}
   std::chrono::steady_clock::time_point deadline() const noexcept {
@@ -185,6 +211,7 @@ private:
   std::optional<OwnedResources> owned_resources_;
   std::span<const ResourceLease *const> resource_views_;
   std::shared_ptr<ExecutionScopePort> execution_;
+  std::shared_ptr<const CandidateAuthorizationPort> candidate_authorization_;
 };
 template <class Reader> class ReadServices final {
 public:

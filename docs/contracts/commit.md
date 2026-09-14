@@ -112,3 +112,8 @@ python -X utf8 tests/model/commit_model/run.py --case commit_model.test_commit_m
 Effect.send 在进入外部调用前消费独立私有的一次状态；公开 report、已保存回执及 Outcome 都不能承担可重置的发送准入标志。一旦尝试，清空 report 或再次读取/记录结果都不重新开放发送。外部调用抛出异常时无法证明未生效，模型先形成 Indeterminate，再向调用方传播原异常；稳定 EffectId 只允许查外部证据并追加 ResolutionRecord。没有回执继续未知，已有 Applied 回执可对账收敛，均不得再次调用 Device。restart 不重置已经消费的一次状态。
 
 固定反例 `T16.effect.send_attempt_is_once_before_external_call` 枚举记录结果前/后清空公开报告、外部生效前/后抛出异常，以及重启和对账后的再次发送。最初 red 原样保留于 `evidence/bootstrap/D0.05/20260907T062241Z-send-once-red-298e1b67/`；本条修复由发现者经授权实施，最终独立关闭由主集成者完成。
+
+
+## 2026-09-13 B6 closure 接口差额（实施中）
+
+按 B6 审计和 `docs/adr/ADR-b6-closure-ownership.md` 执行：CommitClaim 由每次准备拥有，真实 Policy 消费与 close/cancel 共享仲裁，Started 不代表 ClaimWon。CommitReport 逐次交付 owning proof，完整 PreparedIdentity 校验后封口；历史发布证明不因 lifecycle 重开作废。准备帧拥有 reservation，放弃只影响匹配 owner。HostOptions.enable_state 默认关闭，显式开启才接受 StateEdit provider；仍使用公开 HostBound 与原执行后端。可信 OperationOptions 声明 ServerCapture/RequireExplicitRevision，InvokeOptions.expected_state 只提供代数，不改变声明。History retained 与 ring 计量分开，根采用结构共享快照、Undo/Redo 为单次切换；逻辑权重不充当实际堆计量。有限 Atomic 使用冻结 Registry 的真实步骤、完整 Policy 成员及资源并集，拒绝嵌套；History 采用实际 index allocator 与 retained ledger 分别约束。接口实现已完成，正式矩阵、安装和 footprint 尚须独立验证，本差额不是 Passed。

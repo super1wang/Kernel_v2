@@ -107,14 +107,15 @@ public:
       auto authorized=authority_->authorize(caller,domain_);
       if(!authorized)return foundation::make_unexpected(authorized.error());
       std::shared_ptr<const detail::PublishedState<T>> published;
-      {std::lock_guard lock(mutex_);if(!current_)return foundation::make_unexpected(error(StateErrc::Closed));published=current_;}
+      std::shared_ptr<const detail::DomainIdentity> identity;
+      {std::lock_guard lock(mutex_);if(!current_)return foundation::make_unexpected(error(StateErrc::Closed));published=current_;identity=identity_;}
       std::shared_ptr<detail::SnapshotCharge> charge;
       {
         std::lock_guard lock(pins_->mutex);
         if(pins_->pins==pins_->maximum)return foundation::make_unexpected(error(StateErrc::BudgetExceeded));
         charge=std::make_shared<detail::SnapshotCharge>(pins_);++pins_->pins;
       }
-      return Snapshot<T>{std::move(published),identity_,std::move(charge)};
+      return Snapshot<T>{std::move(published),std::move(identity),std::move(charge)};
     } catch(const std::bad_alloc&) {return foundation::make_unexpected(error(StateErrc::BudgetExceeded));}
     catch(...) {return foundation::make_unexpected(error(StateErrc::InvalidCandidate));}
   }
@@ -129,6 +130,7 @@ public:
   foundation::Result<std::shared_ptr<const PreparedState<T>>> prepare(const Snapshot<T>& base,
       const T& candidate,const contracts::PreparedIdentity& prepared,std::size_t delta_bytes,
       std::span<const std::byte> receipt={},HistoryKind kind=HistoryKind::Edit,bool reversible=true) {
+    auto keep_alive=this->shared_from_this();
     if(!contracts::valid_prepared(prepared)||prepared.domain!=domain_||prepared.base_revision!=base.revision()||
         prepared.lifecycle_generation!=base.lifecycle_generation()||delta_bytes>options_.candidate_bytes)
       return foundation::make_unexpected(error(StateErrc::InvalidCandidate));
@@ -137,25 +139,27 @@ public:
       return foundation::make_unexpected(error(StateErrc::Exhausted));
     auto frozen=FrozenRoot<T>::freeze(candidate,options_.root_bytes);
     if(!frozen)return foundation::make_unexpected(frozen.error());
-    auto public_contract=contracts::PreparedCommit::create(prepared,receipt,options_.result_bytes);
-    if(!public_contract)return foundation::make_unexpected(public_contract.error());
     try {
+      auto public_contract=contracts::PreparedCommit::create(prepared,receipt,options_.result_bytes);
+      if(!public_contract)return foundation::make_unexpected(public_contract.error());
       auto next_revision=base.revision()+1,next_cursor=base.history_cursor()+1;
       auto publication=detail::PublishedState<T>::create(domain_,next_revision,next_cursor,
           base.lifecycle_generation(),*frozen);
       if(!publication)return foundation::make_unexpected(publication.error());
+      {std::lock_guard lock(mutex_);auto valid=validate_base_locked(base);
+        if(!valid)return foundation::make_unexpected(valid.error());
+        if(!active_.expired())return foundation::make_unexpected(error(StateErrc::Busy));}
+      if(delta_bytes>std::numeric_limits<std::size_t>::max()-sizeof(HistoryRecord<T>))
+        return foundation::make_unexpected(error(StateErrc::BudgetExceeded));
+      auto charge=reserve_history(delta_bytes+sizeof(HistoryRecord<T>));
+      if(!charge)return foundation::make_unexpected(charge.error());
       auto history=std::shared_ptr<const HistoryRecord<T>>(new HistoryRecord<T>{prepared.commit,
-          next_revision,next_cursor,kind,reversible,delta_bytes,base.published_->root(),*frozen});
+          next_revision,next_cursor,kind,reversible,delta_bytes,base.published_->root(),*frozen,std::move(*charge)});
       auto owned=std::shared_ptr<const PreparedState<T>>(new PreparedState<T>{prepared,
           std::move(*public_contract),std::move(*publication),std::move(history)});
       std::lock_guard lock(mutex_);
       auto valid=validate_base_locked(base);if(!valid)return foundation::make_unexpected(valid.error());
-      if(active_)return foundation::make_unexpected(error(StateErrc::Busy));
-      auto slot=(next_cursor-1)%history_.size();
-      auto retained=history_bytes_-(history_[slot]?history_[slot]->delta_bytes()+sizeof(HistoryRecord<T>):0);
-      auto added=delta_bytes+sizeof(HistoryRecord<T>);
-      if(retained>options_.history_bytes||added>options_.history_bytes-retained)
-        return foundation::make_unexpected(error(StateErrc::BudgetExceeded));
+      if(!active_.expired())return foundation::make_unexpected(error(StateErrc::Busy));
       active_=owned;return owned;
     } catch(const std::bad_alloc&) {return foundation::make_unexpected(error(StateErrc::BudgetExceeded));}
   }
@@ -207,38 +211,42 @@ public:
   foundation::Result<MemoryCommit> commit(std::shared_ptr<const PreparedState<T>> prepared,
       std::shared_ptr<const contracts::ActionPermit> permit,contracts::PermitAuthorityPort& authority,
       const contracts::PermitBinding& expected) noexcept {
+    auto keep_alive=this->shared_from_this();
     if(!prepared||!permit||expected.target!=domain_.domain_id||
-        expected.lifecycle_generation!=prepared->identity_.lifecycle_generation)
+        expected.lifecycle_generation!=prepared->identity_.lifecycle_generation) {
+      abandon(prepared);
       return foundation::make_unexpected(error(StateErrc::InvalidCandidate));
+    }
     std::shared_ptr<Proof> proof;
     try {
       contracts::PublishedCommit fact{prepared->identity_.commit,domain_,prepared->publication_->revision(),
           prepared->publication_->revision()};
-      proof=std::make_shared<Proof>(identity_,fact); // claim 前预留证明存储。
-    } catch(const std::bad_alloc&) {return foundation::make_unexpected(error(StateErrc::BudgetExceeded));}
+      proof=std::make_shared<Proof>(proof_identity_,fact); // claim 前预留证明存储。
+    } catch(const std::bad_alloc&) {abandon(prepared);return foundation::make_unexpected(error(StateErrc::BudgetExceeded));}
     {
       std::lock_guard lock(mutex_);
-      if(active_.get()!=prepared.get()||phase_!=Phase::Ready||close_requested_)
+      if(!matches_active(prepared)||phase_!=Phase::Ready||close_requested_)
         return foundation::make_unexpected(error(close_requested_?StateErrc::Closed:StateErrc::InvalidCandidate));
       if(!current_||current_->revision()!=prepared->identity_.base_revision||
           current_->lifecycle_generation()!=prepared->identity_.lifecycle_generation)
         return foundation::make_unexpected(error(StateErrc::RevisionConflict));
       phase_=Phase::Claiming;
     }
-    // Runtime authority 可重入 close/cancel；域锁外消费，Claiming 期间 close 只进入 draining。
+    // Claiming 只表示回调在途；close 与真正消费在 prepared.claim 上竞争。
     try {
-      auto consumed=authority.consume(*permit,expected);
-      if(!consumed) {finish_failed(prepared);return foundation::make_unexpected(consumed.error());}
+      auto consumed=authority.consume_claimed(*permit,expected,prepared->claim());
+      if(!consumed) {foundation::invariant(!prepared->claim().claimed());finish_failed(prepared);return foundation::make_unexpected(consumed.error());}
+      foundation::invariant(prepared->claim().claimed());
     } catch(const std::bad_alloc&) {
-      finish_failed(prepared);return foundation::make_unexpected(error(StateErrc::BudgetExceeded));
+      foundation::invariant(!prepared->claim().claimed());finish_failed(prepared);return foundation::make_unexpected(error(StateErrc::BudgetExceeded));
     } catch(...) {
-      finish_failed(prepared);return foundation::make_unexpected(error(StateErrc::InvalidCandidate));
+      foundation::invariant(!prepared->claim().claimed());finish_failed(prepared);return foundation::make_unexpected(error(StateErrc::InvalidCandidate));
     }
     std::shared_ptr<const HistoryRecord<T>> evicted;
     std::shared_ptr<const detail::PublishedState<T>> retired;
     {
       std::lock_guard lock(mutex_);
-      foundation::invariant(active_.get()==prepared.get()&&phase_==Phase::Claiming);
+      foundation::invariant(matches_active(prepared)&&phase_==Phase::Claiming);
       auto slot=(prepared->publication_->history_cursor()-1)%history_.size();
       evicted=std::move(history_[slot]);
       if(evicted)history_bytes_-=evicted->delta_bytes()+sizeof(HistoryRecord<T>);
@@ -264,26 +272,29 @@ public:
     for(const auto& row:history_)found=found||(row&&row->commit()==value.commit&&row->revision()==value.revision);
     if(!found||value.domain!=domain_||value.published_version!=value.revision)
       return foundation::make_unexpected(contracts::error(contracts::ContractsErrc::InvalidProof));
-    try {auto proof=std::make_shared<Proof>(identity_,value);proof->active.store(true);return std::shared_ptr<const contracts::PublicationProof>(proof);}
+    try {auto proof=std::make_shared<Proof>(proof_identity_,value);proof->active.store(true);return std::shared_ptr<const contracts::PublicationProof>(proof);}
     catch(const std::bad_alloc&) {return foundation::make_unexpected(error(StateErrc::BudgetExceeded));}
   }
   foundation::Result<void> validate(const contracts::PublicationProof& candidate,
       const contracts::PublishedCommit& expected) const override {
     auto proof=dynamic_cast<const Proof*>(&candidate);
-    if(!proof||proof->identity!=identity_||proof->value!=expected||!proof->active.load(std::memory_order_acquire))
+    if(!proof||proof->identity!=proof_identity_||proof->value!=expected||!proof->active.load(std::memory_order_acquire))
       return foundation::make_unexpected(contracts::error(contracts::ContractsErrc::InvalidProof));
     return {};
   }
   void close() {
+    auto keep_alive=this->shared_from_this();
     std::shared_ptr<const detail::PublishedState<T>> retired;
     std::shared_ptr<const PreparedState<T>> abandoned;
     {std::lock_guard lock(mutex_);close_requested_=true;
+      abandoned=active_.lock();if(abandoned)abandoned->claim().cancel();
       if(phase_==Phase::Claiming)return;
-      abandoned=std::move(active_);retired=std::move(current_);}
+      active_.reset();retired=std::move(current_);}
     // 最后一个根的析构可重入域；必须在锁外。
     abandoned.reset();retired.reset();
   }
   foundation::Result<void> reopen(const T& initial,std::uint64_t lifecycle_generation) {
+    auto keep_alive=this->shared_from_this();
     if(!lifecycle_generation)return foundation::make_unexpected(error(StateErrc::StaleGeneration));
     auto root=FrozenRoot<T>::freeze(initial,options_.root_bytes);
     if(!root)return foundation::make_unexpected(root.error());
@@ -295,7 +306,7 @@ public:
       std::vector<std::shared_ptr<const HistoryRecord<T>>> retired;
       {
         std::lock_guard lock(mutex_);
-        if(current_||active_||phase_!=Phase::Ready)return foundation::make_unexpected(error(StateErrc::Busy));
+        if(current_||!active_.expired()||phase_!=Phase::Ready)return foundation::make_unexpected(error(StateErrc::Busy));
         if(lifecycle_generation<=lifecycle_generation_)
           return foundation::make_unexpected(error(StateErrc::StaleGeneration));
         retired.swap(history_);history_.swap(empty);history_bytes_=0;
@@ -311,12 +322,52 @@ public:
     } catch(const std::bad_alloc&) {return foundation::make_unexpected(error(StateErrc::BudgetExceeded));}
   }
   std::size_t snapshot_pins() const {std::lock_guard lock(pins_->mutex);return pins_->pins;}
+  std::size_t history_retained_bytes() const {std::lock_guard lock(history_ledger_->mutex);return history_ledger_->bytes;}
+  std::size_t history_ring_bytes() const {std::lock_guard lock(mutex_);return history_bytes_;}
+  bool abandon(const std::shared_ptr<const PreparedState<T>>& prepared) noexcept {
+    if(!prepared)return false;
+    std::lock_guard lock(mutex_);
+    if(!matches_active(prepared)||phase_!=Phase::Ready)return false;
+    prepared->claim().cancel();active_.reset();return true;
+  }
 private:
   enum class Phase {Ready,Claiming};
+  bool matches_active(const std::shared_ptr<const PreparedState<T>>& prepared) const noexcept {
+    return !active_.expired()&&!active_.owner_before(prepared)&&!prepared.owner_before(active_);
+  }
+  foundation::Result<std::shared_ptr<detail::HistoryCharge>> reserve_history(std::size_t bytes) {
+    if(bytes>options_.history_bytes)return foundation::make_unexpected(error(StateErrc::BudgetExceeded));
+    // Each iteration retires at most one record outside the domain lock. Pinned
+    // records remain charged until their final owning handle is destroyed.
+    for(std::size_t scanned=0;scanned<=options_.history_entries;++scanned) {
+      {
+        std::lock_guard lock(history_ledger_->mutex);
+        if(history_ledger_->bytes<=options_.history_bytes-bytes) {
+          auto charge=std::make_shared<detail::HistoryCharge>(history_ledger_,bytes);
+          history_ledger_->bytes+=bytes;return charge;
+        }
+      }
+      std::shared_ptr<const HistoryRecord<T>> retired;
+      {
+        std::lock_guard lock(mutex_);
+        std::size_t oldest=history_.size();
+        for(std::size_t i=0;i<history_.size();++i)
+          if(history_[i]&&history_[i].use_count()==1&&
+              (oldest==history_.size()||history_[i]->cursor()<history_[oldest]->cursor()))oldest=i;
+        if(oldest!=history_.size()) {
+          retired=std::move(history_[oldest]);history_bytes_-=retired->delta_bytes()+sizeof(HistoryRecord<T>);
+        }
+      }
+      if(!retired)break;
+      retired.reset();
+    }
+    return foundation::make_unexpected(error(StateErrc::BudgetExceeded));
+  }
   static bool valid_options(const DomainOptions& o) noexcept {
     return o.root_bytes&&o.candidate_bytes&&o.result_bytes&&o.history_entries&&o.history_bytes&&
       o.snapshot_pins&&o.history_pins&&o.inflight_commits==1&&o.reclaim_batch&&
-      o.reclaim_batch<=o.history_entries;
+      o.reclaim_batch<=o.history_entries&&o.history_entries<=
+        static_cast<std::size_t>(std::numeric_limits<std::ptrdiff_t>::max())/sizeof(std::shared_ptr<const HistoryRecord<T>>);
   }
   foundation::Result<void> validate_base_locked(const Snapshot<T>& base) const {
     if(!current_)return foundation::make_unexpected(error(StateErrc::Closed));
@@ -328,7 +379,7 @@ private:
   void finish_failed(const std::shared_ptr<const PreparedState<T>>& prepared) {
     std::shared_ptr<const detail::PublishedState<T>> retired;
     std::shared_ptr<const PreparedState<T>> abandoned;
-    {std::lock_guard lock(mutex_);if(active_.get()==prepared.get()){abandoned=std::move(active_);phase_=Phase::Ready;}
+    {std::lock_guard lock(mutex_);if(matches_active(prepared)){abandoned=active_.lock();active_.reset();phase_=Phase::Ready;}
       if(close_requested_)retired=std::move(current_);}
     abandoned.reset();retired.reset();
   }
@@ -342,13 +393,15 @@ private:
   const DomainOptions options_;
   std::shared_ptr<const SnapshotAuthority> authority_;
   std::shared_ptr<const detail::DomainIdentity> identity_;
+  const std::shared_ptr<const detail::DomainIdentity> proof_identity_=std::make_shared<const detail::DomainIdentity>();
   std::shared_ptr<detail::SnapshotLedger> pins_;
   std::shared_ptr<detail::SnapshotLedger> history_pins_;
+  const std::shared_ptr<detail::HistoryLedger> history_ledger_=std::make_shared<detail::HistoryLedger>();
   mutable std::mutex mutex_;
   std::shared_ptr<const detail::PublishedState<T>> current_;
   std::vector<std::shared_ptr<const HistoryRecord<T>>> history_;
   std::size_t history_bytes_=0;
-  std::shared_ptr<const PreparedState<T>> active_;
+  std::weak_ptr<const PreparedState<T>> active_;
   Phase phase_=Phase::Ready;
   bool close_requested_=false;
   std::uint64_t lifecycle_generation_;

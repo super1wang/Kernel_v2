@@ -40,3 +40,8 @@ if(OCK_BUILD_STATE)
     PROPERTIES ENVIRONMENT_MODIFICATION
       "PATH=path_list_prepend:${_ock_state_runtime_dir}")
 endif()
+
+if(OCK_BUILD_CPU_POOL)
+  target_link_libraries(ock_state_runtime PRIVATE OCK::Adapter::CpuPool)
+  target_compile_definitions(ock_state_runtime PRIVATE OCK_STATE_HOST_TESTS=1)
+endif()

@@ -1842,3 +1842,8 @@ G8放行要回答：三个消费者能否独立安装运行；是否只有一个
 本次交付是两份3.3完整规范文档。C++源码、正式JSON Schema、数据库DDL、编译器、运行时、Conformance套件、证据采集器及footprint工具均由对应任务建设；本文提到的工具路径不是本次已实现的程序。文档内部链接/依赖/映射和JSON语法检查只证明文档检查范围，不是SDK、并发、恢复、轻量化或性能通过，也不沿用旧设计包13项静态校验的成绩。
 
 **B5/G3 post-gate 收口（2026-09-10）：** [B5 规划](plans/B5.md)落实 C1/C1b/C2，按 [接受与业务进入 ADR](adr/ADR-b5-accepted-outcome.md)同步 Outcome/生产 wire；历史 G3 Passed 保留，收口直接影响三配置与新 Runtime 的原预算 Embedded 刷新通过后才放行 B6 生产集成，不重开无关历史矩阵。
+
+
+## 2026-09-13 B6 closure 接口差额（实施中）
+
+按 B6 审计和 `docs/adr/ADR-b6-closure-ownership.md` 执行：CommitClaim 由每次准备拥有，真实 Policy 消费与 close/cancel 共享仲裁，Started 不代表 ClaimWon。CommitReport 逐次交付 owning proof，完整 PreparedIdentity 校验后封口；历史发布证明不因 lifecycle 重开作废。准备帧拥有 reservation，放弃只影响匹配 owner。HostOptions.enable_state 默认关闭，显式开启才接受 StateEdit provider；仍使用公开 HostBound 与原执行后端。可信 OperationOptions 声明 ServerCapture/RequireExplicitRevision，InvokeOptions.expected_state 只提供代数，不改变声明。History retained 与 ring 计量分开，根采用结构共享快照、Undo/Redo 为单次切换；逻辑权重不充当实际堆计量。有限 Atomic 使用冻结 Registry 的真实步骤、完整 Policy 成员及资源并集，拒绝嵌套；History 采用实际 index allocator 与 retained ledger 分别约束。接口实现已完成，正式矩阵、安装和 footprint 尚须独立验证，本差额不是 Passed。

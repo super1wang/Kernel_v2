@@ -44,6 +44,7 @@ struct HostOptions {
   HostBudget host;
   contracts::LogLimits logging{128, contracts::LogOverflow::DropOldest,
                               contracts::LogLevel::Info};
+  bool enable_state=false;
 };
 enum class HostPhase : std::uint8_t {
   Constructed, Configuring, Validating, Recovering, Starting, Ready,

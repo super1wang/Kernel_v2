@@ -292,13 +292,39 @@ private:
           state->entry->definition->description().contract_digest};
       policy::ActionRequest request{selector,domain->domain_id,
           {{selector,std::vector<foundation::ObjectId>(actual.begin(),actual.begin()+*count)}},options.deadline};
+      if constexpr(AsyncInput<A>&&(std::same_as<R,void>||AsyncInput<R>)) {
+        if(state->entry->submission_storage_type==CppTypeToken::of<registry::SubmissionStorage<A,R>>()&&state->entry->submission_storage) {
+          auto storage=std::static_pointer_cast<const registry::SubmissionStorage<A,R>>(state->entry->submission_storage);
+          if(storage->atomic_membership) {
+            auto plan=storage->atomic_membership(args);if(!plan)return rejected(plan.error());
+            if(plan->registry!=state->catalog->identity()||plan->generation!=state->catalog->generation()||
+                plan->members.empty()||plan->members.size()>128)return rejected(invocation_error(InvocationErrc::InvalidInput));
+            for(const auto& resource:plan->resources)
+              if(std::find(state->entry->resources.begin(),state->entry->resources.end(),resource)==state->entry->resources.end())
+                return rejected(invocation_error(InvocationErrc::ResourceUnavailable));
+            request.members.clear();request.members.reserve(plan->members.size());
+            for(auto& member:plan->members)request.members.push_back({{member.operation,member.contract},std::move(member.targets)});
+          }
+        }
+      }
       auto action=state->session->prepare(*state->caller,request);if(!action)return rejected(action.error());
+      std::stop_callback commit_cancel(options.stop,[owner=*action]() noexcept {(void)owner->cancel();});
       auto permit=(*action)->issue();if(!permit)return rejected(permit.error());
       auto binding=(*action)->current_expected_binding();if(!binding)return rejected(binding.error());
       auto ids=detail::new_commit_ids();if(!ids)return rejected(ids.error());
       if(auto scope=std::dynamic_pointer_cast<registry::detail::InvocationScopePort>(execution))scope->admitted(binding->deadline);
-      WorkContext work(options.stop,binding->deadline,*budget,state->trace,BorrowedResourceViews{resources},std::move(execution));
+      class CurrentAction final:public CandidateAuthorizationPort {
+      public:
+        explicit CurrentAction(std::shared_ptr<policy::ActionAuthorization> owner):owner_(std::move(owner)) {}
+        Result<void> validate_current() const override {
+          auto current=owner_->current_expected_binding();if(!current)return make_unexpected(current.error());return {};
+        }
+      private:std::shared_ptr<policy::ActionAuthorization> owner_;
+      };
+      auto current_action=std::make_shared<const CurrentAction>(*action);
+      WorkContext work(options.stop,binding->deadline,*budget,state->trace,BorrowedResourceViews{resources},std::move(execution),std::move(current_action));
       registry::detail::StateNativeCall<R> call{state->caller->view(),*domain,ids->commit,ids->reservation,*permit,*action,*binding,managed};
+      call.expected_state=options.expected_state;
       entered=true;NativeAccess::dispatch(*state->catalog,*state->entry,&args,work,&call);
       if(call.failure)return failed(*call.failure);
       if(!call.outcome||!call.report||call.report->disposition!=CommitDisposition::Published||!call.publication||!call.proof)

@@ -29,6 +29,7 @@ struct InvokeOptions {
   std::stop_token stop;
   policy::TimePoint deadline;
   std::uint64_t work_limit;
+  std::optional<PreparedBase> expected_state;
 };
 template <class A>
 using TargetProjection = Result<std::size_t> (*)(const A&,

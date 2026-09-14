@@ -103,6 +103,7 @@ struct CommitReport {
   PreparedIdentity identity;
   CommitDisposition disposition;
   std::optional<Error> error;
+  std::shared_ptr<const PublicationProof> publication_proof;
 };
 struct CommitState {
   PreparedIdentity identity;

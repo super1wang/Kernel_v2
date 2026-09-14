@@ -1104,3 +1104,8 @@ E02–E12保留v3.1列明的2026-09-06来源记录，本次不将其写成重新
 除上述有限事实外，组件划分、Outcome、许可、水位、预算和实施顺序是本方案的工程决定。它们必须由实现和测试证明，不能把官方库说明当作整套系统已认证。
 
 **B5/G3 post-gate C2（2026-09-10）：** 按 [接受与业务进入 ADR](adr/ADR-b5-accepted-outcome.md)落实 A09.1。A05 的 FailedBeforeApply 除业务已进入外，也允许执行已 Accepted、业务尚未开始的失败；BeforeApplyDecision 明确分列 business_entered 与默认 false 的 execution_accepted，二者至少一个为真，仍必须证明未应用且无未知事实。取消先赢保持 CancelledBeforeApply。该澄清不改变 Native 接受前 Rejected，不增加 Outcome 变体或设备/持久能力。
+
+
+## 2026-09-13 B6 closure 接口差额（实施中）
+
+按 B6 审计和 `docs/adr/ADR-b6-closure-ownership.md` 执行：CommitClaim 由每次准备拥有，真实 Policy 消费与 close/cancel 共享仲裁，Started 不代表 ClaimWon。CommitReport 逐次交付 owning proof，完整 PreparedIdentity 校验后封口；历史发布证明不因 lifecycle 重开作废。准备帧拥有 reservation，放弃只影响匹配 owner。HostOptions.enable_state 默认关闭，显式开启才接受 StateEdit provider；仍使用公开 HostBound 与原执行后端。可信 OperationOptions 声明 ServerCapture/RequireExplicitRevision，InvokeOptions.expected_state 只提供代数，不改变声明。History retained 与 ring 计量分开，根采用结构共享快照、Undo/Redo 为单次切换；逻辑权重不充当实际堆计量。有限 Atomic 使用冻结 Registry 的真实步骤、完整 Policy 成员及资源并集，拒绝嵌套；History 采用实际 index allocator 与 retained ledger 分别约束。接口实现已完成，正式矩阵、安装和 footprint 尚须独立验证，本差额不是 Passed。

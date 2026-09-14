@@ -46,7 +46,7 @@ def main():
     command=['cmake','-S',str(source),'-B',str(work/'consumer'),'-G','Visual Studio 17 2022','-A','x64','-T','v143,version=14.44.35207','-DCMAKE_SYSTEM_VERSION=10.0.26100.0',f'-DCMAKE_TOOLCHAIN_FILE={ROOT}/cmake/LockedMSVC.cmake',f'-DCMAKE_PREFIX_PATH={relocated}']
     if cache.get('OCK_ENABLE_ASAN')=='ON':command+=['-DCMAKE_CXX_FLAGS=/fsanitize=address','-DCMAKE_CXX_FLAGS_DEBUG='+re.sub(r'/RTC[1su]','',cache['CMAKE_CXX_FLAGS_DEBUG']),'-DCMAKE_EXE_LINKER_FLAGS=/INCREMENTAL:NO']
     run(command);run(['cmake','--build',str(work/'consumer'),'--config',args.config,'--parallel','4','--','/nr:false'])
-    result=run([str(work/'consumer'/args.config/'installed_b4.exe')]);assert b'0.1.0-dev.7 B4Subset executor/scheduler/resources passed' in result.stdout
+    result=run([str(work/'consumer'/args.config/'installed_b4.exe')]);assert b'0.1.0-dev.8 B4Subset executor/scheduler/resources passed' in result.stdout
     maps=list((work/'consumer').rglob('installed_b4.map'));assert len(maps)==1
     text=maps[0].read_text(encoding='utf-8',errors='replace');assert 'ock_Adapter_CpuPool' in text and 'ock_Runtime' in text
     assert not any(name in text for name in ('ock_Data','ock_Dynamic','ock_Control'))

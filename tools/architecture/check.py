@@ -145,6 +145,7 @@ def validate_contracts_surface(manifest):
         return []
     expected=CORE_CONTRACTS_HEADERS | ({'packages/contracts/include/ock/contracts/logging.hpp'} if manifest['stage'] in ('NativeSubset','B2Subset','B3Subset','B4Subset','B5Subset','B6Subset') else set())
     if manifest['stage'] in ('B4Subset','B5Subset','B6Subset'):expected |= {'packages/contracts/include/ock/contracts/executor.hpp'}
+    if manifest['stage']=='B6Subset':expected |= {'packages/contracts/include/ock/contracts/candidate.hpp'}
     listed=[h['path'] for h in manifest['headers'] if h['target']=='CoreContracts']
     if set(listed) != expected or len(listed) != len(expected):
         return ['CoreContracts公开头集合与受审阶段不符']
@@ -178,7 +179,7 @@ def validate_manifest(manifest,actual_graph=None,build_components='B3Subset'):
     selected={'Foundation','CoreContracts','Runtime'} if build_components in ('Runtime','Embedded') else ({'Foundation','CoreContracts','Runtime','State'} if build_components=='StateNative' else set(norm))
     if build_components=='Embedded':selected.add('Adapter::CpuPool')
     require(manifest['format']=='ock.sdk-api/1','公开清单格式不符')
-    require(manifest['sdk_version']==({'B6Subset':'0.1.0-dev.7','B5Subset':'0.1.0-dev.6','B4Subset':'0.1.0-dev.5','B3Subset':'0.1.0-dev.4','B2Subset':'0.1.0-dev.3','NativeSubset':'0.1.0-dev.2'}.get(manifest['stage'],'0.1.0-dev.1')),'开发 SDK 版本必须独立于文档 v3.3')
+    require(manifest['sdk_version']==({'B6Subset':'0.1.0-dev.8','B5Subset':'0.1.0-dev.6','B4Subset':'0.1.0-dev.5','B3Subset':'0.1.0-dev.4','B2Subset':'0.1.0-dev.3','NativeSubset':'0.1.0-dev.2'}.get(manifest['stage'],'0.1.0-dev.1')),'开发 SDK 版本必须独立于文档 v3.3')
     errors.extend(validate_implementation_stage(manifest))
     errors.extend(validate_contracts_surface(manifest))
     require(set(targets)==set(norm),'产品 target 集合与 A02 不一致')
@@ -230,6 +231,7 @@ def validate_manifest(manifest,actual_graph=None,build_components='B3Subset'):
         require(manifest.get('implementation_includes') == includes, '模板实现包含边漂移')
         runtime_headers=[h['path'] for h in manifest['headers'] if h['target']=='Runtime']
         expected_runtime=NATIVE_RUNTIME_HEADERS | ({'packages/runtime/include/ock/runtime/scheduler.hpp','packages/runtime/include/ock/runtime/resources.hpp'} if manifest['stage'] in ('B4Subset','B5Subset','B6Subset') else set())
+        if manifest['stage']=='B6Subset':expected_runtime |= {'packages/runtime/include/ock/runtime/candidate.hpp','packages/runtime/include/ock/runtime/atomic.hpp'}
         require(set(runtime_headers)==expected_runtime and len(runtime_headers)==len(expected_runtime), 'Runtime安装头集合与受审阶段不符')
     if manifest['stage']=='B6Subset':
         state_headers=[h['path'] for h in manifest['headers'] if h['target']=='State']
