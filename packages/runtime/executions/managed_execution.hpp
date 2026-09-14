@@ -154,6 +154,12 @@ public:
       binding_->drive();
     }
   }
+  void expire() override {
+    if(record_->material()->entry->shape!=invocation::Shape::StateEdit) {(void)cancel();return;}
+    // Expiry retires pending State work without manufacturing a cancellation request.
+    // Started State work remains guarded by its Action deadline before publication.
+    (void)scheduler_->retire(ticket_,scheduler::error(scheduler::Errc::ExpiredBeforeDispatch));
+  }
   bool pending() const noexcept override {return pending_.load(std::memory_order_acquire);}
   contracts::Result<contracts::CancelDisposition> cancel() override {
     if(finished())return contracts::CancelDisposition::AlreadyTerminal;
@@ -235,9 +241,13 @@ private:
     binding_->terminal();
     if(!record_->reply_pointer()) {
       auto reason=status?contracts::error(contracts::ContractsErrc::Rejected):status.error();
-      record_->complete_before_start(reason,
-          reason.code()==scheduler::error(scheduler::Errc::CancelledBeforeStart).code()||
-          reason.code()==scheduler::error(scheduler::Errc::ExpiredBeforeDispatch).code());
+      bool cancelled;
+      if(record_->material()->entry->shape==invocation::Shape::StateEdit) {
+        // State pre-start cancellation comes from its owning execution, never expiry codes.
+        std::lock_guard lock(lifetime_mutex_);cancelled=cancel_requested_;
+      } else cancelled=reason.code()==scheduler::error(scheduler::Errc::CancelledBeforeStart).code()||
+                       reason.code()==scheduler::error(scheduler::Errc::ExpiredBeforeDispatch).code();
+      record_->complete_before_start(reason,cancelled);
     }
     {
       std::lock_guard lock(lifetime_mutex_);

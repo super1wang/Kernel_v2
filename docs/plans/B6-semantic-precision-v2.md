@@ -2324,3 +2324,12 @@ B7 = GO
 架构 A05/A09 已要求真实 Accepted 与业务进入事实。本轮属于合同实现纠偏，无新公共协议或重大架构决策，不新增 ADR。SDK 仓库没有独立摘要生成 CLI：使用既有 `tools.evidence.common.sha_file` 自动重算受影响头摘要并调用 `tools/architecture/check.py` 验证，不手写摘要常量。
 
 审阅补充：Managed `InvocationRecord::store()` 原已有拒绝回退兜底；F5 修复的是 State 执行层本身的分类及普通 expiry 被兜底按错误码解释为取消的问题，不能把原实现描述为所有对外结果必然 Rejected。保留 Read 的既有兜底，不扩大重写。
+
+
+## F5 资源等待过期补充（2026-09-14，修复前）
+
+冻结后补充反例发现：State 已 Accepted、尚在资源等待时，Scheduler ExpiredBeforeDispatch 被旧 complete_before_start 兜底标为 CancelWon。失败原文保留于 evidence/bootstrap/B6/v2-direct-expiry-probe-9840fafb。重新打开本次最终门禁，B7 HOLD；32c38ad 的机器事实保留，不能代表该遗漏边界已通过。
+
+只补 Runtime 内部 managed_execution.hpp 完成路由和 InvocationRecord State 分支：由 owning execution 的实际 cancel_requested 传递取消事实，State 不再由错误码推断取消；Read 既有行为保持。加入固定资源占用的 expiry 反例（Accepted=true、business_entered=false、FailedBeforeApply、NotReached）；已有真实取消反例继续通过。无需公共协议或 ADR 决策变更。最终源码重新提交后统一重跑原 31 项三配置及原 Native/Embedded footprint，所有预算和方法不变，完成机器证据提交后才恢复 GO。
+
+首次修复后反例仍失败，定位到 ExecutionService deadline 循环直接调用 cancel()，制造了并非调用者取消的 stop。修复前补充：私有 ManagedControl 增加 expire 路由（默认保留 Read 的 cancel 行为），State owner 仅用 Scheduler retire 的 ExpiredBeforeDispatch 退役未启动工作；已开始 State 继续由现有 Action deadline/commit gate 阻止发布，不将 deadline 伪造为 cancellation。补充已进入 handler 的 Host expiry 反例，验证无发布与真实 business_entered。

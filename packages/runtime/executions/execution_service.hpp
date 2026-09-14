@@ -212,7 +212,7 @@ private:
           expired=slot.execution;s->deadlines.erase(timer);
         }
         // stop 回调可以完成或释放 owning 输入；绝不在服务锁内调用。
-        if(expired)(void)expired->cancel();
+        if(expired)expired->expire();
       }
       s->scheduler->pump(std::chrono::steady_clock::now(),s->options.control_batch);
       s->table->trim(s->options.control_batch);

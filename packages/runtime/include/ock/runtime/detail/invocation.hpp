@@ -584,7 +584,9 @@ public:
     auto keep_alive=this->shared_from_this();
     if(claimed_.exchange(true,std::memory_order_acq_rel)) return false;
     async_dispatch_.reset();
-    store(failure_reply(reason,false,cancelled||cancel_before_start(reason)));
+    const bool cancel_won=cancelled||
+        (bound_.state_->entry->shape!=invocation::Shape::StateEdit&&cancel_before_start(reason));
+    store(failure_reply(reason,false,cancel_won));
     return true;
   }
   const contracts::InvokeReply<R>* reply() const noexcept {

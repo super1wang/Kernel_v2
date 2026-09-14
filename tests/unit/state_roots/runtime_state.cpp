@@ -453,7 +453,10 @@ int main() try {
   };
   host::HostOptions host_options;host_options.enable_state=true;host_options.native.concurrent_calls_per_binding=2;
   auto factory=std::make_shared<Factory>();factory->recorder=recorder;
-  auto host=host::NativeHost::create(host_options,configuration,{policy.auth,policy.clock,policy.digest,std::make_shared<HostThreads>(),{},factory});CHECK(host);
+  struct HostClock final:policy::ClockPort {
+    policy::TimePoint now() const noexcept override {return std::chrono::steady_clock::now();}
+  };
+  auto host=host::NativeHost::create(host_options,configuration,{policy.auth,std::make_shared<HostClock>(),policy.digest,std::make_shared<HostThreads>(),{},factory});CHECK(host);
   struct Shutdown {host::NativeHost& owner;~Shutdown(){(void)owner.shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(3));}} shutdown{**host};
   revision_policy=registry::RevisionPolicy::RequireExplicitRevision;require_resource=true;
   module.manifest.resources.push_back(name("atomic.resource"));
@@ -573,6 +576,33 @@ int main() try {
     auto value=session->result<atomic::Results>(**caller,ref);CHECK(value);exact_failure(*value->value,true,ref==holding_ref,true);
   }
   before_return={};CHECK((*state)->snapshot((*caller)->view())->revision()==6);
+  // Accepted expiry regression: accepted State expires while its resource is held.
+  entered_step=std::make_shared<std::binary_semaphore>(0);release_step=std::make_shared<std::binary_semaphore>(0);
+  before_return=[entered_step,release_step](WorkContext&){entered_step->release();CHECK(release_step->try_acquire_for(std::chrono::seconds(3)));};
+  auto expiry_hold=host_group_bound->submit(*host_group,submit_options);CHECK(std::holds_alternative<Accepted>(expiry_hold));
+  auto expiry_hold_ref=std::get<Accepted>(expiry_hold).execution;CHECK(entered_step->try_acquire_for(std::chrono::seconds(2)));
+  auto short_options=submit_options;short_options.deadline=std::chrono::steady_clock::now()+std::chrono::milliseconds(100);
+  auto expiring=host_group_bound->submit(*host_group,short_options);CHECK(std::holds_alternative<Accepted>(expiring));
+  auto expiring_ref=std::get<Accepted>(expiring).execution;
+  auto expiry_wait=session->wait(**caller,expiring_ref,std::chrono::steady_clock::now()+std::chrono::seconds(2));
+  auto expiry_result=session->result<atomic::Results>(**caller,expiring_ref);
+  CHECK(session->cancel(**caller,expiry_hold_ref));release_step->release();
+  auto hold_wait=session->wait(**caller,expiry_hold_ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));
+  before_return={};CHECK(hold_wait&&hold_wait->state==host::ExecutionWaitState::Terminal);
+  CHECK(expiry_wait&&expiry_wait->state==host::ExecutionWaitState::Terminal&&expiry_result);
+  exact_failure(*expiry_result->value,true,false);
+  // Expiry after handler entry also stays a failure and cannot publish a candidate.
+  short_options.deadline=std::chrono::steady_clock::now()+std::chrono::milliseconds(150);
+  const auto expiry_revision=(*state)->snapshot((*caller)->view())->revision();
+  const auto expiry_entries=state_entries.load();
+  before_return=[until=short_options.deadline](WorkContext&){std::this_thread::sleep_until(until+std::chrono::milliseconds(50));};
+  auto running_expiry=host_group_bound->submit(*host_group,short_options);CHECK(std::holds_alternative<Accepted>(running_expiry));
+  auto running_expiry_ref=std::get<Accepted>(running_expiry).execution;
+  auto running_expiry_wait=session->wait(**caller,running_expiry_ref,std::chrono::steady_clock::now()+std::chrono::seconds(2));
+  auto running_expiry_result=session->result<atomic::Results>(**caller,running_expiry_ref);before_return={};
+  CHECK(running_expiry_wait&&running_expiry_wait->state==host::ExecutionWaitState::Terminal&&running_expiry_result);
+  exact_failure(*running_expiry_result->value,true,true);
+  CHECK(state_entries==expiry_entries+1&&(*state)->snapshot((*caller)->view())->revision()==expiry_revision);
   recorder->hold=true;
   auto record_failure=host_group_bound->submit(*host_group,submit_options);CHECK(std::holds_alternative<Accepted>(record_failure));
   auto record_ref=std::get<Accepted>(record_failure).execution;CHECK(recorder->reported.try_acquire_for(std::chrono::seconds(2)));
