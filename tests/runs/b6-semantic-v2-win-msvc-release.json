@@ -1,0 +1,118 @@
+{
+  "format": "ock.run-manifest/1",
+  "task_id": "D4.04",
+  "source_patterns": [
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    "dependencies.lock",
+    "THIRD_PARTY_NOTICES",
+    "cmake/**",
+    "packages/**",
+    "sdk/**",
+    "schemas/**",
+    "tests/**",
+    "tools/**",
+    "examples/**",
+    "docs/contracts/**",
+    "docs/toolchain.md",
+    "docs/01_Architecture_v3.3.md",
+    "docs/02_Execution_Plan_v3.3.md",
+    "AGENTS.md",
+    "docs/adr/README.md",
+    "docs/adr/ADR-b6-atomic-provider-context.md",
+    "docs/plans/B6.md",
+    "docs/adr/ADR-b6-closure-ownership.md",
+    "tests/manifests/b6-closure-requirement-map.json",
+    "docs/plans/B6-semantic-precision-v2.md"
+  ],
+  "required_artifacts": [
+    ".gitattributes",
+    "docs/plans/B6-semantic-precision-v2.md",
+    "tests/manifests/b6-semantic-v2.expected.json"
+  ],
+  "expected_manifest": "tests/manifests/b6-semantic-v2.expected.json",
+  "dependency_lock": "dependencies.lock",
+  "test_regex": "^(T06\\.state\\.runtime_native|T08\\.state\\.snapshot_ownership|T09\\.state\\.memory_commit|T10\\.state\\.atomic_group|T06\\.contracts\\.outcome_closed_variants|T06\\.contracts\\.publication_proof_required|T06\\.contracts\\.before_apply_and_composite_proofs|T06\\.contracts\\.atomic_prepared_identity|T07\\.policy\\.cancel_arbitration|T07\\.policy\\.consume_before_revoke|T07\\.policy\\.expiry_boundary|T07\\.policy\\.permit_concurrent|T07\\.policy\\.permit_once|T07\\.policy\\.revoke_before_consume|T07\\.policy\\.target_lifecycle|T03\\.native\\.cancel_and_budget|T03\\.native\\.no_task_path|T06\\.native\\.business_failure|T06\\.native\\.managed_accepted_failures|T06\\.native\\.outcome_consistency|T03\\.native\\.managed_execution_path|T03\\.native\\.managed_record|T03\\.native\\.host_execution_resources|T03\\.native\\.host_required_record|T02\\.native\\.validation_exception|T02\\.contracts\\.compile_fixture_setup|T24\\.state\\.installed_consumer|T01\\.contracts\\.component_closure|T01\\.contracts\\.public_include_boundary|T24\\.contracts\\.public_headers|T24\\.sdk\\.version_header)$",
+  "repeat": 1,
+  "timeout_seconds": 1800,
+  "checks": [],
+  "review_policy": {
+    "format": "ock.review-policy-binding/1",
+    "mode": "ai-self-review",
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+  },
+  "review_required": [
+    "spec",
+    "code"
+  ],
+  "review_records": [
+    "docs/reviews/B6-semantic-v2-win-msvc-release-spec.json",
+    "docs/reviews/B6-semantic-v2-win-msvc-release-code.json"
+  ],
+  "runtime_artifact_patterns": [
+    "evidence/bootstrap/B6/state-install-*/*"
+  ],
+  "required_runtime_artifacts": [
+    {
+      "pattern": "evidence/bootstrap/B6/state-install-*/result.json",
+      "minimum": 1
+    }
+  ],
+  "profile": "win-msvc-release",
+  "configuration": "Release",
+  "preset": "win-msvc-release",
+  "asan": false,
+  "build_dir": "build/b6-formal-release",
+  "configure": [
+    "cmake",
+    "--preset",
+    "win-msvc-release",
+    "-B",
+    "build/b6-formal-release",
+    "-DOCK_BUILD_COMPONENTS=B6Subset",
+    "-DOCK_DEPENDENCY_COMPONENTS=CLI;CpuPool;State",
+    "-DOCK_DEPENDENCIES_OFFLINE=ON",
+    "-DOCK_BUILD_DEPENDENCY_PROBES=ON",
+    "-DPython3_EXECUTABLE=J:/Code/Kernel_v2/build/runtime/python311/python.exe",
+    "-DOCK_BUILD_G0_TESTS=OFF",
+    "-DOCK_BUILD_EXECUTION_MODEL_TESTS=OFF",
+    "-DOCK_BUILD_FOUNDATION_TESTS=OFF",
+    "-DOCK_BUILD_CORE_CONTRACTS_TESTS=ON",
+    "-DOCK_BUILD_REGISTRATION_TESTS=ON",
+    "-DOCK_BUILD_AUTHORIZATION_TESTS=ON",
+    "-DOCK_BUILD_NATIVE_TESTS=ON",
+    "-DOCK_BUILD_HOST_TESTS=ON",
+    "-DOCK_BUILD_LOGGING_TESTS=OFF",
+    "-DOCK_BUILD_NATIVE_SDK_TESTS=OFF",
+    "-DOCK_BUILD_FOOTPRINT_TESTS=OFF",
+    "-DOCK_BUILD_B4_TESTS=OFF",
+    "-DOCK_BUILD_STATE_TESTS=ON",
+    "-DOCK_ENABLE_ASAN=OFF"
+  ],
+  "build": [
+    "cmake",
+    "--build",
+    "build/b6-formal-release",
+    "--config",
+    "Release",
+    "--parallel",
+    "4",
+    "--",
+    "/nr:false"
+  ],
+  "build_outputs": [
+    "build/b6-formal-release/CMakeCache.txt",
+    "build/b6-formal-release/ock-target-graph.json",
+    "build/b6-formal-release/toolchain-Release.json",
+    "build/b6-formal-release/dependency-acquisition.json",
+    "build/b6-formal-release/CTestTestfile.cmake",
+    "build/b6-formal-release/CMakeFiles/CMakeConfigureLog.yaml",
+    "build/b6-formal-release/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake",
+    "build/b6-formal-release/Release/ock_Runtime.lib",
+    "build/b6-formal-release/Release/ock_State.lib",
+    "build/b6-formal-release/tests/unit/state_roots/Release/ock_state_runtime.exe",
+    "build/b6-formal-release/tests/contract/native/Release/ock_native_tests.exe"
+  ],
+  "toolchain_artifact": "build/b6-formal-release/toolchain-Release.json"
+}

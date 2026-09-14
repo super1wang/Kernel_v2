@@ -230,19 +230,39 @@ private:
     std::optional<detail::CallLease> lease;
     std::optional<policy::InlineAdmission> admission;
     detail::FinalObservation observation{*state};
-    const auto rejected = [&](Error error) -> InvokeReply<R> {
+    const auto raw_rejected = [&](Error error) -> InvokeReply<R> {
       observation.kind=InvocationRecordKind::Rejected;observation.error=error.code();
       return Rejected{std::move(error)};
     };
     const auto failed = [&](Error error,bool business_entered=true,
-                            ApplyDecision decision=ApplyDecision::NotReached,
-                            bool execution_accepted=false) -> InvokeReply<R> {
-      auto outcome = detail::outcome_failure<R>(error, state->empty_facts,business_entered,execution_accepted||managed,
-                                                decision==ApplyDecision::CancelWon);
-      // 失败分支没有 R，不会再次执行可能抛出的 R 验证器。
+                            ApplyDecision decision=ApplyDecision::NotReached) -> InvokeReply<R> {
+      auto outcome = detail::outcome_failure<R>(error,state->empty_facts,business_entered,managed,
+                                               decision==ApplyDecision::CancelWon);
       foundation::invariant(bool(outcome));
       observation.kind=InvocationRecordKind::FailedBeforeApply;observation.error=error.code();
       return Completed<R>{std::move(*outcome)};
+    };
+    std::shared_ptr<policy::ActionAuthorization> state_action;
+    // Before Action creation, the owning accepted execution supplies cancellation.
+    // Record that request event; ordinary expiry/revoke errors are not cancellation.
+    std::atomic<bool> execution_cancel_requested{false};
+    const auto record_execution_cancel=[&]() noexcept {execution_cancel_requested.store(true,std::memory_order_release);};
+    std::optional<std::stop_callback<decltype(record_execution_cancel)>> execution_cancel;
+    if(managed&&state->entry->shape==Shape::StateEdit)
+      execution_cancel.emplace(options.stop,record_execution_cancel);
+    const auto state_failure = [&](Error error,bool business_entered=false,
+        ApplyDecision decision=ApplyDecision::NotReached,bool reported=false) -> InvokeReply<R> {
+      if(!reported) {
+        if(state_action) {
+          if(options.stop.stop_requested()&&state_action->cancel())decision=ApplyDecision::CancelWon;
+        } else if(managed&&execution_cancel_requested.load(std::memory_order_acquire))
+          decision=ApplyDecision::CancelWon;
+      }
+      if(!managed&&!business_entered&&decision!=ApplyDecision::CancelWon)return raw_rejected(error);
+      return failed(error,business_entered,decision);
+    };
+    const auto rejected = [&](Error error) -> InvokeReply<R> {
+      return state->entry->shape==Shape::StateEdit?state_failure(error):raw_rejected(error);
     };
     auto slot = reserved ? reserved : state->acquire();
     if (!slot) return rejected(invocation_error(InvocationErrc::Busy));
@@ -311,6 +331,7 @@ private:
         }
       }
       auto action=state->session->prepare(*state->caller,request);if(!action)return rejected(action.error());
+      state_action=*action;
       std::stop_callback commit_cancel(options.stop,[owner=*action]() noexcept {(void)owner->cancel();});
       auto permit=(*action)->issue();if(!permit)return rejected(permit.error());
       auto binding=(*action)->current_expected_binding();if(!binding)return rejected(binding.error());
@@ -328,21 +349,22 @@ private:
       WorkContext work(options.stop,binding->deadline,*budget,state->trace,BorrowedResourceViews{resources},std::move(execution),std::move(current_action));
       registry::detail::StateNativeCall<R> call{state->caller->view(),*domain,ids->commit,ids->reservation,*permit,*action,*binding,managed};
       call.expected_state=options.expected_state;
-      entered=true;NativeAccess::dispatch(*state->catalog,*state->entry,&args,work,&call);
-      // A State action has passed authorization and received its one-shot
-      // permit before its provider checks the exact base.  Preserve that fact
-      // when a pre-handler check rejects a native invocation.
-      if(call.failure)return failed(*call.failure,call.business_entered,call.before_apply,
-                                    managed||!call.business_entered);
+      // State dispatch may throw before reaching the business handler.
+      try {NativeAccess::dispatch(*state->catalog,*state->entry,&args,work,&call);}
+      catch(const std::bad_alloc&) {call.failure=invocation_error(InvocationErrc::BudgetExceeded);}
+      catch(...) {call.failure=invocation_error(InvocationErrc::HandlerException);}
+      if(call.failure)return state_failure(*call.failure,call.business_entered,call.before_apply,bool(call.report));
       if(!call.outcome||!call.report||call.report->disposition!=CommitDisposition::Published||!call.publication||!call.proof)
-        return failed(invocation_error(InvocationErrc::InvalidOutput));
+        return state_failure(invocation_error(InvocationErrc::InvalidOutput),call.business_entered,call.before_apply,bool(call.report));
       observation.kind=InvocationRecordKind::StateCommitted;observation.error.reset();
       return InvokeReply<R>{Completed<R>{std::move(*call.outcome)}};
     } catch (const std::bad_alloc&) {
       auto error = invocation_error(InvocationErrc::BudgetExceeded);
+      if(state->entry->shape==Shape::StateEdit)return state_failure(error);
       return entered ? failed(error) : rejected(error);
     } catch (...) {
       auto error = invocation_error(InvocationErrc::HandlerException);
+      if(state->entry->shape==Shape::StateEdit)return state_failure(error);
       return entered ? failed(error) : rejected(error);
     }
   }

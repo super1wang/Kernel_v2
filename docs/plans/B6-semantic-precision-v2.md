@@ -2315,3 +2315,12 @@ B7 = GO
 ## 本地执行补充（开工前）
 
 实际开工 HEAD 为 `28b6054`；相对制定基线 `55bf336` 无生产代码变化。保留已完成 v1 footprint 原文，仅作为旧来源历史事实。本轮修复落实 A05/A09 已有事实合同，不新增公共协议；无需回退历史。使用现有 runtime_state 测试与正式收集入口，先直接反例、后同源正式集与 footprint。
+
+
+### 开工期固定验证映射
+
+正式三配置各 31 项，名单为 `tests/manifests/b6-semantic-v2.expected.json`，矩阵为 `tests/runs/b6-semantic-v2-matrix.json`。F1–F5 与 Host 流程均在既有 `T06.state.runtime_native` 内增加精确反例；State snapshot/commit/Atomic、Policy cancel/revoke/expiry、Outcome、Native/Managed、安装/SDK 作为影响回归。没有改变历史 S_required，只为本次修复建立独立增量集。
+
+架构 A05/A09 已要求真实 Accepted 与业务进入事实。本轮属于合同实现纠偏，无新公共协议或重大架构决策，不新增 ADR。SDK 仓库没有独立摘要生成 CLI：使用既有 `tools.evidence.common.sha_file` 自动重算受影响头摘要并调用 `tools/architecture/check.py` 验证，不手写摘要常量。
+
+审阅补充：Managed `InvocationRecord::store()` 原已有拒绝回退兜底；F5 修复的是 State 执行层本身的分类及普通 expiry 被兜底按错误码解释为取消的问题，不能把原实现描述为所有对外结果必然 Rejected。保留 Read 的既有兜底，不扩大重写。

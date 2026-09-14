@@ -1,0 +1,75 @@
+Internal ctest changing into directory: J:/Code/Kernel_v2/build/b6-formal-debug
+Test project J:/Code/Kernel_v2/build/b6-formal-debug
+      Start   6: T24.sdk.version_header
+ 1/30 Test   #6: T24.sdk.version_header ............................   Passed    0.09 sec
+      Start  18: T01.contracts.component_closure
+ 2/30 Test  #18: T01.contracts.component_closure ...................   Passed    1.69 sec
+      Start  19: T01.contracts.public_include_boundary
+ 3/30 Test  #19: T01.contracts.public_include_boundary .............   Passed    4.12 sec
+      Start  20: T24.contracts.public_headers
+ 4/30 Test  #20: T24.contracts.public_headers ......................***Failed    5.14 sec
+{"case": "public_headers", "status": "Failed", "work": "J:\\Code\\Kernel_v2\\build\\d1.02-sdk\\07a68c4ec6ac42e99e5897d4255f8cdd"}
+Traceback (most recent call last):
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_contracts.py", line 165, in <module>
+    main()
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_contracts.py", line 132, in main
+    consume(prefix, headers=True)
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_contracts.py", line 117, in consume
+    run(configure)
+  File "J:\Code\Kernel_v2\tests\install_consumer\verify_contracts.py", line 65, in run
+    raise RuntimeError('unexpected child result '+stem+' '+str(result)+'\n'+output)
+RuntimeError: unexpected child result 003 {'argv': ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\d1.02-sdk\\07a68c4ec6ac42e99e5897d4255f8cdd\\consumer-3db24fa8\\source', '-B', 'J:\\Code\\Kernel_v2\\build\\d1.02-sdk\\07a68c4ec6ac42e99e5897d4255f8cdd\\consumer-3db24fa8\\build', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_MSVC_DEBUG_INFORMATION_FORMAT=Embedded', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DOCK_DIR=J:\\Code\\Kernel_v2\\build\\d1.02-sdk\\07a68c4ec6ac42e99e5897d4255f8cdd\\relocated-86455649/lib/cmake/OCK'], 'cwd': 'J:\\Code\\Kernel_v2', 'started_at': '2026-09-14T08:58:01.411309+00:00', 'exit_code': 1, 'status': 'Exited', 'process_tree': {'mechanism': 'WindowsJobObject', 'assigned_before_resume': True, 'active_after': 0, 'total_processes': 19, 'terminated_owned_job': False}, 'executable': 'D:\\CMake\\bin\\cmake.exe', 'creation_clock': {'qpc_ticks': 9767274373452, 'qpc_frequency': 10000000}, 'pid': 24096, 'observed_exit_code': 1, 'finished_at': '2026-09-14T08:58:05.236739+00:00'}
+-- The CXX compiler identification is MSVC 19.44.35216.0
+-- Detecting CXX compiler ABI info
+-- Configuring incomplete, errors occurred!
+CMake Error at CMakeLists.txt:2 (project):
+  Generator
+
+    Visual Studio 17 2022
+
+  given toolset and version specification
+
+    v143,version=14.44.35207
+
+  contains an invalid version specification.
+
+
+CMake Error at J:/Code/Kernel_v2/build/d1.02-sdk/07a68c4ec6ac42e99e5897d4255f8cdd/consumer-3db24fa8/build/CMakeFiles/CMakeScratch/TryCompile-hbu8vq/CMakeLists.txt:4 (project):
+  Generator
+
+    Visual Studio 17 2022
+
+  given toolset and version specification
+
+    v143,version=14.44.35207
+
+  contains an invalid version specification.
+
+
+CMake Error at D:/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile):
+  Failed to configure test project build system.
+Call Stack (most recent call first):
+  D:/CMake/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)
+  CMakeLists.txt:2 (project)
+
+
+
+
+
+75% tests passed, 1 tests failed out of 4
+
+Label Time Summary:
+B5                  =   0.00 sec*proc (0 test)
+CompileContracts    =   0.00 sec*proc (0 test)
+D0.02               =   0.09 sec*proc (1 test)
+D1.02               =  10.95 sec*proc (3 tests)
+D1.04               =   0.00 sec*proc (0 test)
+D1.05               =   0.00 sec*proc (0 test)
+D3.04               =   0.00 sec*proc (0 test)
+Tools               =   0.00 sec*proc (0 test)
+
+Total Test time (real) =  11.07 sec
+
+The following tests FAILED:
+	 20 - T24.contracts.public_headers (Failed)             D1.02
+Errors while running CTest

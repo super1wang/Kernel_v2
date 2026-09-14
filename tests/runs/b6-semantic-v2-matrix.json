@@ -1,0 +1,19 @@
+{
+  "format": "ock.gate-matrix/1",
+  "gate_id": "B6-semantic-v2",
+  "scope": "同一最终生产来源的 State semantic precision v2 正式 31 项三配置影响集；footprint 独立使用原预算验证。",
+  "required_runs": [
+    {
+      "task_id": "D4.04",
+      "profile": "win-msvc-debug"
+    },
+    {
+      "task_id": "D4.04",
+      "profile": "win-msvc-release"
+    },
+    {
+      "task_id": "D4.04",
+      "profile": "win-msvc-asan"
+    }
+  ]
+}

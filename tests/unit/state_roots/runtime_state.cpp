@@ -29,6 +29,8 @@ static Result<int> candidate_compute(const int& value,WorkContext&){return value
 static std::atomic<unsigned> state_entries=0;
 static std::function<void(WorkContext&)> before_return;
 static bool require_resource=false;
+static bool install_membership_probe=false;
+static bool throw_membership=true;
 static registry::RevisionPolicy revision_policy=registry::RevisionPolicy::ServerCapture;
 static Result<int> state_edit(const int& input,EditView<ock::state::ObjectStateProvider>& view,WorkContext& work) {
   if(require_resource)CHECK(work.granted_resources().size()==1);
@@ -47,6 +49,15 @@ static Result<std::size_t> reply_bytes(const InvokeReply<int>&){
   if(reject_reply_bytes.load())return make_unexpected(error(ContractsErrc::BudgetExceeded));return 512;}
 static Result<std::size_t> result_bytes(const int&){
   if(reject_result_bytes.load())return make_unexpected(error(ContractsErrc::BudgetExceeded));return sizeof(int);}
+template<class R>
+static void exact_failure(const InvokeReply<R>& reply,bool accepted,bool business,bool cancelled=false) {
+  CHECK(std::holds_alternative<Completed<R>>(reply));
+  const auto& outcome=std::get<Completed<R>>(reply).outcome;
+  CHECK(cancelled?std::holds_alternative<CancelledBeforeApply>(outcome.value()):std::holds_alternative<FailedBeforeApply>(outcome.value()));
+  const auto& facts=outcome.conditions().before_apply;CHECK(facts);
+  CHECK(facts->execution_accepted==accepted&&facts->business_entered==business&&facts->no_application_proven);
+  CHECK(facts->decision==(cancelled?ApplyDecision::CancelWon:ApplyDecision::NotReached));
+}
 int main() try {
   auto configuration=policy_test::configuration();configuration.operations[1].permits_group=true;
   auto all_rules=policy_test::rules();
@@ -113,6 +124,9 @@ int main() try {
     options.revision_policy=revision_policy;
     if(require_resource)options.resources={{name("state.runtime"),name("atomic.resource")}};
     registry::SubmissionStorage<int,int> storage{64,2048,input_bytes,reply_bytes,result_bytes};
+    if(install_membership_probe)storage.atomic_membership=+[](const int&)->Result<registry::AtomicMembership>{
+      if(throw_membership)throw std::bad_alloc{};return make_unexpected(error(ContractsErrc::InvalidContract));
+    };
     CHECK(registrar.state_edit(state_edit,definition,options,storage));
     definition.key=policy_test::operation(2).operation;
     auto atomic_options=options;
@@ -147,8 +161,9 @@ int main() try {
   // Hold C1's real provider report until C2 has published and sealed its result.
   struct InterleavingProvider final:InlineAtomicProviderPort<ock::state::ObjectStateProvider>,PublicationAuthorityPort {
     std::shared_ptr<ock::state::ObjectMemoryProvider> delegate;
+    int throw_begin=0;
     std::atomic<bool> delay{true},timed_out{false};std::binary_semaphore entered{0},release{0};
-    Result<std::unique_ptr<ock::state::ObjectStateProvider::Frame>> begin(const AtomicDomainRef& d,const CallerView& c)override{return delegate->begin(d,c);}
+    Result<std::unique_ptr<ock::state::ObjectStateProvider::Frame>> begin(const AtomicDomainRef& d,const CallerView& c)override{if(throw_begin==1)throw std::bad_alloc{};if(throw_begin==2)throw std::runtime_error("provider begin");return delegate->begin(d,c);}
     Result<AtomicDomainRef> resolve(foundation::ObjectId target)const override{return delegate->resolve(target);}
     Result<PreparedBase> base(const ock::state::ObjectStateProvider::Frame& frame)const override{return delegate->base(frame);}
     Result<std::shared_ptr<const PreparedCommit>> prepare(ock::state::ObjectStateProvider::Frame& frame,const PreparedIdentity& identity)override{return delegate->prepare(frame,identity);}
@@ -172,15 +187,53 @@ int main() try {
     auto other_engine=invocation::NativeEngine::create(*other_catalog,policy.session,concurrent_threads,concurrent_budget);CHECK(other_engine);
     auto other_bound=(*other_engine)->bind<int,int>(key(),{},Shape::StateEdit,policy.caller,std::array{policy_test::target()},state_target,name("state.interleaved"));CHECK(other_bound);
     invocation::InvokeOptions concurrent_options{{},policy.clock->now()+std::chrono::seconds(5),100};
+    std::stop_source late_stop;auto first_options=concurrent_options;first_options.stop=late_stop.get_token();
     std::optional<InvokeReply<int>> first;
-    std::jthread invoking([&]{first.emplace(other_bound->invoke(101,concurrent_options));});
+    std::jthread invoking([&]{first.emplace(other_bound->invoke(101,first_options));});
     CHECK(interleaver->entered.try_acquire_for(std::chrono::seconds(2)));
+    late_stop.request_stop(); // C1 is already published; late cancel must not overwrite it.
     auto second=other_bound->invoke(102,concurrent_options);interleaver->release.release();invoking.join();
     CHECK(!interleaver->timed_out&&first&&std::holds_alternative<Completed<int>>(*first)&&std::holds_alternative<Completed<int>>(second));
     auto& first_commit=std::get<StateCommitted<int>>(std::get<Completed<int>>(*first).outcome.value());
     auto& second_commit=std::get<StateCommitted<int>>(std::get<Completed<int>>(second).outcome.value());
     CHECK(first_commit.revision==1&&*first_commit.result==102&&second_commit.revision==2&&*second_commit.result==103);
     CHECK((*interleaved_state)->snapshot(policy.caller->view())->revision()==2);
+    // F3: dispatch entry is not business entry; handler exceptions retain entry.
+    for(int failure=1;failure<=3;++failure) {
+      interleaver->throw_begin=failure==3?0:failure;
+      before_return=failure==3?std::function<void(WorkContext&)>{[](WorkContext&){throw std::runtime_error("handler");}}:std::function<void(WorkContext&)>{};
+      auto before=state_entries.load();
+      auto native_failure=other_bound->invoke(104,concurrent_options);
+      if(failure==3)exact_failure(native_failure,false,true);
+      else CHECK(std::holds_alternative<Rejected>(native_failure));
+      auto record=executions::detail::InvocationAccess::registered_record(*other_bound,104,concurrent_options);CHECK(record);
+      concurrent_threads->role=invocation::ThreadRole::Worker;
+      CHECK((*record)->run_once({})&&(*record)->reply());exact_failure(*(*record)->reply(),true,failure==3);
+      concurrent_threads->role=invocation::ThreadRole::Application;
+      CHECK(state_entries==before+(failure==3?2:0));
+      CHECK((*interleaved_state)->snapshot(policy.caller->view())->revision()==2);
+    }
+    before_return={};interleaver->throw_begin=0;
+
+  }
+  // F3/F5: membership exceptions and ordinary preconditions before Action creation.
+  {
+    install_membership_probe=true;
+    auto probe_batch=registry::RegistrationBatch::create({});CHECK(probe_batch);CHECK((*probe_batch)->add(module));
+    auto probe_catalog=(*probe_batch)->publish();CHECK(probe_catalog);install_membership_probe=false;
+    auto probe_threads=std::make_shared<native_test::Threads>();
+    auto probe_engine=invocation::NativeEngine::create(*probe_catalog,policy.session,probe_threads,{});CHECK(probe_engine);
+    auto probe=(*probe_engine)->bind<int,int>(key(),{},Shape::StateEdit,policy.caller,std::array{policy_test::target()},state_target,name("state.membership"));CHECK(probe);
+    invocation::InvokeOptions probe_options{{},policy.clock->now()+std::chrono::seconds(5),100};
+    for(bool throws:{true,false}) {
+      throw_membership=throws;auto before=state_entries.load();
+      auto native=probe->invoke(1,probe_options);CHECK(std::holds_alternative<Rejected>(native));
+      if(throws)CHECK(std::get<Rejected>(native).reason.code()==invocation::invocation_error(invocation::InvocationErrc::BudgetExceeded).code());
+      auto accepted=executions::detail::InvocationAccess::registered_record(*probe,1,probe_options);CHECK(accepted);
+      probe_threads->role=invocation::ThreadRole::Worker;CHECK((*accepted)->run_once({})&&(*accepted)->reply());
+      exact_failure(*(*accepted)->reply(),true,false);probe_threads->role=invocation::ThreadRole::Application;
+      CHECK(state_entries==before&&(*state)->snapshot(policy.caller->view())->revision()==0);
+    }
   }
   state_entries=0;
   auto threads=std::make_shared<native_test::Threads>();auto engine=invocation::NativeEngine::create(*catalog,policy.session,threads,{});CHECK(engine);
@@ -227,15 +280,17 @@ int main() try {
   CHECK((*state)->snapshot(policy.caller->view())->revision()==2);
   auto explicit_options=options;explicit_options.expected_state=PreparedBase{1,1};
   auto entries=state_entries.load();auto stale=bound->invoke(61,explicit_options);
-  CHECK(state_entries==entries&&std::holds_alternative<Completed<int>>(stale));
-  const auto& stale_outcome=std::get<Completed<int>>(stale).outcome;
-  CHECK(std::holds_alternative<FailedBeforeApply>(stale_outcome.value()));
-  CHECK(!stale_outcome.conditions().before_apply->business_entered);
-  CHECK(!std::holds_alternative<StateCommitted<int>>(stale_outcome.value()));
+  CHECK(state_entries==entries&&std::holds_alternative<Rejected>(stale));
   explicit_options.expected_state=PreparedBase{2,2};
   auto stale_lifecycle=bound->invoke(62,explicit_options);
-  CHECK(state_entries==entries&&std::holds_alternative<Completed<int>>(stale_lifecycle));
-  CHECK(!std::get<Completed<int>>(stale_lifecycle).outcome.conditions().before_apply->business_entered);
+  CHECK(state_entries==entries&&std::holds_alternative<Rejected>(stale_lifecycle));
+  for(auto expected:{PreparedBase{1,1},PreparedBase{2,2}}) {
+    auto bad_options=options;bad_options.expected_state=expected;
+    auto accepted=executions::detail::InvocationAccess::registered_record(*bound,62,bad_options);CHECK(accepted);
+    threads->role=invocation::ThreadRole::Worker;CHECK((*accepted)->run_once({})&&(*accepted)->reply());
+    exact_failure(*(*accepted)->reply(),true,false);threads->role=invocation::ThreadRole::Application;
+    CHECK(state_entries==entries&&(*state)->snapshot(policy.caller->view())->revision()==2);
+  }
   using GroupInput=atomic::Input<ock::state::ObjectStateProvider>;
   auto linked=registry::CandidateBindings::bind<ock::state::ObjectStateProvider,int,int>(*catalog,key(),{},AtomicMode::StateEdit,33,state_domain(),std::array{policy_test::target()},state_target,0);CHECK(linked);
   CHECK(!GroupInput::create({*linked}));
@@ -247,8 +302,7 @@ int main() try {
   auto nested=registry::CandidateBindings::bind<ock::state::ObjectStateProvider,GroupInput,atomic::Results>(*catalog,policy_test::operation(2).operation,{},AtomicMode::StateEdit,*group,state_domain(),std::array{policy_test::target()},atomic::target<ock::state::ObjectStateProvider>);CHECK(!nested);
   auto group_bound=(*engine)->bind<GroupInput,atomic::Results>(policy_test::operation(2).operation,{},Shape::StateEdit,policy.caller,
       std::array{policy_test::target()},atomic::target<ock::state::ObjectStateProvider>,name("atomic.native"));CHECK(group_bound);
-  auto group_missing=group_bound->invoke(*group,options);CHECK(std::holds_alternative<Completed<atomic::Results>>(group_missing));
-  CHECK(std::holds_alternative<FailedBeforeApply>(std::get<Completed<atomic::Results>>(group_missing).outcome.value()));
+  auto group_missing=group_bound->invoke(*group,options);CHECK(std::holds_alternative<Rejected>(group_missing));
   CHECK(state_entries==entries);
   auto group_options=options;group_options.expected_state=PreparedBase{2,1};
   auto grouped=group_bound->invoke(*group,group_options);CHECK(std::holds_alternative<Completed<atomic::Results>>(grouped));
@@ -260,6 +314,15 @@ int main() try {
   auto not_published=group_bound->invoke(*rejected_group,group_options);CHECK(std::holds_alternative<Completed<atomic::Results>>(not_published));
   CHECK(!std::holds_alternative<StateCommitted<atomic::Results>>(std::get<Completed<atomic::Results>>(not_published).outcome.value()));
   CHECK((*state)->snapshot(policy.caller->view())->revision()==3);entries=state_entries.load();
+  // F4: cancellation after member one prevents member two and wins before prepare.
+  {
+    std::stop_source stop;auto cancel_options=group_options;cancel_options.stop=stop.get_token();
+    before_return=[&](WorkContext&){stop.request_stop();};
+    auto before=state_entries.load();auto result=group_bound->invoke(*group,cancel_options);before_return={};
+    exact_failure(result,false,true,true);CHECK(state_entries==before+1);
+    CHECK((*state)->snapshot(policy.caller->view())->revision()==3);
+  }
+  exact_failure(not_published,false,true);entries=state_entries.load();
   // Actual bound values must not change a later member's frozen target set.
   auto value_target=+[](const int& value,std::span<foundation::ObjectId> output)noexcept->Result<std::size_t>{
     if(output.empty())return make_unexpected(error(ContractsErrc::BudgetExceeded));
@@ -276,6 +339,7 @@ int main() try {
   auto group_revoked=group_bound->invoke(*group,group_options);before_return={};
   CHECK(std::holds_alternative<Completed<atomic::Results>>(group_revoked));
   CHECK(!std::holds_alternative<StateCommitted<atomic::Results>>(std::get<Completed<atomic::Results>>(group_revoked).outcome.value()));
+  exact_failure(group_revoked,false,true);
   CHECK(state_entries==entries+1);
   CHECK(policy.assembly.administration->replace_principal_policy({policy_test::principal(),all_rules}));
   CHECK((*state)->snapshot(policy.caller->view())->revision()==3);
@@ -288,8 +352,34 @@ int main() try {
   auto expired=bound->invoke(64,options);before_return={};
   CHECK(std::holds_alternative<Completed<int>>(expired));
   CHECK(!std::holds_alternative<StateCommitted<int>>(std::get<Completed<int>>(expired).outcome.value()));
+  exact_failure(revoked,false,true);exact_failure(expired,false,true);
   CHECK((*state)->snapshot(policy.caller->view())->revision()==3);entries=state_entries.load();
   options.deadline=policy.clock->now()+std::chrono::seconds(5);
+  // F5: expiry after acceptance is ordinary failure, not a cancellation event.
+  {
+    auto expired_record=executions::detail::InvocationAccess::registered_record(*bound,65,options);CHECK(expired_record);
+    policy.clock->elapsed.fetch_add(6000);threads->role=invocation::ThreadRole::Worker;
+    CHECK((*expired_record)->run_once({})&&(*expired_record)->reply());
+    exact_failure(*(*expired_record)->reply(),true,false);
+    threads->role=invocation::ThreadRole::Application;
+    CHECK((*state)->snapshot(policy.caller->view())->revision()==3);
+    options.deadline=policy.clock->now()+std::chrono::seconds(5);
+  }
+  {
+    // Accepted owner cancellation before Action/permit exists.
+    auto accepted=executions::detail::InvocationAccess::registered_record(*bound,65,options);CHECK(accepted);
+    std::stop_source owner;owner.request_stop();threads->role=invocation::ThreadRole::Worker;
+    CHECK((*accepted)->run_once(owner.get_token())&&(*accepted)->reply());exact_failure(*(*accepted)->reply(),true,false,true);
+    threads->role=invocation::ThreadRole::Application;
+    auto pre_cancel=options;pre_cancel.stop=owner.get_token();CHECK(std::holds_alternative<Rejected>(bound->invoke(65,pre_cancel)));
+    CHECK((*state)->snapshot(policy.caller->view())->revision()==3);
+    // Expiry between Atomic members is not cancellation.
+    auto group_expiry=group_options;group_expiry.deadline=options.deadline;
+    auto before=state_entries.load();before_return=[&](WorkContext&){policy.clock->elapsed.fetch_add(6000);};
+    auto expired_group=group_bound->invoke(*group,group_expiry);before_return={};
+    exact_failure(expired_group,false,true);CHECK(state_entries==before+1);
+    options.deadline=policy.clock->now()+std::chrono::seconds(5);entries=state_entries.load();
+  }
   struct BoundaryAuthority final:PermitAuthorityPort {
     std::shared_ptr<policy::ActionAuthorization> action;std::function<void()> before,after;
     Result<std::shared_ptr<const ActionPermit>> issue(const CallerGrant& caller,const PermitBinding& binding)override{return action->issue(caller,binding);}
@@ -381,6 +471,15 @@ int main() try {
   CHECK(std::holds_alternative<Completed<int>>(*missing_result->value));
   CHECK(!std::holds_alternative<StateCommitted<int>>(std::get<Completed<int>>(*missing_result->value).outcome.value()));
   CHECK(state_entries==entries);
+  exact_failure(*missing_result->value,true,false);
+  for(auto expected:{PreparedBase{2,1},PreparedBase{3,2}}) {
+    auto bad_options=options;bad_options.expected_state=expected;
+    auto accepted=hosted->submit(70,bad_options);CHECK(std::holds_alternative<Accepted>(accepted));
+    auto ref=std::get<Accepted>(accepted).execution;
+    auto terminal=session->wait(**caller,ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));CHECK(terminal&&terminal->state==host::ExecutionWaitState::Terminal);
+    auto failure=session->result<int>(**caller,ref);CHECK(failure);exact_failure(*failure->value,true,false);
+    CHECK(state_entries==entries&&(*state)->snapshot((*caller)->view())->revision()==3);
+  }
   auto submit_options=options;submit_options.expected_state=PreparedBase{3,1};
   auto submitted=hosted->submit(71,submit_options);CHECK(std::holds_alternative<Accepted>(submitted));
   auto reference=std::get<Accepted>(submitted).execution;
@@ -451,6 +550,29 @@ int main() try {
   CHECK(cancelled_state_outcome.conditions().before_apply->business_entered&&
       cancelled_state_outcome.conditions().before_apply->decision==ApplyDecision::CancelWon);
   CHECK((*state)->snapshot((*caller)->view())->revision()==6);
+  // Host Atomic cancellation after member one uses the real owning ExecutionRef.
+  entered_step=std::make_shared<std::binary_semaphore>(0);release_step=std::make_shared<std::binary_semaphore>(0);
+  before_return=[entered_step,release_step](WorkContext&){entered_step->release();CHECK(release_step->try_acquire_for(std::chrono::seconds(3)));};
+  auto atomic_entries=state_entries.load();
+  auto atomic_cancel=host_group_bound->submit(*host_group,submit_options);CHECK(std::holds_alternative<Accepted>(atomic_cancel));
+  auto atomic_ref=std::get<Accepted>(atomic_cancel).execution;CHECK(entered_step->try_acquire_for(std::chrono::seconds(2)));
+  CHECK(session->cancel(**caller,atomic_ref));release_step->release();
+  auto atomic_wait=session->wait(**caller,atomic_ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));CHECK(atomic_wait&&atomic_wait->state==host::ExecutionWaitState::Terminal);
+  before_return={};auto atomic_result=session->result<atomic::Results>(**caller,atomic_ref);CHECK(atomic_result);
+  exact_failure(*atomic_result->value,true,true,true);CHECK(state_entries==atomic_entries+1&&(*state)->snapshot((*caller)->view())->revision()==6);
+  // F5-04: the second accepted execution is cancelled while waiting for the resource.
+  entered_step=std::make_shared<std::binary_semaphore>(0);release_step=std::make_shared<std::binary_semaphore>(0);
+  before_return=[entered_step,release_step](WorkContext&){entered_step->release();CHECK(release_step->try_acquire_for(std::chrono::seconds(3)));};
+  auto holding=host_group_bound->submit(*host_group,submit_options);CHECK(std::holds_alternative<Accepted>(holding));
+  auto holding_ref=std::get<Accepted>(holding).execution;CHECK(entered_step->try_acquire_for(std::chrono::seconds(2)));
+  auto queued=host_group_bound->submit(*host_group,submit_options);CHECK(std::holds_alternative<Accepted>(queued));
+  auto queued_ref=std::get<Accepted>(queued).execution;CHECK(session->cancel(**caller,queued_ref));
+  CHECK(session->cancel(**caller,holding_ref));release_step->release();
+  for(auto ref:{holding_ref,queued_ref}) {
+    auto terminal=session->wait(**caller,ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));CHECK(terminal&&terminal->state==host::ExecutionWaitState::Terminal);
+    auto value=session->result<atomic::Results>(**caller,ref);CHECK(value);exact_failure(*value->value,true,ref==holding_ref,true);
+  }
+  before_return={};CHECK((*state)->snapshot((*caller)->view())->revision()==6);
   recorder->hold=true;
   auto record_failure=host_group_bound->submit(*host_group,submit_options);CHECK(std::holds_alternative<Accepted>(record_failure));
   auto record_ref=std::get<Accepted>(record_failure).execution;CHECK(recorder->reported.try_acquire_for(std::chrono::seconds(2)));

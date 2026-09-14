@@ -1,0 +1,71 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "build/b6-formal-debug",
+      "--config",
+      "Debug",
+      "--target",
+      "ock_state_runtime",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T08:43:52.511658+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 16,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "creation_clock": {
+      "qpc_ticks": 9758785352510,
+      "qpc_frequency": 10000000
+    },
+    "pid": 73512,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T08:44:02.985992+00:00",
+    "label": "build"
+  },
+  {
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build/b6-formal-debug",
+      "-C",
+      "Debug",
+      "-R",
+      "^T06.state.runtime_native$",
+      "--output-on-failure",
+      "--timeout",
+      "45"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T08:44:02.987201+00:00",
+    "exit_code": 8,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 3,
+      "terminated_owned_job": false
+    },
+    "executable": "E:\\vs2022IDE\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "creation_clock": {
+      "qpc_ticks": 9758890111914,
+      "qpc_frequency": 10000000
+    },
+    "pid": 46144,
+    "observed_exit_code": 8,
+    "finished_at": "2026-09-14T08:44:03.796252+00:00",
+    "label": "test"
+  }
+]
