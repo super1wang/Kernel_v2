@@ -328,7 +328,8 @@ public:
     if(!prepared)return false;
     std::lock_guard lock(mutex_);
     if(!matches_active(prepared)||phase_!=Phase::Ready)return false;
-    prepared->claim().cancel();active_.reset();return true;
+    // Reservation cleanup does not participate in cancellation arbitration.
+    active_.reset();return true;
   }
 private:
   enum class Phase {Ready,Claiming};

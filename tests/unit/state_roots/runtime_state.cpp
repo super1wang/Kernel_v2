@@ -68,7 +68,36 @@ int main() try {
   auto reads=std::make_shared<StateReads>(policy.session->callers());
   auto state=ock::state::StateDomain<ock::state::ObjectRoot>::create(state_domain(),{},domain_options,
       reads);CHECK(state);
+  // F1-01: releasing a reservation is not a cancellation request.
+  {
+    auto base=(*state)->snapshot(policy.caller->view());CHECK(base);
+    PreparedIdentity identity{id<CommitId>(91),id<ReservationId>(91),state_domain(),0,1};
+    auto prepared=(*state)->prepare(*base,base->value(),identity,0);CHECK(prepared);
+    CHECK((*state)->abandon(*prepared));
+    CHECK(!(*prepared)->claim().claimed()&&!(*prepared)->claim().cancelled());
+    auto action=policy.session->prepare(*policy.caller,{policy_test::operation(),policy_test::target(),{{policy_test::operation(),{policy_test::target()}}},policy.clock->now()+std::chrono::seconds(5)});CHECK(action);
+    auto permit=(*action)->issue();CHECK(permit);auto expected=(*action)->current_expected_binding();CHECK(expected);
+    CHECK(!(*state)->commit(*prepared,*permit,**action,*expected));
+    CHECK((*state)->snapshot(policy.caller->view())->revision()==0);
+  }
   auto provider=ock::state::ObjectMemoryProvider::create(*state,{1024*1024,1024*1024,128});CHECK(provider);
+  // F1-02/03/04: provider reports preserve real cancel provenance.
+  for(unsigned reason=0;reason<4;++reason) {
+    auto frame=(*provider)->begin(state_domain(),policy.caller->view());CHECK(frame);
+    PreparedIdentity identity{id<CommitId>(92+reason),id<ReservationId>(92+reason),state_domain(),0,1};
+    auto prepared=(*provider)->prepare(**frame,identity);CHECK(prepared);
+    auto action=policy.session->prepare(*policy.caller,{policy_test::operation(),policy_test::target(),{{policy_test::operation(),{policy_test::target()}}},policy.clock->now()+std::chrono::seconds(5)});CHECK(action);
+    auto permit=(*action)->issue();CHECK(permit);auto expected=(*action)->current_expected_binding();CHECK(expected);
+    if(reason==0)++expected->lifecycle_generation;
+    if(reason==1)CHECK((*action)->cancel());
+    if(reason==2)CHECK(policy.assembly.administration->replace_principal_policy({policy_test::principal(),{}}));
+    if(reason==3)policy.clock->elapsed.fetch_add(6000);
+    auto report=(*provider)->commit_inline(*prepared,*permit,*action,*expected);CHECK(report);
+    CHECK(report->disposition==CommitDisposition::KnownNotCommitted);
+    CHECK(report->cancelled_before_claim==(reason==1));
+    if(reason==2)CHECK(policy.assembly.administration->replace_principal_policy({policy_test::principal(),all_rules}));
+    CHECK((*state)->snapshot(policy.caller->view())->revision()==0);
+  }
   registry::ModuleManifest manifest{name("state.runtime"),ver()};
   manifest.operations={key(),policy_test::operation(2).operation,read_key(),compute_key()};manifest.providers={ProviderContract<ock::state::ObjectStateProvider>::key()};manifest.executors={name("inline")};
   manifest.required_providers.push_back({{name("state.runtime"),ProviderContract<ock::state::ObjectStateProvider>::key()},CppTypeToken::of<ock::state::ObjectStateProvider>()});
