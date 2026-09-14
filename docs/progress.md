@@ -4,7 +4,7 @@
 
 ## 当前生产节点
 
-- **B6 closure InProgress（2026-09-13）：D4.01 Passed；其余包待依次归档。** 最终 a03304a / 5d15ef17eb4e… 三配置各 89/89、StateNative 9/9、Runtime-only 安装及 Native/Embedded 原预算成本已通过；B7 仍 HOLD，G4 NotStarted。历史 B6 Passed 保留，当前结论见 [独立收口决定](../evidence/B6/closure-a03304a/D4.01-acceptance.json)。
+- **B6 closure InProgress（2026-09-13）：D4.01、D4.02 Passed；其余包待依次归档。** 最终 a03304a / 5d15ef17eb4e… 三配置各 89/89、StateNative 9/9、Runtime-only 安装及 Native/Embedded 原预算成本已通过；B7 仍 HOLD，G4 NotStarted。历史 B6 Passed 保留，当前结论见 [独立收口决定](../evidence/B6/closure-a03304a/D4.02-acceptance.json)。
 
 - **B6 历史实现（审计前）完成，D4.01–D4.04 Passed。** owning PublishedState/Snapshot、候选 Edit/WriteSet/History、内存 Commit 发布 gate 与同源有限 Atomic 组已完成；Runtime 发布后结果事实保持，State 公开仅依赖 CoreContracts，immer 私有。最终来源 `b6203fd` / `ab332d1b0e16…` 的 Debug、Release、ASan 各 **62/62**，完整审计错误为 0；[自动验收](../evidence/B6/final-b6203fd/acceptance.json)为 Passed，详见 [B6 交付](validation/B6-delivery.md)。
 

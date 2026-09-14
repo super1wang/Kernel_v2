@@ -1,0 +1,42 @@
+{
+  "format": "ock.batch-package-closure/1",
+  "task_id": "D4.02",
+  "package_status": "Passed",
+  "created_at": "2026-09-14T03:36:53.628656+00:00",
+  "actor_type": "AI",
+  "human_review_required": false,
+  "source_commit": "a03304a407b7716c1c68cb601cedc7c08d2ffa2c",
+  "inputs_sha256": "5d15ef17eb4e1305e9275a077a80c3f8a2fde46d24b6f553b4d886f7607d1e9a",
+  "policy": {
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+  },
+  "prerequisites": [
+    {
+      "task_id": "D4.01",
+      "status": "Passed",
+      "kind": "CommittedClosure",
+      "commit": "1862064d78410c0016f0b03f62ffb7d6cc3bc8d3",
+      "path": "evidence/B6/closure-a03304a/D4.01-acceptance.json",
+      "sha256": "e6b33d8e82bc4ec3c5f857f65ed473aa4c544172f8be7c66e1ffe4434922127f"
+    }
+  ],
+  "technical_conclusions": {
+    "path": "docs/reviews/B6-closure-package-conclusions.md",
+    "sha256": "20a5bea6dac7033199d3a2c87fe6666a4961316b1bf4dfad41e859bd1ce7dfc8"
+  },
+  "matrix": {
+    "path": "evidence/B6/closure-a03304a/matrix-acceptance.json",
+    "sha256": "9f4d5b60089d4384347cbc1384f3d1faee927828b45b4fe654140c0b5fed77da"
+  },
+  "closure_inputs": {
+    "path": "evidence/B6/closure-a03304a/closure-inputs.json",
+    "sha256": "2516eb95931ac446376718fb95800727c2a08fb399f17a08e15c2f7748f194ec"
+  },
+  "required_cases": [
+    "T09.state.object_references",
+    "T09.state.memory_commit",
+    "T02.contracts.context_capability_boundary"
+  ],
+  "note": "独立逻辑完成条件与已提交前置已核对；共享同源完整矩阵及成本/安装实证，不重复物理执行。"
+}
