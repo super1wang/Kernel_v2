@@ -1,0 +1,64 @@
+{
+  "format": "ock.batch-package-closure/1",
+  "task_id": "D4.04",
+  "package_status": "Passed",
+  "created_at": "2026-09-14T03:36:55.773521+00:00",
+  "actor_type": "AI",
+  "human_review_required": false,
+  "source_commit": "a03304a407b7716c1c68cb601cedc7c08d2ffa2c",
+  "inputs_sha256": "5d15ef17eb4e1305e9275a077a80c3f8a2fde46d24b6f553b4d886f7607d1e9a",
+  "policy": {
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+  },
+  "prerequisites": [
+    {
+      "task_id": "D1.05",
+      "status": "Passed",
+      "kind": "HistoricalCommittedStatus",
+      "commit": "a03304a407b7716c1c68cb601cedc7c08d2ffa2c",
+      "path": "docs/progress.md"
+    },
+    {
+      "task_id": "D4.03",
+      "status": "Passed",
+      "kind": "CommittedClosure",
+      "commit": "830d027f801b843314c8491f7afa16ecabd70b60",
+      "path": "evidence/B6/closure-a03304a/D4.03-acceptance.json",
+      "sha256": "04e8476d11db5c49f22a541f73f78d05debf37d67eca8aca1101171b0877fa7d"
+    }
+  ],
+  "technical_conclusions": {
+    "path": "docs/reviews/B6-closure-package-conclusions.md",
+    "sha256": "20a5bea6dac7033199d3a2c87fe6666a4961316b1bf4dfad41e859bd1ce7dfc8"
+  },
+  "matrix": {
+    "path": "evidence/B6/closure-a03304a/matrix-acceptance.json",
+    "sha256": "9f4d5b60089d4384347cbc1384f3d1faee927828b45b4fe654140c0b5fed77da"
+  },
+  "closure_inputs": {
+    "path": "evidence/B6/closure-a03304a/closure-inputs.json",
+    "sha256": "2516eb95931ac446376718fb95800727c2a08fb399f17a08e15c2f7748f194ec"
+  },
+  "required_cases": [
+    "T10.state.atomic_group",
+    "T06.state.runtime_native",
+    "T02.contracts.state_edit_shape",
+    "T02.contracts.atomic_read_adapters",
+    "T02.contracts.atomic_async_rejected",
+    "T02.registration.atomic_candidate_contract",
+    "T02.registration.provider_binding",
+    "T02.registration.service_binding",
+    "T02.registration.shape_compile_contract",
+    "T05.registration.typed_binding_success",
+    "T02.native.candidate_read_dispatch",
+    "T02.native.invalid_input",
+    "T02.native.validation_exception",
+    "T03.native.managed_execution_path",
+    "T03.native.managed_record",
+    "T03.native.managed_record_ownership",
+    "T03.native.provider_unavailable",
+    "T03.native.thread_modes"
+  ],
+  "note": "独立逻辑完成条件与已提交前置已核对；共享同源完整矩阵及成本/安装实证，不重复物理执行。"
+}

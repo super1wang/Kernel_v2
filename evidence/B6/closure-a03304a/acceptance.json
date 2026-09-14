@@ -1,0 +1,47 @@
+{
+  "format": "ock.development-batch-closure/1",
+  "batch_id": "B6",
+  "batch_status": "Passed",
+  "gate_status": "Passed",
+  "created_at": "2026-09-14T03:36:55.777522+00:00",
+  "source_commit": "a03304a407b7716c1c68cb601cedc7c08d2ffa2c",
+  "inputs_sha256": "5d15ef17eb4e1305e9275a077a80c3f8a2fde46d24b6f553b4d886f7607d1e9a",
+  "closure_inputs": {
+    "path": "evidence/B6/closure-a03304a/closure-inputs.json",
+    "sha256": "2516eb95931ac446376718fb95800727c2a08fb399f17a08e15c2f7748f194ec"
+  },
+  "packages": [
+    {
+      "path": "evidence/B6/closure-a03304a/D4.01-acceptance.json",
+      "sha256": "e6b33d8e82bc4ec3c5f857f65ed473aa4c544172f8be7c66e1ffe4434922127f"
+    },
+    {
+      "path": "evidence/B6/closure-a03304a/D4.02-acceptance.json",
+      "sha256": "32d94b386b1495ccf31ee7cca366f8d31c6e21d5ddfabae3090d0c30186c3f6a"
+    },
+    {
+      "path": "evidence/B6/closure-a03304a/D4.03-acceptance.json",
+      "sha256": "04e8476d11db5c49f22a541f73f78d05debf37d67eca8aca1101171b0877fa7d"
+    },
+    {
+      "path": "evidence/B6/closure-a03304a/D4.04-acceptance.json",
+      "sha256": "ebb7a6f5b4df96320dd12da4071113585612440ff246512786c51c491804d31b"
+    }
+  ],
+  "committed_predecessors": [
+    {
+      "task_id": "D4.01",
+      "commit": "1862064d78410c0016f0b03f62ffb7d6cc3bc8d3"
+    },
+    {
+      "task_id": "D4.02",
+      "commit": "8f23295e5311b5095a601f15424801c003c518eb"
+    },
+    {
+      "task_id": "D4.03",
+      "commit": "830d027f801b843314c8491f7afa16ecabd70b60"
+    }
+  ],
+  "scope": "D4.01–D4.04/C1–C6 收口；B7 准入解除 HOLD，B7 未实现，G4 NotStarted；历史 Passed 保留。",
+  "failure_policy": "保留原始失败和中间来源；仅选用完整通过的最终同源矩阵，未提高任何数值预算。"
+}
