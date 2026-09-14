@@ -4,7 +4,7 @@
 
 ## 当前生产节点
 
-- **B6 semantic precision v2：ChangesRequested；formal validation v2 Pending；B7 HOLD。** 按 [v2 执行方案](plans/B6-semantic-precision-v2.md)修复 F1–F5。v1 final precision 放行决定 Superseded；历史 B6 / C1–C6 Passed 及 `3abde2e` 机器证据原文保留，不能用作新生产来源的最终验证。
+- **B6 semantic precision v2 Passed / Frozen；B7 准入 GO（2026-09-14）。** 最终生产来源 `32c38ad54e875a2812a875685421a46074c292ff`；F1–F5 已修复，Debug / Release / ASan Debug 各 31/31、State 安装/SDK、Native 7 项与 Embedded 3 配置（含 Release startup）均按新来源通过。648 个正式输入、190 个 footprint 输入与 Git 来源一致，原预算未提高，Runtime-only / Embedded 不含 State/immer。机器证据已提交 `fc0c692`，见 [最终交付](validation/B6-final-semantic-precision-delivery.md)与 [验收](../evidence/B6/semantic-precision-32c38ad/acceptance.json)。v2 取代 v1 最终放行决定，历史 B6 / C1–C6 与旧机器事实保留；B7 未开发，G4 NotStarted。
 
 - **B6 final precision v1 历史 Passed / Frozen（最终放行被 v2 取代）。** 生产来源 `3abde2ebc1f11acccbad106142c96760a95f5d47` 不变；遗漏的公共 CommitReport 布局 footprint 门禁已补齐并提交 `f9426ee`：Native 7/7、Embedded 3/3（含 Release startup），全部按原预算六组 ABBA 通过；Debug/ASan Embedded 各 480 个完整 Invoke 零新增分配窗口，六个 Runtime-only/Embedded 投影均无 State/immer。190 个方法输入逐字节匹配生产来源。见 [机器验收](../evidence/B6/precision-3abde2e-footprint/acceptance.json)与 [交付](validation/B6-final-precision-delivery.md)。历史 D4.01–D4.04 / C1–C6 Passed 保留；B7 尚未开发，G4 仍 NotStarted。
 

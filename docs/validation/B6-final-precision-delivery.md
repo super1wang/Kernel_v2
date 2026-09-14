@@ -1,6 +1,6 @@
 # B6 最终精确化交付
 
-当前放行状态由 [v2 方案](../plans/B6-semantic-precision-v2.md)取代；历史机器事实保留。B7 HOLD，待新生产来源重新验证。
+当前最终放行决定由 [v2 最终交付](B6-final-semantic-precision-delivery.md)取代；本文件及旧来源机器事实作为历史保留。v2 已完成新来源验证，当前 B7 准入 GO。
 
 日期：2026-09-14。生产来源 `3abde2ebc1f11acccbad106142c96760a95f5d47`，范围仅为 B6 post-closure P2-A/P2-B；历史 D4.01–D4.04、C1–C6 和其 89/89 原始报告保持不变。
 
