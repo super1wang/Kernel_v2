@@ -204,6 +204,25 @@ int main() try {
   auto not_published=group_bound->invoke(*rejected_group,options);CHECK(std::holds_alternative<Completed<atomic::Results>>(not_published));
   CHECK(!std::holds_alternative<StateCommitted<atomic::Results>>(std::get<Completed<atomic::Results>>(not_published).outcome.value()));
   CHECK((*state)->snapshot(policy.caller->view())->revision()==3);entries=state_entries.load();
+  // Actual bound values must not change a later member's frozen target set.
+  auto value_target=+[](const int& value,std::span<foundation::ObjectId> output)noexcept->Result<std::size_t>{
+    if(output.empty())return make_unexpected(error(ContractsErrc::BudgetExceeded));
+    output[0]=value==34?policy_test::target(2):policy_test::target();return 1;
+  };
+  auto target_linked=registry::CandidateBindings::bind<ock::state::ObjectStateProvider,int,int>(*catalog,key(),{},AtomicMode::StateEdit,33,state_domain(),std::array{policy_test::target()},value_target,0);CHECK(target_linked);
+  auto target_group=GroupInput::create({*candidate,*target_linked});CHECK(target_group);
+  auto target_changed=group_bound->invoke(*target_group,options);CHECK(std::holds_alternative<Completed<atomic::Results>>(target_changed));
+  CHECK(!std::holds_alternative<StateCommitted<atomic::Results>>(std::get<Completed<atomic::Results>>(target_changed).outcome.value()));
+  CHECK(state_entries==entries+1&&(*state)->snapshot(policy.caller->view())->revision()==3);
+  // Revoke after member 1: member 2 must not enter, and no candidate is published.
+  entries=state_entries.load();
+  before_return=[&](WorkContext&){CHECK(policy.assembly.administration->replace_principal_policy({policy_test::principal(),{}}));};
+  auto group_revoked=group_bound->invoke(*group,options);before_return={};
+  CHECK(std::holds_alternative<Completed<atomic::Results>>(group_revoked));
+  CHECK(!std::holds_alternative<StateCommitted<atomic::Results>>(std::get<Completed<atomic::Results>>(group_revoked).outcome.value()));
+  CHECK(state_entries==entries+1);
+  CHECK(policy.assembly.administration->replace_principal_policy({policy_test::principal(),all_rules}));
+  CHECK((*state)->snapshot(policy.caller->view())->revision()==3);
   before_return=[&](WorkContext&){CHECK(policy.assembly.administration->replace_principal_policy({policy_test::principal(),{}}));};
   auto revoked=bound->invoke(63,options);before_return={};
   CHECK(std::holds_alternative<Completed<int>>(revoked));

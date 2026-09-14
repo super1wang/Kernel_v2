@@ -41,3 +41,5 @@
 原 B6 计划第 9 节 23 行逐行映射见 `tests/manifests/b6-closure-requirement-map.json`。复合测试内子场景不是新的 CTest 数量。StateNative/Runtime-only 和 Native/Embedded footprint 单独采集；正式失败原文保留，禁止拼接来源。
 
 安装工具差额复核：stateless/Embedded 的 dev.8 断言和 Native 采样消费者的 B6Subset 阶段、Runtime 安装投影同步；原采样业务、ABBA、窗口及数值预算未改。首轮 8743c15 Debug 89/89 原文保留，最终三配置重新绑定统一来源。
+
+最终 R09 断言补强：Runtime State 复合测试显式验证前序值改变后一步目标、第一步后撤权，两者均阻止第二个业务进入且 revision 不变。仅修改此测试与审核材料，生产/SDK/footprint 方法输入字节保持 6b817c3；成本报告按实际方法输入核验并复用，不重复物理采样。
