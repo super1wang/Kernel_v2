@@ -1,8 +1,10 @@
 # 内核实施进度
 
-更新：2026-09-13。唯一规范为 [架构 v3.3-r2](01_Architecture_v3.3.md) 与 [执行计划 v3.3-r2](02_Execution_Plan_v3.3.md)。恢复任务默认只读本文件顶部、当前 Development Batch 的相关规范/合同和 diff；历史 review/evidence 按需读取。
+更新：2026-09-14。唯一规范为 [架构 v3.3-r2](01_Architecture_v3.3.md) 与 [执行计划 v3.3-r2](02_Execution_Plan_v3.3.md)。恢复任务默认只读本文件顶部、当前 Development Batch 的相关规范/合同和 diff；历史 review/evidence 按需读取。
 
 ## 当前生产节点
+
+- **B6 final precision Passed / Frozen（2026-09-14）。** 来源 `3abde2e`：Atomic 组在注册边界拒绝 `ServerCapture` 并固定 RequireExplicitRevision；State 的 `business_entered` 和 `CancelWon` 由实际 handler/CommitClaim 事实产生，Native 与 Host managed 的取消前置均返回 `CancelledBeforeApply`。Debug 影响集 7/7、Release/ASan Runtime State 专项各 1/1，State 安装消费者和公开头检查通过；详见 [最终精确化交付](validation/B6-final-precision-delivery.md)。历史 B6 closure 89/89 和 C1–C6 原文不覆盖。
 
 - **B6 closure 完成，D4.01–D4.04 Passed（2026-09-13）；B7 准入解除 HOLD。** 最终来源 a03304a / 5d15ef17eb4e…，647 个输入逐字节匹配提交；Debug/Release/ASan 各 **89/89**，StateNative **9/9**、Runtime-only 安装独立通过；Native 7 模式、Embedded 3 配置均按原预算通过。审计 C1–C6 已关闭，失败原文保留。见 [收口交付](validation/B6-closure-delivery.md)与 [最终决定](../evidence/B6/closure-a03304a/acceptance.json)。B7 尚未开始，G4 仍 NotStarted。
 
