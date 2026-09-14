@@ -1,0 +1,94 @@
+[
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/evidence/accept_gate.py",
+      "tests/runs/b6-semantic-v2-matrix.json",
+      "J:\\Code\\Kernel_v2\\evidence\\912cb7554cd4-7b939f2a758f\\win-msvc-debug\\D4.04\\20260914T100720Z-8adf9927db37\\report.json",
+      "J:\\Code\\Kernel_v2\\evidence\\912cb7554cd4-7b939f2a758f\\win-msvc-release\\D4.04\\20260914T100815Z-83f52d64183f\\report.json",
+      "J:\\Code\\Kernel_v2\\evidence\\912cb7554cd4-7b939f2a758f\\win-msvc-asan\\D4.04\\20260914T101025Z-18444f47fada\\report.json",
+      "--policy",
+      "docs/reviews/automatic-acceptance-policy.json",
+      "--output",
+      "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-912cb75\\formal-acceptance-02.json"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T10:12:30.754319+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 1298,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9811967767399,
+      "qpc_frequency": 10000000
+    },
+    "pid": 56552,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T10:13:33.603494+00:00",
+    "label": "formal-acceptance"
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-912cb75\\verify-footprint.py"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T10:39:53.028759+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 382,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9828390507213,
+      "qpc_frequency": 10000000
+    },
+    "pid": 44808,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T10:40:15.423018+00:00",
+    "label": "footprint-verification"
+  },
+  {
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-912cb75\\finalize.py"
+    ],
+    "cwd": "J:\\Code\\Kernel_v2",
+    "started_at": "2026-09-14T10:40:15.430526+00:00",
+    "exit_code": 0,
+    "status": "Exited",
+    "process_tree": {
+      "mechanism": "WindowsJobObject",
+      "assigned_before_resume": true,
+      "active_after": 0,
+      "total_processes": 22,
+      "terminated_owned_job": false
+    },
+    "executable": "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+    "creation_clock": {
+      "qpc_ticks": 9828614520420,
+      "qpc_frequency": 10000000
+    },
+    "pid": 23212,
+    "observed_exit_code": 0,
+    "finished_at": "2026-09-14T10:40:16.583801+00:00",
+    "label": "finalize"
+  }
+]

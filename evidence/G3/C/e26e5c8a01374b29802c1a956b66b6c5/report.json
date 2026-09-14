@@ -1,0 +1,136 @@
+{
+  "format": "ock.embedded-footprint-report/1",
+  "status": "Passed",
+  "created_at": "2026-09-14T10:34:58.610188+00:00",
+  "completed_at": "2026-09-14T10:37:25.995644+00:00",
+  "profile": "win-msvc-release",
+  "method_digest": "ccdc2ca32359fbe8caad53fd0966345f3fb50d3a8cf3272cca7ce08f393e8dec",
+  "blocks": 6,
+  "budget_keys": [
+    "win-msvc-release/occupancy",
+    "win-msvc-release/startup"
+  ],
+  "metrics": {
+    "private_peak_absolute_max": 1650688,
+    "private_peak_paired_max": 987136,
+    "working_set_peak_absolute_max": 6664192,
+    "working_set_peak_paired_max": 2473984,
+    "ready_private_absolute_max": 1503232,
+    "ready_private_paired_max": 835584,
+    "ready_working_set_absolute_max": 6455296,
+    "ready_working_set_paired_max": 2297856,
+    "ready_peak_commit_absolute_max": 1437696,
+    "ready_peak_commit_paired_max": 778240,
+    "ready_peak_working_set_absolute_max": 6303744,
+    "ready_peak_working_set_paired_max": 2117632,
+    "distribution_increment_bytes": 1393528
+  },
+  "statistics": {
+    "private_peak": {
+      "embedded": {
+        "count": 12,
+        "min": 1609728,
+        "median": 1622016,
+        "p95": 1650688,
+        "max": 1650688
+      },
+      "paired_increment": {
+        "count": 12,
+        "min": 954368,
+        "median": 970752,
+        "p95": 987136,
+        "max": 987136
+      }
+    },
+    "working_set_peak": {
+      "embedded": {
+        "count": 12,
+        "min": 6172672,
+        "median": 6193152,
+        "p95": 6664192,
+        "max": 6664192
+      },
+      "paired_increment": {
+        "count": 12,
+        "min": 2433024,
+        "median": 2453504,
+        "p95": 2473984,
+        "max": 2473984
+      }
+    },
+    "ready_private": {
+      "embedded": {
+        "count": 12,
+        "min": 1462272,
+        "median": 1474560,
+        "p95": 1503232,
+        "max": 1503232
+      },
+      "paired_increment": {
+        "count": 12,
+        "min": 806912,
+        "median": 819200,
+        "p95": 835584,
+        "max": 835584
+      }
+    },
+    "ready_working_set": {
+      "embedded": {
+        "count": 12,
+        "min": 5947392,
+        "median": 5984256,
+        "p95": 6455296,
+        "max": 6455296
+      },
+      "paired_increment": {
+        "count": 12,
+        "min": 2211840,
+        "median": 2252800,
+        "p95": 2297856,
+        "max": 2297856
+      }
+    },
+    "ready_peak_commit": {
+      "embedded": {
+        "count": 12,
+        "min": 1384448,
+        "median": 1404928,
+        "p95": 1437696,
+        "max": 1437696
+      },
+      "paired_increment": {
+        "count": 12,
+        "min": 729088,
+        "median": 749568,
+        "p95": 778240,
+        "max": 778240
+      }
+    },
+    "ready_peak_working_set": {
+      "embedded": {
+        "count": 12,
+        "min": 5750784,
+        "median": 5799936,
+        "p95": 6303744,
+        "max": 6303744
+      },
+      "paired_increment": {
+        "count": 12,
+        "min": 2015232,
+        "median": 2064384,
+        "p95": 2117632,
+        "max": 2117632
+      }
+    }
+  },
+  "startup_metrics": {
+    "construction_to_ready_ms_absolute_max": 0.9084,
+    "construction_to_ready_ms_paired_max": 0.9084,
+    "create_to_ready_ms_absolute_max": 63.8696,
+    "create_to_ready_ms_paired_max": 39.0053
+  },
+  "kernel_thread_structural_upper_bound": 3,
+  "thread_proof": "docs/contracts/embedded-footprint-method.md",
+  "allocation_zero_verified": false,
+  "scope": "complete Embedded; Debug/ASan are allocation diagnostics; phase thread observations plus fixed creation bound, not continuous ETW; G3-C artifact only"
+}

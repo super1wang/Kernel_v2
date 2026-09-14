@@ -1,0 +1,9 @@
+{
+"format":"ock.cmake-target-graph/1",
+"build_components":"Embedded",
+"targets":{
+"Foundation": {"kind": "INTERFACE_LIBRARY", "system_dependencies": [], "dependencies": [], "external_dependencies": ["expected"], "implementation": "Implemented", "compile_features": ["cxx_std_20"], "compile_options": ["$<$<CXX_COMPILER_ID:MSVC>:/utf-8>","$<$<CXX_COMPILER_ID:MSVC>:/EHsc>","$<$<CXX_COMPILER_ID:MSVC>:/Zc:__cplusplus>","$<$<CXX_COMPILER_ID:MSVC>:/permissive->"], "compile_definitions": []},
+"CoreContracts": {"kind": "INTERFACE_LIBRARY", "system_dependencies": [], "dependencies": ["Foundation"], "external_dependencies": [], "implementation": "Implemented", "compile_features": ["cxx_std_20"], "compile_options": ["$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"], "compile_definitions": []},
+"Runtime": {"kind": "STATIC_LIBRARY", "system_dependencies": [{"name":"bcrypt","platform":"Windows","link_only":true}], "dependencies": ["CoreContracts"], "external_dependencies": [], "implementation": "B6Subset", "compile_features": ["cxx_std_20"], "compile_options": ["$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"], "compile_definitions": []},
+"Adapter::CpuPool": {"kind": "STATIC_LIBRARY", "system_dependencies": [], "dependencies": ["CoreContracts"], "external_dependencies": [], "implementation": "Implemented", "compile_features": ["cxx_std_20"], "compile_options": ["$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"], "compile_definitions": []}
+}}
