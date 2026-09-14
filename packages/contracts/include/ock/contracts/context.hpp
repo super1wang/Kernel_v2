@@ -82,6 +82,7 @@ public:
     unsigned expected=0;return state_.compare_exchange_strong(expected,2);
   }
   bool claimed() const noexcept {return state_.load()==1;}
+  bool cancelled() const noexcept {return state_.load()==2;}
 private:
   std::atomic<unsigned> state_{0};
 };

@@ -104,6 +104,8 @@ struct CommitReport {
   CommitDisposition disposition;
   std::optional<Error> error;
   std::shared_ptr<const PublicationProof> publication_proof;
+  // 只由实际 CommitClaim 仲裁产生；不能由调用结束后的 stop 状态推断。
+  bool cancelled_before_claim=false;
 };
 struct CommitState {
   PreparedIdentity identity;
@@ -116,6 +118,9 @@ inline Result<void> validate_commit_report(const CommitState &current,
     return same;
   if (report.disposition == CommitDisposition::Pending ||
       report.disposition > CommitDisposition::Indeterminate)
+    return reject(ContractsErrc::InvalidFact);
+  if (report.cancelled_before_claim &&
+      report.disposition != CommitDisposition::KnownNotCommitted)
     return reject(ContractsErrc::InvalidFact);
   if (current.disposition == CommitDisposition::Pending)
     return {};

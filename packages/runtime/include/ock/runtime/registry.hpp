@@ -279,6 +279,8 @@ template<ContractResult R> struct StateNativeCall {
   std::shared_ptr<PublicationAuthorityPort> publication;
   std::shared_ptr<const PublicationProof> proof;
   std::optional<Error> failure;
+  bool business_entered=false;
+  ApplyDecision before_apply=ApplyDecision::NotReached;
 };
 
 template<class P> Result<AtomicDomainRef> provider_domain(const HotEntry& entry,foundation::ObjectId target) {
@@ -318,6 +320,7 @@ void state_edit_native(const HotEntry& entry,const void* args,WorkContext& work,
   PreparedIdentity identity{call.commit,call.reservation,call.domain,base->revision,base->lifecycle_generation};
   auto fn=std::static_pointer_cast<const Function>(entry.handler);
   EditView<P> view((*frame)->edit,call.domain);
+  call.business_entered=true;
   auto output=(*fn)(*static_cast<const A*>(args),view,work);
   if(!output)return fail(output.error());
   if constexpr(!std::same_as<R,void>) {
@@ -356,6 +359,7 @@ void state_edit_native(const HotEntry& entry,const void* args,WorkContext& work,
       report->disposition==CommitDisposition::KnownNotCommitted);
   call.report=*report;
   if(report->disposition!=CommitDisposition::Published) {
+    call.before_apply=report->cancelled_before_claim?ApplyDecision::CancelWon:ApplyDecision::NotReached;
     return fail(report->error.value_or(error(ContractsErrc::Rejected)));
   }
   try {
@@ -546,6 +550,9 @@ class Registrar final {
 public:
   Registrar(const Registrar &) = delete;
   Registrar &operator=(const Registrar &) = delete;
+  Result<void> reject_invalid_definition() {
+    return batch_.fail(RegistryErrc::InvalidDefinition);
+  }
   template<AsyncInput A,ContractResult R,class Reader>
     requires (std::same_as<R,void> || AsyncInput<R>)
   Result<void> read_async(Result<void> (*f)(std::shared_ptr<AsyncReadCall<A,R,Reader>>),

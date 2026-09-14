@@ -234,8 +234,11 @@ private:
       observation.kind=InvocationRecordKind::Rejected;observation.error=error.code();
       return Rejected{std::move(error)};
     };
-    const auto failed = [&](Error error) -> InvokeReply<R> {
-      auto outcome = detail::outcome_failure<R>(error, state->empty_facts,true,managed);
+    const auto failed = [&](Error error,bool business_entered=true,
+                            ApplyDecision decision=ApplyDecision::NotReached,
+                            bool execution_accepted=false) -> InvokeReply<R> {
+      auto outcome = detail::outcome_failure<R>(error, state->empty_facts,business_entered,execution_accepted||managed,
+                                                decision==ApplyDecision::CancelWon);
       // 失败分支没有 R，不会再次执行可能抛出的 R 验证器。
       foundation::invariant(bool(outcome));
       observation.kind=InvocationRecordKind::FailedBeforeApply;observation.error=error.code();
@@ -326,7 +329,11 @@ private:
       registry::detail::StateNativeCall<R> call{state->caller->view(),*domain,ids->commit,ids->reservation,*permit,*action,*binding,managed};
       call.expected_state=options.expected_state;
       entered=true;NativeAccess::dispatch(*state->catalog,*state->entry,&args,work,&call);
-      if(call.failure)return failed(*call.failure);
+      // A State action has passed authorization and received its one-shot
+      // permit before its provider checks the exact base.  Preserve that fact
+      // when a pre-handler check rejects a native invocation.
+      if(call.failure)return failed(*call.failure,call.business_entered,call.before_apply,
+                                    managed||!call.business_entered);
       if(!call.outcome||!call.report||call.report->disposition!=CommitDisposition::Published||!call.publication||!call.proof)
         return failed(invocation_error(InvocationErrc::InvalidOutput));
       observation.kind=InvocationRecordKind::StateCommitted;observation.error.reset();

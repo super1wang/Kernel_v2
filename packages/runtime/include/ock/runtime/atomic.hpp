@@ -115,6 +115,10 @@ inline Result<std::size_t> result_bytes(const Results& result) {
 }
 template<class P> Result<void> register_group(registry::Registrar& registrar,const DefinitionInput& definition,
     const registry::OperationOptions& options,std::size_t input_limit=1024*1024,std::size_t reply_limit=1024*1024) {
+  // An externally callable group is defined against one exact observed base.
+  // Silent ServerCapture here would make the group reinterpret stale input.
+  if(options.revision_policy!=registry::RevisionPolicy::RequireExplicitRevision)
+    return registrar.reject_invalid_definition();
   if(!input_limit||!reply_limit||input_limit>64*1024*1024||reply_limit>64*1024*1024)return reject(ContractsErrc::BudgetExceeded);
   registry::SubmissionStorage<Input<P>,Results> storage{input_limit,reply_limit,
       [](const Input<P>& input){return input.bytes();},

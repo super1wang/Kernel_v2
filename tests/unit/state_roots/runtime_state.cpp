@@ -86,7 +86,9 @@ int main() try {
     registry::SubmissionStorage<int,int> storage{64,2048,input_bytes,reply_bytes,result_bytes};
     CHECK(registrar.state_edit(state_edit,definition,options,storage));
     definition.key=policy_test::operation(2).operation;
-    CHECK(atomic::register_group<ock::state::ObjectStateProvider>(registrar,definition,options));
+    auto atomic_options=options;
+    atomic_options.revision_policy=registry::RevisionPolicy::RequireExplicitRevision;
+    CHECK(atomic::register_group<ock::state::ObjectStateProvider>(registrar,definition,atomic_options));
     definition.key=read_key();definition.atomic_mode=AtomicMode::Incompatible;
     options.read_service=registry::ServiceRef{name("state.runtime"),name("candidate.reader")};
     CHECK((registrar.candidate_read<int,int,CandidateReader,ock::state::ObjectStateProvider>(ordinary_read,candidate_read,definition,options,storage)));
@@ -94,6 +96,16 @@ int main() try {
     CHECK(registrar.compute(candidate_compute,definition,options,storage));
   };
   auto batch=registry::RegistrationBatch::create({});CHECK(batch);CHECK((*batch)->add(module));auto catalog=(*batch)->publish();CHECK(catalog);
+  // Atomic registration is fail-closed: a ServerCapture group cannot freeze.
+  auto invalid_module=module;
+  invalid_module.register_operations=[](registry::Registrar& registrar){
+    DefinitionInput definition{policy_test::operation(2).operation,{}, {true,false,false,name("inline"),name("app")},AtomicMode::StateEdit,{name("allow")},"Invalid Atomic"};
+    registry::OperationOptions options{{},{registry::ProviderRef{name("state.runtime"),ProviderContract<ock::state::ObjectStateProvider>::key()}},
+      {name("state.runtime"),name("inline")},{},false,registry::RevisionPolicy::ServerCapture};
+    CHECK(!atomic::register_group<ock::state::ObjectStateProvider>(registrar,definition,options));
+  };
+  auto invalid_batch=registry::RegistrationBatch::create({});CHECK(invalid_batch);CHECK((*invalid_batch)->add(invalid_module));
+  CHECK(!(*invalid_batch)->publish());
   auto candidate=registry::CandidateBindings::bind<ock::state::ObjectStateProvider,int,int>(*catalog,key(),{},AtomicMode::StateEdit,33,state_domain(),std::array{policy_test::target()},state_target);CHECK(candidate);
   auto forged_digest=ContractDigest{};forged_digest.bytes[0]=std::byte{1};
   CHECK((!registry::CandidateBindings::bind<ock::state::ObjectStateProvider,int,int>(*catalog,key(),{},AtomicMode::StateEdit,33,state_domain(),std::array{policy_test::target(2)},state_target)));
@@ -179,12 +191,22 @@ int main() try {
   before_return=[&](WorkContext&){cancellation.request_stop();};
   auto cancelled=bound->invoke(60,cancelled_options);before_return={};
   CHECK(std::holds_alternative<Completed<int>>(cancelled));
-  CHECK(!std::holds_alternative<StateCommitted<int>>(std::get<Completed<int>>(cancelled).outcome.value()));
+  const auto& cancelled_outcome=std::get<Completed<int>>(cancelled).outcome;
+  CHECK(std::holds_alternative<CancelledBeforeApply>(cancelled_outcome.value()));
+  CHECK(cancelled_outcome.conditions().before_apply->business_entered&&
+      cancelled_outcome.conditions().before_apply->decision==ApplyDecision::CancelWon);
   CHECK((*state)->snapshot(policy.caller->view())->revision()==2);
   auto explicit_options=options;explicit_options.expected_state=PreparedBase{1,1};
   auto entries=state_entries.load();auto stale=bound->invoke(61,explicit_options);
   CHECK(state_entries==entries&&std::holds_alternative<Completed<int>>(stale));
-  CHECK(!std::holds_alternative<StateCommitted<int>>(std::get<Completed<int>>(stale).outcome.value()));
+  const auto& stale_outcome=std::get<Completed<int>>(stale).outcome;
+  CHECK(std::holds_alternative<FailedBeforeApply>(stale_outcome.value()));
+  CHECK(!stale_outcome.conditions().before_apply->business_entered);
+  CHECK(!std::holds_alternative<StateCommitted<int>>(stale_outcome.value()));
+  explicit_options.expected_state=PreparedBase{2,2};
+  auto stale_lifecycle=bound->invoke(62,explicit_options);
+  CHECK(state_entries==entries&&std::holds_alternative<Completed<int>>(stale_lifecycle));
+  CHECK(!std::get<Completed<int>>(stale_lifecycle).outcome.conditions().before_apply->business_entered);
   using GroupInput=atomic::Input<ock::state::ObjectStateProvider>;
   auto linked=registry::CandidateBindings::bind<ock::state::ObjectStateProvider,int,int>(*catalog,key(),{},AtomicMode::StateEdit,33,state_domain(),std::array{policy_test::target()},state_target,0);CHECK(linked);
   CHECK(!GroupInput::create({*linked}));
@@ -196,12 +218,17 @@ int main() try {
   auto nested=registry::CandidateBindings::bind<ock::state::ObjectStateProvider,GroupInput,atomic::Results>(*catalog,policy_test::operation(2).operation,{},AtomicMode::StateEdit,*group,state_domain(),std::array{policy_test::target()},atomic::target<ock::state::ObjectStateProvider>);CHECK(!nested);
   auto group_bound=(*engine)->bind<GroupInput,atomic::Results>(policy_test::operation(2).operation,{},Shape::StateEdit,policy.caller,
       std::array{policy_test::target()},atomic::target<ock::state::ObjectStateProvider>,name("atomic.native"));CHECK(group_bound);
-  auto grouped=group_bound->invoke(*group,options);CHECK(std::holds_alternative<Completed<atomic::Results>>(grouped));
+  auto group_missing=group_bound->invoke(*group,options);CHECK(std::holds_alternative<Completed<atomic::Results>>(group_missing));
+  CHECK(std::holds_alternative<FailedBeforeApply>(std::get<Completed<atomic::Results>>(group_missing).outcome.value()));
+  CHECK(state_entries==entries);
+  auto group_options=options;group_options.expected_state=PreparedBase{2,1};
+  auto grouped=group_bound->invoke(*group,group_options);CHECK(std::holds_alternative<Completed<atomic::Results>>(grouped));
   auto& group_outcome=std::get<Completed<atomic::Results>>(grouped).outcome;
   CHECK(std::holds_alternative<StateCommitted<atomic::Results>>(group_outcome.value()));
   CHECK((*state)->snapshot(policy.caller->view())->revision()==3);
   auto rejected_group=GroupInput::create({*candidate,*candidate},{atomic::Assertion::equals(1,999)});CHECK(rejected_group);
-  auto not_published=group_bound->invoke(*rejected_group,options);CHECK(std::holds_alternative<Completed<atomic::Results>>(not_published));
+  group_options.expected_state=PreparedBase{3,1};
+  auto not_published=group_bound->invoke(*rejected_group,group_options);CHECK(std::holds_alternative<Completed<atomic::Results>>(not_published));
   CHECK(!std::holds_alternative<StateCommitted<atomic::Results>>(std::get<Completed<atomic::Results>>(not_published).outcome.value()));
   CHECK((*state)->snapshot(policy.caller->view())->revision()==3);entries=state_entries.load();
   // Actual bound values must not change a later member's frozen target set.
@@ -211,13 +238,13 @@ int main() try {
   };
   auto target_linked=registry::CandidateBindings::bind<ock::state::ObjectStateProvider,int,int>(*catalog,key(),{},AtomicMode::StateEdit,33,state_domain(),std::array{policy_test::target()},value_target,0);CHECK(target_linked);
   auto target_group=GroupInput::create({*candidate,*target_linked});CHECK(target_group);
-  auto target_changed=group_bound->invoke(*target_group,options);CHECK(std::holds_alternative<Completed<atomic::Results>>(target_changed));
+  auto target_changed=group_bound->invoke(*target_group,group_options);CHECK(std::holds_alternative<Completed<atomic::Results>>(target_changed));
   CHECK(!std::holds_alternative<StateCommitted<atomic::Results>>(std::get<Completed<atomic::Results>>(target_changed).outcome.value()));
   CHECK(state_entries==entries+1&&(*state)->snapshot(policy.caller->view())->revision()==3);
   // Revoke after member 1: member 2 must not enter, and no candidate is published.
   entries=state_entries.load();
   before_return=[&](WorkContext&){CHECK(policy.assembly.administration->replace_principal_policy({policy_test::principal(),{}}));};
-  auto group_revoked=group_bound->invoke(*group,options);before_return={};
+  auto group_revoked=group_bound->invoke(*group,group_options);before_return={};
   CHECK(std::holds_alternative<Completed<atomic::Results>>(group_revoked));
   CHECK(!std::holds_alternative<StateCommitted<atomic::Results>>(std::get<Completed<atomic::Results>>(group_revoked).outcome.value()));
   CHECK(state_entries==entries+1);
@@ -383,12 +410,17 @@ int main() try {
   CHECK(state_entries==before_denied);
   entered_step=std::make_shared<std::binary_semaphore>(0);release_step=std::make_shared<std::binary_semaphore>(0);
   before_return=[entered_step,release_step](WorkContext&){entered_step->release();CHECK(release_step->try_acquire_for(std::chrono::seconds(3)));};
-  auto cancel_submit=host_group_bound->submit(*host_group,submit_options);CHECK(std::holds_alternative<Accepted>(cancel_submit));
+  // A single StateEdit reaches the commit claim immediately after the handler;
+  // this distinguishes a real CancelWon from Atomic's cooperative step stop.
+  auto cancel_submit=hosted->submit(90,submit_options);CHECK(std::holds_alternative<Accepted>(cancel_submit));
   auto cancel_ref=std::get<Accepted>(cancel_submit).execution;CHECK(entered_step->try_acquire_for(std::chrono::seconds(2)));
   CHECK(session->cancel(**caller,cancel_ref));release_step->release();
   auto cancel_wait=session->wait(**caller,cancel_ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));CHECK(cancel_wait&&cancel_wait->state==host::ExecutionWaitState::Terminal);
-  before_return={};auto cancelled_group=session->result<atomic::Results>(**caller,cancel_ref);CHECK(cancelled_group);
-  CHECK(!std::holds_alternative<StateCommitted<atomic::Results>>(std::get<Completed<atomic::Results>>(*cancelled_group->value).outcome.value()));
+  before_return={};auto cancelled_state=session->result<int>(**caller,cancel_ref);CHECK(cancelled_state);
+  const auto& cancelled_state_outcome=std::get<Completed<int>>(*cancelled_state->value).outcome;
+  CHECK(std::holds_alternative<CancelledBeforeApply>(cancelled_state_outcome.value()));
+  CHECK(cancelled_state_outcome.conditions().before_apply->business_entered&&
+      cancelled_state_outcome.conditions().before_apply->decision==ApplyDecision::CancelWon);
   CHECK((*state)->snapshot((*caller)->view())->revision()==6);
   recorder->hold=true;
   auto record_failure=host_group_bound->submit(*host_group,submit_options);CHECK(std::holds_alternative<Accepted>(record_failure));

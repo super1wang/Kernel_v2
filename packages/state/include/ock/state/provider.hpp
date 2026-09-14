@@ -72,6 +72,7 @@ public:
     contracts::CommitReport report{owned->identity(),result?contracts::CommitDisposition::Published:
         contracts::CommitDisposition::KnownNotCommitted,result?std::optional<foundation::Error>{}:
         std::optional<foundation::Error>{result.error()}};
+    report.cancelled_before_claim=!result&&owned->claim().cancelled();
     if(result)report.publication_proof=result->proof;
     {
       std::lock_guard lock(mutex_);owned_.reset();committing_=false;if(result){published_=*result;published_identity_=owned->identity();}

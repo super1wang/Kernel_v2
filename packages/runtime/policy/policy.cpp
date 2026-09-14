@@ -1633,6 +1633,12 @@ Result<void> ActionAuthorization::consume_claimed(const ActionPermit& permit,
     const PermitBinding& expected,CommitClaim& claim) {
   auto a=state_->value;auto s=a->hold.store;
   std::lock_guard lock(s->mutex);
+  // Cancellation wins the same linearization race as the CommitClaim.  Marking
+  // the claim is the only source from which State may report CancelWon.
+  if(a->status==ActionStatus::Cancelled) {
+    (void)claim.cancel();
+    return deny(PolicyErrc::Cancelled);
+  }
   auto current=action_current(*a);if(!current)return current;
   if(a->status!=ActionStatus::Issued||&permit!=a->permit.get()||expected!=a->binding)
     return deny(PolicyErrc::InvalidPermit);
