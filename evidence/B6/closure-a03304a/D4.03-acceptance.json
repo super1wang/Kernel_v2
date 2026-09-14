@@ -1,0 +1,78 @@
+{
+  "format": "ock.batch-package-closure/1",
+  "task_id": "D4.03",
+  "package_status": "Passed",
+  "created_at": "2026-09-14T03:36:54.657416+00:00",
+  "actor_type": "AI",
+  "human_review_required": false,
+  "source_commit": "a03304a407b7716c1c68cb601cedc7c08d2ffa2c",
+  "inputs_sha256": "5d15ef17eb4e1305e9275a077a80c3f8a2fde46d24b6f553b4d886f7607d1e9a",
+  "policy": {
+    "path": "docs/reviews/automatic-acceptance-policy.json",
+    "sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80"
+  },
+  "prerequisites": [
+    {
+      "task_id": "D3.05",
+      "status": "Passed",
+      "kind": "HistoricalCommittedStatus",
+      "commit": "a03304a407b7716c1c68cb601cedc7c08d2ffa2c",
+      "path": "docs/progress.md"
+    },
+    {
+      "task_id": "D0.05",
+      "status": "Passed",
+      "kind": "HistoricalCommittedStatus",
+      "commit": "a03304a407b7716c1c68cb601cedc7c08d2ffa2c",
+      "path": "docs/progress.md"
+    },
+    {
+      "task_id": "D4.02",
+      "status": "Passed",
+      "kind": "CommittedClosure",
+      "commit": "8f23295e5311b5095a601f15424801c003c518eb",
+      "path": "evidence/B6/closure-a03304a/D4.02-acceptance.json",
+      "sha256": "32d94b386b1495ccf31ee7cca366f8d31c6e21d5ddfabae3090d0c30186c3f6a"
+    }
+  ],
+  "technical_conclusions": {
+    "path": "docs/reviews/B6-closure-package-conclusions.md",
+    "sha256": "20a5bea6dac7033199d3a2c87fe6666a4961316b1bf4dfad41e859bd1ce7dfc8"
+  },
+  "matrix": {
+    "path": "evidence/B6/closure-a03304a/matrix-acceptance.json",
+    "sha256": "9f4d5b60089d4384347cbc1384f3d1faee927828b45b4fe654140c0b5fed77da"
+  },
+  "closure_inputs": {
+    "path": "evidence/B6/closure-a03304a/closure-inputs.json",
+    "sha256": "2516eb95931ac446376718fb95800727c2a08fb399f17a08e15c2f7748f194ec"
+  },
+  "required_cases": [
+    "T09.state.memory_commit",
+    "T06.state.runtime_native",
+    "T06.contracts.outcome_closed_variants",
+    "T06.contracts.publication_proof_required",
+    "T06.contracts.before_apply_and_composite_proofs",
+    "T06.contracts.atomic_prepared_identity",
+    "T07.policy.cancel_arbitration",
+    "T07.policy.consume_before_revoke",
+    "T07.policy.expiry_boundary",
+    "T07.policy.permit_concurrent",
+    "T07.policy.permit_once",
+    "T07.policy.permit_origin_binding",
+    "T07.policy.revoke_before_consume",
+    "T07.policy.target_lifecycle",
+    "T03.native.cancel_and_budget",
+    "T03.native.no_task_path",
+    "T03.native.reentrant_and_concurrent",
+    "T06.native.authority_origin",
+    "T06.native.business_failure",
+    "T06.native.invalid_output",
+    "T06.native.managed_accepted_failures",
+    "T06.native.outcome_consistency",
+    "T06.native.permission_intersection",
+    "T06.native.revoke_and_regrant",
+    "T06.native.target_binding"
+  ],
+  "note": "独立逻辑完成条件与已提交前置已核对；共享同源完整矩阵及成本/安装实证，不重复物理执行。"
+}
