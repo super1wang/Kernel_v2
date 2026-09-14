@@ -2,6 +2,10 @@
 
 日期：2026-09-14。生产来源 `3abde2ebc1f11acccbad106142c96760a95f5d47`，范围仅为 B6 post-closure P2-A/P2-B；历史 D4.01–D4.04、C1–C6 和其 89/89 原始报告保持不变。
 
+## 门禁更正（2026-09-14）
+
+代码结论保留。公共 CommitReport 布局变化要求刷新 footprint，原交付未完成该项，故正式验证 Pending、B7 HOLD。原下列直接验证不能代替 Native/Embedded 原预算测量；新增证据通过后再解除 HOLD。
+
 ## 实现结论
 
 - Atomic `register_group()` fail-closed：只有 `RequireExplicitRevision` 可以注册；普通单条 StateEdit 仍可由可信注册者选择既有 revision policy。

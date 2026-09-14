@@ -4,9 +4,9 @@
 
 ## 当前生产节点
 
-- **B6 final precision Passed / Frozen（2026-09-14）。** 来源 `3abde2e`：Atomic 组在注册边界拒绝 `ServerCapture` 并固定 RequireExplicitRevision；State 的 `business_entered` 和 `CancelWon` 由实际 handler/CommitClaim 事实产生，Native 与 Host managed 的取消前置均返回 `CancelledBeforeApply`。Debug 影响集 7/7、Release/ASan Runtime State 专项各 1/1，State 安装消费者和公开头检查通过；详见 [最终精确化交付](validation/B6-final-precision-delivery.md)。历史 B6 closure 89/89 和 C1–C6 原文不覆盖。
+- **B6 final precision：代码 Passed；正式验证 Pending（footprint refresh）；B7 准入 HOLD。** 来源 `3abde2e` 的公共 CommitReport 布局改变，触发最终规划要求的 Native/Embedded 原预算 ABBA 与分配刷新。先前 Passed / Frozen 标记过早，待新机器证据完整通过后恢复。历史 B6 与 C1–C6 Passed 保留；仅补该门禁，不重开生产代码。
 
-- **B6 closure 完成，D4.01–D4.04 Passed（2026-09-13）；B7 准入解除 HOLD。** 最终来源 a03304a / 5d15ef17eb4e…，647 个输入逐字节匹配提交；Debug/Release/ASan 各 **89/89**，StateNative **9/9**、Runtime-only 安装独立通过；Native 7 模式、Embedded 3 配置均按原预算通过。审计 C1–C6 已关闭，失败原文保留。见 [收口交付](validation/B6-closure-delivery.md)与 [最终决定](../evidence/B6/closure-a03304a/acceptance.json)。B7 尚未开始，G4 仍 NotStarted。
+- **B6 closure 完成，D4.01–D4.04 Passed（2026-09-13）；历史准入决定，当前 B7 HOLD 以上文为准。** 最终来源 a03304a / 5d15ef17eb4e…，647 个输入逐字节匹配提交；Debug/Release/ASan 各 **89/89**，StateNative **9/9**、Runtime-only 安装独立通过；Native 7 模式、Embedded 3 配置均按原预算通过。审计 C1–C6 已关闭，失败原文保留。见 [收口交付](validation/B6-closure-delivery.md)与 [最终决定](../evidence/B6/closure-a03304a/acceptance.json)。B7 尚未开始，G4 仍 NotStarted。
 
 - **B6 历史实现（审计前）完成，D4.01–D4.04 Passed。** owning PublishedState/Snapshot、候选 Edit/WriteSet/History、内存 Commit 发布 gate 与同源有限 Atomic 组已完成；Runtime 发布后结果事实保持，State 公开仅依赖 CoreContracts，immer 私有。最终来源 `b6203fd` / `ab332d1b0e16…` 的 Debug、Release、ASan 各 **62/62**，完整审计错误为 0；[自动验收](../evidence/B6/final-b6203fd/acceptance.json)为 Passed，详见 [B6 交付](validation/B6-delivery.md)。
 

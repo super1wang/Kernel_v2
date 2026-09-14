@@ -1,12 +1,12 @@
 {
   "format": "ock.native-footprint-budgets/1",
   "stage": "NativeSubset",
-  "decision": "docs/reviews/B6-final-precision-footprint-budget.md",
+  "decision": "docs/reviews/B6-closure-budget-decision.md",
   "budgets": {
     "win-msvc-debug/occupancy": {
       "status": "Approved",
-      "method_digest": "7270dd7f8674d34c8ed26c6ca9ae646387388889c671660cd1a115202e54e227",
-      "approved_at": "2026-09-14T07:41:46.974211+00:00",
+      "method_digest": "1283f7756ea87c00adbb67540722344d9ef1687ae25594795bc377923ceebc94",
+      "approved_at": "2026-09-14T02:20:00.176837+00:00",
       "pilot_run_ids": [
         "51164-b0-0-baseline-6942fccb1c7a4249a8e7fb4c5cd97f3b",
         "58528-b0-1-native-6942fccb1c7a4249a8e7fb4c5cd97f3b",
@@ -37,8 +37,8 @@
     },
     "win-msvc-debug/allocation": {
       "status": "Approved",
-      "method_digest": "7e753ee3039c2ac2931b86c119854297f662a151b9586a296ae74b6f81b30d56",
-      "approved_at": "2026-09-14T07:41:46.974211+00:00",
+      "method_digest": "8dff92c4ef086829b01350e2eda9246deb180790581772a958698afa6cfe0fcf",
+      "approved_at": "2026-09-14T02:20:00.176837+00:00",
       "pilot_run_ids": [
         "56888-b0-0-baseline-c358b65d854044b484faf29ffefed5ff",
         "43440-b0-1-native-c358b65d854044b484faf29ffefed5ff",
@@ -69,8 +69,8 @@
     },
     "win-msvc-release/occupancy": {
       "status": "Approved",
-      "method_digest": "cc75ac690ad4814347fde1bd99222971a7f5d0aef96049b069454963223aa27c",
-      "approved_at": "2026-09-14T07:41:46.974211+00:00",
+      "method_digest": "78d42fae20defbf8d13992ac0b6b1beb77e3b68171f13408b6bc3aaff205f718",
+      "approved_at": "2026-09-14T02:20:00.176837+00:00",
       "pilot_run_ids": [
         "53800-b0-0-baseline-36c70e3f853a48cb84b21866b5bd086a",
         "42744-b0-1-native-36c70e3f853a48cb84b21866b5bd086a",
@@ -101,8 +101,8 @@
     },
     "win-msvc-release/allocation": {
       "status": "Approved",
-      "method_digest": "7b65f838cbeced4e68ce8183099bfdc460f927e74f01af1194095beffeb1e563",
-      "approved_at": "2026-09-14T07:41:46.974211+00:00",
+      "method_digest": "855dfbb1dcc2eefff970ac93d2c69e937bb340c99ba3743a2544e1c903faaa1a",
+      "approved_at": "2026-09-14T02:20:00.176837+00:00",
       "pilot_run_ids": [
         "29444-b0-0-baseline-1caa2a4ffcaa459f9ff97e2a29dedd19",
         "44148-b0-1-native-1caa2a4ffcaa459f9ff97e2a29dedd19",
@@ -133,8 +133,8 @@
     },
     "win-msvc-release/latency": {
       "status": "Approved",
-      "method_digest": "0b8f184e9ae344c5f34f191bed910025b0c1d3b7172b89bd449e7572f6a07915",
-      "approved_at": "2026-09-14T07:41:46.974211+00:00",
+      "method_digest": "2375c77ea9cb22ad1820f3d3475f731acbf9384ed7693ed5a6f6026c9f1c39d2",
+      "approved_at": "2026-09-14T02:20:00.176837+00:00",
       "pilot_run_ids": [
         "46108-b0-0-baseline-f4947e741e6443a2861202a2917edf4c",
         "50416-b0-1-native-f4947e741e6443a2861202a2917edf4c",
@@ -159,8 +159,8 @@
     },
     "win-msvc-asan/occupancy": {
       "status": "Approved",
-      "method_digest": "6f487ef7efb32ad480e5f75a96bbd5ff30188ce60a9d9a0e46e335c9e4f54345",
-      "approved_at": "2026-09-14T07:41:46.974211+00:00",
+      "method_digest": "df782399e609711166ea867896848db76a54ab5944e66153cb3a0b2b96daf3d1",
+      "approved_at": "2026-09-14T02:20:00.176837+00:00",
       "pilot_run_ids": [
         "45804-b0-0-baseline-9ea8611b01754c2ea4a54a590f98e247",
         "52024-b0-1-native-9ea8611b01754c2ea4a54a590f98e247",
@@ -191,8 +191,8 @@
     },
     "win-msvc-asan/allocation": {
       "status": "Approved",
-      "method_digest": "0881a583c2be1aa6cb419544b2e7d7b3ac84836ba19b49e40bea575eda29f5ff",
-      "approved_at": "2026-09-14T07:41:46.974211+00:00",
+      "method_digest": "63c38229dc3997b56fe1d07e9064abcc1ee9d63b26103ebde8fb8a7792ac1131",
+      "approved_at": "2026-09-14T02:20:00.176837+00:00",
       "pilot_run_ids": [
         "21748-b0-0-baseline-3a7885a8041145f59f8710626e2f1ea3",
         "64016-b0-1-native-3a7885a8041145f59f8710626e2f1ea3",
@@ -361,8 +361,8 @@
   "embedded": {
     "format": "ock.embedded-footprint-budgets/1",
     "actor_type": "AI",
-    "decision": "docs/reviews/B6-final-precision-footprint-budget.md",
-    "decision_sha256": "d63ac8d4eae684bd1113ab71fb03fa6f3d10808433f8e1ae327051ea1b00ce2d",
+    "decision": "docs/reviews/B6-closure-budget-decision.md",
+    "decision_sha256": "e211eef098d2de976419e2e04c58d64714bdb61df60aa37a0b0c99ff1d06ada6",
     "policy_sha256": "712ad1e661300f538cacac5af1d5111fdf6418624369f02a900e992610786d80",
     "native_fields_before_sha256": "3d16ed9ca9358b46dd955f2656790be5d934bf04dee817bc054852ce40f6d55c",
     "configuration": {
@@ -395,8 +395,8 @@
     "budgets": {
       "win-msvc-debug/allocation": {
         "status": "Approved",
-        "method_digest": "7ff3e5d6af2b8d9f86f396b450a85eba9e2009cf02022767d5154ec03f23d7a9",
-        "approved_at": "2026-09-14T07:41:46.974211+00:00",
+        "method_digest": "7aed1df45286c9d87b291f9353fcab6cb911acc71dd34fd0c0fa4e54f0757e84",
+        "approved_at": "2026-09-14T02:20:00.176837+00:00",
         "pilot_run_ids": [
           "evidence/B5/embedded-pilot-1df84b5c12/1-embedded-stdout.log",
           "evidence/B5/embedded-pilot-d8d809d523/1-embedded-stdout.log",
@@ -421,8 +421,8 @@
       },
       "win-msvc-release/occupancy": {
         "status": "Approved",
-        "method_digest": "450322cbc8600e5f33f4d47aee03fe4933d58ed9e64b9338a75f4f70829bb6a0",
-        "approved_at": "2026-09-14T07:41:46.974211+00:00",
+        "method_digest": "bdf703935a0d7f985d145cf546f5f5b80debddd83e8424a5770436d71bb7bf4a",
+        "approved_at": "2026-09-14T02:20:00.176837+00:00",
         "pilot_run_ids": [
           "evidence/B5/embedded-pilot-1df84b5c12/1-embedded-stdout.log",
           "evidence/B5/embedded-pilot-d8d809d523/1-embedded-stdout.log",
@@ -447,8 +447,8 @@
       },
       "win-msvc-asan/allocation": {
         "status": "Approved",
-        "method_digest": "63733ca04de686a10e12a39d04fb2014d8de549fc9a5117132e190df11dc2302",
-        "approved_at": "2026-09-14T07:41:46.974211+00:00",
+        "method_digest": "f31b36b4ce273e399abe8e0770b7b402c537f8deadd55a37d06d86f63a1aaacf",
+        "approved_at": "2026-09-14T02:20:00.176837+00:00",
         "pilot_run_ids": [
           "evidence/B5/embedded-pilot-1df84b5c12/1-embedded-stdout.log",
           "evidence/B5/embedded-pilot-d8d809d523/1-embedded-stdout.log",
@@ -473,8 +473,8 @@
       },
       "win-msvc-release/startup": {
         "status": "Approved",
-        "method_digest": "450322cbc8600e5f33f4d47aee03fe4933d58ed9e64b9338a75f4f70829bb6a0",
-        "approved_at": "2026-09-14T07:41:46.974211+00:00",
+        "method_digest": "bdf703935a0d7f985d145cf546f5f5b80debddd83e8424a5770436d71bb7bf4a",
+        "approved_at": "2026-09-14T02:20:00.176837+00:00",
         "pilot_run_ids": [
           "evidence/B5/embedded-startup-f771053399/samples/summary.json"
         ],
