@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="31"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="DESKTOP-U2F62TA"
+	time="41"
+	timestamp="2026-09-15T04:53:03"
+	>
+	<testcase name="T24.state.installed_consumer" classname="T24.state.installed_consumer" time="16.4972" status="run">
+		<properties>
+			<property name="cmake_labels" value="B6"/>
+		</properties>
+		<system-out>argv: ['cmake', '--install', 'J:\\Code\\Kernel_v2\\build\\b6-final-release', '--config', 'Release', '--prefix', 'J:\\Code\\Kernel_v2\\build\\state-install-pz3musn9\\original'] exit_code: 0
+argv: ['cmake', '-S', 'J:\\Code\\Kernel_v2\\build\\state-install-pz3musn9\\source', '-G', 'Visual Studio 17 2022', '-A', 'x64', '-T', 'v143,version=14.44.35207', '-DCMAKE_SYSTEM_VERSION=10.0.26100.0', '-DCMAKE_TOOLCHAIN_FILE=J:\\Code\\Kernel_v2/cmake/LockedMSVC.cmake', '-DCMAKE_PREFIX_PATH=J:\\Code\\Kernel_v2\\build\\state-install-pz3musn9\\relocated', '-DOCK_CONSUMER_ASAN=OFF', '-DOCK_CONSUMER_STATE_HOST=ON', '-B', 'J:\\Code\\Kernel_v2\\build\\state-install-pz3musn9\\consumer'] exit_code: 0
+argv: ['cmake', '--build', 'J:\\Code\\Kernel_v2\\build\\state-install-pz3musn9\\consumer', '--config', 'Release', '--parallel', '4', '--', '/nr:false'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\state-install-pz3musn9\\consumer\\Release\\installed_state.exe'] exit_code: 0
+argv: ['J:\\Code\\Kernel_v2\\build\\state-install-pz3musn9\...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.sdk.version_header" classname="T24.sdk.version_header" time="0.0704555" status="run">
+		<properties>
+			<property name="cmake_labels" value="D0.02"/>
+		</properties>
+		<system-out>0.1.0-dev.8
+</system-out>
+	</testcase>
+	<testcase name="T01.contracts.component_closure" classname="T01.contracts.component_closure" time="1.81041" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>test_contracts_cannot_duplicate_or_add_third_party_backend (tests.architecture.test_contracts_stage.ComponentClosureTests.test_contracts_cannot_duplicate_or_add_third_party_backend) ... ok
+test_core_stage_preserves_foundation_and_only_adds_contracts (tests.architecture.test_contracts_stage.ComponentClosureTests.test_core_stage_preserves_foundation_and_only_adds_contracts) ... ok
+test_foundation_cannot_regress_or_lose_expected (tests.architecture.test_contracts_stage.ComponentClosureTests.test_foundation_cannot_regress_or_lose_expected) ... ok
+test_other_product_implementation_rejected (tests.architecture.test_contracts_stage.ComponentClosureTests.test_other_product_implementation_rejected) ... ok
+test_product_closure_rejects_other_modules_and_unknown_targets (tests.architecture.test_contracts_stage.ComponentClosureTests.test_product_closure_rejects_other_modules_and_unknown_targets) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.691s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="T01.contracts.public_include_boundary" classname="T01.contracts.public_include_boundary" time="4.47585" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>test_actual_public_macros_and_compile_conditions_match_manifest (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_actual_public_macros_and_compile_conditions_match_manifest) ... ok
+test_comments_literals_and_narrow_types_not_backdoors (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_comments_literals_and_narrow_types_not_backdoors) ... ok
+test_dom_sql_and_runtime_includes_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_dom_sql_and_runtime_includes_rejected) ... ok
+test_exact_six_headers_required (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_exact_six_headers_required) ... ok
+test_public_capability_backdoors_rejected (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_public_capability_backdoors_rejected) ... ok
+test_registered_public_macros_must_remain_explicitly_empty (tests.architecture.test_contracts_stage.PublicBoundaryTests.test_registered_public_macros_must_remain_explicitly_empty) ... ok
+
+---------------------...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="T24.contracts.public_headers" classname="T24.contracts.public_headers" time="12.0192" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>{"case": "public_headers", "status": "Passed", "work": "J:\\Code\\Kernel_v2\\build\\d1.02-sdk\\7d7b71b1ac2248bd9861b99f838bf113"}
+</system-out>
+	</testcase>
+	<testcase name="T08.state.snapshot_ownership" classname="T08.state.snapshot_ownership" time="0.0607316" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T09.state.memory_commit" classname="T09.state.memory_commit" time="0.0690792" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T10.state.atomic_group" classname="T10.state.atomic_group" time="0.0645552" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.state.runtime_native" classname="T06.state.runtime_native" time="1.13053" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.contracts.compile_fixture_setup" classname="T02.contracts.compile_fixture_setup" time="4.13676" status="run">
+		<properties>
+			<property name="cmake_labels" value="CompileContracts;Tools"/>
+		</properties>
+		<system-out>{"status": "Ready", "fixture": "J:/Code/Kernel_v2/build/b6-final-release/tests/compile/contracts/child-runs/fixtures/a2be7e8c499fe0c2ae465601", "run_id": "a2be7e8c499fe0c2ae465601", "evidence": "J:\\Code\\Kernel_v2\\build\\b6-final-release\\tests\\compile\\contracts\\child-runs\\setup-a2be7e8c499fe0c2ae465601"}
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.outcome_closed_variants" classname="T06.contracts.outcome_closed_variants" time="0.0524919" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.outcome_closed_variants
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.publication_proof_required" classname="T06.contracts.publication_proof_required" time="0.0436761" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.publication_proof_required
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.before_apply_and_composite_proofs" classname="T06.contracts.before_apply_and_composite_proofs" time="0.0607469" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.before_apply_and_composite_proofs
+</system-out>
+	</testcase>
+	<testcase name="T06.contracts.atomic_prepared_identity" classname="T06.contracts.atomic_prepared_identity" time="0.0616334" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.02"/>
+		</properties>
+		<system-out>Passed T06.contracts.atomic_prepared_identity
+</system-out>
+	</testcase>
+	<testcase name="T07.policy.cancel_arbitration" classname="T07.policy.cancel_arbitration" time="0.0694627" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.consume_before_revoke" classname="T07.policy.consume_before_revoke" time="0.0581223" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.expiry_boundary" classname="T07.policy.expiry_boundary" time="0.0607962" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.permit_concurrent" classname="T07.policy.permit_concurrent" time="0.0670466" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.permit_once" classname="T07.policy.permit_once" time="0.072052" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.revoke_before_consume" classname="T07.policy.revoke_before_consume" time="0.0656144" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T07.policy.target_lifecycle" classname="T07.policy.target_lifecycle" time="0.0629435" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T02.native.validation_exception" classname="T02.native.validation_exception" time="0.067597" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.cancel_and_budget" classname="T03.native.cancel_and_budget" time="0.0722999" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.host_execution_resources" classname="T03.native.host_execution_resources" time="0.0727866" status="run">
+		<properties>
+			<property name="cmake_labels" value="B5;D3.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.host_required_record" classname="T03.native.host_required_record" time="0.0898128" status="run">
+		<properties>
+			<property name="cmake_labels" value="B5;D3.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.managed_execution_path" classname="T03.native.managed_execution_path" time="0.0680949" status="run">
+		<properties>
+			<property name="cmake_labels" value="B5;D3.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.managed_record" classname="T03.native.managed_record" time="0.0645865" status="run">
+		<properties>
+			<property name="cmake_labels" value="B5;D3.04"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T03.native.no_task_path" classname="T03.native.no_task_path" time="0.0667143" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.business_failure" classname="T06.native.business_failure" time="0.0661633" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.managed_accepted_failures" classname="T06.native.managed_accepted_failures" time="0.0682641" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="T06.native.outcome_consistency" classname="T06.native.outcome_consistency" time="0.0683032" status="run">
+		<properties>
+			<property name="cmake_labels" value="D1.05"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+</testsuite>

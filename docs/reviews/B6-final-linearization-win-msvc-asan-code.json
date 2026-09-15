@@ -1,0 +1,18 @@
+{
+  "format": "ock.technical-review/1",
+  "task_id": "D4.04",
+  "review_kind": "code",
+  "review_status": "Approved",
+  "reviewed_commit": "5fd2310aec5f8a24ac14b948677930e2a7ced7e3",
+  "reviewed_inputs_sha256": "9cd7734ef8beff2ba2309d989a3a65a1d85184224a0612becb420fd98f91f1a5",
+  "reviewed_at": "2026-09-15T09:46:48.916263+00:00",
+  "reviewer": "Codex AI B6 final expiry-cancel linearization closure",
+  "actor_type": "AI",
+  "approval_text": "已复核 F6-A/F6-B 修复与 R1-R5 专项：安装前 expiry 只走 expire()、State pre-start winner 只读 Scheduler terminal cause、CancelledBeforeStart 仅来自真实 cancel retirement、ExpiredBeforeDispatch 恒为 FailedBeforeApply/NotReached、迟到 cancel 不改写已定终态；规格与代码 Approved。机器验收独立，全部门禁通过前 B7 HOLD。",
+  "evidence": [
+    {
+      "path": "docs/reviews/B6-final-linearization-review.md",
+      "sha256": "6a5a4107bc0fb8da488cdea1963323943505a55ddcaa9f96be4723703cd7fe83"
+    }
+  ]
+}

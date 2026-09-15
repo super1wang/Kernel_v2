@@ -1,0 +1,41 @@
+{
+  "format": "ock.development-batch-closure/1",
+  "batch_id": "B6-final-linearization",
+  "batch_status": "Passed",
+  "gate_status": "Passed",
+  "created_at": "2026-09-15T11:07:30.584213+00:00",
+  "source_commit": "5fd2310aec5f8a24ac14b948677930e2a7ced7e3",
+  "tree_sha": "f1336a6adb22126db92fab2f38f199bfc0b8b230",
+  "inputs_sha256": "9cd7734ef8beff2ba2309d989a3a65a1d85184224a0612becb420fd98f91f1a5",
+  "formal_acceptance": {
+    "path": "evidence/B6/semantic-precision-5fd2310/formal-acceptance.json",
+    "sha256": "d16522d7745c685330b88ed244a461be3ff30aa7931d10735d952857e1d8bff7"
+  },
+  "footprint_integrity": {
+    "path": "evidence/B6/semantic-precision-5fd2310/footprint-integrity.json",
+    "sha256": "4ba68d3227de51c640439a1881091c64687e2f4ec578fa5268dc5e272dcf4fa6"
+  },
+  "matrix": {
+    "win-msvc-debug": {
+      "expected": 31,
+      "executed": 31,
+      "status": "Passed"
+    },
+    "win-msvc-release": {
+      "expected": 31,
+      "executed": 31,
+      "status": "Passed"
+    },
+    "win-msvc-asan": {
+      "expected": 31,
+      "executed": 31,
+      "status": "Passed"
+    }
+  },
+  "native_footprint": "7/7 Passed",
+  "embedded_footprint": "3/3 Passed including Release startup",
+  "B7_entry": "GO",
+  "G4": "NotStarted",
+  "scope": "B6 最终 Expiry-Cancel 线性化收口（F6-A/F6-B，DeferredControl first-wins + Scheduler cause 分类）；取代 912cb755 的最终放行决定，其 31/31、Native 7/7、Embedded 3/3 与 SDK/footprint 历史机器事实保留。未进入 B7 实现。",
+  "failure_policy": "首轮 bb7ca66 正式矩阵因 run manifest 构建产物路径截断失败、首次 footprint 会话两次瞬时线程观测噪声（基线退出边界 +1、native 首边界 -1）失败原文全部保留；最终仅选用同源 5fd2310 的干净三配置矩阵与干净单会话 10 项 footprint，无拼接。"
+}

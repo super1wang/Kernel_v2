@@ -1,0 +1,57 @@
+{
+  "production_commit": "5fd2310aec5f8a24ac14b948677930e2a7ced7e3",
+  "blocks": 6,
+  "jobs": [
+    {
+      "kind": "native",
+      "profile": "win-msvc-debug",
+      "mode": "occupancy"
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-debug",
+      "mode": "allocation"
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-release",
+      "mode": "occupancy"
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-release",
+      "mode": "allocation"
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-release",
+      "mode": "latency"
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-asan",
+      "mode": "occupancy"
+    },
+    {
+      "kind": "native",
+      "profile": "win-msvc-asan",
+      "mode": "allocation"
+    },
+    {
+      "kind": "embedded",
+      "profile": "win-msvc-debug",
+      "mode": "combined"
+    },
+    {
+      "kind": "embedded",
+      "profile": "win-msvc-release",
+      "mode": "combined"
+    },
+    {
+      "kind": "embedded",
+      "profile": "win-msvc-asan",
+      "mode": "combined"
+    }
+  ],
+  "budget_limits_and_pilots_unchanged": true
+}

@@ -1,0 +1,324 @@
+[
+  {
+    "label": "native-debug-configure",
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-debug"
+    ],
+    "started_at": "2026-09-15T10:37:55.092750+00:00",
+    "completed_at": "2026-09-15T10:37:56.346839+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-debug-configure.log"
+  },
+  {
+    "label": "native-debug-build",
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-debug",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "started_at": "2026-09-15T10:37:56.347576+00:00",
+    "completed_at": "2026-09-15T10:37:57.027909+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-debug-build.log"
+  },
+  {
+    "label": "native-debug-occupancy",
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/formal.py",
+      "--profile",
+      "win-msvc-debug",
+      "--mode",
+      "occupancy",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-debug"
+    ],
+    "started_at": "2026-09-15T10:37:57.027909+00:00",
+    "completed_at": "2026-09-15T10:40:48.945423+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-debug-occupancy.log"
+  },
+  {
+    "label": "native-debug-allocation",
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/formal.py",
+      "--profile",
+      "win-msvc-debug",
+      "--mode",
+      "allocation",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-debug"
+    ],
+    "started_at": "2026-09-15T10:40:48.947481+00:00",
+    "completed_at": "2026-09-15T10:43:47.041095+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-debug-allocation.log"
+  },
+  {
+    "label": "native-release-configure",
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-release"
+    ],
+    "started_at": "2026-09-15T10:43:47.043095+00:00",
+    "completed_at": "2026-09-15T10:43:48.272881+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-release-configure.log"
+  },
+  {
+    "label": "native-release-build",
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-release",
+      "--config",
+      "Release",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "started_at": "2026-09-15T10:43:48.273881+00:00",
+    "completed_at": "2026-09-15T10:43:48.916938+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-release-build.log"
+  },
+  {
+    "label": "native-release-occupancy",
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/formal.py",
+      "--profile",
+      "win-msvc-release",
+      "--mode",
+      "occupancy",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-release"
+    ],
+    "started_at": "2026-09-15T10:43:48.917937+00:00",
+    "completed_at": "2026-09-15T10:46:40.759870+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-release-occupancy.log"
+  },
+  {
+    "label": "native-release-allocation",
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/formal.py",
+      "--profile",
+      "win-msvc-release",
+      "--mode",
+      "allocation",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-release"
+    ],
+    "started_at": "2026-09-15T10:46:40.763026+00:00",
+    "completed_at": "2026-09-15T10:49:40.901707+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-release-allocation.log"
+  },
+  {
+    "label": "native-release-latency",
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/formal.py",
+      "--profile",
+      "win-msvc-release",
+      "--mode",
+      "latency",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-release"
+    ],
+    "started_at": "2026-09-15T10:49:40.903707+00:00",
+    "completed_at": "2026-09-15T10:52:34.950944+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-release-latency.log"
+  },
+  {
+    "label": "native-asan-configure",
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-asan"
+    ],
+    "started_at": "2026-09-15T10:52:34.952469+00:00",
+    "completed_at": "2026-09-15T10:52:36.335795+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-asan-configure.log"
+  },
+  {
+    "label": "native-asan-build",
+    "argv": [
+      "cmake",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-asan",
+      "--config",
+      "Debug",
+      "--parallel",
+      "4",
+      "--",
+      "/nr:false"
+    ],
+    "started_at": "2026-09-15T10:52:36.336796+00:00",
+    "completed_at": "2026-09-15T10:52:36.929228+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-asan-build.log"
+  },
+  {
+    "label": "native-asan-occupancy",
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/formal.py",
+      "--profile",
+      "win-msvc-asan",
+      "--mode",
+      "occupancy",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-asan"
+    ],
+    "started_at": "2026-09-15T10:52:36.930748+00:00",
+    "completed_at": "2026-09-15T10:55:31.588459+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-asan-occupancy.log"
+  },
+  {
+    "label": "native-asan-allocation",
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/formal.py",
+      "--profile",
+      "win-msvc-asan",
+      "--mode",
+      "allocation",
+      "--build",
+      "J:\\Code\\Kernel_v2\\build\\b6-native-asan"
+    ],
+    "started_at": "2026-09-15T10:55:31.589461+00:00",
+    "completed_at": "2026-09-15T10:58:31.362867+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\native-asan-allocation.log"
+  },
+  {
+    "label": "embedded-debug-configure",
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\b6-embedded-debug"
+    ],
+    "started_at": "2026-09-15T10:58:31.366866+00:00",
+    "completed_at": "2026-09-15T10:58:32.533179+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\embedded-debug-configure.log"
+  },
+  {
+    "label": "embedded-debug-combined",
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/embedded_formal.py",
+      "--profile",
+      "win-msvc-debug",
+      "--producer",
+      "J:\\Code\\Kernel_v2\\build\\b6-embedded-debug"
+    ],
+    "started_at": "2026-09-15T10:58:32.534332+00:00",
+    "completed_at": "2026-09-15T11:00:59.436400+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\embedded-debug-combined.log"
+  },
+  {
+    "label": "embedded-release-configure",
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\b6-embedded-release"
+    ],
+    "started_at": "2026-09-15T11:00:59.437401+00:00",
+    "completed_at": "2026-09-15T11:01:00.311771+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\embedded-release-configure.log"
+  },
+  {
+    "label": "embedded-release-combined",
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/embedded_formal.py",
+      "--profile",
+      "win-msvc-release",
+      "--producer",
+      "J:\\Code\\Kernel_v2\\build\\b6-embedded-release"
+    ],
+    "started_at": "2026-09-15T11:01:00.312771+00:00",
+    "completed_at": "2026-09-15T11:03:30.779604+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\embedded-release-combined.log"
+  },
+  {
+    "label": "embedded-asan-configure",
+    "argv": [
+      "cmake",
+      "-S",
+      "J:\\Code\\Kernel_v2",
+      "-B",
+      "J:\\Code\\Kernel_v2\\build\\b6-embedded-asan"
+    ],
+    "started_at": "2026-09-15T11:03:30.782606+00:00",
+    "completed_at": "2026-09-15T11:03:31.836362+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\embedded-asan-configure.log"
+  },
+  {
+    "label": "embedded-asan-combined",
+    "argv": [
+      "J:\\Code\\Kernel_v2\\build\\runtime\\python311\\python.exe",
+      "-X",
+      "utf8",
+      "tools/footprint/embedded_formal.py",
+      "--profile",
+      "win-msvc-asan",
+      "--producer",
+      "J:\\Code\\Kernel_v2\\build\\b6-embedded-asan"
+    ],
+    "started_at": "2026-09-15T11:03:31.836362+00:00",
+    "completed_at": "2026-09-15T11:05:58.661383+00:00",
+    "exit_code": 0,
+    "log": "J:\\Code\\Kernel_v2\\evidence\\B6\\semantic-precision-5fd2310\\embedded-asan-combined.log"
+  }
+]
