@@ -4,7 +4,9 @@
 
 ## 当前生产节点
 
-- **B6 semantic precision v2 Passed / Frozen；B7 准入 GO（2026-09-14）。** 最终生产来源 `912cb7554cd4c78ea9bf6db5615a2875d215e5ed`；F1–F5 及 Host 等待/已进入 expiry 边界已修复。Debug / Release / ASan Debug 各 31/31，State 安装/SDK、Native 7 项与 Embedded 3 配置（含 Release startup）均在同一新来源通过。648 个正式输入、190 个 footprint 输入与 Git 一致；沿用原 11 项预算，六投影无 State/immer。机器证据已先提交 `c03daa1`，见 [最终交付](validation/B6-final-semantic-precision-delivery.md)与 [验收](../evidence/B6/semantic-precision-912cb75/acceptance.json)。B7 未开发，G4 NotStarted。
+- **B6 最终 Expiry-Cancel 线性化收口重开：ChangesRequested；B7 HOLD（2026-09-14）。** 代码复查发现 912cb755 仍存在 Runtime 私有控制竞态 F6-A（Accepted→slot 安装之间 expiry 被安装路径重解释为 cancel）与 F6-B（`cancel_requested_` 意图被当作 State pre-start 终态 winner）。修复方案见 [B6 最终收口执行文档 v1.0（L4.5）](plans/B6%20最终%20Expiry-Cancel%20线性化收口执行文档%20v1.0（L4.5）.md)：新增 DeferredControl first-wins、安装时按原因消费、State pre-start 分类只读 Scheduler terminal cause；预期 3 个生产文件。912cb755 的 31/31（Debug/Release/ASan）、Native 7/7、Embedded 3/3（含 Release startup）、SDK/install/footprint 全部作为历史真实机器事实保留，没有失效或被覆盖，但未覆盖 F6 新发现的窗口。旧 evidence 不删除；新来源验证完成前 B7 保持 HOLD，G4 NotStarted。
+
+- **B6 semantic precision v2 历史 Passed（最终放行被 F6 重开取代）。** 最终生产来源 `912cb7554cd4c78ea9bf6db5615a2875d215e5ed`；F1–F5 及 Host 等待/已进入 expiry 边界已修复。Debug / Release / ASan Debug 各 31/31，State 安装/SDK、Native 7 项与 Embedded 3 配置（含 Release startup）均在同一新来源通过。648 个正式输入、190 个 footprint 输入与 Git 一致；沿用原 11 项预算，六投影无 State/immer。机器证据已先提交 `c03daa1`，见 [最终交付](validation/B6-final-semantic-precision-delivery.md)与 [验收](../evidence/B6/semantic-precision-912cb75/acceptance.json)。B7 未开发，G4 NotStarted。
 
 - **32c38ad 为 v2 第一候选历史机器事实，最终放行已由 912cb75 取代。** 原三配置、footprint 与失败原文保留；遗漏的 State Host expiry 导致重新打开 F5 并追加修复，无回退或历史重写。
 
