@@ -22,8 +22,11 @@ private:
     }
   };
   using Deadlines=std::multimap<scheduler::Time,std::size_t>;
+  // 安装前控制事件的 first-writer-wins 记录；Runtime 私有，不进公开合同。
+  enum class DeferredControl { None, Expire, Cancel };
   struct Slot {
-    bool reserved=false,expired=false;std::shared_ptr<ManagedControl> execution;
+    bool reserved=false;DeferredControl deferred=DeferredControl::None;
+    std::shared_ptr<ManagedControl> execution;
     std::optional<Deadlines::iterator> timer;
   };
   struct State {
@@ -98,7 +101,7 @@ public:
       foundation::invariant(slot<s->slots.size());
       try {s->slots[slot].timer=s->deadlines.emplace(record->options().deadline,slot);}
       catch(...) {return contracts::Rejected{contracts::error(contracts::ContractsErrc::BudgetExceeded)};}
-      s->slots[slot].expired=false;s->slots[slot].reserved=true;++s->used;
+      s->slots[slot].deferred=DeferredControl::None;s->slots[slot].reserved=true;++s->used;
     }
     struct Reservation {
       std::shared_ptr<State> state;std::size_t slot;bool installed=false;
@@ -106,7 +109,7 @@ public:
         if(installed)return;
         {std::lock_guard lock(state->mutex);auto& entry=state->slots[slot];
           if(entry.timer)state->deadlines.erase(*entry.timer);
-          entry.timer.reset();entry.reserved=false;--state->used;}
+          entry.timer.reset();entry.deferred=DeferredControl::None;entry.reserved=false;--state->used;}
         state->wake->signal();
       }
     } reservation{s,slot};
@@ -117,12 +120,17 @@ public:
           std::move(record),resolver,[wake=s->wake]{wake->signal();},parent,s->options.children_per_execution,s->options.required_record);
       if(!execution)return contracts::Rejected{execution.error()};
       accepted=*execution;
-      bool closing;
+      DeferredControl deferred;
       {
-        std::lock_guard lock(s->mutex);s->slots[slot].execution=*execution;
-        reservation.installed=true;closing=s->closing||s->slots[slot].expired;
+        std::lock_guard lock(s->mutex);auto& current=s->slots[slot];
+        current.execution=*execution;
+        reservation.installed=true;
+        if(current.deferred==DeferredControl::None&&s->closing)current.deferred=DeferredControl::Cancel;
+        deferred=std::exchange(current.deferred,DeferredControl::None);
       }
-      if(closing)(*execution)->cancel();
+      // 安装前已观察到的控制事件按首个写入者分发；expiry 不重解释为 cancel。
+      if(deferred==DeferredControl::Expire)(*execution)->expire();
+      else if(deferred==DeferredControl::Cancel)(void)(*execution)->cancel();
       s->wake->signal();
       return (*execution)->accepted();
     } catch(...) {
@@ -150,13 +158,16 @@ public:
   }
   void close() {
     auto s=state_;s->table->close_admission();
-    {std::lock_guard lock(s->mutex);s->closing=true;}
-    // 没有容量依赖 post_control，也不在服务锁下调用 Scheduler/业务回调。
-    for(std::size_t i=0;i<s->slots.size();++i) {
-      std::shared_ptr<ManagedControl> entry;
-      {std::lock_guard lock(s->mutex);entry=s->slots[i].execution;}
-      if(entry)entry->cancel();
+    std::vector<std::shared_ptr<ManagedControl>> pending;
+    {
+      std::lock_guard lock(s->mutex);s->closing=true;
+      for(auto& slot:s->slots) {
+        if(slot.execution)pending.push_back(slot.execution);
+        else if(slot.reserved&&slot.deferred==DeferredControl::None)slot.deferred=DeferredControl::Cancel;
+      }
     }
+    // 没有容量依赖 post_control，也不在服务锁下调用 Scheduler/业务回调。
+    for(auto& entry:pending)entry->cancel();
     s->scheduler->close();s->wake->signal();
   }
   contracts::Result<bool> shutdown_until(scheduler::Time deadline) {
@@ -199,7 +210,7 @@ private:
           {std::lock_guard lock(s->mutex);if(s->slots[slot].execution==entry) {
             retired=std::move(s->slots[slot].execution);s->slots[slot].reserved=false;--s->used;
             if(s->slots[slot].timer)s->deadlines.erase(*s->slots[slot].timer);
-            s->slots[slot].timer.reset();
+            s->slots[slot].timer.reset();s->slots[slot].deferred=DeferredControl::None;
           }}
         }
       }
@@ -208,8 +219,10 @@ private:
         {
           std::lock_guard lock(s->mutex);auto timer=s->deadlines.begin();
           if(timer==s->deadlines.end()||timer->first>std::chrono::steady_clock::now())break;
-          auto& slot=s->slots[timer->second];slot.expired=true;slot.timer.reset();
-          expired=slot.execution;s->deadlines.erase(timer);
+          auto& slot=s->slots[timer->second];
+          if(slot.execution)expired=slot.execution;
+          else if(slot.deferred==DeferredControl::None)slot.deferred=DeferredControl::Expire;
+          slot.timer.reset();s->deadlines.erase(timer);
         }
         // stop 回调可以完成或释放 owning 输入；绝不在服务锁内调用。
         if(expired)expired->expire();

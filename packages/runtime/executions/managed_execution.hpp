@@ -130,7 +130,7 @@ public:
         return owner;
       }
       if(owner&&owner->entry_) {
-        if(owner->ticket_)(void)scheduler->retire(owner->ticket_);
+        if(owner->ticket_)(void)scheduler->retire(owner->ticket_,contracts::error(contracts::ContractsErrc::Rejected));
         table->abandon(owner->entry_);
       }
       return fail();
@@ -243,8 +243,9 @@ private:
       auto reason=status?contracts::error(contracts::ContractsErrc::Rejected):status.error();
       bool cancelled;
       if(record_->material()->entry->shape==invocation::Shape::StateEdit) {
-        // State pre-start cancellation comes from its owning execution, never expiry codes.
-        std::lock_guard lock(lifetime_mutex_);cancelled=cancel_requested_;
+        // State pre-start winner 只读 Scheduler 同锁仲裁出的 terminal cause；
+        // 迟到的 cancel 意图不得把已定的 expiry/failure 终态重解释成 CancelWon。
+        cancelled=reason.code()==scheduler::error(scheduler::Errc::CancelledBeforeStart).code();
       } else cancelled=reason.code()==scheduler::error(scheduler::Errc::CancelledBeforeStart).code()||
                        reason.code()==scheduler::error(scheduler::Errc::ExpiredBeforeDispatch).code();
       record_->complete_before_start(reason,cancelled);

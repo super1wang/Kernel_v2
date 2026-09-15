@@ -451,7 +451,7 @@ int main() try {
       return invocation::ThreadObservation{std::this_thread::get_id()==owner?invocation::ThreadRole::Application:invocation::ThreadRole::Worker,name("app"),true};
     }
   };
-  host::HostOptions host_options;host_options.enable_state=true;host_options.native.concurrent_calls_per_binding=2;
+  host::HostOptions host_options;host_options.enable_state=true;host_options.native.concurrent_calls_per_binding=64;
   auto factory=std::make_shared<Factory>();factory->recorder=recorder;
   struct HostClock final:policy::ClockPort {
     policy::TimePoint now() const noexcept override {return std::chrono::steady_clock::now();}
@@ -576,6 +576,124 @@ int main() try {
     auto value=session->result<atomic::Results>(**caller,ref);CHECK(value);exact_failure(*value->value,true,ref==holding_ref,true);
   }
   before_return={};CHECK((*state)->snapshot((*caller)->view())->revision()==6);
+  // F6-01: an already-expired accepted State submit completes as pure expiry failure.
+  {
+    const auto f6_revision=(*state)->snapshot((*caller)->view())->revision();
+    const auto f6_entries=state_entries.load();
+    auto already=submit_options;already.expected_state=PreparedBase{f6_revision,1};
+    already.deadline=std::chrono::steady_clock::now()-std::chrono::milliseconds(1);
+    auto expired_submit=hosted->submit(120,already);CHECK(std::holds_alternative<Accepted>(expired_submit));
+    auto expired_ref=std::get<Accepted>(expired_submit).execution;
+    auto expired_wait=session->wait(**caller,expired_ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));
+    auto expired_value=session->result<int>(**caller,expired_ref);
+    CHECK(expired_wait&&expired_wait->state==host::ExecutionWaitState::Terminal&&expired_value);
+    exact_failure(*expired_value->value,true,false);
+    CHECK(state_entries==f6_entries&&(*state)->snapshot((*caller)->view())->revision()==f6_revision);
+  }
+  // F6-02: pre-install expiry stress; no accepted submit may become cancellation or publication.
+  {
+    const auto f6_revision=(*state)->snapshot((*caller)->view())->revision();
+    const auto f6_entries=state_entries.load();
+    auto past=submit_options;past.expected_state=PreparedBase{f6_revision,1};
+    past.deadline=std::chrono::steady_clock::now()-std::chrono::milliseconds(1);
+    unsigned cancel_won=0,committed=0;
+    for(unsigned wave=0;wave<8;++wave) {
+      std::vector<ExecutionRef> stress;
+      for(unsigned i=0;i<32;++i) {
+        auto reply=hosted->submit(static_cast<int>(200+wave*32+i),past);CHECK(std::holds_alternative<Accepted>(reply));
+        stress.push_back(std::get<Accepted>(reply).execution);
+      }
+      for(auto ref:stress) {
+        auto terminal=session->wait(**caller,ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));
+        auto value=session->result<int>(**caller,ref);
+        CHECK(terminal&&terminal->state==host::ExecutionWaitState::Terminal&&value);
+        const auto& outcome=std::get<Completed<int>>(*value->value).outcome;
+        if(std::holds_alternative<CancelledBeforeApply>(outcome.value()))++cancel_won;
+        if(std::holds_alternative<StateCommitted<int>>(outcome.value()))++committed;
+        exact_failure(*value->value,true,false);
+      }
+    }
+    CHECK(cancel_won==0&&committed==0);
+    CHECK(state_entries==f6_entries&&(*state)->snapshot((*caller)->view())->revision()==f6_revision);
+  }
+  // F6-03: a genuine pre-start cancel while waiting for a held resource still wins.
+  {
+    const auto f6_revision=(*state)->snapshot((*caller)->view())->revision();
+    const auto f6_entries=state_entries.load();
+    auto entered=std::make_shared<std::binary_semaphore>(0),release=std::make_shared<std::binary_semaphore>(0);
+    before_return=[entered,release](WorkContext&){entered->release();CHECK(release->try_acquire_for(std::chrono::seconds(3)));};
+    auto hold_options=submit_options;hold_options.expected_state=PreparedBase{f6_revision,1};
+    hold_options.deadline=std::chrono::steady_clock::now()+std::chrono::seconds(5);
+    auto hold=hosted->submit(130,hold_options);CHECK(std::holds_alternative<Accepted>(hold));
+    auto hold_ref=std::get<Accepted>(hold).execution;CHECK(entered->try_acquire_for(std::chrono::seconds(2)));
+    auto waiting=hosted->submit(131,hold_options);CHECK(std::holds_alternative<Accepted>(waiting));
+    auto waiting_ref=std::get<Accepted>(waiting).execution;
+    auto waiting_state=session->wait(**caller,waiting_ref,std::chrono::steady_clock::now()+std::chrono::milliseconds(30));
+    CHECK(waiting_state&&waiting_state->state==host::ExecutionWaitState::Timeout);
+    CHECK(session->cancel(**caller,waiting_ref));
+    auto terminal=session->wait(**caller,waiting_ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));
+    auto value=session->result<int>(**caller,waiting_ref);
+    CHECK(terminal&&terminal->state==host::ExecutionWaitState::Terminal&&value);
+    exact_failure(*value->value,true,false,true);
+    CHECK(session->cancel(**caller,hold_ref));release->release();
+    auto hold_terminal=session->wait(**caller,hold_ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));
+    CHECK(hold_terminal&&hold_terminal->state==host::ExecutionWaitState::Terminal);
+    before_return={};
+    CHECK(state_entries==f6_entries+1&&(*state)->snapshot((*caller)->view())->revision()==f6_revision);
+  }
+  // F6-04: expiry wins first; a late cancel must not reinterpret the terminal cause.
+  {
+    const auto f6_revision=(*state)->snapshot((*caller)->view())->revision();
+    const auto f6_entries=state_entries.load();
+    auto entered=std::make_shared<std::binary_semaphore>(0),release=std::make_shared<std::binary_semaphore>(0);
+    before_return=[entered,release](WorkContext&){entered->release();CHECK(release->try_acquire_for(std::chrono::seconds(3)));};
+    auto hold_options=submit_options;hold_options.expected_state=PreparedBase{f6_revision,1};
+    hold_options.deadline=std::chrono::steady_clock::now()+std::chrono::seconds(5);
+    auto hold=hosted->submit(132,hold_options);CHECK(std::holds_alternative<Accepted>(hold));
+    auto hold_ref=std::get<Accepted>(hold).execution;CHECK(entered->try_acquire_for(std::chrono::seconds(2)));
+    auto expiring=hold_options;expiring.deadline=std::chrono::steady_clock::now()+std::chrono::milliseconds(100);
+    auto late_cancel=hosted->submit(133,expiring);CHECK(std::holds_alternative<Accepted>(late_cancel));
+    auto late_ref=std::get<Accepted>(late_cancel).execution;
+    auto terminal=session->wait(**caller,late_ref,std::chrono::steady_clock::now()+std::chrono::seconds(2));
+    auto value=session->result<int>(**caller,late_ref);
+    CHECK(terminal&&terminal->state==host::ExecutionWaitState::Terminal&&value);
+    exact_failure(*value->value,true,false);
+    CHECK(session->cancel(**caller,late_ref));
+    auto after=session->result<int>(**caller,late_ref);CHECK(after);
+    exact_failure(*after->value,true,false);
+    CHECK(session->cancel(**caller,hold_ref));release->release();
+    auto hold_terminal=session->wait(**caller,hold_ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));
+    CHECK(hold_terminal&&hold_terminal->state==host::ExecutionWaitState::Terminal);
+    before_return={};
+    CHECK(state_entries==f6_entries+1&&(*state)->snapshot((*caller)->view())->revision()==f6_revision);
+  }
+  // F6-05: cancel wins first; a later deadline must not reinterpret the terminal cause.
+  {
+    const auto f6_revision=(*state)->snapshot((*caller)->view())->revision();
+    const auto f6_entries=state_entries.load();
+    auto entered=std::make_shared<std::binary_semaphore>(0),release=std::make_shared<std::binary_semaphore>(0);
+    before_return=[entered,release](WorkContext&){entered->release();CHECK(release->try_acquire_for(std::chrono::seconds(3)));};
+    auto hold_options=submit_options;hold_options.expected_state=PreparedBase{f6_revision,1};
+    hold_options.deadline=std::chrono::steady_clock::now()+std::chrono::seconds(5);
+    auto hold=hosted->submit(134,hold_options);CHECK(std::holds_alternative<Accepted>(hold));
+    auto hold_ref=std::get<Accepted>(hold).execution;CHECK(entered->try_acquire_for(std::chrono::seconds(2)));
+    auto short_lived=hold_options;short_lived.deadline=std::chrono::steady_clock::now()+std::chrono::milliseconds(200);
+    auto cancelled_first=hosted->submit(135,short_lived);CHECK(std::holds_alternative<Accepted>(cancelled_first));
+    auto cancelled_ref=std::get<Accepted>(cancelled_first).execution;
+    CHECK(session->cancel(**caller,cancelled_ref));
+    auto terminal=session->wait(**caller,cancelled_ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));
+    auto value=session->result<int>(**caller,cancelled_ref);
+    CHECK(terminal&&terminal->state==host::ExecutionWaitState::Terminal&&value);
+    exact_failure(*value->value,true,false,true);
+    std::this_thread::sleep_until(short_lived.deadline+std::chrono::milliseconds(100));
+    auto after=session->result<int>(**caller,cancelled_ref);CHECK(after);
+    exact_failure(*after->value,true,false,true);
+    CHECK(session->cancel(**caller,hold_ref));release->release();
+    auto hold_terminal=session->wait(**caller,hold_ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));
+    CHECK(hold_terminal&&hold_terminal->state==host::ExecutionWaitState::Terminal);
+    before_return={};
+    CHECK(state_entries==f6_entries+1&&(*state)->snapshot((*caller)->view())->revision()==f6_revision);
+  }
   // Accepted expiry regression: accepted State expires while its resource is held.
   entered_step=std::make_shared<std::binary_semaphore>(0);release_step=std::make_shared<std::binary_semaphore>(0);
   before_return=[entered_step,release_step](WorkContext&){entered_step->release();CHECK(release_step->try_acquire_for(std::chrono::seconds(3)));};
@@ -603,10 +721,37 @@ int main() try {
   CHECK(running_expiry_wait&&running_expiry_wait->state==host::ExecutionWaitState::Terminal&&running_expiry_result);
   exact_failure(*running_expiry_result->value,true,true);
   CHECK(state_entries==expiry_entries+1&&(*state)->snapshot((*caller)->view())->revision()==expiry_revision);
+  // F6-06: a slot used by an expired execution is reusable and must commit normally.
+  {
+    const auto f6_revision=(*state)->snapshot((*caller)->view())->revision();
+    const auto f6_entries=state_entries.load();
+    auto past=submit_options;past.expected_state=PreparedBase{f6_revision,1};
+    past.deadline=std::chrono::steady_clock::now()-std::chrono::milliseconds(1);
+    auto expired=hosted->submit(136,past);CHECK(std::holds_alternative<Accepted>(expired));
+    auto expired_ref=std::get<Accepted>(expired).execution;
+    auto expired_wait=session->wait(**caller,expired_ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));
+    auto expired_value=session->result<int>(**caller,expired_ref);
+    CHECK(expired_wait&&expired_wait->state==host::ExecutionWaitState::Terminal&&expired_value);
+    exact_failure(*expired_value->value,true,false);
+    auto good=submit_options;good.expected_state=PreparedBase{f6_revision,1};
+    good.deadline=std::chrono::steady_clock::now()+std::chrono::seconds(5);
+    auto reused=hosted->submit(137,good);CHECK(std::holds_alternative<Accepted>(reused));
+    auto reused_ref=std::get<Accepted>(reused).execution;
+    auto reused_wait=session->wait(**caller,reused_ref,std::chrono::steady_clock::now()+std::chrono::seconds(3));
+    auto reused_value=session->result<int>(**caller,reused_ref);
+    CHECK(reused_wait&&reused_wait->state==host::ExecutionWaitState::Terminal&&reused_value);
+    CHECK(std::holds_alternative<Completed<int>>(*reused_value->value));
+    const auto& reused_commit=std::get<StateCommitted<int>>(std::get<Completed<int>>(*reused_value->value).outcome.value());
+    CHECK(reused_commit.result&&*reused_commit.result==138&&reused_commit.revision==f6_revision+1);
+    CHECK(state_entries==f6_entries+1&&(*state)->snapshot((*caller)->view())->revision()==f6_revision+1);
+    // The required-record regression below follows the new revision with a fresh real deadline.
+    submit_options.expected_state=PreparedBase{f6_revision+1,1};
+    submit_options.deadline=std::chrono::steady_clock::now()+std::chrono::seconds(5);
+  }
   recorder->hold=true;
   auto record_failure=host_group_bound->submit(*host_group,submit_options);CHECK(std::holds_alternative<Accepted>(record_failure));
   auto record_ref=std::get<Accepted>(record_failure).execution;CHECK(recorder->reported.try_acquire_for(std::chrono::seconds(2)));
-  CHECK((*state)->snapshot((*caller)->view())->revision()==7);
+  CHECK((*state)->snapshot((*caller)->view())->revision()==8);
   auto not_drained=session->wait(**caller,record_ref,std::chrono::steady_clock::now()+std::chrono::milliseconds(20));CHECK(not_drained&&not_drained->state==host::ExecutionWaitState::Timeout);
   CHECK(!session->result<atomic::Results>(**caller,record_ref));
   recorder->release();
@@ -615,7 +760,34 @@ int main() try {
   const auto& preserved_outcome=std::get<Completed<atomic::Results>>(*preserved->value).outcome;
   CHECK(std::holds_alternative<StateCommitted<atomic::Results>>(preserved_outcome.value()));
   CHECK(preserved_outcome.evidence()==EvidenceState::RequiredRecordFailed&&preserved_outcome.facts().values().size()==2);
+  // F6-07 snapshots must be captured before the first host's sessions are destroyed.
+  auto f6_close_snapshot=(*state)->snapshot((*caller)->view());CHECK(f6_close_snapshot);
+  const auto f6_close_revision=f6_close_snapshot->revision();
   CHECK((*host)->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(3)).quiescent);
+  // F6-07: close with a running and a waiting-resource execution still drains cleanly.
+  {
+    recorder->hold=false;
+    auto second=host::NativeHost::create(host_options,configuration,
+        {policy.auth,std::make_shared<HostClock>(),policy.digest,std::make_shared<HostThreads>(),{},factory});CHECK(second);
+    struct SecondShutdown {host::NativeHost& owner;
+      ~SecondShutdown(){(void)owner.shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(3));}} second_shutdown{**second};
+    CHECK((*second)->add({module,std::make_shared<Lifecycle>()}));CHECK((*second)->start());
+    auto second_session=(*second)->open({{std::byte{7}}},{all_rules,policy.auth->identity.deadline,false});CHECK(second_session);
+    auto second_context=second_session->catalog_context();CHECK(second_context);
+    reads->callers=second_context->authorization->callers();
+    auto second_caller=second_session->verify({policy_test::principal(),{},{}});CHECK(second_caller);
+    auto second_bound=second_session->bind<int,int>(key(),{},Shape::StateEdit,*second_caller,
+        std::array{policy_test::target()},state_target,name("state.host.f6"));CHECK(second_bound);
+    auto entered=std::make_shared<std::binary_semaphore>(0),release=std::make_shared<std::binary_semaphore>(0);
+    before_return=[entered,release](WorkContext&){entered->release();(void)release->try_acquire_for(std::chrono::milliseconds(200));};
+    auto hold_options=submit_options;hold_options.expected_state=PreparedBase{f6_close_revision,1};
+    hold_options.deadline=std::chrono::steady_clock::now()+std::chrono::seconds(5);
+    auto running=second_bound->submit(140,hold_options);CHECK(std::holds_alternative<Accepted>(running));
+    CHECK(entered->try_acquire_for(std::chrono::seconds(2)));
+    auto waiting=second_bound->submit(141,hold_options);CHECK(std::holds_alternative<Accepted>(waiting));
+    before_return={};
+    CHECK((*second)->shutdown_until(std::chrono::steady_clock::now()+std::chrono::seconds(3)).quiescent);
+  }
 
 
 
